@@ -1,0 +1,8 @@
+20:51:35.104 +30.72s DEBUG store.commit Modification {"source":"inspector-style","past":31,"page":"p_fg7hya37"}
+20:51:35.110 +30.73s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"inspector-style","mode":"contenu","ms":5}
+20:51:35.114 +30.73s WARN  style.contrast-low Contraste insuffisant : 1,8:1 pour 4,5:1 requis {"id":"n_4y390z0l4z","type":"text","ratio":1.76,"required":4.5,"fg":"#bbbbbb","bg":"#f5f5f2"}
+20:51:35.132 +30.75s DEBUG style.set Couleur du texte = #bbbbbb (Ordinateur) {"key":"color","state":"normal","device":"desktop","target":"node","id":"n_4y390z0l4z","value":"#bbbbbb"}
+20:51:35.551 +31.17s DEBUG store.commit Modification {"source":"inspector-style","past":32,"page":"p_fg7hya37"}
+20:51:35.556 +31.17s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"inspector-style","mode":"contenu","ms":4}
+20:51:35.559 +31.18s DEBUG style.contrast-ok Contraste suffisant : 17,1:1 {"id":"n_4y390z0l4z","ratio":17.11,"required":4.5}
+20:51:35.579 +31.20s DEBUG style.set Couleur du texte = palette:c3 (Ordinateur) {"key":"color","state":"normal","device":"desktop","target":"node","id":"n_4y390z0l4z","value":"palette:c3","palette":true}

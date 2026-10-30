@@ -1,0 +1,16 @@
+{
+ "{n} px": "{n} px",
+ "Largeur du panneau de gauche": "Left panel width",
+ "Largeur du panneau de droite": "Right panel width",
+ "Glisse pour élargir ou réduire ; double-clic : largeur d’origine ; au clavier : flèches (Maj : plus vite), Début, Fin.": "Drag to widen or narrow; double-click: original width; keyboard: arrows (Shift: faster), Home, End.",
+ "Panneau de gauche : {from} → {to} px": "Left panel: {from} → {to} px",
+ "Panneau de droite : {from} → {to} px": "Right panel: {from} → {to} px",
+ "Panneau de gauche : largeur d’origine ({to} px)": "Left panel: original width ({to} px)",
+ "Panneau de droite : largeur d’origine ({to} px)": "Right panel: original width ({to} px)",
+ "Largeurs des panneaux retenues : {left} / {right} px": "Saved panel widths: {left} / {right} px",
+ "Élargir les panneaux de gauche et de droite (clavier, double-clic)": "Widen the left and right panels (keyboard, double-click)",
+ "Maj+→ : panneau de gauche plus large": "Shift+→: left panel wider",
+ "la poignée annonce la nouvelle largeur": "the handle announces the new width",
+ "← : panneau de droite plus large": "←: right panel wider",
+ "double-clic : largeur d’origine appliquée": "double-click: original width applied"
+}

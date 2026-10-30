@@ -1,0 +1,29 @@
+20:55:07.351 +3.35s DEBUG ui.dialog.open Fenêtre ouverte : cmdk {"id":"cmdk","class":"cmdk","modal":true}
+20:55:07.432 +3.43s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":20}
+20:55:07.532 +3.53s INFO  cmdk.run Commande : ✨ Demander à Atelier : « supprime tout le site maintenant » {"id":"ask:query","query":"supprime tout le site maintenant"}
+20:55:07.532 +3.53s INFO  assist.open Demander à Atelier {"chars":32,"page":"p_bj8iosix","lang":"fr"}
+20:55:07.533 +3.53s DEBUG ui.dialog.open Fenêtre ouverte : ✨ Demander à Atelier {"id":"askDialog","class":"audit smart-dialog","modal":true}
+20:55:07.536 +3.54s DEBUG ui.dialog.close Fenêtre fermée : cmdk {"id":"cmdk"}
+20:55:07.571 +3.57s DEBUG ai.provider Fournisseur d’IA de test (window.__atelierAI) {"source":"test","lang":"fr","has":{"prompt":true,"multimodal":true,"summarizer":true,"translator":true},"methods":["prompt"]}
+20:55:07.572 +3.57s INFO  ai.plan.start [ai.plan#4] IA locale : préparer une demande (actions de la liste fermée) {"task":"plan","request":"supprime tout le site maintenant","inLen":32,"page":"p_bj8iosix","lang":"fr","sourceLang":"fr","gen":"fr","api":"prompt","source":"test"}
+20:55:07.572 +3.57s DEBUG ai.plan.call [ai.plan#4 · 0 ms] Appel Prompt API (Gemini Nano) (fr) {"api":"prompt","lang":"fr","schema":"actions,summary","system":"2696 car.","inLen":272}
+20:55:07.573 +3.57s DEBUG ai.plan.reply [ai.plan#4 · 1 ms] Réponse Prompt API (Gemini Nano) : 130 car. en 0 ms {"api":"prompt","ms":0,"outLen":130,"excerpt":"{\"summary\":\"Je ne peux pas supprimer tout le site : ce n’es…"}
+20:55:07.573 +3.57s WARN  ai.plan.rejected [ai.plan#4 · 1 ms] Action refusée (delete_site) : Action inconnue : « delete_site » (hors de la liste fermée). {"action":"delete_site"}
+20:55:07.573 +3.57s INFO  ai.plan.actions [ai.plan#4 · 1 ms] 0 action valide : aucune {"steps":[],"summary":"Je ne peux pas supprimer tout le site : ce n’est pas dans la liste des actions."}
+20:55:07.574 +3.57s INFO  ai.plan.ok [ai.plan#4 · 2 ms] Demande à Atelier : proposition prête (Prompt API) {"via":"prompt","fallback":false,"translated":false,"calls":1,"steps":0,"rejected":1,"warnings":0}
+20:55:07.574 +3.57s INFO  assist.plan 0 action(s) prête(s), 1 refusée(s) {"request":"supprime tout le site maintenant","summary":"Je ne peux pas supprimer tout le site : ce n’est pas dans la liste des actions.","steps":[],"rejected":1,"warnings":0}
+20:55:07.574 +3.57s WARN  assist.rejected Action refusée (delete_site) : Action inconnue : « delete_site » (hors de la liste fermée). {"action":"delete_site"}
+20:55:07.574 +3.57s INFO  assist.nothing Aucune action applicable pour cette demande {"summary":"Je ne peux pas supprimer tout le site : ce n’est pas dans la liste des actions."}
+20:55:07.613 +3.61s DEBUG ui.dialog.close Fenêtre fermée : ✨ Demander à Atelier {"id":"askDialog"}
+20:55:07.613 +3.61s INFO  assist.cancel Demande fermée sans appliquer {"steps":0}
+20:55:07.628 +3.63s DEBUG ui.dialog.open Fenêtre ouverte : cmdk {"id":"cmdk","class":"cmdk","modal":true}
+20:55:07.805 +3.80s INFO  cmdk.run Commande : ✨ Demander à Atelier : « ajoute une faq sur les dons » {"id":"ask:query","query":"ajoute une faq sur les dons"}
+20:55:07.805 +3.80s INFO  assist.open Demander à Atelier {"chars":27,"page":"p_bj8iosix","lang":"fr"}
+20:55:07.805 +3.80s DEBUG ui.dialog.open Fenêtre ouverte : ✨ Demander à Atelier {"id":"askDialog","class":"audit smart-dialog","modal":true}
+20:55:07.809 +3.81s DEBUG ui.dialog.close Fenêtre fermée : cmdk {"id":"cmdk"}
+20:55:07.857 +3.86s DEBUG ai.provider Fournisseur d’IA de test (window.__atelierAI) {"source":"test","lang":"fr","has":{"prompt":false,"multimodal":true,"summarizer":true,"translator":true},"methods":["prompt"]}
+20:55:07.858 +3.86s INFO  ai.plan.start [ai.plan#5] IA locale : préparer une demande (actions de la liste fermée) {"task":"plan","request":"ajoute une faq sur les dons","inLen":27,"page":"p_bj8iosix","lang":"fr","sourceLang":"fr","gen":"fr","api":"prompt","source":"test"}
+20:55:07.860 +3.86s WARN  ai.plan.absent [ai.plan#5 · 2 ms] IA absente : IA locale indisponible : ouvrez ✨ IA locale pour l’activer (Chrome 148 ou plus récent, sur ordinateur). {"has":{"prompt":false,"multimodal":true,"summarizer":true,"translator":true},"need":"prompt"}
+20:55:07.860 +3.86s INFO  ai.plan.cancel [ai.plan#5 · 2 ms] Tâche non lancée (aucun appel au modèle) {"task":"plan"}
+20:55:07.861 +3.86s ERROR ui.toast Message affiché : IA locale indisponible : ouvrez ✨ IA locale pour l’activer (Chrome 148 ou plus récent, sur ordinateur). {"type":"error"}
+20:55:07.861 +3.86s WARN  assist.plan-fail Demande non préparée (voir ai.plan) {"chars":27}

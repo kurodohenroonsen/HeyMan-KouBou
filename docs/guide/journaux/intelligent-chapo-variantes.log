@@ -1,0 +1,15 @@
+20:54:58.922 +7.74s INFO  smart.excerpt.start [smart.excerpt#2] Chapô proposé pour « Le MAB ouvre son site » {"collection":"col_vnfoj6df","item":"it_ub1yqwxc","field":"excerpt","from":"body","lang":"fr","chars":19}
+20:54:58.922 +7.74s DEBUG ai.provider Fournisseur d’IA de test (window.__atelierAI) {"source":"test","lang":"fr","has":{"prompt":true,"multimodal":true,"summarizer":false,"translator":true},"methods":["prompt","summarize","translate"]}
+20:54:58.923 +7.74s INFO  ai.excerpt.start [ai.excerpt#2] IA locale : chapô {"task":"excerpt","title":"Le MAB ouvre son site","inLen":19,"lang":"fr","sourceLang":"fr","gen":"fr","api":"prompt","source":"test"}
+20:54:58.923 +7.74s WARN  ai.excerpt.fallback [ai.excerpt#2 · 0 ms] Summarizer non disponible : repli sur la Prompt API (schéma JSON) {"wanted":"summarizer","has":false}
+20:54:58.923 +7.74s DEBUG ai.excerpt.call [ai.excerpt#2 · 0 ms] Appel Prompt API (Gemini Nano) (fr) {"api":"prompt","lang":"fr","schema":"excerpt","system":"160 car.","inLen":59}
+20:54:58.923 +7.74s DEBUG ai.excerpt.reply [ai.excerpt#2 · 0 ms] Réponse Prompt API (Gemini Nano) : 56 car. en 0 ms {"api":"prompt","ms":0,"outLen":56,"excerpt":"{\"excerpt\":\"Une tournée pour rencontrer les habitants.\"}"}
+20:54:58.923 +7.74s INFO  ai.excerpt.ok [ai.excerpt#2 · 0 ms] Chapô : proposition prête (Prompt API) {"via":"prompt","fallback":true,"translated":false,"calls":1,"outLen":42,"excerpt":"Une tournée pour rencontrer les habitants."}
+20:54:58.924 +7.74s INFO  smart.excerpt.proposal [smart.excerpt#2 · 2 ms] Proposition : 42 car. {"chars":42,"via":"prompt"}
+20:54:59.005 +7.82s INFO  smart.excerpt.cancel [smart.excerpt#2 · 83 ms] Proposition écartée
+20:54:59.059 +7.88s DEBUG store.commit Modification {"source":"collections","past":7,"page":"p_i20aogl1"}
+20:54:59.066 +7.88s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":4}
+20:54:59.067 +7.89s INFO  collection.item.add Élément ajouté en brouillon dans « Actualités » {"collection":"col_vnfoj6df","item":"it_hvxllhmq","slug":"nouvel-element","items":3,"status":"draft"}
+20:54:59.426 +8.24s INFO  smart.excerpt.start [smart.excerpt#3] Chapô proposé pour « Nouvel élément » {"collection":"col_vnfoj6df","item":"it_hvxllhmq","field":"excerpt","from":"body","lang":"fr","chars":0}
+20:54:59.426 +8.24s INFO  smart.excerpt.cancel [smart.excerpt#3 · 0 ms] « Texte » est vide : rien à résumer
+20:54:59.426 +8.24s ERROR ui.toast Message affiché : Écrivez d’abord « Texte ». {"type":"error"}

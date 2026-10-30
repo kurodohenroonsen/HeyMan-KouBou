@@ -1,0 +1,20 @@
+{
+ "📖 Guide d’utilisation": "📖 User guide",
+ "Guide d’utilisation": "User guide",
+ "Guide d’utilisation ouvert : {page}": "User guide opened: {page}",
+ "Le guide d’utilisation complet, dans la langue de l’interface ; depuis une fenêtre ouverte, F1 ouvre directement son chapitre.": "The complete user guide, in the interface language; from an open window, F1 goes straight to its chapter.",
+ "Guide d’utilisation (F1)": "User guide (F1)",
+ "Carte géographique": "Map",
+ "Carte de contenu": "Content card",
+ "ex. Kumakōgen, le guide du plateau": "e.g. Kumakōgen, the highland guide",
+ "Langue principale choisie : {lang}": "Main language chosen: {lang}",
+ "Nouveau site vide : « {name} », langue principale {lang}": "New empty site: “{name}”, main language {lang}",
+ "Vous pourrez le changer plus tard dans l’onglet Site, à gauche.": "You can change it later in the Site tab, on the left.",
+ "Langue principale": "Main language",
+ "La langue dans laquelle vous écrivez d’abord ; les visiteurs la voient par défaut.": "The language you write in first; visitors see it by default.",
+ "Autres langues du site": "Other site languages",
+ "Vous pourrez en ajouter ou en retirer à tout moment dans l’onglet Site.": "You can add or remove languages at any time in the Site tab.",
+ "Le site actuel est gardé dans une version de sécurité (Fichier → Versions) ; Ctrl+Z revient aussi en arrière.": "The current site is kept in a safety version (File → Versions); Ctrl+Z also takes you back.",
+ "Créer le site": "Create the site",
+ "family|Contenus": "Collections"
+}

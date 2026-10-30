@@ -1,0 +1,10 @@
+20:51:22.800 +18.42s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":12}
+20:51:22.834 +18.45s DEBUG ctxmenu.open Menu contextuel : Titre (page) {"id":"n_0q3w2b306k","type":"heading","from":"canevas","items":11,"disabled":["pasteStyle"]}
+20:51:23.033 +18.65s DEBUG ctxmenu.action Menu contextuel : Dupliquer {"action":"duplicate","id":"n_0q3w2b306k","type":"heading"}
+20:51:23.035 +18.65s DEBUG store.commit Modification {"source":"action","past":13,"page":"p_fg7hya37"}
+20:51:23.040 +18.66s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":5}
+20:51:23.047 +18.66s DEBUG store.select Sélection : heading {"id":"n_0o264v3r5j","type":"heading"}
+20:51:23.062 +18.68s INFO  action.duplicate Dupliqué : heading {"id":"n_0q3w2b306k","newId":"n_0o264v3r5j","type":"heading"}
+20:51:23.320 +18.94s DEBUG store.select Sélection : heading {"id":"n_0q3w2b306k","type":"heading"}
+20:51:23.332 +18.95s DEBUG ctxmenu.open Menu contextuel : Titre (page) {"id":"n_0q3w2b306k","type":"heading","from":"canevas","items":11,"disabled":["pasteStyle"]}
+20:51:23.447 +19.06s DEBUG ctxmenu.close Menu contextuel fermé (Échap) {"by":"Échap"}

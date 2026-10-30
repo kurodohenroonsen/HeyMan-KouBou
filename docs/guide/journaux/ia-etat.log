@@ -1,0 +1,15 @@
+20:53:02.433 +0.92s DEBUG ui.dialog.open Fenêtre ouverte : ✨ IA locale (Gemini Nano dans Chrome) {"id":"aiDialog","class":"audit ai-dialog","modal":true}
+20:53:02.442 +0.93s INFO  ai.dialog Fenêtre ✨ IA locale {"lang":"fr","siteLang":"fr","source":"test"}
+20:53:02.443 +0.93s DEBUG ai.availability Prompt API (Gemini Nano) : available (fournisseur de test) {"api":"prompt","lang":"fr","state":"available","source":"test"}
+20:53:02.443 +0.93s DEBUG ai.availability Prompt API – images : available (fournisseur de test) {"api":"multimodal","lang":"fr","state":"available","source":"test"}
+20:53:02.444 +0.93s DEBUG ai.availability Summarizer : available (fournisseur de test) {"api":"summarizer","lang":"fr","state":"available","source":"test"}
+20:53:02.444 +0.93s DEBUG ai.availability Rewriter : downloadable (fournisseur de test) {"api":"rewriter","lang":"fr","state":"downloadable","source":"test"}
+20:53:02.444 +0.93s DEBUG ai.availability Writer : unavailable (fournisseur de test) {"api":"writer","lang":"fr","state":"unavailable","source":"test"}
+20:53:02.444 +0.93s DEBUG ai.availability Proofreader : available (fournisseur de test) {"api":"proofreader","lang":"fr","state":"available","source":"test"}
+20:53:02.444 +0.93s DEBUG ai.availability Translator : available (fournisseur de test) {"api":"translator","lang":"fr","state":"available","source":"test"}
+20:53:02.444 +0.93s DEBUG ai.availability Language Detector : available (fournisseur de test) {"api":"detector","lang":"fr","state":"available","source":"test"}
+20:53:02.444 +0.93s INFO  ai.status IA locale : prêt → prompt, multimodal, summarizer, proofreader, translator, detector (2 ms) {"lang":"fr","ms":2,"source":"test","prompt":"available","multimodal":"available","summarizer":"available","rewriter":"downloadable","writer":"unavailable","proofreader":"available","translator":"available","detector":"available"}
+20:53:02.503 +0.99s INFO  ai.download.start [ai.download#1] Téléchargement du modèle Rewriter {"api":"rewriter","lang":"fr","source":"test"}
+20:53:02.505 +0.99s INFO  ai.download.ok [ai.download#1 · 2 ms] Rewriter prêt (fournisseur de test)
+20:53:02.505 +0.99s DEBUG ai.availability Rewriter : available (fournisseur de test) {"api":"rewriter","lang":"fr","state":"available","source":"test"}
+20:53:02.506 +0.99s INFO  ai.status IA locale : prêt → prompt, multimodal, summarizer, rewriter, proofreader, translator, detector (1 ms) {"lang":"fr","ms":1,"source":"test","prompt":"available","multimodal":"available","summarizer":"available","rewriter":"available","writer":"unavailable","proofreader":"available","translator":"available","detector":"available"}

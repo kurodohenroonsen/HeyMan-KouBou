@@ -1,0 +1,16 @@
+{
+ "{n} px": "{n} px",
+ "Largeur du panneau de gauche": "左パネルの幅",
+ "Largeur du panneau de droite": "右パネルの幅",
+ "Glisse pour élargir ou réduire ; double-clic : largeur d’origine ; au clavier : flèches (Maj : plus vite), Début, Fin.": "ドラッグで幅を広げたり狭めたりできます。ダブルクリックで元の幅に戻ります。キーボードでは矢印キー（Shift で大きく）、Home、End。",
+ "Panneau de gauche : {from} → {to} px": "左パネル：{from} → {to} px",
+ "Panneau de droite : {from} → {to} px": "右パネル：{from} → {to} px",
+ "Panneau de gauche : largeur d’origine ({to} px)": "左パネル：元の幅（{to} px）",
+ "Panneau de droite : largeur d’origine ({to} px)": "右パネル：元の幅（{to} px）",
+ "Largeurs des panneaux retenues : {left} / {right} px": "保存されたパネルの幅：{left} / {right} px",
+ "Élargir les panneaux de gauche et de droite (clavier, double-clic)": "左右のパネルを広げる（キーボード、ダブルクリック）",
+ "Maj+→ : panneau de gauche plus large": "Shift+→：左パネルが広がる",
+ "la poignée annonce la nouvelle largeur": "ハンドルが新しい幅を伝える",
+ "← : panneau de droite plus large": "←：右パネルが広がる",
+ "double-clic : largeur d’origine appliquée": "ダブルクリック：元の幅に戻る"
+}

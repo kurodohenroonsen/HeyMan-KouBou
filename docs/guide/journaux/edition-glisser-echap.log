@@ -1,0 +1,2 @@
+20:51:10.707 +6.32s INFO  dnd.start [dnd#4] Glisser : Titre {"kind":"widget","type":"heading","from":"bibliothèque"}
+20:51:11.116 +6.73s INFO  dnd.cancel [dnd#4 · 409 ms] Glisser annulé (Échap) {"by":"Échap"}

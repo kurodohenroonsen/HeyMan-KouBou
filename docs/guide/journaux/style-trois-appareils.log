@@ -1,0 +1,15 @@
+20:51:32.830 +28.45s DEBUG style.device Onglet Style : réglages pour Tablette {"device":"tablet","from":"desktop"}
+20:51:32.831 +28.45s DEBUG store.view Vue : device=tablet {"device":"tablet"}
+20:51:32.833 +28.45s DEBUG canvas.scale Canevas tablette : 820 px, réduit à 97 % {"device":"tablet","width":820,"scale":97,"available":792}
+20:51:32.840 +28.46s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":4}
+20:51:32.886 +28.50s DEBUG storage.save Projet enregistré sur cet appareil {"ms":4,"kb":13}
+20:51:33.215 +28.83s DEBUG style.all-devices Vue « trois appareils côte à côte » {"on":true}
+20:51:33.435 +29.05s DEBUG store.commit Modification {"source":"inspector-style","past":29,"page":"p_fg7hya37"}
+20:51:33.442 +29.06s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"inspector-style","mode":"contenu","ms":5}
+20:51:33.466 +29.08s DEBUG style.set Taille = 28px (Mobile) {"key":"fontSize","state":"normal","device":"mobile","target":"node","id":"n_1z1f523j4z","value":"28px"}
+20:51:33.686 +29.30s DEBUG style.all-devices Vue d’un seul appareil {"on":false}
+20:51:33.745 +29.36s DEBUG style.device Onglet Style : réglages pour Ordinateur {"device":"desktop","from":"tablet"}
+20:51:33.745 +29.36s DEBUG store.view Vue : device=desktop {"device":"desktop"}
+20:51:33.747 +29.36s DEBUG canvas.scale Canevas ordinateur : 1280 px, réduit à 62 % {"device":"desktop","width":1280,"scale":62,"available":792}
+20:51:33.751 +29.37s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":3}
+20:51:34.038 +29.65s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":13}

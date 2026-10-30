@@ -1,0 +1,7 @@
+20:51:56.270 +1.25s DEBUG store.commit Modification {"key":"site-name","source":"panel","past":1,"page":"p_a3je7ile"}
+20:51:56.280 +1.26s INFO  version.auto Première modification du jour : version automatique de l’état d’avant {"previous":null,"source":"panel"}
+20:51:56.282 +1.26s INFO  version.save.start [version.save#1] Enregistrement d’une version automatique {"kind":"auto"}
+20:51:56.283 +1.26s DEBUG storage.version-save Version enregistrée {"id":"v_mvve1vnf7o2po","kind":"auto"}
+20:51:56.304 +1.28s DEBUG version.save.prune [version.save#1 · 22 ms] Aucune ancienne version à supprimer {"total":1}
+20:51:56.307 +1.28s INFO  version.save.ok [version.save#1 · 25 ms] Version automatique enregistrée (2 pages) {"id":"v_mvve1vnf7o2po","kind":"auto","at":"2026-10-30T19:51:56.283Z","pages":2,"kb":12}
+20:51:56.317 +1.29s INFO  settings.name Nom du site : « MAB – Médias Alternatifs Belges (test) » {"length":38}

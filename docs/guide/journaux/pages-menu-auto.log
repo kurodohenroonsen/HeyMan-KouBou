@@ -1,0 +1,4 @@
+20:52:27.385 +32.36s DEBUG page.menu.auto-cancel Retour au menu automatique annulé
+20:52:27.609 +32.59s DEBUG store.commit Modification {"source":"pages","past":50,"page":"p_a3je7ile"}
+20:52:27.629 +32.61s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":9}
+20:52:27.635 +32.61s INFO  page.menu.auto Menu automatique rétabli (toutes les pages, dans l’ordre) {"dropped":4}

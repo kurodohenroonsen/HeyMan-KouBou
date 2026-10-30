@@ -1,0 +1,28 @@
+20:53:08.203 +6.69s DEBUG seo.lang Langue analysée : nl {"from":"fr","to":"nl"}
+20:53:08.204 +6.69s DEBUG seo.analysis Analyse : page 85/100, site 81/100 {"pageId":"p_94oom426","lang":"nl","page":85,"site":81,"points":{"good":6,"warn":2,"tip":1},"sitePoints":{"warn":1,"info":1},"words":87,"imagesNoAlt":0}
+20:53:08.261 +6.75s INFO  seo.complete-all.start [seo.complete-all#1] Compléter les descriptions en nl : 2 page(s) {"lang":"nl","pages":2,"ids":["p_94oom426","p_uw8y8icj"]}
+20:53:08.262 +6.75s DEBUG ai.provider Fournisseur d’IA de test (window.__atelierAI) {"source":"test","lang":"fr","has":{"prompt":true,"multimodal":true,"summarizer":true,"rewriter":false,"proofreader":true,"translator":true},"methods":["prompt","summarize","proofread","translate"]}
+20:53:08.263 +6.75s INFO  ai.description.start [ai.description#7] IA locale : description pour Google {"task":"seoDescription","title":"Accueil","inLen":584,"keyword":"médias alternatifs","lang":"nl","sourceLang":"fr","gen":"fr","api":"summarizer","translateTo":"nl","source":"test"}
+20:53:08.264 +6.75s INFO  ai.description.via-translation [ai.description#7 · 1 ms] Gemini Nano ne parle pas nl : rédaction en fr, puis traduction sur l’appareil {"gen":"fr","to":"nl","translator":true}
+20:53:08.264 +6.75s DEBUG ai.description.call [ai.description#7 · 1 ms] Appel Summarizer (fr) {"api":"summarizer","lang":"fr","type":"tldr","length":"short","context":"181 car.","inLen":584}
+20:53:08.265 +6.75s DEBUG ai.description.reply [ai.description#7 · 2 ms] Réponse Summarizer : 124 car. en 1 ms {"api":"summarizer","ms":1,"outLen":124,"excerpt":"Le MAB fédère les médias alternatifs belges : matériel, tec…"}
+20:53:08.266 +6.75s DEBUG ai.description.call [ai.description#7 · 3 ms] Appel Translator {"api":"translator","from":"fr","to":"nl","inLen":124}
+20:53:08.266 +6.75s DEBUG ai.description.reply [ai.description#7 · 3 ms] Réponse Translator : 129 car. en 1 ms {"api":"translator","ms":1,"outLen":129,"excerpt":"[nl] Le MAB fédère les médias alternatifs belges : matériel…"}
+20:53:08.267 +6.75s INFO  ai.description.ok [ai.description#7 · 4 ms] Description pour Google : proposition prête (Summarizer, traduite en nl) {"via":"summarizer","fallback":false,"translated":true,"calls":2,"outLen":129,"excerpt":"[nl] Le MAB fédère les médias alternatifs belges : matériel…"}
+20:53:08.268 +6.75s DEBUG store.commit Modification {"source":"seo","past":9,"page":"p_94oom426"}
+20:53:08.273 +6.76s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"seo","mode":"contenu","ms":4}
+20:53:08.278 +6.76s DEBUG seo.complete-all.page [seo.complete-all#1 · 17 ms] Description appliquée : accueil {"pageId":"p_94oom426","len":129,"translated":true}
+20:53:08.279 +6.76s DEBUG ai.provider Fournisseur d’IA de test (window.__atelierAI) {"source":"test","lang":"fr","has":{"prompt":true,"multimodal":true,"summarizer":true,"rewriter":false,"proofreader":true,"translator":true},"methods":["prompt","summarize","proofread","translate"]}
+20:53:08.280 +6.76s INFO  ai.description.start [ai.description#8] IA locale : description pour Google {"task":"seoDescription","title":"Contact","inLen":99,"lang":"nl","sourceLang":"fr","gen":"fr","api":"summarizer","translateTo":"nl","source":"test"}
+20:53:08.281 +6.76s INFO  ai.description.via-translation [ai.description#8 · 1 ms] Gemini Nano ne parle pas nl : rédaction en fr, puis traduction sur l’appareil {"gen":"fr","to":"nl","translator":true}
+20:53:08.281 +6.76s DEBUG ai.description.call [ai.description#8 · 1 ms] Appel Summarizer (fr) {"api":"summarizer","lang":"fr","type":"tldr","length":"short","context":"137 car.","inLen":99}
+20:53:08.282 +6.77s DEBUG ai.description.reply [ai.description#8 · 2 ms] Réponse Summarizer : 124 car. en 1 ms {"api":"summarizer","ms":1,"outLen":124,"excerpt":"Le MAB fédère les médias alternatifs belges : matériel, tec…"}
+20:53:08.282 +6.77s DEBUG ai.description.call [ai.description#8 · 2 ms] Appel Translator {"api":"translator","from":"fr","to":"nl","inLen":124}
+20:53:08.283 +6.77s DEBUG ai.description.reply [ai.description#8 · 3 ms] Réponse Translator : 129 car. en 1 ms {"api":"translator","ms":1,"outLen":129,"excerpt":"[nl] Le MAB fédère les médias alternatifs belges : matériel…"}
+20:53:08.284 +6.77s INFO  ai.description.ok [ai.description#8 · 4 ms] Description pour Google : proposition prête (Summarizer, traduite en nl) {"via":"summarizer","fallback":false,"translated":true,"calls":2,"outLen":129,"excerpt":"[nl] Le MAB fédère les médias alternatifs belges : matériel…"}
+20:53:08.285 +6.77s DEBUG store.commit Modification {"source":"seo","past":10,"page":"p_94oom426"}
+20:53:08.291 +6.78s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"seo","mode":"contenu","ms":5}
+20:53:08.295 +6.78s DEBUG seo.complete-all.page [seo.complete-all#1 · 34 ms] Description appliquée : /contact/ {"pageId":"p_uw8y8icj","len":129,"translated":true}
+20:53:08.295 +6.78s INFO  seo.complete-all.ok [seo.complete-all#1 · 34 ms] 2 description(s) proposée(s) sur 2 {"done":2,"pages":2,"lang":"nl"}
+20:53:08.296 +6.78s INFO  ui.toast Message affiché : 2 descriptions proposées en NL (à relire dans le tableau des traductions, filtre « à relire »).
+20:53:08.297 +6.78s DEBUG seo.analysis Analyse : page 85/100, site 81/100 {"pageId":"p_94oom426","lang":"nl","page":85,"site":81,"points":{"good":6,"warn":2,"tip":1},"sitePoints":{"warn":1,"info":1},"words":87,"imagesNoAlt":0}

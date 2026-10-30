@@ -1,0 +1,3 @@
+20:51:06.047 +1.66s DEBUG store.select Sélection : section {"id":"n_3b0c055808","type":"section"}
+20:51:06.070 +1.69s DEBUG canvas.key Raccourci dans la page : Escape {"key":"Escape","in":"page","selected":"n_3b0c055808"}
+20:51:06.071 +1.69s DEBUG action.parent-none Déjà au niveau le plus haut (une section n’a pas de parent sélectionnable) {"id":"n_3b0c055808","type":"section"}

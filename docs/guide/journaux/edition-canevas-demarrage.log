@@ -1,0 +1,7 @@
+20:51:04.395 +0.01s DEBUG widgets.extra Widgets supplémentaires chargés : 15 {"widgets":23,"extra":15}
+20:51:04.422 +0.04s DEBUG canvas.scale Canevas ordinateur : 1280 px, réduit à 62 % {"device":"desktop","width":1280,"scale":62,"available":792}
+20:51:04.423 +0.04s INFO  canvas.load.start [canvas.load#1] Chargement complet du canevas : premier chargement {"reason":"premier chargement","page":"p_fg7hya37","lang":"fr","device":"desktop"}
+20:51:04.433 +0.05s DEBUG canvas.load.render [canvas.load#1 · 10 ms] Page rendue {"ms":10,"kb":25}
+20:51:04.505 +0.12s INFO  boot.ok [boot#1 · 109 ms] Éditeur prêt {"page":"p_fg7hya37","lang":"fr"}
+20:51:04.508 +0.12s INFO  canvas.load.ok [canvas.load#1 · 85 ms] Canevas prêt {"nodes":30,"scale":62,"via":"dom"}
+20:51:04.854 +0.47s DEBUG canvas.resources Ressources externes du canevas chargées {"ms":420,"hosts":["fonts.googleapis.com"]}

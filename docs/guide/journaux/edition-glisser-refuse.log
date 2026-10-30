@@ -1,0 +1,3 @@
+20:51:11.623 +7.24s INFO  dnd.start [dnd#5] Glisser : Section {"kind":"move","type":"section","id":"n_6q5a2e0741","from":"page ou structure"}
+20:51:12.016 +7.63s WARN  dnd.refused [dnd#5 · 393 ms] Dépôt refusé : « section » ne peut pas aller à cet endroit (une section va dans la page, un widget dans une colonne, et rien dans son propre contenu) {"type":"section","reason":"forbidden"}
+20:51:12.016 +7.63s INFO  dnd.cancel [dnd#5 · 393 ms] Rien n’a changé {"reason":"forbidden"}

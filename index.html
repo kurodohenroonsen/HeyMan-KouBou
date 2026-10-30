@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atelier – éditeur visuel</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="editor/editor.css">
+<script>
+/* Langue de l'interface (cycle 22), avant les modules : ?lang=, choix retenu, langue du navigateur ; puis son catalogue (même origine, synchrone). */
+(function(){var L={fr:1,en:1,ja:1},l=null,q=null;try{q=new URLSearchParams(location.search).get('lang');}catch(e){}
+if(q&&L[q]){l=q;try{localStorage.setItem('atelier-ui-lang',q);}catch(e){}}
+if(!l){try{var s=localStorage.getItem('atelier-ui-lang');if(s&&L[s])l=s;}catch(e){}}
+if(!l){var n=navigator.languages||[navigator.language||''];for(var i=0;i<n.length&&!l;i++){var b=String(n[i]||'').toLowerCase().slice(0,2);if(L[b])l=b;}if(!l)l=n.length?'en':'fr';}
+window.__atelierUiLang=l;document.documentElement.lang=l;
+if(l!=='fr'){document.write('<script src="i18n/'+l+'.js"><\/script>');}})();
+</script>
+<script>
+/* Avant les modules : note les erreurs de chargement et un démarrage qui n'aboutit pas (le journal complet prend le relais). */
+(function(){var E=window.__atelierEarly=[];function push(k,d){if(window.atelierDebug){return;}E.push({t:Date.now(),k:k,d:d});try{console.error('[Atelier] '+k+' '+JSON.stringify(d));}catch(e){}}
+window.addEventListener('error',function(e){var t=e.target;if(t&&t!==window&&t.nodeType===1){push('boot.resource',{message:'Fichier non chargé : '+(t.src||t.href||t.tagName),url:t.src||t.href,tag:t.tagName});}else{push('boot.error',{message:e.message,file:e.filename,line:e.lineno,col:e.colno});}},true);
+window.addEventListener('unhandledrejection',function(e){push('boot.rejection',{message:String(e.reason&&e.reason.message||e.reason)});});
+setTimeout(function(){if(!(window.__atelier&&window.__atelier.ready)){var m='L’éditeur n’a pas démarré en 15 s (erreurs de démarrage : '+E.length+')';if(window.atelierDebug){window.atelierDebug.log.error('boot.timeout',m,{early:E.length});}else{E.push({t:Date.now(),k:'boot.timeout',d:{message:m}});console.error('[Atelier] boot.timeout '+m);}}},15000);})();
+</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="tb-group tb-brand"><span class="logo" aria-hidden="true">◧</span><input id="siteName" class="site-name" aria-label="Nom du site" spellcheck="false"></div>
+  <div class="tb-group">
+    <label class="vh" for="pageSelect">Page</label>
+    <select id="pageSelect" class="control"></select>
+  </div>
+  <div class="tb-group">
+    <button class="icon-btn" id="undoBtn" type="button" title="Annuler (Ctrl+Z)" aria-label="Annuler (dernière modification)">↶</button>
+    <button class="icon-btn" id="redoBtn" type="button" title="Rétablir (Ctrl+Maj+Z)" aria-label="Rétablir">↷</button>
+  </div>
+  <div class="tb-group seg-group" role="group" aria-label="Appareil">
+    <button class="seg" type="button" data-device="desktop" title="Ordinateur">🖥 <span>Ordinateur</span></button>
+    <button class="seg" type="button" data-device="tablet" title="Tablette (820 px)">▭ <span>Tablette</span></button>
+    <button class="seg" type="button" data-device="mobile" title="Mobile (390 px)">▯ <span>Mobile</span></button>
+  </div>
+  <div class="tb-group">
+    <label class="vh" for="langSelect">Langue</label>
+    <select id="langSelect" class="control"></select>
+    <button class="badge-btn" id="missingBtn" type="button" hidden></button>
+    <button class="btn btn--small" id="i18nBtn" type="button" title="Tableau de toutes les traductions">🌐 Traductions</button>
+    <button class="btn btn--small" id="seoBtn" type="button" title="Référencement : notes, aperçu Google, conseils">🔎 SEO</button>
+    <button class="btn btn--small" id="aiBtn" type="button" title="IA locale (Gemini Nano dans Chrome)">✨</button>
+  </div>
+  <div class="tb-group tb-collab">
+    <div class="peers" id="peers" aria-label="Participants"></div>
+    <button class="btn btn--small" id="collabBtn" type="button" title="Travailler à plusieurs (pair-à-pair)">👥</button>
+    <button class="btn btn--small" id="commentsBtn" type="button" title="Commentaires" aria-pressed="false">💬</button>
+  </div>
+  <div class="tb-group tb-end">
+    <span class="save-state" id="saveState" aria-live="polite"></span>
+    <button class="btn btn--small" id="helpBtn" type="button" title="Guide d’utilisation (F1)" aria-label="Guide d’utilisation">❓</button>
+    <button class="btn btn--small log-btn" id="logBtn" type="button" title="Journal de débogage" aria-label="Journal de débogage">🐞</button>
+    <details class="menu" id="fileMenu">
+      <summary class="btn">Fichier</summary>
+      <div class="menu__panel">
+        <button type="button" id="guideBtn">Guide d’utilisation</button>
+        <button type="button" id="previewBtn">Aperçu dans un nouvel onglet</button>
+        <button type="button" id="versionsBtn">Versions…</button>
+        <button type="button" id="exportJsonBtn">Enregistrer le projet (.json)</button>
+        <label class="menu__file">Ouvrir un projet (.json)<input type="file" id="importJson" accept="application/json,.json"></label>
+        <button type="button" id="loadDemoBtn">Recharger l’exemple</button>
+        <button type="button" id="newSiteBtn">Nouveau site vide</button>
+        <label class="menu__lang">Langue de l’interface <select id="uiLangSelect" class="control control--sm"><option value="fr">Français</option><option value="en">English</option><option value="ja">日本語</option></select></label>
+      </div>
+    </details>
+    <button class="btn" id="exportZipBtn" type="button" title="Vérifier puis télécharger le site en .zip">Exporter le site</button>
+    <button class="btn btn--primary" id="publishBtn" type="button" title="Publier sur OVH ou GitHub">🚀 Publier</button>
+  </div>
+</header>
+
+<div class="workspace">
+  <aside class="panel panel--left" aria-label="Outils">
+    <nav class="tabs" role="tablist" aria-label="Panneau de gauche">
+      <button type="button" role="tab" data-left="widgets" aria-selected="true">Widgets</button>
+      <button type="button" role="tab" data-left="templates" aria-selected="false">Modèles</button>
+      <button type="button" role="tab" data-left="navigator" aria-selected="false">Structure</button>
+      <button type="button" role="tab" data-left="pages" aria-selected="false">Pages</button>
+      <button type="button" role="tab" data-left="content" aria-selected="false">Contenus</button>
+      <button type="button" role="tab" data-left="site" aria-selected="false">Site</button>
+    </nav>
+    <div class="panel__body" id="leftBody"></div>
+  </aside>
+
+  <section class="stage" id="stage" aria-label="Canevas">
+    <div class="edit-banner" id="editBanner" role="status" hidden></div>
+    <div class="frame" id="frame" data-device="desktop">
+      <iframe id="canvas" title="Page en cours d’édition"></iframe>
+    </div>
+  </section>
+
+  <aside class="panel panel--right" id="inspector" aria-label="Inspecteur"></aside>
+  <aside class="panel panel--right panel--review" id="reviewPanel" aria-label="Commentaires" hidden></aside>
+</div>
+
+<div class="narrow-note" role="note">L’éditeur est prévu pour un écran d’au moins 1024 px de large. Le bouton « Mobile » montre la page telle qu’elle s’affiche sur un téléphone.</div>
+<div class="drag-ghost" id="dragGhost" hidden></div>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+<script type="module" src="editor/app.js"></script>
+</body>
+</html>

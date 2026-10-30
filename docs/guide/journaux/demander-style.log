@@ -1,0 +1,20 @@
+20:55:06.051 +2.05s DEBUG ui.dialog.open Fenêtre ouverte : cmdk {"id":"cmdk","class":"cmdk","modal":true}
+20:55:06.232 +2.23s INFO  cmdk.run Commande : ✨ Demander à Atelier (décrire ce que vous voulez) {"id":"act:ask","query":"demander à atelier"}
+20:55:06.233 +2.23s INFO  assist.open Demander à Atelier {"chars":0,"page":"p_02k295vs","selected":"n_4i6j3w595l","lang":"fr"}
+20:55:06.233 +2.23s DEBUG ui.dialog.open Fenêtre ouverte : ✨ Demander à Atelier {"id":"askDialog","class":"audit smart-dialog","modal":true}
+20:55:06.237 +2.24s DEBUG ui.dialog.close Fenêtre fermée : cmdk {"id":"cmdk"}
+20:55:06.266 +2.27s DEBUG ai.provider Fournisseur d’IA de test (window.__atelierAI) {"source":"test","lang":"fr","has":{"prompt":true,"multimodal":true,"summarizer":true,"translator":true},"methods":["prompt"]}
+20:55:06.267 +2.27s INFO  ai.plan.start [ai.plan#2] IA locale : préparer une demande (actions de la liste fermée) {"task":"plan","request":"mets les titres de cette page en rouge et centrés","inLen":49,"page":"p_02k295vs","selected":"n_4i6j3w595l","lang":"fr","sourceLang":"fr","gen":"fr","api":"prompt","source":"test"}
+20:55:06.269 +2.27s DEBUG ai.plan.call [ai.plan#2 · 2 ms] Appel Prompt API (Gemini Nano) (fr) {"api":"prompt","lang":"fr","schema":"actions,summary","system":"2696 car.","inLen":330}
+20:55:06.269 +2.27s DEBUG ai.plan.reply [ai.plan#2 · 2 ms] Réponse Prompt API (Gemini Nano) : 224 car. en 0 ms {"api":"prompt","ms":0,"outLen":224,"excerpt":"{\"summary\":\"Je mets les titres en rouge et je les centre.\",…"}
+20:55:06.270 +2.27s INFO  ai.plan.actions [ai.plan#2 · 3 ms] 2 actions valides : style, style {"steps":["style","style"],"summary":"Je mets les titres en rouge et je les centre."}
+20:55:06.270 +2.27s INFO  ai.plan.ok [ai.plan#2 · 3 ms] Demande à Atelier : proposition prête (Prompt API) {"via":"prompt","fallback":false,"translated":false,"calls":1,"steps":2,"rejected":0,"warnings":0}
+20:55:06.270 +2.27s INFO  assist.plan 2 action(s) prête(s), 0 refusée(s) {"request":"mets les titres de cette page en rouge et centrés","summary":"Je mets les titres en rouge et je les centre.","steps":["style","style"],"rejected":0,"warnings":0}
+20:55:06.322 +2.32s INFO  assist.apply.start [assist.apply#2] Application de 2 action(s) {"steps":["style","style"]}
+20:55:06.326 +2.33s INFO  assist.apply.step [assist.apply#2 · 4 ms] Couleur du texte : #dc2626 pour tous les titres de la page (7)
+20:55:06.327 +2.33s INFO  assist.apply.step [assist.apply#2 · 5 ms] Alignement : center pour tous les titres de la page (7)
+20:55:06.327 +2.33s DEBUG store.commit Modification {"source":"assistant","past":1,"page":"p_02k295vs"}
+20:55:06.334 +2.33s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"assistant","mode":"contenu","ms":6}
+20:55:06.339 +2.34s INFO  assist.apply.ok [assist.apply#2 · 17 ms] 2 action(s) appliquée(s) (Ctrl+Z pour tout annuler) {"done":2,"errors":0,"aiTexts":0,"view":{},"ui":[],"changed":true}
+20:55:06.339 +2.34s INFO  ui.toast Message affiché : 2 actions appliquées : Ctrl+Z pour tout annuler.
+20:55:06.347 +2.35s DEBUG ui.dialog.close Fenêtre fermée : ✨ Demander à Atelier {"id":"askDialog"}

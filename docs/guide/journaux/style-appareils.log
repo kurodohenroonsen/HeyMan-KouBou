@@ -1,0 +1,21 @@
+20:51:30.679 +26.30s DEBUG store.commit Modification {"source":"inspector-style","past":25,"page":"p_fg7hya37"}
+20:51:30.684 +26.30s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"inspector-style","mode":"contenu","ms":4}
+20:51:30.709 +26.32s DEBUG style.set Taille = 72px (Ordinateur) {"key":"fontSize","state":"normal","device":"desktop","target":"node","id":"n_1z1f523j4z","value":"72px","autoPx":true}
+20:51:30.968 +26.58s DEBUG store.view Vue : device=mobile {"device":"mobile"}
+20:51:30.970 +26.59s DEBUG canvas.scale Canevas mobile : 390 px {"device":"mobile","width":390,"scale":100,"available":792}
+20:51:30.974 +26.59s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":4}
+20:51:31.281 +26.90s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":13}
+20:51:31.432 +27.05s DEBUG store.commit Modification {"source":"inspector-style","past":26,"page":"p_fg7hya37"}
+20:51:31.437 +27.05s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"inspector-style","mode":"contenu","ms":4}
+20:51:31.451 +27.07s DEBUG style.set Taille = 30px (Mobile) {"key":"fontSize","state":"normal","device":"mobile","target":"node","id":"n_1z1f523j4z","value":"30px"}
+20:51:31.705 +27.32s DEBUG store.commit Modification {"source":"inspector-style","past":27,"page":"p_fg7hya37"}
+20:51:31.717 +27.33s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"inspector-style","mode":"contenu","ms":10}
+20:51:31.747 +27.36s DEBUG style.reset « Taille » réinitialisé : valeur héritée (Mobile) {"key":"fontSize","state":"normal","device":"mobile","target":"node","id":"n_1z1f523j4z"}
+20:51:32.019 +27.64s WARN  style.refused Valeur refusée pour « Taille » : 12pt (unité ou expression non autorisée) {"key":"fontSize","state":"normal","device":"mobile","target":"node","id":"n_1z1f523j4z","value":"12pt","kind":"length"}
+20:51:32.019 +27.64s ERROR ui.toast Message affiché : Valeur refusée pour « Taille » : 12pt. Exemples : 24px, 1.5rem, 50%, auto, clamp(1rem, 3vw, 2rem). {"type":"error"}
+20:51:32.261 +27.88s DEBUG store.commit Modification {"source":"inspector-style","past":28,"page":"p_fg7hya37"}
+20:51:32.266 +27.88s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"inspector-style","mode":"contenu","ms":3}
+20:51:32.282 +27.90s DEBUG style.reset « Taille » réinitialisé : valeur héritée (Mobile) {"key":"fontSize","state":"normal","device":"mobile","target":"node","id":"n_1z1f523j4z"}
+20:51:32.352 +27.97s DEBUG store.view Vue : device=desktop {"device":"desktop"}
+20:51:32.354 +27.97s DEBUG canvas.scale Canevas ordinateur : 1280 px, réduit à 62 % {"device":"desktop","width":1280,"scale":62,"available":792}
+20:51:32.360 +27.98s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":5}

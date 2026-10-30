@@ -1,0 +1,14 @@
+20:51:26.213 +21.83s DEBUG inspector.tab Onglet de l’inspecteur : Contenu {"tab":"content","from":"content","type":"heading"}
+20:51:26.233 +21.85s DEBUG inspector.field Champ modifié : Niveau {"key":"level","type":"select","how":"liste","option":"h3"}
+20:51:26.234 +21.85s DEBUG store.commit Modification {"past":16,"page":"p_fg7hya37"}
+20:51:26.241 +21.86s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":3}
+20:51:26.434 +22.05s DEBUG store.commit Modification {"key":"n_4k222m2v5m:text:fr","source":"inspector","past":17,"page":"p_fg7hya37"}
+20:51:26.463 +22.08s DEBUG inspector.field Champ modifié : Texte {"key":"text","type":"inline","lang":"fr","how":"saisie","chars":16}
+20:51:26.646 +22.26s DEBUG inspector.tab Onglet de l’inspecteur : Avancé {"tab":"advanced","from":"content","type":"heading"}
+20:51:26.706 +22.32s DEBUG store.commit Modification {"source":"inspector","past":18,"page":"p_fg7hya37"}
+20:51:26.715 +22.33s DEBUG inspector.advanced Réglage avancé : anchor {"id":"n_4k222m2v5m","props":["anchor"]}
+20:51:26.911 +22.53s DEBUG store.commit Modification {"source":"inspector","past":19,"page":"p_fg7hya37"}
+20:51:26.919 +22.54s DEBUG inspector.advanced CSS personnalisée enregistrée {"id":"n_4k222m2v5m","props":["css"],"chars":22}
+20:51:27.099 +22.71s WARN  inspector.css-refused CSS personnalisée refusée : utilisez seulement des déclarations « propriété: valeur; » (pas d’accolades, de @, d’url() ni de commentaires). {"id":"n_4k222m2v5m","chars":27,"start":"color:red}body{display:none","error":{"name":"Error","message":"CSS personnalisée refusée : utilisez seulement des déclarations « propriété: valeur; » (pas d’accolades, de @, d’url() ni de commentaires).","stack":"Error: CSS personnalisée refusée : utilisez seulement des déclarations « propriété: valeur; » (pas d’accolades, de @, d’url() ni de commentaires).\nat sanitizeCustomCss (http://localhost:8791/core/tree.js:252:104)\nat http://localhost:8791/core/tree.js:283:42\nat update (http://localhost:8791/core/tree.js:161:3)\nat setAdvanced (http://localho…
+20:51:27.099 +22.71s ERROR ui.toast Message affiché : CSS personnalisée refusée : utilisez seulement des déclarations « propriété: valeur; » (pas d’accolades, de @, d’url() ni de commentaires). {"type":"error"}
+20:51:27.281 +22.90s DEBUG inspector.tab Onglet de l’inspecteur : Contenu {"tab":"content","from":"advanced","type":"heading"}

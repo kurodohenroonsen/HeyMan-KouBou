@@ -1,0 +1,16 @@
+20:51:43.330 +38.95s DEBUG store.select Sélection : section {"id":"n_6q5a2e0741","type":"section"}
+20:51:43.358 +38.97s DEBUG ctxmenu.open Menu contextuel : Section (structure) {"id":"n_6q5a2e0741","type":"section","from":"structure","items":10,"disabled":["parent"]}
+20:51:43.587 +39.20s DEBUG ctxmenu.action Menu contextuel : Créer un composant… {"action":"component","id":"n_6q5a2e0741","type":"section"}
+20:51:43.595 +39.21s DEBUG store.commit Modification {"source":"pages","past":43,"page":"p_fg7hya37"}
+20:51:43.605 +39.22s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":8}
+20:51:43.614 +39.23s DEBUG store.select Sélection : section {"id":"n_3j4j005d0m","type":"section"}
+20:51:43.641 +39.26s INFO  action.component-create Composant « Équipe » créé : l’élément devient une instance {"component":"cp_6yu8reoy","type":"section","instance":"n_3j4j005d0m"}
+20:51:43.642 +39.26s INFO  ui.toast Message affiché : Composant « Équipe » créé. Retrouvez-le dans le panneau Modèles.
+20:51:44.200 +39.82s DEBUG storage.save Projet enregistré sur cet appareil {"ms":4,"kb":19}
+20:51:44.291 +39.91s DEBUG store.select Sélection : heading {"id":"n_1z1f523j4z","type":"heading"}
+20:51:44.363 +39.98s DEBUG template.component Panneau Modèles : clic sur le composant « Équipe » {"component":"cp_6yu8reoy","uses":1}
+20:51:44.365 +39.98s DEBUG store.commit Modification {"source":"library","past":44,"page":"p_fg7hya37"}
+20:51:44.373 +39.99s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"library","mode":"contenu","ms":7}
+20:51:44.397 +40.01s DEBUG store.select Sélection : section {"id":"n_0o024d1m2c","type":"section"}
+20:51:44.407 +40.02s INFO  action.component-insert Composant « Équipe » inséré {"component":"cp_6yu8reoy","type":"section","id":"n_0o024d1m2c","parentType":"page"}
+20:51:44.429 +40.05s DEBUG canvas.scroll Défilement vers l’élément sélectionné {"id":"n_0o024d1m2c","from":0,"to":485}

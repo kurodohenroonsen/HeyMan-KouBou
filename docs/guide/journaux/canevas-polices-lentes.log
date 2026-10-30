@@ -1,0 +1,6 @@
+20:56:12.223 +0.00s INFO  boot.start [boot#1] Démarrage d’Atelier (cycle 21) {"url":"http://localhost:8791/?fresh=1"}
+20:56:12.229 +0.01s INFO  canvas.load.start [canvas.load#1] Chargement complet du canevas : premier chargement {"reason":"premier chargement","page":"p_vn7drk8l","lang":"fr","device":"desktop"}
+20:56:12.231 +0.01s DEBUG canvas.load.render [canvas.load#1 · 2 ms] Page rendue {"ms":2,"kb":25}
+20:56:12.274 +0.05s INFO  boot.ok [boot#1 · 51 ms] Éditeur prêt {"page":"p_vn7drk8l","lang":"fr"}
+20:56:12.276 +0.06s INFO  canvas.load.ok [canvas.load#1 · 47 ms] Canevas prêt {"nodes":30,"scale":62,"via":"dom"}
+20:56:21.271 +9.05s WARN  canvas.resources-slow Polices ou images en ligne lentes à charger (9.0 s) : l’éditeur était déjà utilisable, l’affichage s’ajuste à leur arrivée {"ms":9039,"hosts":["fonts.googleapis.com"]}

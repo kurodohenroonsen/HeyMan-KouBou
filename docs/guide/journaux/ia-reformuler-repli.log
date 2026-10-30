@@ -1,0 +1,22 @@
+20:53:02.631 +1.11s DEBUG store.select Sélection : text {"id":"n_4b5a28285w","type":"text"}
+20:53:02.650 +1.13s DEBUG edit.dblclick Double-clic sur un texte de la page {"key":"content","id":"n_4b5a28285w"}
+20:53:02.651 +1.14s INFO  edit.start [edit#1] Édition dans la page : text · content {"id":"n_4b5a28285w","type":"text","key":"content","field":"richtext","lang":"fr","chars":161}
+20:53:02.870 +1.35s DEBUG canvas.key Raccourci dans la page : Ctrl+A {"key":"Ctrl+A","in":"texte","selected":"n_4b5a28285w"}
+20:53:02.992 +1.48s DEBUG edit.ai-menu [edit#1 · 341 ms] Menu ✨ ouvert {"open":true,"modes":["shorter","simpler","formal","friendly","longer"]}
+20:53:03.054 +1.54s DEBUG edit.ai-ask [edit#1 · 403 ms] Demande à l’IA locale : shorter {"mode":"shorter","chars":161,"selection":true}
+20:53:03.055 +1.54s DEBUG ai.provider Fournisseur d’IA de test (window.__atelierAI) {"source":"test","lang":"fr","has":{"prompt":true,"multimodal":true,"summarizer":true,"rewriter":false,"proofreader":true,"translator":true},"methods":["prompt","summarize","proofread","translate"]}
+20:53:03.058 +1.54s INFO  ai.rewrite.start [ai.rewrite#1] IA locale : reformuler {"task":"rewrite","inLen":161,"excerpt":"Le MAB réunit les médias alternatifs belges. Nous partageon…","mode":"shorter","lang":"fr","gen":"fr","api":"prompt","source":"test"}
+20:53:03.059 +1.54s WARN  ai.rewrite.fallback [ai.rewrite#1 · 1 ms] Rewriter non disponible : repli sur la Prompt API (schéma JSON) {"wanted":"rewriter","has":false,"flag":"chrome://flags/#rewriter-api"}
+20:53:03.060 +1.54s DEBUG ai.rewrite.call [ai.rewrite#1 · 2 ms] Appel Prompt API (Gemini Nano) (fr) {"api":"prompt","lang":"fr","schema":"text","system":"253 car.","inLen":169}
+20:53:03.060 +1.54s DEBUG ai.rewrite.reply [ai.rewrite#1 · 2 ms] Réponse Prompt API (Gemini Nano) : 55 car. en 1 ms {"api":"prompt","ms":1,"outLen":55,"excerpt":"{\"text\":\"Le MAB réunit les médias alternatifs belges.\"}"}
+20:53:03.061 +1.54s INFO  ai.rewrite.ok [ai.rewrite#1 · 3 ms] Reformuler : proposition prête (Prompt API) {"via":"prompt","fallback":true,"translated":false,"calls":1,"outLen":44,"excerpt":"Le MAB réunit les médias alternatifs belges."}
+20:53:03.061 +1.54s DEBUG edit.ai-proposal [edit#1 · 410 ms] Proposition de l’IA affichée (Remplacer ou Annuler) {"chars":44}
+20:53:03.123 +1.61s DEBUG store.commit Modification {"key":"edit-n_4b5a28285w-content-1","source":"canvas","past":1,"page":"p_94oom426"}
+20:53:03.143 +1.63s INFO  version.auto Première modification du jour : version automatique de l’état d’avant {"previous":null,"source":"canvas"}
+20:53:03.144 +1.63s INFO  version.save.start [version.save#1] Enregistrement d’une version automatique {"kind":"auto"}
+20:53:03.146 +1.63s DEBUG storage.version-save Version enregistrée {"id":"v_mvve3b8pjybcl","kind":"auto"}
+20:53:03.146 +1.63s DEBUG ai.mark Texte de l’IA appliqué et marqué « à relire » {"nodeId":"n_4b5a28285w","field":"content","lang":"fr"}
+20:53:03.146 +1.63s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_4b5a28285w-content-1","source":"canvas","merged":true,"past":1,"page":"p_94oom426"}
+20:53:03.165 +1.65s INFO  edit.ai-apply [edit#1 · 514 ms] Proposition de l’IA appliquée (texte marqué « à relire ») {"id":"n_4b5a28285w","key":"content","chars":44}
+20:53:03.192 +1.68s DEBUG version.save.prune [version.save#1 · 48 ms] Aucune ancienne version à supprimer {"total":1}
+20:53:03.194 +1.68s INFO  version.save.ok [version.save#1 · 50 ms] Version automatique enregistrée (2 pages) {"id":"v_mvve3b8pjybcl","kind":"auto","at":"2026-10-30T19:53:03.145Z","pages":2,"kb":12}

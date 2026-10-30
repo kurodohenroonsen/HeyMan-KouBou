@@ -1,0 +1,2 @@
+20:58:45.073 +1.44s INFO  ui.panel-reset Panneau de gauche : largeur d’origine (290 px) {"side":"left","from":300,"to":290}
+20:58:45.120 +1.49s INFO  ui.panel-reset Panneau de droite : largeur d’origine (330 px) {"side":"right","from":420,"to":330}

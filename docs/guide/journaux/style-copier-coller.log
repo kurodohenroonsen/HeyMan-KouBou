@@ -1,0 +1,7 @@
+20:51:36.213 +31.83s INFO  style.copy Style copié : Titre {"id":"n_1z1f523j4z","type":"heading","props":{"desktop":1,"tablet":0,"mobile":1,"hover":0}}
+20:51:36.213 +31.83s INFO  ui.toast Message affiché : Style copié.
+20:51:36.330 +31.95s DEBUG store.select Sélection : heading {"id":"n_14613r4267","type":"heading"}
+20:51:36.499 +32.12s DEBUG store.commit Modification {"source":"action","past":33,"page":"p_fg7hya37"}
+20:51:36.512 +32.13s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":10}
+20:51:36.532 +32.15s INFO  style.paste Style collé {"count":1,"from":"heading","types":["heading"]}
+20:51:36.532 +32.15s INFO  ui.toast Message affiché : Style collé.

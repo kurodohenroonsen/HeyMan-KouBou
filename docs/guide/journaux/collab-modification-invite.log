@@ -1,0 +1,8 @@
+20:53:24.077 +6.90s DEBUG collab.ops.in 1 modification de Kudoro appliquée {"name":"Kudoro","received":1,"applied":1}
+20:53:24.077 +6.90s DEBUG store.remote Modifications d’un autre participant appliquées {"ops":1,"history":0}
+20:53:24.084 +6.90s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"remote","mode":"contenu","ms":5}
+20:53:24.093 +6.91s INFO  version.auto Première modification du jour : version automatique de l’état d’avant {"previous":null,"source":"remote"}
+20:53:24.094 +6.91s INFO  version.save.start [version.save#2] Enregistrement d’une version automatique {"kind":"auto"}
+20:53:24.095 +6.91s DEBUG storage.version-save Version enregistrée {"id":"v_mvve3renqybf7","kind":"auto"}
+20:53:24.132 +6.95s DEBUG version.save.prune [version.save#2 · 38 ms] Aucune ancienne version à supprimer {"total":2}
+20:53:24.133 +6.95s INFO  version.save.ok [version.save#2 · 39 ms] Version automatique enregistrée (2 pages) {"id":"v_mvve3renqybf7","kind":"auto","at":"2026-10-30T19:53:24.095Z","pages":2,"kb":12}

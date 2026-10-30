@@ -1,0 +1,33 @@
+20:52:47.545 +52.52s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":39}
+20:52:47.562 +52.54s DEBUG collection.item.select Élément « Fête de la radio à Couvin » affiché {"collection":"col_yfif86wi","item":"it_3p4tndof","status":"published"}
+20:52:47.812 +52.79s INFO  collection.item.preview Page de détail ouverte avec l’élément « Fête de la radio à Couvin » {"collection":"col_yfif86wi","item":"it_3p4tndof","detail":true}
+20:52:47.813 +52.79s INFO  store.edit-target Édition : detail « col_yfif86wi » {"kind":"detail","id":"col_yfif86wi"}
+20:52:47.822 +52.80s INFO  canvas.load.start [canvas.load#13] Chargement complet du canevas : modification de la page de détail {"reason":"modification de la page de détail","page":"p_8td8gtej","lang":"fr","device":"desktop","edit":"detail"}
+20:52:47.825 +52.80s DEBUG canvas.load.render [canvas.load#13 · 3 ms] Page rendue {"ms":3,"kb":31}
+20:52:47.861 +52.84s DEBUG ui.dialog.close Fenêtre fermée : 📅 Agenda du MAB /agenda/ {"id":"collectionDialog"}
+20:52:47.889 +52.87s INFO  canvas.load.ok [canvas.load#13 · 67 ms] Canevas prêt {"nodes":13,"scale":62,"via":"load"}
+20:52:48.427 +53.40s INFO  store.edit-target Retour à la page
+20:52:48.431 +53.41s INFO  canvas.load.start [canvas.load#14] Chargement complet du canevas : retour à la page {"reason":"retour à la page","page":"p_8td8gtej","lang":"fr","device":"desktop"}
+20:52:48.434 +53.41s DEBUG canvas.load.render [canvas.load#14 · 3 ms] Page rendue {"ms":3,"kb":36}
+20:52:48.468 +53.45s INFO  canvas.load.ok [canvas.load#14 · 37 ms] Canevas prêt {"nodes":5,"scale":62,"via":"load"}
+20:52:49.010 +53.99s INFO  collection.edit-card Modification de la carte de « Agenda du MAB » (dessinée une fois pour tous les éléments) {"collection":"col_yfif86wi"}
+20:52:49.010 +53.99s INFO  store.edit-target Édition : card « col_yfif86wi » {"kind":"card","id":"col_yfif86wi"}
+20:52:49.015 +53.99s INFO  canvas.load.start [canvas.load#15] Chargement complet du canevas : modification de la carte {"reason":"modification de la carte","page":"p_8td8gtej","lang":"fr","device":"desktop","edit":"card"}
+20:52:49.018 +53.99s DEBUG canvas.load.render [canvas.load#15 · 3 ms] Page rendue {"ms":3,"kb":33}
+20:52:49.102 +54.08s INFO  canvas.load.ok [canvas.load#15 · 87 ms] Canevas prêt {"nodes":7,"scale":62,"via":"load"}
+20:52:49.642 +54.62s INFO  store.edit-target Retour à la page
+20:52:49.646 +54.62s INFO  canvas.load.start [canvas.load#16] Chargement complet du canevas : retour à la page {"reason":"retour à la page","page":"p_8td8gtej","lang":"fr","device":"desktop"}
+20:52:49.649 +54.63s DEBUG canvas.load.render [canvas.load#16 · 3 ms] Page rendue {"ms":3,"kb":36}
+20:52:49.679 +54.66s INFO  canvas.load.ok [canvas.load#16 · 33 ms] Canevas prêt {"nodes":5,"scale":62,"via":"load"}
+20:52:50.226 +55.20s INFO  collection.open Collection « Agenda du MAB » ouverte : 5 éléments, 12 champs {"id":"col_yfif86wi","kind":"events","items":5,"drafts":0,"fields":12,"tab":"items","item":"it_a2sxavmr"}
+20:52:50.232 +55.21s DEBUG ui.dialog.open Fenêtre ouverte : 📅 Agenda du MAB /agenda/ {"id":"collectionDialog","class":"audit col-dialog","modal":true}
+20:52:50.308 +55.28s INFO  collection.edit-detail Modification de la page de détail de « Agenda du MAB » {"collection":"col_yfif86wi","item":"it_a2sxavmr"}
+20:52:50.308 +55.28s INFO  store.edit-target Édition : detail « col_yfif86wi » {"kind":"detail","id":"col_yfif86wi"}
+20:52:50.314 +55.29s INFO  canvas.load.start [canvas.load#17] Chargement complet du canevas : modification de la page de détail {"reason":"modification de la page de détail","page":"p_8td8gtej","lang":"fr","device":"desktop","edit":"detail"}
+20:52:50.316 +55.29s DEBUG canvas.load.render [canvas.load#17 · 2 ms] Page rendue {"ms":1,"kb":22}
+20:52:50.354 +55.33s DEBUG ui.dialog.close Fenêtre fermée : 📅 Agenda du MAB /agenda/ {"id":"collectionDialog"}
+20:52:50.378 +55.35s INFO  canvas.load.ok [canvas.load#17 · 64 ms] Canevas prêt {"nodes":13,"scale":62,"via":"load"}
+20:52:50.894 +55.87s INFO  store.edit-target Retour à la page
+20:52:50.900 +55.88s INFO  canvas.load.start [canvas.load#18] Chargement complet du canevas : retour à la page {"reason":"retour à la page","page":"p_8td8gtej","lang":"fr","device":"desktop"}
+20:52:50.905 +55.88s DEBUG canvas.load.render [canvas.load#18 · 5 ms] Page rendue {"ms":4,"kb":36}
+20:52:50.941 +55.92s INFO  canvas.load.ok [canvas.load#18 · 41 ms] Canevas prêt {"nodes":5,"scale":62,"via":"load"}

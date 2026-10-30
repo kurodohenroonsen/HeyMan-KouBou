@@ -1,0 +1,8 @@
+20:51:13.285 +8.90s DEBUG structure.open Panneau Structure ouvert {"rows":32}
+20:51:13.372 +8.99s DEBUG storage.save Projet enregistré sur cet appareil {"ms":4,"kb":12}
+20:51:13.484 +9.10s DEBUG structure.collapse Replié : Section {"id":"n_3b0c055808","type":"section","collapsed":true,"children":1,"by":"clic"}
+20:51:13.635 +9.25s DEBUG structure.collapse Déplié : Section {"id":"n_3b0c055808","type":"section","collapsed":false,"children":1,"by":"clic"}
+20:51:13.785 +9.40s DEBUG structure.collapse Replié (←) {"id":"n_3b0c055808","collapsed":true,"by":"clavier"}
+20:51:13.817 +9.43s DEBUG structure.collapse Déplié (→) {"id":"n_3b0c055808","collapsed":false,"by":"clavier"}
+20:51:13.885 +9.50s DEBUG structure.key Structure : sélection au clavier {"id":"n_3b0c055808","key":"Entrée"}
+20:51:13.887 +9.50s DEBUG store.select Sélection : section {"id":"n_3b0c055808","type":"section"}

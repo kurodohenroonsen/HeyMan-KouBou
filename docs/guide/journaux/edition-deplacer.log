@@ -1,0 +1,4 @@
+20:51:08.957 +4.57s INFO  dnd.start [dnd#2] Glisser : Bouton {"kind":"move","type":"button","id":"n_0c6v0z414z","from":"page ou structure"}
+20:51:09.411 +5.03s DEBUG store.commit Modification {"source":"dnd","past":3,"page":"p_fg7hya37"}
+20:51:09.421 +5.04s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"dnd","mode":"contenu","ms":8}
+20:51:09.436 +5.05s INFO  dnd.ok [dnd#2 · 479 ms] Déplacé dans Colonne, position 1 {"id":"n_0c6v0z414z","type":"button","kind":"move","parentId":"n_5047510s01","parentType":"column","index":0,"where":"canevas"}

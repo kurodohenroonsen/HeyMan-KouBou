@@ -1,0 +1,20 @@
+{
+ "📖 Guide d’utilisation": "📖 利用ガイド",
+ "Guide d’utilisation": "利用ガイド",
+ "Guide d’utilisation ouvert : {page}": "利用ガイドを開きました：{page}",
+ "Le guide d’utilisation complet, dans la langue de l’interface ; depuis une fenêtre ouverte, F1 ouvre directement son chapitre.": "表示言語で読める完全な利用ガイドです。ウィンドウを開いているときに F1 を押すと、その章が直接開きます。",
+ "Guide d’utilisation (F1)": "利用ガイド (F1)",
+ "Carte géographique": "地図",
+ "Carte de contenu": "コンテンツカード",
+ "ex. Kumakōgen, le guide du plateau": "例：久万高原町 観光ガイド",
+ "Langue principale choisie : {lang}": "メイン言語を選択：{lang}",
+ "Nouveau site vide : « {name} », langue principale {lang}": "新しい空のサイト：「{name}」、メイン言語 {lang}",
+ "Vous pourrez le changer plus tard dans l’onglet Site, à gauche.": "あとから左側の「サイト」タブで変更できます。",
+ "Langue principale": "メイン言語",
+ "La langue dans laquelle vous écrivez d’abord ; les visiteurs la voient par défaut.": "最初に書く言語です。訪問者には既定でこの言語が表示されます。",
+ "Autres langues du site": "サイトのほかの言語",
+ "Vous pourrez en ajouter ou en retirer à tout moment dans l’onglet Site.": "言語は「サイト」タブでいつでも追加・削除できます。",
+ "Le site actuel est gardé dans une version de sécurité (Fichier → Versions) ; Ctrl+Z revient aussi en arrière.": "現在のサイトは安全バージョンとして保存されます（ファイル → バージョン）。Ctrl+Z でも元に戻せます。",
+ "Créer le site": "サイトを作成",
+ "family|Contenus": "コレクション"
+}

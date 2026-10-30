@@ -1,0 +1,21 @@
+20:51:24.637 +20.25s DEBUG canvas.key Raccourci dans la page : Alt+ArrowDown {"key":"Alt+ArrowDown","in":"page","selected":"n_1z1f523j4z"}
+20:51:24.639 +20.25s DEBUG store.commit Modification {"source":"action","past":14,"page":"p_fg7hya37"}
+20:51:24.643 +20.26s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":3}
+20:51:24.661 +20.28s INFO  action.move Descendu : heading {"id":"n_1z1f523j4z","type":"heading","delta":1,"index":1}
+20:51:24.776 +20.39s DEBUG canvas.key Raccourci dans la page : Alt+ArrowUp {"key":"Alt+ArrowUp","in":"page","selected":"n_1z1f523j4z"}
+20:51:24.778 +20.39s DEBUG store.commit Modification {"source":"action","past":15,"page":"p_fg7hya37"}
+20:51:24.783 +20.40s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":3}
+20:51:24.798 +20.41s INFO  action.move Monté : heading {"id":"n_1z1f523j4z","type":"heading","delta":-1,"index":0}
+20:51:24.947 +20.56s DEBUG ui.dialog.open Fenêtre ouverte : Raccourcis clavier {"id":"shortcutsDialog","class":"keys","modal":true}
+20:51:25.126 +20.74s DEBUG ui.key Raccourci : Escape {"key":"Escape","in":"button"}
+20:51:25.134 +20.75s DEBUG ui.dialog.close Fenêtre fermée : Raccourcis clavier {"id":"shortcutsDialog"}
+20:51:25.237 +20.85s DEBUG ui.key Raccourci : Ctrl+S {"key":"Ctrl+S","in":"body"}
+20:51:25.238 +20.85s INFO  project.export-json Projet enregistré en fichier .json {"kb":38,"pages":2}
+20:51:25.242 +20.86s DEBUG ui.click Clic : a {"el":"a"}
+20:51:25.243 +20.86s INFO  ui.toast Message affiché : Projet enregistré en fichier .json.
+20:51:25.362 +20.98s DEBUG ui.key Raccourci : Ctrl+Alt+J {"key":"Ctrl+Alt+J","in":"body"}
+20:51:25.372 +20.99s DEBUG ui.dialog.open Fenêtre ouverte : 🐞 Journal de débogage {"id":"logDialog","class":"audit log-dialog","modal":true}
+20:51:25.424 +21.04s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token"}
+20:51:25.427 +21.04s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":13}
+20:51:25.643 +21.26s DEBUG ui.key Raccourci : Escape {"key":"Escape","in":"button"}
+20:51:25.652 +21.27s DEBUG ui.dialog.close Fenêtre fermée : 🐞 Journal de débogage {"id":"logDialog"}

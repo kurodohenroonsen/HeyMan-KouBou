@@ -1,0 +1,11 @@
+20:52:16.375 +21.35s DEBUG page.delete-cancel Suppression de « Notre équipe » annulée {"id":"p_qjn1ysr0"}
+20:52:16.563 +21.54s DEBUG store.view Vue : pageId=p_a3je7ile {"pageId":"p_a3je7ile"}
+20:52:16.573 +21.55s INFO  canvas.load.start [canvas.load#7] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_a3je7ile","lang":"fr","device":"desktop"}
+20:52:16.575 +21.55s DEBUG canvas.load.render [canvas.load#7 · 2 ms] Page rendue {"ms":1,"kb":25}
+20:52:16.589 +21.57s DEBUG store.commit Modification {"source":"pages","past":31,"page":"p_a3je7ile"}
+20:52:16.595 +21.57s INFO  canvas.load.cancel [canvas.load#7 · 22 ms] Chargement remplacé par un nouveau {"reason":"chargement précédent non terminé"}
+20:52:16.596 +21.57s INFO  canvas.load.start [canvas.load#8] Chargement complet du canevas : chargement précédent non terminé {"reason":"chargement précédent non terminé","page":"p_a3je7ile","lang":"fr","device":"desktop"}
+20:52:16.598 +21.57s DEBUG canvas.load.render [canvas.load#8 · 2 ms] Page rendue {"ms":1,"kb":25}
+20:52:16.602 +21.58s INFO  page.delete Page « Notre équipe » supprimée (Ctrl+Z pour la retrouver) {"id":"p_qjn1ysr0","slug":"notre-equipe-2","pages":3,"wasOpen":true}
+20:52:16.661 +21.64s INFO  canvas.load.ok [canvas.load#8 · 65 ms] Canevas prêt {"nodes":30,"scale":62,"via":"dom"}
+20:52:16.664 +21.64s DEBUG canvas.resources Ressources externes du canevas chargées {"ms":66,"hosts":[]}

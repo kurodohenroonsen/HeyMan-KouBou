@@ -1,0 +1,34 @@
+20:51:18.918 +14.53s DEBUG canvas.key Raccourci dans la page : Ctrl+C {"key":"Ctrl+C","in":"page","selected":"n_0c6v0z414z"}
+20:51:18.919 +14.54s INFO  action.copy Copié : Bouton {"id":"n_0c6v0z414z","type":"button","nodes":1}
+20:51:18.919 +14.54s INFO  ui.toast Message affiché : « Bouton » copié. Sélectionnez un emplacement puis Ctrl+V.
+20:51:18.931 +14.55s DEBUG canvas.key Raccourci dans la page : Ctrl+V {"key":"Ctrl+V","in":"page","selected":"n_0c6v0z414z"}
+20:51:18.933 +14.55s DEBUG store.commit Modification {"source":"action","past":7,"page":"p_fg7hya37"}
+20:51:18.939 +14.55s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":4}
+20:51:18.948 +14.56s DEBUG store.select Sélection : button {"id":"n_0g1t412u6n","type":"button"}
+20:51:18.960 +14.58s INFO  action.paste Collé : button {"id":"n_0g1t412u6n","type":"button","parentType":"column","after":"n_0c6v0z414z"}
+20:51:19.141 +14.76s DEBUG canvas.key Raccourci dans la page : Ctrl+D {"key":"Ctrl+D","in":"page","selected":"n_0g1t412u6n"}
+20:51:19.144 +14.76s DEBUG store.commit Modification {"source":"action","past":8,"page":"p_fg7hya37"}
+20:51:19.152 +14.77s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":5}
+20:51:19.164 +14.78s DEBUG store.select Sélection : button {"id":"n_090w2g575v","type":"button"}
+20:51:19.182 +14.80s INFO  action.duplicate Dupliqué : button {"id":"n_0g1t412u6n","newId":"n_090w2g575v","type":"button"}
+20:51:19.356 +14.97s DEBUG canvas.key Raccourci dans la page : Delete {"key":"Delete","in":"page","selected":"n_090w2g575v"}
+20:51:19.358 +14.97s DEBUG store.commit Modification {"source":"action","past":9,"page":"p_fg7hya37"}
+20:51:19.363 +14.98s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":4}
+20:51:19.368 +14.98s DEBUG store.select Sélection : heading {"id":"n_1q3e5s4j0q","type":"heading"}
+20:51:19.376 +14.99s INFO  action.delete Supprimé : button {"id":"n_090w2g575v","type":"button","next":"n_1q3e5s4j0q"}
+20:51:19.533 +15.15s DEBUG canvas.key Raccourci dans la page : Ctrl+X {"key":"Ctrl+X","in":"page","selected":"n_1q3e5s4j0q"}
+20:51:19.534 +15.15s INFO  action.cut Coupé : Titre (dans le presse-papiers d’Atelier) {"id":"n_1q3e5s4j0q","type":"heading"}
+20:51:19.535 +15.15s DEBUG store.commit Modification {"source":"action","past":10,"page":"p_fg7hya37"}
+20:51:19.547 +15.16s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":10}
+20:51:19.550 +15.17s DEBUG store.select Sélection : text {"id":"n_4y390z0l4z","type":"text"}
+20:51:19.563 +15.18s INFO  action.delete Supprimé : heading {"id":"n_1q3e5s4j0q","type":"heading","next":"n_4y390z0l4z"}
+20:51:19.564 +15.18s INFO  ui.toast Message affiché : « Titre » coupé. Sélectionnez la destination puis Ctrl+V.
+20:51:19.733 +15.35s DEBUG canvas.key Raccourci dans la page : Ctrl+V {"key":"Ctrl+V","in":"page","selected":"n_4y390z0l4z"}
+20:51:19.735 +15.35s DEBUG store.commit Modification {"source":"action","past":11,"page":"p_fg7hya37"}
+20:51:19.742 +15.36s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":5}
+20:51:19.752 +15.37s DEBUG store.select Sélection : heading {"id":"n_0q3w2b306k","type":"heading"}
+20:51:19.766 +15.38s INFO  action.paste Collé : heading {"id":"n_0q3w2b306k","type":"heading","parentType":"column","after":"n_4y390z0l4z"}
+20:51:19.933 +15.55s DEBUG canvas.key Raccourci dans la page : Alt+ArrowUp {"key":"Alt+ArrowUp","in":"page","selected":"n_0q3w2b306k"}
+20:51:19.935 +15.55s DEBUG store.commit Modification {"source":"action","past":12,"page":"p_fg7hya37"}
+20:51:19.941 +15.56s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":5}
+20:51:19.960 +15.58s INFO  action.move Monté : heading {"id":"n_0q3w2b306k","type":"heading","delta":-1,"index":3}

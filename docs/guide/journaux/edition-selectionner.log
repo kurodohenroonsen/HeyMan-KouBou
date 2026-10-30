@@ -1,0 +1,5 @@
+20:51:05.477 +1.09s DEBUG store.select Sélection : heading {"id":"n_1z1f523j4z","type":"heading"}
+20:51:05.662 +1.28s DEBUG store.select Sélection : text {"id":"n_4y390z0l4z","type":"text"}
+20:51:05.830 +1.45s DEBUG canvas.key Raccourci dans la page : Escape {"key":"Escape","in":"page","selected":"n_4y390z0l4z"}
+20:51:05.831 +1.45s DEBUG action.parent Parent sélectionné : column {"from":"text","to":"column","id":"n_5047510s01"}
+20:51:05.831 +1.45s DEBUG store.select Sélection : column {"id":"n_5047510s01","type":"column"}
