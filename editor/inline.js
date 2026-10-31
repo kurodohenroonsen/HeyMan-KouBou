@@ -7,6 +7,7 @@ import { state, root, nodeById, commitRoot, commit, select, emit, siteWithRoot, 
 import { fieldDef } from '../core/widgets.js';
 import { setProp, setListItemProp } from '../core/tree.js';
 import { richToText } from '../core/sanitize.js';
+import { escapeHtml } from '../core/escape.js';
 import { makeEditable, format, isActive, selectionInside } from './richedit.js';
 import { onCanvasReady, canvasDoc, schedulePosition } from './canvas.js';
 import { toast } from './dom.js';
@@ -31,20 +32,19 @@ function resolveField(type, key) {
   return fieldDef(type, path[0])?.fields?.find(f => f.key === path[2]) || null;
 }
 
-const escH = t => String(t).replace(/[&<>\x22]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\x22': '&quot;' })[c]);
 const TB = {
-  t0: escH(__('Mise en forme')),
-  t1: escH(__('Gras (Ctrl+B)')),
-  t2: escH(__('Italique (Ctrl+I)')),
-  t3: escH(__('Souligné (Ctrl+U)')),
-  t4: escH(__('Lien')),
-  t5: escH(__('Effacer la mise en forme')),
-  t6: escH(__('IA locale : reformuler, corriger (sur la sélection ou le paragraphe)')),
-  t7: escH(__('Proposition de l’IA locale')),
-  t8: escH(__('Remplacer')),
-  t9: escH(__('Annuler')),
-  t10: escH(__('https://… ou #ancre')),
-  t11: escH(__('Adresse du lien'))
+  t0: escapeHtml(__('Mise en forme')),
+  t1: escapeHtml(__('Gras (Ctrl+B)')),
+  t2: escapeHtml(__('Italique (Ctrl+I)')),
+  t3: escapeHtml(__('Souligné (Ctrl+U)')),
+  t4: escapeHtml(__('Lien')),
+  t5: escapeHtml(__('Effacer la mise en forme')),
+  t6: escapeHtml(__('IA locale : reformuler, corriger (sur la sélection ou le paragraphe)')),
+  t7: escapeHtml(__('Proposition de l’IA locale')),
+  t8: escapeHtml(__('Remplacer')),
+  t9: escapeHtml(__('Annuler')),
+  t10: escapeHtml(__('https://… ou #ancre')),
+  t11: escapeHtml(__('Adresse du lien'))
 };
 const TOOLBAR = `<div id="atelier-format" role="toolbar" aria-label="${TB.t0}" hidden>
 <button type="button" data-fmt="bold" title="${TB.t1}"><b>B</b></button>
@@ -239,7 +239,7 @@ async function onAI(cmd, b) {
   if (cmd === 'ai') {
     if (!aiHooks) { f.warn('ai-unavailable', __('Menu ✨ indisponible : le module d’IA locale n’est pas chargé'), {}); toast(__('IA locale non chargée.')); return; }
     if (menu.hidden) {
-      menu.innerHTML = [...aiHooks.modes.map(m => `<button type="button" data-fmt="ai-mode" data-mode="${m.id}">${escH(m.label)}</button>`), '<button type="button" data-fmt="ai-proof">' + escH(__('Corriger')) + '</button>'].join('');
+      menu.innerHTML = [...aiHooks.modes.map(m => `<button type="button" data-fmt="ai-mode" data-mode="${m.id}">${escapeHtml(m.label)}</button>`), '<button type="button" data-fmt="ai-proof">' + escapeHtml(__('Corriger')) + '</button>'].join('');
       menu.hidden = false;
       tb.querySelector('.fmt-ai-out').hidden = true;
       f.step('ai-menu', __('Menu ✨ ouvert'), { open: true, modes: aiHooks.modes.map(m => m.id) });
@@ -278,22 +278,22 @@ async function onAI(cmd, b) {
     if (session !== s0) { f.step('ai-stale', __('Proposition de l’IA ignorée : l’édition s’est terminée entre-temps'), {}); return; }
     aiPending = { range, value: r.value };
     f.step('ai-proposal', __('Proposition de l’IA affichée (Remplacer ou Annuler)'), { chars: String(r.value).length, warning: r.warning || undefined });
-    const note = escH(__('✨ Proposition (vous pouvez encore la modifier après)'));
-    aiOut(`${r.warning ? `<small>⚠ ${escH(r.warning)}</small>` : `<small>${note}</small>`}${escH(r.value)}`, true);
+    const note = escapeHtml(__('✨ Proposition (vous pouvez encore la modifier après)'));
+    aiOut(`${r.warning ? `<small>⚠ ${escapeHtml(r.warning)}</small>` : `<small>${note}</small>`}${escapeHtml(r.value)}`, true);
   } else {
     const r = await aiHooks.proofread(text);
     if (!r) { f.step('ai-none', __('Pas de proposition de l’IA (voir les lignes ai.* juste avant)'), {}, 'warn'); return; }
     if (session !== s0) { f.step('ai-stale', __('Proposition de l’IA ignorée : l’édition s’est terminée entre-temps'), {}); return; }
     const cs = r.value.corrections;
-    if (!cs.length) { f.step('ai-proposal', __('Correction : aucune faute trouvée'), { corrections: 0 }); aiOut(escH(__('✓ Aucune faute trouvée.')), false); return; }
+    if (!cs.length) { f.step('ai-proposal', __('Correction : aucune faute trouvée'), { corrections: 0 }); aiOut(escapeHtml(__('✓ Aucune faute trouvée.')), false); return; }
     aiPending = { range, corrections: cs };
     f.step('ai-proposal', __n(cs.length, 'Correction : {n} proposition affichée', 'Correction : {n} propositions affichées'), { corrections: cs.length });
     let html = '';
     let last = 0;
-    for (const c of cs) { html += `${escH(text.slice(last, c.start))}<mark title="${escH(c.original)}">${escH(c.replacement)}</mark>`; last = c.end; }
-    html += escH(text.slice(last));
-    const head = escH(__n(cs.length, '{n} correction :', '{n} corrections :'));
-    aiOut(`<small>✨ ${head} ${cs.slice(0, 4).map(c => `${escH(c.original)} → ${escH(c.replacement)}`).join(', ')}${cs.length > 4 ? '…' : ''}</small>${html}`, true);
+    for (const c of cs) { html += `${escapeHtml(text.slice(last, c.start))}<mark title="${escapeHtml(c.original)}">${escapeHtml(c.replacement)}</mark>`; last = c.end; }
+    html += escapeHtml(text.slice(last));
+    const head = escapeHtml(__n(cs.length, '{n} correction :', '{n} corrections :'));
+    aiOut(`<small>✨ ${head} ${cs.slice(0, 4).map(c => `${escapeHtml(c.original)} → ${escapeHtml(c.replacement)}`).join(', ')}${cs.length > 4 ? '…' : ''}</small>${html}`, true);
   }
 }
 

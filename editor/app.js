@@ -14,6 +14,8 @@ import { componentUsage } from '../core/components.js';
 import { loadProject } from './storage.js';
 import { demoSite } from './demo.js';
 import { createSite, validateSite, missingTranslations, setSiteMeta, slugify, LANG_LABELS, findPage, normalizeSite } from '../core/site.js';
+import { sanitizeSiteTexts } from '../core/sanitize-site.js';
+import { publishOrigin, githubTarget, hostLabel } from '../core/publish.js';
 import { translate, renderSite, renderPage } from '../core/render.js';
 import { createZip } from '../core/zip.js';
 import { initCanvas, setCanvasKeyHandler, onCanvasReady } from './canvas.js';
@@ -208,14 +210,20 @@ function bind() {
     if (!f) return;
     const fl = log.flow('project.import', __('Ouverture d’un projet .json'), { name: f.name, kb: Math.round(f.size / 1024) });
     try {
-      let data;
-      try { data = JSON.parse(await f.text()); } catch (err) { throw new Error(__('ce n’est pas du JSON valide ({error})', { error: err.message })); }
+      let raw;
+      try { raw = JSON.parse(await f.text()); } catch (err) { throw new Error(__('ce n’est pas du JSON valide ({error})', { error: err.message })); }
+      /* Cycle 25 : tout texte du fichier est assaini avant d'entrer dans le modèle */
+      const { site: data, changed } = sanitizeSiteTexts(raw);
       const check = validateSite(normalizeSite(data));
       if (!check.ok) { fl.step('invalid', __('Projet refusé par la validation'), { errors: check.errors.slice(0, 5) }, 'warn'); throw new Error(check.errors[0]); }
+      if (changed) fl.step('sanitized', __n(changed, '{n} texte nettoyé à l’ouverture (balise ou attribut hors liste blanche retiré)', '{n} textes nettoyés à l’ouverture (balises ou attributs hors liste blanche retirés)'), { changed }, 'warn');
+      const target = publishOrigin(data.publish?.url) || githubTarget(data.publish?.gh);
+      const current = publishOrigin(state.site.publish?.url) || githubTarget(state.site.publish?.gh);
+      if (target && target !== current) fl.step('publish-url', __('Le projet ouvert publie vers {target} : le jeton n’est repris que si cette adresse a déjà été utilisée sur cet appareil', { target: hostLabel(target) }), { target, current: current || undefined }, 'info');
       await beforeRisky(__('Avant l’ouverture d’un autre projet'));
       load(data, { keepHistory: true });
-      fl.ok(__('Projet ouvert'), { pages: data.pages?.length, name: data.name });
-      toast(__('Projet ouvert.'));
+      fl.ok(__('Projet ouvert'), { pages: data.pages?.length, name: data.name, sanitized: changed || undefined });
+      toast(changed ? __('Projet ouvert. {n}', { n: __n(changed, '{n} texte a été nettoyé (voir le journal).', '{n} textes ont été nettoyés (voir le journal).') }) : __('Projet ouvert.'), changed ? 'warn' : undefined);
     } catch (err) { fl.fail(err); toast(__('Fichier illisible : {error}', { error: err.message }), 'error'); }
     e.target.value = '';
     $('#fileMenu').open = false;

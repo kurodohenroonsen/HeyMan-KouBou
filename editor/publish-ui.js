@@ -1,12 +1,17 @@
-/* Fenêtre « Publier » : fichier zip, OVH avec publish.php, ou GitHub (intégration Git d'OVH). */
+/*
+ * Fenêtre « Publier » : fichier zip, OVH avec publish.php, ou GitHub (intégration Git d'OVH).
+ * Cycle 25 : le jeton est gardé par origine (php-token:<origine>) ou par dépôt (github-token:<owner/repo>) et n'est
+ * pré-rempli que pour cette destination ; la première publication (ou le premier test avec jeton) vers une destination
+ * jamais utilisée sur cet appareil demande une confirmation explicite.
+ */
 import { h, $, toast, download } from './dom.js';
 import { state, commit } from './store.js';
 import { setPublishSettings, slugify } from '../core/site.js';
 import { renderSite } from '../core/render.js';
 import { createZip } from '../core/zip.js';
 import { auditSite } from '../core/audit.js';
-import { buildPublishPhp, sha256Hex, newToken, formsConfig, publishGitHub, filesForServer, PUBLISH_VERSION } from '../core/publish.js';
-import { getSecret, setSecret } from './storage.js';
+import { buildPublishPhp, sha256Hex, newToken, formsConfig, publishGitHub, filesForServer, PUBLISH_VERSION, publishOrigin, githubTarget, tokenKey, hostLabel } from '../core/publish.js';
+import { getSecret, setSecret, migrateLegacyTokens, isKnownDestination, addKnownDestination } from './storage.js';
 import { log } from './log.js';
 import { __, __n } from '../core/ui-i18n.js';
 
@@ -14,7 +19,8 @@ let exportZipHandler = null;
 export function setZipHandler(fn) { exportZipHandler = fn; }
 
 let tab = null;
-const memory = { php: '', github: '' };
+/* Jetons tapés pendant la séance, avec leur destination : jamais repris pour une autre adresse ou un autre dépôt */
+const memory = { php: { target: '', token: '', keep: false }, github: { target: '', token: '', keep: false } };
 
 function setStatus(el, text, kind) {
   el.textContent = text;
@@ -26,9 +32,60 @@ function apply(patch) {
   try { commit(setPublishSettings(state.site, patch), { source: 'site' }); return true; } catch (e) { log.warn('publish.settings-invalid', __('Réglage de publication refusé : {message}', { message: e.message }), { patch }); toast(e.message, 'error'); return false; }
 }
 
-async function remember(kind, token, on) {
-  memory[kind] = token;
-  try { await setSecret(`${kind}-token`, on ? token : ''); } catch { /* stockage indisponible */ }
+/* Garde le jeton pour cette destination (en séance, et sur l'appareil si demandé) */
+async function remember(kind, target, token, on) {
+  memory[kind] = { target, token, keep: on };
+  const key = tokenKey(kind, target);
+  if (!key) return;
+  try { await setSecret(key, on ? token : ''); } catch { /* stockage indisponible */ }
+}
+
+/* Jeton à pré-remplir pour la destination affichée : celui tapé en séance (même destination, ou avant toute adresse), sinon celui gardé sur l'appareil pour elle */
+async function tokenFor(kind, target) {
+  const m = memory[kind];
+  if (m.token && (m.target === target || !m.target)) {
+    if (!m.target && target) await remember(kind, target, m.token, m.keep);
+    return { token: m.token, keep: m.keep, from: 'séance' };
+  }
+  const key = tokenKey(kind, target);
+  const saved = key ? await getSecret(key) : '';
+  return saved ? { token: saved, keep: true, from: 'appareil' } : { token: '', keep: false, from: '' };
+}
+
+const destLabel = (kind, target) => (kind === 'github' ? target : hostLabel(target));
+
+/* Première fois vers cette destination sur cet appareil : fenêtre de confirmation explicite ; vrai si la personne confirme */
+function confirmFirst(kind, target, action) {
+  const host = destLabel(kind, target);
+  log.info('publish.first-origin', action === 'test' ? __('Premier envoi du jeton à {host} depuis cet appareil (test de connexion) : confirmation demandée', { host }) : __('Première publication vers {host} depuis cet appareil : confirmation demandée', { host }), { kind, target, action });
+  return new Promise(resolve => {
+    $('#publishConfirmDialog')?.remove();
+    let answered = false;
+    const finish = ok => { answered = true; resolve(ok); d.close(); };
+    const what = kind === 'github'
+      ? __('Vous allez publier dans le dépôt GitHub {host} pour la première fois depuis cet appareil.', { host })
+      : action === 'test' ? __('Vous allez envoyer votre jeton de publication à {host} pour la première fois depuis cet appareil (test de connexion).', { host }) : __('Vous allez publier sur {host} pour la première fois depuis cet appareil.', { host });
+    const d = h('dialog', { class: 'audit', id: 'publishConfirmDialog', 'aria-labelledby': 'publishConfirmTitle' },
+      h('header', { class: 'audit__head' }, h('h2', { id: 'publishConfirmTitle' }, __('Première publication vers {host}', { host })), h('button', { type: 'button', class: 'icon-btn', 'aria-label': __('Fermer'), onclick: () => finish(false) }, '✕')),
+      h('div', { class: 'a11y-form' },
+        h('p', {}, what),
+        h('p', { class: 'hint' }, __('Vérifiez que c’est bien votre site : le jeton donne le droit de publier à cette adresse. Si l’adresse vient d’un projet reçu ou modifié par quelqu’un d’autre, annulez et contrôlez-la dans l’onglet Publier.'))),
+      h('footer', { class: 'audit__foot' },
+        h('button', { type: 'button', class: 'btn', 'data-confirm-cancel': '', onclick: () => finish(false) }, __('Annuler')),
+        h('button', { type: 'button', class: 'btn btn--primary', 'data-confirm-ok': '', onclick: () => finish(true) }, __('Continuer vers {host}', { host }))));
+    d.addEventListener('close', () => { d.remove(); if (!answered) resolve(false); });
+    document.body.append(d);
+    d.showModal();
+  });
+}
+
+/* Vrai si la destination est connue de l'appareil, ou si la personne vient de la confirmer */
+async function destinationOk(kind, target, action) {
+  const key = `${kind}:${target}`;
+  if (isKnownDestination(key)) return true;
+  const ok = await confirmFirst(kind, target, action);
+  if (ok) addKnownDestination(key);
+  return ok;
 }
 
 function siteZip(version = PUBLISH_VERSION) {
@@ -39,23 +96,35 @@ function siteZip(version = PUBLISH_VERSION) {
 function phpTab(d) {
   const p = state.site.publish || {};
   const url = h('input', { class: 'input input--mono', type: 'url', value: p.url || (state.site.baseUrl ? `${state.site.baseUrl}/publish.php` : ''), placeholder: __('https://www.votre-site.be/publish.php'), 'data-pub': 'url' });
-  const token = h('input', { class: 'input input--mono', type: 'password', autocomplete: 'off', placeholder: __('Jeton de publication'), 'data-pub': 'token', value: memory.php });
+  const token = h('input', { class: 'input input--mono', type: 'password', autocomplete: 'off', placeholder: __('Jeton de publication'), 'data-pub': 'token' });
   const keep = h('input', { type: 'checkbox', 'data-pub': 'remember' });
-  getSecret('php-token').then(v => { if (v && !token.value) { token.value = v; keep.checked = true; } });
   const status = h('p', { class: 'pub-status', 'data-pub-status': '', role: 'status' });
-  url.addEventListener('change', () => apply({ url: url.value }));
+  const origin = () => publishOrigin(url.value);
+  /* Pré-remplit le jeton gardé pour l'origine affichée seulement ; une autre adresse → champ vide et message */
+  const fill = async () => {
+    const o = origin();
+    const t = await tokenFor('php', o);
+    token.value = t.token;
+    keep.checked = t.keep;
+    log.debug('publish.token-for', t.token ? __('Jeton pré-rempli pour {host} ({from})', { host: hostLabel(o), from: t.from }) : o ? __('Aucun jeton gardé pour {host}', { host: hostLabel(o) }) : __('Pas d’adresse publish.php : aucun jeton pré-rempli'), { origin: o || undefined, from: t.from || undefined, known: o ? isKnownDestination(`php:${o}`) : undefined });
+    if (!t.token && o && !isKnownDestination(`php:${o}`)) setStatus(status, __('Adresse jamais utilisée sur cet appareil ({host}) : aucun jeton n’est repris ; une confirmation sera demandée au premier envoi.', { host: hostLabel(o) }), 'info');
+  };
+  migrateLegacyTokens(state.site).catch(() => {}).then(fill);
+  url.addEventListener('change', () => { apply({ url: url.value }); fill(); });
   const generate = async () => {
     const t = newToken();
     token.value = t;
-    await remember('php', t, keep.checked);
+    await remember('php', origin(), t, keep.checked);
     download('publish.php', buildPublishPhp({ tokenHash: await sha256Hex(t) }), 'application/x-httpd-php');
-    log.info('publish.php.generate', __('publish.php v{version} téléchargé avec un nouveau jeton (l’ancien publish.php ne l’acceptera pas)', { version: PUBLISH_VERSION }), { version: PUBLISH_VERSION, remember: keep.checked });
+    log.info('publish.php.generate', __('publish.php v{version} téléchargé avec un nouveau jeton (l’ancien publish.php ne l’acceptera pas)', { version: PUBLISH_VERSION }), { version: PUBLISH_VERSION, remember: keep.checked, origin: origin() || undefined });
     apply({ mode: 'php' });
     setStatus(status, __('publish.php téléchargé, avec un nouveau jeton (gardé dans ce champ). Déposez le fichier à la racine du site par FTP, puis « Tester la connexion ».'), 'info');
   };
   const testConn = async () => {
     if (!apply({ url: url.value })) return;
     const f = log.flow('publish.test', __('Test de connexion à publish.php'), { url: url.value, token: !!token.value });
+    if (token.value && !(await destinationOk('php', origin(), 'test'))) { f.cancel(__('Test annulé : envoi du jeton à {host} non confirmé', { host: hostLabel(origin()) }), { origin: origin() }); setStatus(status, __('Test annulé : vérifiez l’adresse avant d’y envoyer votre jeton (ou videz le champ Jeton pour un test sans diagnostic).'), 'error'); return; }
+    if (token.value) await remember('php', origin(), token.value, keep.checked);
     setStatus(status, __('Test en cours…'));
     try {
       const r = await fetch(url.value, { method: 'GET', cache: 'no-store', headers: token.value ? { 'X-Atelier-Token': token.value } : {} });
@@ -69,12 +138,12 @@ function phpTab(d) {
       else if (token.value && !old) f.warn('token-refused', __('Le jeton saisi ne correspond pas à ce publish.php (diagnostic refusé) : la publication sera refusée'), {});
       if (!b.zip) f.warn('no-zip', __('Extension PHP zip absente : la publication est impossible sur cet hébergement'));
       f.ok(__('publish.php répond'), { version: b.version, php: b.php, zip: b.zip, req: b.req });
-      const d = b.diag;
+      const dg = b.diag;
       setStatus(status, [
         b.zip ? __('Connexion réussie : publish.php version {version}, PHP {php}.', { version: b.version, php: b.php }) : __('Connexion réussie : publish.php version {version}, PHP {php} — extension zip absente !', { version: b.version, php: b.php }),
-        d ? __('Envoi max. {upload} (formulaire {post}), mail() {mail}, dossier {folder}.', { upload: d.upload_max_filesize, post: d.post_max_size, mail: d.mail ? __('présent') : __('ABSENT'), folder: d.data_writable ? __('inscriptible') : __('NON inscriptible') }) : '',
+        dg ? __('Envoi max. {upload} (formulaire {post}), mail() {mail}, dossier {folder}.', { upload: dg.upload_max_filesize, post: dg.post_max_size, mail: dg.mail ? __('présent') : __('ABSENT'), folder: dg.data_writable ? __('inscriptible') : __('NON inscriptible') }) : '',
         old ? __('Une version plus récente ({version}) existe : retéléchargez publish.php pour avoir le journal du serveur.', { version: PUBLISH_VERSION }) : '',
-        token.value && !d && !old ? __('Attention : le jeton saisi ne correspond pas à ce publish.php.') : ''
+        token.value && !dg && !old ? __('Attention : le jeton saisi ne correspond pas à ce publish.php.') : ''
       ].filter(Boolean).join(' '), b.zip ? 'ok' : 'error');
     } catch (e) {
       const net = e instanceof TypeError;
@@ -86,7 +155,8 @@ function phpTab(d) {
     if (!apply({ url: url.value, mode: 'php' })) return;
     const f = log.flow('publish.php', __('Publication sur OVH (publish.php)'), { url: url.value });
     if (!token.value) { f.fail(new Error(__('jeton absent'))); setStatus(status, __('Indiquez le jeton de publication (ou créez un nouveau publish.php).'), 'error'); return; }
-    await remember('php', token.value, keep.checked);
+    if (!(await destinationOk('php', origin(), 'publish'))) { f.cancel(__('Publication annulée : première publication vers {host} non confirmée', { host: hostLabel(origin()) }), { origin: origin() }); setStatus(status, __('Publication annulée : vérifiez l’adresse de publish.php avant de publier.'), 'error'); return; }
+    await remember('php', origin(), token.value, keep.checked);
     const audit = auditSite(state.site);
     if (!audit.ok) { f.fail(new Error(audit.errors[0]), { errors: audit.errors.slice(0, 5) }, __('Publication bloquée par la vérification')); setStatus(status, __('Publication impossible : {error}', { error: audit.errors[0] }), 'error'); return; }
     if (audit.warnings.length) f.step('warnings', __n(audit.warnings.length, '{n} point à vérifier (la publication continue)', '{n} points à vérifier (la publication continue)'), { warnings: audit.warnings.slice(0, 5) }, 'info');
@@ -123,7 +193,7 @@ function phpTab(d) {
     h('ol', { class: 'pub-steps' },
       h('li', {}, h('span', {}, h('strong', {}, __('Une seule fois :')), ' ' + __('téléchargez votre fichier publish.php personnalisé, puis déposez-le par FTP dans le dossier du site chez OVH (« www »), à côté de index.html.')), h('div', { class: 'row-btns' }, h('button', { type: 'button', class: 'btn btn--small', 'data-pub-generate': '', onclick: generate }, __('⇩ Télécharger publish.php')))),
       h('li', {}, __('Indiquez son adresse :') + ' ', url),
-      h('li', {}, __('Jeton :') + ' ', token, h('label', { class: 'check check--sm' }, keep, __('Se souvenir sur cet appareil (jamais dans le projet)'))),
+      h('li', {}, __('Jeton :') + ' ', token, h('label', { class: 'check check--sm' }, keep, __('Se souvenir sur cet appareil, pour cette adresse seulement (jamais dans le projet)'))),
       h('li', {}, h('div', { class: 'row-btns' }, h('button', { type: 'button', class: 'btn btn--small', 'data-pub-test': '', onclick: testConn }, __('Tester la connexion')), h('button', { type: 'button', class: 'btn btn--small btn--primary', 'data-pub-run': '', onclick: run }, __('🚀 Publier le site'))))),
     status,
     h('p', { class: 'hint' }, __('publish.php n’accepte que des pages, styles, scripts et images du site (aucun fichier PHP), refuse tout envoi sans jeton, et ne supprime jamais les fichiers que vous avez ajoutés vous-même. Il relaie aussi les formulaires de contact par e-mail : les adresses ne figurent jamais dans les pages.')));
@@ -136,16 +206,28 @@ function githubTab() {
   const repo = field('repo', __('dépôt (ex. site-mab)'), g.repo);
   const branch = field('branch', 'main', g.branch || 'main');
   const dir = field('dir', __('dossier (vide = racine)'), g.dir);
-  const token = h('input', { class: 'input input--mono', type: 'password', autocomplete: 'off', placeholder: __('Jeton GitHub (contenu : lecture et écriture)'), 'data-gh': 'token', value: memory.github });
+  const token = h('input', { class: 'input input--mono', type: 'password', autocomplete: 'off', placeholder: __('Jeton GitHub (contenu : lecture et écriture)'), 'data-gh': 'token' });
   const keep = h('input', { type: 'checkbox', 'data-gh': 'remember' });
-  getSecret('github-token').then(v => { if (v && !token.value) { token.value = v; keep.checked = true; } });
   const status = h('p', { class: 'pub-status', 'data-gh-status': '', role: 'status' });
+  const target = () => githubTarget({ owner: owner.value, repo: repo.value });
+  const fill = async () => {
+    const tg = target();
+    const t = await tokenFor('github', tg);
+    token.value = t.token;
+    keep.checked = t.keep;
+    log.debug('publish.token-for', t.token ? __('Jeton GitHub pré-rempli pour {host} ({from})', { host: tg, from: t.from }) : tg ? __('Aucun jeton GitHub gardé pour {host}', { host: tg }) : __('Dépôt GitHub incomplet : aucun jeton pré-rempli'), { target: tg || undefined, from: t.from || undefined, known: tg ? isKnownDestination(`github:${tg}`) : undefined });
+    if (!t.token && tg && !isKnownDestination(`github:${tg}`)) setStatus(status, __('Dépôt jamais utilisé sur cet appareil ({host}) : aucun jeton n’est repris ; une confirmation sera demandée à la première publication.', { host: tg }), 'info');
+  };
+  migrateLegacyTokens(state.site).catch(() => {}).then(fill);
   const save = () => apply({ gh: { owner: owner.value, repo: repo.value, branch: branch.value || 'main', dir: dir.value } });
   [owner, repo, branch, dir].forEach(i => i.addEventListener('change', save));
+  [owner, repo].forEach(i => i.addEventListener('change', fill));
   const run = async () => {
     if (!save()) return;
     const f = log.flow('publish.github', __('Publication sur GitHub'), { owner: owner.value, repo: repo.value, branch: branch.value || 'main', dir: dir.value || '(racine)', token: !!token.value });
-    await remember('github', token.value, keep.checked);
+    if (!target()) { f.fail(new Error(__('dépôt incomplet'))); setStatus(status, __('Indiquez le propriétaire et le nom du dépôt.'), 'error'); return; }
+    if (!(await destinationOk('github', target(), 'publish'))) { f.cancel(__('Publication annulée : première publication vers {host} non confirmée', { host: target() }), { target: target() }); setStatus(status, __('Publication annulée : vérifiez le dépôt avant de publier.'), 'error'); return; }
+    await remember('github', target(), token.value, keep.checked);
     const audit = auditSite(state.site);
     if (!audit.ok) { f.fail(new Error(audit.errors[0]), { errors: audit.errors.slice(0, 5) }, __('Publication bloquée par la vérification')); setStatus(status, __('Publication impossible : {error}', { error: audit.errors[0] }), 'error'); return; }
     setStatus(status, __('Publication sur GitHub…'));
@@ -161,7 +243,7 @@ function githubTab() {
     h('p', { class: 'hint' }, __('Sans PHP : Atelier envoie le site dans un dépôt GitHub (un commit par publication, seulement les fichiers modifiés), et l’hébergement OVH le déploie grâce à son intégration Git (Hébergement → Git → associer le dépôt, avec le webhook « push »).')),
     h('div', { class: 'mini-grid' }, h('label', { class: 'mini' }, h('span', {}, __('Propriétaire')), owner), h('label', { class: 'mini' }, h('span', {}, __('Dépôt')), repo), h('label', { class: 'mini' }, h('span', {}, __('Branche')), branch), h('label', { class: 'mini' }, h('span', {}, __('Dossier du site')), dir)),
     h('label', { class: 'mini' }, h('span', {}, __('Jeton à accès limité (GitHub → Settings → Developer settings → Fine-grained tokens, ce dépôt seulement, « Contents : Read and write »)')), token),
-    h('label', { class: 'check check--sm' }, keep, __('Se souvenir sur cet appareil (jamais dans le projet)')),
+    h('label', { class: 'check check--sm' }, keep, __('Se souvenir sur cet appareil, pour ce dépôt seulement (jamais dans le projet)')),
     h('div', { class: 'row-btns' }, h('button', { type: 'button', class: 'btn btn--small btn--primary', 'data-gh-run': '', onclick: run }, __('🚀 Publier sur GitHub'))),
     status);
 }
