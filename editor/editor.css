@@ -660,7 +660,8 @@ body.is-resizing #canvas{pointer-events:none}
 .stage-bar .icon-btn[aria-pressed="true"]{background:var(--ink);color:var(--panel)}
 .frame[data-scale]:not([data-scale=""])::after{display:none}
 .stage.is-overflow{justify-content:flex-start;overflow:auto}
-body.panels-collapsed .workspace{grid-template-columns:0 minmax(0,1fr) 0}
+body.panels-collapsed .workspace{grid-template-columns:minmax(0,1fr)}
+body.panels-collapsed .stage{grid-column:1}
 body.panels-collapsed .panel,body.panels-collapsed .resizer{display:none}
 .len{display:flex;gap:3px;min-width:0;align-items:center}
 .len .len__n{flex:1;min-width:0;padding-inline:6px}

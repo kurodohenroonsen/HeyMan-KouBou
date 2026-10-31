@@ -1,13 +1,16 @@
 /*
  * Édition directe dans le canevas : double-clic sur un texte, un titre ou un bouton.
  * Chaque saisie est assainie et enregistrée (une seule étape d'annulation par session d'édition).
- * Barre de mise en forme flottante : gras, italique, souligné, lien, effacer.
+ * Barre de mise en forme flottante : gras, italique, souligné, lien, listes, menu « Format » (intertitres, citation,
+ * exposant, indice), effacer, IA locale. Icônes SVG (core/icons.js).
  */
 import { state, root, nodeById, commitRoot, commit, select, emit, siteWithRoot, clearReview } from './store.js';
 import { fieldDef } from '../core/widgets.js';
 import { setProp, setListItemProp } from '../core/tree.js';
 import { richToText } from '../core/sanitize.js';
-import { makeEditable, format, isActive, selectionInside } from './richedit.js';
+import { makeEditable, format, isActive, selectionInside, blockOf } from './richedit.js';
+import { uiIcon } from '../core/icons.js';
+import { blockFormats } from '../core/richtext-commands.js';
 import { onCanvasReady, canvasDoc, schedulePosition } from './canvas.js';
 import { toast } from './dom.js';
 import { fieldLabel } from '../core/collections.js';
@@ -44,15 +47,26 @@ const TB = {
   t8: escH(__('Remplacer')),
   t9: escH(__('Annuler')),
   t10: escH(__('https://… ou #ancre')),
-  t11: escH(__('Adresse du lien'))
+  t11: escH(__('Adresse du lien')),
+  t12: escH(__('Liste à puces')),
+  t13: escH(__('Liste numérotée')),
+  t14: escH(__('Format : intertitre, citation, exposant')),
+  t15: escH(__('Exposant')),
+  t16: escH(__('Indice'))
 };
+const FMT_BLOCKS = () => blockFormats().map(f => `<button type="button" data-fmt="${f.tag}" role="menuitem">${escH(f.label)}</button>`).join('')
+  + `<button type="button" data-fmt="sup" role="menuitem" title="${TB.t15}">x<sup>2</sup> ${TB.t15}</button><button type="button" data-fmt="sub" role="menuitem" title="${TB.t16}">x<sub>2</sub> ${TB.t16}</button>`;
 const TOOLBAR = `<div id="atelier-format" role="toolbar" aria-label="${TB.t0}" hidden>
 <button type="button" data-fmt="bold" title="${TB.t1}"><b>B</b></button>
 <button type="button" data-fmt="italic" title="${TB.t2}"><i>I</i></button>
 <button type="button" data-fmt="underline" title="${TB.t3}"><u>U</u></button>
-<button type="button" data-fmt="link" title="${TB.t4}">🔗</button>
-<button type="button" data-fmt="clear" title="${TB.t5}">⌫</button>
-<button type="button" data-fmt="ai" title="${TB.t6}" aria-haspopup="true">✨</button>
+<button type="button" data-fmt="link" title="${TB.t4}">${uiIcon('link', 15)}</button>
+<button type="button" data-fmt="ul" class="fmt-rich" title="${TB.t12}">${uiIcon('list-ul', 15)}</button>
+<button type="button" data-fmt="ol" class="fmt-rich" title="${TB.t13}">${uiIcon('list-ol', 15)}</button>
+<button type="button" data-fmt="format" class="fmt-rich" title="${TB.t14}" aria-haspopup="true" aria-expanded="false">${uiIcon('format', 15)}</button>
+<button type="button" data-fmt="clear" title="${TB.t5}">${uiIcon('clear', 15)}</button>
+<button type="button" data-fmt="ai" title="${TB.t6}" aria-haspopup="true">${uiIcon('sparkle', 15)}</button>
+<span class="fmt-blocks" role="menu" hidden>${FMT_BLOCKS()}</span>
 <span class="fmt-ai" hidden></span>
 <div class="fmt-ai-out" hidden role="dialog" aria-label="${TB.t7}"><div class="fmt-ai-text"></div><div class="fmt-ai-acts"><button type="button" data-fmt="ai-apply">${TB.t8}</button><button type="button" data-fmt="ai-cancel">${TB.t9}</button></div></div>
 <span class="fmt-link" hidden><input type="url" placeholder="${TB.t10}" aria-label="${TB.t11}"><button type="button" data-fmt="link-ok">OK</button></span>
@@ -60,7 +74,10 @@ const TOOLBAR = `<div id="atelier-format" role="toolbar" aria-label="${TB.t0}" h
 
 export const INLINE_CSS = `
 #atelier-format{position:fixed;display:flex;gap:2px;align-items:center;padding:3px;background:#18181c;border-radius:8px;box-shadow:0 8px 24px -8px rgba(0,0,0,.5);pointer-events:auto;z-index:2}
-#atelier-format[hidden],#atelier-format .fmt-link[hidden]{display:none}
+#atelier-format[hidden],#atelier-format .fmt-link[hidden],#atelier-format .fmt-blocks[hidden],#atelier-format.is-inline .fmt-rich{display:none}
+#atelier-format .fmt-blocks{position:absolute;left:0;top:100%;margin-top:6px;display:grid;min-width:170px;padding:4px;background:#18181c;border-radius:8px;box-shadow:0 12px 32px -10px rgba(0,0,0,.45)}
+#atelier-format .fmt-blocks button{justify-content:start;place-items:center start;padding:0 10px;height:30px;font-weight:500}
+#atelier-format svg{display:block}
 #atelier-format button{all:unset;cursor:pointer;min-width:26px;height:26px;padding:0 4px;box-sizing:border-box;display:grid;place-items:center;color:#fff;border-radius:5px;font:600 13px/1 system-ui,sans-serif}
 #atelier-format button:hover,#atelier-format button[aria-pressed="true"]{background:#3a3a42}
 #atelier-format .fmt-link{display:flex;gap:2px}
@@ -89,6 +106,9 @@ function placeToolbar() {
   tb.style.top = `${top}px`;
   for (const b of tb.querySelectorAll('[data-fmt="bold"],[data-fmt="italic"],[data-fmt="underline"],[data-fmt="link"]'))
     b.setAttribute('aria-pressed', String(isActive(session.el, b.dataset.fmt)));
+  const blk = session.field.type === 'richtext' ? blockOf(session.el) : null;
+  for (const b of tb.querySelectorAll('[data-fmt="ul"],[data-fmt="ol"]')) b.setAttribute('aria-pressed', String(blk === b.dataset.fmt));
+  for (const b of tb.querySelectorAll('.fmt-blocks [data-fmt]')) b.setAttribute('aria-checked', String(blk === b.dataset.fmt || isActive(session.el, b.dataset.fmt)));
 }
 
 function valueFor(html) {
@@ -159,7 +179,7 @@ export function startEditing(el) {
   el.focus({ preventScroll: true });
   if (saved) { sel.removeAllRanges(); sel.addRange(saved); }
   const tb = toolbar();
-  if (tb) { tb.hidden = field.type === 'text'; tb.querySelector('.fmt-link').hidden = true; }
+  if (tb) { tb.hidden = field.type === 'text'; tb.classList.toggle('is-inline', field.type !== 'richtext'); tb.querySelector('.fmt-link').hidden = true; tb.querySelector('.fmt-blocks').hidden = true; }
   placeToolbar();
   emit('editing', { id });
   return true;
@@ -173,7 +193,7 @@ export function stopEditing() {
   s.flow.ok(s.changed ? __('Édition terminée : texte enregistré (une seule étape d’annulation)') : __('Édition terminée sans changement'), { id: s.id, key: s.el.getAttribute('data-edit'), changed: s.changed, chars, before: s.len0, inputs: s.inputs });
   s.editor.stop();
   const tb = toolbar();
-  if (tb) { tb.hidden = true; tb.querySelector('.fmt-ai').hidden = true; tb.querySelector('.fmt-ai-out').hidden = true; }
+  if (tb) { tb.hidden = true; tb.querySelector('.fmt-ai').hidden = true; tb.querySelector('.fmt-ai-out').hidden = true; tb.querySelector('.fmt-blocks').hidden = true; }
   aiPending = null;
   emit('doc', { source: 'edit-done' });
   schedulePosition();
@@ -319,6 +339,16 @@ function onToolbar(e) {
     return;
   }
   if (cmd === 'link-ok') { applyLink(); return; }
+  const menu = tb.querySelector('.fmt-blocks');
+  if (cmd === 'format') {
+    menu.hidden = !menu.hidden;
+    b.setAttribute('aria-expanded', String(!menu.hidden));
+    log.debug('edit.format-menu', menu.hidden ? __('Menu « Format » fermé') : __('Menu « Format » ouvert'), { open: !menu.hidden });
+    placeToolbar();
+    return;
+  }
+  menu.hidden = true;
+  tb.querySelector('[data-fmt="format"]').setAttribute('aria-expanded', 'false');
   if (format(el, cmd)) write(session.editor.clean());
   placeToolbar();
 }
