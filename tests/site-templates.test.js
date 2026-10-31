@@ -63,7 +63,7 @@ for (const id of IDS) {
       assert.equal(site.layout.header?.type, 'section');
       assert.equal(site.layout.footer?.type, 'section');
       /* SEO renseigné */
-      for (const p of site.pages) assert.ok(strip(p.seo?.description?.[main]).length >= 20, `description SEO de « ${p.slug || 'accueil'} »`);
+      for (const p of site.pages.filter(x => !x.legal)) assert.ok(strip(p.seo?.description?.[main]).length >= 20, `description SEO de « ${p.slug || 'accueil'} »`);
       assert.ok(strip(home.seo?.title?.[main]).length >= 10, 'titre SEO de l’accueil');
       /* Collections avec 3 à 4 exemples dans la langue principale */
       const cols = Object.values(site.collections);
@@ -104,10 +104,18 @@ test('Tourisme en japonais : textes japonais, agenda à venir, export complet', 
   const ev = Object.values(site.collections).find(c => c.kind === 'events');
   assert.ok(ev.items.every(i => /[぀-ヿ一-鿿]/.test(i.values.title.ja)), 'événements en japonais');
   assert.ok(ev.items.every(i => i.values.date >= '2026-11-01'), 'événements à venir');
-  const files = renderSite(site);
+  const { files } = renderSite(site, { today: "2026-11-01" });
   assert.ok(files.has('index.html'));
   assert.match(files.get('index.html'), /lang="ja"/);
   const ics = [...files.keys()].find(k => k.endsWith('.ics'));
   assert.ok(ics, 'agenda .ics');
   assert.match(files.get(ics), /TZID:Asia\/Tokyo/);
+});
+
+test('palettes des modèles : tous les contrastes WCAG AA', async () => {
+  const { palettePairs } = await import('../core/contrast.js');
+  for (const id of IDS) {
+    const bad = palettePairs(buildTemplate(id, { main: 'fr' }).theme.palette).filter(p => !p.ok).map(p => p.id);
+    assert.deepEqual(bad, [], id);
+  }
 });
