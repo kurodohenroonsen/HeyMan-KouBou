@@ -26,8 +26,16 @@ export default async function (t) {
   t.ok(b.svg >= 14, `barre du haut : ${b.svg} icônes SVG`);
   t.ok(!EMOJI.test(b.text), `barre du haut : aucun émoji (${b.text.replace(/\s+/g, ' ').slice(0, 80)})`);
   t.ok(await page.evaluate(() => [...document.querySelectorAll('.topbar svg')].every(s => s.getAttribute('aria-hidden') === 'true')), 'icônes : aria-hidden');
-  t.ok(/Publier/.test(b.text) && /Exporter/.test(b.text) && /Traductions/.test(b.text) && /SEO/.test(b.text), 'libellés visibles à 1 440 px : Publier, Exporter, Traductions, SEO');
-  t.ok(!b.nameCut, 'nom du site non tronqué à 1 440 px');
+  /* Intégration v20 (menu ❓ ▾ du cycle 26, copie de secours du cycle 31) : à 1 440 px seul « Publier » garde son libellé, rien ne déborde ni ne se chevauche ; tous les libellés au-delà de 1 600 px, nom entier à 1 920 px */
+  t.ok(/Publier/.test(b.text) && !b.overflow, 'à 1 440 px : « Publier » libellé, pas de débordement');
+  t.ok(await page.evaluate(() => document.querySelector('.tb-brand').getBoundingClientRect().right <= document.querySelector('#pageSelect').getBoundingClientRect().left), 'à 1 440 px : le nom du site ne chevauche pas la page');
+  await page.setViewportSize({ width: 1920, height: 900 });
+  await t.wait(200);
+  const wide = await bar();
+  t.ok(/Publier/.test(wide.text) && /Exporter/.test(wide.text) && /Traductions/.test(wide.text) && /SEO/.test(wide.text), 'libellés visibles à 1 920 px : Publier, Exporter, Traductions, SEO');
+  t.ok(!wide.nameCut, 'nom du site non tronqué à 1 920 px');
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await t.wait(200);
   for (const id of ['undoBtn', 'redoBtn', 'i18nBtn', 'seoBtn', 'aiBtn', 'collabBtn', 'commentsBtn', 'helpBtn', 'logBtn', 'exportZipBtn', 'publishBtn']) {
     if (!(await page.locator(`#${id}`).getAttribute('aria-label'))) t.ok(false, `#${id} : nom accessible`);
   }

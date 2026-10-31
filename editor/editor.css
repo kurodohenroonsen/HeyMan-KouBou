@@ -761,3 +761,9 @@ body.panels-collapsed .panel,body.panels-collapsed .resizer{display:none}
 .demo-ring{position:fixed;z-index:2147481400;pointer-events:none;display:none;border:3px solid var(--accent);border-radius:8px}
 .demo-ring.is-on{animation:demo-ring .9s ease-out forwards}
 @keyframes demo-ring{0%{opacity:1}100%{opacity:0}}
+/* Intégration v20 : la barre du haut ne se chevauche plus (nom du site rétrécissable, libellés des appareils masqués sous 1 600 px) */
+.tb-brand{flex:0 1 38ch;min-width:11ch;overflow:hidden}
+.tb-brand .site-name{width:100%;min-width:0;flex:1 1 auto}
+@media (max-width:1600px){.seg .seg__label{display:none}}
+@media (max-width:1600px){.topbar .btn:not(.btn--primary) .btn__label{display:none}.topbar .btn:not(.btn--primary):has(.btn__label){padding:0 8px}#langSelect{max-width:12ch}}
+.topbar .btn--primary .btn__label{display:inline}
