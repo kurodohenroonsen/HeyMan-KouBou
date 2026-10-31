@@ -157,16 +157,29 @@ Un projet fait avec Atelier ne contient rien à nettoyer : `project.import.sanit
 
 ---
 
-## 1.5 Recharger l'exemple, commencer un site vide, aperçu
+## 1.5 Recharger l'exemple, nouveau site (modèle ou site vide), aperçu
 
-**But** : repartir de l'exemple du MAB ou d'une page blanche ; voir la page comme un visiteur.
+**But** : repartir de l'exemple du MAB, d'un **modèle de site complet** ou d'une page blanche ; voir la page comme un visiteur.
 
 **Étapes**
 - Fichier → « Recharger l’exemple », puis confirmer.
-- Fichier → « Nouveau site vide » : une petite fenêtre demande
+- Fichier → « Nouveau site… » : une fenêtre demande
   - le **nom du site** (modifiable ensuite dans l'onglet Site) ;
   - la **langue principale** : celle dans laquelle tu écris d'abord, que les visiteurs voient par défaut (français, néerlandais, allemand, anglais ou **japonais**). Elle ne se change plus ensuite ;
   - les **autres langues** (cochées d'office : néerlandais, allemand et anglais pour un site en français ; anglais pour un site en japonais). On peut en ajouter ou en retirer plus tard dans l'onglet Site.
+
+  - le **modèle de site** : six cartes, chacune avec une petite vignette dessinée et la liste de ses pages.
+
+    | Modèle | Vignette | Pages créées | Contenus d'exemple |
+    |---|---|---|---|
+    | **Association ou média** | bandeau bleu, deux bulles de dialogue, trois cartes | accueil, actualités, membres, agenda, contact | 3 actualités, 3 membres, 3 rendez-vous |
+    | **Tourisme ou commune** | montagnes vertes, soleil, rivière | accueil, à découvrir, agenda et accès (avec « Comment venir » et une carte), contact | 3 lieux à voir, 4 événements (marché, balade, concert, fête des récoltes) |
+    | **Commerce ou artisan local** | vitrine avec store rayé et porte | accueil, notre offre, à propos, horaires et accès, contact | 3 produits ou services |
+    | **Association de commerçants / promotion d'une ville** | rue de quatre boutiques et épingle de carte | accueil, les commerces (catégorie, adresse, horaires, téléphone, site web), agenda, actualités, devenir membre (formules et FAQ), contact | 4 commerces, 3 événements, 3 actualités |
+    | **Événement ou festival** | scène, projecteurs, étoiles et billet | accueil (chiffres clés), programme, infos pratiques (billets, accès, accessibilité, FAQ), contact | 4 moments du programme sur deux jours |
+    | **Site vide** (choisi d'office) | page en pointillés avec un « + » | une page d'accueil vide, comme avant | aucun |
+
+    Chaque modèle crée aussi le **menu** (toutes les pages), l'**en-tête** et le **pied de page en blocs** (logo, menu, langues ; nom, menu, réseaux), les descriptions pour Google de chaque page, une **palette** et des **polices** choisies pour le domaine, le **fuseau horaire** (Asia/Tokyo pour un site en japonais, sinon Europe/Brussels) et les pages **Mentions légales** et **Vie privée** avec des champs « [à compléter] » (le contrôle avant export te les rappelle). Tous les textes sont écrits dans les cinq langues et posés dans la langue principale **et** les autres langues cochées : le site est tout de suite lisible partout. Remplace ensuite les exemples par tes vrais contenus (onglet Contenus pour les listes, double-clic pour les textes).
 
   Puis **Créer le site**. La page d'accueil porte déjà le nom « Accueil » dans la langue principale (« ホーム » en japonais).
 - Fichier → « Aperçu dans un nouvel onglet ».
@@ -184,11 +197,25 @@ Un projet fait avec Atelier ne contient rien à nettoyer : `project.import.sanit
 ```
 À vérifier : chaque remplacement commence par `storage.version-save` (la version de sécurité) puis `store.load`.
 
+**Ce que tu vois** (modèle « Association de commerçants », [`journaux/c28-modele-commercants.log`](journaux/c28-modele-commercants.log)) : huit pages dans la liste des pages, le menu complet dans l'en-tête, la page « Les commerces » avec quatre cartes (catégorie, adresse, horaires).
+```log
+13:29:57.842 +1.42s INFO  store.load Projet chargé dans l’éditeur {"name":"Commerces de Couvin","pages":8,"keepHistory":true}
+13:29:57.874 +1.45s INFO  project.new Nouveau site « Commerces de Couvin » depuis le modèle Association de commerçants / promotion d’une ville : 8 pages, langue principale Français {"lang":"fr","languages":["fr","nl","de","en"],"template":"merchants","pages":8,"timezone":"Europe/Brussels"}
+```
+
 **Variantes**
 | Situation | Ce qui change | Journal |
 |---|---|---|
 | Tu réponds « Annuler » (ou fermes la fenêtre du nouveau site) | rien ne change | `project.cancel` (INFO) `{"action":"demo"}` ou `{"action":"new"}` |
 | Tu changes la langue principale dans la fenêtre du nouveau site | les langues cochées d'office suivent | `project.new-lang` (DEBUG) `{"lang":"ja"}` |
+| Tu cliques sur un modèle | la carte est encadrée ; rien n'est encore créé | `project.new-template` (DEBUG) `{"template":"tourism"}` |
+| Modèle « Tourisme » avec le japonais en langue principale | textes, menu et agenda en japonais, fuseau Asia/Tokyo | `project.new` `{"lang":"ja","template":"tourism","timezone":"Asia/Tokyo"}` |
+
+**Erreurs**
+| Ce que tu vois | Cause | Que faire |
+|---|---|---|
+| Le contrôle avant export signale « informations à compléter (« [à compléter] ») » | les mentions légales et la page Vie privée d'un modèle attendent tes vraies données | ouvre la page, remplace chaque « [à compléter] » (siège, hébergeur…), ou recrée les pages depuis l'onglet Pages → Pages légales |
+| « formulaire sans adresse de réception » | le formulaire de contact du modèle n'a pas encore d'adresse | sélectionne le formulaire, inspecteur → « Adresse qui reçoit les messages » |
 | L'aperçu est bloqué par le navigateur (fenêtres surgissantes) | aucun onglet ne s'ouvre | `project.preview` est noté quand même : autorise les fenêtres pour l'adresse de l'éditeur |
 
 ---
@@ -336,7 +363,8 @@ Une fois passée ou terminée, la visite n'est **plus jamais proposée d'elle-m�
 | `project.import.invalid` | WARN | fichier refusé par la validation |
 | `project.import.publish-url` | INFO | le projet ouvert publie vers une autre adresse : jeton non repris |
 | `project.import.sanitized` | WARN | textes nettoyés à l'ouverture (nombre dans `changed`) |
-| `project.new` | INFO | nouveau site vide (nom, langue principale, langues) |
+| `project.new` | INFO | nouveau site, vide ou depuis un modèle (nom, langue principale, langues, `template`, pages, fuseau) |
+| `project.new-template` | DEBUG | modèle de site choisi dans la fenêtre du nouveau site |
 | `project.new-lang` | DEBUG | langue principale choisie dans la fenêtre du nouveau site |
 | `project.preview` | INFO | aperçu dans un nouvel onglet |
 | `storage.assets-missing` | WARN | images absentes de la base locale |

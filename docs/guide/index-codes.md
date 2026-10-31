@@ -2,7 +2,7 @@
 
 Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire, par domaine. Fichier généré par `node tools/guide-index.mjs` à partir du code source : il est toujours à jour avec le code.
 
-**973 codes** dans 47 domaines.
+**975 codes** dans 47 domaines.
 
 | Domaine | Codes |
 |---|---|
@@ -33,13 +33,13 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | [`page`](#page) | 30 |
 | [`perf`](#perf) | 1 |
 | [`php`](#php) | 50 |
-| [`project`](#project) | 13 |
+| [`project`](#project) | 14 |
 | [`publish`](#publish) | 30 |
 | [`review`](#review) | 18 |
 | [`rtc`](#rtc) | 53 |
 | [`selftest`](#selftest) | 33 |
 | [`seo`](#seo) | 20 |
-| [`settings`](#settings) | 35 |
+| [`settings`](#settings) | 36 |
 | [`signal`](#signal) | 25 |
 | [`site`](#site) | 9 |
 | [`smart`](#smart) | 38 |
@@ -768,6 +768,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `project.import.start` | INFO | [1](01-demarrage-projet.md) | `editor/app.js` |
 | `project.new` | INFO | [1](01-demarrage-projet.md) [4](04-pages-images-contenus.md) | `editor/new-site-ui.js` |
 | `project.new-lang` | DEBUG | [1](01-demarrage-projet.md) | `editor/new-site-ui.js` |
+| `project.new-template` | DEBUG | [1](01-demarrage-projet.md) | `editor/new-site-ui.js` |
 | `project.preview` | INFO | [1](01-demarrage-projet.md) | `editor/app.js` |
 
 ## publish
@@ -987,6 +988,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `settings.refused` | WARN | [3](03-style-design.md) [4](04-pages-images-contenus.md) | `editor/panels.js` |
 | `settings.space-scale` | INFO | [3](03-style-design.md) [4](04-pages-images-contenus.md) | `editor/panels.js` |
 | `settings.theme` | INFO | [3](03-style-design.md) [4](04-pages-images-contenus.md) | `editor/panels.js` |
+| `settings.timezone` | INFO | [4](04-pages-images-contenus.md) | `editor/panels.js` |
 | `settings.type-scale` | INFO | [3](03-style-design.md) [4](04-pages-images-contenus.md) | `editor/panels.js` |
 
 ## signal

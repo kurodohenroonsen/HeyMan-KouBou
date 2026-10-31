@@ -564,7 +564,7 @@ Une **collection** est une liste d'éléments du même type. Chaque élément a 
 2. Choisis le type, ajuste le nom, garde ou non « Créer aussi la page de liste (ajoutée au menu) » et « Ajouter quelques exemples à remplacer ».
 3. **Créer la collection**.
 
-**Ce que tu vois** : la page de liste s'ouvre avec les cartes des exemples ; message « Collection « Agenda » créée avec 3 exemples à remplacer et la page /agenda/. »
+**Ce que tu vois** : la page de liste s'ouvre avec les cartes des exemples ; message « Collection « Agenda » créée avec 3 exemples à remplacer et la page /agenda/. » Les exemples sont neutres (« Assemblée générale », « Atelier : tourner avec un smartphone », « Fête annuelle ») et écrits **dans la langue principale du site** : en japonais pour un site japonais (「総会」…). Le type **Commerces** (cycle 28) sert d'annuaire : nom, logo ou photo, catégorie (alimentation, restaurant et café, mode et beauté, maison et jardin, artisanat, services, loisirs et culture), présentation, adresse, horaires, téléphone, site web.
 
 **Journal attendu** (extrait réel : [`journaux/collections-creer.log`](journaux/collections-creer.log))
 ```log
@@ -1138,6 +1138,34 @@ Réglage par réglage : voir [Tous les widgets](widgets.md#liste-de-contenus).
 
 ---
 
+## 4.34 Fuseau horaire du site
+
+**But** : que les heures de l'agenda soient comprises partout. Un événement à 19 h à Kumakōgen doit arriver à 19 h heure du Japon dans le calendrier du visiteur (Google Agenda, Outlook, iPhone), et Google doit connaître le décalage horaire.
+
+**Étapes**
+1. Onglet **Site** → **Fuseau horaire (agenda, calendriers .ics, Google)**.
+2. Choisis dans la liste (Europe/Brussels, Europe/Paris, Europe/Luxembourg, Europe/Amsterdam, Europe/Berlin, Europe/London, Asia/Tokyo, UTC) ou tape un autre nom de fuseau (« America/New_York », « Asia/Kolkata »…), puis quitte le champ.
+
+**Ce que tu vois** : les heures affichées sur le site ne changent pas (19 h reste 19 h). Ce qui change : les fichiers « Ajouter à mon agenda » (`.ics`) portent ce fuseau, et les données pour Google donnent l'heure avec son décalage (`2026-11-03T19:00:00+09:00` à Tokyo, `+01:00` à Bruxelles en hiver, `+02:00` en été).
+
+**Exemples**
+- Site en français, néerlandais, allemand ou anglais : **Europe/Brussels** d'office.
+- Site dont la langue principale est le japonais : **Asia/Tokyo** d'office (aussi pour un projet plus ancien qui n'avait pas encore ce réglage).
+- Fuseau hors de la liste (New York) : les heures des fichiers .ics sont converties en heure universelle (UTC), ce que tous les calendriers comprennent.
+
+**Journal attendu** ([`journaux/c28-fuseau.log`](journaux/c28-fuseau.log))
+```log
+13:30:03.287 +6.87s INFO  settings.timezone Fuseau horaire du site : Europe/Paris {"tz":"Europe/Paris"}
+13:30:03.475 +7.05s WARN  settings.refused Réglage refusé : Fuseau horaire inconnu : Mars/Olympus (exemple : Europe/Brussels). {"setting":"timezone",…}
+```
+
+**Erreurs**
+| Situation | Message affiché | Journal | Que faire |
+|---|---|---|---|
+| Nom de fuseau inconnu ou mal écrit | « Fuseau horaire inconnu : … (exemple : Europe/Brussels). » ; l'ancien fuseau est remis | `settings.refused` (WARN) `{"setting":"timezone"}` | choisis dans la liste, ou écris le nom exact (Continent/Ville, en anglais) |
+
+---
+
 ## Codes de ce chapitre
 
 | Code | Niveau | Sens |
@@ -1223,6 +1251,7 @@ Réglage par réglage : voir [Tous les widgets](widgets.md#liste-de-contenus).
 | `page.slug-suggest` | DEBUG | Adresse proposée depuis le titre traduit |
 | `page.title` | INFO | Titre de la page (TRACE pendant la frappe) |
 | `settings.base-url` | INFO | Adresse du site modifiée ou effacée |
+| `settings.timezone` | INFO | Fuseau horaire du site modifié (agenda .ics, données pour Google) |
 | `settings.color` | INFO | Couleur de la palette (TRACE pendant le réglage) |
 | `settings.color-add` | INFO | Couleur ajoutée à la palette |
 | `settings.color-name` | INFO | Couleur renommée |
