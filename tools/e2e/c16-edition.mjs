@@ -4,6 +4,8 @@ import { join } from 'node:path';
 import { mark, since, expectCodes, expectNoErrors, capture, codes } from './logs.mjs';
 
 export default async function (t) {
+  /* Cycle 30 : réglages experts (dimensions, disposition, effets, classes, CSS) cachés en mode simple, le mode par défaut */
+  await t.page.evaluate(() => window.__atelier.setExpert(true));
   const { page } = t;
   const c = t.canvas();
   const S = () => page.evaluate(() => ({ selected: window.__atelier.selected, multi: [...window.__atelier.multi], edit: window.__atelier.editTarget }));

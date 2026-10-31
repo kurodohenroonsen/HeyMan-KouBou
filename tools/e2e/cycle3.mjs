@@ -1,5 +1,7 @@
 /* Cycle 3 : styles responsives, survol, styles globaux, copier/coller le style. */
 export default async function (t) {
+  /* Cycle 30 : réglages experts (dimensions, disposition, effets, classes, CSS) cachés en mode simple, le mode par défaut */
+  await t.page.evaluate(() => window.__atelier.setExpert(true));
   const { page } = t;
   const c = t.canvas();
   const cs = (sel, prop) => c.locator(sel).first().evaluate((e, p) => getComputedStyle(e)[p], prop);

@@ -223,7 +223,7 @@ export default async function (t) {
   await c.locator('body').evaluate((b, word) => {
     const dt = new DataTransfer();
     dt.setData('text/html', word);
-    dt.setData('text/plain', 'Premier\nSecond');
+    dt.setData('text/plain', 'Premier gras\nSecond lien');
     b.ownerDocument.activeElement.dispatchEvent(new ClipboardEvent('paste', { clipboardData: dt, bubbles: true, cancelable: true }));
   }, `<p class=MsoListParagraphCxSpFirst style='mso-list:l0 level1 lfo1'><![if !supportLists]><span style='mso-list:Ignore'>·<span>&nbsp; </span></span><![endif]>Premier <b>gras</b><o:p></o:p></p><p class=MsoListParagraphCxSpLast style='mso-list:l0 level1 lfo1'><![if !supportLists]><span style='mso-list:Ignore'>·<span>&nbsp; </span></span><![endif]>Second <a href="https://exemple.be">lien</a><o:p></o:p></p>`);
   await page.keyboard.press('Escape');

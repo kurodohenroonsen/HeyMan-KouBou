@@ -133,7 +133,8 @@ export function lengthFromInput(text, unit = 'px') {
   const s = String(text ?? '').trim().replace(/^(-?\d*),(\d+)$/, '$1.$2');
   if (s === '') return '';
   if (s === '0') return '0';
-  if (/^-?(?:\d+|\d*\.\d+)$/.test(s)) return formatLength(Number(s), unit);
+  /* rem / em : au-delà de 10, c'est une taille en px (personne ne veut 34rem) — l'ancienne règle « 30 = 30 px » tient */
+  if (/^-?(?:\d+|\d*\.\d+)$/.test(s)) return formatLength(Number(s), (unit === 'rem' || unit === 'em') && Math.abs(Number(s)) > 10 ? 'px' : unit);
   const m = /^(-?(?:\d+|\d*\.\d+))\s+(px|rem|em|%|vh|vw)$/.exec(s);
   return m ? `${m[1]}${m[2]}` : s;
 }

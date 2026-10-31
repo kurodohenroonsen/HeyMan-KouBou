@@ -1,4 +1,4 @@
-12:24:15.184 +9.13s DEBUG edit.dblclick Double-clic sur un texte de la page {"key":"content","id":"n_1c6y3a0i31"}
-12:24:15.184 +9.13s INFO  edit.start [edit#4] Édition dans la page : text · content {"id":"n_1c6y3a0i31","type":"text","key":"content","field":"richtext","lang":"fr","chars":20}
-12:24:15.243 +9.18s DEBUG edit.paste-rich Collage avec mise en forme : 23 caractères (assaini) {"chars":23,"tags":["ul","li","strong","a"],"items":2,"inline":false,"where":"page"}
-12:24:15.264 +9.21s INFO  edit.ok [edit#4 · 80 ms] Édition terminée : texte enregistré (une seule étape d’annulation) {"id":"n_1c6y3a0i31","key":"content","changed":true,"chars":45,"before":20,"inputs":2}
+12:38:00.976 +9.68s DEBUG edit.dblclick Double-clic sur un texte de la page {"key":"content","id":"n_032v0o6h3h"}
+12:38:00.977 +9.68s INFO  edit.start [edit#4] Édition dans la page : text · content {"id":"n_032v0o6h3h","type":"text","key":"content","field":"richtext","lang":"fr","chars":20}
+12:38:01.035 +9.74s DEBUG edit.paste-rich Collage avec mise en forme : 23 caractères (assaini) {"chars":23,"tags":["ul","li","strong","a"],"items":2,"inline":false,"where":"page"}
+12:38:01.058 +9.76s INFO  edit.ok [edit#4 · 81 ms] Édition terminée : texte enregistré (une seule étape d’annulation) {"id":"n_032v0o6h3h","key":"content","changed":true,"chars":45,"before":20,"inputs":2}

@@ -130,6 +130,9 @@ test('lengthFromInput : un nombre tapé prend l’unité choisie ; « 24px » es
   assert.equal(lengthFromInput('clamp(1rem, 3vw, 2rem)', 'px'), 'clamp(1rem, 3vw, 2rem)');
   assert.equal(lengthFromInput('12pt', 'px'), '12pt', 'refusé ensuite par validateStyleValue');
   assert.equal(lengthFromInput('', 'px'), '');
+  assert.equal(lengthFromInput('34', 'rem'), '34px', 'rem au-delà de 10 : des px (ancienne règle)');
+  assert.equal(lengthFromInput('2', 'rem'), '2rem');
+  assert.equal(lengthFromInput('34', '%'), '34%');
 });
 
 test('stepLength : ↑↓ = ±1 (Maj ±10) en px, ±0,1 (Maj ±1) en rem/em ; borne basse ; valeur libre → null', () => {

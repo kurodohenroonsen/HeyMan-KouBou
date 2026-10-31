@@ -7,6 +7,8 @@ import { fileURLToPath } from 'node:url';
 const AXE = join(dirname(fileURLToPath(import.meta.url)), '..', 'node_modules', 'axe-core', 'axe.min.js');
 
 export default async function (t) {
+  /* Cycle 30 : réglages experts (dimensions, disposition, effets, classes, CSS) cachés en mode simple, le mode par défaut */
+  await t.page.evaluate(() => window.__atelier.setExpert(true));
   const { page } = t;
   const c = t.canvas();
   const site = () => page.evaluate(() => window.__atelier.site);

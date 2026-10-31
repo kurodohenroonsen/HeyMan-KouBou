@@ -4,6 +4,7 @@
  * Rien ici ne touche au DOM : editor/richedit.js applique ces résultats avec Range/Selection.
  */
 import { __ } from './ui-i18n.js';
+import { richToText } from './sanitize.js';
 
 /* Texte tapé en début de ligne, avant l'espace : « - », « * », « • » → puces ; « 1. », « 1) » → numéros */
 export function listTrigger(before) {
@@ -25,9 +26,15 @@ export const blockFormats = () => [
 const TAG = /<\/?([a-zA-Z][a-zA-Z0-9:-]*)\b((?:[^>"']|"[^"]*"|'[^']*')*)\/?>/g;
 const USEFUL = /<(p|br|h[1-6]|ul|ol|li|blockquote|b|strong|i|em|u|a|sup|sub|table|tr)\b/i;
 
-/* HTML du presse-papiers quand il apporte une mise en forme utile (gras, lien, liste…), texte brut sinon */
+/* Lettres seules (sans chiffres, puces ni espaces), pour comparer le HTML et le texte du presse-papiers */
+const letters = s => (String(s).match(/\p{L}/gu) || []).join('').toLowerCase();
+
+/* HTML du presse-papiers quand il apporte une mise en forme utile (gras, lien, liste…) et dit la même chose que
+   le texte brut (sinon le presse-papiers est incohérent : on colle le texte brut) */
 export function choosePaste({ html = '', text = '' } = {}) {
-  return html && USEFUL.test(html) ? { kind: 'html', value: html } : { kind: 'text', value: text };
+  if (!html || !USEFUL.test(html)) return { kind: 'text', value: text };
+  if (text && letters(richToText(pasteToHtml(html))) !== letters(text)) return { kind: 'text', value: text };
+  return { kind: 'html', value: html };
 }
 
 const textOf = s => String(s).replace(/<[^>]*>/g, '').replace(/&nbsp;| /g, ' ').trim();

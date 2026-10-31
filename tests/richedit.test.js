@@ -51,6 +51,8 @@ test('choosePaste : HTML quand il apporte une mise en forme utile, texte brut si
   assert.deepEqual(choosePaste({ html: '', text: 'a\nb' }), { kind: 'text', value: 'a\nb' });
   assert.deepEqual(choosePaste({ html: '<ul><li>a</li></ul>', text: 'a' }), { kind: 'html', value: '<ul><li>a</li></ul>' });
   assert.deepEqual(choosePaste({ html: '<a href="https://x.be">x</a>', text: 'x' }), { kind: 'html', value: '<a href="https://x.be">x</a>' });
+  assert.deepEqual(choosePaste({ html: '<b>riche</b>', text: 'Autre chose' }), { kind: 'text', value: 'Autre chose' }, 'HTML et texte différents : texte brut');
+  assert.equal(choosePaste({ html: '<ul><li>Un</li><li>Deux</li></ul>', text: '·\tUn\n·\tDeux' }).kind, 'html', 'puces du texte brut ignorées');
 });
 
 test('pasteToHtml retire le fragment de Word, les commentaires conditionnels et les balises office', () => {
