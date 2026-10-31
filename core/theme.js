@@ -1,33 +1,31 @@
 import { tokensCss, defaultTokens } from './tokens.js';
 import { N_ } from './ui-i18n.js';
 
-/* Polices proposées et feuille de style de base des sites produits (mobile d'abord). */
+/*
+ * Polices proposées (fichiers embarqués : core/fonts.js, aucune requête vers Google) et feuille de style de base
+ * des sites produits (mobile d'abord). `stacks` : piles des titres et du texte déjà résolues (polices personnalisées).
+ */
 
 export const FONTS = {
   system: { label: N_('Système (aucun téléchargement)'), stack: 'system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif' },
   georgia: { label: N_('Georgia (classique)'), stack: 'Georgia,"Times New Roman",serif' },
-  archivo: { label: 'Archivo', google: 'Archivo:wght@400..900', stack: '"Archivo",system-ui,sans-serif' },
-  'dm-sans': { label: 'DM Sans', google: 'DM+Sans:opsz,wght@9..40,400..800', stack: '"DM Sans",system-ui,sans-serif' },
-  'public-sans': { label: 'Public Sans', google: 'Public+Sans:wght@400..800', stack: '"Public Sans",system-ui,sans-serif' },
-  'source-serif': { label: 'Source Serif 4', google: 'Source+Serif+4:opsz,wght@8..60,400..700', stack: '"Source Serif 4",Georgia,serif' },
-  fraunces: { label: 'Fraunces', google: 'Fraunces:opsz,wght@9..144,400..800', stack: '"Fraunces",Georgia,serif' },
-  lora: { label: 'Lora', google: 'Lora:wght@400..700', stack: '"Lora",Georgia,serif' },
-  oswald: { label: N_('Oswald (condensée)'), google: 'Oswald:wght@400..700', stack: '"Oswald","Arial Narrow",sans-serif' }
+  archivo: { label: 'Archivo', stack: '"Archivo",system-ui,sans-serif' },
+  'dm-sans': { label: 'DM Sans', stack: '"DM Sans",system-ui,sans-serif' },
+  'public-sans': { label: 'Public Sans', stack: '"Public Sans",system-ui,sans-serif' },
+  'source-serif': { label: 'Source Serif 4', stack: '"Source Serif 4",Georgia,serif' },
+  fraunces: { label: 'Fraunces', stack: '"Fraunces",Georgia,serif' },
+  lora: { label: 'Lora', stack: '"Lora",Georgia,serif' },
+  oswald: { label: N_('Oswald (condensée)'), stack: '"Oswald","Arial Narrow",sans-serif' }
 };
-
-export function googleFontsHref(theme) {
-  const fams = [...new Set([theme?.fonts?.heading, theme?.fonts?.body])].map(k => FONTS[k]?.google).filter(Boolean);
-  return fams.length ? `https://fonts.googleapis.com/css2?${fams.map(f => `family=${f}`).join('&')}&display=swap` : '';
-}
 
 const HEX = /^#[0-9a-f]{6}$/i;
 const num = (v, min, max, d) => (Number.isFinite(Number(v)) ? Math.max(min, Math.min(max, Number(v))) : d);
 
-export function buildBaseCss(theme = {}, tokens = defaultTokens()) {
+export function buildBaseCss(theme = {}, tokens = defaultTokens(), stacks = {}) {
   const p = theme.palette || {};
   const c = k => (HEX.test(p[k] || '') ? p[k] : { c1: '#0f766e', c2: '#f59e0b', c3: '#16161a', c4: '#f7f7f4', c5: '#5f5f69', c6: '#ffffff' }[k]);
-  const fh = (FONTS[theme.fonts?.heading] || FONTS.system).stack;
-  const fb = (FONTS[theme.fonts?.body] || FONTS.system).stack;
+  const fh = stacks.heading || (FONTS[theme.fonts?.heading] || FONTS.system).stack;
+  const fb = stacks.body || (FONTS[theme.fonts?.body] || FONTS.system).stack;
   const base = num(theme.baseSize, 14, 22, 17);
   const radius = num(theme.radius, 0, 40, 10);
   const width = num(theme.contentWidth, 720, 1600, 1160);

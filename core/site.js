@@ -4,6 +4,7 @@ import { REGISTRY, fieldsOf } from './widgets.js';
 import { PALETTE_KEYS, BASE_PALETTE } from './style.js';
 import { defaultTokens } from './tokens.js';
 import { FONTS } from './theme.js';
+import { customFontId } from './fonts.js';
 import { missingFrom } from './i18n.js';
 import { validateCollections } from './collections.js';
 import { __, N_ } from './ui-i18n.js';
@@ -110,6 +111,7 @@ export function normalizeSite(site) {
   if (!s.collections || typeof s.collections !== 'object') s.collections = {};
   s.layout = { header: null, footer: null, ...(s.layout || {}) };
   if (!Array.isArray(s.menu)) s.menu = null;
+  if (!s.fonts || typeof s.fonts !== 'object') s.fonts = {};
   return s;
 }
 
@@ -134,6 +136,7 @@ export function createSite({ name = 'Mon site', languages = ['fr'], defaultLangu
     collections: {},
     layout: { header: null, footer: null },
     menu: null,
+    fonts: {},
     header: { logo: '', showLangs: true, sticky: true },
     footer: { text: { [def]: `© ${name}` } },
     pages: [{ id: newPageId(), slug: '', title: { [def]: HOME_TITLES[def] || 'Accueil' }, seo: { description: {} }, root: createNode('page') }],
@@ -261,7 +264,15 @@ export function setPalette(site, key, color) {
 export function setTheme(site, patch) {
   const s = clone(site);
   if (patch.fonts) {
-    for (const k of ['heading', 'body']) if (patch.fonts[k] && FONTS[patch.fonts[k]]) s.theme.fonts[k] = patch.fonts[k];
+    for (const k of ['heading', 'body']) {
+      const v = patch.fonts[k];
+      if (!v) continue;
+      if (FONTS[v]) s.theme.fonts[k] = v;
+      else if (customFontId(v)) {
+        if (!s.fonts?.[customFontId(v)]) throw new Error(__('Police personnalisée inconnue.'));
+        s.theme.fonts[k] = v;
+      }
+    }
   }
   if ('baseSize' in patch) s.theme.baseSize = Math.max(14, Math.min(22, Number(patch.baseSize) || 17));
   if ('radius' in patch) s.theme.radius = Math.max(0, Math.min(40, Number(patch.radius) || 0));
@@ -322,6 +333,40 @@ export function setSiteMeta(site, patch) {
 }
 
 const DATA_IMG = /^data:image\/(png|jpeg|webp|gif|avif);base64,[a-z0-9+/=]+$/i;
+const DATA_WOFF2 = /^data:(?:font\/woff2|application\/(?:font-woff2|octet-stream));base64,[a-z0-9+/=]+$/i;
+const FONT_WEIGHTS = ['100', '200', '300', '400', '500', '600', '700', '800', '900'];
+
+/* Police personnalisée (.woff2 importé) : nom de famille, graisse, style ; le fichier reste dans le projet (site.fonts) */
+export function addFont(site, { family, weight = '400', style = 'normal', dataUrl, name = '' }) {
+  if (!DATA_WOFF2.test(String(dataUrl || ''))) throw new Error(__('Police non prise en charge : importez un fichier .woff2.'));
+  const fam = String(family ?? '').replace(/["<>\\]/g, '').trim().slice(0, 60);
+  if (!fam) throw new Error(__('Donnez un nom à la police.'));
+  if (String(dataUrl).length > 4_000_000) throw new Error(__('Police trop lourde (3 Mo au plus).'));
+  const s = clone(site);
+  s.fonts ||= {};
+  const id = 'font_' + Math.random().toString(36).slice(2, 10);
+  const base = slugify(String(name || fam).replace(/\.woff2$/i, ''), { fallback: 'police' }) || 'police';
+  const taken = new Set(Object.values(s.fonts).map(x => x.file));
+  let file = `${base}.woff2`;
+  for (let n = 2; taken.has(file); n++) file = `${base}-${n}.woff2`;
+  const w = FONT_WEIGHTS.includes(String(weight)) ? String(weight) : '400';
+  s.fonts[id] = { family: fam, weight: w, style: style === 'italic' ? 'italic' : 'normal', file, dataUrl };
+  return { site: s, id };
+}
+
+/* Retire une police personnalisée ; un rôle du thème qui n'a plus de fichier pour sa famille revient à « Système » */
+export function removeFont(site, id) {
+  if (!site.fonts?.[id]) throw new Error(__('Police inconnue.'));
+  const s = clone(site);
+  const fam = s.fonts[id].family;
+  delete s.fonts[id];
+  const other = Object.keys(s.fonts).find(x => s.fonts[x].family === fam);
+  for (const k of ['heading', 'body']) {
+    if (customFontId(s.theme.fonts[k]) !== id) continue;
+    s.theme.fonts[k] = other ? `custom:${other}` : 'system';
+  }
+  return s;
+}
 
 export function addAsset(site, { name, mime, dataUrl, width, height, variants }) {
   if (!DATA_IMG.test(dataUrl)) throw new Error(__('Image non prise en charge.'));
