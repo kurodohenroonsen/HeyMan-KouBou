@@ -1,0 +1,10 @@
+13:32:49.262 +1.72s DEBUG structure.open Panneau Structure ouvert {"rows":30}
+13:32:49.306 +1.77s DEBUG ctxmenu.open Menu contextuel : Titre (structure) {"id":"n_4v0t0i4x2d","type":"heading","from":"structure","items":11,"disabled":["paste","pasteStyle","up"]}
+13:32:49.361 +1.82s DEBUG ctxmenu.action Menu contextuel : Déplacer vers… {"action":"moveTo","id":"n_4v0t0i4x2d","type":"heading"}
+13:32:49.363 +1.82s DEBUG ui.dialog.open Fenêtre ouverte : Déplacer « Titre » vers… {"id":"moveToDialog","class":"audit audit--sm","modal":true}
+13:32:49.381 +1.84s DEBUG action.move-to-open « Déplacer vers… » : 8 destinations possibles {"id":"n_4v0t0i4x2d","type":"heading","targets":8}
+13:32:49.417 +1.88s DEBUG store.commit Modification {"source":"action","past":3,"page":"p_hyhohvk5"}
+13:32:49.422 +1.88s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":3}
+13:32:49.438 +1.90s INFO  action.move-to Déplacé vers Section 3 › Rangée 1 › Colonne 2 : heading {"id":"n_4v0t0i4x2d","type":"heading","to":"n_025d473l2e","toType":"column","path":"3.1.2"}
+13:32:49.443 +1.91s DEBUG ui.dialog.close Fenêtre fermée : Déplacer « Titre » vers… {"id":"moveToDialog"}
+13:32:49.461 +1.92s DEBUG canvas.scroll Défilement vers l’élément sélectionné {"id":"n_4v0t0i4x2d","from":0,"to":615}
