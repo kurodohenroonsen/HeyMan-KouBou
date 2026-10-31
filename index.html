@@ -55,11 +55,21 @@ setTimeout(function(){if(!(window.__atelier&&window.__atelier.ready)){var m='L�
   <div class="tb-group tb-end">
     <span class="save-state" id="saveState" aria-live="polite"></span>
     <button class="btn btn--small" id="helpBtn" type="button" title="Guide d’utilisation (F1)" aria-label="Guide d’utilisation">❓</button>
+    <details class="menu menu--help" id="helpMenu">
+      <summary class="btn btn--small" title="Plus d’aide : visite guidée, démonstration, raccourcis" aria-label="Plus d’aide">▾</summary>
+      <div class="menu__panel">
+        <button type="button" id="helpTourBtn">🧭 Visite guidée de l’écran</button>
+        <button type="button" id="helpDemoBtn">▶ Voir une démonstration (Kumakōgen)</button>
+        <button type="button" id="helpKeysBtn">⌨ Raccourcis clavier</button>
+      </div>
+    </details>
     <button class="btn btn--small log-btn" id="logBtn" type="button" title="Journal de débogage" aria-label="Journal de débogage">🐞</button>
     <details class="menu" id="fileMenu">
       <summary class="btn">Fichier</summary>
       <div class="menu__panel">
         <button type="button" id="guideBtn">Guide d’utilisation</button>
+        <button type="button" id="tourBtn">Visite guidée</button>
+        <button type="button" id="demoBtn">Voir une démonstration</button>
         <button type="button" id="previewBtn">Aperçu dans un nouvel onglet</button>
         <button type="button" id="versionsBtn">Versions…</button>
         <button type="button" id="exportJsonBtn">Enregistrer le projet (.json)</button>

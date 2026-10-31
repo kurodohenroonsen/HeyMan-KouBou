@@ -33,9 +33,9 @@ const sameStored = (a, b) => stableJson(splitAssets(a).light) === stableJson(spl
 export const selftestActive = () => !!active;
 export const pendingMark = () => { try { return JSON.parse(lsRead(MARK) || 'null'); } catch { return null; } };
 
-/* Avant le test : les trois copies, puis le repère (seulement si la copie de secours est écrite) */
-export async function beginSafe() {
-  const f = log.flow('selftest.backup', __('Mise de côté du projet avant l’auto-test'), { name: state.site?.name, pages: state.site?.pages?.length, past: state.past.length });
+/* Avant le test (ou la démonstration, kind = 'demo') : les trois copies, puis le repère (seulement si la copie de secours est écrite) */
+export async function beginSafe({ kind = 'selftest' } = {}) {
+  const f = log.flow('selftest.backup', kind === 'demo' ? __('Mise de côté du projet avant la démonstration') : __('Mise de côté du projet avant l’auto-test'), { name: state.site?.name, pages: state.site?.pages?.length, past: state.past.length, kind });
   const snap = captureState();
   snap.json = stableJson(snap.site);
   snap.levels = { console: settings.console, keep: settings.keep, server: settings.server };
@@ -45,10 +45,11 @@ export async function beginSafe() {
   snap.assetsBefore = await listAssetIds().catch(() => []);
   await saveProject(snap.site, SLOT);
   f.step('slot', __('Copie de secours écrite dans la base locale'), { slot: SLOT });
-  const v = makeVersion(snap.site, { name: __('Avant l’auto-test ({date})', { date: fmtDate(new Date()) }), kind: 'safety' });
+  const v = makeVersion(snap.site, { name: kind === 'demo' ? __('Avant la démonstration ({date})', { date: fmtDate(new Date()) }) : __('Avant l’auto-test ({date})', { date: fmtDate(new Date()) }), kind: 'safety' });
   await saveVersion(v);
   snap.safetyId = v.id;
-  lsWrite(MARK, JSON.stringify({ at: new Date().toISOString(), name: snap.site?.name, safetyId: v.id, versionsBefore: snap.versionsBefore, assetsBefore: snap.assetsBefore }));
+  snap.kind = kind;
+  lsWrite(MARK, JSON.stringify({ at: new Date().toISOString(), kind, name: snap.site?.name, safetyId: v.id, versionsBefore: snap.versionsBefore, assetsBefore: snap.assetsBefore }));
   active = snap;
   f.ok(__('Projet mis de côté (mémoire, copie de secours, version de sécurité)'), { safety: v.id, versions: snap.versionsBefore.length, images: snap.assetsBefore.length });
   return snap;
@@ -123,6 +124,7 @@ export async function recoverAtBoot() {
   log.warn('selftest.recovered', __('Auto-test interrompu : le projet d’avant le test est repris'), { at: m.at, name: site.name, pages: site.pages?.length });
   return {
     site,
+    kind: m.kind || 'selftest',
     async finish() {
       const f = log.flow('selftest.rollback', __('Nettoyage après un auto-test interrompu'), { at: m.at });
       await saveProject(site);

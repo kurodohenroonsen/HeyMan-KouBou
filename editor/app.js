@@ -5,6 +5,8 @@ import { initTooltips } from './tooltip.js';
 import { initUiLang } from './ui-lang.js';
 import { initPanelResize } from './panel-resize.js';
 import { initHelp, openGuide } from './help.js';
+import { initTour, offerTour } from './tour-ui.js';
+import { initDemo } from './demo-ui.js';
 import { saveProject } from './storage.js';
 import { log, registerContext, APP_VERSION } from './log.js';
 import { initLogButton, openLog, setLogSiteInfo } from './log-ui.js';
@@ -228,6 +230,7 @@ function bind() {
   });
   $('#loadDemoBtn').addEventListener('click', async () => { $('#fileMenu').open = false; if (confirm(__('Remplacer le projet actuel par l’exemple ? (une version de sécurité est enregistrée)'))) { await beforeRisky(__('Avant de recharger l’exemple')); load(demoSite(), { keepHistory: true }); log.info('project.demo', __('Exemple rechargé')); } else log.info('project.cancel', __('Remplacement annulé'), { action: 'demo' }); });
   $('#newSiteBtn').addEventListener('click', () => { $('#fileMenu').open = false; openNewSite(); });
+  $('#helpKeysBtn').addEventListener('click', () => { $('#helpMenu').open = false; openShortcuts(); });
   document.addEventListener('keydown', handleKey);
   setCanvasKeyHandler(handleKey);
 }
@@ -249,14 +252,14 @@ async function boot() {
   state.site = normalizeSite(site);
   state.pageId = site.pages[0].id;
   state.lang = site.defaultLanguage;
-  if (rec) rec.finish().then(() => toast(__('L’auto-test avait été interrompu : ton projet a été remis comme avant.'))).catch(e => log.error('selftest.recover-fail', __('Nettoyage après l’auto-test impossible : {error}', { error: e?.message || e }), { error: e }));
+  if (rec) rec.finish().then(() => toast(rec.kind === 'demo' ? __('La démonstration avait été interrompue : ton projet a été remis comme avant.') : __('L’auto-test avait été interrompu : ton projet a été remis comme avant.'))).catch(e => log.error('selftest.recover-fail', __('Nettoyage après l’auto-test impossible : {error}', { error: e?.message || e }), { error: e }));
   subscribe((reason, opts) => {
     if (reason === 'save') { $('#saveState').textContent = opts.status; return; }
     if (reason === 'doc' || reason === 'view') { renderTopbar(); renderBanner(); }
     if (reason === 'view' || (reason === 'doc' && ['pages', 'site', 'history', 'collections'].includes(opts.source))) if (!['navigator', 'widgets'].includes(state.left)) renderLeft();
     if (reason === 'doc' && opts.source === 'history' && state.left === 'widgets') { /* rien */ }
   });
-  onCanvasReady(() => { if (!state.ready) { fb.ok(__('Éditeur prêt'), { page: state.pageId, lang: state.lang }); state.ready = true; autoStartFromUrl(); } state.ready = true; });
+  onCanvasReady(() => { if (!state.ready) { fb.ok(__('Éditeur prêt'), { page: state.pageId, lang: state.lang }); state.ready = true; autoStartFromUrl(); offerTour(); } state.ready = true; });
   registerContext('projet', () => {
     const s = state.site;
     if (!s) return 'non chargé';
@@ -279,6 +282,8 @@ async function boot() {
   initVersions();
   initCollab();
   initReview();
+  initTour();
+  initDemo();
   setSmartHooks({ openCollection, goToComment });
   setAssistantTools({ seo: () => openSeo(), ai: () => openAI(), publish: () => openPublish(), translations: () => openTranslations(), versions: () => openVersions(), log: () => openLog(), audit: () => openAudit('export'), comments: () => toggleReview(true), palette_logo: () => openLogoPalette(), review_summary: () => openReviewSummary() });
   let roToast = 0;

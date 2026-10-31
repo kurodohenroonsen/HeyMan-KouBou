@@ -645,3 +645,29 @@ body.is-resizing #canvas{pointer-events:none}
 .drag-ghost.is-forbidden{background:#b91c1c;color:#fff;text-decoration:line-through;opacity:.9}
 .drag-ghost.is-forbidden::before{content:"⊘ ";text-decoration:none;display:inline-block}
 .toast--warn{background:var(--warn-soft);color:var(--warn);border:1px solid var(--warn)}
+
+/* Cycle 26 : aide (❓ ▾), visite guidée (masque, bulle), liste « Pour commencer », démonstration */
+.menu--help{margin-left:-6px}
+.menu--help summary{padding:0 6px;border-radius:0 6px 6px 0;border-left:0}
+#helpBtn{border-radius:6px 0 0 6px}
+.tour-mask{position:fixed;inset:0;z-index:2147482000}
+.tour-mask svg{display:block;width:100%;height:100%}
+.tour-mask path{fill:rgb(0 0 0/.55)}
+.tour-bubble{position:fixed;z-index:2147482001;width:min(380px,calc(100vw - 24px));padding:16px 18px 14px;border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--ink);box-shadow:0 24px 60px -20px rgb(0 0 0/.6);font-size:14px;line-height:1.5}
+.tour-bubble::before{content:"";position:absolute;width:14px;height:14px;background:var(--panel);border:1px solid var(--line);transform:rotate(45deg)}
+.tour-bubble[data-side="right"]::before{left:-8px;top:calc(var(--arrow,50%) - 7px);border-right:0;border-top:0}
+.tour-bubble[data-side="left"]::before{right:-8px;top:calc(var(--arrow,50%) - 7px);border-left:0;border-bottom:0}
+.tour-bubble[data-side="bottom"]::before{top:-8px;left:calc(var(--arrow,50%) - 7px);border-right:0;border-bottom:0}
+.tour-bubble[data-side="top"]::before{bottom:-8px;left:calc(var(--arrow,50%) - 7px);border-left:0;border-top:0}
+.tour-bubble[data-side="center"]::before{display:none}
+.tour__head{display:grid;gap:2px;margin-bottom:6px}
+.tour__count{font-size:12px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.04em}
+.tour-bubble h2{margin:0;font-size:17px}
+.tour-bubble p{margin:0 0 12px}
+.tour__dots{display:flex;gap:6px;margin:0 0 12px}
+.tour__dots i{width:8px;height:8px;border-radius:4px;background:var(--line)}
+.tour__dots i.is-on{background:var(--accent);width:20px}
+.tour__dots i.is-done{background:var(--accent);opacity:.45}
+.tour__foot{display:flex;gap:8px;align-items:center;justify-content:flex-end}
+.tour__foot .tour__skip{margin-right:auto;border-color:transparent;color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){.tour-bubble{animation:tip-in .16s ease-out}}
