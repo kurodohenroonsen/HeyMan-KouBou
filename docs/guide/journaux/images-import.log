@@ -1,15 +1,16 @@
-20:52:06.889 +11.87s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":12}
-20:52:07.023 +12.00s INFO  inspector.image.start [inspector.image#1] Import d’une image {"field":"logo","type":"image/png","kb":2538}
-20:52:07.024 +12.00s INFO  image.import.start [image.import#1] Import de l’image « logo-mab.png » {"name":"logo-mab.png","type":"image/png","kb":2538}
-20:52:07.183 +12.16s DEBUG image.import.decode [image.import#1 · 159 ms] Image lue : 2000×1200 px {"width":2000,"height":1200,"ms":158}
-20:52:07.185 +12.16s DEBUG image.import.resize [image.import#1 · 161 ms] Réduite à 1600×960 px (largeur maximale 1600 px) {"from":"2000×1200","to":"1600×960"}
-20:52:07.419 +12.40s DEBUG image.import.encode [image.import#1 · 395 ms] Version principale : 1600×960 px, 10 Ko (image/webp) {"w":1600,"h":960,"mime":"image/webp","kb":10,"ms":233}
-20:52:07.452 +12.43s DEBUG image.import.variant [image.import#1 · 428 ms] Variante 480 px : 2 Ko {"w":480,"kb":2,"ms":30}
-20:52:07.667 +12.64s DEBUG image.import.variant [image.import#1 · 643 ms] Variante 960 px : 5 Ko {"w":960,"kb":5,"ms":214}
-20:52:07.672 +12.65s INFO  image.import.ok [image.import#1 · 648 ms] Image prête : 1600×960 px, 10 Ko (−99 %), 2 variantes {"name":"logo-mab.webp","mime":"image/webp","width":1600,"height":960,"kbIn":2538,"kbOut":10,"gain":99,"variants":[480,960]}
-20:52:07.672 +12.65s DEBUG inspector.image.webp [inspector.image#1 · 649 ms] Image convertie en WebP {"mime":"image/webp","width":1600,"height":960,"kb":10,"variants":2}
-20:52:07.674 +12.65s DEBUG store.commit Modification {"key":null,"source":"site","past":21,"page":"p_a3je7ile"}
-20:52:07.682 +12.66s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
-20:52:07.704 +12.68s INFO  settings.logo Logo importé {"kind":"asset","asset":"img_znpy0392","file":"logo-mab.webp"}
-20:52:07.704 +12.68s INFO  inspector.image.ok [inspector.image#1 · 681 ms] Image ajoutée : 1600×960 px {"asset":"img_znpy0392","field":"logo"}
-20:52:07.705 +12.68s INFO  ui.toast Message affiché : Image ajoutée en WebP : 1600×960 px, 10 Ko.
+13:32:48.942 +10.65s DEBUG storage.save Projet enregistré sur cet appareil {"ms":34,"kb":12}
+13:32:48.946 +10.66s INFO  inspector.image.start [inspector.image#1] Import d’une image {"field":"logo","type":"image/png","kb":2538}
+13:32:48.947 +10.66s INFO  image.import.start [image.import#1] Import de l’image « logo-mab.png » {"name":"logo-mab.png","type":"image/png","kb":2538}
+13:32:49.048 +10.76s DEBUG image.import.decode [image.import#1 · 101 ms] Image lue : 2000×1200 px {"width":2000,"height":1200,"ms":101}
+13:32:49.049 +10.76s DEBUG image.import.resize [image.import#1 · 102 ms] Réduite à 1600×960 px (largeur maximale 1600 px) {"from":"2000×1200","to":"1600×960"}
+13:32:49.238 +10.95s DEBUG image.import.encode [image.import#1 · 291 ms] Version principale : 1600×960 px, 10 Ko (image/webp) {"w":1600,"h":960,"mime":"image/webp","kb":10,"ms":188}
+13:32:49.257 +10.97s DEBUG image.import.variant [image.import#1 · 310 ms] Variante 480 px : 2 Ko {"w":480,"kb":2,"ms":16}
+13:32:49.323 +11.03s DEBUG image.import.variant [image.import#1 · 376 ms] Variante 960 px : 5 Ko {"w":960,"kb":5,"ms":62}
+13:32:49.326 +11.04s INFO  image.import.ok [image.import#1 · 379 ms] Image prête : 1600×960 px, 10 Ko (−99 %), 2 variantes {"name":"logo-mab.webp","mime":"image/webp","width":1600,"height":960,"kbIn":2538,"kbOut":10,"gain":99,"variants":[480,960]}
+13:32:49.327 +11.04s INFO  onboarding.step-done Pour commencer : « Mettre une image » fait (43 %) {"step":"image","done":3,"total":7,"percent":43,"by":"image.import.ok"}
+13:32:49.327 +11.04s DEBUG inspector.image.webp [inspector.image#1 · 381 ms] Image convertie en WebP {"mime":"image/webp","width":1600,"height":960,"kb":10,"variants":2}
+13:32:49.328 +11.04s DEBUG store.commit Modification {"key":null,"source":"site","past":21,"page":"p_n23urgu0"}
+13:32:49.336 +11.05s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":4}
+13:32:49.355 +11.06s INFO  settings.logo Logo importé {"kind":"asset","asset":"img_0pkz5yu3","file":"logo-mab.webp"}
+13:32:49.355 +11.06s INFO  inspector.image.ok [inspector.image#1 · 409 ms] Image ajoutée : 1600×960 px {"asset":"img_0pkz5yu3","field":"logo"}
+13:32:49.356 +11.07s INFO  ui.toast Message affiché : Image ajoutée en WebP : 1600×960 px, 10 Ko.

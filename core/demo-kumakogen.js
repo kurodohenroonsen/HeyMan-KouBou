@@ -590,11 +590,15 @@ export const DEMO_STEPS = [
       await d.check('#inspector [data-preset-default]', true);
       await d.selectNode(d.mem.cards[0]);
       await d.inspectorTab('style');
+      /* Effets : réglages du mode expert (cycle 30) ; on y passe le temps de cette étape, puis on revient au mode simple */
+      const simple = await Promise.resolve().then(() => d.ui.el('#inspector [data-expert-on]', { timeout: 400 })).catch(() => null);
+      if (simple) await d.click('#inspector [data-expert-on]');
       await d.select('#inspector [data-style="reveal"]', 'up');
       await d.click('#inspector [data-style-state="hover"]');
       await d.select('#inspector [data-style="transform"]', 'lift');
       await d.click('#inspector [data-style-state="normal"]');
       await d.fill('#inspector [data-style="transitionDuration"]', '200');
+      if (simple) await d.click('#inspector [data-expert-off]');
       await d.inspectorTab('content');
     }),
 

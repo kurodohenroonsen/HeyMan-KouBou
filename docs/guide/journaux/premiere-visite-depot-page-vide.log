@@ -1,12 +1,12 @@
-13:00:11.012 +1.29s INFO  dnd.start [dnd#1] Glisser : Titre {"kind":"widget","type":"heading","from":"bibliothèque"}
-13:00:11.291 +1.57s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":1}
-13:00:11.417 +1.70s DEBUG store.commit Modification {"source":"dnd","past":2,"page":"p_tlk9wgfz"}
-13:00:11.421 +1.70s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"dnd","mode":"contenu","ms":3}
-13:00:11.421 +1.70s INFO  version.auto Première modification du jour : version automatique de l’état d’avant {"previous":null,"source":"dnd"}
-13:00:11.422 +1.70s INFO  version.save.start [version.save#2] Enregistrement d’une version automatique {"kind":"auto"}
-13:00:11.422 +1.70s DEBUG storage.version-save Version enregistrée {"id":"v_mvwcn25ayw88k","kind":"auto"}
-13:00:11.423 +1.70s DEBUG store.select Sélection : heading {"id":"n_1r2x153p1r","type":"heading"}
-13:00:11.425 +1.70s INFO  dnd.ok [dnd#1 · 413 ms] Ajouté dans une nouvelle section, position 1 {"id":"n_1r2x153p1r","type":"heading","kind":"new","parentId":"n_3i4g6l735b","parentType":"page","index":0,"where":"canevas","wrapped":true}
-13:00:11.426 +1.70s INFO  onboarding.step-done Pour commencer : « Ajouter une section » fait (43 %) {"step":"section","done":3,"total":7,"percent":43,"by":"dnd.ok"}
-13:00:11.451 +1.73s DEBUG version.save.prune [version.save#2 · 29 ms] Aucune ancienne version à supprimer {"total":2}
-13:00:11.451 +1.73s INFO  version.save.ok [version.save#2 · 29 ms] Version automatique enregistrée (1 page) {"id":"v_mvwcn25ayw88k","kind":"auto","at":"2026-10-31T12:00:11.422Z","pages":1,"kb":1}
+13:46:30.301 +1.56s INFO  dnd.start [dnd#1] Glisser : Titre {"kind":"widget","type":"heading","from":"bibliothèque"}
+13:46:30.409 +1.67s DEBUG storage.save Projet enregistré sur cet appareil {"ms":13,"kb":1}
+13:46:30.798 +2.05s DEBUG store.commit Modification {"source":"dnd","past":2,"page":"p_5xposq42"}
+13:46:30.809 +2.06s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"dnd","mode":"contenu","ms":10}
+13:46:30.812 +2.07s INFO  version.auto Première modification du jour : version automatique de l’état d’avant {"previous":null,"source":"dnd"}
+13:46:30.813 +2.07s INFO  version.save.start [version.save#2] Enregistrement d’une version automatique {"kind":"auto"}
+13:46:30.813 +2.07s DEBUG storage.version-save Version enregistrée {"id":"v_mvweamql2r3jg","kind":"auto"}
+13:46:30.814 +2.07s DEBUG store.select Sélection : heading {"id":"n_3d0k484j6s","type":"heading"}
+13:46:30.828 +2.08s INFO  dnd.ok [dnd#1 · 527 ms] Ajouté dans une nouvelle section, position 1 {"id":"n_3d0k484j6s","type":"heading","kind":"new","parentId":"n_6f73422h2g","parentType":"page","index":0,"where":"canevas","wrapped":true}
+13:46:30.828 +2.08s INFO  onboarding.step-done Pour commencer : « Ajouter une section » fait (43 %) {"step":"section","done":3,"total":7,"percent":43,"by":"dnd.ok"}
+13:46:30.869 +2.13s DEBUG version.save.prune [version.save#2 · 56 ms] Aucune ancienne version à supprimer {"total":2}
+13:46:30.870 +2.13s INFO  version.save.ok [version.save#2 · 57 ms] Version automatique enregistrée (1 page) {"id":"v_mvweamql2r3jg","kind":"auto","at":"2026-10-31T12:46:30.813Z","pages":1,"kb":1}

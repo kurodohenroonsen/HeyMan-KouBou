@@ -1,5 +1,5 @@
-13:00:12.512 +2.79s INFO  dnd.start [dnd#3] Glisser : Section {"kind":"move","type":"section","id":"n_6b3l4m3744","from":"page ou structure"}
-13:00:12.716 +2.99s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":3}
-13:00:12.901 +3.18s WARN  dnd.refused [dnd#3 · 389 ms] Dépôt refusé : « section » ne peut pas aller à cet endroit (une section va dans la page, un widget dans une colonne, et rien dans son propre contenu) {"type":"section","reason":"forbidden"}
-13:00:12.901 +3.18s INFO  dnd.cancel [dnd#3 · 389 ms] Rien n’a changé {"reason":"forbidden"}
-13:00:12.901 +3.18s WARN  ui.toast Message affiché : Impossible de déposer ici. Une section se dépose sur la page, entre deux sections. {"type":"warn"}
+13:46:32.152 +3.41s INFO  dnd.start [dnd#3] Glisser : Section {"kind":"move","type":"section","id":"n_48672z5x2j","from":"page ou structure"}
+13:46:32.220 +3.48s DEBUG storage.save Projet enregistré sur cet appareil {"ms":3,"kb":3}
+13:46:32.649 +3.90s WARN  dnd.refused [dnd#3 · 497 ms] Dépôt refusé : « section » ne peut pas aller à cet endroit (une section va dans la page, un widget dans une colonne, et rien dans son propre contenu) {"type":"section","reason":"forbidden"}
+13:46:32.649 +3.90s INFO  dnd.cancel [dnd#3 · 497 ms] Rien n’a changé {"reason":"forbidden"}
+13:46:32.650 +3.91s WARN  ui.toast Message affiché : Impossible de déposer ici. Une section se dépose sur la page, entre deux sections. {"type":"warn"}

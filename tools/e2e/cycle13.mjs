@@ -43,7 +43,7 @@ export default async function (t) {
   t.ok((await cards().first().textContent()).includes('Assemblée générale 2026'), 'titre modifié : la carte suit');
   t.ok((await page.locator('#collectionDialog [data-item].is-current').textContent()).includes('Assemblée générale 2026'), 'la liste des éléments suit aussi');
   col = await colOf();
-  t.ok(col.items[0].slug === 'assemblee-generale-du-mab', 'l’adresse ne change pas toute seule (liens stables)');
+  t.ok(col.items[0].slug === 'assemblee-generale', 'l’adresse ne change pas toute seule (liens stables)');
   await page.selectOption('#collectionDialog [data-item-status]', 'draft');
   await t.wait(400);
   t.ok(await cards().count() === 2, 'brouillon : retiré de la liste');

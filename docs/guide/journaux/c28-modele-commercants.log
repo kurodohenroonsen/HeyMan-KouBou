@@ -1,13 +1,13 @@
-13:29:57.799 +1.38s INFO  version.save.start [version.save#1] Enregistrement d’une version de sécurité : « Avant un nouveau site » {"kind":"safety","name":"Avant un nouveau site"}
-13:29:57.800 +1.38s DEBUG storage.version-save Version enregistrée {"id":"v_mvwdpciwyf8zw","name":"Avant un nouveau site","kind":"safety"}
-13:29:57.808 +1.39s DEBUG ui.dialog.close Fenêtre fermée : Nouveau site {"id":"newSiteDialog"}
-13:29:57.815 +1.39s DEBUG version.save.prune [version.save#1 · 16 ms] Aucune ancienne version à supprimer {"total":1}
-13:29:57.815 +1.39s INFO  version.save.ok [version.save#1 · 16 ms] Version de sécurité enregistrée (2 pages) {"id":"v_mvwdpciwyf8zw","kind":"safety","at":"2026-10-31T12:29:57.799Z","pages":2,"kb":12}
-13:29:57.842 +1.42s INFO  store.load Projet chargé dans l’éditeur {"name":"Commerces de Couvin","pages":8,"keepHistory":true}
-13:29:57.852 +1.43s INFO  canvas.load.start [canvas.load#2] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_ddny2tyo","lang":"fr","device":"desktop"}
-13:29:57.871 +1.45s DEBUG canvas.load.render [canvas.load#2 · 19 ms] Page rendue {"ms":19,"kb":48}
-13:29:57.874 +1.45s INFO  project.new Nouveau site « Commerces de Couvin » depuis le modèle Association de commerçants / promotion d’une ville : 8 pages, langue principale Français {"lang":"fr","languages":["fr","nl","de","en"],"template":"merchants","pages":8,"timezone":"Europe/Brussels"}
-13:29:57.875 +1.45s INFO  onboarding.step-done Pour commencer : « Nommer le site » fait (14 %) {"step":"name","done":1,"total":7,"percent":14,"by":"project.new"}
-13:29:57.876 +1.45s INFO  onboarding.step-done Pour commencer : « Choisir les langues » fait (29 %) {"step":"languages","done":2,"total":7,"percent":29,"by":"project.new"}
-13:29:57.923 +1.50s INFO  canvas.load.ok [canvas.load#2 · 71 ms] Canevas prêt {"nodes":40,"scale":76,"via":"dom"}
-13:29:57.931 +1.51s DEBUG canvas.resources Ressources externes du canevas chargées {"ms":59,"hosts":[]}
+13:38:14.528 +1.51s INFO  version.save.start [version.save#1] Enregistrement d’une version de sécurité : « Avant un nouveau site » {"kind":"safety","name":"Avant un nouveau site"}
+13:38:14.529 +1.51s DEBUG storage.version-save Version enregistrée {"id":"v_mvwdzzsxpno0z","name":"Avant un nouveau site","kind":"safety"}
+13:38:14.537 +1.52s DEBUG ui.dialog.close Fenêtre fermée : Nouveau site {"id":"newSiteDialog"}
+13:38:14.548 +1.53s DEBUG version.save.prune [version.save#1 · 20 ms] Aucune ancienne version à supprimer {"total":1}
+13:38:14.548 +1.53s INFO  version.save.ok [version.save#1 · 20 ms] Version de sécurité enregistrée (2 pages) {"id":"v_mvwdzzsxpno0z","kind":"safety","at":"2026-10-31T12:38:14.529Z","pages":2,"kb":12}
+13:38:14.575 +1.56s INFO  store.load Projet chargé dans l’éditeur {"name":"Commerces de Couvin","pages":8,"keepHistory":true}
+13:38:14.587 +1.57s INFO  canvas.load.start [canvas.load#2] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_dl7upqhb","lang":"fr","device":"desktop"}
+13:38:14.607 +1.59s DEBUG canvas.load.render [canvas.load#2 · 20 ms] Page rendue {"ms":18,"kb":48}
+13:38:14.610 +1.59s INFO  project.new Nouveau site « Commerces de Couvin » depuis le modèle Association de commerçants / promotion d’une ville : 8 pages, langue principale Français {"lang":"fr","languages":["fr","nl","de","en"],"template":"merchants","pages":8,"timezone":"Europe/Brussels"}
+13:38:14.611 +1.59s INFO  onboarding.step-done Pour commencer : « Nommer le site » fait (14 %) {"step":"name","done":1,"total":7,"percent":14,"by":"project.new"}
+13:38:14.612 +1.60s INFO  onboarding.step-done Pour commencer : « Choisir les langues » fait (29 %) {"step":"languages","done":2,"total":7,"percent":29,"by":"project.new"}
+13:38:14.682 +1.67s INFO  canvas.load.ok [canvas.load#2 · 95 ms] Canevas prêt {"nodes":40,"scale":76,"via":"dom"}
+13:38:14.701 +1.69s DEBUG canvas.resources Ressources externes du canevas chargées {"ms":93,"hosts":[]}

@@ -1,42 +1,42 @@
-20:52:32.832 +37.81s DEBUG store.commit Modification {"source":"collections","past":54,"page":"p_8td8gtej"}
-20:52:32.865 +37.84s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":24}
-20:52:32.871 +37.85s INFO  collection.item.add Élément ajouté en brouillon dans « Agenda » {"collection":"col_yfif86wi","item":"it_3p4tndof","slug":"nouvel-element","items":4,"status":"draft"}
-20:52:33.365 +38.34s DEBUG store.commit Modification {"key":"item:it_3p4tndof:title:fr","source":"collections","past":55,"page":"p_8td8gtej"}
-20:52:33.620 +38.60s DEBUG inspector.field Champ modifié : Titre {"key":"title","type":"text","lang":"fr","how":"saisie","chars":25}
-20:52:33.634 +38.61s DEBUG store.commit Modification {"source":"collections","past":56,"page":"p_8td8gtej"}
-20:52:33.644 +38.62s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":6}
-20:52:33.646 +38.62s DEBUG collection.item.value Champ « Date » modifié {"collection":"col_yfif86wi","item":"it_3p4tndof","field":"date","type":"date"}
-20:52:33.970 +38.95s WARN  collection.item.value-refused Valeur refusée pour « Inscription ou billetterie » : Lien non autorisé : https://, mailto: ou tel: uniquement. {"collection":"col_yfif86wi","item":"it_3p4tndof","field":"link","type":"url","value":"javascript:alert(1)","error":{"name":"Error","message":"Lien non autorisé : https://, mailto: ou tel: uniquement.","stack":"Error: Lien non autorisé : https://, mailto: ou tel: uniquement.\nat cleanValue (http://localhost:8791/core/collections.js:380:125)\nat writeValue (http://localhost:8791/core/collections.js:409:31)\nat http://localhost:8791/core/collections.js:460:5\nat http://localhost:8791/core/collections.js:452:12"}}
-20:52:33.972 +38.95s ERROR ui.toast Message affiché : Lien non autorisé : https://, mailto: ou tel: uniquement. {"type":"error"}
-20:52:34.241 +39.22s DEBUG storage.save Projet enregistré sur cet appareil {"ms":4,"kb":39}
-20:52:34.309 +39.29s DEBUG store.commit Modification {"source":"collections","past":57,"page":"p_8td8gtej"}
-20:52:34.316 +39.29s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":6}
-20:52:34.318 +39.30s DEBUG collection.item.value Champ « Inscription ou billetterie » modifié {"collection":"col_yfif86wi","item":"it_3p4tndof","field":"link","type":"url"}
-20:52:34.683 +39.66s DEBUG store.commit Modification {"source":"collections","past":58,"page":"p_8td8gtej"}
-20:52:34.699 +39.68s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":6}
-20:52:34.704 +39.68s INFO  collection.item.slug Adresse de l’élément : /agenda/fete-radio/ {"collection":"col_yfif86wi","item":"it_3p4tndof","from":"nouvel-element","to":"fete-radio"}
-20:52:35.210 +40.19s WARN  collection.refused Modification refusée : Un élément « assemblee-generale-du-mab » existe déjà dans cette collection. {"action":"item-slug","collection":"col_yfif86wi","item":"it_3p4tndof","value":"assemblee-generale-du-mab","error":{"name":"Error","message":"Un élément « assemblee-generale-du-mab » existe déjà dans cette collection.","stack":"Error: Un élément « assemblee-generale-du-mab » existe déjà dans cette collection.\nat http://localhost:8791/core/collections.js:468:67\nat http://localhost:8791/core/collections.js:452:12\nat withCollection (http://localhost:8791/core/collections.js:187:13)\nat withItem (http://localhost:8791/core/collections.js:449:10)"}}
-20:52:35.210 +40.19s ERROR ui.toast Message affiché : Un élément « assemblee-generale-du-mab » existe déjà dans cette collection. {"type":"error"}
-20:52:35.287 +40.26s DEBUG storage.save Projet enregistré sur cet appareil {"ms":3,"kb":39}
-20:52:35.497 +40.47s DEBUG store.commit Modification {"source":"collections","past":59,"page":"p_8td8gtej"}
-20:52:35.506 +40.48s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":6}
-20:52:35.509 +40.49s INFO  collection.item.publish Élément publié : visible dans les listes et sur le site au prochain export {"collection":"col_yfif86wi","item":"it_3p4tndof","slug":"fete-radio"}
-20:52:35.798 +40.77s DEBUG store.commit Modification {"source":"collections","past":60,"page":"p_8td8gtej"}
-20:52:35.804 +40.78s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":4}
-20:52:35.805 +40.78s INFO  collection.item.draft Élément passé en brouillon : retiré des listes et du site publié {"collection":"col_yfif86wi","item":"it_3p4tndof","slug":"fete-radio"}
-20:52:36.086 +41.06s DEBUG store.commit Modification {"source":"collections","past":61,"page":"p_8td8gtej"}
-20:52:36.096 +41.07s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":7}
-20:52:36.096 +41.07s INFO  collection.item.publish Élément publié : visible dans les listes et sur le site au prochain export {"collection":"col_yfif86wi","item":"it_3p4tndof","slug":"fete-radio"}
-20:52:36.413 +41.39s DEBUG store.commit Modification {"source":"collections","past":62,"page":"p_8td8gtej"}
-20:52:36.425 +41.40s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":8}
-20:52:36.427 +41.40s INFO  collection.item.move Élément monté (position 3) {"collection":"col_yfif86wi","item":"it_3p4tndof","from":3,"to":2}
-20:52:36.811 +41.79s DEBUG store.commit Modification {"source":"collections","past":63,"page":"p_8td8gtej"}
-20:52:36.829 +41.81s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":9}
-20:52:36.833 +41.81s INFO  collection.item.duplicate Élément dupliqué (copie en brouillon) : /fete-radio-2/ {"collection":"col_yfif86wi","from":"it_3p4tndof","item":"it_k3wanaih","slug":"fete-radio-2","status":"draft"}
-20:52:37.205 +42.18s DEBUG collection.item.select Élément « Fête de la radio à Couvin » affiché {"collection":"col_yfif86wi","item":"it_3p4tndof","status":"published"}
-20:52:37.417 +42.39s DEBUG storage.save Projet enregistré sur cet appareil {"ms":4,"kb":39}
-20:52:37.560 +42.54s DEBUG collection.item.select Élément « Fête de la radio à Couvin (copie) » affiché {"collection":"col_yfif86wi","item":"it_k3wanaih","status":"draft"}
-20:52:37.832 +42.81s DEBUG collection.item.delete-cancel Suppression de l’élément annulée {"collection":"col_yfif86wi","item":"it_k3wanaih"}
-20:52:38.018 +42.99s DEBUG store.commit Modification {"source":"collections","past":64,"page":"p_8td8gtej"}
-20:52:38.024 +43.00s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":5}
-20:52:38.026 +43.00s INFO  collection.item.delete Élément « Fête de la radio à Couvin (copie) » supprimé (Ctrl+Z pour annuler) {"collection":"col_yfif86wi","item":"it_k3wanaih","slug":"fete-radio-2","items":4}
+13:33:11.829 +33.54s DEBUG store.commit Modification {"source":"collections","past":54,"page":"p_c3m3b4fj"}
+13:33:11.834 +33.54s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":3}
+13:33:11.835 +33.55s INFO  collection.item.add Élément ajouté en brouillon dans « Agenda » {"collection":"col_10jn8e5m","item":"it_iaqp9ljr","slug":"nouvel-element","items":4,"status":"draft"}
+13:33:12.192 +33.90s DEBUG store.commit Modification {"key":"item:it_iaqp9ljr:title:fr","source":"collections","past":55,"page":"p_c3m3b4fj"}
+13:33:12.410 +34.12s DEBUG inspector.field Champ modifié : Titre {"key":"title","type":"text","lang":"fr","how":"saisie","chars":25}
+13:33:12.418 +34.13s DEBUG store.commit Modification {"source":"collections","past":56,"page":"p_c3m3b4fj"}
+13:33:12.423 +34.13s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":4}
+13:33:12.425 +34.13s DEBUG collection.item.value Champ « Date » modifié {"collection":"col_10jn8e5m","item":"it_iaqp9ljr","field":"date","type":"date"}
+13:33:12.782 +34.49s WARN  collection.item.value-refused Valeur refusée pour « Inscription ou billetterie » : Lien non autorisé : https://, mailto: ou tel: uniquement. {"collection":"col_10jn8e5m","item":"it_iaqp9ljr","field":"link","type":"url","value":"javascript:alert(1)","error":{"name":"Error","message":"Lien non autorisé : https://, mailto: ou tel: uniquement.","stack":"Error: Lien non autorisé : https://, mailto: ou tel: uniquement.\nat cleanValue (http://localhost:8832/core/collections.js:410:125)\nat writeValue (http://localhost:8832/core/collections.js:439:31)\nat http://localhost:8832/core/collections.js:490:5\nat http://localhost:8832/core/collections.js:482:12"}}
+13:33:12.783 +34.49s ERROR ui.toast Message affiché : Lien non autorisé : https://, mailto: ou tel: uniquement. {"type":"error"}
+13:33:13.021 +34.73s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":39}
+13:33:13.061 +34.77s DEBUG store.commit Modification {"source":"collections","past":57,"page":"p_c3m3b4fj"}
+13:33:13.065 +34.77s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":3}
+13:33:13.066 +34.78s DEBUG collection.item.value Champ « Inscription ou billetterie » modifié {"collection":"col_10jn8e5m","item":"it_iaqp9ljr","field":"link","type":"url"}
+13:33:13.364 +35.07s DEBUG store.commit Modification {"source":"collections","past":58,"page":"p_c3m3b4fj"}
+13:33:13.369 +35.08s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":3}
+13:33:13.370 +35.08s INFO  collection.item.slug Adresse de l’élément : /agenda/fete-radio/ {"collection":"col_10jn8e5m","item":"it_iaqp9ljr","from":"nouvel-element","to":"fete-radio"}
+13:33:13.863 +35.57s WARN  collection.refused Modification refusée : Un élément « assemblee-generale » existe déjà dans cette collection. {"action":"item-slug","collection":"col_10jn8e5m","item":"it_iaqp9ljr","value":"assemblee-generale","error":{"name":"Error","message":"Un élément « assemblee-generale » existe déjà dans cette collection.","stack":"Error: Un élément « assemblee-generale » existe déjà dans cette collection.\nat http://localhost:8832/core/collections.js:498:67\nat http://localhost:8832/core/collections.js:482:12\nat withCollection (http://localhost:8832/core/collections.js:217:13)\nat withItem (http://localhost:8832/core/collections.js:479:10)"}}
+13:33:13.863 +35.57s ERROR ui.toast Message affiché : Un élément « assemblee-generale » existe déjà dans cette collection. {"type":"error"}
+13:33:13.967 +35.68s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":39}
+13:33:14.163 +35.87s DEBUG store.commit Modification {"source":"collections","past":59,"page":"p_c3m3b4fj"}
+13:33:14.168 +35.88s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":4}
+13:33:14.169 +35.88s INFO  collection.item.publish Élément publié : visible dans les listes et sur le site au prochain export {"collection":"col_10jn8e5m","item":"it_iaqp9ljr","slug":"fete-radio"}
+13:33:14.468 +36.18s DEBUG store.commit Modification {"source":"collections","past":60,"page":"p_c3m3b4fj"}
+13:33:14.482 +36.19s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":12}
+13:33:14.487 +36.20s INFO  collection.item.draft Élément passé en brouillon : retiré des listes et du site publié {"collection":"col_10jn8e5m","item":"it_iaqp9ljr","slug":"fete-radio"}
+13:33:14.807 +36.52s DEBUG store.commit Modification {"source":"collections","past":61,"page":"p_c3m3b4fj"}
+13:33:14.815 +36.52s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":5}
+13:33:14.816 +36.53s INFO  collection.item.publish Élément publié : visible dans les listes et sur le site au prochain export {"collection":"col_10jn8e5m","item":"it_iaqp9ljr","slug":"fete-radio"}
+13:33:15.114 +36.82s DEBUG store.commit Modification {"source":"collections","past":62,"page":"p_c3m3b4fj"}
+13:33:15.119 +36.83s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":3}
+13:33:15.121 +36.83s INFO  collection.item.move Élément monté (position 3) {"collection":"col_10jn8e5m","item":"it_iaqp9ljr","from":3,"to":2}
+13:33:15.443 +37.15s DEBUG store.commit Modification {"source":"collections","past":63,"page":"p_c3m3b4fj"}
+13:33:15.455 +37.16s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":10}
+13:33:15.456 +37.17s INFO  collection.item.duplicate Élément dupliqué (copie en brouillon) : /fete-radio-2/ {"collection":"col_10jn8e5m","from":"it_iaqp9ljr","item":"it_y4lare2g","slug":"fete-radio-2","status":"draft"}
+13:33:15.791 +37.50s DEBUG collection.item.select Élément « Fête de la radio à Couvin » affiché {"collection":"col_10jn8e5m","item":"it_iaqp9ljr","status":"published"}
+13:33:16.061 +37.77s DEBUG storage.save Projet enregistré sur cet appareil {"ms":3,"kb":39}
+13:33:16.105 +37.81s DEBUG collection.item.select Élément « Fête de la radio à Couvin (copie) » affiché {"collection":"col_10jn8e5m","item":"it_y4lare2g","status":"draft"}
+13:33:16.357 +38.07s DEBUG collection.item.delete-cancel Suppression de l’élément annulée {"collection":"col_10jn8e5m","item":"it_y4lare2g"}
+13:33:16.544 +38.25s DEBUG store.commit Modification {"source":"collections","past":64,"page":"p_c3m3b4fj"}
+13:33:16.550 +38.26s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":4}
+13:33:16.551 +38.26s INFO  collection.item.delete Élément « Fête de la radio à Couvin (copie) » supprimé (Ctrl+Z pour annuler) {"collection":"col_10jn8e5m","item":"it_y4lare2g","slug":"fete-radio-2","items":4}
