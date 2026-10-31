@@ -11,6 +11,7 @@ import { makeEditable, format } from './richedit.js';
 import { ICONS } from '../core/icons.js';
 import { log } from './log.js';
 import { __, __c, N_ } from '../core/ui-i18n.js';
+import { assets } from './assets.js';
 
 let uid = 0;
 const fid = () => `f${++uid}`;
@@ -164,7 +165,7 @@ export function imageControl(value, set, dataField = 'image', onAsset) {
   const s = state.site;
   const v = String(value || '');
   const asset = v.startsWith('asset:') ? s.assets[v.slice(6)] : null;
-  const src = asset ? asset.dataUrl : (/^https:\/\//.test(v) ? v : '');
+  const src = asset ? assets.url(v.slice(6)) || asset.dataUrl || '' : (/^https:\/\//.test(v) ? v : '');
   const file = h('input', { type: 'file', accept: 'image/png,image/jpeg,image/webp,image/gif,image/avif', 'data-field': dataField, 'aria-label': __('Importer une image') });
   file.addEventListener('change', async () => {
     const f0 = file.files?.[0];
@@ -174,7 +175,7 @@ export function imageControl(value, set, dataField = 'image', onAsset) {
       const img = await imageToWebp(f0);
       const fmt = img.mime === 'image/webp' ? 'WebP' : img.mime === 'image/jpeg' ? 'JPEG' : String(img.mime || '').replace('image/', '').toUpperCase();
       f.step('webp', __('Image convertie en {format}', { format: fmt }), { mime: img.mime, width: img.width, height: img.height, kb: Math.max(1, Math.round(img.bytes / 1024)), variants: img.variants?.length || undefined });
-      const r = addAsset(state.site, img);
+      const r = addAsset(state.site, img, assets);
       if (onAsset) onAsset(r.site, `asset:${r.id}`);
       else {
         state.site = r.site;
@@ -206,7 +207,7 @@ export function listControl(node, field) {
   const wrap = h('div', { class: 'field', 'data-field-wrap': field.key }, h('span', { class: 'field__label' }, __(field.label)));
   const itemLabel = __(field.itemLabel) || __('Élément');
   const apply = (fn, opts, what) => {
-    try { commitRoot(fn(root()), opts); if (what) log.debug('inspector.list', __('{item} : {action}', { item: itemLabel, action: __(what.action) }), { key: field.key, id: node.id, ...what }); }
+    try { commitRoot(fn(root()), { ...opts, node: node.id }); if (what) log.debug('inspector.list', __('{item} : {action}', { item: itemLabel, action: __(what.action) }), { key: field.key, id: node.id, ...what }); }
     catch (e) { log.warn('inspector.refused', __('Liste « {label} » : {error}', { label: __(field.label), error: e.message }), { what: 'list', key: field.key, id: node.id, error: e }); toast(e.message, 'error'); }
   };
   wrap.append(h('div', { class: 'list-items' }, items.map((item, i) => {
@@ -237,7 +238,7 @@ export function propWriter(node) {
   return (key, sourceInspector = true) => (value, lang, histKey) => {
     try {
       const next = setProp(root(), node.id, key, value, lang);
-      commit(clearReview(siteWithRoot(state.site, next), node.id, key, lang), histKey ? { key: histKey, source: sourceInspector ? 'inspector' : undefined } : {});
+      commit(clearReview(siteWithRoot(state.site, next), node.id, key, lang), histKey ? { key: histKey, source: sourceInspector ? 'inspector' : undefined, node: node.id } : { node: node.id });
     } catch (e) { log.warn('inspector.refused', __('Valeur refusée pour « {key} » : {error}', { key, error: e.message }), { what: 'field', key, lang: lang || undefined, id: node.id, type: node.type, error: e }); toast(e.message, 'error'); }
   };
 }

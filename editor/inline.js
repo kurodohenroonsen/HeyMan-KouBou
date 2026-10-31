@@ -133,7 +133,7 @@ function write(html, final = false) {
       session.changed = true;
       /* À chaque frappe : trace (longueur seulement, jamais le texte) */
       f.step('input', __('Texte modifié'), { chars: richToText(String(value)).length }, 'trace');
-      commit(clearReview(siteWithRoot(state.site, next), id, key, state.lang), { key: session.key, sticky: true, source: 'canvas' });
+      commit(clearReview(siteWithRoot(state.site, next), id, key, state.lang), { key: session.key, sticky: true, source: 'canvas', node: id, field: key, lang: state.lang });
     }
   } catch (e) { f.warn('node-gone', __('Texte non enregistré : l’élément a été supprimé pendant l’édition (par toi ou un autre participant)'), { id, key, error: e }); }
 }

@@ -16,6 +16,7 @@ import { buildPublishPhp, sha256Hex, newToken, formsConfig, publishGitHub, files
 import { getSecret, setSecret, migrateLegacyTokens, isKnownDestination, addKnownDestination } from './storage.js';
 import { log } from './log.js';
 import { __, __n } from '../core/ui-i18n.js';
+import { assets } from './assets.js';
 
 let exportZipHandler = null;
 export function setZipHandler(fn) { exportZipHandler = fn; }
@@ -94,7 +95,7 @@ async function destinationOk(kind, target, action) {
 /* Fichiers du site (polices comprises) ; publish.php écrit lui-même le .htaccess, il n'est pas dans le paquet */
 async function siteFiles() {
   const fontData = await loadFontData(state.site);
-  return renderSite(state.site, { fontData, lastmod: new Date(state.lastTime || Date.now()).toISOString().slice(0, 10) }).files;
+  return renderSite(state.site, { fontData, lastmod: new Date(state.lastTime || Date.now()).toISOString().slice(0, 10), assets }).files;
 }
 
 async function siteZip(version = PUBLISH_VERSION) {

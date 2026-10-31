@@ -10,6 +10,27 @@ import { saveProject } from './storage.js';
 import { applyOps } from '../core/collab.js';
 import { log } from './log.js';
 import { __, __c } from '../core/ui-i18n.js';
+import { assets, absorb, prune } from './assets.js';
+
+/*
+ * Historique (cycle 27) : les états partagent les images (site.assets, octets dans editor/assets.js) ; il est borné en
+ * pas et en octets (taille JSON des états, images exclues).
+ */
+export const HISTORY_MAX_STEPS = 150;
+export const HISTORY_MAX_BYTES = 40e6;
+const stateBytes = site => JSON.stringify({ ...site, assets: undefined, fonts: undefined, icon: undefined }).length;
+export const historyBytes = () => [...state.past, ...state.future].reduce((n, p) => n + (p.bytes || 0), 0);
+function trimHistory() {
+  let total = historyBytes();
+  let dropped = 0;
+  while (state.past.length > HISTORY_MAX_STEPS || (state.past.length > 1 && total > HISTORY_MAX_BYTES)) {
+    total -= state.past.shift().bytes || 0;
+    dropped++;
+  }
+  if (dropped && !pinned) prune([state.site, ...state.past.map(p => p.site), ...state.future.map(p => p.site)]);
+}
+/* Un instantané de l'éditeur (auto-test) est gardé : ses images ne quittent pas la mémoire tant qu'il n'est pas rendu */
+let pinned = null;
 
 export const state = {
   ready: false,
@@ -93,13 +114,13 @@ export function commit(site, opts = {}) {
   const merge = opts.key && opts.key === state.lastKey && (opts.sticky || now - state.lastTime < 1500);
   log.debug('store.commit', merge ? __('Modification (même étape d’annulation)') : __('Modification'), { key: opts.key, source: opts.source, merged: !!merge || undefined, past: state.past.length + (merge ? 0 : 1), page: state.pageId, edit: state.editTarget?.kind });
   if (!merge) {
-    state.past.push({ site: state.site, selected: state.selected });
-    if (state.past.length > 150) state.past.shift();
+    state.past.push({ site: state.site, selected: state.selected, bytes: stateBytes(state.site) });
+    trimHistory();
   }
   state.lastKey = opts.key || null;
   state.lastTime = now;
   state.future = [];
-  state.site = site;
+  state.site = site.assets !== state.site?.assets ? absorb(site) : site;
   fixSelection();
   scheduleSave();
   emit('doc', opts);
@@ -113,7 +134,7 @@ export function applyRemote(site, ops) {
     state.past = state.past.map(p => ({ ...p, site: applyOps(p.site, ops) }));
     state.future = state.future.map(p => ({ ...p, site: applyOps(p.site, ops) }));
   }
-  state.site = site;
+  state.site = absorb(site);
   state.lastKey = null;
   log.debug('store.remote', __('Modifications d’un autre participant appliquées'), { ops: ops?.length || 0, history: state.past.length });
   fixSelection();
@@ -149,7 +170,7 @@ export function clearReview(site, nodeId, field, lang) {
 export function undo() {
   if (!state.past.length || state.readOnly) { log.debug('store.undo-none', state.readOnly ? __('Annuler : impossible en mode relecture') : __('Annuler : rien à annuler')); return false; }
   log.info('store.undo', __c('undo', 'Annuler'), { left: state.past.length - 1, redo: state.future.length + 1 });
-  state.future.push({ site: state.site, selected: state.selected });
+  state.future.push({ site: state.site, selected: state.selected, bytes: stateBytes(state.site) });
   const prev = state.past.pop();
   state.site = prev.site;
   state.selected = prev.selected;
@@ -164,7 +185,7 @@ export function undo() {
 export function redo() {
   if (!state.future.length || state.readOnly) { log.debug('store.redo-none', __('Rétablir : rien à rétablir')); return false; }
   log.info('store.redo', __('Rétablir'), { left: state.future.length - 1 });
-  state.past.push({ site: state.site, selected: state.selected });
+  state.past.push({ site: state.site, selected: state.selected, bytes: stateBytes(state.site) });
   const next = state.future.pop();
   state.site = next.site;
   state.selected = next.selected;
@@ -234,10 +255,12 @@ const VIEW_KEYS = ['pageId', 'selected', 'editTarget', 'device', 'lang', 'styleS
 export function captureState() {
   const snap = { site: state.site, past: [...state.past], future: [...state.future], multi: [...state.multi], collapsed: [...state.collapsed] };
   for (const k of VIEW_KEYS) snap[k] = state[k];
+  pinned = snap;
   return snap;
 }
 export function restoreState(snap) {
   log.info('store.restore', __('Éditeur remis dans l’état photographié'), { name: snap.site?.name, pages: snap.site?.pages?.length, past: snap.past.length, future: snap.future.length });
+  pinned = null;
   state.site = snap.site;
   state.past = [...snap.past];
   state.future = [...snap.future];
@@ -252,8 +275,8 @@ export function restoreState(snap) {
 
 export function load(site, { keepHistory = false } = {}) {
   log.info('store.load', __('Projet chargé dans l’éditeur'), { name: site?.name, pages: site?.pages?.length, keepHistory });
-  if (keepHistory && state.site) { state.past.push({ site: state.site, selected: state.selected }); state.future = []; }
-  state.site = normalizeSite(site);
+  if (keepHistory && state.site) { state.past.push({ site: state.site, selected: state.selected, bytes: stateBytes(state.site) }); state.future = []; }
+  state.site = normalizeSite(site, { assets });
   state.pageId = site.pages[0].id;
   state.selected = null;
   state.multi.clear();
@@ -262,3 +285,6 @@ export function load(site, { keepHistory = false } = {}) {
   scheduleSave();
   emit('view', { reload: true });
 }
+
+/* Tests unitaires : arrête l'enregistrement différé (IndexedDB absent dans Node) */
+export function stopSaving() { clearTimeout(saveTimer); }

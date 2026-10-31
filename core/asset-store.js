@@ -83,6 +83,11 @@ export function createAssetStore({ objectUrls } = {}) {
       if (!urls.has(k)) urls.set(k, URL.createObjectURL(new Blob([dataUrlToBytes(got.dataUrl)], { type: got.mime })));
       return urls.get(k);
     },
+    /* Octets complets d'une image : { dataUrl, variants: [{ w, dataUrl }] } (envoi à un pair) */
+    entry(id) {
+      const e = entries.get(id);
+      return e ? { dataUrl: e.dataUrl, variants: [...e.variants].map(([w, dataUrl]) => ({ w, dataUrl })) } : null;
+    },
     has: id => entries.has(id),
     delete(id) { revoke(id); return entries.delete(id); },
     list: () => [...entries.keys()],

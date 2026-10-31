@@ -4,7 +4,7 @@
  * applique et relaie les modifications. Chaque lien : hello (clé publique, invitation, défi) → auth (défi signé)
  * → sync (table des versions) → snapshot ou delta → ops / presence.
  */
-import { createReplica, validateOps, getAt } from './collab.js';
+import { createReplica, validateOps, getAt, validAssetBytes } from './collab.js';
 import { verifyInvite, signChallenge, verifyChallenge, fingerprint, checkReviewOps } from './review.js';
 import { __, __n, N_ } from './ui-i18n.js';
 
@@ -72,8 +72,14 @@ export class CollabNode {
    *   sanitizeDoc(doc) → { doc, changed } : textes assainis d'un projet reçu (snapshot) ou obtenu après des opérations reçues ;
    *   validateDoc(doc) → { ok, errors }  : un snapshot invalide est refusé sans toucher au projet local.
    */
-  constructor({ identity, role, secret, roomId, invite = null, replica, onRemote = () => {}, onError = () => {}, onPeers = () => {}, onPresence = () => {}, log = NOLOG, sanitizeDoc = null, validateDoc = null }) {
-    Object.assign(this, { identity, role, secret, roomId, invite, replica, onRemote, onError, onPeers, onPresence, log, sanitizeDoc, validateDoc });
+  /*
+   * Images (cycle 27) : les opérations ne portent que les métadonnées ; les octets voyagent dans des messages « asset »,
+   * envoyés avant les opérations qui ajoutent l'image et avant un projet complet, ou demandés (« asset-req ») s'ils
+   * manquent. assets : magasin d'images (core/asset-store.js : entry, has, put) ; onAsset(id) : octets reçus.
+   */
+  constructor({ identity, role, secret, roomId, invite = null, replica, onRemote = () => {}, onError = () => {}, onPeers = () => {}, onPresence = () => {}, log = NOLOG, sanitizeDoc = null, validateDoc = null, assets = null, onAsset = null }) {
+    Object.assign(this, { identity, role, secret, roomId, invite, replica, onRemote, onError, onPeers, onPresence, log, sanitizeDoc, validateDoc, assets, onAsset });
+    this.asked = new Set();
     this.links = new Map();
     this.presence = null;
     this.color = colorFor(identity.fp);
@@ -196,6 +202,7 @@ export class CollabNode {
           this._send(st, { t: 'delta', ops, summary: this.replica.summary() });
         } else {
           const snapshot = this.replica.snapshot();
+          this._sendAssets(st, Object.keys(snapshot.doc?.assets || {}));
           log.info('collab.sync.snapshot', __('Envoi du projet complet à {name}', { name: st.name }), { name: st.name, why: m.docId ? 'autre document' : 'nouveau participant', pages: snapshot.doc?.pages?.length, kb: Math.round(JSON.stringify(snapshot).length / 1024) });
           this._send(st, { t: 'snapshot', snapshot });
         }
@@ -214,6 +221,22 @@ export class CollabNode {
         if (got.changed) log.warn('collab.snapshot.sanitized', __n(got.changed, '{n} texte du projet reçu de {name} nettoyé (balise ou attribut hors liste blanche)', '{n} textes du projet reçu de {name} nettoyés (balises ou attributs hors liste blanche)', { name: st.name }), { from: st.name, changed: got.changed });
         log.info('collab.snapshot', __('Projet reçu de {name}', { name: st.name }), { docId: sn.docId, pages: got.doc?.pages?.length, comments: Object.keys(got.doc?.review?.comments || {}).length });
         this.onRemote(this.replica.doc, null, { snapshot: true, from: st.fp });
+        this._askMissing(st, this.replica.doc);
+        return;
+      }
+      case 'asset': {
+        if (st.role === 'reviewer' || !validAssetBytes(m.id, m.data)) { log.warn('collab.asset.refused', __('Image reçue de {name} refusée (relecteur ou image non valide)', { name: st.name }), { from: st.name, role: st.role, id: String(m.id).slice(0, 60) }); return; }
+        this.assets?.put(m.id, { dataUrl: m.data.dataUrl, variants: m.data.variants || [] });
+        this.asked.delete(m.id);
+        log.debug('collab.asset.in', __('Image reçue de {name}', { name: st.name }), { from: st.name, id: m.id, kb: Math.round(m.data.dataUrl.length * 0.75 / 1024), variants: m.data.variants?.length || 0 });
+        if (this.isHost) this._broadcast({ t: 'asset', id: m.id, data: m.data }, st.link);
+        this.onAsset?.(m.id);
+        return;
+      }
+      case 'asset-req': {
+        const ids = (Array.isArray(m.ids) ? m.ids : []).filter(id => typeof id === 'string').slice(0, 500);
+        log.debug('collab.asset.req', __n(ids.length, '{name} demande {n} image', '{name} demande {n} images', { name: st.name }), { from: st.name, n: ids.length });
+        this._sendAssets(st, ids);
         return;
       }
       case 'delta': {
@@ -292,14 +315,44 @@ export class CollabNode {
     log.debug('collab.ops.in', applied.length < v2.ok.length ? __('{applied} modification(s) de {name} appliquée(s) ({skipped} déjà connue(s) ou plus ancienne(s))', { name: st.name, applied: applied.length, skipped: v2.ok.length - applied.length }) : __n(applied.length, '{n} modification de {name} appliquée', '{n} modifications de {name} appliquées', { name: st.name }), { name: st.name, received: v2.ok.length, applied: applied.length, review: applied.filter(o => o.p?.[0] === 'review').length || undefined });
     if (applied.length) {
       this.onRemote(doc, applied, { from: st.fp });
+      this._askMissing(st, doc);
       if (this.isHost) { this._broadcast({ t: 'ops', ops: applied }, st.link); log.trace('collab.ops.relay', __('Modifications relayées aux autres participants'), { n: applied.length }); }
     }
   }
 
   _me(p) { return { ...p, name: this.identity.name, color: this.color, role: this.role }; }
 
+  /* Octets des images données (celles que ce navigateur a) envoyés à un participant, ou à tous (st = null) */
+  _sendAssets(st, ids) {
+    let n = 0;
+    for (const id of ids) {
+      const data = this.assets?.entry(id);
+      if (!data) continue;
+      if (st) this._send(st, { t: 'asset', id, data }); else this._broadcast({ t: 'asset', id, data });
+      n++;
+    }
+    if (n) this.log.debug('collab.asset.out', __n(n, '{n} image envoyée', '{n} images envoyées'), { n, to: st?.name || 'tous' });
+  }
+
+  /* Images du projet dont ce navigateur n'a pas les octets : demandées une fois à l'expéditeur */
+  _askMissing(st, doc) {
+    if (!this.assets) return;
+    const ids = Object.keys(doc?.assets || {}).filter(id => !this.assets.has(id) && !this.asked.has(id));
+    if (!ids.length) return;
+    ids.forEach(id => this.asked.add(id));
+    this.log.debug('collab.asset.ask', __n(ids.length, '{n} image manquante demandée à {name}', '{n} images manquantes demandées à {name}', { name: st.name }), { n: ids.length, to: st.name });
+    this._send(st, { t: 'asset-req', ids });
+  }
+
   async local(next) {
     const ops = this.replica.local(next);
+    const added = new Set();
+    for (const op of ops) {
+      if (op.p[0] !== 'assets' || op.del || op.order) continue;
+      if (op.p.length === 1) Object.keys(op.v || {}).forEach(id => added.add(id));
+      else if (op.p.length === 2) added.add(op.p[1]);
+    }
+    if (added.size) this._sendAssets(null, [...added]);
     if (ops.length) {
       const to = [...this.links.values()].filter(s => s.authed).length;
       this.log.debug('collab.ops.out', __('{n} modification(s) envoyée(s) à {to} participant(s)', { n: ops.length, to }), { n: ops.length, to, review: ops.filter(o => o.p?.[0] === 'review').length || undefined });
