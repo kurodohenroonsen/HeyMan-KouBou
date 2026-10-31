@@ -2,7 +2,7 @@
 
 Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire, par domaine. Fichier généré par `node tools/guide-index.mjs` à partir du code source : il est toujours à jour avec le code.
 
-**950 codes** dans 44 domaines.
+**973 codes** dans 47 domaines.
 
 | Domaine | Codes |
 |---|---|
@@ -18,6 +18,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | [`collab`](#collab) | 76 |
 | [`collection`](#collection) | 42 |
 | [`ctxmenu`](#ctxmenu) | 4 |
+| [`demo`](#demo) | 12 |
 | [`dnd`](#dnd) | 8 |
 | [`edit`](#edit) | 36 |
 | [`export`](#export) | 4 |
@@ -28,10 +29,11 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | [`library`](#library) | 3 |
 | [`log`](#log) | 8 |
 | [`net`](#net) | 4 |
+| [`onboarding`](#onboarding) | 6 |
 | [`page`](#page) | 30 |
 | [`perf`](#perf) | 1 |
 | [`php`](#php) | 50 |
-| [`project`](#project) | 12 |
+| [`project`](#project) | 13 |
 | [`publish`](#publish) | 30 |
 | [`review`](#review) | 18 |
 | [`rtc`](#rtc) | 53 |
@@ -46,6 +48,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | [`structure`](#structure) | 4 |
 | [`style`](#style) | 27 |
 | [`template`](#template) | 3 |
+| [`tour`](#tour) | 4 |
 | [`translate`](#translate) | 21 |
 | [`ui`](#ui) | 18 |
 | [`version`](#version) | 19 |
@@ -56,7 +59,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | Code | Niveau | Chapitre | Source |
 |---|---|---|---|
 | `action.add` | INFO | [2](02-edition.md) [3](03-style-design.md) | `editor/actions.js` |
-| `action.add-section` | INFO | [2](02-edition.md) [3](03-style-design.md) | `editor/actions.js` |
+| `action.add-section` | INFO | [1](01-demarrage-projet.md) [2](02-edition.md) [3](03-style-design.md) | `editor/actions.js` |
 | `action.component-cancel` | INFO | [3](03-style-design.md) | `editor/actions.js` |
 | `action.component-create` | INFO | [2](02-edition.md) [3](03-style-design.md) | `editor/actions.js` |
 | `action.component-delete` | INFO | [3](03-style-design.md) | `editor/templates.js` |
@@ -463,6 +466,23 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `ctxmenu.none` | DEBUG | [2](02-edition.md) | `editor/ctxmenu.js` |
 | `ctxmenu.open` | DEBUG | [2](02-edition.md) [3](03-style-design.md) | `editor/ctxmenu.js` |
 
+## demo
+
+| Code | Niveau | Chapitre | Source |
+|---|---|---|---|
+| `demo.cancel` | INFO | [1](01-demarrage-projet.md) | `editor/demo-ui.js` |
+| `demo.done` | INFO | [1](01-demarrage-projet.md) | `editor/demo-ui.js` |
+| `demo.error` | ERROR | [1](01-demarrage-projet.md) | `editor/demo-ui.js` |
+| `demo.fail` | ERROR | [1](01-demarrage-projet.md) | `editor/demo-ui.js` |
+| `demo.keep` | INFO | [1](01-demarrage-projet.md) | `editor/demo-ui.js` |
+| `demo.ok` | INFO | [1](01-demarrage-projet.md) | `editor/demo-ui.js` |
+| `demo.pause` | INFO | [1](01-demarrage-projet.md) | `editor/demo-ui.js` |
+| `demo.resume` | INFO | [1](01-demarrage-projet.md) | `editor/demo-ui.js` |
+| `demo.speed` | DEBUG | [1](01-demarrage-projet.md) | `editor/demo-ui.js` |
+| `demo.start` | INFO | [1](01-demarrage-projet.md) | `editor/demo-ui.js` |
+| `demo.step` | INFO | [1](01-demarrage-projet.md) | `editor/demo-ui.js` |
+| `demo.stop` | INFO | [1](01-demarrage-projet.md) | `editor/demo-ui.js` |
+
 ## dnd
 
 | Code | Niveau | Chapitre | Source |
@@ -470,7 +490,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `dnd.autoscroll` | TRACE | [2](02-edition.md) | `editor/dnd.js` |
 | `dnd.cancel` | INFO | [2](02-edition.md) | `editor/dnd.js` |
 | `dnd.fail` | ERROR | [2](02-edition.md) | `editor/dnd.js` |
-| `dnd.ok` | INFO | [2](02-edition.md) [3](03-style-design.md) | `editor/dnd.js` |
+| `dnd.ok` | INFO | [1](01-demarrage-projet.md) [2](02-edition.md) [3](03-style-design.md) | `editor/dnd.js` |
 | `dnd.refused` | WARN | [2](02-edition.md) | `editor/dnd.js` |
 | `dnd.start` | INFO | [2](02-edition.md) [3](03-style-design.md) | `editor/dnd.js` |
 | `dnd.target` | TRACE | [2](02-edition.md) | `editor/dnd.js` |
@@ -510,7 +530,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `edit.no-text` | DEBUG | [2](02-edition.md) | `editor/inline.js` |
 | `edit.node-gone` | WARN | [2](02-edition.md) | `editor/inline.js` |
 | `edit.not-editable` | DEBUG | [2](02-edition.md) | `editor/inline.js` |
-| `edit.ok` | INFO | [2](02-edition.md) [3](03-style-design.md) [15](15-auto-test.md) | `editor/inline.js` |
+| `edit.ok` | INFO | [1](01-demarrage-projet.md) [2](02-edition.md) [3](03-style-design.md) [15](15-auto-test.md) | `editor/inline.js` |
 | `edit.paste` | DEBUG | [2](02-edition.md) | `editor/richedit.js` |
 | `edit.paste-file` | WARN | [2](02-edition.md) | `editor/richedit.js` |
 | `edit.paste-rich` | DEBUG | [2](02-edition.md) | `editor/richedit.js` |
@@ -522,7 +542,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | Code | Niveau | Chapitre | Source |
 |---|---|---|---|
 | `export.zip.fail` | ERROR | [8](08-verifier-exporter-publier.md) | `editor/app.js` |
-| `export.zip.ok` | INFO | [8](08-verifier-exporter-publier.md) | `editor/app.js` |
+| `export.zip.ok` | INFO | [1](01-demarrage-projet.md) [8](08-verifier-exporter-publier.md) | `editor/app.js` |
 | `export.zip.render` | DEBUG | [8](08-verifier-exporter-publier.md) | `editor/app.js` |
 | `export.zip.start` | INFO | [8](08-verifier-exporter-publier.md) | `editor/app.js` |
 
@@ -562,7 +582,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `image.import.encode` | DEBUG | [3](03-style-design.md) [4](04-pages-images-contenus.md) | `editor/images.js` |
 | `image.import.fail` | ERROR | [3](03-style-design.md) [4](04-pages-images-contenus.md) [12](12-contenus-intelligents.md) | `editor/images.js` |
 | `image.import.heavy` | WARN | [4](04-pages-images-contenus.md) | `editor/images.js` |
-| `image.import.ok` | INFO | [3](03-style-design.md) [4](04-pages-images-contenus.md) [12](12-contenus-intelligents.md) | `editor/images.js` |
+| `image.import.ok` | INFO | [1](01-demarrage-projet.md) [3](03-style-design.md) [4](04-pages-images-contenus.md) [12](12-contenus-intelligents.md) | `editor/images.js` |
 | `image.import.resize` | DEBUG | [4](04-pages-images-contenus.md) | `editor/images.js` |
 | `image.import.start` | INFO | [3](03-style-design.md) [4](04-pages-images-contenus.md) | `editor/images.js` |
 | `image.import.variant` | DEBUG | [3](03-style-design.md) [4](04-pages-images-contenus.md) | `editor/images.js` |
@@ -578,13 +598,13 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `inspector.alt-ai-ok` | INFO | [3](03-style-design.md) | `editor/inspector.js` |
 | `inspector.bind` | INFO | [3](03-style-design.md) | `editor/inspector.js` |
 | `inspector.css-refused` | WARN | [3](03-style-design.md) | `editor/inspector.js` |
-| `inspector.field` | DEBUG | [3](03-style-design.md) [4](04-pages-images-contenus.md) | `editor/fields.js` |
+| `inspector.field` | DEBUG | [1](01-demarrage-projet.md) [3](03-style-design.md) [4](04-pages-images-contenus.md) | `editor/fields.js` |
 | `inspector.field-empty` | DEBUG | [3](03-style-design.md) | `editor/fields.js` |
 | `inspector.image-none` | DEBUG | [3](03-style-design.md) | `editor/fields.js` |
 | `inspector.image-remove` | DEBUG | [3](03-style-design.md) [4](04-pages-images-contenus.md) | `editor/fields.js` |
 | `inspector.image-url` | DEBUG, WARN | [3](03-style-design.md) [4](04-pages-images-contenus.md) | `editor/fields.js` |
 | `inspector.image.fail` | ERROR | [3](03-style-design.md) [4](04-pages-images-contenus.md) | `editor/fields.js` |
-| `inspector.image.ok` | INFO | [3](03-style-design.md) [4](04-pages-images-contenus.md) | `editor/fields.js` |
+| `inspector.image.ok` | INFO | [1](01-demarrage-projet.md) [3](03-style-design.md) [4](04-pages-images-contenus.md) | `editor/fields.js` |
 | `inspector.image.start` | INFO | [3](03-style-design.md) [4](04-pages-images-contenus.md) | `editor/fields.js` |
 | `inspector.image.webp` | DEBUG | [3](03-style-design.md) [4](04-pages-images-contenus.md) | `editor/fields.js` |
 | `inspector.layout` | INFO | [3](03-style-design.md) | `editor/inspector.js` |
@@ -624,6 +644,17 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `net.recovered` | INFO | [0](00-journal.md) | `editor/log.js` |
 | `net.request` | variable | [0](00-journal.md) [8](08-verifier-exporter-publier.md) [10](10-collaboration.md) | `editor/log.js` |
 | `net.response` | variable | [0](00-journal.md) [8](08-verifier-exporter-publier.md) | `editor/log.js` |
+
+## onboarding
+
+| Code | Niveau | Chapitre | Source |
+|---|---|---|---|
+| `onboarding.done` | INFO | [1](01-demarrage-projet.md) | `editor/onboarding-ui.js` |
+| `onboarding.go` | DEBUG | [1](01-demarrage-projet.md) | `editor/onboarding-ui.js` |
+| `onboarding.hide` | INFO | [1](01-demarrage-projet.md) | `editor/onboarding-ui.js` |
+| `onboarding.show` | INFO | [1](01-demarrage-projet.md) | `editor/onboarding-ui.js` |
+| `onboarding.step-done` | INFO | [1](01-demarrage-projet.md) | `editor/onboarding-ui.js` |
+| `onboarding.toggle` | DEBUG | [1](01-demarrage-projet.md) | `editor/onboarding-ui.js` |
 
 ## page
 
@@ -725,6 +756,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 
 | Code | Niveau | Chapitre | Source |
 |---|---|---|---|
+| `project.already-saved` | INFO | [1](01-demarrage-projet.md) [2](02-edition.md) | `editor/app.js` |
 | `project.cancel` | INFO | [1](01-demarrage-projet.md) | `editor/app.js`, `editor/new-site-ui.js` |
 | `project.demo` | INFO | [1](01-demarrage-projet.md) | `editor/app.js` |
 | `project.export-json` | INFO | [1](01-demarrage-projet.md) [2](02-edition.md) | `editor/app.js` |
@@ -745,7 +777,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `publish.first-origin` | INFO | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
 | `publish.github.cancel` | INFO | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
 | `publish.github.fail` | ERROR | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
-| `publish.github.ok` | INFO | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
+| `publish.github.ok` | INFO | [1](01-demarrage-projet.md) [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
 | `publish.github.package` | INFO | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
 | `publish.github.start` | INFO | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
 | `publish.github.upload` | DEBUG | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
@@ -753,7 +785,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `publish.php.cancel` | INFO | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
 | `publish.php.fail` | ERROR | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
 | `publish.php.generate` | INFO | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
-| `publish.php.ok` | INFO | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
+| `publish.php.ok` | INFO | [1](01-demarrage-projet.md) [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
 | `publish.php.package` | INFO | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
 | `publish.php.partial` | ERROR | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
 | `publish.php.rejected` | WARN | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
@@ -861,7 +893,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `selftest.ai-recheck-fail` | DEBUG | [15](15-auto-test.md) | `editor/selftest.js` |
 | `selftest.auto` | INFO | [15](15-auto-test.md) | `editor/selftest-ui.js` |
 | `selftest.backup.fail` | ERROR | [15](15-auto-test.md) | `editor/selftest-safe.js` |
-| `selftest.backup.ok` | INFO | [15](15-auto-test.md) | `editor/selftest-safe.js` |
+| `selftest.backup.ok` | INFO | [1](01-demarrage-projet.md) [15](15-auto-test.md) | `editor/selftest-safe.js` |
 | `selftest.backup.slot` | DEBUG | [15](15-auto-test.md) | `editor/selftest-safe.js` |
 | `selftest.backup.start` | INFO | [15](15-auto-test.md) | `editor/selftest-safe.js` |
 | `selftest.case` | INFO | [15](15-auto-test.md) | `editor/selftest.js` |
@@ -882,7 +914,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `selftest.rollback.fail` | ERROR | [15](15-auto-test.md) | `editor/selftest-safe.js` |
 | `selftest.rollback.memory` | DEBUG | [15](15-auto-test.md) | `editor/selftest-safe.js` |
 | `selftest.rollback.none` | INFO | [15](15-auto-test.md) | `editor/selftest-safe.js` |
-| `selftest.rollback.ok` | INFO | [15](15-auto-test.md) | `editor/selftest-safe.js` |
+| `selftest.rollback.ok` | INFO | [1](01-demarrage-projet.md) [15](15-auto-test.md) | `editor/selftest-safe.js` |
 | `selftest.rollback.saved` | DEBUG | [15](15-auto-test.md) | `editor/selftest-safe.js` |
 | `selftest.rollback.start` | INFO | [15](15-auto-test.md) | `editor/selftest-safe.js` |
 | `selftest.run.aborted` | ERROR | [15](15-auto-test.md) | `editor/selftest.js` |
@@ -940,14 +972,14 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `settings.icon.not-square` | WARN | [4](04-pages-images-contenus.md) | `editor/images.js` |
 | `settings.icon.ok` | INFO | [4](04-pages-images-contenus.md) | `editor/images.js` |
 | `settings.icon.start` | INFO | [4](04-pages-images-contenus.md) | `editor/images.js` |
-| `settings.lang-add` | INFO | [4](04-pages-images-contenus.md) [5](05-langues-traductions.md) | `editor/panels.js` |
-| `settings.lang-remove` | INFO | [4](04-pages-images-contenus.md) [5](05-langues-traductions.md) | `editor/panels.js` |
+| `settings.lang-add` | INFO | [1](01-demarrage-projet.md) [4](04-pages-images-contenus.md) [5](05-langues-traductions.md) | `editor/panels.js` |
+| `settings.lang-remove` | INFO | [1](01-demarrage-projet.md) [4](04-pages-images-contenus.md) [5](05-langues-traductions.md) | `editor/panels.js` |
 | `settings.layout-customize` | INFO | [3](03-style-design.md) [4](04-pages-images-contenus.md) | `editor/panels.js` |
 | `settings.layout-edit` | INFO | [3](03-style-design.md) [4](04-pages-images-contenus.md) | `editor/panels.js` |
 | `settings.layout-reset` | INFO | [3](03-style-design.md) [4](04-pages-images-contenus.md) | `editor/panels.js` |
-| `settings.logo` | INFO | [3](03-style-design.md) [4](04-pages-images-contenus.md) | `editor/panels.js` |
+| `settings.logo` | INFO | [1](01-demarrage-projet.md) [3](03-style-design.md) [4](04-pages-images-contenus.md) | `editor/panels.js` |
 | `settings.logo-ignored` | WARN | [3](03-style-design.md) [4](04-pages-images-contenus.md) | `editor/panels.js` |
-| `settings.name` | INFO, TRACE | [4](04-pages-images-contenus.md) | `editor/panels.js` |
+| `settings.name` | INFO, TRACE | [1](01-demarrage-projet.md) [4](04-pages-images-contenus.md) | `editor/panels.js` |
 | `settings.preset-delete` | INFO | [3](03-style-design.md) [4](04-pages-images-contenus.md) | `editor/panels.js` |
 | `settings.preset-delete-cancel` | DEBUG | [3](03-style-design.md) [4](04-pages-images-contenus.md) | `editor/panels.js` |
 | `settings.preset-duplicate` | INFO | [3](03-style-design.md) [4](04-pages-images-contenus.md) | `editor/panels.js` |
@@ -1139,7 +1171,16 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 |---|---|---|---|
 | `template.component` | DEBUG | [3](03-style-design.md) | `editor/templates.js` |
 | `template.fail` | ERROR | [3](03-style-design.md) | `editor/templates.js` |
-| `template.insert` | INFO | [3](03-style-design.md) | `editor/templates.js` |
+| `template.insert` | INFO | [1](01-demarrage-projet.md) [3](03-style-design.md) | `editor/templates.js` |
+
+## tour
+
+| Code | Niveau | Chapitre | Source |
+|---|---|---|---|
+| `tour.done` | INFO | [1](01-demarrage-projet.md) | `editor/tour-ui.js` |
+| `tour.skip` | INFO | [1](01-demarrage-projet.md) | `editor/tour-ui.js` |
+| `tour.start` | INFO | [1](01-demarrage-projet.md) | `editor/tour-ui.js` |
+| `tour.step` | DEBUG | [1](01-demarrage-projet.md) | `editor/tour-ui.js` |
 
 ## translate
 
@@ -1210,7 +1251,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `version.restore.safety-missing` | WARN | [4](04-pages-images-contenus.md) | `editor/versions-ui.js` |
 | `version.restore.start` | INFO | [4](04-pages-images-contenus.md) | `editor/versions-ui.js` |
 | `version.save.fail` | ERROR | [4](04-pages-images-contenus.md) | `editor/versions-ui.js` |
-| `version.save.ok` | INFO | [4](04-pages-images-contenus.md) | `editor/versions-ui.js` |
+| `version.save.ok` | INFO | [1](01-demarrage-projet.md) [4](04-pages-images-contenus.md) | `editor/versions-ui.js` |
 | `version.save.start` | INFO | [4](04-pages-images-contenus.md) | `editor/versions-ui.js` |
 | `version.unnamed` | DEBUG | [4](04-pages-images-contenus.md) | `editor/versions-ui.js` |
 

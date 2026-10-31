@@ -18,6 +18,8 @@ Le projet s'enregistre tout seul dans le navigateur (IndexedDB ; les images sont
 ## Guide d'utilisation
 
 > **Le guide complet, à lire dans le navigateur** : [`guide/`](guide/index.html) (français, anglais, japonais ; recherche, captures d’écran, détails techniques repliés). Dans l’éditeur : bouton **❓**, **Fichier → Guide d’utilisation**, **F1** (dans une fenêtre, F1 ouvre son chapitre) ou Ctrl+K « Guide ». Pour commencer : *Bienvenue* (ce que l’atelier fait pour vous), *Prise en main* (deux pages d’un site touristique de Kumakōgen, pas à pas) et *Les widgets*. Les sources Markdown, avec ce que le journal doit montrer dans chaque cas, sont dans [`docs/guide/`](docs/guide/README.md). Ce qui suit en est le résumé.
+- **Première visite** : visite guidée de l'écran en 5 étapes (rejouable par ❓ ▾, Fichier ou Ctrl+K) et liste « Pour commencer » de 7 premiers pas qui se cochent seuls, en tête de l'onglet Widgets.
+- **Fichier → Voir une démonstration** : Atelier construit lui-même, avec ses vrais boutons, le site de Kumakōgen (2 pages, 3 langues, 23 widgets) en ~4 minutes ; ton site revient intact, ou tu gardes celui-ci comme point de départ.
 
 ### L'écran
 - **En haut** (une ligne, icônes SVG) : nom du site, page affichée, annuler / rétablir, appareil (ordinateur, tablette, mobile), langue affichée, badge « à traduire », Traductions, SEO, à plusieurs, commentaires, IA locale, guide, journal, menu Fichier, **Exporter**, **Publier**.
@@ -188,7 +190,7 @@ Renseignez l'**adresse du site** (panneau Site) avant l'export : elle sert aux l
 | « - » ou « 1. » + espace, Tab | Liste à puces ou numérotée, imbriquer |
 | Ctrl+0 / Ctrl+= / Ctrl+- | Zoom : ajuster / plus grand / plus petit |
 | Ctrl+Maj+F | Replier ou afficher les panneaux |
-| Ctrl+S | Enregistrer le projet (.json) |
+| Ctrl+S | Rappel « Déjà enregistré » (le fichier .json : Fichier → Enregistrer le projet) |
 | Ctrl+Alt+J | Journal de débogage |
 
 ## Pour les développeurs

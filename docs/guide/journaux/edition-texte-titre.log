@@ -1,17 +1,18 @@
-20:51:14.124 +9.74s DEBUG store.select Sélection : heading {"id":"n_1z1f523j4z","type":"heading"}
-20:51:14.146 +9.76s DEBUG edit.dblclick Double-clic sur un texte de la page {"key":"text","id":"n_1z1f523j4z"}
-20:51:14.147 +9.76s INFO  edit.start [edit#1] Édition dans la page : heading · text {"id":"n_1z1f523j4z","type":"heading","key":"text","field":"inline","lang":"fr","chars":56}
-20:51:14.343 +9.96s DEBUG canvas.key Raccourci dans la page : Ctrl+A {"key":"Ctrl+A","in":"texte","selected":"n_1z1f523j4z"}
-20:51:14.353 +9.97s DEBUG store.commit Modification {"key":"edit-n_1z1f523j4z-text-1","source":"canvas","past":5,"page":"p_fg7hya37"}
-20:51:14.445 +10.06s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_1z1f523j4z-text-1","source":"canvas","merged":true,"past":5,"page":"p_fg7hya37"}
-20:51:14.494 +10.11s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_1z1f523j4z-text-1","source":"canvas","merged":true,"past":5,"page":"p_fg7hya37"}
-20:51:14.563 +10.18s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_1z1f523j4z-text-1","source":"canvas","merged":true,"past":5,"page":"p_fg7hya37"}
-20:51:14.593 +10.21s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_1z1f523j4z-text-1","source":"canvas","merged":true,"past":5,"page":"p_fg7hya37"}
-20:51:14.669 +10.29s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_1z1f523j4z-text-1","source":"canvas","merged":true,"past":5,"page":"p_fg7hya37"}
-20:51:14.711 +10.33s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_1z1f523j4z-text-1","source":"canvas","merged":true,"past":5,"page":"p_fg7hya37"}
-20:51:14.761 +10.38s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_1z1f523j4z-text-1","source":"canvas","merged":true,"past":5,"page":"p_fg7hya37"}
-20:51:14.837 +10.45s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_1z1f523j4z-text-1","source":"canvas","merged":true,"past":5,"page":"p_fg7hya37"}
-20:51:14.890 +10.51s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_1z1f523j4z-text-1","source":"canvas","merged":true,"past":5,"page":"p_fg7hya37"}
-20:51:14.974 +10.59s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_1z1f523j4z-text-1","source":"canvas","merged":true,"past":5,"page":"p_fg7hya37"}
-20:51:15.020 +10.64s INFO  edit.ok [edit#1 · 873 ms] Édition terminée : texte enregistré (une seule étape d’annulation) {"id":"n_1z1f523j4z","key":"text","changed":true,"chars":11,"before":56,"inputs":11}
-20:51:15.026 +10.64s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"edit-done","mode":"contenu","ms":4}
+12:57:14.912 +8.69s DEBUG store.select Sélection : heading {"id":"n_21454v0620","type":"heading"}
+12:57:14.929 +8.70s DEBUG edit.dblclick Double-clic sur un texte de la page {"key":"text","id":"n_21454v0620"}
+12:57:14.929 +8.70s INFO  edit.start [edit#1] Édition dans la page : heading · text {"id":"n_21454v0620","type":"heading","key":"text","field":"inline","lang":"fr","chars":56}
+12:57:15.093 +8.87s DEBUG canvas.key Raccourci dans la page : Ctrl+A {"key":"Ctrl+A","in":"texte","selected":"n_21454v0620"}
+12:57:15.101 +8.88s DEBUG store.commit Modification {"key":"edit-n_21454v0620-text-1","source":"canvas","past":5,"page":"p_fptbpb4e"}
+12:57:15.133 +8.91s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_21454v0620-text-1","source":"canvas","merged":true,"past":5,"page":"p_fptbpb4e"}
+12:57:15.165 +8.94s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_21454v0620-text-1","source":"canvas","merged":true,"past":5,"page":"p_fptbpb4e"}
+12:57:15.186 +8.96s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_21454v0620-text-1","source":"canvas","merged":true,"past":5,"page":"p_fptbpb4e"}
+12:57:15.209 +8.98s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_21454v0620-text-1","source":"canvas","merged":true,"past":5,"page":"p_fptbpb4e"}
+12:57:15.225 +9.00s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_21454v0620-text-1","source":"canvas","merged":true,"past":5,"page":"p_fptbpb4e"}
+12:57:15.246 +9.02s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_21454v0620-text-1","source":"canvas","merged":true,"past":5,"page":"p_fptbpb4e"}
+12:57:15.291 +9.06s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_21454v0620-text-1","source":"canvas","merged":true,"past":5,"page":"p_fptbpb4e"}
+12:57:15.314 +9.09s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_21454v0620-text-1","source":"canvas","merged":true,"past":5,"page":"p_fptbpb4e"}
+12:57:15.327 +9.10s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_21454v0620-text-1","source":"canvas","merged":true,"past":5,"page":"p_fptbpb4e"}
+12:57:15.336 +9.11s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_21454v0620-text-1","source":"canvas","merged":true,"past":5,"page":"p_fptbpb4e"}
+12:57:15.352 +9.13s INFO  edit.ok [edit#1 · 423 ms] Édition terminée : texte enregistré (une seule étape d’annulation) {"id":"n_21454v0620","key":"text","changed":true,"chars":11,"before":56,"inputs":11}
+12:57:15.353 +9.13s INFO  onboarding.step-done Pour commencer : « Écrire un titre » fait (14 %) {"step":"heading","done":1,"total":7,"percent":14,"by":"edit.ok"}
+12:57:15.355 +9.13s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"edit-done","mode":"contenu","ms":2}

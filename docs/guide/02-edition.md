@@ -164,7 +164,7 @@ Ensuite, chaque modification **ne recharge pas** le canevas : seul le contenu es
 2. Déplacer : sélectionne l'élément, puis glisse-le (ou glisse sa poignée ✥) ; ou glisse sa ligne dans le panneau Structure.
 3. Une ligne bleue montre où il sera déposé ; lâche. Échap annule.
 
-**Ce que tu vois** : une vignette suit la souris ; la ligne bleue (ou un cadre pointillé pour un conteneur vide) indique la place ; après le dépôt, l'élément est sélectionné.
+**Ce que tu vois** : une vignette suit la souris ; la ligne bleue (ou un cadre pointillé pour un conteneur vide) indique la place ; après le dépôt, l'élément est sélectionné. Un widget lâché **sur la page elle-même** (page vide, ou marge entre deux sections) reçoit sa propre section, exactement comme le clic dans la bibliothèque. Au-dessus d'un endroit interdit, la vignette devient rouge et barrée (⊘).
 
 **Journal attendu** — ajouter en glissant ([`journaux/edition-ajouter-glisser.log`](journaux/edition-ajouter-glisser.log))
 ```log
@@ -187,6 +187,7 @@ Ensuite, chaque modification **ne recharge pas** le canevas : seul le contenu es
 | Situation | Ce qui change à l'écran | Journal |
 |---|---|---|
 | Réordonner dans le panneau Structure | ligne de dépôt dans l'arbre | `dnd.ok` avec `"where":"structure"` ([`journaux/edition-structure-reordonner.log`](journaux/edition-structure-reordonner.log)) |
+| Widget lâché sur une page vide ou entre deux sections | cadre pointillé sur la page ; une section (rangée, colonne) est créée autour du widget | `dnd.ok` « Ajouté dans une nouvelle section » avec `"wrapped":true` ([`journaux/premiere-visite-depot-page-vide.log`](journaux/premiere-visite-depot-page-vide.log)) |
 | Glisser un modèle ou un composant | | `dnd.start` `{"kind":"template"}` / `{"kind":"component"}` (chapitre 3) |
 | Lâcher à la même place | rien ne change | `dnd.cancel` (INFO) `{"reason":"noop"}` |
 | Lâcher hors du canevas et de la Structure | rien ne change | `dnd.cancel` `{"reason":"outside"}` ([`journaux/edition-glisser-dehors.log`](journaux/edition-glisser-dehors.log)) |
@@ -197,8 +198,8 @@ Ensuite, chaque modification **ne recharge pas** le canevas : seul le contenu es
 **Erreurs et refus**
 | Situation | Message affiché | Journal | Que faire |
 |---|---|---|---|
-| Emplacement interdit (une section sur un widget, un élément dans son propre contenu) | pas de ligne bleue ; au lâcher, rien ne change | `dnd.refused` (WARN) `{"reason":"forbidden"}` puis `dnd.cancel` ([`journaux/edition-glisser-refuse.log`](journaux/edition-glisser-refuse.log)) | une section va dans la page, une rangée dans une section, un widget dans une colonne |
-| Le cœur refuse le dépôt au dernier moment | rien ne change | `dnd.refused` `{"reason":"invalid"}` puis `dnd.cancel` | recommence un peu à côté ; si ça se répète, envoie le journal |
+| Emplacement interdit (une section sur un widget dans la Structure, un élément dans son propre contenu) | vignette rouge barrée ⊘ ; au lâcher, message « Impossible de déposer ici. … » qui dit où déposer ce type d'élément | `dnd.refused` (WARN) `{"reason":"forbidden"}` puis `dnd.cancel`, puis `ui.toast` (WARN) ([`journaux/premiere-visite-depot-refuse.log`](journaux/premiere-visite-depot-refuse.log)) | une section va sur la page, une rangée dans une section ou une colonne, une colonne dans une rangée, un widget dans une colonne ou sur la page |
+| Le cœur refuse le dépôt au dernier moment | même message | `dnd.refused` `{"reason":"invalid"}` puis `dnd.cancel`, `ui.toast` | recommence un peu à côté ; si ça se répète, envoie le journal |
 | Erreur pendant le dépôt | message rouge | `dnd.fail` (ERROR) avec `error` | Ctrl+Z puis envoie le journal |
 | L'élément glissé n'existe plus (composant supprimé entre-temps) | rien ne se passe | `dnd.unknown` (WARN) | rouvre le panneau Modèles |
 | Mode relecture | « Mode relecture… » | `store.readonly` (WARN) puis `dnd.cancel` `{"reason":"readonly"}` | — |
@@ -426,7 +427,7 @@ Ensuite, chaque modification **ne recharge pas** le canevas : seul le contenu es
 …
 05:10:44.821 +13.25s INFO  action.move Monté : heading {"id":"n_3l0j1o2032","type":"heading","delta":-1,"index":3}
 ```
-À vérifier : chaque touche donne `canvas.key` (ou `ui.key` si le focus est hors du canevas), puis la ligne `action.*` (INFO) avec l'identifiant et le type. Couper = `action.cut` puis `action.delete`. `action.delete` indique l'élément sélectionné ensuite (`next`).
+À vérifier : chaque touche donne `canvas.key` (ou `ui.key` si le focus est hors du canevas), puis la ligne `action.*` (INFO) avec l'identifiant et le type. Couper = `action.cut` puis `action.delete`. `action.delete` indique l'élément sélectionné ensuite (`next`). Depuis le cycle 26, toute suppression (Suppr, Retour arrière hors d'un texte en cours d'écriture, bouton ✕, menu) affiche le message « Supprimé : Titre — Ctrl+Z pour annuler » (`ui.toast`) ; couper n'affiche que son propre message.
 
 **Variantes**
 | Situation | Ce qui change à l'écran | Journal |
@@ -671,7 +672,7 @@ Ensuite, chaque modification **ne recharge pas** le canevas : seul le contenu es
 | Ctrl+V | texte en cours d'écriture | coller sans mise en forme | `canvas.key` Ctrl+V, `edit.paste` |
 | Ctrl+A | texte en cours d'écriture | tout sélectionner | `canvas.key` Ctrl+A |
 | Ctrl+K | partout (sauf texte en cours d'écriture) | barre de commandes | `canvas.key` / `ui.key` Ctrl+K, `ui.dialog.open` (cmdk), puis `cmdk.run` |
-| Ctrl+S | partout | enregistrer le projet en .json | `ui.key` Ctrl+S (ou `canvas.key`), `project.export-json` |
+| Ctrl+S | partout | rappel « Déjà enregistré » : tout est gardé sur l'appareil, le fichier .json est dans le menu Fichier (cycle 26 ; avant, Ctrl+S téléchargeait le .json) | `ui.key` Ctrl+S (ou `canvas.key`), `project.already-saved` (INFO), `ui.toast` |
 | Ctrl+Alt+J | partout | fenêtre Journal (icône insecte) | `ui.key` Ctrl+Alt+J, `ui.dialog.open` (logDialog) |
 | ? | hors d'un champ | aide des raccourcis | `ui.dialog.open` (shortcutsDialog) |
 | F1 | partout, même dans une fenêtre ouverte | guide d'utilisation dans un nouvel onglet (sur le chapitre de la fenêtre ouverte, chapitre 1) | `ui.help` |
@@ -681,7 +682,7 @@ Ensuite, chaque modification **ne recharge pas** le canevas : seul le contenu es
 | ↑ ↓ | menu contextuel | parcourir | aucune ligne |
 | Entrée / Échap | champ d'adresse du lien | valider / abandonner | `edit.format` (`link`) ou `edit.link-invalid` / `edit.link-cancel` |
 
-**Journal attendu** — Alt+↓, Alt+↑, ?, Ctrl+S, Ctrl+Alt+J ([`journaux/edition-raccourcis.log`](journaux/edition-raccourcis.log))
+**Journal attendu** — Alt+↓, Alt+↑, ?, Ctrl+S (rappel), Fichier → .json, Ctrl+Alt+J ([`journaux/edition-raccourcis.log`](journaux/edition-raccourcis.log))
 ```log
 05:10:48.896 +17.33s DEBUG canvas.key Raccourci dans la page : Alt+ArrowDown {"key":"Alt+ArrowDown","in":"page","selected":"n_2l6m0w3e5i"}
 …
@@ -693,9 +694,10 @@ Ensuite, chaque modification **ne recharge pas** le canevas : seul le contenu es
 05:10:49.345 +17.78s DEBUG ui.key Raccourci : Escape {"key":"Escape","in":"button"}
 05:10:49.351 +17.78s DEBUG ui.dialog.close Fenêtre fermée : Raccourcis clavier {"id":"shortcutsDialog"}
 05:10:49.457 +17.89s DEBUG ui.key Raccourci : Ctrl+S {"key":"Ctrl+S","in":"body"}
-05:10:49.458 +17.89s INFO  project.export-json Projet enregistré en fichier .json {"kb":38,"pages":2}
+05:10:49.458 +17.89s INFO  project.already-saved Ctrl+S : le projet est déjà enregistré sur cet appareil (fichier .json : menu Fichier) {"status":"Enregistré"}
+05:10:49.459 +17.89s INFO  ui.toast Message affiché : Déjà enregistré : chaque modification est gardée sur cet appareil. Pour un fichier : Fichier → Enregistrer le projet (.json).
 …
-05:10:49.461 +17.89s INFO  ui.toast Message affiché : Projet enregistré en fichier .json.
+05:10:49.520 +17.95s INFO  project.export-json Projet enregistré en fichier .json {"kb":38,"pages":2}
 05:10:49.575 +18.01s DEBUG ui.key Raccourci : Ctrl+Alt+J {"key":"Ctrl+Alt+J","in":"body"}
 05:10:49.581 +18.01s DEBUG ui.dialog.open Fenêtre ouverte : 🐞 Journal de débogage {"id":"logDialog","class":"audit log-dialog","modal":true}
 …

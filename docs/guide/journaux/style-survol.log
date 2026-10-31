@@ -1,5 +1,5 @@
-20:51:34.253 +29.87s DEBUG style.state Onglet Style : état survol (réglages communs à tous les appareils) {"state":"hover"}
-20:51:34.468 +30.08s DEBUG store.commit Modification {"source":"inspector-style","past":30,"page":"p_fg7hya37"}
-20:51:34.474 +30.09s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"inspector-style","mode":"contenu","ms":5}
-20:51:34.490 +30.11s DEBUG style.set Couleur de fond = palette:c3 (survol) {"key":"background","state":"survol","device":"tous","target":"node","id":"n_0c6v0z414z","value":"palette:c3","palette":true}
-20:51:34.745 +30.36s DEBUG style.state Onglet Style : état normal {"state":"normal"}
+12:57:34.155 +27.93s DEBUG style.state Onglet Style : état survol (réglages communs à tous les appareils) {"state":"hover"}
+12:57:34.345 +28.12s DEBUG store.commit Modification {"source":"inspector-style","past":30,"page":"p_fptbpb4e"}
+12:57:34.349 +28.12s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"inspector-style","mode":"contenu","ms":3}
+12:57:34.356 +28.13s DEBUG style.set Couleur de fond = palette:c3 (survol) {"key":"background","state":"survol","device":"tous","target":"node","id":"n_2i4g1j1c35","value":"palette:c3","palette":true}
+12:57:34.590 +28.36s DEBUG style.state Onglet Style : état normal {"state":"normal"}

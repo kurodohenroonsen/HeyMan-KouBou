@@ -4,11 +4,9 @@
  * interface (clics, saisies, raccourcis), vérifie l'état et le journal attendu, remet le projet comme avant,
  * puis renvoie le rapport (Markdown). Options : { only, skip, ai: 'fake'|'real'|false, publish, full, download }.
  */
-import { state, page, select, load } from './store.js';
+import { state, page, load } from './store.js';
 import { demoSite } from './demo.js';
-import { canvasDoc } from './canvas.js';
 import { inSession } from './collab-ui.js';
-import { isEditing, stopEditing } from './inline.js';
 import { log, settings, setLevels, environment, APP_VERSION } from './log.js';
 import { LEVELS } from '../core/log.js';
 import { SELFTEST_CASES, pickCases, caseResult, selftestSummary, selftestReport, rollbackText } from '../core/selftest.js';
@@ -16,6 +14,8 @@ import { __, __n, __c } from '../core/ui-i18n.js';
 import { beginSafe, endSafe, selftestActive } from './selftest-safe.js';
 import { addKnownDestination } from './storage.js';
 import { publishOrigin } from '../core/publish.js';
+import { createUi, drawLogo } from './ui-drive.js';
+import { closeTour } from './tour-ui.js';
 
 let running = false;
 let current = null;
@@ -32,71 +32,13 @@ export function stopSelftest() {
   return current.done;
 }
 
-/* ---------- Pilotage de l'interface ---------- */
+/* ---------- Pilotage de l'interface (primitives partagées : editor/ui-drive.js) ---------- */
 /* Chaque cas a sa « génération » : un cas arrêté (délai dépassé, arrêt) échoue à sa prochaine attente au lieu de continuer */
 let gen = 0;
-const stale = g => { if (g !== gen) throw new Error(__('cas interrompu')); };
 const sleep = ms => { const g = gen; return new Promise((r, j) => setTimeout(() => (g === gen ? r() : j(new Error(__('cas interrompu')))), ms)); };
-const seq = () => log.stats().seq;
-const cdoc = () => canvasDoc();
-async function waitFor(fn, { timeout = 5000, what = __('condition') } = {}) {
-  const t0 = performance.now();
-  const g = gen;
-  for (;;) {
-    stale(g);
-    let v;
-    try { v = fn(); } catch { v = null; }
-    if (v) return v;
-    if (performance.now() - t0 > timeout) throw new Error(__('attente trop longue ({s} s) : {what}', { s: Math.round(timeout / 1000), what }));
-    await sleep(40);
-  }
-}
-const el = (sel, { root = document, timeout = 4000 } = {}) => waitFor(() => (typeof root === 'function' ? root() : root)?.querySelector(sel), { timeout, what: __('élément {selector}', { selector: sel }) });
-const cel = (sel, o = {}) => el(sel, { ...o, root: cdoc });
-const sinceCodes = s => log.entries({ since: s, level: 'trace' }).map(e => e.code);
-const waitCode = (code, s, timeout = 8000) => waitFor(() => code.split('|').find(c => sinceCodes(s).includes(c)), { timeout, what: __('journal {code}', { code }) });
-async function click(sel, o) { const e = typeof sel === 'string' ? await el(sel, o) : sel; e.click(); await sleep(60); return e; }
-async function cclick(sel) { const e = typeof sel === 'string' ? await cel(sel) : sel; e.scrollIntoView?.({ block: 'center' }); e.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: e.ownerDocument.defaultView })); await sleep(80); return e; }
-async function fill(sel, value, { change = true, ...o } = {}) {
-  const e = typeof sel === 'string' ? await el(sel, o) : sel;
-  e.focus?.();
-  e.value = value;
-  e.dispatchEvent(new Event('input', { bubbles: true }));
-  if (change) e.dispatchEvent(new Event('change', { bubbles: true }));
-  await sleep(80);
-  return e;
-}
-async function key(target, k, { ctrl = false, shift = false, alt = false } = {}) {
-  const t = typeof target === 'function' ? target() : target;
-  t.dispatchEvent(new KeyboardEvent('keydown', { key: k, ctrlKey: ctrl, shiftKey: shift, altKey: alt, bubbles: true, cancelable: true }));
-  await sleep(100);
-}
-async function setFile(sel, file, o) {
-  const input = await el(sel, o);
-  const dt = new DataTransfer();
-  dt.items.add(file);
-  input.files = dt.files;
-  input.dispatchEvent(new Event('change', { bubbles: true }));
-}
-async function drawLogo(name = 'logo-auto-test.png', w = 600, h = 300) {
-  const cv = document.createElement('canvas');
-  cv.width = w; cv.height = h;
-  const g = cv.getContext('2d');
-  const gr = g.createLinearGradient(0, 0, w, h);
-  gr.addColorStop(0, '#c8181d'); gr.addColorStop(1, '#f6d200');
-  g.fillStyle = gr; g.fillRect(0, 0, w, h);
-  g.fillStyle = '#1b2a6b'; g.fillRect(w * 0.1, h * 0.3, w * 0.35, h * 0.4);
-  const blob = await new Promise(r => cv.toBlob(r, 'image/png'));
-  return new File([blob], name, { type: 'image/png' });
-}
-const opened = id => document.querySelector(`#${id}[open]`);
-function closeAll() {
-  try { if (isEditing()) stopEditing(); } catch { /* rien en cours */ }
-  document.querySelectorAll('dialog[open]').forEach(d => { try { d.close(); } catch { /* déjà fermée */ } });
-  const fm = document.querySelector('#fileMenu');
-  if (fm) fm.open = false;
-  if (state.selected) select(null);
-}
+const ui = createUi({ sleep });
+const { seq, cdoc, waitFor, el, cel, waitCode, click, cclick, fill, key, setFile, opened } = ui;
+const closeAll = () => { closeTour(); ui.closeAll(); };
 const countType = (type, root = page().root) => JSON.stringify(root).split(`"type":"${type}"`).length - 1;
 const findNode = (n, id) => (n.id === id ? n : (n.children || []).reduce((a, k) => a || findNode(k, id), null));
 const typeOf = id => findNode(page().root, id)?.type;
@@ -382,7 +324,8 @@ const RUNS = {
   },
 
   async 'enregistrer-json'(x) {
-    await key(document.body, 's', { ctrl: true });
+    await click('#fileMenu > summary');
+    await click('#exportJsonBtn');
     await sleep(200);
     const d = x.downloads.find(f => /\.atelier\.json$/.test(f.name));
     x.check(!!d, __('fichier .json proposé au téléchargement'));

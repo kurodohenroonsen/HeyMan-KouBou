@@ -4,6 +4,8 @@ Dans ce tutoriel, tu construis pas à pas un vrai petit site touristique : celui
 
 Compte deux à trois heures, en plusieurs fois si tu veux : Atelier enregistre tout seul.
 
+> **Tu peux regarder l'atelier le faire** : **Fichier → Voir une démonstration**. Atelier construit lui-même ces deux pages avec ses vrais boutons, étape par étape, en quatre minutes environ (pause, vitesse, étape suivante, arrêt). Ton propre site est mis de côté pendant ce temps et revient intact ; à la fin, tu peux aussi garder le site de Kumakōgen pour continuer ce tutoriel à partir de lui.
+
 ---
 
 ## Avant de commencer
@@ -579,7 +581,7 @@ Widget rencontré : [Liste de contenus](widgets.md#liste-de-contenus) (deuxième
 
 **Ce que tu fais**
 1. **Fichier** → **Versions…** → nom : `Site complet avant publication` → **Enregistrer une version**.
-2. **Fichier** → **Enregistrer le projet (.json)** (ou **Ctrl+S**) : une copie complète du projet, images comprises, dans un fichier.
+2. **Fichier** → **Enregistrer le projet (.json)** : une copie complète du projet, images comprises, dans un fichier. (**Ctrl+S** rappelle seulement que tout est déjà enregistré sur ton ordinateur.)
 
 **Ce que tu vois** : la version s'ajoute à la liste, à côté de la version automatique du jour.
 

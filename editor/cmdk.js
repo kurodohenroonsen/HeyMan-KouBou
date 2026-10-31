@@ -32,6 +32,9 @@ import { openLegalDialog } from './pages.js';
 import { setZoom } from './canvas.js';
 import { togglePanels } from './topbar.js';
 import { isExpert, setExpert } from './mode.js';
+import { startTour } from './tour-ui.js';
+import { startDemo } from './demo-ui.js';
+import { showOnboarding } from './onboarding-ui.js';
 
 const RECENT_KEY = 'atelier-cmdk-recent';
 let recent = [];
@@ -77,6 +80,9 @@ function buildCommands() {
   add('act:selftest', __('Action'), __('🧪 Auto-test des cas d’usage (rapport, projet remis comme avant)'), async () => { const { runAutotest } = await import('./selftest-ui.js'); runAutotest(); }, 'test auto autotest selftest verifier cas usage rapport rollback self-test check report セルフテスト レポート ロールバック');
   for (const [l, name] of Object.entries(UI_LANGS)) if (l !== uiLang()) add(`act:ui-${l}`, __('Action'), `🌍 ${name}`, () => setUiLang(l, { save: () => saveProject(state.site) }), `langue interface language 言語 表示言語 ${l} ${name}`);
   add('act:guide', 'Action', __('📖 Guide d’utilisation'), () => openGuide(), `guide aide help manuel documentation ガイド ヘルプ ${__('Guide d’utilisation')}`, 'F1');
+  add('act:tour', __('Aide'), __('🧭 Visite guidée de l’écran (5 étapes)'), () => startTour({ from: 'Ctrl+K' }), 'visite guidée découvrir écran tour onboarding première visite ツアー 画面 案内');
+  add('act:demo', __('Aide'), __('▶ Voir une démonstration : Atelier construit le site de Kumakōgen'), () => startDemo(), 'démonstration démo exemple kumakogen regarder demo watch example デモ 実演 久万高原');
+  add('act:onboarding', __('Aide'), __('☑ Pour commencer : la liste des sept premiers pas'), () => showOnboarding(), 'premiers pas liste commencer débuter checklist getting started はじめに チェックリスト');
   add('act:log', __('Action'), __('Journal de débogage : copier, télécharger, journal du serveur'), () => openLog(), 'journal log debug bug erreur console error デバッグログ ログ エラー', 'Ctrl+Alt+J');
   add('act:collection', __('Contenus'), __('Nouvelle collection (membres, actualités, agenda…)'), () => openNewCollection(), 'créer liste contenus répétés cms create new list content collection 作成 新規 リスト コンテンツ コレクション');
   for (const z of ['header', 'footer']) add(`zone:${z}`, __('Site'), z === 'header' ? __('Modifier l’en-tête du site') : __('Modifier le pied de page du site'), () => {
@@ -130,7 +136,7 @@ function buildCommands() {
   add('act:translate', __('Action'), __('Textes à traduire'), () => openAudit('translations'), 'traduction langues translation languages 翻訳 言語 未翻訳');
   add('act:i18n', __('Action'), __('Tableau des traductions (CSV, traduction automatique)'), () => openTranslations(), 'langues traduire relire csv translations translate review languages 翻訳 言語 要確認');
   add('act:newpage', __('Action'), __('Nouvelle page'), () => { panel('pages'); setTimeout(() => $('#newPageTitle')?.focus(), 0); }, 'ajouter page new add 新規 ページ 追加');
-  add('act:save', __('Action'), __('Enregistrer le projet (.json)'), () => hooks.exportJson?.(), 'sauvegarder save project 保存 プロジェクト', 'Ctrl+S');
+  add('act:save', __('Action'), __('Enregistrer le projet (.json)'), () => hooks.exportJson?.(), 'sauvegarder save project 保存 プロジェクト');
   add('act:publish', __('Action'), __('Publier le site (OVH, GitHub)'), () => openPublish(), 'mettre en ligne ftp déployer publish deploy online 公開 デプロイ');
   add('act:versions', __('Action'), __('Versions du projet (enregistrer, restaurer)'), () => openVersions(), 'historique sauvegarde revenir history backup restore versions 履歴 バージョン 復元');
   add('act:preview', __('Action'), __('Aperçu dans un nouvel onglet'), () => hooks.preview?.(), 'voir preview view tab プレビュー タブ');
@@ -229,7 +235,7 @@ const SHORTCUTS = [
   [__('« - » ou « 1. » puis espace'), __('Liste à puces ou numérotée (dans un texte) ; Tab / Maj+Tab : imbriquer')],
   ['Ctrl+0 / Ctrl+= / Ctrl+-', __('Zoom : ajuster / plus grand / plus petit')],
   [__('Ctrl+Maj+F'), __('Replier ou afficher les panneaux')],
-  ['Ctrl+S', __('Enregistrer le projet (.json)')],
+  ['Ctrl+S', __('Rappel : tout est déjà enregistré (le fichier .json est dans le menu Fichier)')],
   ['Ctrl+Alt+J', __('Journal de débogage (copier pour signaler un problème)')],
   ['?', __('Cette aide')]
 ];

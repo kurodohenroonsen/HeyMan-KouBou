@@ -1,10 +1,9 @@
-20:51:50.552 +46.17s DEBUG canvas.dblclick Double-clic sur l’en-tête : modification en blocs {"target":"header"}
-20:51:50.553 +46.17s INFO  store.edit-target Édition : header {"kind":"header"}
-20:51:50.638 +46.25s INFO  canvas.load.start [canvas.load#11] Chargement complet du canevas : modification de l’en-tête {"reason":"modification de l’en-tête","page":"p_fg7hya37","lang":"fr","device":"desktop","edit":"header"}
-20:51:50.641 +46.26s DEBUG canvas.load.render [canvas.load#11 · 3 ms] Page rendue {"ms":2,"kb":35}
-20:51:50.732 +46.35s INFO  canvas.load.ok [canvas.load#11 · 94 ms] Canevas prêt {"nodes":8,"scale":62,"via":"dom"}
-20:51:50.733 +46.35s DEBUG canvas.resources Ressources externes du canevas chargées {"ms":91,"hosts":[]}
-20:51:51.079 +46.70s INFO  store.edit-target Retour à la page
-20:51:51.092 +46.71s INFO  canvas.load.start [canvas.load#12] Chargement complet du canevas : retour à la page {"reason":"retour à la page","page":"p_fg7hya37","lang":"fr","device":"desktop"}
-20:51:51.094 +46.71s DEBUG canvas.load.render [canvas.load#12 · 2 ms] Page rendue {"ms":2,"kb":37}
-20:51:51.169 +46.78s INFO  canvas.load.ok [canvas.load#12 · 77 ms] Canevas prêt {"nodes":68,"scale":62,"via":"load"}
+12:57:46.662 +40.44s DEBUG canvas.dblclick Double-clic sur l’en-tête : modification en blocs {"target":"header"}
+12:57:46.663 +40.44s INFO  store.edit-target Édition : header {"kind":"header"}
+12:57:46.681 +40.45s INFO  canvas.load.start [canvas.load#11] Chargement complet du canevas : modification de l’en-tête {"reason":"modification de l’en-tête","page":"p_fptbpb4e","lang":"fr","device":"desktop","edit":"header"}
+12:57:46.686 +40.46s DEBUG canvas.load.render [canvas.load#11 · 5 ms] Page rendue {"ms":5,"kb":35}
+12:57:46.709 +40.48s INFO  canvas.load.ok [canvas.load#11 · 28 ms] Canevas prêt {"nodes":8,"scale":62,"via":"load"}
+12:57:47.104 +40.88s INFO  store.edit-target Retour à la page
+12:57:47.113 +40.89s INFO  canvas.load.start [canvas.load#12] Chargement complet du canevas : retour à la page {"reason":"retour à la page","page":"p_fptbpb4e","lang":"fr","device":"desktop"}
+12:57:47.115 +40.89s DEBUG canvas.load.render [canvas.load#12 · 2 ms] Page rendue {"ms":1,"kb":37}
+12:57:47.142 +40.92s INFO  canvas.load.ok [canvas.load#12 · 29 ms] Canevas prêt {"nodes":68,"scale":62,"via":"load"}

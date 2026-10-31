@@ -1,0 +1,6 @@
+13:00:14.952 +0.64s DEBUG tour.step Visite : étape 1 sur 5 (library) {"index":0,"id":"library"}
+13:00:15.176 +0.87s DEBUG tour.step Visite : étape 2 sur 5 (page) {"index":1,"id":"page"}
+13:00:15.336 +1.03s DEBUG tour.step Visite : étape 1 sur 5 (library) {"index":0,"id":"library"}
+13:00:15.495 +1.19s DEBUG tour.step Visite : étape 2 sur 5 (page) {"index":1,"id":"page"}
+13:00:15.500 +1.19s DEBUG tour.step Visite : étape 3 sur 5 (inspector) {"index":2,"id":"inspector"}
+13:00:16.133 +1.82s INFO  tour.skip Visite passée à l’étape 3 : elle ne sera plus proposée (flèche à côté de ❓ ou Fichier → Visite guidée pour la revoir) {"step":2,"from":"première visite"}

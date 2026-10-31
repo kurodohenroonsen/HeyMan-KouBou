@@ -46,6 +46,14 @@ Pas besoin de savoir programmer. Pas besoin de créer de compte. Atelier s'ouvre
 
 ---
 
+## Votre première visite
+
+À la toute première ouverture, Atelier te propose une **visite guidée de l'écran** : cinq bulles, une minute (**Passer** à tout moment ; elle ne revient pas d'elle-même). En haut de l'onglet **Widgets**, la liste **Pour commencer** coche toute seule tes sept premiers pas : nommer le site, choisir les langues, ajouter une section, écrire un titre, mettre une image, regarder sur mobile, prévisualiser puis publier.
+
+Envie de voir avant de faire ? **Fichier → Voir une démonstration** (ou la flèche ▾ à côté de ❓) : Atelier construit sous tes yeux, avec ses vrais boutons, le site touristique de Kumakōgen en deux pages et trois langues, en quatre minutes environ. Ton site est mis de côté pendant ce temps et revient exactement comme avant ; tu peux aussi garder le site de la démonstration comme point de départ. Détails : [1.8](01-demarrage-projet.md#18-visite-guidée-premiers-pas-et-démonstration).
+
+---
+
 ## Par où commencer
 
 1. **Fais la prise en main** : [Prise en main : le site touristique de Kumakōgen en deux pages](prise-en-main.md). Pas à pas, tu construis un vrai site en trois langues et tu croises toutes les possibilités d'Atelier.

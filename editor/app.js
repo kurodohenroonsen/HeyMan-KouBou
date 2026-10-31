@@ -7,6 +7,9 @@ import { initPanelResize } from './panel-resize.js';
 import { initTopbar, topbarKey } from './topbar.js';
 import { setExpert } from './mode.js';
 import { initHelp, openGuide } from './help.js';
+import { initTour, offerTour } from './tour-ui.js';
+import { initDemo } from './demo-ui.js';
+import { initOnboarding, onboardingBlock } from './onboarding-ui.js';
 import { saveProject } from './storage.js';
 import { log, registerContext, APP_VERSION } from './log.js';
 import { initLogButton, openLog, setLogSiteInfo } from './log-ui.js';
@@ -106,7 +109,7 @@ function renderLeftNow() {
   $$('[data-left]').forEach(t => t.setAttribute('aria-selected', String(t.dataset.left === state.left)));
   const body = $('#leftBody');
   unmountNavigator();
-  if (state.left === 'widgets') body.replaceChildren(...libraryPanel());
+  if (state.left === 'widgets') body.replaceChildren(...onboardingBlock(), ...libraryPanel());
   else if (state.left === 'navigator') { body.replaceChildren(); mountNavigator(body); }
   else body.replaceChildren(...leftPanels(state.left));
 }
@@ -124,7 +127,7 @@ export function handleKey(e, fromCanvas = false) {
   const k = e.key.toLowerCase();
   if (mod && k === 'z' && !e.shiftKey) { if (isTyping(e) && !e.target.isContentEditable) return; e.preventDefault(); undo(); return; }
   if (mod && (k === 'y' || (k === 'z' && e.shiftKey))) { if (isTyping(e) && !e.target.isContentEditable) return; e.preventDefault(); redo(); return; }
-  if (mod && k === 's') { e.preventDefault(); exportJson(); return; }
+  if (mod && k === 's') { e.preventDefault(); alreadySaved(); return; }
   if (mod && k === 'k') { if (e.target?.isContentEditable) return; e.preventDefault(); openCommands(); return; }
   if (mod && e.altKey && k === 'j') { e.preventDefault(); openLog(); return; }
   const inInspectorField = e.target?.closest?.('#inspector') && e.target.tagName === 'INPUT';
@@ -155,6 +158,12 @@ export function handleKey(e, fromCanvas = false) {
 }
 
 /* ---------- Fichier et export ---------- */
+/* Ctrl+S (cycle 26) : tout est déjà enregistré sur l'appareil ; le fichier .json reste dans le menu Fichier */
+function alreadySaved() {
+  log.info('project.already-saved', __('Ctrl+S : le projet est déjà enregistré sur cet appareil (fichier .json : menu Fichier)'), { status: $('#saveState').textContent || undefined });
+  toast(__('Déjà enregistré : chaque modification est gardée sur cet appareil. Pour un fichier : Fichier → Enregistrer le projet (.json).'));
+}
+
 function exportJson() {
   const json = JSON.stringify(state.site, null, 2);
   log.info('project.export-json', __('Projet enregistré en fichier .json'), { kb: Math.round(json.length / 1024), pages: state.site.pages.length });
@@ -238,6 +247,7 @@ function bind() {
   });
   $('#loadDemoBtn').addEventListener('click', async () => { $('#fileMenu').open = false; if (confirm(__('Remplacer le projet actuel par l’exemple ? (une version de sécurité est enregistrée)'))) { await beforeRisky(__('Avant de recharger l’exemple')); load(demoSite(), { keepHistory: true }); log.info('project.demo', __('Exemple rechargé')); } else log.info('project.cancel', __('Remplacement annulé'), { action: 'demo' }); });
   $('#newSiteBtn').addEventListener('click', () => { $('#fileMenu').open = false; openNewSite(); });
+  $('#helpKeysBtn').addEventListener('click', () => { $('#helpMenu').open = false; openShortcuts(); });
   document.addEventListener('keydown', handleKey);
   setCanvasKeyHandler(handleKey);
 }
@@ -260,14 +270,14 @@ async function boot() {
   state.site = normalizeSite(site);
   state.pageId = site.pages[0].id;
   state.lang = site.defaultLanguage;
-  if (rec) rec.finish().then(() => toast(__('L’auto-test avait été interrompu : ton projet a été remis comme avant.'))).catch(e => log.error('selftest.recover-fail', __('Nettoyage après l’auto-test impossible : {error}', { error: e?.message || e }), { error: e }));
+  if (rec) rec.finish().then(() => toast(rec.kind === 'demo' ? __('La démonstration avait été interrompue : ton projet a été remis comme avant.') : __('L’auto-test avait été interrompu : ton projet a été remis comme avant.'))).catch(e => log.error('selftest.recover-fail', __('Nettoyage après l’auto-test impossible : {error}', { error: e?.message || e }), { error: e }));
   subscribe((reason, opts) => {
     if (reason === 'save') { $('#saveState').textContent = opts.status; return; }
     if (reason === 'doc' || reason === 'view') { renderTopbar(); renderBanner(); }
     if (reason === 'view' || (reason === 'doc' && ['pages', 'site', 'history', 'collections'].includes(opts.source))) if (!['navigator', 'widgets'].includes(state.left)) renderLeft();
     if (reason === 'doc' && opts.source === 'history' && state.left === 'widgets') { /* rien */ }
   });
-  onCanvasReady(() => { if (!state.ready) { fb.ok(__('Éditeur prêt'), { page: state.pageId, lang: state.lang }); state.ready = true; autoStartFromUrl(); } state.ready = true; });
+  onCanvasReady(() => { if (!state.ready) { fb.ok(__('Éditeur prêt'), { page: state.pageId, lang: state.lang }); state.ready = true; autoStartFromUrl(); offerTour(); } state.ready = true; });
   registerContext('projet', () => {
     const s = state.site;
     if (!s) return 'non chargé';
@@ -290,6 +300,9 @@ async function boot() {
   initVersions();
   initCollab();
   initReview();
+  initTour();
+  initDemo();
+  initOnboarding();
   setSmartHooks({ openCollection, goToComment });
   setAssistantTools({ seo: () => openSeo(), ai: () => openAI(), publish: () => openPublish(), translations: () => openTranslations(), versions: () => openVersions(), log: () => openLog(), audit: () => openAudit('export'), comments: () => toggleReview(true), palette_logo: () => openLogoPalette(), review_summary: () => openReviewSummary() });
   let roToast = 0;

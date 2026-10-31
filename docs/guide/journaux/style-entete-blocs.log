@@ -1,19 +1,18 @@
-20:51:48.936 +44.55s DEBUG store.commit Modification {"key":null,"source":"site","past":48,"page":"p_fg7hya37"}
-20:51:48.956 +44.57s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":10}
-20:51:48.983 +44.60s INFO  settings.layout-customize En-tête converti en blocs modifiables {"zone":"header"}
-20:51:48.984 +44.60s INFO  settings.layout-edit Modification de l’en-tête en blocs {"zone":"header"}
-20:51:48.985 +44.60s INFO  store.edit-target Édition : header {"kind":"header"}
-20:51:48.999 +44.62s INFO  canvas.load.start [canvas.load#9] Chargement complet du canevas : modification de l’en-tête {"reason":"modification de l’en-tête","page":"p_fg7hya37","lang":"fr","device":"desktop","edit":"header"}
-20:51:49.001 +44.62s DEBUG canvas.load.render [canvas.load#9 · 2 ms] Page rendue {"ms":2,"kb":35}
-20:51:49.073 +44.69s INFO  canvas.load.ok [canvas.load#9 · 74 ms] Canevas prêt {"nodes":8,"scale":62,"via":"load"}
-20:51:49.552 +45.17s DEBUG storage.save Projet enregistré sur cet appareil {"ms":9,"kb":25}
-20:51:49.578 +45.19s DEBUG store.select Sélection : nav-menu {"id":"n_1j0g155641","type":"nav-menu"}
-20:51:49.628 +45.24s DEBUG inspector.tab Onglet de l’inspecteur : Contenu {"tab":"content","from":"advanced","type":"nav-menu"}
-20:51:49.647 +45.26s DEBUG inspector.field Champ modifié : Alignement {"key":"align","type":"select","how":"liste","option":"start"}
-20:51:49.648 +45.26s DEBUG store.commit Modification {"past":49,"page":"p_fg7hya37","edit":"header"}
-20:51:49.653 +45.27s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":4}
-20:51:49.911 +45.53s INFO  store.edit-target Retour à la page
-20:51:49.925 +45.54s INFO  canvas.load.start [canvas.load#10] Chargement complet du canevas : retour à la page {"reason":"retour à la page","page":"p_fg7hya37","lang":"fr","device":"desktop"}
-20:51:49.927 +45.54s DEBUG canvas.load.render [canvas.load#10 · 2 ms] Page rendue {"ms":1,"kb":37}
-20:51:49.967 +45.58s INFO  canvas.load.ok [canvas.load#10 · 42 ms] Canevas prêt {"nodes":68,"scale":62,"via":"load"}
-20:51:50.252 +45.87s DEBUG storage.save Projet enregistré sur cet appareil {"ms":3,"kb":25}
+12:57:45.409 +39.18s DEBUG store.commit Modification {"key":null,"source":"site","past":48,"page":"p_fptbpb4e"}
+12:57:45.417 +39.19s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":4}
+12:57:45.426 +39.20s INFO  settings.layout-customize En-tête converti en blocs modifiables {"zone":"header"}
+12:57:45.426 +39.20s INFO  settings.layout-edit Modification de l’en-tête en blocs {"zone":"header"}
+12:57:45.426 +39.20s INFO  store.edit-target Édition : header {"kind":"header"}
+12:57:45.436 +39.21s INFO  canvas.load.start [canvas.load#9] Chargement complet du canevas : modification de l’en-tête {"reason":"modification de l’en-tête","page":"p_fptbpb4e","lang":"fr","device":"desktop","edit":"header"}
+12:57:45.438 +39.21s DEBUG canvas.load.render [canvas.load#9 · 2 ms] Page rendue {"ms":1,"kb":35}
+12:57:45.467 +39.24s INFO  canvas.load.ok [canvas.load#9 · 31 ms] Canevas prêt {"nodes":8,"scale":62,"via":"load"}
+12:57:45.912 +39.69s DEBUG store.select Sélection : nav-menu {"id":"n_0n1h6o460r","type":"nav-menu"}
+12:57:45.956 +39.73s DEBUG inspector.tab Onglet de l’inspecteur : Contenu {"tab":"content","from":"advanced","type":"nav-menu"}
+12:57:45.966 +39.74s DEBUG inspector.field Champ modifié : Alignement {"key":"align","type":"select","how":"liste","option":"start"}
+12:57:45.967 +39.74s DEBUG store.commit Modification {"past":49,"page":"p_fptbpb4e","edit":"header"}
+12:57:45.971 +39.74s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":3}
+12:57:46.189 +39.96s INFO  store.edit-target Retour à la page
+12:57:46.199 +39.97s INFO  canvas.load.start [canvas.load#10] Chargement complet du canevas : retour à la page {"reason":"retour à la page","page":"p_fptbpb4e","lang":"fr","device":"desktop"}
+12:57:46.200 +39.97s DEBUG canvas.load.render [canvas.load#10 · 1 ms] Page rendue {"ms":1,"kb":37}
+12:57:46.222 +40.00s INFO  canvas.load.ok [canvas.load#10 · 23 ms] Canevas prêt {"nodes":68,"scale":62,"via":"load"}
+12:57:46.569 +40.34s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":25}

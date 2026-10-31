@@ -98,9 +98,11 @@ Extrait réel (espace plein simulé puis rétabli : [`journaux/enregistrement-im
 
 **But** : garder une copie, changer d'ordinateur, envoyer le projet.
 
-**Étapes** : Fichier → « Enregistrer le projet (.json) », ou **Ctrl+S**.
+**Étapes** : Fichier → « Enregistrer le projet (.json) » (ou Ctrl+K « Enregistrer le projet »).
 
 **Ce que tu vois** : un fichier `nom-du-site.atelier.json` est téléchargé (images comprises) ; message « Projet enregistré en fichier .json. ».
+
+**Ctrl+S** ne télécharge plus rien depuis le cycle 26 : tout est déjà enregistré sur l'appareil à chaque modification (1.2). Le raccourci affiche le rappel « Déjà enregistré : chaque modification est gardée sur cet appareil. Pour un fichier : Fichier → Enregistrer le projet (.json). » (`project.already-saved`, INFO, puis `ui.toast` ; extrait : [`journaux/premiere-visite-ctrl-s.log`](journaux/premiere-visite-ctrl-s.log)).
 
 **Journal attendu** ([`journaux/projet-enregistrer-json.log`](journaux/projet-enregistrer-json.log))
 ```log
@@ -224,6 +226,89 @@ Tout suit la langue choisie : boutons, panneaux, fenêtres, messages, infobulles
 
 ---
 
+## 1.8 Visite guidée, premiers pas et démonstration
+
+**But** : comprendre l'écran en une minute, savoir quoi faire ensuite, et voir Atelier construire un vrai site devant toi.
+
+### Découvrir l'écran (visite guidée)
+
+**Étapes**
+1. À ta toute première visite, une bulle « Bienvenue dans Atelier » s'affiche : **Commencer la visite**.
+2. Cinq étapes, chacune entourée d'une découpe sur l'écran assombri : la bibliothèque (à gauche), la page (au centre), l'inspecteur (à droite), la barre du haut, puis **Fichier** et **❓**.
+3. **Suivant** (ou → ou Entrée), **Précédent** (←), **Passer** (ou Échap) à tout moment. À la dernière étape : **Terminer**.
+4. Pour la revoir : la petite flèche **▾** à côté de ❓ → « 🧭 Visite guidée de l'écran », **Fichier → Visite guidée**, ou Ctrl+K « Visite guidée ».
+
+**Ce que tu vois** : l'écran assombri sauf l'élément expliqué ; la bulle se place à côté (à droite, à gauche, dessous ou dessus selon la place) et suit si tu agrandis la fenêtre. Pendant la visite, Tab reste dans la bulle ; à la fin, le curseur clavier revient où il était.
+
+Une fois passée ou terminée, la visite n'est **plus jamais proposée d'elle-même** (le choix est retenu sur cet ordinateur). Elle n'est pas non plus proposée à l'ouverture d'une invitation (👥) ni pendant l'auto-test.
+
+**Journal attendu** ([`journaux/premiere-visite-visite-guidee.log`](journaux/premiere-visite-visite-guidee.log))
+```log
+12:27:33.830 +0.66s DEBUG tour.step Visite : étape 1 sur 5 (library) {"index":0,"id":"library"}
+12:27:34.053 +0.88s DEBUG tour.step Visite : étape 2 sur 5 (page) {"index":1,"id":"page"}
+…
+12:27:35.023 +1.85s INFO  tour.skip Visite passée à l’étape 3 : elle ne sera plus proposée (flèche à côté de ❓ ou Fichier → Visite guidée pour la revoir) {"step":2,"from":"première visite"}
+```
+À vérifier : `tour.start` (`auto` vrai à la première visite, sinon `from` : ❓, Fichier, Ctrl+K), puis une ligne `tour.step` par étape, et `tour.skip` ou `tour.done`.
+
+### Pour commencer (sept premiers pas)
+
+**Étapes** : en haut de l'onglet **Widgets**, la liste **Pour commencer** : nommer le site, choisir les langues, ajouter une section, écrire un titre, mettre une image, regarder sur mobile, prévisualiser puis publier. Fais-les dans l'ordre que tu veux : chaque étape **se coche toute seule** quand tu la fais vraiment (Atelier lit son journal). Le bouton **→** de chaque ligne t'emmène à l'endroit où la faire.
+
+**Ce que tu vois** : une barre de progression et « 3 / 7 · 43 % ». **▾** replie la liste, **✕** la masque (Ctrl+K « Pour commencer » la fait revenir). Ces choix et les étapes faites sont retenus sur cet ordinateur.
+
+**Journal attendu** ([`journaux/premiere-visite-pour-commencer.log`](journaux/premiere-visite-pour-commencer.log)) : après l'action, une ligne `onboarding.step-done` (INFO) `{"step":"mobile","done":1,"total":7,"percent":14,"by":"store.view"}` ; `by` donne le code du journal qui a coché l'étape.
+
+| Étape | Codes du journal qui la cochent |
+|---|---|
+| Nommer le site | `settings.name`, `store.commit` (`key` : site-name), `project.new` |
+| Choisir les langues | `project.new` (au moins deux langues), `settings.lang-add`, `settings.lang-remove` |
+| Ajouter une section | `action.add-section`, `template.insert`, `dnd.ok` (une section, ou un widget déposé sur la page) |
+| Écrire un titre | `edit.ok` (texte modifié), `inspector.field` (`key` : text) |
+| Mettre une image | `inspector.image.ok`, `settings.logo`, `image.import.ok` |
+| Regarder sur mobile | `store.view` (`device` : mobile) |
+| Prévisualiser puis publier | `project.preview`, `export.zip.ok`, `publish.php.ok`, `publish.github.ok` |
+
+### Voir une démonstration : le site de Kumakōgen
+
+**Étapes**
+1. Flèche **▾** à côté de ❓ → « ▶ Voir une démonstration (Kumakōgen) », ou **Fichier → Voir une démonstration**, ou Ctrl+K « démonstration ».
+2. Atelier construit lui-même, **avec les vrais boutons**, les deux pages de la [Prise en main](prise-en-main.md) (ホーム et イベント・アクセス) en japonais, anglais et français, avec les données vérifiées de Kumakōgen et des illustrations dessinées sur le moment (aucune photo empruntée). Un curseur se déplace vers chaque bouton, l'entoure, clique ; une bulle explique ce qui se passe (« j'ajoute une section à deux colonnes… »). Chacun des 23 widgets apparaît au moins une fois.
+3. Le panneau du bas : **⏸ Pause / ▶ Reprendre**, **⏭ Étape suivante** (finit tout de suite l'étape en cours), **Vitesse** (lente, normale : environ 4 minutes, rapide), **Étapes** (la liste, avec l'étape en cours), **⏹ Arrêter**.
+4. À la fin : **Revenir à mon site** (ton projet revient exactement comme avant, historique compris) ou **Garder ce site comme point de départ** (le site de Kumakōgen devient ton projet ; une version de sécurité de l'ancien est enregistrée, Ctrl+Z revient en arrière).
+
+**Ce que tu vois** : ton site disparaît le temps de la démonstration, qui travaille dans un projet à part ; il est mis de côté exactement comme pendant l'auto-test (chapitre 15). Si l'onglet est fermé ou rechargé en pleine démonstration, ton projet est repris au démarrage suivant.
+
+**Journal attendu** ([`journaux/premiere-visite-demonstration.log`](journaux/premiere-visite-demonstration.log))
+```log
+12:27:44.534 +1.69s INFO  demo.start [demo#1] Démonstration Kumakōgen {"steps":31,"speed":"normal"}
+12:27:44.565 +1.72s INFO  selftest.backup.ok [selftest.backup#1 · 30 ms] Projet mis de côté (mémoire, copie de secours, version de sécurité) {…}
+12:27:44.566 +1.72s INFO  demo.step Démonstration : étape 1 sur 31 (intro) {"index":0,"id":"intro","widgets":[]}
+12:27:44.711 +1.86s INFO  demo.pause Démonstration en pause
+12:27:45.746 +2.90s INFO  demo.resume Démonstration reprise
+…
+12:28:37.235 +54.39s INFO  selftest.rollback.ok [selftest.rollback#1 · 62 ms] Retour arrière terminé : projet identique à l’original {…}
+12:28:37.236 +54.39s INFO  demo.ok [demo#1 · 52702 ms] Démonstration terminée en 53 s {"ms":52701,"choice":"back","restored":true}
+12:28:37.236 +54.39s INFO  demo.done Démonstration : retour au site d’origine {"choice":"back"}
+```
+À vérifier : `demo.start`, `selftest.backup.ok`, une ligne `demo.step` par étape, puis `selftest.rollback.ok` et `demo.ok` avec `restored` vrai.
+
+**Variantes**
+| Situation | Ce qui change | Journal |
+|---|---|---|
+| Vitesse changée | les gestes vont plus ou moins vite (les explications restent lisibles) | `demo.speed` (DEBUG) |
+| Pause, reprise | tout s'arrête au prochain geste | `demo.pause`, `demo.resume` (INFO) |
+| Arrêter | la démonstration s'arrête, ton site revient | `demo.stop` puis `selftest.rollback.ok` et `demo.cancel` (INFO) |
+| Garder le site | le site de Kumakōgen devient ton projet | `version.save.ok` (version de sécurité), `demo.keep` (INFO) |
+
+**Erreurs**
+| Situation | Message affiché | Journal | Que faire |
+|---|---|---|---|
+| Une étape ne trouve pas un bouton (fenêtre trop étroite, autre fenêtre ouverte) | « Votre site est revenu exactement comme avant. » | `demo.error` puis `demo.fail` (ERROR) avec l'étape, puis `selftest.rollback.ok` | agrandis la fenêtre et relance ; si ça se répète, envoie le journal (🐞) |
+| Session à plusieurs ou mode relecture | « Démonstration impossible pendant une session à plusieurs ou en relecture. » | aucun `demo.*` | quitte la session (👥) |
+
+---
+
 ## Codes de ce chapitre
 | Code | Niveau | Sens |
 |---|---|---|
@@ -232,6 +317,18 @@ Tout suit la langue choisie : boutons, panneaux, fenêtres, messages, infobulles
 | `boot.ok` | INFO | éditeur prêt (durée totale du démarrage) |
 | `boot.project` | INFO | projet choisi au démarrage (`source` : saved, demo, fresh) |
 | `boot.start` | INFO | début du démarrage |
+| `demo.start`, `demo.ok`, `demo.fail`, `demo.cancel` | INFO / INFO / ERROR / INFO | démonstration Kumakōgen (début, fin, échec, arrêt) |
+| `demo.step` | INFO | étape de la démonstration (`id`, widgets montrés) |
+| `demo.pause`, `demo.resume`, `demo.stop` | INFO | pause, reprise, arrêt demandés |
+| `demo.speed` | DEBUG | vitesse choisie (slow, normal, fast) |
+| `demo.error` | ERROR | une étape a échoué : la démonstration s'arrête, le site est remis |
+| `demo.done` | INFO | choix de fin : site gardé ou retour au site d'origine |
+| `demo.keep` | INFO | site de la démonstration gardé comme point de départ |
+| `onboarding.step-done`, `onboarding.done` | INFO | une étape de « Pour commencer » cochée (`by` : code qui l'a cochée) ; les sept faites |
+| `onboarding.go` | DEBUG | lien → d'une étape |
+| `onboarding.toggle` | DEBUG | liste repliée ou dépliée |
+| `onboarding.hide`, `onboarding.show` | INFO | liste masquée, réaffichée |
+| `project.already-saved` | INFO | Ctrl+S : rappel que tout est déjà enregistré (aucun téléchargement) |
 | `project.cancel` | INFO | remplacement du projet annulé |
 | `project.demo` | INFO | exemple rechargé |
 | `project.export-json` | INFO | projet enregistré en .json |
@@ -269,6 +366,9 @@ Tout suit la langue choisie : boutons, panneaux, fenêtres, messages, infobulles
 | `store.view` | DEBUG | page, langue ou appareil affichés |
 | `ui.lang` | INFO | changement de la langue de l'interface (rechargement) |
 | `ui.lang-missing` | WARN | traductions de la langue choisie introuvables : interface en français |
+| `tour.start` | INFO | visite guidée proposée (`auto`) ou lancée (`from`) |
+| `tour.step` | DEBUG | étape de la visite affichée |
+| `tour.skip`, `tour.done` | INFO | visite passée (étape atteinte) ou terminée ; elle n'est plus proposée d'elle-même |
 | `ui.lang-ready` | DEBUG | interface prête dans la langue choisie |
 | `ui.lang-save-fail` | WARN | projet non enregistré juste avant le changement de langue |
 | `ui.help` | INFO | guide d'utilisation ouvert (bouton Guide (icône point d’interrogation), Fichier, F1, Ctrl+K) |

@@ -21,6 +21,7 @@ const DESC = [
   ['#collabBtn', __('Inviter quelqu’un à modifier le site avec toi, en direct, d’ordinateur à ordinateur.')],
   ['#commentsBtn', __('Laisser ou lire des remarques sur la page (relecture), signées par leur auteur.')],
   ['#helpBtn', __('Le guide d’utilisation complet, dans la langue de l’interface ; depuis une fenêtre ouverte, F1 ouvre directement son chapitre.')],
+  ['#helpMenu > summary', __('Visite guidée de l’écran, démonstration (Atelier construit un site sous vos yeux) et raccourcis clavier.')],
   ['#logBtn', __('Tout ce que fait l’éditeur, à copier pour signaler un problème. Raccourci : Ctrl+Alt+J.')],
   ['#i18nBtn', __('Tous les textes du site dans toutes les langues, avec ce qui reste à traduire.')],
   ['#seoBtn', __('Comment Google verra chaque page : note, aperçu et conseils.')],
