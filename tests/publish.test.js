@@ -4,7 +4,7 @@ import { createNode, insertNode, createSectionWithColumns, setProp } from '../co
 import { createSite, updatePageRoot, addPage, normalizeSite } from '../core/site.js';
 import { createComponent } from '../core/components.js';
 import { makeVersion, diffSites, pruneVersions, isNewDay } from '../core/versions.js';
-import { formsConfig, buildPublishPhp, sha256Hex, newToken, gitBlobSha, planGitTree, publishGitHub } from '../core/publish.js';
+import { formsConfig, buildPublishPhp, sha256Hex, newToken, gitBlobSha, planGitTree, publishGitHub, publishOrigin, tokenKey, githubTarget, hostLabel } from '../core/publish.js';
 import { renderPage } from '../core/render.js';
 
 function site1() {
@@ -172,4 +172,31 @@ test('setPublishSettings : adresse publish.php en https (ou locale), mode, GitHu
   s = setPublishSettings(s, { gh: { owner: 'kudoro', repo: 'mab' } });
   assert.deepEqual(s.publish.gh, { owner: 'kudoro', repo: 'mab', branch: 'main', dir: '' });
   assert.ok(!JSON.stringify(s.publish).includes('token'));
+});
+
+/* ---------- Cycle 25 (S2) : jeton lié à l'adresse de publication ---------- */
+test('publishOrigin : origine d’une adresse publish.php (hôte et port), vide si l’adresse est illisible', () => {
+  assert.equal(publishOrigin('https://www.media-alternatif.be/publish.php'), 'https://www.media-alternatif.be');
+  assert.equal(publishOrigin('https://WWW.Media-Alternatif.be:8443/sous/dossier/publish.php'), 'https://www.media-alternatif.be:8443');
+  assert.equal(publishOrigin('http://127.0.0.1:8792/publish.php'), 'http://127.0.0.1:8792');
+  assert.equal(publishOrigin(''), '');
+  assert.equal(publishOrigin('pas une adresse'), '');
+  assert.equal(publishOrigin(undefined), '');
+});
+
+test('tokenKey : une clé de secret par origine (publish.php) ou par dépôt (GitHub), jamais la clé historique nue', () => {
+  assert.equal(tokenKey('php', 'https://www.media-alternatif.be'), 'php-token:https://www.media-alternatif.be');
+  assert.equal(tokenKey('php', publishOrigin('https://www.media-alternatif.be/publish.php')), 'php-token:https://www.media-alternatif.be');
+  assert.equal(tokenKey('github', githubTarget({ owner: 'Aktina', repo: 'Site-MAB' })), 'github-token:aktina/site-mab');
+  assert.equal(tokenKey('php', ''), '', 'pas d’origine : pas de clé (rien n’est lu ni gardé)');
+  assert.equal(tokenKey('github', ''), '');
+  assert.equal(githubTarget({ owner: 'aktina', repo: '' }), '');
+  assert.equal(githubTarget({ owner: ' aktina ', repo: 'mab ' }), 'aktina/mab');
+  assert.equal(githubTarget(undefined), '');
+});
+
+test('hostLabel : nom d’hôte lisible pour la confirmation de première publication', () => {
+  assert.equal(hostLabel('https://www.media-alternatif.be'), 'www.media-alternatif.be');
+  assert.equal(hostLabel('http://127.0.0.1:8792'), '127.0.0.1:8792');
+  assert.equal(hostLabel('https://attaquant.example:8443'), 'attaquant.example:8443');
 });

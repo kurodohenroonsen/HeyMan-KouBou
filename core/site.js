@@ -6,6 +6,7 @@ import { defaultTokens } from './tokens.js';
 import { FONTS } from './theme.js';
 import { missingFrom } from './i18n.js';
 import { validateCollections } from './collections.js';
+import { sanitizeSiteTexts } from './sanitize-site.js';
 import { __, N_ } from './ui-i18n.js';
 
 /* Langues de contenu des sites (noms jamais traduits) */
@@ -96,9 +97,9 @@ export function newPageId() {
 /* Noms par défaut, gardés en français dans le projet ; l'affichage les traduit avec __() */
 export const PALETTE_NAMES = { c1: N_('Principale'), c2: N_('Secondaire'), c3: N_('Texte'), c4: N_('Fond'), c5: N_('Discrète'), c6: N_('Surface') };
 
-/* Complète un projet créé par une version précédente (sans le modifier en place) */
+/* Complète un projet créé par une version précédente (sans le modifier en place) ; tous ses textes sont assainis (cycle 25) */
 export function normalizeSite(site) {
-  const s = clone(site);
+  const s = sanitizeSiteTexts(clone(site)).site;
   s.theme ||= {};
   s.theme.paletteNames = { ...PALETTE_NAMES, ...(s.theme.paletteNames || {}) };
   for (const k of Object.keys(s.theme.paletteNames)) if (!BASE_PALETTE.includes(k) && !s.theme.palette?.[k]) delete s.theme.paletteNames[k];
