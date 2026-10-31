@@ -1,11 +1,12 @@
-02:07:37.332 +1.38s INFO  dnd.start [dnd#1] Glisser : Titre {"kind":"widget","type":"heading","from":"bibliothèque"}
-02:07:37.593 +1.64s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":1}
-02:07:37.738 +1.79s DEBUG store.commit Modification {"source":"dnd","past":2,"page":"p_8h2tez89"}
-02:07:37.741 +1.79s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"dnd","mode":"contenu","ms":3}
-02:07:37.742 +1.79s INFO  version.auto Première modification du jour : version automatique de l’état d’avant {"previous":null,"source":"dnd"}
-02:07:37.742 +1.79s INFO  version.save.start [version.save#2] Enregistrement d’une version automatique {"kind":"auto"}
-02:07:37.742 +1.79s DEBUG storage.version-save Version enregistrée {"id":"v_mvvpbuz22gsyp","kind":"auto"}
-02:07:37.742 +1.79s DEBUG store.select Sélection : heading {"id":"n_1y5z4b075s","type":"heading"}
-02:07:37.745 +1.79s INFO  dnd.ok [dnd#1 · 413 ms] Ajouté dans une nouvelle section, position 1 {"id":"n_1y5z4b075s","type":"heading","kind":"new","parentId":"n_0w0f3a4l6p","parentType":"page","index":0,"where":"canevas","wrapped":true}
-02:07:37.775 +1.82s DEBUG version.save.prune [version.save#2 · 33 ms] Aucune ancienne version à supprimer {"total":2}
-02:07:37.776 +1.82s INFO  version.save.ok [version.save#2 · 34 ms] Version automatique enregistrée (1 page) {"id":"v_mvvpbuz22gsyp","kind":"auto","at":"2026-10-31T01:07:37.742Z","pages":1,"kb":1}
+07:23:29.520 +1.70s INFO  dnd.start [dnd#1] Glisser : Titre {"kind":"widget","type":"heading","from":"bibliothèque"}
+07:23:29.711 +1.89s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":1}
+07:23:29.909 +2.08s DEBUG store.commit Modification {"source":"dnd","past":2,"page":"p_e0y9d38z"}
+07:23:29.913 +2.09s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"dnd","mode":"contenu","ms":3}
+07:23:29.913 +2.09s INFO  version.auto Première modification du jour : version automatique de l’état d’avant {"previous":null,"source":"dnd"}
+07:23:29.913 +2.09s INFO  version.save.start [version.save#2] Enregistrement d’une version automatique {"kind":"auto"}
+07:23:29.913 +2.09s DEBUG storage.version-save Version enregistrée {"id":"v_mvw0m2k9zy3hv","kind":"auto"}
+07:23:29.913 +2.09s DEBUG store.select Sélection : heading {"id":"n_3t2i623245","type":"heading"}
+07:23:29.916 +2.09s INFO  dnd.ok [dnd#1 · 396 ms] Ajouté dans une nouvelle section, position 1 {"id":"n_3t2i623245","type":"heading","kind":"new","parentId":"n_4r2k4v1a66","parentType":"page","index":0,"where":"canevas","wrapped":true}
+07:23:29.916 +2.09s INFO  onboarding.step-done Pour commencer : « Ajouter une section » fait (43 %) {"step":"section","done":3,"total":7,"percent":43,"by":"dnd.ok"}
+07:23:29.965 +2.14s DEBUG version.save.prune [version.save#2 · 52 ms] Aucune ancienne version à supprimer {"total":2}
+07:23:29.966 +2.14s INFO  version.save.ok [version.save#2 · 53 ms] Version automatique enregistrée (1 page) {"id":"v_mvw0m2k9zy3hv","kind":"auto","at":"2026-10-31T06:23:29.913Z","pages":1,"kb":1}

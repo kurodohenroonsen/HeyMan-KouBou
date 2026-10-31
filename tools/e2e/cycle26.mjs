@@ -129,4 +129,154 @@ export default async function (t) {
     t.ok(!es.some(e => e.code === 'project.export-json'), 'aucun export .json déclenché par Ctrl+S');
     capture('premiere-visite-ctrl-s', es);
   }
+  /* ===== X1.a Première visite : la visite guidée est proposée (sans ?fresh), Échap/Passer, plus jamais ensuite ===== */
+  {
+    t.ok(await page.locator('#tourBubble').count() === 0, 'avec ?fresh (tests), aucune visite proposée');
+    await page.evaluate(() => localStorage.removeItem('atelier-tour'));
+    await page.goto(t.base, { waitUntil: 'networkidle' });
+    await page.waitForFunction(() => window.__atelier?.ready === true);
+    await page.waitForSelector('#tourBubble', { timeout: 5000 });
+    let s = await mark(page);
+    let es = await since(page, 0);
+    t.ok(es.some(e => e.code === 'tour.start' && e.data?.auto === true), 'première visite : journal tour.start {auto:true}');
+    t.ok(await page.locator('#tourBubble[role="dialog"][aria-labelledby="tourTitle"]').count() === 1, 'bulle role=dialog avec aria-labelledby');
+    t.ok(await page.locator('#tourMask').count() === 1, 'masque affiché');
+    t.ok(/Bienvenue/.test(await page.locator('#tourTitle').textContent()), 'accueil « Bienvenue dans Atelier »');
+    t.ok(await page.evaluate(() => document.activeElement?.closest('#tourBubble') !== null), 'le focus est dans la bulle');
+    await page.click('#tourBubble [data-tour="next"]');
+    await t.wait(200);
+    t.ok(/bibliothèque/i.test(await page.locator('#tourTitle').textContent()), 'étape 1 : la bibliothèque');
+    t.ok(await page.locator('#tourBubble').getAttribute('data-side') === 'right', 'bulle à droite du panneau de gauche');
+    const cut = await page.evaluate(() => document.querySelector('#tourMask path').getAttribute('d'));
+    t.ok(/Z.*M.*Z/.test(cut), 'masque avec découpe autour de la cible');
+    /* Tab enfermé dans la bulle */
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Tab');
+    t.ok(await page.evaluate(() => document.activeElement?.closest('#tourBubble') !== null), 'Tab reste dans la bulle');
+    await page.keyboard.press('ArrowRight');
+    await t.wait(150);
+    t.ok(/page/i.test(await page.locator('#tourTitle').textContent()), 'flèche → : étape 2, la page');
+    await page.keyboard.press('ArrowLeft');
+    await t.wait(150);
+    t.ok(/bibliothèque/i.test(await page.locator('#tourTitle').textContent()), 'flèche ← : retour à l’étape 1');
+    await page.keyboard.press('ArrowRight');
+    await page.keyboard.press('ArrowRight');
+    await t.wait(150);
+    t.ok(/inspecteur/i.test(await page.locator('#tourTitle').textContent()) && await page.locator('#tourBubble').getAttribute('data-side') === 'left', 'étape 3 : l’inspecteur, bulle à gauche');
+    /* redimensionnement : la bulle suit */
+    const before = await page.locator('#tourBubble').boundingBox();
+    await page.setViewportSize({ width: 1240, height: 900 });
+    await t.wait(250);
+    const after = await page.locator('#tourBubble').boundingBox();
+    t.ok(after.x < before.x, 'après un redimensionnement, la bulle est repositionnée');
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await t.wait(200);
+    await page.keyboard.press('Escape');
+    await t.wait(200);
+    es = await since(page, s);
+    t.ok(await page.locator('#tourBubble').count() === 0 && await page.locator('#tourMask').count() === 0, 'Échap : visite fermée (masque et bulle retirés)');
+    expectCodes(t, es, ['tour.step', 'tour.skip'], 'visite passée');
+    t.ok(es.find(e => e.code === 'tour.skip')?.data?.step === 2, 'tour.skip : étape atteinte (3e = index 2)');
+    t.ok(JSON.parse(await page.evaluate(() => localStorage.getItem('atelier-tour')))?.how === 'skip', 'choix retenu : atelier-tour {how:skip}');
+    capture('premiere-visite-visite-guidee', es);
+    await page.reload({ waitUntil: 'networkidle' });
+    await page.waitForFunction(() => window.__atelier?.ready === true);
+    await t.wait(900);
+    t.ok(await page.locator('#tourBubble').count() === 0, 'après « Passer », la visite n’est plus proposée');
+  }
+
+  /* ===== X1.a Rejouer : ❓ ▾, Fichier, Ctrl+K ; Terminer ===== */
+  {
+    let s = await mark(page);
+    await page.click('#helpMenu > summary');
+    await page.click('#helpTourBtn');
+    await page.waitForSelector('#tourBubble');
+    t.ok(!/Bienvenue/.test(await page.locator('#tourTitle').textContent()), 'relancée à la demande : première étape directement (pas d’accueil)');
+    t.ok(await page.evaluate(() => !document.querySelector('#helpMenu').open), 'le menu ❓ ▾ se referme');
+    for (let i = 0; i < 4; i++) { await page.keyboard.press('ArrowRight'); await t.wait(120); }
+    t.ok(/Terminer|Finish|終了/.test(await page.locator('#tourBubble [data-tour="next"]').textContent()), 'dernière étape : bouton « Terminer »');
+    t.ok(await page.locator('#tourBubble').getAttribute('data-side') === 'bottom', 'étape 5 : bulle sous Fichier et ❓');
+    await page.click('#tourBubble [data-tour="next"]');
+    await t.wait(200);
+    let es = await since(page, s);
+    expectCodes(t, es, ['tour.start', 'tour.done'], 'visite terminée');
+    t.ok(es.find(e => e.code === 'tour.start')?.data?.from === '❓', 'tour.start depuis ❓');
+    t.ok(await page.locator('#tourBubble').count() === 0, 'Terminer : fermée');
+    await page.click('#fileMenu > summary');
+    await page.click('#tourBtn');
+    await page.waitForSelector('#tourBubble');
+    t.ok(await page.locator('#tourBubble').count() === 1, 'Fichier → Visite guidée');
+    await page.click('#tourBubble [data-tour="skip"]');
+    await t.wait(150);
+    await page.keyboard.press('Control+k');
+    await page.fill('#cmdkInput', 'visite');
+    await t.wait(200);
+    await page.keyboard.press('Enter');
+    await page.waitForSelector('#tourBubble');
+    t.ok(await page.locator('#tourBubble').count() === 1, 'Ctrl+K « Visite guidée »');
+    await page.keyboard.press('Escape');
+    await t.wait(150);
+  }
+
+  /* ===== X1.b Liste « Pour commencer » : 7 étapes, cochées par le journal, pourcentage, liens, masquer ===== */
+  {
+    await page.evaluate(() => localStorage.removeItem('atelier-onboarding'));
+    await page.reload({ waitUntil: 'networkidle' });
+    await page.waitForFunction(() => window.__atelier?.ready === true);
+    await page.click('[data-left="widgets"]');
+    await t.wait(150);
+    t.ok(await page.locator('#onboarding').count() === 1, 'bloc « Pour commencer » en tête de l’onglet Widgets');
+    t.ok(await page.locator('#onboarding .onboard__item').count() === 7, '7 étapes');
+    t.ok(await page.locator('#onboarding .onboard__item.is-done').count() === 0, 'aucune cochée au départ');
+    t.ok(/0 \/ 7/.test(await page.locator('[data-onboard-pct]').textContent()), 'pourcentage 0 %');
+    const done = () => page.locator('#onboarding .onboard__item.is-done').evaluateAll(els => els.map(e => e.dataset.onboard));
+    let s = await mark(page);
+    await page.click('[data-device="mobile"]');
+    await t.wait(200);
+    t.ok((await done()).includes('mobile'), '« Regarder sur mobile » cochée automatiquement');
+    await page.click('[data-device="desktop"]');
+    await page.click('[data-left="templates"]');
+    await page.click('.tpl[data-template="features"]');
+    await t.wait(300);
+    await page.click('[data-left="widgets"]');
+    await t.wait(150);
+    t.ok((await done()).includes('section'), '« Ajouter une section » cochée après un modèle');
+    await page.click('[data-left="site"]');
+    await page.fill('#leftBody [data-site="name"]', 'Mon site à moi');
+    await page.locator('#leftBody [data-site="name"]').dispatchEvent('change');
+    await page.click('[data-left="widgets"]');
+    await t.wait(150);
+    t.ok((await done()).includes('name'), '« Nommer le site » cochée');
+    t.ok(/3 \/ 7 · 43 %/.test(await page.locator('[data-onboard-pct]').textContent()), 'pourcentage 43 %');
+    let es = await since(page, s);
+    expectCodes(t, es, ['onboarding.step-done'], 'étapes cochées');
+    t.ok(es.filter(e => e.code === 'onboarding.step-done').length === 3, 'trois lignes onboarding.step-done');
+    capture('premiere-visite-pour-commencer', es);
+    /* lien « → » d'une étape : écrire un titre → le premier titre passe en édition */
+    await page.click('#onboarding [data-onboard-go="heading"]');
+    await t.wait(400);
+    t.ok(await c.locator('[contenteditable="true"]').count() === 1, 'lien « Écrire un titre » : le titre est en cours d’écriture');
+    await page.keyboard.type(' !');
+    await page.keyboard.press('Enter');
+    await t.wait(300);
+    t.ok((await done()).includes('heading'), '« Écrire un titre » cochée après l’écriture');
+    /* replier, choix retenu après rechargement ; masquer */
+    await page.click('#onboarding .onboard__toggle');
+    t.ok(await page.locator('#onboardList').isHidden(), 'liste repliée');
+    await page.reload({ waitUntil: 'networkidle' });
+    await page.waitForFunction(() => window.__atelier?.ready === true);
+    await t.wait(200);
+    t.ok(await page.locator('#onboardList').isHidden() && (await done()).length === 4, 'après rechargement : repliée, 4 étapes toujours cochées');
+    await page.click('#onboarding .onboard__toggle');
+    await page.click('#onboarding .onboard__hide');
+    await t.wait(150);
+    t.ok(await page.locator('#onboarding').count() === 0, '« Masquer la liste » : bloc retiré');
+    await page.keyboard.press('Control+k');
+    await page.fill('#cmdkInput', 'pour commencer');
+    await t.wait(200);
+    await page.keyboard.press('Enter');
+    await t.wait(200);
+    t.ok(await page.locator('#onboarding').count() === 1, 'Ctrl+K « Pour commencer » : la liste revient');
+  }
 }

@@ -7,6 +7,7 @@ import { initPanelResize } from './panel-resize.js';
 import { initHelp, openGuide } from './help.js';
 import { initTour, offerTour } from './tour-ui.js';
 import { initDemo } from './demo-ui.js';
+import { initOnboarding, onboardingBlock } from './onboarding-ui.js';
 import { saveProject } from './storage.js';
 import { log, registerContext, APP_VERSION } from './log.js';
 import { initLogButton, openLog, setLogSiteInfo } from './log-ui.js';
@@ -103,7 +104,7 @@ function renderLeftNow() {
   $$('[data-left]').forEach(t => t.setAttribute('aria-selected', String(t.dataset.left === state.left)));
   const body = $('#leftBody');
   unmountNavigator();
-  if (state.left === 'widgets') body.replaceChildren(...libraryPanel());
+  if (state.left === 'widgets') body.replaceChildren(...onboardingBlock(), ...libraryPanel());
   else if (state.left === 'navigator') { body.replaceChildren(); mountNavigator(body); }
   else body.replaceChildren(...leftPanels(state.left));
 }
@@ -284,6 +285,7 @@ async function boot() {
   initReview();
   initTour();
   initDemo();
+  initOnboarding();
   setSmartHooks({ openCollection, goToComment });
   setAssistantTools({ seo: () => openSeo(), ai: () => openAI(), publish: () => openPublish(), translations: () => openTranslations(), versions: () => openVersions(), log: () => openLog(), audit: () => openAudit('export'), comments: () => toggleReview(true), palette_logo: () => openLogoPalette(), review_summary: () => openReviewSummary() });
   let roToast = 0;

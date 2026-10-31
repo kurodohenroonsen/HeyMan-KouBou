@@ -28,6 +28,9 @@ import { openAsk } from './assistant-ui.js';
 import { openBench } from './bench-ui.js';
 import { log } from './log.js';
 import { openAI } from './ai-ui.js';
+import { startTour } from './tour-ui.js';
+import { startDemo } from './demo-ui.js';
+import { showOnboarding } from './onboarding-ui.js';
 
 const RECENT_KEY = 'atelier-cmdk-recent';
 let recent = [];
@@ -73,6 +76,9 @@ function buildCommands() {
   add('act:selftest', __('Action'), __('🧪 Auto-test des cas d’usage (rapport, projet remis comme avant)'), async () => { const { runAutotest } = await import('./selftest-ui.js'); runAutotest(); }, 'test auto autotest selftest verifier cas usage rapport rollback self-test check report セルフテスト レポート ロールバック');
   for (const [l, name] of Object.entries(UI_LANGS)) if (l !== uiLang()) add(`act:ui-${l}`, __('Action'), `🌍 ${name}`, () => setUiLang(l, { save: () => saveProject(state.site) }), `langue interface language 言語 表示言語 ${l} ${name}`);
   add('act:guide', 'Action', __('📖 Guide d’utilisation'), () => openGuide(), `guide aide help manuel documentation ガイド ヘルプ ${__('Guide d’utilisation')}`, 'F1');
+  add('act:tour', __('Aide'), __('🧭 Visite guidée de l’écran (5 étapes)'), () => startTour({ from: 'Ctrl+K' }), 'visite guidée découvrir écran tour onboarding première visite ツアー 画面 案内');
+  add('act:demo', __('Aide'), __('▶ Voir une démonstration : Atelier construit le site de Kumakōgen'), () => startDemo(), 'démonstration démo exemple kumakogen regarder demo watch example デモ 実演 久万高原');
+  add('act:onboarding', __('Aide'), __('☑ Pour commencer : la liste des sept premiers pas'), () => showOnboarding(), 'premiers pas liste commencer débuter checklist getting started はじめに チェックリスト');
   add('act:log', __('Action'), __('Journal de débogage : copier, télécharger, journal du serveur'), () => openLog(), 'journal log debug bug erreur console error デバッグログ ログ エラー', 'Ctrl+Alt+J');
   add('act:collection', __('Contenus'), __('Nouvelle collection (membres, actualités, agenda…)'), () => openNewCollection(), 'créer liste contenus répétés cms create new list content collection 作成 新規 リスト コンテンツ コレクション');
   for (const z of ['header', 'footer']) add(`zone:${z}`, __('Site'), z === 'header' ? __('Modifier l’en-tête du site') : __('Modifier le pied de page du site'), () => {
