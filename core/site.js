@@ -305,6 +305,8 @@ export function setPublishSettings(site, patch) {
   if ('mode' in patch) p.mode = ['zip', 'php', 'github'].includes(patch.mode) ? patch.mode : 'zip';
   /* Serveur visé : Apache (OVH : .htaccess généré) ou GitHub Pages (sans .htaccess) */
   if ('server' in patch) p.server = patch.server === 'pages' ? 'pages' : 'apache';
+  /* Copie de secours chiffrée sur l'hébergement à chaque publication (cycle 31) */
+  if ('backup' in patch) p.backup = !!patch.backup;
   if ('url' in patch) {
     const u = String(patch.url || '').trim();
     if (u && !/^https?:\/\/[^\s\x22\x27<>]+\/publish\.php$/i.test(u)) throw new Error(__('Adresse attendue : https://www.votre-site.be/publish.php'));

@@ -5,6 +5,7 @@
 import { log } from './log.js';
 import { publishOrigin, githubTarget, tokenKey } from '../core/publish.js';
 import { __, __n } from '../core/ui-i18n.js';
+import { orphanAssets, storedAssetIds } from '../core/storage-gc.js';
 
 const DB = 'atelier-v2';
 const STORE = 'projects';
@@ -222,4 +223,66 @@ export const isKnownDestination = key => !!key && knownDestinations().includes(k
 export function addKnownDestination(key) {
   if (!key || isKnownDestination(key)) return;
   try { localStorage.setItem(KNOWN_DESTINATIONS_KEY, JSON.stringify([...knownDestinations(), key])); } catch { /* stockage indisponible : confirmation redemandée la prochaine fois */ }
+}
+
+/* ---------- Cycle 31 (S6) : stockage persistant, quota, ramasse-miettes des images orphelines ---------- */
+export async function storageState() {
+  const s = navigator.storage;
+  const persisted = s?.persisted ? await s.persisted().catch(() => null) : null;
+  const est = s?.estimate ? await s.estimate().catch(() => null) : null;
+  return { persisted, usage: est?.usage, quota: est?.quota };
+}
+
+/* Demande au navigateur de ne pas effacer la base (à appeler pendant un geste de la personne) */
+export async function requestPersist() {
+  const s = navigator.storage;
+  if (!s?.persist) return { granted: null, already: false };
+  if (await s.persisted?.().catch(() => false)) return { granted: true, already: true };
+  return { granted: await s.persist().catch(() => false), already: false };
+}
+
+/* Taille approximative d'une image rangée (data URL en base64, variantes, ou Blob) */
+const sizeOf = v => {
+  if (!v) return 0;
+  if (typeof Blob !== 'undefined' && v instanceof Blob) return v.size;
+  if (typeof v === 'string') return Math.round(v.length * 0.75);
+  if (typeof v === 'object') return Object.values(v).reduce((t, x) => t + (Array.isArray(x) ? x.reduce((u, y) => u + sizeOf(y), 0) : sizeOf(x)), 0);
+  return 0;
+};
+
+/* Images référencées : tous les projets rangés (dont les emplacements de l'auto-test) et toutes les versions */
+async function referencedAssets(db) {
+  const projects = await req(db.transaction(STORE).objectStore(STORE).getAll());
+  const versions = await req(db.transaction(VERSIONS).objectStore(VERSIONS).getAll());
+  return { siteIds: projects.flatMap(storedAssetIds), versionIds: versions.flatMap(v => storedAssetIds(v.site)) };
+}
+
+/* Retire du magasin les images ni dans un projet (ni dans `extraIds`, l'état en mémoire) ni dans une version gardée */
+export async function collectOrphanAssets(extraIds = []) {
+  const db = await open();
+  const { siteIds, versionIds } = await referencedAssets(db);
+  const stored = await listAssetIds();
+  const ids = orphanAssets([...siteIds, ...extraIds], versionIds, stored);
+  let bytes = 0;
+  if (ids.length) {
+    const store = db.transaction(ASSETS).objectStore(ASSETS);
+    for (const id of ids) bytes += sizeOf(await req(store.get(id)));
+    await deleteAssets(ids);
+  }
+  return { count: ids.length, bytes, stored: stored.length };
+}
+
+/* ---------- Cycle 31 (S7) : dossier de copie choisi (handle File System Access), gardé avec les secrets de l'appareil ---------- */
+const FOLDER_KEY = 'backup-folder-handle';
+export async function getFolderHandle() {
+  try { const db = await open(); return (await req(db.transaction(SECRETS).objectStore(SECRETS).get(FOLDER_KEY))) || null; } catch { return null; }
+}
+export async function setFolderHandle(handle) {
+  const db = await open();
+  await new Promise((resolve, reject) => {
+    const tx = db.transaction(SECRETS, 'readwrite');
+    if (handle) tx.objectStore(SECRETS).put(handle, FOLDER_KEY); else tx.objectStore(SECRETS).delete(FOLDER_KEY);
+    tx.oncomplete = resolve;
+    tx.onerror = () => reject(tx.error);
+  });
 }

@@ -38,6 +38,9 @@ import { openTranslations } from './i18n-ui.js';
 import { openPublish, setZipHandler } from './publish-ui.js';
 import { openVersions, initVersions, beforeRisky } from './versions-ui.js';
 import { openNewSite } from './new-site-ui.js';
+import { initSafety } from './safety.js';
+import { initBackup, noteExport } from './backup-ui.js';
+import { importTooLarge, MAX_IMPORT_BYTES, formatBytes } from '../core/storage-gc.js';
 import { initDnd } from './dnd.js';
 import { leftPanels } from './panels.js';
 import { initCollab, openCollab } from './collab-ui.js';
@@ -169,6 +172,7 @@ function exportJson() {
   log.info('project.export-json', __('Projet enregistré en fichier .json'), { kb: Math.round(json.length / 1024), pages: state.site.pages.length });
   download(`${slugify(state.site.name) || 'site'}.atelier.json`, JSON.stringify(state.site, null, 2), 'application/json');
   toast(__('Projet enregistré en fichier .json.'));
+  noteExport();
 }
 
 /* Date de dernière modification pour le plan du site : dernière modification de la séance, sinon aujourd'hui */
@@ -225,6 +229,14 @@ function bind() {
   $('#importJson').addEventListener('change', async e => {
     const f = e.target.files?.[0];
     if (!f) return;
+    /* Cycle 31 : un fichier énorme gèlerait l'onglet (lecture et JSON.parse) : refusé avant d'être lu */
+    if (importTooLarge(f.size)) {
+      log.warn('project.import-too-big', __('Projet .json refusé : {size} (200 Mo au plus)', { size: formatBytes(f.size) }), { name: f.name, bytes: f.size, max: MAX_IMPORT_BYTES });
+      toast(__('Fichier trop volumineux ({size}) : un projet Atelier fait au plus 200 Mo. Vérifiez que c’est bien un projet .json d’Atelier.', { size: formatBytes(f.size) }), 'error');
+      e.target.value = '';
+      $('#fileMenu').open = false;
+      return;
+    }
     const fl = log.flow('project.import', __('Ouverture d’un projet .json'), { name: f.name, kb: Math.round(f.size / 1024) });
     try {
       let raw;
@@ -298,6 +310,8 @@ async function boot() {
   initInline();
   initContextMenu();
   initVersions();
+  initSafety();
+  initBackup({ exportJson });
   initCollab();
   initReview();
   initTour();

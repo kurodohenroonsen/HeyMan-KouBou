@@ -45,6 +45,8 @@ button{cursor:pointer}
 @media (max-width:1280px){.seg .seg__label{display:none}}
 .badge-btn{height:26px;padding:0 10px;border-radius:999px;border:1px solid var(--warn);background:var(--warn-soft);color:var(--warn);font-weight:700;font-size:12px}
 .save-state{color:var(--muted);font-size:12px;min-width:9ch;text-align:right}
+.backup-state{background:none;border:0;padding:0 4px;cursor:pointer;font:inherit;font-size:12px;min-width:0;white-space:nowrap}.backup-state.is-warn{color:var(--warn);font-weight:700}
+.pub-backup{margin-top:14px;padding-top:10px;border-top:1px solid var(--line)}
 .menu{position:relative}
 .menu summary{list-style:none}
 .menu summary::-webkit-details-marker{display:none}
