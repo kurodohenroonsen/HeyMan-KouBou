@@ -118,7 +118,7 @@ Ici le modèle a aussi proposé un modèle de section qui n'existe pas (`carrous
 | Plus de 10 actions | les 10 premières sont gardées | `assist.warning` (WARN) | découper la demande |
 | Palette au contraste insuffisant | avertissement dans l'aperçu | `assist.warning` | vérifier dans le panneau Site |
 | Fenêtre fermée sans appliquer | rien ne change | `assist.cancel` (INFO) | — |
-| IA locale indisponible | « Préparation impossible » + bouton ✨ IA locale | `ai.plan.absent` (WARN), `assist.plan-fail` (WARN) | chapitre 7 |
+| IA locale indisponible | « Préparation impossible » + bouton IA locale (icône étincelle) | `ai.plan.absent` (WARN), `assist.plan-fail` (WARN) | chapitre 7 |
 | Réponse du modèle illisible | « Réponse illisible de l’IA locale : réessayez. » | `ai.plan.unreadable`, `ai.plan.fail` (ERROR), `assist.plan-fail` | réessayer |
 | Une action échoue à l'application (cas anormal) | « N actions appliquées » en erreur | `assist.apply.step-fail` (WARN) ; si aucune ne passe : `assist.apply.fail` (ERROR) | envoie le journal |
 | Un outil demandé ne s'ouvre pas | — | `assist.apply.tool-fail` (WARN) | l'ouvrir à la main |

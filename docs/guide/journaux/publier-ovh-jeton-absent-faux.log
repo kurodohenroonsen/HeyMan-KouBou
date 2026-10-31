@@ -1,11 +1,12 @@
-12:30:29.308 +9.82s DEBUG store.commit Modification {"source":"site","past":13,"page":"p_etij9qwa"}
-12:30:29.310 +9.82s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
-12:30:29.317 +9.82s INFO  publish.php.start [publish.php#3] Publication sur OVH (publish.php) {"url":"http://127.0.0.1:9518/publish.php"}
-12:30:29.318 +9.83s ERROR publish.php.fail [publish.php#3 · 1 ms] jeton absent {"error":{"name":"Error","message":"jeton absent","stack":"Error: jeton absent\nat HTMLButtonElement.run (http://localhost:8813/editor/publish-ui.js:96:32)"}}
-12:30:29.798 +10.31s DEBUG store.commit Modification {"source":"site","past":14,"page":"p_etij9qwa"}
-12:30:29.809 +10.32s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
-12:30:29.838 +10.35s INFO  publish.test.start [publish.test#2] Test de connexion à publish.php {"url":"http://127.0.0.1:9518/publish.php","token":true}
-12:30:29.839 +10.35s DEBUG net.request GET 127.0.0.1:9518/publish.php {"id":14,"method":"GET","url":"http://127.0.0.1:9518/publish.php?atelier_debug=1"}
-12:30:29.896 +10.40s DEBUG net.response 200 GET 127.0.0.1:9518/publish.php (57 ms) {"id":14,"status":200,"ms":57,"type":"application/json","req":"fea63910"}
-12:30:29.898 +10.41s WARN  publish.test.token-refused [publish.test#2 · 60 ms] Le jeton saisi ne correspond pas à ce publish.php (diagnostic refusé) : la publication sera refusée
-12:30:29.898 +10.41s INFO  publish.test.ok [publish.test#2 · 60 ms] publish.php répond {"version":"5","zip":true,"req":"fea63910"}
+12:40:16.499 +9.54s DEBUG store.commit Modification {"source":"site","past":13,"page":"p_9xgt93q9"}
+12:40:16.502 +9.54s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
+12:40:16.508 +9.55s INFO  publish.php.start [publish.php#3] Publication sur OVH (publish.php) {"url":"http://127.0.0.1:9442/publish.php"}
+12:40:16.509 +9.55s ERROR publish.php.fail [publish.php#3 · 1 ms] jeton absent {"error":{"name":"Error","message":"jeton absent","stack":"Error: jeton absent\nat HTMLButtonElement.run (http://localhost:8800/editor/publish-ui.js:169:32)"}}
+12:40:16.767 +9.81s DEBUG store.commit Modification {"source":"site","past":14,"page":"p_9xgt93q9"}
+12:40:16.771 +9.81s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
+12:40:16.781 +9.82s INFO  publish.test.start [publish.test#2] Test de connexion à publish.php {"url":"http://127.0.0.1:9442/publish.php","token":true}
+12:40:16.782 +9.82s INFO  storage.secret-write Secret oublié sur cet appareil {"name":"php-token:http://127.0.0.1:9442"}
+12:40:16.813 +9.86s DEBUG net.request GET 127.0.0.1:9442/publish.php {"id":14,"method":"GET","url":"http://127.0.0.1:9442/publish.php?atelier_debug=1"}
+12:40:16.833 +9.88s DEBUG net.response 200 GET 127.0.0.1:9442/publish.php (21 ms) {"id":14,"status":200,"ms":21,"type":"application/json","req":"b30b6e56"}
+12:40:16.835 +9.88s WARN  publish.test.token-refused [publish.test#2 · 54 ms] Le jeton saisi ne correspond pas à ce publish.php (diagnostic refusé) : la publication sera refusée
+12:40:16.835 +9.88s INFO  publish.test.ok [publish.test#2 · 54 ms] publish.php répond {"version":"5","zip":true,"req":"b30b6e56"}

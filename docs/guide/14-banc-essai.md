@@ -9,7 +9,7 @@ Les tests automatiques d'Atelier utilisent un **faux** Gemini Nano : ils prouven
 ## 14.1 Lancer le banc d'essai
 
 **Étapes**
-1. Ouvre **✨ IA locale** et télécharge d'abord les modèles marqués « à télécharger » (le téléchargement demande un clic ; le banc ne peut pas le faire à ta place).
+1. Ouvre **IA locale** (icône étincelle) et télécharge d'abord les modèles marqués « à télécharger » (le téléchargement demande un clic ; le banc ne peut pas le faire à ta place).
 2. **🧪 Banc d'essai** (dans la fenêtre ✨, ou Ctrl+K « Banc d'essai »).
 3. Garde tous les groupes cochés (ou choisis), puis **▶ Lancer le banc d'essai**. Compte une à quelques minutes selon la machine : les cas passent un par un.
 4. **📋 Copier le rapport** et colle-le dans ton message (ou **⇩ .json**, qui contient aussi le journal détaillé de l'IA).
@@ -94,8 +94,8 @@ Le rapport et le journal disent **quelle vérification** a raté et **ce que le 
 
 | Ce que tu vois | Ce que ça veut dire | Que faire |
 |---|---|---|
-| Beaucoup de « – ignoré » | l'API n'est pas disponible sur cette machine (`bench.case` avec `reason`) | ✨ IA locale : activer ou télécharger ; vérifier la configuration requise (chapitre 7.7) |
-| « ⚠ erreur » avec `NotAllowedError` | téléchargement du modèle demandé sans clic | télécharger depuis ✨ IA locale, puis relancer |
+| Beaucoup de « – ignoré » | l'API n'est pas disponible sur cette machine (`bench.case` avec `reason`) | IA locale (icône étincelle) : activer ou télécharger ; vérifier la configuration requise (chapitre 7.7) |
+| « ⚠ erreur » avec `NotAllowedError` | téléchargement du modèle demandé sans clic | télécharger depuis IA locale (icône étincelle), puis relancer |
 | « ⚠ erreur » « Réponse illisible » | le modèle n'a pas respecté le format JSON demandé | relancer ; si ça se répète, envoie le rapport (on adaptera la consigne) |
 | « ✗ échoué » sur des longueurs | le modèle ne respecte pas la longueur demandée (connu pour les petits modèles) | envoie le rapport : la coupe ou la consigne peuvent être ajustées |
 | « ✗ échoué » sur la date de l'affiche | le modèle a mal lu l'image, ou n'a pas dit que l'année manquait | envoie le rapport ; en pratique, photo nette et de face |

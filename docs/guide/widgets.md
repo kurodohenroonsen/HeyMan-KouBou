@@ -35,7 +35,7 @@ Un réglage de texte qui se traduit affiche **une ligne par langue du site** (pa
 
 Quelques réglages **ne se traduisent pas** : ils sont les mêmes dans toutes les langues (une adresse e-mail, un prix, un chiffre, une adresse postale, un nom d'auteur). Ils n'ont qu'une seule ligne. C'est indiqué pour chaque widget.
 
-Pour tout traduire au même endroit : bouton **🌐 Traductions** en haut (voir le chapitre [5](05-langues-traductions.md)).
+Pour tout traduire au même endroit : bouton **Traductions** (icône 文A) en haut (voir le chapitre [5](05-langues-traductions.md)).
 
 ### Les liens
 
@@ -60,7 +60,7 @@ L'onglet **Style** règle l'apparence. Les réglages sont rangés en sept groupe
 | **Effets** | Opacité, Transformation au survol (soulever, agrandir, réduire), Durée de transition, Apparition au défilement (fondu, glissé vers le haut, zoom) |
 
 Ce qu'il faut savoir :
-- **Par appareil** : les boutons **Ordinateur**, **Tablette**, **Mobile** de l'onglet (ou 🖥 ▭ ▯ en haut de l'écran) choisissent l'appareil réglé. Un réglage fait sur ordinateur vaut aussi pour la tablette et le mobile, sauf si tu le changes pour eux. Le bouton **🖥▭▯** montre les trois appareils côte à côte.
+- **Par appareil** : les boutons **Ordinateur**, **Tablette**, **Mobile** de l'onglet (ou icônes ordinateur, tablette, mobile en haut de l'écran) choisissent l'appareil réglé. Un réglage fait sur ordinateur vaut aussi pour la tablette et le mobile, sauf si tu le changes pour eux. Le bouton **bouton aux trois écrans** montre les trois appareils côte à côte.
 - **Survol** : réglages appliqués quand la souris passe dessus (couleurs, bordure, ombre, transformation, opacité). **Normal** pour revenir.
 - **Valeurs** : tape `24px`, `1.5rem`, `50%` ou `auto` (un nombre seul devient des pixels), ou choisis dans l'**échelle du site** (« Échelle… » pour les tailles de texte, « ⇕ » pour les espacements) : tout le site reste harmonieux. **↺** revient à la valeur héritée.
 - **Couleurs** : les pastilles sont les couleurs de la **palette du site** (panneau **Site**). Choisis-les plutôt qu'une couleur libre : si tu changes la palette, tout suit. Sous la couleur du texte et du fond, une pastille indique le **contraste** (lisibilité) : verte ✓ ou rouge ✗.
@@ -162,7 +162,7 @@ Famille **Texte**.
 
 **Accessibilité** : ne saute pas de niveau (H2 puis H4) ; ne choisis pas un niveau pour sa taille, règle plutôt la taille dans l'onglet Style.
 
-**Astuce** : la fenêtre **🔎 SEO** vérifie qu'il y a un seul H1 par page.
+**Astuce** : la fenêtre **SEO** (icône loupe) vérifie qu'il y a un seul H1 par page.
 
 ---
 
@@ -177,13 +177,13 @@ Famille **Texte**.
 |---|---|
 | **Texte** (se traduit) | Le texte mis en forme. Dans l'inspecteur, une petite barre : **G** (gras), **I** (italique), **S** (souligné), **🔗** (lien), et un bouton pour retirer la mise en forme. |
 
-Le plus simple est d'écrire **dans la page** : double-clic sur le texte, puis la barre **B I U 🔗 ⌫ ✨** au-dessus. Un texte collé depuis ailleurs perd sa mise en forme (le site reste propre). **✨** propose de reformuler ou de corriger avec l'IA locale (si elle est installée, [chapitre 7](07-ia-locale.md)).
+Le plus simple est d'écrire **dans la page** : double-clic sur le texte, puis la barre **B I U 🔗 ⌫ ✨** au-dessus. Un texte collé depuis ailleurs perd sa mise en forme (le site reste propre). **IA locale** (icône étincelle) propose de reformuler ou de corriger avec l'IA locale (si elle est installée, [chapitre 7](07-ia-locale.md)).
 
 **Sur mobile** : le texte se replie à la largeur de l'écran.
 
 **En plusieurs langues** : une zone par langue dans l'inspecteur ; dans la page, tu écris dans la langue choisie en haut de l'écran.
 
-**Accessibilité** : un lien doit dire où il mène (« Horaires du musée » plutôt que « cliquez ici ») : la fenêtre **🔎 SEO** signale les liens vagues, y compris en japonais (« こちら »).
+**Accessibilité** : un lien doit dire où il mène (« Horaires du musée » plutôt que « cliquez ici ») : la fenêtre **SEO** (icône loupe) signale les liens vagues, y compris en japonais (« こちら »).
 
 **Astuce** : garde des paragraphes courts ; pour une liste avec des pictogrammes, préfère la **Liste à icônes**.
 
@@ -290,7 +290,7 @@ Famille **Média**.
 
 **Sur mobile** : l'image prend la largeur de sa colonne ; le téléphone télécharge une version plus légère.
 
-**Accessibilité** : la description est indispensable pour une image qui informe. La fenêtre **🔎 SEO** peut décrire d'un coup toutes les images sans description d'une page.
+**Accessibilité** : la description est indispensable pour une image qui informe. La fenêtre **SEO** (icône loupe) peut décrire d'un coup toutes les images sans description d'une page.
 
 **Astuce** : dans la prise en main, les images sont de simples illustrations : **remplace-les par tes propres photos**.
 
@@ -378,7 +378,7 @@ Famille **Contact**.
 
 **Accessibilité** : chaque lien porte le nom du réseau.
 
-**Astuce** : la fenêtre **🔎 SEO** rappelle que Google associe les réseaux sociaux au site quand ce widget est présent. Mets-le dans le pied de page : il sera sur toutes les pages.
+**Astuce** : la fenêtre **SEO** (icône loupe) rappelle que Google associe les réseaux sociaux au site quand ce widget est présent. Mets-le dans le pied de page : il sera sur toutes les pages.
 
 ---
 

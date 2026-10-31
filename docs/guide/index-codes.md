@@ -2,7 +2,7 @@
 
 Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire, par domaine. Fichier généré par `node tools/guide-index.mjs` à partir du code source : il est toujours à jour avec le code.
 
-**937 codes** dans 44 domaines.
+**950 codes** dans 44 domaines.
 
 | Domaine | Codes |
 |---|---|
@@ -13,13 +13,13 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | [`audit`](#audit) | 3 |
 | [`bench`](#bench) | 14 |
 | [`boot`](#boot) | 10 |
-| [`canvas`](#canvas) | 20 |
+| [`canvas`](#canvas) | 21 |
 | [`cmdk`](#cmdk) | 2 |
 | [`collab`](#collab) | 76 |
 | [`collection`](#collection) | 42 |
 | [`ctxmenu`](#ctxmenu) | 4 |
 | [`dnd`](#dnd) | 8 |
-| [`edit`](#edit) | 30 |
+| [`edit`](#edit) | 36 |
 | [`export`](#export) | 4 |
 | [`fonts`](#fonts) | 2 |
 | [`i18n`](#i18n) | 15 |
@@ -44,10 +44,10 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | [`storage`](#storage) | 23 |
 | [`store`](#store) | 15 |
 | [`structure`](#structure) | 4 |
-| [`style`](#style) | 24 |
+| [`style`](#style) | 27 |
 | [`template`](#template) | 3 |
 | [`translate`](#translate) | 21 |
-| [`ui`](#ui) | 15 |
+| [`ui`](#ui) | 18 |
 | [`version`](#version) | 19 |
 | [`widgets`](#widgets) | 2 |
 
@@ -317,6 +317,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `canvas.toolbar` | DEBUG | [2](02-edition.md) | `editor/canvas.js` |
 | `canvas.ui-action` | DEBUG | [2](02-edition.md) | `editor/canvas.js` |
 | `canvas.zone-locked` | INFO | [2](02-edition.md) [3](03-style-design.md) | `editor/canvas.js` |
+| `canvas.zoom` | INFO | [2](02-edition.md) | `editor/canvas.js` |
 
 ## cmdk
 
@@ -494,6 +495,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `edit.drop-blocked` | DEBUG | [2](02-edition.md) | `editor/richedit.js` |
 | `edit.fail` | ERROR | [2](02-edition.md) | `editor/inline.js` |
 | `edit.format` | DEBUG | [2](02-edition.md) | `editor/richedit.js` |
+| `edit.format-menu` | DEBUG | [2](02-edition.md) | `editor/inline.js` |
 | `edit.format-none` | DEBUG | [2](02-edition.md) | `editor/richedit.js` |
 | `edit.input` | TRACE | [2](02-edition.md) | `editor/inline.js` |
 | `edit.keyboard` | DEBUG | [2](02-edition.md) | `editor/inline.js` |
@@ -501,12 +503,17 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `edit.link-invalid` | WARN | [2](02-edition.md) | `editor/richedit.js` |
 | `edit.link-none` | DEBUG | [2](02-edition.md) | `editor/inline.js` |
 | `edit.link-open` | DEBUG | [2](02-edition.md) | `editor/inline.js` |
+| `edit.list` | DEBUG | [2](02-edition.md) | `editor/richedit.js` |
+| `edit.list-enter` | TRACE | [2](02-edition.md) | `editor/richedit.js` |
+| `edit.list-exit` | DEBUG | [2](02-edition.md) | `editor/richedit.js` |
+| `edit.list-indent` | DEBUG | [2](02-edition.md) | `editor/richedit.js` |
 | `edit.no-text` | DEBUG | [2](02-edition.md) | `editor/inline.js` |
 | `edit.node-gone` | WARN | [2](02-edition.md) | `editor/inline.js` |
 | `edit.not-editable` | DEBUG | [2](02-edition.md) | `editor/inline.js` |
 | `edit.ok` | INFO | [2](02-edition.md) [3](03-style-design.md) [15](15-auto-test.md) | `editor/inline.js` |
 | `edit.paste` | DEBUG | [2](02-edition.md) | `editor/richedit.js` |
 | `edit.paste-file` | WARN | [2](02-edition.md) | `editor/richedit.js` |
+| `edit.paste-rich` | DEBUG | [2](02-edition.md) | `editor/richedit.js` |
 | `edit.readonly` | WARN | [2](02-edition.md) | `editor/inline.js` |
 | `edit.start` | INFO | [2](02-edition.md) [3](03-style-design.md) | `editor/inline.js` |
 
@@ -1099,6 +1106,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | Code | Niveau | Chapitre | Source |
 |---|---|---|---|
 | `style.all-devices` | DEBUG | [3](03-style-design.md) | `editor/styletab.js` |
+| `style.box-lock` | DEBUG | [3](03-style-design.md) | `editor/styletab.js` |
 | `style.contrast-error` | WARN | [3](03-style-design.md) | `editor/styletab.js` |
 | `style.contrast-low` | WARN | [3](03-style-design.md) | `editor/styletab.js` |
 | `style.contrast-ok` | DEBUG, TRACE | [3](03-style-design.md) | `editor/styletab.js` |
@@ -1107,6 +1115,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `style.device` | DEBUG | [3](03-style-design.md) | `editor/styletab.js` |
 | `style.focus` | DEBUG | [2](02-edition.md) [3](03-style-design.md) | `editor/styletab.js` |
 | `style.focus-missing` | DEBUG | [2](02-edition.md) [3](03-style-design.md) | `editor/styletab.js` |
+| `style.free` | DEBUG | [3](03-style-design.md) | `editor/styletab.js` |
 | `style.paste` | INFO | [2](02-edition.md) [3](03-style-design.md) | `editor/actions.js` |
 | `style.paste-empty` | DEBUG | [3](03-style-design.md) | `editor/actions.js` |
 | `style.preset-apply` | INFO | [3](03-style-design.md) | `editor/styletab.js` |
@@ -1122,6 +1131,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `style.set` | DEBUG | [2](02-edition.md) [3](03-style-design.md) | `editor/styletab.js` |
 | `style.set-fail` | WARN | [3](03-style-design.md) | `editor/styletab.js` |
 | `style.state` | DEBUG | [3](03-style-design.md) | `editor/styletab.js` |
+| `style.unit` | DEBUG | [3](03-style-design.md) | `editor/styletab.js` |
 
 ## template
 
@@ -1166,15 +1176,18 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `ui.dialog.close` | DEBUG | [0](00-journal.md) [2](02-edition.md) [4](04-pages-images-contenus.md) | `editor/log.js` |
 | `ui.dialog.open` | DEBUG | [0](00-journal.md) [2](02-edition.md) [4](04-pages-images-contenus.md) [8](08-verifier-exporter-publier.md) | `editor/log.js` |
 | `ui.help` | INFO | [1](01-demarrage-projet.md) [2](02-edition.md) | `editor/help.js` |
+| `ui.icons` | DEBUG | [2](02-edition.md) | `editor/topbar.js` |
 | `ui.key` | DEBUG | [0](00-journal.md) [1](01-demarrage-projet.md) [2](02-edition.md) | `editor/log.js` |
 | `ui.lang` | INFO | [1](01-demarrage-projet.md) | `editor/ui-lang.js` |
 | `ui.lang-missing` | WARN | [1](01-demarrage-projet.md) | `editor/ui-lang.js` |
 | `ui.lang-ready` | DEBUG | [1](01-demarrage-projet.md) | `editor/ui-lang.js` |
 | `ui.lang-save-fail` | WARN | [1](01-demarrage-projet.md) | `editor/ui-lang.js` |
 | `ui.menu` | DEBUG | [0](00-journal.md) | `editor/log.js` |
+| `ui.mode` | INFO | [3](03-style-design.md) | `editor/mode.js` |
 | `ui.panel-reset` | INFO | [2](02-edition.md) | `editor/panel-resize.js` |
 | `ui.panel-resize` | DEBUG | [2](02-edition.md) | `editor/panel-resize.js` |
 | `ui.panel-restore` | DEBUG | [2](02-edition.md) | `editor/panel-resize.js` |
+| `ui.panels` | INFO | [2](02-edition.md) | `editor/topbar.js` |
 | `ui.toast` | ERROR, INFO, WARN | [0](00-journal.md) [1](01-demarrage-projet.md) [2](02-edition.md) [3](03-style-design.md) [4](04-pages-images-contenus.md) [7](07-ia-locale.md) [8](08-verifier-exporter-publier.md) [11](11-relecture-commentaires.md) | `editor/dom.js` |
 
 ## version

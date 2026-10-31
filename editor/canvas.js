@@ -2,7 +2,9 @@
  * Canevas : iframe de même origine qui affiche la page rendue (mode canvas).
  * Mise à jour sans rechargement (CSS + en-tête + contenu), survol, sélection, barre d'outils.
  */
-import { state, subscribe, select, hover, page, nodeById, toggleMulti, root, setEditTarget } from './store.js';
+import { state, subscribe, emit, select, hover, page, nodeById, toggleMulti, root, setEditTarget } from './store.js';
+import { fitCanvas, nextZoom, DEVICE_WIDTH } from '../core/canvas-fit.js';
+import { uiIcon } from '../core/icons.js';
 import { toast } from './dom.js';
 import { renderPage } from '../core/render.js';
 import { fontSignature } from '../core/fonts.js';
@@ -213,10 +215,10 @@ function onLoad(via = 'load') {
   ui.innerHTML = `<div id="atelier-hover" class="ab ab--hover"><span class="ab__label"></span></div>
 <div id="atelier-select" class="ab ab--select"><span class="ab__label"></span>
 <div id="selToolbar" role="toolbar" aria-label="${tt.bar}">
-<button type="button" data-act="parent" title="${tt.parent}">↰</button>
-<button type="button" data-act="move" title="${tt.move}">✥</button>
-<button type="button" data-act="duplicate" title="${tt.duplicate}">⧉</button>
-<button type="button" data-act="delete" title="${tt.del}">✕</button>
+<button type="button" data-act="parent" title="${tt.parent}">${uiIcon('parent', 14)}</button>
+<button type="button" data-act="move" title="${tt.move}">${uiIcon('move', 14)}</button>
+<button type="button" data-act="duplicate" title="${tt.duplicate}">${uiIcon('duplicate', 14)}</button>
+<button type="button" data-act="delete" title="${tt.del}">${uiIcon('delete', 14)}</button>
 </div></div>
 <div id="atelier-drop"></div>`;
   doc.body.append(ui);
@@ -375,10 +377,27 @@ export function scrollToSelected() {
   }
 }
 
-/* Largeurs réelles de rendu par appareil ; le canevas est réduit à l'échelle s'il manque de place */
-export const DEVICE_WIDTH = { desktop: 1280, tablet: 820, mobile: 390 };
+/* Largeurs de rendu par appareil (core/canvas-fit.js) : ordinateur fluide dès 1040 px, tablette 820, mobile 390 ;
+   le canevas est réduit à l'échelle s'il manque de place, ou selon le zoom choisi (ajuster, 100, 75, 50 %) */
+export { DEVICE_WIDTH };
 let scale = 1;
+let zoom = 'fit';
 export const canvasScale = () => scale;
+export const zoomLevel = () => zoom;
+
+/* Zoom : 'fit' (ajuster à la place disponible) ou 50, 75, 100 (%) ; by : liste, bouton, clavier… */
+export function setZoom(level, by = 'liste') {
+  const next = level === 'fit' ? 'fit' : [50, 75, 100].includes(Number(level)) ? Number(level) : null;
+  if (next === null || next === zoom) return false;
+  zoom = next;
+  log.info('canvas.zoom', next === 'fit' ? __('Zoom : ajuster à la fenêtre') : __('Zoom : {pct} %', { pct: next }), { zoom: next, by });
+  fitFrame();
+  return true;
+}
+
+export function zoomStep(dir, by = 'bouton') {
+  return setZoom(nextZoom(scale, dir), by);
+}
 
 export function fitFrame() {
   const stage = $('#stage');
@@ -387,20 +406,24 @@ export function fitFrame() {
   const cs = getComputedStyle(stage);
   const availW = stage.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
   const availH = stage.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
-  const target = state.device === 'desktop' ? Math.max(DEVICE_WIDTH.desktop, availW) : DEVICE_WIDTH[state.device];
-  scale = Math.min(1, availW / target);
+  const fit = fitCanvas({ device: state.device, zoom, availW });
+  const target = fit.width;
+  scale = fit.scale;
   frame.style.width = `${Math.round(target * scale)}px`;
   frame.style.height = `${Math.round(availH)}px`;
   ifr.style.width = `${target}px`;
   ifr.style.height = `${Math.round(availH / scale)}px`;
   ifr.style.transform = scale < 1 ? `scale(${scale})` : '';
   frame.dataset.scale = scale < 1 ? `${Math.round(scale * 100)} %` : '';
-  const key = `${state.device}|${Math.round(scale * 100)}`;
+  stage.classList.toggle('is-overflow', fit.overflow);
+  const key = `${state.device}|${Math.round(scale * 100)}|${zoom}`;
   if (key !== lastScale) {
-    /* Changement d'appareil : debug ; simple redimensionnement de la fenêtre : trace (très fréquent) */
-    const level = lastScale.split('|')[0] !== state.device ? 'debug' : 'trace';
+    /* Changement d'appareil ou de zoom : debug ; simple redimensionnement de la fenêtre : trace (très fréquent) */
+    const prev = lastScale.split('|');
+    const level = prev[0] !== state.device || prev[2] !== String(zoom) ? 'debug' : 'trace';
     lastScale = key;
-    log.add(level, 'canvas.scale', scale < 1 ? __('Canevas {device} : {width} px, réduit à {scale} %', { device: __(DEVICE_LABEL[state.device] || state.device), width: target, scale: Math.round(scale * 100) }) : __('Canevas {device} : {width} px', { device: __(DEVICE_LABEL[state.device] || state.device), width: target }), { device: state.device, width: target, scale: Math.round(scale * 100), available: Math.round(availW) });
+    log.add(level, 'canvas.scale', scale < 1 ? __('Canevas {device} : {width} px, réduit à {scale} %', { device: __(DEVICE_LABEL[state.device] || state.device), width: target, scale: Math.round(scale * 100) }) : __('Canevas {device} : {width} px', { device: __(DEVICE_LABEL[state.device] || state.device), width: target }), { device: state.device, width: target, scale: Math.round(scale * 100), available: Math.round(availW), zoom, overflow: fit.overflow || undefined });
+    emit('zoom', { zoom, scale });
   }
   schedulePosition();
 }

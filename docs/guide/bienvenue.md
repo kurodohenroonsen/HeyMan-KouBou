@@ -36,9 +36,9 @@ Pas besoin de savoir programmer. Pas besoin de créer de compte. Atelier s'ouvre
 
 **Travailler à plusieurs sans serveur central.** Tu invites une personne par un lien : vos deux navigateurs se parlent directement, de façon chiffrée, et chacun voit les modifications de l'autre en direct. Un relecteur peut commenter sans rien pouvoir modifier.
 
-**Publier chez ton hébergeur, par exemple OVH.** Atelier prépare un petit fichier, `publish.php`, que tu déposes une seule fois sur ton hébergement. Ensuite, le bouton **🚀 Publier** met le site en ligne. Tu peux aussi télécharger le site en `.zip`, ou le publier par GitHub.
+**Publier chez ton hébergeur, par exemple OVH.** Atelier prépare un petit fichier, `publish.php`, que tu déposes une seule fois sur ton hébergement. Ensuite, le bouton **Publier** (icône fusée) met le site en ligne. Tu peux aussi télécharger le site en `.zip`, ou le publier par GitHub.
 
-**Accessibilité et référencement vérifiés.** Avant chaque export, Atelier vérifie le site : images sans description, liens cassés, textes peu lisibles (contraste), formulaire sans adresse… La fenêtre **🔎 SEO** note chaque page pour Google et dit quoi améliorer. Atelier peut aussi préparer la page « Déclaration d'accessibilité ».
+**Accessibilité et référencement vérifiés.** Avant chaque export, Atelier vérifie le site : images sans description, liens cassés, textes peu lisibles (contraste), formulaire sans adresse… La fenêtre **SEO** (icône loupe) note chaque page pour Google et dit quoi améliorer. Atelier peut aussi préparer la page « Déclaration d'accessibilité ».
 
 **Des versions et un retour arrière.** **Ctrl+Z** annule (jusqu'à 150 étapes). En plus, Atelier garde des **versions** du projet : une automatiquement au début de chaque journée de travail, une avant chaque opération risquée, et celles que tu enregistres toi-même. Tu peux en restaurer une à tout moment.
 
@@ -79,4 +79,4 @@ Bon à savoir : l'éditeur est prévu pour un écran d'au moins 1024 pixels de l
 | **Exporter** | Télécharger le site complet dans un fichier `.zip`, après vérification. |
 | **Publier** | Mettre le site en ligne chez ton hébergeur. |
 | **Version** | Une copie complète du projet, gardée dans ton navigateur, que tu peux restaurer. |
-| **Journal** | La liste de tout ce que fait l'éditeur (bouton **🐞**) : utile seulement pour signaler un problème. |
+| **Journal** | La liste de tout ce que fait l'éditeur (bouton **Journal** (icône insecte)) : utile seulement pour signaler un problème. |

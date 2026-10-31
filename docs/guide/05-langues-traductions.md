@@ -47,7 +47,7 @@ Un site Atelier peut exister en plusieurs langues (français, néerlandais, alle
 **But** : voir tous les textes du site, une colonne par langue, et compléter ce qui manque.
 
 **Étapes**
-1. Barre du haut : « 🌐 Traductions » (ou Ctrl+K « Tableau des traductions »).
+1. Barre du haut : « Traductions (icône 文A) » (ou Ctrl+K « Tableau des traductions »).
 2. Filtre : « Tous les textes », « À traduire seulement » ou « Traductions automatiques à relire ». Champ « Chercher un texte… ».
 3. Clique dans une case et tape la traduction ; elle est enregistrée quand tu quittes la case.
 4. « Aller à » ferme le tableau et montre le texte dans la page.

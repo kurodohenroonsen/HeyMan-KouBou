@@ -18,6 +18,9 @@ const SANITIZER = /\b(sanitizeRich|sanitizeInline|escapeHtml)\(/;
 const LITERAL = /\.(innerHTML|outerHTML)\s*=\s*(?:'[^'\n]*'|"[^"\n]*"|`[^`$]*`)\s*;/;
 
 const ALLOWED = [
+  { file: 'editor/topbar.js', line: 'el.innerHTML = uiIcon(el.dataset.icon', why: 'uiIcon renvoie une icône SVG constante choisie par son nom dans index.html (inconnu → chaîne vide), aucun texte du projet' },
+  { file: 'editor/dom.js', line: 't.innerHTML = uiIcon(name, size);', why: 'icône SVG constante de core/icons.js, aucun texte saisi' },
+  { file: 'editor/richedit.js', line: 't.innerHTML = clean;', why: 'clean vient de sanitizeRich/sanitizeInline appliqué au collage la ligne d’avant' },
   { file: 'editor/canvas.js', line: 'ui.innerHTML = `<div id="atelier-hover" class="ab ab--hover">', why: 'gabarit fixe de l’interface du canevas (cadres, barre d’outils) : seules des infobulles de l’éditeur passées par attr() y sont insérées, jamais un texte du projet' },
   { file: 'editor/inline.js', line: "ui.insertAdjacentHTML('beforeend', TOOLBAR);", why: 'TOOLBAR : gabarit constant de la barre de mise en forme, dont les libellés de l’interface sont échappés par escapeHtml à la construction' },
   { file: 'editor/inline.js', line: "box.querySelector('.fmt-ai-text').innerHTML = html;", why: 'aiOut : le HTML est construit par ses deux appelants avec escapeHtml sur chaque morceau de texte (propositions de l’IA), le texte du projet n’y entre jamais tel quel' }

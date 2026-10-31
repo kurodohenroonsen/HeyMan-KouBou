@@ -1,5 +1,5 @@
-12:30:20.108 +0.62s DEBUG store.commit Modification {"key":"site-name","source":"topbar","past":1,"page":"p_fbt4vtje"}
-12:30:20.709 +1.22s ERROR storage.save-fail Projet NON enregistré sur cet appareil : Quota dépassé (simulé) (espace plein, navigation privée ou IndexedDB bloqué) {"error":{"name":"QuotaExceededError","message":"Quota dépassé (simulé)","code":22},"name":"QuotaExceededError"}
-12:30:21.055 +1.56s DEBUG store.commit Modification (même étape d’annulation) {"key":"site-name","source":"topbar","merged":true,"past":1,"page":"p_fbt4vtje"}
-12:30:21.656 +2.16s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":12}
-12:30:21.657 +2.17s INFO  storage.save-recovered Enregistrement rétabli
+12:40:07.564 +0.61s DEBUG store.commit Modification {"key":"site-name","source":"topbar","past":1,"page":"p_9cgnhsel"}
+12:40:08.165 +1.21s ERROR storage.save-fail Projet NON enregistré sur cet appareil : Quota dépassé (simulé) (espace plein, navigation privée ou IndexedDB bloqué) {"error":{"name":"QuotaExceededError","message":"Quota dépassé (simulé)","code":22},"name":"QuotaExceededError"}
+12:40:08.489 +1.53s DEBUG store.commit Modification (même étape d’annulation) {"key":"site-name","source":"topbar","merged":true,"past":1,"page":"p_9cgnhsel"}
+12:40:09.091 +2.13s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":12}
+12:40:09.091 +2.13s INFO  storage.save-recovered Enregistrement rétabli

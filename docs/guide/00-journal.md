@@ -1,6 +1,6 @@
 # 0. Le journal de débogage
 
-Atelier note tout ce qu'il fait : dans la **console du navigateur** (F12), dans la fenêtre **🐞 Journal**, et, sur l'hébergement, dans le **journal du serveur** tenu par publish.php. Ce chapitre explique comment récupérer ces journaux, comment les lire et comment les régler.
+Atelier note tout ce qu'il fait : dans la **console du navigateur** (F12), dans la fenêtre **Journal** (icône insecte), et, sur l'hébergement, dans le **journal du serveur** tenu par publish.php. Ce chapitre explique comment récupérer ces journaux, comment les lire et comment les régler.
 
 **Domaines du journal** : `boot.*` (démarrage), `log.*` (le journal lui-même), `app.*` (erreurs et événements du navigateur), `ui.*` (ce que tu fais : clics, champs, fenêtres, raccourcis, messages), `net.*` (requêtes réseau), `perf.*` (lenteurs), `php.*` (lignes venues de publish.php).
 
@@ -14,10 +14,10 @@ Atelier note tout ce qu'il fait : dans la **console du navigateur** (F12), dans 
 
 **Étapes**
 1. Refais l'opération qui pose problème (inutile de recharger la page avant : le journal garde les 5000 derniers événements depuis l'ouverture de l'éditeur).
-2. Clique sur **🐞** dans la barre du haut (ou Ctrl+Alt+J, ou Ctrl+K puis « Journal »).
+2. Clique sur **Journal** (icône insecte) dans la barre du haut (ou Ctrl+Alt+J, ou Ctrl+K puis « Journal »).
 3. Clique **📋 Copier le journal** et colle dans ton message. Si le navigateur refuse la copie, clique **⇩ Télécharger (.log)** et joins le fichier.
 
-**Ce que tu vois** : la fenêtre « 🐞 Journal de débogage » avec les lignes en direct (les 500 dernières), le nombre d'erreurs et d'avertissements. La pastille rouge sur 🐞 compte les erreurs depuis le démarrage.
+**Ce que tu vois** : la fenêtre « Journal de débogage » avec les lignes en direct (les 500 dernières), le nombre d'erreurs et d'avertissements. La pastille rouge sur le bouton Journal compte les erreurs depuis le démarrage.
 
 **Journal attendu** (extrait réel, avec les lignes `ui.*` : [`journaux/journal-fenetre.log`](journaux/journal-fenetre.log))
 ```log
@@ -66,7 +66,7 @@ collaboration : {…}           (chapitre 10)
 **Erreurs**
 | Situation | Message affiché | Journal | Que faire |
 |---|---|---|---|
-| Le bouton 🐞 n'apparaît pas, l'éditeur reste blanc | rien, ou un éditeur à moitié affiché | dans la console seulement : `[Atelier] boot.error …`, `boot.resource`, `boot.rejection`, puis après 15 s `boot.timeout` (ERROR) | ouvre la console (F12), copie toutes les lignes `[Atelier]` (voir 0.2) |
+| Le bouton Journal (icône insecte) n'apparaît pas, l'éditeur reste blanc | rien, ou un éditeur à moitié affiché | dans la console seulement : `[Atelier] boot.error …`, `boot.resource`, `boot.rejection`, puis après 15 s `boot.timeout` (ERROR) | ouvre la console (F12), copie toutes les lignes `[Atelier]` (voir 0.2) |
 
 ---
 
@@ -101,7 +101,7 @@ Les autres messages d'erreur de la page (bibliothèques, navigateur) qui passent
 **But** : voir plus (ou moins) de détails.
 
 **Étapes**
-- Dans 🐞 → « Réglages du journal » : **Console (F12) dès** et **Garder en mémoire dès** (trace, debug, info, warn, error ; `off` coupe la console), et **Demander sa trace à publish.php**.
+- Dans Journal (icône insecte) → « Réglages du journal » : **Console (F12) dès** et **Garder en mémoire dès** (trace, debug, info, warn, error ; `off` coupe la console), et **Demander sa trace à publish.php**.
 - Ou dans l'adresse de l'éditeur : `?debug` (console en DEBUG), `?trace` (tout, très bavard), `?quiet` (console en WARN seulement). Le réglage est gardé sur cet appareil (`localStorage['atelier-log']`).
 
 **Par défaut, pendant la phase de test** : console et mémoire en DEBUG, trace du serveur demandée.
@@ -130,8 +130,8 @@ Au démarrage, la première ligne rappelle les réglages en vigueur :
 **But** : voir ce que publish.php a fait sur l'hébergement (publications, formulaires de contact, collaboration), y compris quand l'éditeur n'était pas ouvert — par exemple un visiteur dont le message n'est pas arrivé.
 
 **Étapes**
-1. Il faut publish.php **version 4** (🚀 Publier → « ⇩ Télécharger publish.php », puis le redéposer par FTP : voir le chapitre 8).
-2. 🐞 → « Journal du serveur (publish.php) ». L'adresse et le jeton sont repris de la fenêtre Publier (si « Se souvenir sur cet appareil » est coché) ; sinon, saisis-les.
+1. Il faut publish.php **version 4** (Publier (icône fusée) → « ⇩ Télécharger publish.php », puis le redéposer par FTP : voir le chapitre 8).
+2. Journal (icône insecte) → « Journal du serveur (publish.php) ». L'adresse et le jeton sont repris de la fenêtre Publier (si « Se souvenir sur cet appareil » est coché) ; sinon, saisis-les.
 3. **Lire le journal du serveur** : les 300 dernières lignes s'affichent et seront ajoutées à « Copier le journal ».
 
 **Ce que tu vois** : des lignes `AAAA-MM-JJTHH:MM:SS.mmmZ NIVEAU code [req référence · durée] message {données}`, en heure UTC.
@@ -165,8 +165,8 @@ Et dans le cadre « Journal du serveur » (extrait : [`journaux/php-journal-cont
 | Situation | Message affiché | Journal | Que faire |
 |---|---|---|---|
 | Jeton faux | « Journal du serveur illisible : Jeton refusé par publish.php. » (après 1 s : publish.php ralentit volontairement les essais) | `net.response` 401 (WARN), `log.server.fail` (ERROR), et côté serveur `php.logs.denied` (WARN) | reprends le jeton de la publication (celui du publish.php déposé) |
-| Adresse ou jeton absent | « Adresse de publish.php inconnue… » / « Jeton de publication absent… » | `log.server.fail` (ERROR) | règle l'adresse dans 🚀 Publier, coche « Se souvenir » |
-| publish.php version 3 | « … le journal du serveur demande la version 4 (téléchargez le nouveau publish.php dans 🚀 Publier). » | `log.server.fail` (ERROR) | retélécharge et redépose publish.php (nouveau jeton) |
+| Adresse ou jeton absent | « Adresse de publish.php inconnue… » / « Jeton de publication absent… » | `log.server.fail` (ERROR) | règle l'adresse dans Publier (icône fusée), coche « Se souvenir » |
+| publish.php version 3 | « … le journal du serveur demande la version 4 (téléchargez le nouveau publish.php dans Publier (icône fusée)). » | `log.server.fail` (ERROR) | retélécharge et redépose publish.php (nouveau jeton) |
 | Serveur injoignable | « … Failed to fetch » | `net.fail` (ERROR), `log.server.fail` (ERROR) | voir chapitre 8, « Tester la connexion » |
 
 Extrait réel du jeton faux : [`journaux/journal-serveur.log`](journaux/journal-serveur.log)

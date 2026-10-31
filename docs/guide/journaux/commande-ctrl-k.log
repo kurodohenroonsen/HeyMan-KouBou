@@ -1,9 +1,10 @@
-12:30:25.805 +6.31s DEBUG ui.key Raccourci : Ctrl+K {"key":"Ctrl+K","in":"body"}
-12:30:25.810 +6.32s DEBUG ui.dialog.open Fenêtre ouverte : cmdk {"id":"cmdk","class":"cmdk","modal":true}
-12:30:25.836 +6.34s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":12}
-12:30:26.013 +6.52s INFO  cmdk.run Commande : Journal de débogage : copier, télécharger, journal du serveur {"id":"act:log","query":"journal de débogage"}
-12:30:26.018 +6.53s DEBUG ui.dialog.open Fenêtre ouverte : 🐞 Journal de débogage {"id":"logDialog","class":"audit log-dialog","modal":true}
-12:30:26.025 +6.53s DEBUG ui.change Champ modifié : cmdkInput {"el":"input","id":"cmdkInput","dialog":"cmdk","value":"journal de débogage"}
-12:30:26.028 +6.54s DEBUG ui.dialog.close Fenêtre fermée : cmdk {"id":"cmdk"}
-12:30:26.037 +6.54s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token"}
-12:30:26.051 +6.56s DEBUG ui.key Raccourci : Escape {"key":"Escape","in":"button"}
+12:40:12.967 +6.01s DEBUG ui.key Raccourci : Ctrl+K {"key":"Ctrl+K","in":"body"}
+12:40:12.970 +6.01s DEBUG ui.dialog.open Fenêtre ouverte : cmdk {"id":"cmdk","class":"cmdk","modal":true}
+12:40:13.037 +6.08s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":12}
+12:40:13.155 +6.20s INFO  cmdk.run Commande : Journal de débogage : copier, télécharger, journal du serveur {"id":"act:log","query":"journal de débogage"}
+12:40:13.161 +6.20s DEBUG ui.dialog.open Fenêtre ouverte : 🐞 Journal de débogage {"id":"logDialog","class":"audit log-dialog","modal":true}
+12:40:13.167 +6.21s DEBUG ui.change Champ modifié : cmdkInput {"el":"input","id":"cmdkInput","dialog":"cmdk","value":"journal de débogage"}
+12:40:13.169 +6.21s DEBUG ui.dialog.close Fenêtre fermée : cmdk {"id":"cmdk"}
+12:40:13.176 +6.22s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:https://www.xn--mdia-alternatif-bnb.be"}
+12:40:13.192 +6.23s DEBUG ui.key Raccourci : Escape {"key":"Escape","in":"button"}
+12:40:13.202 +6.24s DEBUG ui.dialog.close Fenêtre fermée : 🐞 Journal de débogage {"id":"logDialog"}

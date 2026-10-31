@@ -64,7 +64,7 @@ Chez l'hôte ([`journaux/collab-relecture-hote.log`](journaux/collab-relecture-h
 
 **Étapes**
 1. Sélectionne l'élément dans la page.
-2. Clique **💬** (barre du haut) : le panneau « 💬 Commentaires » remplace l'inspecteur.
+2. Clique **Commentaires** (icône bulle) (barre du haut) : le panneau « 💬 Commentaires » remplace l'inspecteur.
 3. Écris ta remarque, puis **💬 Commenter** (ou Ctrl+Entrée). La première fois, indique ton nom dans le champ « Votre nom (signe vos commentaires) ».
 
 **Ce que tu vois** : « Commentaire ajouté et signé. » ; le commentaire apparaît avec « ✓ signé » et une pastille numérotée se pose sur l'élément. Le bouton 💬 affiche le nombre de commentaires ouverts.

@@ -53,7 +53,7 @@ Dans les tableaux de textes ci-dessous, chaque texte est donné dans les trois l
 1. Panneau de gauche, onglet **Site**, partie **Identité** → **Langues**.
 2. Vérifie que **日本語** (marqué « principale », il ne se décoche pas), **English** et **Français** sont cochés. Tu peux ajouter ou retirer une langue ici à tout moment.
 
-**Ce que tu vois** : en haut de l'écran, la liste des langues propose JA, EN et FR. C'est elle qui choisit la langue **affichée et écrite** dans le canevas. Le bouton **🌐 Traductions** (le tableau de toutes les traductions) est disponible dès que le site a deux langues.
+**Ce que tu vois** : en haut de l'écran, la liste des langues propose JA, EN et FR. C'est elle qui choisit la langue **affichée et écrite** dans le canevas. Le bouton **Traductions** (icône 文A) (le tableau de toutes les traductions) est disponible dès que le site a deux langues.
 
 **Astuce** : la langue de l'éditeur lui-même (ses boutons) est un autre réglage : **Fichier → Langue de l'interface** (français, English, 日本語). Ce tutoriel suppose l'éditeur en français.
 
@@ -510,7 +510,7 @@ Widget rencontré : [Liste de contenus](widgets.md#liste-de-contenus) (deuxième
 1. En haut de l'écran, bouton **Mobile** (▯) : la page s'affiche à la largeur d'un téléphone.
 2. Fais défiler : les colonnes sont passées l'une sous l'autre ; le menu s'est replié derrière le bouton « ☰ メニュー ».
 3. Sélectionne le grand titre de l'accueil → onglet **Style** → bouton **Mobile** de l'onglet → groupe **Typographie** → **Taille** → liste **Échelle…** : **Titre 2**. Ce réglage ne vaut que pour le mobile.
-4. Bouton **🖥▭▯** de l'onglet Style : les trois appareils côte à côte, pour comparer.
+4. Bouton **bouton aux trois écrans** de l'onglet Style : les trois appareils côte à côte, pour comparer.
 5. Reviens sur **Ordinateur** (🖥) ; regarde aussi **Tablette** (▭).
 
 **Ce que tu vois** : sur le mobile, l'espace de l'étape 13 a disparu ; le titre est plus petit. Un réglage fait sur ordinateur vaut partout, sauf si tu le changes pour la tablette ou le mobile.
@@ -535,7 +535,7 @@ Widget rencontré : [Liste de contenus](widgets.md#liste-de-contenus) (deuxième
 ### Étape 26 — Traduire tout ce qui manque
 
 **Ce que tu fais**
-1. En haut, **🌐 Traductions** : le tableau montre tous les textes du site, une colonne par langue.
+1. En haut, **Traductions** (icône 文A) : le tableau montre tous les textes du site, une colonne par langue.
 2. Filtre **À traduire seulement** : il ne reste que les cases vides. Clique dans une case, tape la traduction ; elle est gardée quand tu quittes la case. **Aller à** montre le texte dans la page.
 3. Facultatif, avec Chrome récent : **✨ Traduction automatique** → choisis la paire (de la langue principale vers EN, puis vers FR) → **Traduire les textes manquants**. La traduction se fait **sur ton ordinateur**.
 4. Filtre **Traductions automatiques à relire** : corrige si besoin, puis **✓ Valider**.
@@ -549,7 +549,7 @@ Widget rencontré : [Liste de contenus](widgets.md#liste-de-contenus) (deuxième
 ### Étape 27 — Le référencement (Google)
 
 **Ce que tu fais**
-1. En haut, **🔎 SEO** : à gauche, la note du site et la note de chaque page.
+1. En haut, **SEO** (icône loupe) : à gauche, la note du site et la note de chaque page.
 2. Clique sur la page ホーム. Lis les points ✗ ⚠ • et corrige-les : **Aller à** te mène à l'élément en cause.
 3. **Mot-clé principal** : `久万高原町 観光` (en JA). **Titre pour Google** : laisse vide (automatique) ou écris-en un de 60 caractères au plus. Change la **langue analysée** pour vérifier EN et FR.
 4. **Image de partage (réseaux sociaux, 1200 × 630 idéalement)** : une illustration.
@@ -564,9 +564,9 @@ Widget rencontré : [Liste de contenus](widgets.md#liste-de-contenus) (deuxième
 ### Étape 28 — L'IA sur ton ordinateur (facultatif)
 
 **Ce que tu fais**
-1. En haut, **✨** : la fenêtre « ✨ IA locale (Gemini Nano dans Chrome) » dit ce que ce navigateur sait faire (« ✓ prêt », « ⇩ à télécharger »…). **Télécharger** si besoin (une seule fois).
+1. En haut, **IA locale** (icône étincelle) : la fenêtre « IA locale (icône étincelle) (Gemini Nano dans Chrome) » dit ce que ce navigateur sait faire (« ✓ prêt », « ⇩ à télécharger »…). **Télécharger** si besoin (une seule fois).
 2. Sélectionne une image → onglet Contenu → **✨ Décrire l'image** : une description est proposée, marquée « à relire ».
-3. Double-clique dans un texte, sélectionne une phrase → **✨** → « Plus court » ou « Corriger » → **Remplacer** ou **Annuler**.
+3. Double-clique dans un texte, sélectionne une phrase → **IA locale** (icône étincelle) → « Plus court » ou « Corriger » → **Remplacer** ou **Annuler**.
 4. **Demander à Atelier** : **Ctrl+K**, écris une phrase, par exemple « Mets tous les titres de cette page en couleur principale et centrés », Entrée → **✨ Préparer** → lis l'aperçu → **Appliquer**. **Ctrl+Z** annule tout en une fois.
 
 **Ce que tu vois** : chaque proposition est montrée avant d'être appliquée ; tout ce que l'IA écrit est marqué « à relire » (filtre du tableau des traductions).
@@ -603,10 +603,10 @@ Widget rencontré : [Liste de contenus](widgets.md#liste-de-contenus) (deuxième
 ### Étape 31 — Publier chez OVH
 
 **Ce que tu fais**
-1. En haut à droite, **🚀 Publier** → partie **Publication sur OVH (publish.php)**.
+1. En haut à droite, **Publier** (icône fusée) → partie **Publication sur OVH (publish.php)**.
 2. **⇩ Télécharger publish.php** (une seule fois) ; coche **Se souvenir sur cet appareil (jamais dans le projet)**.
 3. Dépose `publish.php` par FTP dans le dossier du site chez OVH (« www »), puis indique son adresse : `https://www.ton-site.example/publish.php`.
-4. **Tester la connexion**, puis **🚀 Publier le site**.
+4. **Tester la connexion**, puis **Publier (icône fusée) le site**.
 
 **Ce que tu vois** : « Site publié (N fichiers). ». Les fois suivantes, seule l'étape 4 est nécessaire. Le formulaire de contact passe alors par ton hébergement : ton adresse n'apparaît jamais dans les pages.
 
@@ -628,8 +628,8 @@ Widget rencontré : [Liste de contenus](widgets.md#liste-de-contenus) (deuxième
 
 ## Pour aller plus loin
 
-- **Travailler à plusieurs** : **👥** → ouvrir une session et envoyer un lien d'invitation ([chapitre 10](10-collaboration.md)).
-- **Faire relire** : **💬** → commentaires signés sur chaque élément ; un relecteur ne peut rien casser ([chapitre 11](11-relecture-commentaires.md)).
+- **Travailler à plusieurs** : **Travailler à plusieurs** (icône deux personnes) → ouvrir une session et envoyer un lien d'invitation ([chapitre 10](10-collaboration.md)).
+- **Faire relire** : **Commentaires** (icône bulle) → commentaires signés sur chaque élément ; un relecteur ne peut rien casser ([chapitre 11](11-relecture-commentaires.md)).
 - **Créer un événement à partir d'une affiche** : Contenus → Agenda → **✨ Depuis une affiche** ([chapitre 12](12-contenus-intelligents.md)).
 - **Déclaration d'accessibilité** : Pages → **♿ Créer la déclaration d'accessibilité** (elle ajoute une troisième page, écrite en français, néerlandais, allemand et anglais : traduis-la en japonais ; [4.7](04-pages-images-contenus.md)).
 - **Chaque widget en détail** : [Tous les widgets](widgets.md).

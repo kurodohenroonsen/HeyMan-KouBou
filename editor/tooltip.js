@@ -14,7 +14,7 @@ const IS_MAC = /Mac|iPhone|iPad/i.test(globalThis.navigator?.userAgentData?.plat
 const DESC = [
   ['#undoBtn', __('Revient sur la dernière modification (jusqu’à 150 étapes).')],
   ['#redoBtn', __('Refait ce que tu viens d’annuler.')],
-  ['[data-device="desktop"]', __('Voir et régler la page comme sur un ordinateur (1280 px).')],
+  ['[data-device="desktop"]', __('Voir et régler la page comme sur un ordinateur : elle prend toute la largeur disponible (1040 px au moins).')],
   ['[data-device="tablet"]', __('Voir et régler la page comme sur une tablette ; les réglages faits ici ne valent que pour la tablette.')],
   ['[data-device="mobile"]', __('Voir et régler la page comme sur un téléphone ; les réglages faits ici ne valent que pour le mobile.')],
   ['#aiBtn', __('Reformuler, corriger, décrire les images, traduire… avec Gemini Nano, sur ton ordinateur : rien n’est envoyé.')],
@@ -34,7 +34,17 @@ const DESC = [
   ['[data-act="paste-style"]', __('Applique la mise en forme retenue à cet élément.')],
   ['[data-style-all-devices]', __('Affiche les trois colonnes ordinateur, tablette et mobile pour régler chaque appareil.')],
   ['[data-reset]', __('Efface ce réglage : l’élément reprend la valeur du site ou de son parent.')],
-  ['[data-page-delete]', __('Supprime la page et la retire du menu (Ctrl+Z pour la récupérer).')]
+  ['[data-page-delete]', __('Supprime la page et la retire du menu (Ctrl+Z pour la récupérer).')],
+  ['#zoomSelect', __('Ajuster : la page remplit la place disponible ; 100 % : taille réelle (défilement si elle dépasse) ; 75 % et 50 % : une page plus large, comme sur un grand écran.')],
+  ['#zoomInBtn', __('Palier de zoom suivant (50, 75, 100 %).')],
+  ['#zoomOutBtn', __('Palier de zoom précédent (100, 75, 50 %).')],
+  ['#panelsBtn', __('Cache ou montre les panneaux de gauche et de droite : la page prend toute la largeur, lisible sur un portable.')],
+  ['[data-box-lock]', __('Lié : une seule valeur pour les quatre côtés. Séparé : chaque côté se règle seul.')],
+  ['[data-free]', __('Tape une valeur libre : clamp(1rem, 3vw, 2rem), var(--space-m), auto… Le champ ordinaire prend un nombre et une unité.')],
+  ['[data-expert-on]', __('Montre tous les réglages : dimensions, disposition, effets, classes CSS, CSS personnalisée. Choix retenu sur cet appareil.')],
+  ['[data-fmt="ul"], [data-rt="ul"]', __('Liste à puces. Raccourci : « - » puis espace en début de ligne.')],
+  ['[data-fmt="ol"], [data-rt="ol"]', __('Liste numérotée. Raccourci : « 1. » puis espace en début de ligne.')],
+  ['[data-fmt="format"]', __('Paragraphe, intertitre (titre 2 ou 3), citation, exposant, indice.')]
 ];
 
 const TARGET = '[data-tip], [title], button[aria-label], summary[aria-label], [role="button"][aria-label], a[aria-label]';

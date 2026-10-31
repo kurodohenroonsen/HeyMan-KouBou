@@ -3,7 +3,7 @@
  * Toute valeur passe par validateStyleValue() : rien de libre n'atteint la feuille de style.
  */
 
-import { N_ } from './ui-i18n.js';
+import { __, N_ } from './ui-i18n.js';
 
 const LEN = /^-?(?:\d+|\d*\.\d+)(?:px|rem|em|%|vh|vw)$/;
 const HEX = /^#(?:[0-9a-f]{3}|[0-9a-f]{4}|[0-9a-f]{6}|[0-9a-f]{8})$/i;
@@ -81,7 +81,7 @@ export const STYLE_PROPS = {
   borderWidth: { group: 'Bordure', label: N_('Épaisseur'), css: 'border-width', ...len() },
   borderStyle: { group: 'Bordure', label: N_('Type'), css: 'border-style', ...enumOf('none', 'solid', 'dashed', 'dotted') },
   borderColor: { group: 'Bordure', label: N_('Couleur'), css: 'border-color', kind: 'color' },
-  borderRadius: { group: 'Bordure', label: N_('Arrondi'), css: 'border-radius', ...sp() },
+  borderRadius: { group: 'Bordure', label: N_('Arrondi'), css: 'border-radius', slider: { min: 0, max: 48, step: 1 }, ...sp() },
   boxShadow: { group: 'Bordure', label: N_('Ombre'), css: 'box-shadow', kind: 'preset', map: SHADOWS },
 
   width: { group: 'Dimensions', label: N_('Largeur'), css: 'width', ...sp({ auto: true }) },
@@ -94,7 +94,7 @@ export const STYLE_PROPS = {
   justifyContent: { group: 'Disposition', label: N_('Répartition'), css: 'justify-content', ...enumOf('start', 'center', 'end', 'space-between') },
   span: { group: 'Disposition', label: N_('Largeur de colonne (sur 12)'), css: 'grid-column', kind: 'int', min: 1, max: 12 },
 
-  opacity: { group: 'Effets', label: N_('Opacité'), css: 'opacity', kind: 'number', min: 0, max: 1, step: 0.05 },
+  opacity: { group: 'Effets', label: N_('Opacité'), css: 'opacity', kind: 'number', min: 0, max: 1, step: 0.05, slider: { start: 1 } },
   transform: { group: 'Effets', label: N_('Transformation'), css: 'transform', kind: 'preset', map: TRANSFORMS },
   transitionDuration: { group: 'Effets', label: N_('Durée de transition (ms)'), css: 'transition', kind: 'int', min: 0, max: 3000 },
   reveal: { group: 'Effets', label: N_('Apparition au défilement'), css: null, special: true, ...enumOf('none', 'fade', 'up', 'zoom') }
@@ -103,6 +103,104 @@ export const STYLE_PROPS = {
 export const HOVER_PROPS = ['color', 'background', 'borderColor', 'boxShadow', 'transform', 'opacity'];
 export const STATES = ['desktop', 'tablet', 'mobile', 'hover'];
 export const STYLE_GROUPS = [N_('Typographie'), N_('Fond'), N_('Espacement'), N_('Bordure'), N_('Dimensions'), N_('Disposition'), N_('Effets')];
+/* Mode simple (cycle 30) : seuls ces groupes sont montrés ; les autres attendent le mode expert */
+export const SIMPLE_GROUPS = ['Typographie', 'Fond', 'Espacement', 'Bordure'];
+export const isExpertKey = key => !!STYLE_PROPS[key] && !SIMPLE_GROUPS.includes(STYLE_PROPS[key].group);
+
+/* ---------- Champs nombre + unité (cycle 30) ---------- */
+export const LENGTH_UNITS = ['px', 'rem', 'em', '%', 'vh', 'vw'];
+const NUM_UNIT = /^(-?(?:\d+|\d*\.\d+))\s*(px|rem|em|%|vh|vw)$/;
+/* Pas des flèches : 1 (Maj : 10) en px, %, vh, vw ; 0,1 (Maj : 1) en rem et em */
+const STEP = { px: 1, '%': 1, vh: 1, vw: 1, rem: 0.1, em: 0.1 };
+const round3 = n => Math.round(n * 1000) / 1000;
+
+/* '0.85rem' → { n: 0.85, unit: 'rem' } ; '0' → px ; valeur libre (auto, clamp(), jeton) → null */
+export function parseLength(v) {
+  const s = String(v ?? '').trim();
+  if (s === '0') return { n: 0, unit: 'px' };
+  const m = NUM_UNIT.exec(s);
+  return m ? { n: Number(m[1]), unit: m[2] } : null;
+}
+
+export function formatLength(n, unit = 'px') {
+  const r = round3(Number(n));
+  return `${r === 0 ? 0 : r}${unit}`;
+}
+
+/* Ce que la personne a tapé dans le champ nombre : un nombre seul prend l'unité choisie ; « 24px » est compris ;
+   tout le reste (auto, clamp(), jeton…) passe tel quel et sera validé par validateStyleValue. */
+export function lengthFromInput(text, unit = 'px') {
+  const s = String(text ?? '').trim().replace(/^(-?\d*),(\d+)$/, '$1.$2');
+  if (s === '') return '';
+  if (s === '0') return '0';
+  /* rem / em : au-delà de 10, c'est une taille en px (personne ne veut 34rem) — l'ancienne règle « 30 = 30 px » tient */
+  if (/^-?(?:\d+|\d*\.\d+)$/.test(s)) return formatLength(Number(s), (unit === 'rem' || unit === 'em') && Math.abs(Number(s)) > 10 ? 'px' : unit);
+  const m = /^(-?(?:\d+|\d*\.\d+))\s+(px|rem|em|%|vh|vw)$/.exec(s);
+  return m ? `${m[1]}${m[2]}` : s;
+}
+
+export const isFreeLength = v => v !== undefined && v !== null && String(v).trim() !== '' && !parseLength(v);
+
+/* Flèche ↑ (dir 1) ou ↓ (dir -1) sur un champ : nouvelle valeur, ou null si la valeur est libre */
+export function stepLength(v, dir, { big = false, unit = 'px', min = 0 } = {}) {
+  const cur = String(v ?? '').trim() === '' ? { n: 0, unit } : parseLength(v);
+  if (!cur) return null;
+  const step = (STEP[cur.unit] || 1) * (big ? 10 : 1);
+  return formatLength(Math.max(min, round3(cur.n + dir * step)), cur.unit);
+}
+
+/* ---------- Marges : les quatre côtés liés (cycle 30) ---------- */
+const SIDES = ['Top', 'Right', 'Bottom', 'Left'];
+export const boxKeys = prefix => SIDES.map(s => prefix + s);
+export const linkedBox = (prefix, value) => Object.fromEntries(boxKeys(prefix).map(k => [k, value]));
+
+/* Lié d'office quand les quatre côtés sont égaux ; les marges extérieures vides restent libres */
+export function boxLinkedDefault(prefix, values = {}) {
+  const vals = boxKeys(prefix).map(k => values[k] ?? '');
+  const same = vals.every(v => v === vals[0]);
+  if (!same) return false;
+  return vals[0] !== '' || prefix === 'padding';
+}
+
+/* ---------- Noms des couleurs de palette (cycle 30) ---------- */
+/* Noms par défaut (core/site.js) : courts dans le panneau Site, longs partout où une couleur est affichée */
+const DEFAULT_NAMES = { c1: 'Principale', c2: 'Secondaire', c3: 'Texte', c4: 'Fond', c5: 'Discrète', c6: 'Surface' };
+export const PALETTE_LABELS = { c1: N_('Couleur principale'), c2: N_('Couleur secondaire'), c3: N_('Couleur du texte'), c4: N_('Couleur de fond'), c5: N_('Couleur discrète'), c6: N_('Couleur de surface') };
+
+/* Nom court d'une couleur : les noms par défaut sont traduits, ceux donnés par la personne restent tels quels */
+export function paletteName(names, k) {
+  const n = names?.[k];
+  if (!n) return k;
+  if (n === DEFAULT_NAMES[k]) return __(DEFAULT_NAMES[k]);
+  if (n === `Couleur ${k.slice(1)}`) return __('Couleur {n}', { n: k.slice(1) });
+  return n;
+}
+
+/* Libellé affiché pour une valeur de couleur du modèle : « Couleur principale », « Rouge MAB », « #bbbbbb »… */
+export function colorLabel(value, names = {}) {
+  const v = String(value ?? '').trim();
+  if (!v) return '';
+  if (v === 'transparent') return __('Transparent');
+  if (!v.startsWith('palette:')) return v;
+  const k = v.slice(8);
+  const n = names?.[k];
+  if (n && n === DEFAULT_NAMES[k] && PALETTE_LABELS[k]) return __(PALETTE_LABELS[k]);
+  return paletteName(names, k);
+}
+
+const fold = s => String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/\s+/g, ' ').trim();
+
+/* Ce que la personne a tapé dans le champ couleur : un nom de palette (long ou court) → palette:cN ; sinon tel quel */
+export function parseColorInput(text, names = {}) {
+  const s = String(text ?? '').trim();
+  if (!s || s.startsWith('palette:') || s.startsWith('#')) return s;
+  const f = fold(s);
+  for (const k of PALETTE_KEYS) {
+    if (!names?.[k]) continue;
+    if (f === fold(colorLabel(`palette:${k}`, names)) || f === fold(paletteName(names, k)) || f === fold(names[k])) return `palette:${k}`;
+  }
+  return s;
+}
 
 /* Propriétés qui restent sur le conteneur du widget quand le widget cible un élément intérieur */
 const WRAPPER_KEYS = new Set(['marginTop', 'marginRight', 'marginBottom', 'marginLeft', 'textAlign', 'width', 'maxWidth', 'alignSelf']);

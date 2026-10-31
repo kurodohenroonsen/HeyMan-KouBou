@@ -51,7 +51,7 @@ L'IA locale (Gemini Nano dans Chrome, voir le chapitre 7) aide à **remplir** le
 **Erreurs** ([`journaux/intelligent-affiche-erreurs.log`](journaux/intelligent-affiche-erreurs.log))
 | Situation | Message affiché | Journal | Que faire |
 |---|---|---|---|
-| L'IA de ce Chrome ne lit pas les images (Prompt API multimodale absente ou non téléchargée) | « L’IA locale de ce navigateur ne lit pas encore les images (Prompt API multimodale). » | `ai.extract.absent` (WARN), `ai.extract.cancel`, `smart.poster.read-fail` (WARN) | ✨ IA locale : télécharger « Prompt API – images » (chapitre 7) |
+| L'IA de ce Chrome ne lit pas les images (Prompt API multimodale absente ou non téléchargée) | « L’IA locale de ce navigateur ne lit pas encore les images (Prompt API multimodale). » | `ai.extract.absent` (WARN), `ai.extract.cancel`, `smart.poster.read-fail` (WARN) | IA locale (icône étincelle) : télécharger « Prompt API – images » (chapitre 7) |
 | Photo illisible ou d'un type refusé | message de l'import d'image | `smart.poster.image-fail` (WARN), `image.import.fail` | autre photo (JPG, PNG, WebP) |
 | Rien de lisible sur la photo | « L’IA n’a rien su lire sur cette image : essayez une photo plus nette, prise de face. » | `ai.extract.fail` (ERROR) | photo plus nette, affiche entière dans le cadre |
 | Réponse du modèle hors du format demandé | « Réponse illisible de l’IA locale : réessayez. » | `ai.extract.unreadable` (WARN), `ai.extract.fail` | réessayer ; si ça se répète, envoie le journal |

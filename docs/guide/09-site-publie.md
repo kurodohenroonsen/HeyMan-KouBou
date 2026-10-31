@@ -41,7 +41,7 @@ Les pages sans menu mobile, formulaire, liste datée, galerie, vidéo ni carte n
 
 **Journal attendu**
 - Dans la console du visiteur (avec `?atelier-debug`) : `site.form.submit` (nombre de champs remplis, sans leur contenu) puis `site.form.ok` avec `req`, la référence de la requête côté serveur.
-- Dans le journal du serveur (🐞 → Journal du serveur, chapitre 0 ; extrait réel : [`journaux/php-journal-contact.log`](journaux/php-journal-contact.log)) :
+- Dans le journal du serveur (Journal (icône insecte) → Journal du serveur, chapitre 0 ; extrait réel : [`journaux/php-journal-contact.log`](journaux/php-journal-contact.log)) :
 ```log
 2026-10-29T03:39:49.400Z INFO  php.contact.sent [req 8e07b221 · 0.6 ms] E-mail remis au serveur d’envoi de l’hébergement {"form":"n_5s081k324w","to":"re…@media-alternatif.be","from":"noreply@127.0.0.1","fields":3,"reply_to":true}
 2026-10-29T03:39:49.400Z INFO  php.req.end [req 8e07b221 · 0.6 ms] Réponse 200 (contact) {"status":200,"route":"contact","mem_kb":365}

@@ -11,7 +11,7 @@ La fenêtre « 🔎 Référencement » note chaque page sur 100 pour Google, mon
 **But** : savoir où en est le site et quelle page améliorer d'abord.
 
 **Étapes**
-1. Barre du haut : « 🔎 SEO » (ou Ctrl+K « Référencement »).
+1. Barre du haut : « SEO (icône loupe) » (ou Ctrl+K « Référencement »).
 2. À gauche : la note du site (moyenne des pages dans la langue choisie), les points qui concernent tout le site, la liste des pages avec leur note.
 3. Clique sur une page ; change la langue analysée avec le menu à côté de la note.
 

@@ -1,14 +1,13 @@
-12:30:21.991 +2.50s DEBUG ui.change Champ modifié : Nom du site {"el":"input","id":"siteName","name":"Nom du site","value":"MAB – Médias Alternatifs Belges"}
-12:30:21.993 +2.50s DEBUG ui.click Clic : 🐞1 {"el":"button","id":"logBtn","text":"🐞1"}
-12:30:21.995 +2.50s DEBUG ui.dialog.open Fenêtre ouverte : 🐞 Journal de débogage {"id":"logDialog","class":"audit log-dialog","modal":true}
-12:30:22.016 +2.52s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token"}
-12:30:22.212 +2.72s DEBUG ui.key Raccourci : Delete {"key":"Delete","in":"input"}
-12:30:22.442 +2.95s DEBUG ui.click Clic : 📋 Copier le journal {"el":"button","text":"📋 Copier le journal","data":{"logCopy":""},"dialog":"logDialog"}
-12:30:22.483 +2.99s WARN  log.copy-fail Copie refusée par le navigateur : utilisez « Télécharger » {"error":"Failed to execute 'writeText' on 'Clipboard': Write permission denied."}
-12:30:22.900 +3.41s DEBUG ui.click Clic : ⇩ Télécharger (.log) {"el":"button","text":"⇩ Télécharger (.log)","data":{"logDownload":""},"dialog":"logDialog"}
-12:30:22.910 +3.42s DEBUG ui.click Clic : a {"el":"a"}
-12:30:22.910 +3.42s INFO  log.download Journal téléchargé {"chars":4893}
-12:30:23.098 +3.61s INFO  log.clear Journal vidé
-12:30:23.278 +3.79s INFO  log.settings Réglages du journal modifiés {"console":"debug","keep":"debug","server":true}
-12:30:23.285 +3.79s DEBUG ui.key Raccourci : Escape {"key":"Escape","in":"button"}
-12:30:23.289 +3.80s DEBUG ui.dialog.close Fenêtre fermée : 🐞 Journal de débogage {"id":"logDialog"}
+12:40:09.416 +2.46s DEBUG ui.change Champ modifié : Nom du site {"el":"input","id":"siteName","name":"Nom du site","value":"MAB – Médias Alternatifs Belges"}
+12:40:09.418 +2.46s DEBUG ui.click Clic : 🐞1 {"el":"button","id":"logBtn","text":"🐞1"}
+12:40:09.421 +2.46s DEBUG ui.dialog.open Fenêtre ouverte : 🐞 Journal de débogage {"id":"logDialog","class":"audit log-dialog","modal":true}
+12:40:09.445 +2.49s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:https://www.xn--mdia-alternatif-bnb.be"}
+12:40:09.640 +2.68s DEBUG ui.key Raccourci : Delete {"key":"Delete","in":"input"}
+12:40:09.867 +2.91s DEBUG ui.click Clic : 📋 Copier le journal {"el":"button","text":"📋 Copier le journal","data":{"logCopy":""},"dialog":"logDialog"}
+12:40:09.895 +2.94s WARN  log.copy-fail Copie refusée par le navigateur : utilisez « Télécharger » {"error":"Failed to execute 'writeText' on 'Clipboard': Write permission denied."}
+12:40:10.299 +3.34s DEBUG ui.click Clic : ⇩ Télécharger (.log) {"el":"button","text":"⇩ Télécharger (.log)","data":{"logDownload":""},"dialog":"logDialog"}
+12:40:10.322 +3.36s DEBUG ui.click Clic : a {"el":"a"}
+12:40:10.323 +3.37s INFO  log.download Journal téléchargé {"chars":4932}
+12:40:10.433 +3.48s INFO  log.clear Journal vidé
+12:40:10.594 +3.64s INFO  log.settings Réglages du journal modifiés {"console":"debug","keep":"debug","server":true}
+12:40:10.598 +3.64s DEBUG ui.key Raccourci : Escape {"key":"Escape","in":"button"}

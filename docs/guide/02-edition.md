@@ -23,9 +23,9 @@ Le canevas, au centre, montre la page telle qu'elle sera publiée. Tu y sélecti
 
 **Étapes**
 1. Ouvre l'éditeur : la première page du site s'affiche dans le canevas.
-2. Change de page (liste en haut), de langue ou d'appareil (🖥 ▭ ▯) : le canevas suit.
+2. Change de page (liste en haut), de langue ou d'appareil (icônes ordinateur, tablette, mobile) : le canevas suit.
 
-**Ce que tu vois** : la page rendue ; sur un petit écran, elle est réduite (la réduction est indiquée en bas du canevas, par exemple « 62 % »).
+**Ce que tu vois** : la page rendue ; en mode Ordinateur elle prend toute la largeur disponible et n'est réduite que sous 1 040 px (la liste du zoom, en bas à droite, affiche alors par exemple « Ajuster (69 %) » ; voir 2.19).
 
 **Journal attendu** (démarrage, extrait réel : [`journaux/edition-canevas-demarrage.log`](journaux/edition-canevas-demarrage.log))
 ```log
@@ -220,7 +220,7 @@ Ensuite, chaque modification **ne recharge pas** le canevas : seul le contenu es
 1. Double-clique sur le texte (ou sélectionne l'élément et appuie sur Entrée, ou clic droit → « Modifier le texte »).
 2. Écris. Un titre ou un bouton se termine par **Entrée** ; un paragraphe par **Échap** ou un clic ailleurs.
 
-**Ce que tu vois** : un contour bleu autour du texte, le curseur dedans ; pour un texte riche, la barre **B I U 🔗 ⌫ ✨** au-dessus. Toute la saisie compte pour **une seule** étape d'annulation.
+**Ce que tu vois** : un contour bleu autour du texte, le curseur dedans ; pour un texte riche, la barre de mise en forme au-dessus : **B I U**, lien (maillons), listes, **Format**, effacer, IA locale (étincelle). Toute la saisie compte pour **une seule** étape d'annulation.
 
 **Journal attendu** ([`journaux/edition-texte-titre.log`](journaux/edition-texte-titre.log))
 ```log
@@ -291,7 +291,7 @@ Ensuite, chaque modification **ne recharge pas** le canevas : seul le contenu es
 1. Pendant l'écriture d'un texte riche, sélectionne quelques mots.
 2. Clique **B**, **I**, **U** (ou Ctrl+B, Ctrl+I, Ctrl+U), **⌫** pour retirer la mise en forme.
 3. Lien : **🔗**, tape l'adresse, Entrée (Échap abandonne). Sur un lien existant, 🔗 le retire.
-4. Coller (Ctrl+V) : le texte est **toujours collé sans sa mise en forme**, pour garder le site propre.
+4. Coller (Ctrl+V) : un texte copié dans Word, Google Docs, LibreOffice ou une page web garde gras, italique, liens, listes et intertitres (le reste est retiré, voir 2.20) ; sans mise en forme utile, il est collé en texte brut.
 
 **Ce que tu vois** : la mise en forme immédiatement ; le bouton actif est en surbrillance. La sélection de l'élément ne change pas quand tu cliques sur la barre.
 
@@ -379,7 +379,7 @@ Ensuite, chaque modification **ne recharge pas** le canevas : seul le contenu es
 **Erreurs**
 | Situation | Message affiché | Journal | Que faire |
 |---|---|---|---|
-| IA locale absente ou en échec | message de l'IA (voir chapitre 7) | `ai.*` (WARN ou ERROR), puis `edit.ai-none` (WARN) | ouvre ✨ IA locale (barre du haut) pour voir son état |
+| IA locale absente ou en échec | message de l'IA (voir chapitre 7) | `ai.*` (WARN ou ERROR), puis `edit.ai-none` (WARN) | ouvre IA locale (icône étincelle) (barre du haut) pour voir son état |
 | Rien de sélectionné et curseur hors d'un paragraphe | « Sélectionnez un texte… » | `edit.ai-empty` (WARN) | sélectionne un passage |
 | Module d'IA non chargé (fichier manquant) | « IA locale non chargée. » | `edit.ai-unavailable` (WARN) | recharge l'éditeur sans cache |
 
@@ -672,7 +672,7 @@ Ensuite, chaque modification **ne recharge pas** le canevas : seul le contenu es
 | Ctrl+A | texte en cours d'écriture | tout sélectionner | `canvas.key` Ctrl+A |
 | Ctrl+K | partout (sauf texte en cours d'écriture) | barre de commandes | `canvas.key` / `ui.key` Ctrl+K, `ui.dialog.open` (cmdk), puis `cmdk.run` |
 | Ctrl+S | partout | enregistrer le projet en .json | `ui.key` Ctrl+S (ou `canvas.key`), `project.export-json` |
-| Ctrl+Alt+J | partout | fenêtre 🐞 Journal | `ui.key` Ctrl+Alt+J, `ui.dialog.open` (logDialog) |
+| Ctrl+Alt+J | partout | fenêtre Journal (icône insecte) | `ui.key` Ctrl+Alt+J, `ui.dialog.open` (logDialog) |
 | ? | hors d'un champ | aide des raccourcis | `ui.dialog.open` (shortcutsDialog) |
 | F1 | partout, même dans une fenêtre ouverte | guide d'utilisation dans un nouvel onglet (sur le chapitre de la fenêtre ouverte, chapitre 1) | `ui.help` |
 | ↑ ↓ Début Fin | Structure | parcourir l'arbre | `structure.key` (TRACE) |
@@ -741,7 +741,7 @@ Ensuite, chaque modification **ne recharge pas** le canevas : seul le contenu es
 **Chemin normal** : une bulle sombre apparaît sous le bouton (au-dessus s'il n'y a pas la place, jamais hors de la fenêtre) avec :
 - le **nom** en gras ;
 - le **raccourci** en touches, s'il y en a un : `Ctrl` `Z` — sur Mac `⌘` `Z`, avec `⇧` pour Maj, `⌥` pour Alt, `⌫` pour Suppr ;
-- une **ligne d'explication** pour les boutons les moins évidents : ✨ IA locale, 👥 travailler à plusieurs, 💬 commentaires, 🐞 journal, ↶ ↷, ordinateur / tablette / mobile, Traductions, SEO, Publier, Exporter, la barre ↰ ✥ ⧉ ✕ de l'élément sélectionné, 🖌 📋, ↺, 🖥▭▯.
+- une **ligne d'explication** pour les boutons les moins évidents : IA locale (icône étincelle), Travailler à plusieurs (deux personnes), Commentaires (bulle), Journal (insecte), Guide (point d’interrogation), ↶ ↷, zoom et repli des panneaux, ordinateur / tablette / mobile, Traductions, SEO, Publier, Exporter, la barre ↰ ✥ ⧉ ✕ de l'élément sélectionné, pinceau et presse-papiers, ↺, bouton aux trois écrans.
 
 En glissant d'un bouton à son voisin, la bulle suit tout de suite. Elle disparaît quand la souris sort, au clic, avec Échap ou en faisant défiler. Les boutons de la barre de l'élément sélectionné (dans la page) ont les mêmes bulles, placées au bon endroit même quand la page est réduite ; les textes d'aide du site lui-même (liens de la page) ne sont pas concernés.
 
@@ -801,6 +801,88 @@ En glissant d'un bouton à son voisin, la bulle suit tout de suite. Elle dispara
 
 ---
 
+## 2.19 Lire la page sur un portable : zoom et panneaux
+
+**But** : écrire dans la page à une taille lisible, même sur un écran de 1 366 × 768.
+
+**Étapes**
+1. En mode **Ordinateur**, la page prend toute la largeur disponible (au moins 1 040 px) : elle n'est réduite que si la place manque.
+2. Bouton **Replier les panneaux** (icône à trois volets, en bas à droite de la page) ou **Ctrl+Maj+F** : les panneaux de gauche et de droite disparaissent, la page s'affiche à 100 %. Même bouton ou même raccourci pour les faire revenir.
+3. Zoom, dans la petite barre en bas à droite de la page : **Ajuster** (la page remplit la place, Ctrl+0), **100 %** (taille réelle : la page défile si elle dépasse), **75 %**, **50 %** (une page plus large, comme sur un grand écran). Loupes − et + ou **Ctrl+-** / **Ctrl+=** pour passer d'un palier à l'autre.
+
+**Ce que tu vois** : la page à la taille choisie ; la liste du zoom affiche « Ajuster (69 %) » quand la page est réduite. Le glisser-déposer, la sélection et les infobulles restent justes à toutes les échelles.
+
+**Journal attendu** ([`journaux/c30-zoom-panneaux.log`](journaux/c30-zoom-panneaux.log))
+```log
+12:24:07.727 +1.67s INFO  ui.panels Panneaux repliés : la page prend toute la largeur {"collapsed":true,"by":"bouton"}
+12:24:08.182 +2.12s INFO  ui.panels Panneaux affichés {"collapsed":false,"by":"clavier"}
+12:24:08.514 +2.46s INFO  canvas.zoom Zoom : 100 % {"zoom":100,"by":"liste"}
+12:24:08.516 +2.46s DEBUG canvas.scale Canevas ordinateur : 1040 px {"device":"desktop","width":1040,"scale":100,"available":718,"zoom":100,"overflow":true}
+12:24:08.780 +2.72s INFO  canvas.zoom Zoom : 75 % {"zoom":75,"by":"clavier"}
+…
+```
+À vérifier : `ui.panels` (INFO) avec `collapsed` et `by` (bouton ou clavier) ; `canvas.zoom` (INFO) avec le palier (`fit`, 100, 75, 50) ; puis `canvas.scale` avec la largeur de rendu, l'échelle et `"overflow":true` quand la page dépasse (elle défile).
+
+**Variantes**
+| Situation | Ce qui change à l'écran | Journal |
+|---|---|---|
+| Tablette ou mobile | largeur fixe (820 ou 390 px), réduite seulement si la place manque ; le zoom s'applique aussi | `canvas.scale` |
+| Déjà au plus petit (50 %) ou au plus grand (100 %) | le bouton − ou + est grisé | — |
+| Fenêtre redimensionnée | la page se réajuste | `canvas.scale` (TRACE) |
+
+**Erreurs** : aucune attendue.
+
+---
+
+## 2.20 Listes, intertitres, citation et collage depuis Word
+
+**But** : faire une énumération, un intertitre ou une citation dans un texte, et coller un texte venu de Word, Google Docs ou LibreOffice sans perdre sa mise en forme.
+
+**Étapes**
+1. Pendant l'écriture d'un texte (double-clic), tape **« - »** (ou « * ») puis une espace en début de ligne : une liste à puces commence. **« 1. »** puis une espace : une liste numérotée.
+2. **Entrée** crée l'item suivant ; **Entrée sur un item vide** termine la liste (un paragraphe normal reprend). **Tab** met l'item sous le précédent (un niveau), **Maj+Tab** le remonte.
+3. Ou bien : boutons **Liste à puces** et **Liste numérotée** de la barre de mise en forme (icônes à trois lignes), aussi **Ctrl+Maj+8** et **Ctrl+Maj+7**. Un deuxième clic retire la liste.
+4. Bouton **Format** (icône T) : **Paragraphe**, **Titre 2**, **Titre 3**, **Citation**, **Exposant** (x²), **Indice** (x₂). Dans l'inspecteur, la même barre a une liste « Format… ».
+5. **Coller** (Ctrl+V) un texte de Word, Google Docs ou LibreOffice : gras, italique, souligné, liens, listes (même imbriquées), intertitres et citations sont gardés ; les couleurs, polices et tailles de Word sont retirées. Un texte sans mise en forme est collé tel quel.
+
+**Ce que tu vois** : les puces et les numéros tout de suite dans la page ; sur le site publié, listes, intertitres et citations prennent le style du site (couleur secondaire pour le trait de la citation), et les liens vers un autre site reçoivent `rel="noopener"`.
+
+**Journal attendu** — collage depuis Word ([`journaux/c30-collage-word.log`](journaux/c30-collage-word.log))
+```log
+12:24:15.184 +9.13s DEBUG edit.dblclick Double-clic sur un texte de la page {"key":"content","id":"n_1c6y3a0i31"}
+12:24:15.184 +9.13s INFO  edit.start [edit#4] Édition dans la page : text · content {"id":"n_1c6y3a0i31","type":"text","key":"content","field":"richtext","lang":"fr","chars":20}
+12:24:15.243 +9.18s DEBUG edit.paste-rich Collage avec mise en forme : 23 caractères (assaini) {"chars":23,"tags":["ul","li","strong","a"],"items":2,"inline":false,"where":"page"}
+12:24:15.264 +9.21s INFO  edit.ok [edit#4 · 80 ms] Édition terminée : texte enregistré (une seule étape d’annulation) {"id":"n_1c6y3a0i31","key":"content","changed":true,"chars":45,"before":20,"inputs":2}
+```
+À vérifier : `edit.paste-rich` donne la longueur collée et les balises gardées (`tags`), jamais le texte. Une liste tapée donne `edit.list` (DEBUG) `{"type":"ul","how":"auto"}`, la sortie de la liste `edit.list-exit`, l'imbrication `edit.list-indent`. Un bouton de la barre donne `edit.format` avec `cmd` = `ul`, `ol`, `h2`, `h3`, `blockquote`, `p`, `sup` ou `sub`.
+
+**Variantes**
+| Situation | Ce qui change à l'écran | Journal |
+|---|---|---|
+| Entrée dans un item | item suivant | `edit.list-enter` (TRACE) |
+| Tab sur le premier item, ou dans une sous-liste | rien (un seul niveau d'imbrication) | `edit.list-indent` `{"done":false}` |
+| Liste à puces → bouton Liste numérotée | la liste change de type | `edit.format` `{"cmd":"ol","action":"retype"}` |
+| Titre 2 sur un titre 2 | redevient un paragraphe | `edit.format` `{"action":"remove"}` |
+| Menu Format ouvert puis refermé | | `edit.format-menu` (DEBUG) `{"open":…}` |
+| Dans un titre ou un bouton (texte d'une ligne) | pas de listes ni de menu Format ; un collage garde gras et liens sur une ligne | `edit.paste-rich` `{"inline":true}` |
+| Collage depuis une page web sans mise en forme utile | texte brut | `edit.paste` |
+
+**Erreurs** : aucune attendue ; toute balise non autorisée est retirée par l'assainisseur (comme pour le reste du texte).
+
+---
+
+## 2.21 La barre du haut
+
+**But** : savoir ce que fait chaque bouton de la barre du haut.
+
+**De gauche à droite** : nom du site ; page affichée ; **Annuler** et **Rétablir** (flèches) ; **Ordinateur**, **Tablette**, **Mobile** (icônes d'écran, avec leur nom sur un grand écran) ; langue affichée et badge « à traduire » ; **Traductions** (icône 文A) ; **SEO** (icône loupe) ; pastilles des participants, **Travailler à plusieurs** (icône deux personnes), **Commentaires** (icône bulle, avec le nombre de commentaires ouverts), **IA locale** (icône étincelle) ; état d'enregistrement ; **Guide** (icône point d'interrogation, F1) ; **Journal** (icône insecte, pastille rouge = erreurs) ; menu **Fichier** ; **Exporter** (icône flèche vers le bas) ; **Publier** (icône fusée).
+
+**Ce que tu vois** : des icônes monochromes, dessinées de la même façon sous Windows, macOS et Linux, sur une seule ligne dès 1 280 px. Sous 1 400 px de large, les libellés « Traductions », « SEO », « Exporter » et « Publier » laissent la place à l'icône seule ; l'infobulle donne toujours le nom (2.16).
+
+**Journal** : `ui.icons` (DEBUG) au démarrage, avec le nombre d'icônes mises en place ; ensuite, les clics habituels (`ui.click`).
+
+---
+
 ## Codes de ce chapitre
 
 | Code | Niveau | Sens |
@@ -840,6 +922,7 @@ En glissant d'un bouton à son voisin, la bulle suit tout de suite. Elle dispara
 | `canvas.toolbar` | DEBUG | bouton de la barre de l'élément (↰ ⧉ ✕) |
 | `canvas.ui-action` | DEBUG | bouton de l'éditeur dessiné dans le canevas |
 | `canvas.zone-locked` | INFO | en-tête ou pied non personnalisé |
+| `canvas.zoom` | INFO | zoom choisi : ajuster, 100, 75 ou 50 % (2.19) |
 | `cmdk.fail` | ERROR | commande Ctrl+K en échec |
 | `cmdk.run` | INFO | commande Ctrl+K lancée |
 | `ctxmenu.action` | DEBUG | action choisie dans le menu contextuel |
@@ -870,6 +953,7 @@ En glissant d'un bouton à son voisin, la bulle suit tout de suite. Elle dispara
 | `edit.drop-blocked` | DEBUG | dépôt dans un texte en cours d'écriture ignoré |
 | `edit.fail` | ERROR | fin en échec du parcours `edit` : prévu, pas utilisé aujourd'hui (une écriture se termine par `edit.ok` ou `edit.cancel`) |
 | `edit.format` | DEBUG | mise en forme appliquée ou retirée |
+| `edit.format-menu` | DEBUG | menu « Format » ouvert ou fermé (2.20) |
 | `edit.format-none` | DEBUG | mise en forme sans effet (rien de sélectionné) |
 | `edit.input` | TRACE | texte modifié (longueur), à chaque frappe |
 | `edit.keyboard` | DEBUG | écriture demandée par Entrée ou le menu |
@@ -877,12 +961,17 @@ En glissant d'un bouton à son voisin, la bulle suit tout de suite. Elle dispara
 | `edit.link-invalid` | WARN | adresse de lien refusée |
 | `edit.link-none` | DEBUG | 🔗 sans texte sélectionné |
 | `edit.link-open` | DEBUG | champ d'adresse ouvert |
+| `edit.list` | DEBUG | liste créée par « - » ou « 1. » en début de ligne (2.20) |
+| `edit.list-enter` | TRACE | Entrée dans un item : item suivant |
+| `edit.list-exit` | DEBUG | Entrée sur un item vide : fin de la liste |
+| `edit.list-indent` | DEBUG | Tab / Maj+Tab dans une liste |
 | `edit.no-text` | DEBUG | rien à écrire dans l'élément sélectionné |
 | `edit.node-gone` | WARN | élément supprimé pendant l'écriture |
 | `edit.not-editable` | DEBUG | texte qui se règle dans l'inspecteur |
 | `edit.ok` | INFO | écriture terminée (changé ou non, longueurs) |
 | `edit.paste` | DEBUG | collage en texte brut (longueur, lignes) |
 | `edit.paste-file` | WARN | fichier collé ignoré |
+| `edit.paste-rich` | DEBUG | collage avec mise en forme, assaini (longueur, balises gardées) |
 | `edit.readonly` | WARN | écriture refusée : mode relecture |
 | `edit.start` | INFO | début de l'écriture (élément, champ, langue, longueur) |
 | `library.insert` | DEBUG | clic sur un widget ou une structure |
@@ -892,6 +981,8 @@ En glissant d'un bouton à son voisin, la bulle suit tout de suite. Elle dispara
 | `structure.key` | DEBUG, TRACE | sélection au clavier (TRACE pour les déplacements) |
 | `structure.open` | DEBUG | panneau Structure ouvert |
 | `structure.render` | TRACE | arbre redessiné |
+| `ui.icons` | DEBUG | icônes de la barre du haut mises en place au démarrage (2.21) |
+| `ui.panels` | INFO | panneaux repliés ou affichés (2.19) |
 | `widgets.extra` | DEBUG | widgets supplémentaires chargés |
 | `widgets.missing` | WARN | widgets supplémentaires absents |
 | `ui.panel-reset` | INFO | largeur d'origine d'un panneau (double-clic sur la poignée) |

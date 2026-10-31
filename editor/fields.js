@@ -1,5 +1,6 @@
 /* Contrôles de l'inspecteur pour chaque type de champ de widget. */
-import { h, toast } from './dom.js';
+import { h, toast, icon } from './dom.js';
+import { blockFormats } from '../core/richtext-commands.js';
 import { state, root, commitRoot, commit, siteWithRoot, clearReview } from './store.js';
 import { setProp, setListItemProp, addListItem, removeListItem, moveListItem } from '../core/tree.js';
 import { addAsset, updatePageRoot, LANG_LABELS } from '../core/site.js';
@@ -86,12 +87,28 @@ export function fieldControl(field, value, write, keyBase) {
         const push = html => { mark(html); write(html, lang, key(lang)); };
         let typed = false;
         makeEditable(area, { onInput: html => { typed = true; push(html); }, onDone: html => { if (typed) logField(field, html, lang, 'texte riche'); typed = false; } });
-        const btn = (cmd, text, title) => h('button', { type: 'button', class: 'rt-btn', title, 'aria-label': title, onmousedown: e => e.preventDefault(), onclick: () => {
+        const btn = (cmd, text, title) => h('button', { type: 'button', class: 'rt-btn', 'data-rt': cmd, title, 'aria-label': title, onmousedown: e => e.preventDefault(), onclick: () => {
           let arg;
           if (cmd === 'link') arg = window.prompt(__('Adresse du lien (https://…, mailto:…, #ancre)'), 'https://');
           if (format(area, cmd, arg)) push(sanitizeRich(area.innerHTML));
-        } }, text);
-        box.append(h('div', { class: 'rt-bar' }, btn('bold', __c('bold', 'G'), __('Gras (Ctrl+B)')), btn('italic', 'I', __('Italique (Ctrl+I)')), btn('underline', __c('underline', 'S'), __('Souligné (Ctrl+U)')), btn('link', '🔗', __('Lien')), btn('clear', '⌫', __('Retirer la mise en forme'))), area);
+        } }, typeof text === 'string' ? text : icon(text.icon, 15));
+        /* Menu « Format » : la sélection du texte est retenue avant que la liste prenne le focus, puis rendue */
+        let saved = null;
+        const fmt = h('select', { class: 'control', 'data-rt': 'format', 'aria-label': __('Format : intertitre, citation, exposant'),
+          onmousedown: () => { const s = area.ownerDocument.getSelection(); saved = s.rangeCount && area.contains(s.getRangeAt(0).commonAncestorContainer) ? s.getRangeAt(0).cloneRange() : null; } },
+          h('option', { value: '' }, __('Format…')), blockFormats().map(f => h('option', { value: f.tag }, f.label)),
+          h('option', { value: 'sup' }, __('Exposant')), h('option', { value: 'sub' }, __('Indice')));
+        fmt.addEventListener('change', () => {
+          const cmd = fmt.value;
+          fmt.value = '';
+          if (!cmd) return;
+          area.focus();
+          if (saved) { const s = area.ownerDocument.getSelection(); s.removeAllRanges(); s.addRange(saved); }
+          if (format(area, cmd)) push(sanitizeRich(area.innerHTML));
+        });
+        box.append(h('div', { class: 'rt-bar' }, btn('bold', __c('bold', 'G'), __('Gras (Ctrl+B)')), btn('italic', 'I', __('Italique (Ctrl+I)')), btn('underline', __c('underline', 'S'), __('Souligné (Ctrl+U)')),
+          btn('link', { icon: 'link' }, __('Lien')), btn('ul', { icon: 'list-ul' }, __('Liste à puces')), btn('ol', { icon: 'list-ol' }, __('Liste numérotée')), fmt,
+          btn('clear', { icon: 'clear' }, __('Retirer la mise en forme'))), area);
         return box;
       }));
       return wrap;
