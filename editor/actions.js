@@ -4,6 +4,7 @@ import { createComponent, makeInstance, detachInstance } from '../core/component
 import { createNode, createSectionWithColumns, duplicateNode, removeNode, insertNode, reId, findParent, canContain, setStyleBundle } from '../core/tree.js';
 import { insertAuto, placeForType, moveSibling, nodeLabel, removeMany, duplicateMany, topLevel } from '../core/editing.js';
 import { toast } from './dom.js';
+import { askText } from './dialog.js';
 import { log } from './log.js';
 import { __, __n, N_ } from '../core/ui-i18n.js';
 
@@ -190,11 +191,11 @@ export function moveSelected(delta) {
 
 /* ---------- Composants ---------- */
 
-export function createComponentFromSelected() {
+export async function createComponentFromSelected() {
   const n = nodeById(state.selected);
   if (!n || n.type === 'page') { log.warn('action.refused', __('Action « créer un composant » refusée : rien de sélectionné'), { action: 'créer un composant', reason: 'no-selection' }); toast(__('Sélectionnez d’abord une section, une rangée, une colonne ou un widget.'), 'error'); return; }
   if (state.editTarget) { log.warn('action.refused', __('Action « créer un composant » refusée : une autre modification (composant, en-tête…) est en cours'), { action: 'créer un composant', reason: 'edit-target', edit: state.editTarget.kind }); toast(__('Terminez d’abord la modification en cours.'), 'error'); return; }
-  const name = window.prompt(__('Nom du composant (réutilisable sur toutes les pages) :'), nodeLabel(n));
+  const name = await askText({ id: 'componentNameDialog', title: __('Créer un composant'), label: __('Nom du composant (réutilisable sur toutes les pages) :'), value: nodeLabel(n), ok: __('Créer') });
   if (name === null) { log.info('action.component-cancel', __('Création du composant annulée (nom non donné)'), { id: n.id }); return; }
   safe(() => {
     const r = createComponent(state.site, state.pageId, n.id, name);

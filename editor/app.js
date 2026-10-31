@@ -14,6 +14,7 @@ import { saveProject } from './storage.js';
 import { log, registerContext, APP_VERSION } from './log.js';
 import { initLogButton, openLog, setLogSiteInfo } from './log-ui.js';
 import { $, $$, h, toast, download } from './dom.js';
+import { confirmDialog, initTabKeys, rovingTabs } from './dialog.js';
 import { state, subscribe, load, setView, undo, redo, select, page, commit, root, emit, setEditTarget } from './store.js';
 import { componentUsage } from '../core/components.js';
 import { loadProject } from './storage.js';
@@ -245,7 +246,7 @@ function bind() {
     e.target.value = '';
     $('#fileMenu').open = false;
   });
-  $('#loadDemoBtn').addEventListener('click', async () => { $('#fileMenu').open = false; if (confirm(__('Remplacer le projet actuel par l’exemple ? (une version de sécurité est enregistrée)'))) { await beforeRisky(__('Avant de recharger l’exemple')); load(demoSite(), { keepHistory: true }); log.info('project.demo', __('Exemple rechargé')); } else log.info('project.cancel', __('Remplacement annulé'), { action: 'demo' }); });
+  $('#loadDemoBtn').addEventListener('click', async () => { $('#fileMenu').open = false; if (await confirmDialog({ id: 'demoConfirmDialog', title: __('Recharger l’exemple'), message: __('Remplacer le projet actuel par l’exemple ? (une version de sécurité est enregistrée)'), ok: __('Remplacer'), danger: true })) { await beforeRisky(__('Avant de recharger l’exemple')); load(demoSite(), { keepHistory: true }); log.info('project.demo', __('Exemple rechargé')); } else log.info('project.cancel', __('Remplacement annulé'), { action: 'demo' }); });
   $('#newSiteBtn').addEventListener('click', () => { $('#fileMenu').open = false; openNewSite(); });
   $('#helpKeysBtn').addEventListener('click', () => { $('#helpMenu').open = false; openShortcuts(); });
   document.addEventListener('keydown', handleKey);

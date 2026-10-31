@@ -1,14 +1,15 @@
-12:40:06.958 +0.00s INFO  boot.log Journal prêt {"console":"debug","keep":"debug","aide":"atelierDebug.copy() ou le bouton 🐞"}
-12:40:06.960 +0.00s DEBUG widgets.extra Widgets supplémentaires chargés : 15 {"widgets":23,"extra":15}
-12:40:06.965 +0.01s INFO  boot.start [boot#1] Démarrage d’Atelier (cycle 21) {"url":"http://localhost:8800/"}
-12:40:06.965 +0.01s DEBUG ui.lang-ready Interface en Français {"lang":"fr","static":0,"catalog":false}
-12:40:06.984 +0.03s DEBUG storage.open Base locale ouverte {"ms":17}
-12:40:06.985 +0.03s INFO  storage.load Projet rechargé depuis cet appareil {"slot":"current","name":"MAB – test du journal","pages":2,"images":0,"ms":19}
-12:40:06.988 +0.03s INFO  boot.project [boot#1 · 23 ms] Projet enregistré sur cet appareil rechargé {"source":"saved","name":"MAB – test du journal","pages":2,"languages":["fr","nl","de","en"]}
-12:40:06.989 +0.03s DEBUG canvas.scale Canevas ordinateur : 1280 px, réduit à 62 % {"device":"desktop","width":1280,"scale":62,"available":792}
-12:40:06.990 +0.03s INFO  canvas.load.start [canvas.load#1] Chargement complet du canevas : premier chargement {"reason":"premier chargement","page":"p_9cgnhsel","lang":"fr","device":"desktop"}
-12:40:06.992 +0.03s DEBUG canvas.load.render [canvas.load#1 · 2 ms] Page rendue {"ms":2,"kb":28}
-12:40:07.023 +0.07s DEBUG version.init 1 version(s) dans ce navigateur {"count":1,"manual":0,"lastAuto":"2026-10-31T11:40:05.993Z","autoToday":true}
-12:40:07.023 +0.07s INFO  boot.ok [boot#1 · 58 ms] Éditeur prêt {"page":"p_9cgnhsel","lang":"fr"}
-12:40:07.024 +0.07s INFO  canvas.load.ok [canvas.load#1 · 34 ms] Canevas prêt {"nodes":30,"scale":62,"via":"load"}
-12:40:07.028 +0.07s DEBUG storage.secret-read Aucun secret gardé {"name":"collab-session"}
+13:15:53.447 +0.00s INFO  boot.log Journal prêt {"console":"debug","keep":"debug","aide":"atelierDebug.copy() ou le bouton 🐞"}
+13:15:53.450 +0.00s DEBUG widgets.extra Widgets supplémentaires chargés : 15 {"widgets":23,"extra":15}
+13:15:53.451 +0.00s INFO  boot.start [boot#1] Démarrage d’Atelier (cycle 21) {"url":"http://localhost:8834/"}
+13:15:53.451 +0.00s DEBUG ui.lang-ready Interface en Français {"lang":"fr","static":0,"catalog":false}
+13:15:53.453 +0.01s DEBUG ui.icons Icônes de l’interface montées : 14 {"n":14}
+13:15:53.489 +0.04s DEBUG storage.open Base locale ouverte {"ms":34}
+13:15:53.491 +0.04s INFO  storage.load Projet rechargé depuis cet appareil {"slot":"current","name":"MAB – test du journal","pages":2,"images":0,"ms":36}
+13:15:53.494 +0.05s INFO  boot.project [boot#1 · 43 ms] Projet enregistré sur cet appareil rechargé {"source":"saved","name":"MAB – test du journal","pages":2,"languages":["fr","nl","de","en"]}
+13:15:53.495 +0.05s DEBUG canvas.scale Canevas ordinateur : 1040 px, réduit à 76 % {"device":"desktop","width":1040,"scale":76,"available":792,"zoom":"fit"}
+13:15:53.496 +0.05s INFO  canvas.load.start [canvas.load#1] Chargement complet du canevas : premier chargement {"reason":"premier chargement","page":"p_zeo9fesd","lang":"fr","device":"desktop"}
+13:15:53.498 +0.05s DEBUG canvas.load.render [canvas.load#1 · 2 ms] Page rendue {"ms":2,"kb":29}
+13:15:53.531 +0.08s DEBUG version.init 1 version(s) dans ce navigateur {"count":1,"manual":0,"lastAuto":"2026-10-31T12:15:52.420Z","autoToday":true}
+13:15:53.532 +0.09s INFO  boot.ok [boot#1 · 81 ms] Éditeur prêt {"page":"p_zeo9fesd","lang":"fr"}
+13:15:53.534 +0.09s INFO  canvas.load.ok [canvas.load#1 · 38 ms] Canevas prêt {"nodes":30,"scale":76,"via":"load"}
+13:15:53.538 +0.09s DEBUG storage.secret-read Aucun secret gardé {"name":"collab-session"}

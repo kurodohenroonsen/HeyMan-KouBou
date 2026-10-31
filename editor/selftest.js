@@ -16,6 +16,7 @@ import { addKnownDestination } from './storage.js';
 import { publishOrigin } from '../core/publish.js';
 import { createUi, drawLogo } from './ui-drive.js';
 import { closeTour } from './tour-ui.js';
+import { setDialogAutoAnswer } from './dialog.js';
 
 let running = false;
 let current = null;
@@ -419,9 +420,9 @@ const RUNS = {
 
 /* ---------- Environnement de test : confirmations, téléchargements, IA ---------- */
 function patchEnv(downloads) {
-  const orig = { confirm: window.confirm, prompt: window.prompt, open: window.open, click: HTMLAnchorElement.prototype.click };
-  window.confirm = () => true;
-  window.prompt = (m, d) => d ?? 'Auto-test';
+  const orig = { open: window.open, click: HTMLAnchorElement.prototype.click };
+  /* Cycle 33 : les fenêtres d'Atelier (confirmDialog, askText) répondent seules : oui, ou la valeur proposée */
+  setDialogAutoAnswer((kind, o) => (kind === 'confirm' ? true : o.value || 'Auto-test'));
   window.open = () => null;
   HTMLAnchorElement.prototype.click = function () {
     if (this.download) {
@@ -432,7 +433,7 @@ function patchEnv(downloads) {
     }
     return orig.click.call(this);
   };
-  return () => { window.confirm = orig.confirm; window.prompt = orig.prompt; window.open = orig.open; HTMLAnchorElement.prototype.click = orig.click; };
+  return () => { setDialogAutoAnswer(null); window.open = orig.open; HTMLAnchorElement.prototype.click = orig.click; };
 }
 
 async function setupAI(mode) {

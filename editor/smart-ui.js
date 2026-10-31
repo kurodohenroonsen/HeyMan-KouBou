@@ -4,6 +4,7 @@
  * ce que l'IA écrit est marqué « à relire » ; une seule étape d'annulation par action.
  */
 import { h, $, toast } from './dom.js';
+import { openDialog } from './dialog.js';
 import { state, commit } from './store.js';
 import { log } from './log.js';
 import { withAI, markAi } from './ai-ui.js';
@@ -23,12 +24,11 @@ export function setSmartHooks(h0) { hooks = { ...hooks, ...h0 }; }
 
 function dialog(id, title, ...body) {
   $(`#${id}`)?.remove();
-  const d = h('dialog', { class: 'audit smart-dialog', id, 'aria-labelledby': `${id}Title` },
-    h('header', { class: 'audit__head' }, h('h2', { id: `${id}Title` }, title), h('button', { type: 'button', class: 'icon-btn', 'aria-label': __('Fermer'), onclick: () => d.close() }, '✕')),
-    ...body);
-  d.addEventListener('close', () => d.remove());
-  document.body.append(d);
-  d.showModal();
+  const d = openDialog({ id,
+    className: 'smart-dialog',
+    titleId: `${id}Title`,
+    title: title,
+    body: [...body] });
   return d;
 }
 
@@ -78,7 +78,7 @@ export function openSmartImport(colId, mode = 'poster') {
       preview,
       h('div', { class: 'row-btns' }, go),
       status, out),
-    h('footer', { class: 'audit__foot' }, h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Fermer')), create));
+    h('div', { class: 'audit__foot' }, h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Fermer')), create));
   d.addEventListener('close', () => { if (!done) f.cancel(result ? __('Fermé sans créer de brouillon') : __('Fermé sans lecture'), { read: !!result }); });
 
   async function read() {
@@ -247,7 +247,7 @@ export function openReviewSummary() {
         h('div', {}, h('h3', {}, __('Par auteur')), h('ul', {}, dg.byAuthor.map(a => h('li', {}, __('{name} : {open} ouvert(s) sur {total}', { name: a.name, open: a.open, total: a.total })))))) : null,
       h('div', { class: 'row-btns' }, btn, copy, dg.open ? null : h('span', { class: 'hint' }, __('Aucun commentaire ouvert.'))),
       aiOut),
-    h('footer', { class: 'audit__foot' }, h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Fermer'))));
+    h('div', { class: 'audit__foot' }, h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Fermer'))));
 }
 
 /* ---------- E : palette depuis le logo (sans IA) ---------- */
@@ -281,7 +281,7 @@ export async function openLogoPalette() {
       h('p', { class: 'hint' }, __('Atelier lit les couleurs du logo, en déduit les six couleurs du site et corrige leur clarté pour que tous les textes restent lisibles (WCAG AA). Rien ne change avant « Appliquer » ; Ctrl+Z revient en arrière.')),
       src ? null : h('label', { class: 'btn btn--small upload' }, __('🖼 Choisir une image de logo'), file),
       out),
-    h('footer', { class: 'audit__foot' }, h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Fermer')), apply));
+    h('div', { class: 'audit__foot' }, h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Fermer')), apply));
   d.addEventListener('close', () => { if (!applied) f.cancel(__('Fermé sans appliquer'), {}); });
   const run = async s => {
     try {

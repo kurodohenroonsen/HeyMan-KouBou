@@ -358,6 +358,7 @@ export default async function (t) {
     sL = await mark(L);
     const cidL = await L.locator('#reviewPanel [data-comment]').first().getAttribute('data-comment');
     await L.click(`#reviewPanel [data-comment-delete="${cidL}"]`);
+    await t.confirm(true, L); /* cycle 33 : fenêtre Atelier */
     t.ok(await waitFor(L, () => !document.querySelector('#reviewPanel [data-comment]')), 'supprimer : le commentaire disparaît');
     es = await since(L, sL);
     expectCodes(t, es, ['review.delete'], 'supprimer');

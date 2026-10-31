@@ -1,5 +1,7 @@
 /* Contrôles de l'inspecteur pour chaque type de champ de widget. */
 import { h, toast, icon } from './dom.js';
+import { askText } from './dialog.js';
+import { linkError } from '../core/dialog.js';
 import { blockFormats } from '../core/richtext-commands.js';
 import { state, root, commitRoot, commit, siteWithRoot, clearReview } from './store.js';
 import { setProp, setListItemProp, addListItem, removeListItem, moveListItem } from '../core/tree.js';
@@ -87,9 +89,16 @@ export function fieldControl(field, value, write, keyBase) {
         const push = html => { mark(html); write(html, lang, key(lang)); };
         let typed = false;
         makeEditable(area, { onInput: html => { typed = true; push(html); }, onDone: html => { if (typed) logField(field, html, lang, 'texte riche'); typed = false; } });
-        const btn = (cmd, text, title) => h('button', { type: 'button', class: 'rt-btn', 'data-rt': cmd, title, 'aria-label': title, onmousedown: e => e.preventDefault(), onclick: () => {
+        const btn = (cmd, text, title) => h('button', { type: 'button', class: 'rt-btn', 'data-rt': cmd, title, 'aria-label': title, onmousedown: e => e.preventDefault(), onclick: async () => {
           let arg;
-          if (cmd === 'link') arg = window.prompt(__('Adresse du lien (https://…, mailto:…, #ancre)'), 'https://');
+          if (cmd === 'link') {
+            const sel = area.ownerDocument.getSelection();
+            const range = sel.rangeCount && area.contains(sel.getRangeAt(0).commonAncestorContainer) ? sel.getRangeAt(0).cloneRange() : null;
+            arg = await askText({ id: 'linkUrlDialog', title: __('Lien'), label: __('Adresse du lien (https://…, mailto:…, #ancre)'), value: 'https://', validate: linkError, ok: __('Créer le lien') });
+            if (arg === null) return;
+            area.focus();
+            if (range) { sel.removeAllRanges(); sel.addRange(range); }
+          }
           if (format(area, cmd, arg)) push(sanitizeRich(area.innerHTML));
         } }, typeof text === 'string' ? text : icon(text.icon, 15));
         /* Menu « Format » : la sélection du texte est retenue avant que la liste prenne le focus, puis rendue */

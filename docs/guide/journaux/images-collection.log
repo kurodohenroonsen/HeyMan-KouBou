@@ -1,14 +1,15 @@
-20:52:38.869 +43.85s DEBUG collection.item.select Élément « Fête de la radio à Couvin » affiché {"collection":"col_yfif86wi","item":"it_3p4tndof","status":"published"}
-20:52:39.203 +44.18s INFO  inspector.image.start [inspector.image#7] Import d’une image {"field":"image","type":"image/png","kb":1065}
-20:52:39.205 +44.18s INFO  image.import.start [image.import#6] Import de l’image « fete-radio.png » {"name":"fete-radio.png","type":"image/png","kb":1065}
-20:52:39.254 +44.23s DEBUG image.import.decode [image.import#6 · 49 ms] Image lue : 1200×800 px {"width":1200,"height":800,"ms":49}
-20:52:39.365 +44.34s DEBUG image.import.encode [image.import#6 · 160 ms] Version principale : 1200×800 px, 7 Ko (image/webp) {"w":1200,"h":800,"mime":"image/webp","kb":7,"ms":109}
-20:52:39.391 +44.37s DEBUG image.import.variant [image.import#6 · 186 ms] Variante 480 px : 2 Ko {"w":480,"kb":2,"ms":24}
-20:52:39.472 +44.45s DEBUG image.import.variant [image.import#6 · 267 ms] Variante 960 px : 5 Ko {"w":960,"kb":5,"ms":79}
-20:52:39.475 +44.45s INFO  image.import.ok [image.import#6 · 270 ms] Image prête : 1200×800 px, 7 Ko (−99 %), 2 variantes {"name":"fete-radio.webp","mime":"image/webp","width":1200,"height":800,"kbIn":1065,"kbOut":7,"gain":99,"variants":[480,960]}
-20:52:39.476 +44.45s DEBUG inspector.image.webp [inspector.image#7 · 273 ms] Image convertie en WebP {"mime":"image/webp","width":1200,"height":800,"kb":7,"variants":2}
-20:52:39.494 +44.47s DEBUG store.commit Modification {"source":"collections","past":65,"page":"p_8td8gtej"}
-20:52:39.513 +44.49s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":14}
-20:52:39.516 +44.49s DEBUG collection.item.value Champ « Image » modifié {"collection":"col_yfif86wi","item":"it_3p4tndof","field":"image","type":"image"}
-20:52:39.539 +44.52s INFO  inspector.image.ok [inspector.image#7 · 336 ms] Image ajoutée : 1200×800 px {"asset":"img_9mxyp6vs","field":"image"}
-20:52:39.540 +44.52s INFO  ui.toast Message affiché : Image ajoutée en WebP : 1200×800 px, 7 Ko.
+13:16:48.144 +37.42s DEBUG collection.item.select Élément « Fête de la radio à Couvin » affiché {"collection":"col_wjcuxs44","item":"it_gswrcuii","status":"published"}
+13:16:48.167 +37.44s DEBUG storage.save Projet enregistré sur cet appareil {"ms":4,"kb":39}
+13:16:48.408 +37.68s INFO  inspector.image.start [inspector.image#7] Import d’une image {"field":"image","type":"image/png","kb":1065}
+13:16:48.408 +37.68s INFO  image.import.start [image.import#6] Import de l’image « fete-radio.png » {"name":"fete-radio.png","type":"image/png","kb":1065}
+13:16:48.472 +37.75s DEBUG image.import.decode [image.import#6 · 64 ms] Image lue : 1200×800 px {"width":1200,"height":800,"ms":64}
+13:16:48.584 +37.86s DEBUG image.import.encode [image.import#6 · 176 ms] Version principale : 1200×800 px, 7 Ko (image/webp) {"w":1200,"h":800,"mime":"image/webp","kb":7,"ms":112}
+13:16:48.613 +37.89s DEBUG image.import.variant [image.import#6 · 205 ms] Variante 480 px : 2 Ko {"w":480,"kb":2,"ms":26}
+13:16:48.685 +37.96s DEBUG image.import.variant [image.import#6 · 277 ms] Variante 960 px : 5 Ko {"w":960,"kb":5,"ms":71}
+13:16:48.686 +37.96s INFO  image.import.ok [image.import#6 · 278 ms] Image prête : 1200×800 px, 7 Ko (−99 %), 2 variantes {"name":"fete-radio.webp","mime":"image/webp","width":1200,"height":800,"kbIn":1065,"kbOut":7,"gain":99,"variants":[480,960]}
+13:16:48.687 +37.96s DEBUG inspector.image.webp [inspector.image#7 · 279 ms] Image convertie en WebP {"mime":"image/webp","width":1200,"height":800,"kb":7,"variants":2}
+13:16:48.696 +37.97s DEBUG store.commit Modification {"source":"collections","past":65,"page":"p_dq3r1apc"}
+13:16:48.701 +37.98s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":4}
+13:16:48.701 +37.98s DEBUG collection.item.value Champ « Image » modifié {"collection":"col_wjcuxs44","item":"it_gswrcuii","field":"image","type":"image"}
+13:16:48.711 +37.99s INFO  inspector.image.ok [inspector.image#7 · 303 ms] Image ajoutée : 1200×800 px {"asset":"img_zvreqilc","field":"image"}
+13:16:48.712 +37.99s INFO  ui.toast Message affiché : Image ajoutée en WebP : 1200×800 px, 7 Ko.

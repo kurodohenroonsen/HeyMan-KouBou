@@ -7,6 +7,7 @@
  * donc le navigateur autorise le presse-papiers (ce qu'il refuse depuis la console).
  */
 import { h, toast } from './dom.js';
+import { openDialog } from './dialog.js';
 import { log } from './log.js';
 import { __ } from '../core/ui-i18n.js';
 import { resultShort, resultDetail, rollbackText } from '../core/selftest.js';
@@ -36,20 +37,18 @@ export function openSelftestReport(report, result = null) {
     document.body.append(a); a.click(); a.remove();
     log.info('selftest.report-download', __('Rapport de l’auto-test téléchargé : {name}', { name }), { name });
   };
-  const d = h('dialog', { class: 'audit selftest-dialog', id: 'selftestDialog', 'aria-labelledby': 'selftestTitle' },
-    h('header', { class: 'audit__head' }, h('h2', { id: 'selftestTitle' }, __('🧪 Auto-test')), h('button', { type: 'button', class: 'icon-btn', 'aria-label': __('Fermer'), onclick: () => d.close() }, '✕')),
-    h('div', { class: 'a11y-form' },
+  const d = openDialog({ id: 'selftestDialog',
+    className: 'selftest-dialog',
+    titleId: 'selftestTitle',
+    title: __('🧪 Auto-test'),
+    body: [h('div', { class: 'a11y-form' },
       h('p', { class: 'bench-summary', 'data-selftest-summary': '' }, h('strong', {}, res || __('Pas de résultat')), h('br'), rb),
       h('div', { class: 'row-btns' },
         h('button', { type: 'button', class: 'btn btn--small btn--primary', 'data-selftest-copy': '', onclick: copy }, __('📋 Copier le rapport')),
         h('button', { type: 'button', class: 'btn btn--small', 'data-selftest-download': '', onclick: save }, '⇩ .md')),
-      text, status),
-    h('footer', { class: 'audit__foot' },
-      h('button', { type: 'button', class: 'btn', 'data-selftest-rerun': '', onclick: () => { d.close(); runAutotest(); } }, __('↻ Relancer')),
-      h('button', { type: 'button', class: 'btn', 'data-selftest-close': '', onclick: () => d.close() }, __('Fermer'))));
-  d.addEventListener('close', () => d.remove());
-  document.body.append(d);
-  d.showModal();
+      text, status)],
+    actions: [h('button', { type: 'button', class: 'btn', 'data-selftest-rerun': '', onclick: () => { d.close(); runAutotest(); } }, __('↻ Relancer')),
+    h('button', { type: 'button', class: 'btn', 'data-selftest-close': '', onclick: () => d.close() }, __('Fermer'))] });
   text.scrollTop = 0;
   log.info('selftest.dialog', __('Fenêtre du rapport de l’auto-test'), { result: res.replace(/\s+/g, ' ').trim() });
 }

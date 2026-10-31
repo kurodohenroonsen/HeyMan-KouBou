@@ -1,5 +1,6 @@
 /* Barre de commandes (Ctrl+K) et aide des raccourcis (?). */
 import { h, $, toast } from './dom.js';
+import { openDialog } from './dialog.js';
 import { UI_LANGS, uiLang, __, __c } from '../core/ui-i18n.js';
 import { setUiLang } from './ui-lang.js';
 import { openGuide } from './help.js';
@@ -188,9 +189,10 @@ function run(i) {
   try { c.run(); } catch (e) { log.error('cmdk.fail', __('Commande en échec : {label}', { label: c.label }), { id: c.id, error: e }); toast(e.message, 'error'); }
 }
 
+let opener = null;
 function ensure() {
   if (dialog) return dialog;
-  dialog = h('dialog', { class: 'cmdk', id: 'cmdk', 'aria-label': __('Barre de commandes') },
+  dialog = h('dialog', { class: 'cmdk', id: 'cmdk', 'aria-label': __('Barre de commandes'), 'aria-modal': 'true' },
     h('input', { class: 'cmdk__input', id: 'cmdkInput', type: 'text', role: 'combobox', 'aria-expanded': 'true', 'aria-controls': 'cmdkList', 'aria-autocomplete': 'list', autocomplete: 'off', spellcheck: 'false', placeholder: __('Que voulez-vous faire ? (ajouter, page, élément, réglage…)') }),
     h('ul', { class: 'cmdk__list', id: 'cmdkList', role: 'listbox', 'aria-label': __('Commandes') }),
     h('div', { class: 'cmdk__foot', 'aria-hidden': 'true' }, h('span', {}, __('↑↓ choisir')), h('span', {}, __('Entrée lancer')), h('span', {}, __('Échap fermer'))));
@@ -206,6 +208,11 @@ function ensure() {
     e.stopPropagation();
   });
   dialog.addEventListener('click', e => { if (e.target === dialog) dialog.close(); });
+  /* Cycle 33 : comme les fenêtres d'openDialog, le focus revient à l'élément d'origine (sauf si une commande l'a déplacé) */
+  dialog.addEventListener('close', () => setTimeout(() => {
+    const free = !document.activeElement || document.activeElement === document.body;
+    if (free && opener?.isConnected && !document.querySelector('dialog[open]')) opener.focus();
+  }));
   return dialog;
 }
 
@@ -215,7 +222,7 @@ export function openCommands() {
   const input = dialog.querySelector('#cmdkInput');
   input.value = '';
   refresh('');
-  if (!dialog.open) dialog.showModal();
+  if (!dialog.open) { opener = document.activeElement; dialog.showModal(); }
   input.focus();
 }
 
@@ -243,11 +250,12 @@ const SHORTCUTS = [
 export function openShortcuts() {
   let d = $('#shortcutsDialog');
   if (!d) {
-    d = h('dialog', { class: 'keys', id: 'shortcutsDialog', 'aria-labelledby': 'keysTitle' },
-      h('header', { class: 'audit__head' }, h('h2', { id: 'keysTitle' }, __('Raccourcis clavier')), h('button', { type: 'button', class: 'icon-btn', 'aria-label': __('Fermer'), onclick: () => d.close() }, '✕')),
-      h('table', {}, h('tbody', {}, SHORTCUTS.map(([k, v]) => h('tr', {}, h('td', {}, k), h('td', {}, v))))));
+    d = openDialog({ id: 'shortcutsDialog',
+    className: 'keys',
+    titleId: 'keysTitle',
+    title: __('Raccourcis clavier'),
+    body: [h('table', {}, h('tbody', {}, SHORTCUTS.map(([k, v]) => h('tr', {}, h('td', {}, k), h('td', {}, v)))))] });
     d.addEventListener('click', e => { if (e.target === d) d.close(); });
-    document.body.append(d);
   }
   if (!d.open) d.showModal();
 }

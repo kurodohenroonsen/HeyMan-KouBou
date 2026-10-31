@@ -1,5 +1,6 @@
 /* Collaboration : identité, session (hôte ou invité), invitations, participants, présence. */
 import { h, $, toast } from './dom.js';
+import { openDialog } from './dialog.js';
 import { state, subscribe, emit, load, applyRemote, setView, select } from './store.js';
 import { createReplica } from '../core/collab.js';
 import { CollabNode, colorFor } from '../core/collab-protocol.js';
@@ -330,14 +331,13 @@ export async function openCollab() {
   await ensureIdentity();
   log.info('collab.open', __('Fenêtre « Travailler à plusieurs »'), { state: !session ? 'aucune session' : session.offline ? 'interrompue' : session.role, peers: session ? session.node.peers().filter(p => p.authed).length : 0, identity: !!identity, publish: state.site.publish?.url ? 'oui' : 'non' });
   $('#collabDialog')?.remove();
-  const d = h('dialog', { class: 'audit collab', id: 'collabDialog', 'aria-labelledby': 'collabTitle' },
-    h('header', { class: 'audit__head' }, h('h2', { id: 'collabTitle' }, __('👥 Travailler à plusieurs')), h('button', { type: 'button', class: 'icon-btn', 'aria-label': __('Fermer'), onclick: () => d.close() }, '✕')),
-    h('div', { class: 'a11y-form', 'data-collab-body': '' }),
-    h('footer', { class: 'audit__foot' }, h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Fermer'))));
-  d.addEventListener('close', () => d.remove());
-  document.body.append(d);
+  const d = openDialog({ id: 'collabDialog',
+    className: 'collab',
+    titleId: 'collabTitle',
+    title: __('👥 Travailler à plusieurs'),
+    body: [h('div', { class: 'a11y-form', 'data-collab-body': '' })],
+    actions: [h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Fermer'))] });
   renderDialog();
-  d.showModal();
 }
 
 /* ---------- Rejoindre (lien #join=…) ---------- */
@@ -377,17 +377,17 @@ export async function openJoin(join) {
       }
     } catch (err) { status.textContent = __('Échec de la connexion : {error}', { error: err.message }); go.disabled = false; /* déjà journalisé : collab.join.fail ou rtc.manual-offer.fail */ }
   } }, __('Rejoindre'));
-  const d = h('dialog', { class: 'audit collab', id: 'joinDialog', 'aria-labelledby': 'joinTitle' },
-    h('header', { class: 'audit__head' }, h('h2', { id: 'joinTitle' }, __('👥 Rejoindre une session'))),
-    h('div', { class: 'a11y-form' },
+  const d = openDialog({ id: 'joinDialog',
+    className: 'collab',
+    titleId: 'joinTitle',
+    title: __('👥 Rejoindre une session'),
+    body: [h('div', { class: 'a11y-form' },
       v.ok ? h('p', {}, v.role === 'reviewer' ? __('{name} vous invite à relire et commenter le site, en direct, de navigateur à navigateur.', { name: v.ownerName }) : __('{name} vous invite à modifier le site, en direct, de navigateur à navigateur.', { name: v.ownerName })) : null,
       v.ok ? h('p', { class: 'hint' }, __('Rôle : {role}. Votre projet actuel est d’abord enregistré dans les versions (Fichier → Versions).', { role: roleLabel(v.role) })) : null,
       h('div', { class: 'field' }, h('span', { class: 'field__label' }, __('Votre nom')), name),
-      area, status),
-    h('footer', { class: 'audit__foot' }, h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Annuler')), go));
-  d.addEventListener('close', () => d.remove());
-  document.body.append(d);
-  d.showModal();
+      area, status)],
+    actions: [h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Annuler')),
+    go] });
   name.focus();
 }
 

@@ -757,6 +757,7 @@ export default async function (t) {
     await page.click(`#navTree [data-node-id="${ctaId}"]`, { button: 'right' });
     await t.wait(150);
     await page.click('#ctxMenu [data-ctx="component"]');
+    await t.answer('Équipe'); /* cycle 33 : fenêtre Atelier */
     await t.wait(300);
     const cid = Object.keys((await site()).components || {})[0];
     await page.click('[data-left="templates"]');
@@ -800,6 +801,7 @@ export default async function (t) {
     await page.click('[data-left="templates"]');
     await t.wait(150);
     await page.click(`[data-component-delete="${cid}"]`);
+    await t.confirm(); /* cycle 33 : fenêtre Atelier */
     await t.wait(300);
     const es3 = await since(page, s3);
     t.ok(!(await site()).components?.[cid], 'composant supprimé');

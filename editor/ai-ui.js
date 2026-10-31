@@ -1,5 +1,6 @@
 /* IA locale : fenêtre d'état et de téléchargement, ✨ dans la barre de mise en forme, ✨ décrire une image. */
 import { h, $, toast } from './dom.js';
+import { openDialog } from './dialog.js';
 import { state, commit, textKey } from './store.js';
 import { AI_APIS, aiStatus, downloadModel, onDownloadProgress, ai, imageBlob, wasLogged, aiHint } from './ai.js';
 import { REWRITE_MODES } from '../core/ai-tasks.js';
@@ -37,9 +38,11 @@ export async function openAI() {
   $('#aiDialog')?.remove();
   const lang = ['fr', 'de', 'en'].includes(state.lang) ? state.lang : 'fr';
   const rows = h('tbody', {});
-  const d = h('dialog', { class: 'audit ai-dialog', id: 'aiDialog', 'aria-labelledby': 'aiTitle' },
-    h('header', { class: 'audit__head' }, h('h2', { id: 'aiTitle' }, __('✨ IA locale (Gemini Nano dans Chrome)')), h('button', { type: 'button', class: 'icon-btn', 'aria-label': __('Fermer'), onclick: () => d.close() }, '✕')),
-    h('div', { class: 'a11y-form' },
+  const d = openDialog({ id: 'aiDialog',
+    className: 'ai-dialog',
+    titleId: 'aiTitle',
+    title: __('✨ IA locale (Gemini Nano dans Chrome)'),
+    body: [h('div', { class: 'a11y-form' },
       h('p', {}, __('L’IA travaille dans votre navigateur : vos textes et vos images ne quittent pas l’ordinateur, sans compte ni abonnement. Le modèle se télécharge une fois (connexion illimitée conseillée), ensuite tout fonctionne hors ligne.')),
       h('table', { class: 'ai-table' }, h('thead', {}, h('tr', {}, h('th', {}, 'API'), h('th', {}, __('Sert à')), h('th', {}, __('État')), h('th', {}, ''))), rows),
       h('details', { class: 'collab-adv' }, h('summary', {}, __('Activer les API en essai (Rewriter, Writer, Proofreader)')),
@@ -47,11 +50,8 @@ export async function openAI() {
         h('ul', { class: 'ai-flags' }, ['chrome://flags/#rewriter-api', 'chrome://flags/#writer-api', 'chrome://flags/#proofreader-api', 'chrome://on-device-internals'].map(f => h('li', {}, h('code', {}, f), ' ', h('button', { type: 'button', class: 'btn btn--small', onclick: async () => { try { await navigator.clipboard.writeText(f); log.debug('ai.flag-copied', __('Adresse copiée : {flag}', { flag: f }), { flag: f }); toast(__('Copié : collez-le dans la barre d’adresse.')); } catch (e) { log.warn('ai.flag-copy-fail', __('Presse-papiers refusé : adresse affichée à la place'), { flag: f, error: e }); toast(f); } } }, __('Copier')))))),
       h('p', { class: 'hint' }, ...(() => { const [before, after = ''] = __('Configuration demandée par Chrome : Windows 10/11, macOS 13+, Linux ou Chromebook Plus ; 22 Go libres ; carte graphique de plus de 4 Go ou 16 Go de mémoire vive. Langues de Gemini Nano : français, allemand, anglais, espagnol, japonais ; le néerlandais passe par la traduction. Langue testée : {lang}.').split('{lang}'); return [before, h('span', { class: 'lang-name' }, LANG_LABELS[lang]), after]; })()),
       h('div', { class: 'row-btns' }, h('button', { type: 'button', class: 'btn btn--small', 'data-ai-bench': '', title: __('Tester chaque tâche d’IA sur des exemples fixes et obtenir un rapport'), onclick: () => { d.close(); openBench(); } }, __('🧪 Banc d’essai'))),
-      h('p', { class: 'pub-status', 'data-ai-status': '', role: 'status' })),
-    h('footer', { class: 'audit__foot' }, h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Fermer'))));
-  d.addEventListener('close', () => d.remove());
-  document.body.append(d);
-  d.showModal();
+      h('p', { class: 'pub-status', 'data-ai-status': '', role: 'status' }))],
+    actions: [h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Fermer'))] });
   log.info('ai.dialog', __('Fenêtre ✨ IA locale'), { lang, siteLang: state.lang, source: window.__atelierAI ? 'test' : 'chrome' });
   /* Téléchargements suivis par cette fenêtre (bouton cliqué) : la mise à jour automatique ne reconstruit pas leurs lignes */
   const following = new Set();

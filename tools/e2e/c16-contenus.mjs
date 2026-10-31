@@ -34,8 +34,6 @@ export default async function (t) {
     if (!(await page.evaluate(q => document.querySelector(q)?.__changed ?? true, sel))) await change(sel);
     await t.wait(150);
   };
-  const noConfirm = () => page.evaluate(() => { window.__confirm = window.confirm; window.confirm = () => false; });
-  const yesConfirm = () => page.evaluate(() => { if (window.__confirm) window.confirm = window.__confirm; });
   /* Fichier fabriqué dans la page et posé dans un champ « fichier » */
   const putFile = (sel, spec) => page.evaluate(async ([sl, sp]) => {
     let blob;
@@ -145,11 +143,11 @@ export default async function (t) {
     await t.wait(250);
     await page.click(`#leftBody [data-preset-duplicate="${pid}"]`);
     await t.wait(250);
-    await noConfirm();
     await page.click(`#leftBody [data-preset-delete="${pid}"]`);
-    await yesConfirm();
+    await t.confirm(false); /* cycle 33 : fenêtre Atelier, Annuler */
     await t.wait(150);
     await page.click(`#leftBody [data-preset-delete="${pid}"]`);
+    await t.confirm(); /* cycle 33 : fenêtre Atelier, bouton de confirmation */
     await t.wait(250);
   });
   t.ok(Object.keys((await site()).presets || {}).length === 1, 'preset supprimé, la copie reste');
@@ -234,11 +232,11 @@ export default async function (t) {
   t.ok(!!team2, 'titre déjà pris : adresse notre-equipe-2');
 
   await kase('pages-supprimer', ['page.delete-cancel', 'page.delete'], async () => {
-    await noConfirm();
     await page.click(`[data-page-delete="${team2.id}"]`);
-    await yesConfirm();
+    await t.confirm(false); /* cycle 33 : fenêtre Atelier, Annuler */
     await t.wait(150);
     await page.click(`[data-page-delete="${team2.id}"]`);
+    await t.confirm(); /* cycle 33 : fenêtre Atelier, bouton de confirmation */
     await t.wait(300);
   });
   s = await site();
@@ -315,11 +313,11 @@ export default async function (t) {
   t.ok(s.menu.some(x => x.kind === 'link' && x.url.includes('media.alternatif')) && s.menu.some(x => x.pageId === team.id), 'menu personnalisé : lien et page');
 
   await kase('pages-menu-auto', ['page.menu.auto-cancel', 'page.menu.auto'], async () => {
-    await noConfirm();
     await page.click('[data-menu-auto]');
-    await yesConfirm();
+    await t.confirm(false); /* cycle 33 : fenêtre Atelier, Annuler */
     await t.wait(150);
     await page.click('[data-menu-auto]');
+    await t.confirm(); /* cycle 33 : fenêtre Atelier, bouton de confirmation */
     await t.wait(300);
   });
   t.ok((await site()).menu === null, 'menu automatique rétabli');
@@ -398,11 +396,11 @@ export default async function (t) {
     const copy = (await colByKind('events')).items.find(i => i.slug.startsWith('fete-radio-'));
     await page.click(`#collectionDialog [data-item="${copy.id}"]`);
     await t.wait(200);
-    await noConfirm();
     await page.click('#collectionDialog [data-item-delete]');
-    await yesConfirm();
+    await t.confirm(false); /* cycle 33 : fenêtre Atelier, Annuler */
     await t.wait(150);
     await page.click('#collectionDialog [data-item-delete]');
+    await t.confirm(); /* cycle 33 : fenêtre Atelier, bouton de confirmation */
     await t.wait(300);
   });
   agenda = await colByKind('events');
@@ -435,11 +433,11 @@ export default async function (t) {
     await page.click('#collectionDialog [data-field-add]');
     await t.wait(250);
     await fillChange('#collectionDialog [data-field-options="public"]', 'Tout public\nEnfants\nAdultes');
-    await noConfirm();
     await page.click('#collectionDialog [data-field-delete="public"]');
-    await yesConfirm();
+    await t.confirm(false); /* cycle 33 : fenêtre Atelier, Annuler */
     await t.wait(150);
     await page.click('#collectionDialog [data-field-delete="public"]');
+    await t.confirm(); /* cycle 33 : fenêtre Atelier, bouton de confirmation */
     await t.wait(250);
   });
   agenda = await colByKind('events');
@@ -518,11 +516,11 @@ export default async function (t) {
     await page.waitForSelector('#collectionDialog[open]');
     await page.click('#collectionDialog [data-col-tab="settings"]');
     await t.wait(150);
-    await noConfirm();
     await page.click('#collectionDialog [data-col-delete]');
-    await yesConfirm();
+    await t.confirm(false); /* cycle 33 : fenêtre Atelier, Annuler */
     await t.wait(150);
     await page.click('#collectionDialog [data-col-delete]');
+    await t.confirm(); /* cycle 33 : fenêtre Atelier, bouton de confirmation */
     await t.wait(300);
   });
   t.ok(!(await colByKind('members')), 'collection supprimée');
@@ -565,13 +563,13 @@ export default async function (t) {
   });
   await openVersions();
   await kase('versions-restaurer-annuler', ['version.restore.start', 'version.restore.cancel'], async () => {
-    await noConfirm();
     await page.locator('#versionsDialog [data-version]', { hasText: 'Avant les essais' }).locator('[data-version-restore]').click();
-    await yesConfirm();
+    await t.confirm(false); /* cycle 33 : fenêtre Atelier, Annuler */
     await t.wait(200);
   });
   await kase('versions-restaurer', ['version.restore.start', 'version.restore.loaded', 'version.save.start', 'version.save.prune', 'version.save.ok', 'version.restore.safety', 'version.restore.ok', 'storage.version-delete'], async () => {
     await page.locator('#versionsDialog [data-version]', { hasText: 'Avant les essais' }).locator('[data-version-restore]').click();
+    await t.confirm(); /* cycle 33 : fenêtre Atelier, bouton de confirmation */
   }, { wait: 'version.restore.ok' });
   t.ok((await site()).pages.length === before, 'restaurer : la page jetable a disparu');
   await openVersions();
@@ -585,6 +583,7 @@ export default async function (t) {
       r.onerror = () => rej(r.error);
     }), vid);
     await page.locator(`#versionsDialog [data-version="${vid}"] [data-version-restore]`).click();
+    await t.confirm(); /* cycle 33 : fenêtre Atelier */
   }, { wait: 'version.restore.fail', errors: ['version.restore.fail', 'ui.toast'] });
 
   await kase('versions-stockage-plein', ['version.save.start', 'version.save.fail', 'ui.toast'], async () => {

@@ -1,25 +1,25 @@
-12:40:13.252 +6.29s INFO  audit.open Vérification avant export : prêt (1 point(s) à vérifier) {"mode":"export","ok":true,"errors":0,"warnings":1,"info":3,"missing":51,"ms":5,"firstErrors":[],"firstWarnings":["Accueil : image non choisie : rien ne s’affichera à cet endroit."]}
-12:40:13.256 +6.30s DEBUG ui.dialog.open Fenêtre ouverte : Vérification avant export {"id":"auditDialog","class":"audit","modal":true}
-12:40:13.299 +6.34s INFO  audit.export Export malgré des points à vérifier {"warnings":1}
-12:40:13.301 +6.34s INFO  export.zip.start [export.zip#1] Export du site en .zip
-12:40:13.302 +6.34s DEBUG net.request GET fonts/archivo/archivo-latin-400-italic.woff2 {"id":1,"method":"GET","url":"fonts/archivo/archivo-latin-400-italic.woff2"}
-12:40:13.310 +6.35s DEBUG ui.dialog.close Fenêtre fermée : Vérification avant export {"id":"auditDialog"}
-12:40:13.315 +6.36s DEBUG net.response 200 GET fonts/archivo/archivo-latin-400-italic.woff2 (13 ms) {"id":1,"status":200,"ms":13,"type":"font/woff2","size":15820}
-12:40:13.316 +6.36s DEBUG net.request GET fonts/archivo/archivo-latin-400-normal.woff2 {"id":2,"method":"GET","url":"fonts/archivo/archivo-latin-400-normal.woff2"}
-12:40:13.323 +6.37s DEBUG net.response 200 GET fonts/archivo/archivo-latin-400-normal.woff2 (7 ms) {"id":2,"status":200,"ms":7,"type":"font/woff2","size":14700}
-12:40:13.325 +6.37s DEBUG net.request GET fonts/archivo/archivo-latin-700-italic.woff2 {"id":3,"method":"GET","url":"fonts/archivo/archivo-latin-700-italic.woff2"}
-12:40:13.330 +6.37s DEBUG net.response 200 GET fonts/archivo/archivo-latin-700-italic.woff2 (6 ms) {"id":3,"status":200,"ms":6,"type":"font/woff2","size":16004}
-12:40:13.332 +6.37s DEBUG net.request GET fonts/archivo/archivo-latin-700-normal.woff2 {"id":4,"method":"GET","url":"fonts/archivo/archivo-latin-700-normal.woff2"}
-12:40:13.333 +6.38s DEBUG net.response 200 GET fonts/archivo/archivo-latin-700-normal.woff2 (2 ms) {"id":4,"status":200,"ms":2,"type":"font/woff2","size":14508}
-12:40:13.335 +6.38s DEBUG net.request GET fonts/archivo/archivo-latin-ext-400-italic.woff2 {"id":5,"method":"GET","url":"fonts/archivo/archivo-latin-ext-400-italic.woff2"}
-12:40:13.338 +6.38s DEBUG net.response 200 GET fonts/archivo/archivo-latin-ext-400-italic.woff2 (3 ms) {"id":5,"status":200,"ms":3,"type":"font/woff2","size":13568}
-12:40:13.339 +6.38s DEBUG net.request GET fonts/archivo/archivo-latin-ext-400-normal.woff2 {"id":6,"method":"GET","url":"fonts/archivo/archivo-latin-ext-400-normal.woff2"}
-12:40:13.341 +6.38s DEBUG net.response 200 GET fonts/archivo/archivo-latin-ext-400-normal.woff2 (3 ms) {"id":6,"status":200,"ms":3,"type":"font/woff2","size":12928}
-12:40:13.342 +6.38s DEBUG net.request GET fonts/archivo/archivo-latin-ext-700-italic.woff2 {"id":7,"method":"GET","url":"fonts/archivo/archivo-latin-ext-700-italic.woff2"}
-12:40:13.346 +6.39s DEBUG net.response 200 GET fonts/archivo/archivo-latin-ext-700-italic.woff2 (4 ms) {"id":7,"status":200,"ms":4,"type":"font/woff2","size":14112}
-12:40:13.347 +6.39s DEBUG net.request GET fonts/archivo/archivo-latin-ext-700-normal.woff2 {"id":8,"method":"GET","url":"fonts/archivo/archivo-latin-ext-700-normal.woff2"}
-12:40:13.350 +6.39s DEBUG net.response 200 GET fonts/archivo/archivo-latin-ext-700-normal.woff2 (3 ms) {"id":8,"status":200,"ms":3,"type":"font/woff2","size":13272}
-12:40:13.352 +6.39s DEBUG fonts.load 8 fichiers de polices prêts pour le site {"files":8,"kb":112}
-12:40:13.358 +6.40s DEBUG export.zip.render [export.zip#1 · 57 ms] Pages générées {"files":25,"fonts":8,"ms":57}
-12:40:13.371 +6.41s INFO  export.zip.ok [export.zip#1 · 70 ms] Site exporté : 25 fichiers {"files":25,"kb":206,"untranslated":51}
-12:40:13.371 +6.41s INFO  ui.toast Message affiché : Site exporté : 25 fichiers. 51 textes non traduits s’affichent dans la langue principale.
+13:15:59.969 +6.52s INFO  audit.open Vérification avant export : prêt (1 point(s) à vérifier) {"mode":"export","ok":true,"errors":0,"warnings":1,"info":3,"missing":51,"ms":5,"firstErrors":[],"firstWarnings":["Accueil : image non choisie : rien ne s’affichera à cet endroit."]}
+13:15:59.973 +6.53s DEBUG ui.dialog.open Fenêtre ouverte : Vérification avant export {"id":"auditDialog","class":"audit","modal":true}
+13:16:00.078 +6.63s INFO  audit.export Export malgré des points à vérifier {"warnings":1}
+13:16:00.080 +6.63s INFO  export.zip.start [export.zip#1] Export du site en .zip
+13:16:00.081 +6.63s DEBUG net.request GET fonts/archivo/archivo-latin-400-italic.woff2 {"id":1,"method":"GET","url":"fonts/archivo/archivo-latin-400-italic.woff2"}
+13:16:00.091 +6.64s DEBUG ui.dialog.close Fenêtre fermée : Vérification avant export {"id":"auditDialog"}
+13:16:00.093 +6.65s DEBUG net.response 200 GET fonts/archivo/archivo-latin-400-italic.woff2 (12 ms) {"id":1,"status":200,"ms":12,"type":"font/woff2","size":15820}
+13:16:00.094 +6.65s DEBUG net.request GET fonts/archivo/archivo-latin-400-normal.woff2 {"id":2,"method":"GET","url":"fonts/archivo/archivo-latin-400-normal.woff2"}
+13:16:00.101 +6.65s DEBUG net.response 200 GET fonts/archivo/archivo-latin-400-normal.woff2 (6 ms) {"id":2,"status":200,"ms":6,"type":"font/woff2","size":14700}
+13:16:00.102 +6.66s DEBUG net.request GET fonts/archivo/archivo-latin-700-italic.woff2 {"id":3,"method":"GET","url":"fonts/archivo/archivo-latin-700-italic.woff2"}
+13:16:00.104 +6.66s DEBUG net.response 200 GET fonts/archivo/archivo-latin-700-italic.woff2 (2 ms) {"id":3,"status":200,"ms":2,"type":"font/woff2","size":16004}
+13:16:00.105 +6.66s DEBUG net.request GET fonts/archivo/archivo-latin-700-normal.woff2 {"id":4,"method":"GET","url":"fonts/archivo/archivo-latin-700-normal.woff2"}
+13:16:00.106 +6.66s DEBUG net.response 200 GET fonts/archivo/archivo-latin-700-normal.woff2 (2 ms) {"id":4,"status":200,"ms":2,"type":"font/woff2","size":14508}
+13:16:00.109 +6.66s DEBUG net.request GET fonts/archivo/archivo-latin-ext-400-italic.woff2 {"id":5,"method":"GET","url":"fonts/archivo/archivo-latin-ext-400-italic.woff2"}
+13:16:00.112 +6.67s DEBUG net.response 200 GET fonts/archivo/archivo-latin-ext-400-italic.woff2 (3 ms) {"id":5,"status":200,"ms":3,"type":"font/woff2","size":13568}
+13:16:00.114 +6.67s DEBUG net.request GET fonts/archivo/archivo-latin-ext-400-normal.woff2 {"id":6,"method":"GET","url":"fonts/archivo/archivo-latin-ext-400-normal.woff2"}
+13:16:00.120 +6.67s DEBUG net.response 200 GET fonts/archivo/archivo-latin-ext-400-normal.woff2 (6 ms) {"id":6,"status":200,"ms":6,"type":"font/woff2","size":12928}
+13:16:00.122 +6.67s DEBUG net.request GET fonts/archivo/archivo-latin-ext-700-italic.woff2 {"id":7,"method":"GET","url":"fonts/archivo/archivo-latin-ext-700-italic.woff2"}
+13:16:00.127 +6.68s DEBUG net.response 200 GET fonts/archivo/archivo-latin-ext-700-italic.woff2 (5 ms) {"id":7,"status":200,"ms":5,"type":"font/woff2","size":14112}
+13:16:00.129 +6.68s DEBUG net.request GET fonts/archivo/archivo-latin-ext-700-normal.woff2 {"id":8,"method":"GET","url":"fonts/archivo/archivo-latin-ext-700-normal.woff2"}
+13:16:00.132 +6.68s DEBUG net.response 200 GET fonts/archivo/archivo-latin-ext-700-normal.woff2 (3 ms) {"id":8,"status":200,"ms":3,"type":"font/woff2","size":13272}
+13:16:00.133 +6.69s DEBUG fonts.load 8 fichiers de polices prêts pour le site {"files":8,"kb":112}
+13:16:00.140 +6.69s DEBUG export.zip.render [export.zip#1 · 60 ms] Pages générées {"files":25,"fonts":8,"ms":59}
+13:16:00.147 +6.70s INFO  export.zip.ok [export.zip#1 · 67 ms] Site exporté : 25 fichiers {"files":25,"kb":206,"untranslated":51}
+13:16:00.147 +6.70s INFO  ui.toast Message affiché : Site exporté : 25 fichiers. 51 textes non traduits s’affichent dans la langue principale.

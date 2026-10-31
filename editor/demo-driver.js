@@ -6,6 +6,7 @@
  * Les primitives d'attente et de clic sont celles de l'auto-test (editor/ui-drive.js).
  */
 import { $ } from './dom.js';
+import { setDialogAutoAnswer } from './dialog.js';
 import { state, root as editRoot } from './store.js';
 import { walk } from '../core/tree.js';
 import { sanitizeRich } from '../core/sanitize.js';
@@ -28,8 +29,6 @@ export function createDemoDriver({ speed = 'normal', onSay = () => {} } = {}) {
   let paused = false;
   let resume = null;
   let ff = false;
-  const origPrompt = window.prompt;
-  let promptAnswer = null;
 
   /* ---------- Temps : pause, arrêt, avance rapide ---------- */
   async function gate() {
@@ -296,9 +295,9 @@ export function createDemoDriver({ speed = 'normal', onSay = () => {} } = {}) {
     onSay(t);
     await wait(T.sayBase + t.length * T.sayChar);
   }
+  /* La prochaine question d'Atelier (askText, confirmDialog) reçoit cette réponse, une seule fois */
   function answerPrompt(answer) {
-    promptAnswer = answer;
-    window.prompt = () => { const a = promptAnswer; window.prompt = origPrompt; promptAnswer = null; return a; };
+    setDialogAutoAnswer(() => { setDialogAutoAnswer(null); return answer; });
   }
 
   return {
@@ -317,6 +316,6 @@ export function createDemoDriver({ speed = 'normal', onSay = () => {} } = {}) {
     stepDone() { ff = false; },
     stop() { stopped = true; paused = false; resume?.(); resume = null; },
     isStopped: () => stopped,
-    dispose() { window.prompt = origPrompt; $('#demoCursor')?.remove(); $('#demoRing')?.remove(); }
+    dispose() { setDialogAutoAnswer(null); $('#demoCursor')?.remove(); $('#demoRing')?.remove(); }
   };
 }

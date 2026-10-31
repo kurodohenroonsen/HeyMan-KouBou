@@ -1,5 +1,6 @@
 /* Contenus : collections (médias membres, actualités, agenda…), leurs éléments, champs et réglages. */
 import { h, $, toast, download } from './dom.js';
+import { confirmDialog, openDialog, rovingTabs } from './dialog.js';
 import { state, commit, setView, setEditTarget, subscribe, select } from './store.js';
 import {
   COLLECTION_KINDS, FIELD_TYPES, createCollectionWithPage, setCollectionMeta, deleteCollection,
@@ -94,17 +95,17 @@ export function openNewCollection() {
         : (r.pageId ? __('Collection « {name} » créée et la page /{slug}/.', { name: c.name, slug: pageSlug }) : __('Collection « {name} » créée.', { name: c.name })));
     } catch (e) { log.warn('collection.create-refused', __('Collection non créée : {error}', { error: e.message }), { kind, name: name.value.slice(0, 60), error: e }); toast(e.message, 'error'); }
   };
-  const d = h('dialog', { class: 'audit col-new', id: 'collectionNewDialog', 'aria-labelledby': 'colNewTitle' },
-    h('header', { class: 'audit__head' }, h('h2', { id: 'colNewTitle' }, __('Nouvelle collection')), h('button', { type: 'button', class: 'icon-btn', 'aria-label': __('Fermer'), onclick: () => d.close() }, '✕')),
-    h('div', { class: 'a11y-form' },
+  const d = openDialog({ id: 'collectionNewDialog',
+    className: 'col-new',
+    titleId: 'colNewTitle',
+    title: __('Nouvelle collection'),
+    body: [h('div', { class: 'a11y-form' },
       kinds,
       h('div', { class: 'field' }, h('span', { class: 'field__label' }, __('Nom')), name),
       h('label', { class: 'check' }, withPage, __('Créer aussi la page de liste (ajoutée au menu)')),
-      h('label', { class: 'check' }, examples, __('Ajouter quelques exemples à remplacer'))),
-    h('footer', { class: 'audit__foot' }, h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Annuler')), h('button', { type: 'button', class: 'btn btn--primary', 'data-col-create': '', onclick: create }, __('Créer la collection'))));
-  d.addEventListener('close', () => d.remove());
-  document.body.append(d);
-  d.showModal();
+      h('label', { class: 'check' }, examples, __('Ajouter quelques exemples à remplacer')))],
+    actions: [h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Annuler')),
+    h('button', { type: 'button', class: 'btn btn--primary', 'data-col-create': '', onclick: create }, __('Créer la collection'))] });
   name.focus();
   name.select();
 }
@@ -119,11 +120,13 @@ export function openCollection(id, { tab = 'items', itemId = null } = {}) {
   $('#collectionDialog')?.remove();
   current = { id, tab, itemId: itemId || c.items[0]?.id || null, query: '' };
   log.info('collection.open', __('Collection « {name} » ouverte : {items}, {fields}', { name: c.name, items: itemsCount(c.items.length), fields: __n(c.fields.length, '{n} champ', '{n} champs') }), { id, kind: c.kind, items: c.items.length, drafts: c.items.filter(i => i.status === 'draft').length, fields: c.fields.length, tab, item: current.itemId });
-  const d = h('dialog', { class: 'audit col-dialog', id: 'collectionDialog', 'data-col': id, 'aria-labelledby': 'colTitle' });
-  d.addEventListener('close', () => { d.remove(); current = null; unsub?.(); unsub = null; });
-  document.body.append(d);
+  const edit = kind => { const it = current?.itemId; const cc = col(current.id); d.close(); editTemplate(kind, cc, it); };
+  const d = openDialog({ id: 'collectionDialog', className: 'col-dialog', titleId: 'colTitle', attrs: { 'data-col': id }, title: c.name,
+    actions: [h('button', { type: 'button', class: 'btn', 'data-col-edit-card': '', onclick: () => edit('card') }, __('✎ Modifier la carte')),
+      h('button', { type: 'button', class: 'btn', 'data-col-edit-detail': '', onclick: () => edit('detail') }, __('✎ Modifier la page de détail')),
+      h('button', { type: 'button', class: 'btn btn--primary', onclick: () => d.close() }, __('Fermer'))],
+    onClose: () => { current = null; unsub?.(); unsub = null; } });
   render();
-  d.showModal();
   unsub?.();
   unsub = subscribe((reason, opts) => {
     if (reason !== 'doc' || !current || opts.source === 'collections') return;
@@ -150,16 +153,9 @@ function renderNow() {
   const tab = (k, name, n) => h('button', { type: 'button', role: 'tab', 'data-col-tab': k, 'aria-selected': String(current.tab === k), onclick: () => { current.tab = k; log.debug('collection.tab', __('Onglet « {tab} »', { tab: name }), { collection: current.id, tab: k }); render(); } }, n === undefined ? name : `${name} (${n})`);
   const body = h('div', { class: `col-body col-body--${current.tab}` },
     current.tab === 'items' ? itemsTab(c) : current.tab === 'fields' ? fieldsTab(c) : settingsTab(c));
-  d.replaceChildren(
-    h('header', { class: 'audit__head' },
-      h('h2', { id: 'colTitle' }, `${COLLECTION_KINDS[c.kind]?.icon || '▦'} ${c.name}`, h('small', { class: 'hint' }, ` /${c.slug}/`)),
-      h('button', { type: 'button', class: 'icon-btn', 'aria-label': __('Fermer'), onclick: () => d.close() }, '✕')),
-    h('div', { class: 'tabs', role: 'tablist' }, tab('items', __c('items', 'Éléments'), c.items.length), tab('fields', __('Champs'), c.fields.length), tab('settings', __('Réglages'))),
-    body,
-    h('footer', { class: 'audit__foot' },
-      h('button', { type: 'button', class: 'btn', 'data-col-edit-card': '', onclick: () => { const it = current?.itemId; d.close(); editTemplate('card', c, it); } }, __('✎ Modifier la carte')),
-      h('button', { type: 'button', class: 'btn', 'data-col-edit-detail': '', onclick: () => { const it = current?.itemId; d.close(); editTemplate('detail', c, it); } }, __('✎ Modifier la page de détail')),
-      h('button', { type: 'button', class: 'btn btn--primary', onclick: () => d.close() }, __('Fermer'))));
+  d.querySelector('#colTitle').replaceChildren(`${COLLECTION_KINDS[c.kind]?.icon || '▦'} ${c.name}`, h('small', { class: 'hint' }, ` /${c.slug}/`));
+  const tabs = rovingTabs(h('div', { class: 'tabs', role: 'tablist', 'aria-label': __('Onglets de la collection') }, tab('items', __c('items', 'Éléments'), c.items.length), tab('fields', __('Champs'), c.fields.length), tab('settings', __('Réglages'))));
+  d.replaceChildren(d.querySelector('.audit__head'), tabs, body, d.querySelector('.audit__foot'));
   body.scrollTop = scroll;
 }
 
@@ -300,8 +296,8 @@ function itemForm(c, it) {
         } catch (e) { log.warn('collection.refused', __('Élément non dupliqué : {error}', { error: e.message }), { action: 'item-duplicate', collection: c.id, item: it.id, error: e }); toast(e.message, 'error'); }
       }),
       btn('data-item-preview', '👁', __('Voir sa page (page de détail)'), () => { log.info('collection.item.preview', __('Page de détail ouverte avec l’élément « {title} »', { title: (itemTitle(state.site, c, it, def()) || it.slug).slice(0, 60) }), { collection: c.id, item: it.id, detail: c.settings.detail !== false }); dialogEl()?.close(); setEditTarget({ kind: 'detail', id: c.id, item: it.id }); }),
-      btn('data-item-delete', '✕', __('Supprimer cet élément'), () => {
-        if (!confirm(__('Supprimer « {title} » ? (Ctrl+Z pour annuler)', { title: itemTitle(state.site, c, it, def()) || it.slug }))) { log.debug('collection.item.delete-cancel', __('Suppression de l’élément annulée'), { collection: c.id, item: it.id }); return; }
+      btn('data-item-delete', '✕', __('Supprimer cet élément'), async () => {
+        if (!(await confirmDialog({ id: 'itemDeleteDialog', title: __('Supprimer l’élément'), ok: __('Supprimer'), danger: true, message: __('Supprimer « {title} » ? (Ctrl+Z pour annuler)', { title: itemTitle(state.site, c, it, def()) || it.slug }) }))) { log.debug('collection.item.delete-cancel', __('Suppression de l’élément annulée'), { collection: c.id, item: it.id }); return; }
         if (apply(s => removeItem(s, c.id, it.id), {}, { action: 'item-delete', collection: c.id, item: it.id })) { log.info('collection.item.delete', __('Élément « {title} » supprimé (Ctrl+Z pour annuler)', { title: (itemTitle(state.site, c, it, def()) || it.slug).slice(0, 60) }), { collection: c.id, item: it.id, slug: it.slug, items: col(c.id)?.items.length }); current.itemId = null; render(); }
       })),
     it.status === 'draft' ? h('p', { class: 'hint item-form__draft' }, __('Brouillon : n’apparaît ni dans les listes ni sur le site publié.')) : null,
@@ -374,8 +370,8 @@ function fieldsTab(c) {
         i18n,
         h('button', { type: 'button', class: 'icon-btn icon-btn--sm', 'aria-label': __('Monter'), disabled: i === 0, onclick: () => { if (apply(s => moveField(s, c.id, f.key, -1), {}, { action: 'field-move', collection: c.id, field: f.key })) { log.info('collection.field.move', __('Champ « {field} » monté', { field: f.label }), { collection: c.id, field: f.key, from: i, to: i - 1 }); render(); } } }, '↑'),
         h('button', { type: 'button', class: 'icon-btn icon-btn--sm', 'aria-label': __('Descendre'), disabled: i === c.fields.length - 1, onclick: () => { if (apply(s => moveField(s, c.id, f.key, 1), {}, { action: 'field-move', collection: c.id, field: f.key })) { log.info('collection.field.move', __('Champ « {field} » descendu', { field: f.label }), { collection: c.id, field: f.key, from: i, to: i + 1 }); render(); } } }, '↓'),
-        h('button', { type: 'button', class: 'icon-btn icon-btn--sm is-danger', 'data-field-delete': f.key, 'aria-label': __('Supprimer le champ {field}', { field: f.label }), disabled: isTitle, onclick: () => {
-          if (!confirm(__('Supprimer le champ « {field} » et ses valeurs dans tous les éléments ? (Ctrl+Z pour annuler)', { field: f.label }))) { log.debug('collection.field.delete-cancel', __('Suppression du champ annulée'), { collection: c.id, field: f.key }); return; }
+        h('button', { type: 'button', class: 'icon-btn icon-btn--sm is-danger', 'data-field-delete': f.key, 'aria-label': __('Supprimer le champ {field}', { field: f.label }), disabled: isTitle, onclick: async () => {
+          if (!(await confirmDialog({ id: 'fieldDeleteDialog', title: __('Supprimer le champ'), ok: __('Supprimer'), danger: true, message: __('Supprimer le champ « {field} » et ses valeurs dans tous les éléments ? (Ctrl+Z pour annuler)', { field: f.label }) }))) { log.debug('collection.field.delete-cancel', __('Suppression du champ annulée'), { collection: c.id, field: f.key }); return; }
           if (apply(s => removeField(s, c.id, f.key), {}, { action: 'field-delete', collection: c.id, field: f.key })) { log.info('collection.field.delete', __n(c.items.filter(x => x.values[f.key] !== undefined && x.values[f.key] !== '').length, 'Champ « {field} » supprimé avec ses valeurs ({n} élément concerné)', 'Champ « {field} » supprimé avec ses valeurs ({n} éléments concernés)', { field: f.label }), { collection: c.id, field: f.key, type: f.type, items: c.items.filter(x => x.values[f.key] !== undefined && x.values[f.key] !== '').length }); render(); }
         } }, '✕')),
       options);
@@ -449,8 +445,8 @@ function settingsTab(c) {
     h('div', { class: 'field' }, h('span', { class: 'field__label' }, __('Page de liste (lien « retour »)')), listPage),
     h('div', { class: 'field' }, h('span', { class: 'field__label' }, __('Ordre par défaut des listes')), h('div', { class: 'add-page' }, sort, dir)),
     h('div', { class: 'field danger-zone' }, h('span', { class: 'field__label' }, __('Supprimer')),
-      h('button', { type: 'button', class: 'btn btn--small is-danger', 'data-col-delete': '', onclick: () => {
-        if (!confirm(c.items.length === 1 ? __('Supprimer la collection « {name} » et son élément ? Les listes qui l’affichent seront vides. (Ctrl+Z pour annuler)', { name: c.name }) : __('Supprimer la collection « {name} » et ses {n} éléments ? Les listes qui l’affichent seront vides. (Ctrl+Z pour annuler)', { name: c.name, n: c.items.length }))) { log.debug('collection.delete-cancel', __('Suppression de la collection annulée'), { collection: c.id }); return; }
+      h('button', { type: 'button', class: 'btn btn--small is-danger', 'data-col-delete': '', onclick: async () => {
+        if (!(await confirmDialog({ id: 'collectionDeleteDialog', title: __('Supprimer la collection'), ok: __('Supprimer'), danger: true, message: c.items.length === 1 ? __('Supprimer la collection « {name} » et son élément ? Les listes qui l’affichent seront vides. (Ctrl+Z pour annuler)', { name: c.name }) : __('Supprimer la collection « {name} » et ses {n} éléments ? Les listes qui l’affichent seront vides. (Ctrl+Z pour annuler)', { name: c.name, n: c.items.length }) }))) { log.debug('collection.delete-cancel', __('Suppression de la collection annulée'), { collection: c.id }); return; }
         if (apply(x => deleteCollection(x, c.id), {}, { action: 'delete', collection: c.id })) { log.info('collection.delete', c.items.length === 1 ? __('Collection « {name} » supprimée avec son élément (Ctrl+Z pour annuler)', { name: c.name }) : __('Collection « {name} » supprimée avec ses {n} éléments (Ctrl+Z pour annuler)', { name: c.name, n: c.items.length }), { collection: c.id, kind: c.kind, items: c.items.length }); dialogEl()?.close(); toast(__('Collection « {name} » supprimée.', { name: c.name })); }
       } }, __('Supprimer la collection')))
   ];

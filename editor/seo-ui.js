@@ -1,5 +1,6 @@
 /* Référencement : notes par page, aperçus Google et partage, réglages, points à corriger, ✨ propositions de l'IA locale. */
 import { h, $, toast } from './dom.js';
+import { openDialog } from './dialog.js';
 import { state, commit, setView, select, subscribe } from './store.js';
 import { analyzeSite, analyzePage, setSeoField, seoTitle, seoDescription, pageText, seoLimits, hostToUnicode } from '../core/seo.js';
 import { pageDir, translate } from '../core/render.js';
@@ -192,18 +193,19 @@ function renderNow() {
 export function openSeo(pageId = state.pageId) {
   $('#seoDialog')?.remove();
   cur = { pageId, lang: state.lang, keywords: null };
-  const d = h('dialog', { class: 'audit col-dialog seo-dialog', id: 'seoDialog', 'aria-labelledby': 'seoTitle' },
-    h('header', { class: 'audit__head' }, h('h2', { id: 'seoTitle' }, __('🔎 Référencement')), h('button', { type: 'button', class: 'icon-btn', 'aria-label': __('Fermer'), onclick: () => d.close() }, '✕')),
-    h('div', { class: 'col-body seo-body', 'data-seo-body': '' }),
-    h('footer', { class: 'audit__foot' }, h('span', { class: 'hint' }, __('Les propositions ✨ sont faites par l’IA locale de Chrome et marquées « à relire ».')), h('button', { type: 'button', class: 'btn btn--primary', onclick: () => d.close() }, __('Fermer'))));
+  const d = openDialog({ id: 'seoDialog',
+    className: 'col-dialog seo-dialog',
+    titleId: 'seoTitle',
+    title: __('🔎 Référencement'),
+    body: [h('div', { class: 'col-body seo-body', 'data-seo-body': '' })],
+    actions: [h('span', { class: 'hint' }, __('Les propositions ✨ sont faites par l’IA locale de Chrome et marquées « à relire ».')),
+    h('button', { type: 'button', class: 'btn btn--primary', onclick: () => d.close() }, __('Fermer'))] });
   const unsub = subscribe((reason, opts) => {
     if (reason !== 'doc' || opts.source === 'seo') return;
     const typing = d.contains(document.activeElement) && document.activeElement.matches('input,textarea');
     if (!typing) render();
   });
   d.addEventListener('close', () => { unsub(); d.remove(); cur = null; });
-  document.body.append(d);
   render();
-  d.showModal();
   log.info('seo.open', __('Fenêtre Référencement : note du site {score}/100', { score: cur.last?.site ?? '?' }), { lang: cur.lang, pageId: cur.pageId, pages: state.site.pages.length, site: cur.last?.site, page: cur.last?.page, sitePoints: cur.last?.siteChecks, pagePoints: cur.last?.pageChecks, missingDesc: state.site.pages.filter(p => needsDesc(state.site, p, cur.lang)).length, baseUrl: !!state.site.baseUrl });
 }

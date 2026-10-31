@@ -1,5 +1,6 @@
 /* Panneau Modèles : sections prêtes à l'emploi, à cliquer ou glisser dans la page. */
 import { h } from './dom.js';
+import { confirmDialog } from './dialog.js';
 import { TEMPLATES, buildTemplate } from '../core/templates.js';
 import { insertSection, insertComponent } from './actions.js';
 import { state, commit } from './store.js';
@@ -51,8 +52,8 @@ function componentsSection() {
           onpointerdown: e => startLibraryDrag(e, { kind: 'component', id: cp.id, label: cp.name }) }, `▣ ${cp.name}`),
         name,
         h('span', { class: 'comp__meta' }, (REGISTRY[cp.node.type] ? __(REGISTRY[cp.node.type].label) : cp.node.type) + ' · ' + __n(usage[cp.id] || 0, '{n} utilisation', '{n} utilisations')),
-        h('button', { type: 'button', class: 'icon-btn icon-btn--sm is-danger', 'data-component-delete': cp.id, title: __('Supprimer (les instances deviennent des copies)'), 'aria-label': __('Supprimer {name}', { name: cp.name }), onclick: () => {
-          if (usage[cp.id] && !confirm(__n(usage[cp.id], 'Supprimer le composant « {name} » ? Son utilisation devient une copie indépendante.', 'Supprimer le composant « {name} » ? Ses {n} utilisations deviennent des copies indépendantes.', { name: cp.name }))) { log.info('action.component-delete-cancel', __('Suppression du composant annulée'), { component: cp.id, uses: usage[cp.id] }); return; }
+        h('button', { type: 'button', class: 'icon-btn icon-btn--sm is-danger', 'data-component-delete': cp.id, title: __('Supprimer (les instances deviennent des copies)'), 'aria-label': __('Supprimer {name}', { name: cp.name }), onclick: async () => {
+          if (usage[cp.id] && !(await confirmDialog({ id: 'componentDeleteDialog', title: __('Supprimer le composant'), ok: __('Supprimer'), danger: true, message: __n(usage[cp.id], 'Supprimer le composant « {name} » ? Son utilisation devient une copie indépendante.', 'Supprimer le composant « {name} » ? Ses {n} utilisations deviennent des copies indépendantes.', { name: cp.name }) }))) { log.info('action.component-delete-cancel', __('Suppression du composant annulée'), { component: cp.id, uses: usage[cp.id] }); return; }
           if (apply(x => deleteComponent(x, cp.id), N_('supprimer un composant'))) log.info('action.component-delete', __n(usage[cp.id] || 0, 'Composant « {name} » supprimé : {n} instance devient une copie', 'Composant « {name} » supprimé : {n} instances deviennent des copies', { name: cp.name }), { component: cp.id, uses: usage[cp.id] || 0 });
         } }, '✕'));
     })) : h('p', { class: 'hint' }, __('Aucun composant. Clic droit sur une section ou un bloc → « Créer un composant » : il sera réutilisable sur toutes les pages et modifiable en une fois.'))

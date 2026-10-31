@@ -147,16 +147,16 @@ export default async function (t) {
   /* ===== 7. Exemple, nouveau site, annulation, aperçu ===== */
   {
     const s = await mark(page);
-    await page.evaluate(() => { window.__confirm = window.confirm; window.confirm = () => false; });
     await page.click('#fileMenu summary');
     await page.click('#loadDemoBtn');
-    await page.evaluate(() => { window.confirm = window.__confirm; });
+    await t.confirm(false); /* cycle 33 : fenêtre Atelier */
     await page.click('#fileMenu summary');
     await page.click('#newSiteBtn');
     await page.click('#newSiteCreate');
     await t.wait(400);
     await page.click('#fileMenu summary');
     await page.click('#loadDemoBtn');
+    await t.confirm(); /* cycle 33 : fenêtre Atelier */
     await t.wait(400);
     const [popup] = await Promise.all([page.waitForEvent('popup'), (async () => { await page.click('#fileMenu summary'); await page.click('#previewBtn'); })()]);
     await popup.close();

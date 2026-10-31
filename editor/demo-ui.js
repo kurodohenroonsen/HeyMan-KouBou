@@ -5,6 +5,7 @@
  * elle choisit « Garder ce site comme point de départ » (après confirmation, avec version de sécurité).
  */
 import { h, $, toast } from './dom.js';
+import { openDialog } from './dialog.js';
 import { state, load } from './store.js';
 import { DEMO_STEPS } from '../core/demo-kumakogen.js';
 import { createDemoDriver, DemoStopped } from './demo-driver.js';
@@ -42,15 +43,13 @@ function panel(d, ctl) {
 
 function finishDialog() {
   return new Promise(resolve => {
-    const d = h('dialog', { class: 'audit', id: 'demoEndDialog', 'aria-labelledby': 'demoEndTitle' },
-      h('header', { class: 'audit__head' }, h('h2', { id: 'demoEndTitle' }, __('Démonstration terminée'))),
-      h('div', { class: 'a11y-form' }, h('p', {}, __('Le site de Kumakōgen est construit : deux pages, trois langues, les 23 widgets. Que voulez-vous faire ?'))),
-      h('footer', { class: 'audit__foot' },
-        h('button', { type: 'button', class: 'btn', id: 'demoBack', onclick: () => { d.close('back'); } }, __('Revenir à mon site')),
-        h('button', { type: 'button', class: 'btn btn--primary', id: 'demoKeep', onclick: () => { d.close('keep'); } }, __('Garder ce site comme point de départ'))));
+    const d = openDialog({ id: 'demoEndDialog',
+    titleId: 'demoEndTitle',
+    title: __('Démonstration terminée'),
+    body: [h('div', { class: 'a11y-form' }, h('p', {}, __('Le site de Kumakōgen est construit : deux pages, trois langues, les 23 widgets. Que voulez-vous faire ?')))],
+    actions: [h('button', { type: 'button', class: 'btn', id: 'demoBack', onclick: () => { d.close('back'); } }, __('Revenir à mon site')),
+    h('button', { type: 'button', class: 'btn btn--primary', id: 'demoKeep', onclick: () => { d.close('keep'); } }, __('Garder ce site comme point de départ'))] });
     d.addEventListener('close', () => { const v = d.returnValue === 'keep' ? 'keep' : 'back'; d.remove(); resolve(v); });
-    document.body.append(d);
-    d.showModal();
   });
 }
 

@@ -761,3 +761,7 @@ body.panels-collapsed .panel,body.panels-collapsed .resizer{display:none}
 .demo-ring{position:fixed;z-index:2147481400;pointer-events:none;display:none;border:3px solid var(--accent);border-radius:8px}
 .demo-ring.is-on{animation:demo-ring .9s ease-out forwards}
 @keyframes demo-ring{0%{opacity:1}100%{opacity:0}}
+/* Cycle 33 : fenêtres d'Atelier (openDialog, confirmDialog, askText) */
+.audit--sm{width:min(460px,calc(100vw - 32px))}
+.hint.is-error{color:#b91c1c}
+.hint.is-error:empty{display:none}
