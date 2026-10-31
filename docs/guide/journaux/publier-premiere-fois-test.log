@@ -1,35 +1,35 @@
-12:26:18.140 +1.83s INFO  publish.open Fenêtre Publier {"mode":"zip","tab":"php","ok":true,"errors":0,"warnings":1}
-12:26:18.142 +1.83s DEBUG ui.dialog.open Fenêtre ouverte : Publier le site {"id":"publishDialog","class":"audit","modal":true}
-12:26:18.155 +1.84s DEBUG publish.token-for Dépôt GitHub incomplet : aucun jeton pré-rempli
-12:26:18.158 +1.85s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:https://www.xn--mdia-alternatif-bnb.be"}
-12:26:18.158 +1.85s DEBUG publish.token-for Aucun jeton gardé pour www.xn--mdia-alternatif-bnb.be {"origin":"https://www.xn--mdia-alternatif-bnb.be","known":false}
-12:26:18.201 +1.89s DEBUG store.commit Modification {"source":"site","past":2,"page":"p_d91h2ce8"}
-12:26:18.204 +1.89s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
-12:26:18.207 +1.90s INFO  version.auto Première modification du jour : version automatique de l’état d’avant {"previous":null,"source":"site"}
-12:26:18.208 +1.90s INFO  version.save.start [version.save#2] Enregistrement d’une version automatique {"kind":"auto"}
-12:26:18.208 +1.90s DEBUG storage.version-save Version enregistrée {"id":"v_mvwbfhb44laee","kind":"auto"}
-12:26:18.209 +1.90s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:http://127.0.0.1:8704"}
-12:26:18.209 +1.90s DEBUG publish.token-for Aucun jeton gardé pour 127.0.0.1:8704 {"origin":"http://127.0.0.1:8704","known":false}
-12:26:18.229 +1.92s DEBUG version.save.prune [version.save#2 · 21 ms] Aucune ancienne version à supprimer {"total":2}
-12:26:18.230 +1.92s INFO  version.save.ok [version.save#2 · 22 ms] Version automatique enregistrée (2 pages) {"id":"v_mvwbfhb44laee","kind":"auto","at":"2026-10-31T11:26:18.208Z","pages":2,"kb":11}
-12:26:18.266 +1.96s DEBUG store.commit Modification {"source":"site","past":3,"page":"p_d91h2ce8"}
-12:26:18.269 +1.96s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
-12:26:18.281 +1.97s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:http://127.0.0.1:8704"}
-12:26:18.320 +2.01s INFO  publish.php.generate publish.php v4 téléchargé avec un nouveau jeton (l’ancien publish.php ne l’acceptera pas) {"version":"4","remember":true}
-12:26:18.320 +2.01s DEBUG store.commit Modification {"source":"site","past":4,"page":"p_d91h2ce8"}
-12:26:18.324 +2.01s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
-12:26:18.799 +2.49s DEBUG store.commit Modification {"source":"site","past":5,"page":"p_d91h2ce8"}
-12:26:18.802 +2.49s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
-12:26:18.805 +2.49s INFO  publish.test.start [publish.test#1] Test de connexion à publish.php {"url":"http://127.0.0.1:8704/publish.php","token":true}
-12:26:18.806 +2.50s INFO  publish.first-origin Premier envoi du jeton à 127.0.0.1:8704 depuis cet appareil (test de connexion) : confirmation demandée {"kind":"php","target":"http://127.0.0.1:8704","action":"test"}
-12:26:18.806 +2.50s DEBUG ui.dialog.open Fenêtre ouverte : Première publication vers 127.0.0.1:8704 {"id":"publishConfirmDialog","class":"audit","modal":true}
-12:26:18.892 +2.58s INFO  storage.secret-write Secret gardé sur cet appareil (jamais dans le projet) {"name":"php-token:http://127.0.0.1:8704"}
-12:26:18.894 +2.58s DEBUG ui.dialog.close Fenêtre fermée : Première publication vers 127.0.0.1:8704 {"id":"publishConfirmDialog"}
-12:26:18.898 +2.59s DEBUG net.request GET 127.0.0.1:8704/publish.php {"id":1,"method":"GET","url":"http://127.0.0.1:8704/publish.php?atelier_debug=1"}
-12:26:18.916 +2.60s DEBUG net.response 200 GET 127.0.0.1:8704/publish.php (18 ms) {"id":1,"status":200,"ms":18,"type":"application/json","req":"83c9f9ce"}
-12:26:18.920 +2.61s DEBUG php.req.start GET reçu {"method":"GET","who":"c68da6ee24","bytes":0,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8811","req":"83c9f9ce","srvMs":0}
-12:26:18.920 +2.61s WARN  php.diag Diagnostic de l’hébergement demandé : limite d’envoi basse (2 Mo) {"upload_max":"2M","post_max":"8M","data_writable":true,"zip":true,"mail":true,"req":"83c9f9ce","srvMs":0.2}
-12:26:18.920 +2.61s DEBUG php.status Statut demandé (test de connexion) {"version":"4","zip":true,"diag":true,"req":"83c9f9ce","srvMs":2.3}
-12:26:18.920 +2.61s DEBUG php.req.end Réponse 200 (status) {"status":200,"route":"status","mem_kb":742,"req":"83c9f9ce","srvMs":2.3}
-12:26:18.921 +2.61s INFO  publish.test.diag [publish.test#1 · 116 ms] Diagnostic de l’hébergement {"upload_max_filesize":"2M","post_max_size":"8M","memory_limit":"-1","max_execution_time":30,"mail":true,"data_writable":true,"root_writable":true,"log_level":"info","log_files":[],"sapi":"cli-server","time":"2026-10-31T11:26:18+00:00","timezone":"UTC","disk_free_mb":29626,"extensions":{"mbstring":true,"json":true,"zip":true}}
-12:26:18.921 +2.61s INFO  publish.test.ok [publish.test#1 · 116 ms] publish.php répond {"version":"4","php":"8.3.6","zip":true,"req":"83c9f9ce"}
+12:32:27.838 +1.82s INFO  publish.open Fenêtre Publier {"mode":"zip","tab":"php","ok":true,"errors":0,"warnings":1}
+12:32:27.840 +1.82s DEBUG ui.dialog.open Fenêtre ouverte : Publier le site {"id":"publishDialog","class":"audit","modal":true}
+12:32:27.847 +1.83s DEBUG publish.token-for Dépôt GitHub incomplet : aucun jeton pré-rempli
+12:32:27.851 +1.83s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:https://www.xn--mdia-alternatif-bnb.be"}
+12:32:27.851 +1.83s DEBUG publish.token-for Aucun jeton gardé pour www.xn--mdia-alternatif-bnb.be {"origin":"https://www.xn--mdia-alternatif-bnb.be","known":false}
+12:32:27.887 +1.87s DEBUG store.commit Modification {"source":"site","past":2,"page":"p_0h2vuhe0"}
+12:32:27.891 +1.87s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
+12:32:27.894 +1.87s INFO  version.auto Première modification du jour : version automatique de l’état d’avant {"previous":null,"source":"site"}
+12:32:27.895 +1.88s INFO  version.save.start [version.save#2] Enregistrement d’une version automatique {"kind":"auto"}
+12:32:27.896 +1.88s DEBUG storage.version-save Version enregistrée {"id":"v_mvwbnek7i0z7v","kind":"auto"}
+12:32:27.902 +1.88s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:http://127.0.0.1:8714"}
+12:32:27.903 +1.88s DEBUG publish.token-for Aucun jeton gardé pour 127.0.0.1:8714 {"origin":"http://127.0.0.1:8714","known":false}
+12:32:27.917 +1.90s DEBUG version.save.prune [version.save#2 · 22 ms] Aucune ancienne version à supprimer {"total":2}
+12:32:27.917 +1.90s INFO  version.save.ok [version.save#2 · 22 ms] Version automatique enregistrée (2 pages) {"id":"v_mvwbnek7i0z7v","kind":"auto","at":"2026-10-31T11:32:27.895Z","pages":2,"kb":11}
+12:32:27.950 +1.93s DEBUG store.commit Modification {"source":"site","past":3,"page":"p_0h2vuhe0"}
+12:32:27.953 +1.93s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
+12:32:27.964 +1.94s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:http://127.0.0.1:8714"}
+12:32:28.002 +1.98s INFO  publish.php.generate publish.php v4 téléchargé avec un nouveau jeton (l’ancien publish.php ne l’acceptera pas) {"version":"4","remember":true}
+12:32:28.002 +1.98s DEBUG store.commit Modification {"source":"site","past":4,"page":"p_0h2vuhe0"}
+12:32:28.007 +1.99s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":4}
+12:32:28.470 +2.45s DEBUG store.commit Modification {"source":"site","past":5,"page":"p_0h2vuhe0"}
+12:32:28.474 +2.45s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
+12:32:28.477 +2.46s INFO  publish.test.start [publish.test#1] Test de connexion à publish.php {"url":"http://127.0.0.1:8714/publish.php","token":true}
+12:32:28.477 +2.46s INFO  publish.first-origin Premier envoi du jeton à 127.0.0.1:8714 depuis cet appareil (test de connexion) : confirmation demandée {"kind":"php","target":"http://127.0.0.1:8714","action":"test"}
+12:32:28.477 +2.46s DEBUG ui.dialog.open Fenêtre ouverte : Première publication vers 127.0.0.1:8714 {"id":"publishConfirmDialog","class":"audit","modal":true}
+12:32:28.529 +2.51s INFO  storage.secret-write Secret gardé sur cet appareil (jamais dans le projet) {"name":"php-token:http://127.0.0.1:8714"}
+12:32:28.531 +2.51s DEBUG ui.dialog.close Fenêtre fermée : Première publication vers 127.0.0.1:8714 {"id":"publishConfirmDialog"}
+12:32:28.535 +2.52s DEBUG net.request GET 127.0.0.1:8714/publish.php {"id":1,"method":"GET","url":"http://127.0.0.1:8714/publish.php?atelier_debug=1"}
+12:32:28.557 +2.54s DEBUG net.response 200 GET 127.0.0.1:8714/publish.php (22 ms) {"id":1,"status":200,"ms":22,"type":"application/json","req":"f7f8bee4"}
+12:32:28.558 +2.54s DEBUG php.req.start GET reçu {"method":"GET","who":"64c8b1909f","bytes":0,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8811","req":"f7f8bee4","srvMs":0}
+12:32:28.559 +2.54s WARN  php.diag Diagnostic de l’hébergement demandé : limite d’envoi basse (2 Mo) {"upload_max":"2M","post_max":"8M","data_writable":true,"zip":true,"mail":true,"req":"f7f8bee4","srvMs":0.1}
+12:32:28.559 +2.54s DEBUG php.status Statut demandé (test de connexion) {"version":"4","zip":true,"diag":true,"req":"f7f8bee4","srvMs":0.4}
+12:32:28.559 +2.54s DEBUG php.req.end Réponse 200 (status) {"status":200,"route":"status","mem_kb":742,"req":"f7f8bee4","srvMs":0.4}
+12:32:28.559 +2.54s INFO  publish.test.diag [publish.test#1 · 82 ms] Diagnostic de l’hébergement {"upload_max_filesize":"2M","post_max_size":"8M","memory_limit":"-1","max_execution_time":30,"mail":true,"data_writable":true,"root_writable":true,"log_level":"info","log_files":[],"sapi":"cli-server","time":"2026-10-31T11:32:28+00:00","timezone":"UTC","disk_free_mb":29399,"extensions":{"mbstring":true,"json":true,"zip":true}}
+12:32:28.559 +2.54s INFO  publish.test.ok [publish.test#1 · 82 ms] publish.php répond {"version":"4","php":"8.3.6","zip":true,"req":"f7f8bee4"}

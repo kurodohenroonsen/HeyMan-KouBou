@@ -1,73 +1,72 @@
-12:25:08.893 +16.24s INFO  publish.open Fenêtre Publier {"mode":"php","tab":"php","ok":true,"errors":0,"warnings":1}
-12:25:08.893 +16.24s DEBUG ui.dialog.open Fenêtre ouverte : Publier le site {"id":"publishDialog","class":"audit","modal":true}
-12:25:08.903 +16.25s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token"}
-12:25:08.904 +16.25s DEBUG publish.token-for Jeton pré-rempli pour 127.0.0.1:9551 (séance) {"origin":"http://127.0.0.1:9551","from":"séance","known":true}
-12:25:08.904 +16.25s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token"}
-12:25:08.904 +16.25s DEBUG publish.token-for Dépôt GitHub incomplet : aucun jeton pré-rempli
-12:25:08.959 +16.30s DEBUG store.commit Modification {"source":"site","past":26,"page":"p_fub2tf7a"}
-12:25:08.961 +16.31s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
-12:25:08.968 +16.31s DEBUG publish.token-for Dépôt GitHub incomplet : aucun jeton pré-rempli
-12:25:08.979 +16.32s DEBUG store.commit Modification {"source":"site","past":27,"page":"p_fub2tf7a"}
-12:25:08.985 +16.33s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
-12:25:08.998 +16.34s DEBUG storage.secret-read Aucun secret gardé {"name":"github-token:aktina/site-mab"}
-12:25:09.000 +16.34s DEBUG publish.token-for Aucun jeton GitHub gardé pour aktina/site-mab {"target":"aktina/site-mab","known":false}
-12:25:09.010 +16.36s DEBUG store.commit Modification {"source":"site","past":28,"page":"p_fub2tf7a"}
-12:25:09.012 +16.36s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":1}
-12:25:09.028 +16.37s DEBUG storage.secret-read Aucun secret gardé {"name":"github-token:aktina/site-mab"}
-12:25:09.054 +16.40s DEBUG store.commit Modification {"source":"site","past":29,"page":"p_fub2tf7a"}
-12:25:09.057 +16.40s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
-12:25:09.063 +16.41s INFO  publish.github.start [publish.github#1] Publication sur GitHub {"owner":"aktina","repo":"site-mab","branch":"main","dir":"(racine)","token":true}
-12:25:09.063 +16.41s INFO  publish.first-origin Première publication vers aktina/site-mab depuis cet appareil : confirmation demandée {"kind":"github","target":"aktina/site-mab","action":"publish"}
-12:25:09.063 +16.41s DEBUG ui.dialog.open Fenêtre ouverte : Première publication vers aktina/site-mab {"id":"publishConfirmDialog","class":"audit","modal":true}
-12:25:09.104 +16.45s INFO  storage.secret-write Secret oublié sur cet appareil {"name":"github-token:aktina/site-mab"}
-12:25:09.112 +16.46s DEBUG ui.dialog.close Fenêtre fermée : Première publication vers aktina/site-mab {"id":"publishConfirmDialog"}
-12:25:09.118 +16.46s INFO  publish.github.package [publish.github#1 · 55 ms] 12 fichiers générés {"files":12}
-12:25:09.119 +16.46s DEBUG net.request GET api.github.com/repos/aktina/site-mab/git/ref/heads/main {"id":15,"method":"GET","url":"https://api.github.com/repos/aktina/site-mab/git/ref/heads/main"}
-12:25:09.139 +16.48s DEBUG net.response 200 GET api.github.com/repos/aktina/site-mab/git/ref/heads/main (20 ms) {"id":15,"status":200,"ms":20,"type":"application/json","size":61}
-12:25:09.140 +16.48s DEBUG net.request GET api.github.com/repos/aktina/site-mab/git/commits/ppppppppppppppppppppppppppppppp {"id":16,"method":"GET","url":"https://api.github.com/repos/aktina/site-mab/git/commits/pppppppppppppppppppppppppppppppppppppppp"}
-12:25:09.144 +16.49s DEBUG net.response 200 GET api.github.com/repos/aktina/site-mab/git/commits/ppppppppppppppppppppppppppppppp (4 ms) {"id":16,"status":200,"ms":4,"type":"application/json","size":59}
-12:25:09.145 +16.49s DEBUG net.request GET api.github.com/repos/aktina/site-mab/git/trees/ttttttttttttttttttttttttttttttttt {"id":17,"method":"GET","url":"https://api.github.com/repos/aktina/site-mab/git/trees/tttttttttttttttttttttttttttttttttttttttt?recursive=1"}
-12:25:09.150 +16.50s DEBUG net.response 200 GET api.github.com/repos/aktina/site-mab/git/trees/ttttttttttttttttttttttttttttttttt (5 ms) {"id":17,"status":200,"ms":5,"type":"application/json","size":29}
-12:25:09.153 +16.50s DEBUG net.request POST api.github.com/repos/aktina/site-mab/git/blobs {"id":18,"method":"POST","url":"https://api.github.com/repos/aktina/site-mab/git/blobs","body":{"json":["content","encoding"],"size":8490}}
-12:25:09.158 +16.50s INFO  net.response 201 POST api.github.com/repos/aktina/site-mab/git/blobs (5 ms) {"id":18,"status":201,"ms":5,"type":"application/json","size":2}
-12:25:09.159 +16.50s DEBUG publish.github.upload [publish.github#1 · 96 ms] Fichier envoyé 1 / 12 {"done":1,"total":12}
-12:25:09.160 +16.50s DEBUG net.request POST api.github.com/repos/aktina/site-mab/git/blobs {"id":19,"method":"POST","url":"https://api.github.com/repos/aktina/site-mab/git/blobs","body":{"json":["content","encoding"],"size":8510}}
-12:25:09.169 +16.51s INFO  net.response 201 POST api.github.com/repos/aktina/site-mab/git/blobs (9 ms) {"id":19,"status":201,"ms":9,"type":"application/json","size":2}
-12:25:09.170 +16.52s DEBUG publish.github.upload [publish.github#1 · 107 ms] Fichier envoyé 2 / 12 {"done":2,"total":12}
-12:25:09.170 +16.52s DEBUG net.request POST api.github.com/repos/aktina/site-mab/git/blobs {"id":20,"method":"POST","url":"https://api.github.com/repos/aktina/site-mab/git/blobs","body":{"json":["content","encoding"],"size":8522}}
-12:25:09.176 +16.52s INFO  net.response 201 POST api.github.com/repos/aktina/site-mab/git/blobs (6 ms) {"id":20,"status":201,"ms":6,"type":"application/json","size":2}
-12:25:09.177 +16.52s DEBUG publish.github.upload [publish.github#1 · 114 ms] Fichier envoyé 3 / 12 {"done":3,"total":12}
-12:25:09.177 +16.52s DEBUG net.request POST api.github.com/repos/aktina/site-mab/git/blobs {"id":21,"method":"POST","url":"https://api.github.com/repos/aktina/site-mab/git/blobs","body":{"json":["content","encoding"],"size":8518}}
-12:25:09.183 +16.53s INFO  net.response 201 POST api.github.com/repos/aktina/site-mab/git/blobs (6 ms) {"id":21,"status":201,"ms":6,"type":"application/json","size":2}
-12:25:09.184 +16.53s DEBUG publish.github.upload [publish.github#1 · 121 ms] Fichier envoyé 4 / 12 {"done":4,"total":12}
-12:25:09.185 +16.53s DEBUG net.request POST api.github.com/repos/aktina/site-mab/git/blobs {"id":22,"method":"POST","url":"https://api.github.com/repos/aktina/site-mab/git/blobs","body":{"json":["content","encoding"],"size":7318}}
-12:25:09.191 +16.54s INFO  net.response 201 POST api.github.com/repos/aktina/site-mab/git/blobs (6 ms) {"id":22,"status":201,"ms":6,"type":"application/json","size":2}
-12:25:09.192 +16.54s DEBUG publish.github.upload [publish.github#1 · 129 ms] Fichier envoyé 5 / 12 {"done":5,"total":12}
-12:25:09.192 +16.54s DEBUG net.request POST api.github.com/repos/aktina/site-mab/git/blobs {"id":23,"method":"POST","url":"https://api.github.com/repos/aktina/site-mab/git/blobs","body":{"json":["content","encoding"],"size":7350}}
-12:25:09.195 +16.54s INFO  net.response 201 POST api.github.com/repos/aktina/site-mab/git/blobs (4 ms) {"id":23,"status":201,"ms":4,"type":"application/json","size":2}
-12:25:09.199 +16.54s DEBUG publish.github.upload [publish.github#1 · 136 ms] Fichier envoyé 6 / 12 {"done":6,"total":12}
-12:25:09.199 +16.54s DEBUG net.request POST api.github.com/repos/aktina/site-mab/git/blobs {"id":24,"method":"POST","url":"https://api.github.com/repos/aktina/site-mab/git/blobs","body":{"json":["content","encoding"],"size":7378}}
-12:25:09.204 +16.55s INFO  net.response 201 POST api.github.com/repos/aktina/site-mab/git/blobs (5 ms) {"id":24,"status":201,"ms":5,"type":"application/json","size":2}
-12:25:09.205 +16.55s DEBUG publish.github.upload [publish.github#1 · 142 ms] Fichier envoyé 7 / 12 {"done":7,"total":12}
-12:25:09.206 +16.55s DEBUG net.request POST api.github.com/repos/aktina/site-mab/git/blobs {"id":25,"method":"POST","url":"https://api.github.com/repos/aktina/site-mab/git/blobs","body":{"json":["content","encoding"],"size":7354}}
-12:25:09.211 +16.56s INFO  net.response 201 POST api.github.com/repos/aktina/site-mab/git/blobs (6 ms) {"id":25,"status":201,"ms":6,"type":"application/json","size":2}
-12:25:09.213 +16.56s DEBUG publish.github.upload [publish.github#1 · 150 ms] Fichier envoyé 8 / 12 {"done":8,"total":12}
-12:25:09.214 +16.56s DEBUG net.request POST api.github.com/repos/aktina/site-mab/git/blobs {"id":26,"method":"POST","url":"https://api.github.com/repos/aktina/site-mab/git/blobs","body":{"json":["content","encoding"],"size":24522}}
-12:25:09.219 +16.56s INFO  net.response 201 POST api.github.com/repos/aktina/site-mab/git/blobs (6 ms) {"id":26,"status":201,"ms":6,"type":"application/json","size":2}
-12:25:09.220 +16.57s DEBUG publish.github.upload [publish.github#1 · 157 ms] Fichier envoyé 9 / 12 {"done":9,"total":12}
-12:25:09.221 +16.57s DEBUG net.request POST api.github.com/repos/aktina/site-mab/git/blobs {"id":27,"method":"POST","url":"https://api.github.com/repos/aktina/site-mab/git/blobs","body":{"json":["content","encoding"],"size":8134}}
-12:25:09.225 +16.57s INFO  net.response 201 POST api.github.com/repos/aktina/site-mab/git/blobs (5 ms) {"id":27,"status":201,"ms":5,"type":"application/json","size":2}
-12:25:09.226 +16.57s DEBUG publish.github.upload [publish.github#1 · 163 ms] Fichier envoyé 10 / 12 {"done":10,"total":12}
-12:25:09.226 +16.57s DEBUG net.request POST api.github.com/repos/aktina/site-mab/git/blobs {"id":28,"method":"POST","url":"https://api.github.com/repos/aktina/site-mab/git/blobs","body":{"json":["content","encoding"],"size":5394}}
-12:25:09.235 +16.58s INFO  net.response 201 POST api.github.com/repos/aktina/site-mab/git/blobs (9 ms) {"id":28,"status":201,"ms":9,"type":"application/json","size":2}
-12:25:09.236 +16.58s DEBUG publish.github.upload [publish.github#1 · 173 ms] Fichier envoyé 11 / 12 {"done":11,"total":12}
-12:25:09.236 +16.58s DEBUG net.request POST api.github.com/repos/aktina/site-mab/git/blobs {"id":29,"method":"POST","url":"https://api.github.com/repos/aktina/site-mab/git/blobs","body":{"json":["content","encoding"],"size":146}}
-12:25:09.240 +16.59s INFO  net.response 201 POST api.github.com/repos/aktina/site-mab/git/blobs (3 ms) {"id":29,"status":201,"ms":3,"type":"application/json","size":2}
-12:25:09.241 +16.59s DEBUG publish.github.upload [publish.github#1 · 178 ms] Fichier envoyé 12 / 12 {"done":12,"total":12}
-12:25:09.241 +16.59s DEBUG net.request POST api.github.com/repos/aktina/site-mab/git/trees {"id":30,"method":"POST","url":"https://api.github.com/repos/aktina/site-mab/git/trees","body":{"json":["tree"],"size":1270}}
-12:25:09.248 +16.59s INFO  net.response 201 POST api.github.com/repos/aktina/site-mab/git/trees (7 ms) {"id":30,"status":201,"ms":7,"type":"application/json","size":50}
-12:25:09.251 +16.60s DEBUG net.request POST api.github.com/repos/aktina/site-mab/git/commits {"id":31,"method":"POST","url":"https://api.github.com/repos/aktina/site-mab/git/commits","body":{"json":["message","tree","parents"],"size":185}}
-12:25:09.256 +16.60s INFO  net.response 201 POST api.github.com/repos/aktina/site-mab/git/commits (5 ms) {"id":31,"status":201,"ms":5,"type":"application/json","size":50}
-12:25:09.257 +16.60s DEBUG net.request PATCH api.github.com/repos/aktina/site-mab/git/refs/heads/main {"id":32,"method":"PATCH","url":"https://api.github.com/repos/aktina/site-mab/git/refs/heads/main","body":{"json":["sha","force"],"size":64}}
-12:25:09.266 +16.61s INFO  net.response 200 PATCH api.github.com/repos/aktina/site-mab/git/refs/heads/main (9 ms) {"id":32,"status":200,"ms":9,"type":"application/json","size":2}
-12:25:09.267 +16.61s INFO  publish.github.ok [publish.github#1 · 204 ms] Publié sur GitHub : commit c0ffee1 {"commit":"c0ffee1000000000000000000000000000000000","uploaded":12,"removed":0,"unchanged":0}
+12:29:55.978 +16.67s INFO  publish.open Fenêtre Publier {"mode":"php","tab":"php","ok":true,"errors":0,"warnings":1}
+12:29:55.979 +16.68s DEBUG ui.dialog.open Fenêtre ouverte : Publier le site {"id":"publishDialog","class":"audit","modal":true}
+12:29:55.991 +16.69s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token"}
+12:29:55.992 +16.69s DEBUG publish.token-for Jeton pré-rempli pour 127.0.0.1:9476 (séance) {"origin":"http://127.0.0.1:9476","from":"séance","known":true}
+12:29:55.992 +16.69s DEBUG publish.token-for Dépôt GitHub incomplet : aucun jeton pré-rempli
+12:29:56.096 +16.79s DEBUG store.commit Modification {"source":"site","past":26,"page":"p_3ll0hsc8"}
+12:29:56.099 +16.80s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
+12:29:56.109 +16.80s DEBUG publish.token-for Dépôt GitHub incomplet : aucun jeton pré-rempli
+12:29:56.144 +16.84s DEBUG store.commit Modification {"source":"site","past":27,"page":"p_3ll0hsc8"}
+12:29:56.147 +16.84s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
+12:29:56.164 +16.86s DEBUG storage.secret-read Aucun secret gardé {"name":"github-token:aktina/site-mab"}
+12:29:56.165 +16.86s DEBUG publish.token-for Aucun jeton GitHub gardé pour aktina/site-mab {"target":"aktina/site-mab","known":false}
+12:29:56.172 +16.87s DEBUG store.commit Modification {"source":"site","past":28,"page":"p_3ll0hsc8"}
+12:29:56.174 +16.87s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
+12:29:56.194 +16.89s DEBUG storage.secret-read Aucun secret gardé {"name":"github-token:aktina/site-mab"}
+12:29:56.259 +16.95s DEBUG store.commit Modification {"source":"site","past":29,"page":"p_3ll0hsc8"}
+12:29:56.262 +16.96s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
+12:29:56.273 +16.97s INFO  publish.github.start [publish.github#1] Publication sur GitHub {"owner":"aktina","repo":"site-mab","branch":"main","dir":"(racine)","token":true}
+12:29:56.273 +16.97s INFO  publish.first-origin Première publication vers aktina/site-mab depuis cet appareil : confirmation demandée {"kind":"github","target":"aktina/site-mab","action":"publish"}
+12:29:56.273 +16.97s DEBUG ui.dialog.open Fenêtre ouverte : Première publication vers aktina/site-mab {"id":"publishConfirmDialog","class":"audit","modal":true}
+12:29:56.347 +17.04s INFO  storage.secret-write Secret oublié sur cet appareil {"name":"github-token:aktina/site-mab"}
+12:29:56.349 +17.05s DEBUG ui.dialog.close Fenêtre fermée : Première publication vers aktina/site-mab {"id":"publishConfirmDialog"}
+12:29:56.368 +17.06s INFO  publish.github.package [publish.github#1 · 95 ms] 12 fichiers générés {"files":12}
+12:29:56.372 +17.07s DEBUG net.request GET api.github.com/repos/aktina/site-mab/git/ref/heads/main {"id":15,"method":"GET","url":"https://api.github.com/repos/aktina/site-mab/git/ref/heads/main"}
+12:29:56.391 +17.09s DEBUG net.response 200 GET api.github.com/repos/aktina/site-mab/git/ref/heads/main (20 ms) {"id":15,"status":200,"ms":20,"type":"application/json","size":61}
+12:29:56.393 +17.09s DEBUG net.request GET api.github.com/repos/aktina/site-mab/git/commits/ppppppppppppppppppppppppppppppp {"id":16,"method":"GET","url":"https://api.github.com/repos/aktina/site-mab/git/commits/pppppppppppppppppppppppppppppppppppppppp"}
+12:29:56.408 +17.10s DEBUG net.response 200 GET api.github.com/repos/aktina/site-mab/git/commits/ppppppppppppppppppppppppppppppp (15 ms) {"id":16,"status":200,"ms":15,"type":"application/json","size":59}
+12:29:56.408 +17.10s DEBUG net.request GET api.github.com/repos/aktina/site-mab/git/trees/ttttttttttttttttttttttttttttttttt {"id":17,"method":"GET","url":"https://api.github.com/repos/aktina/site-mab/git/trees/tttttttttttttttttttttttttttttttttttttttt?recursive=1"}
+12:29:56.414 +17.11s DEBUG net.response 200 GET api.github.com/repos/aktina/site-mab/git/trees/ttttttttttttttttttttttttttttttttt (5 ms) {"id":17,"status":200,"ms":5,"type":"application/json","size":29}
+12:29:56.422 +17.12s DEBUG net.request POST api.github.com/repos/aktina/site-mab/git/blobs {"id":18,"method":"POST","url":"https://api.github.com/repos/aktina/site-mab/git/blobs","body":{"json":["content","encoding"],"size":8490}}
+12:29:56.428 +17.12s INFO  net.response 201 POST api.github.com/repos/aktina/site-mab/git/blobs (6 ms) {"id":18,"status":201,"ms":6,"type":"application/json","size":2}
+12:29:56.430 +17.13s DEBUG publish.github.upload [publish.github#1 · 157 ms] Fichier envoyé 1 / 12 {"done":1,"total":12}
+12:29:56.431 +17.13s DEBUG net.request POST api.github.com/repos/aktina/site-mab/git/blobs {"id":19,"method":"POST","url":"https://api.github.com/repos/aktina/site-mab/git/blobs","body":{"json":["content","encoding"],"size":8510}}
+12:29:56.439 +17.14s INFO  net.response 201 POST api.github.com/repos/aktina/site-mab/git/blobs (9 ms) {"id":19,"status":201,"ms":9,"type":"application/json","size":2}
+12:29:56.446 +17.14s DEBUG publish.github.upload [publish.github#1 · 173 ms] Fichier envoyé 2 / 12 {"done":2,"total":12}
+12:29:56.447 +17.14s DEBUG net.request POST api.github.com/repos/aktina/site-mab/git/blobs {"id":20,"method":"POST","url":"https://api.github.com/repos/aktina/site-mab/git/blobs","body":{"json":["content","encoding"],"size":8522}}
+12:29:56.460 +17.16s INFO  net.response 201 POST api.github.com/repos/aktina/site-mab/git/blobs (13 ms) {"id":20,"status":201,"ms":13,"type":"application/json","size":2}
+12:29:56.461 +17.16s DEBUG publish.github.upload [publish.github#1 · 188 ms] Fichier envoyé 3 / 12 {"done":3,"total":12}
+12:29:56.462 +17.16s DEBUG net.request POST api.github.com/repos/aktina/site-mab/git/blobs {"id":21,"method":"POST","url":"https://api.github.com/repos/aktina/site-mab/git/blobs","body":{"json":["content","encoding"],"size":8518}}
+12:29:56.466 +17.16s INFO  net.response 201 POST api.github.com/repos/aktina/site-mab/git/blobs (5 ms) {"id":21,"status":201,"ms":5,"type":"application/json","size":2}
+12:29:56.467 +17.16s DEBUG publish.github.upload [publish.github#1 · 194 ms] Fichier envoyé 4 / 12 {"done":4,"total":12}
+12:29:56.468 +17.16s DEBUG net.request POST api.github.com/repos/aktina/site-mab/git/blobs {"id":22,"method":"POST","url":"https://api.github.com/repos/aktina/site-mab/git/blobs","body":{"json":["content","encoding"],"size":7318}}
+12:29:56.478 +17.17s INFO  net.response 201 POST api.github.com/repos/aktina/site-mab/git/blobs (10 ms) {"id":22,"status":201,"ms":10,"type":"application/json","size":2}
+12:29:56.479 +17.18s DEBUG publish.github.upload [publish.github#1 · 206 ms] Fichier envoyé 5 / 12 {"done":5,"total":12}
+12:29:56.480 +17.18s DEBUG net.request POST api.github.com/repos/aktina/site-mab/git/blobs {"id":23,"method":"POST","url":"https://api.github.com/repos/aktina/site-mab/git/blobs","body":{"json":["content","encoding"],"size":7350}}
+12:29:56.489 +17.18s INFO  net.response 201 POST api.github.com/repos/aktina/site-mab/git/blobs (9 ms) {"id":23,"status":201,"ms":9,"type":"application/json","size":2}
+12:29:56.491 +17.19s DEBUG publish.github.upload [publish.github#1 · 218 ms] Fichier envoyé 6 / 12 {"done":6,"total":12}
+12:29:56.492 +17.19s DEBUG net.request POST api.github.com/repos/aktina/site-mab/git/blobs {"id":24,"method":"POST","url":"https://api.github.com/repos/aktina/site-mab/git/blobs","body":{"json":["content","encoding"],"size":7378}}
+12:29:56.498 +17.19s INFO  net.response 201 POST api.github.com/repos/aktina/site-mab/git/blobs (6 ms) {"id":24,"status":201,"ms":6,"type":"application/json","size":2}
+12:29:56.499 +17.20s DEBUG publish.github.upload [publish.github#1 · 226 ms] Fichier envoyé 7 / 12 {"done":7,"total":12}
+12:29:56.499 +17.20s DEBUG net.request POST api.github.com/repos/aktina/site-mab/git/blobs {"id":25,"method":"POST","url":"https://api.github.com/repos/aktina/site-mab/git/blobs","body":{"json":["content","encoding"],"size":7354}}
+12:29:56.510 +17.21s INFO  net.response 201 POST api.github.com/repos/aktina/site-mab/git/blobs (11 ms) {"id":25,"status":201,"ms":11,"type":"application/json","size":2}
+12:29:56.513 +17.21s DEBUG publish.github.upload [publish.github#1 · 240 ms] Fichier envoyé 8 / 12 {"done":8,"total":12}
+12:29:56.515 +17.21s DEBUG net.request POST api.github.com/repos/aktina/site-mab/git/blobs {"id":26,"method":"POST","url":"https://api.github.com/repos/aktina/site-mab/git/blobs","body":{"json":["content","encoding"],"size":24522}}
+12:29:56.528 +17.22s INFO  net.response 201 POST api.github.com/repos/aktina/site-mab/git/blobs (13 ms) {"id":26,"status":201,"ms":13,"type":"application/json","size":2}
+12:29:56.530 +17.23s DEBUG publish.github.upload [publish.github#1 · 257 ms] Fichier envoyé 9 / 12 {"done":9,"total":12}
+12:29:56.530 +17.23s DEBUG net.request POST api.github.com/repos/aktina/site-mab/git/blobs {"id":27,"method":"POST","url":"https://api.github.com/repos/aktina/site-mab/git/blobs","body":{"json":["content","encoding"],"size":8134}}
+12:29:56.539 +17.23s INFO  net.response 201 POST api.github.com/repos/aktina/site-mab/git/blobs (9 ms) {"id":27,"status":201,"ms":9,"type":"application/json","size":2}
+12:29:56.540 +17.24s DEBUG publish.github.upload [publish.github#1 · 267 ms] Fichier envoyé 10 / 12 {"done":10,"total":12}
+12:29:56.541 +17.24s DEBUG net.request POST api.github.com/repos/aktina/site-mab/git/blobs {"id":28,"method":"POST","url":"https://api.github.com/repos/aktina/site-mab/git/blobs","body":{"json":["content","encoding"],"size":5394}}
+12:29:56.549 +17.25s INFO  net.response 201 POST api.github.com/repos/aktina/site-mab/git/blobs (8 ms) {"id":28,"status":201,"ms":8,"type":"application/json","size":2}
+12:29:56.550 +17.25s DEBUG publish.github.upload [publish.github#1 · 277 ms] Fichier envoyé 11 / 12 {"done":11,"total":12}
+12:29:56.551 +17.25s DEBUG net.request POST api.github.com/repos/aktina/site-mab/git/blobs {"id":29,"method":"POST","url":"https://api.github.com/repos/aktina/site-mab/git/blobs","body":{"json":["content","encoding"],"size":146}}
+12:29:56.559 +17.25s INFO  net.response 201 POST api.github.com/repos/aktina/site-mab/git/blobs (8 ms) {"id":29,"status":201,"ms":8,"type":"application/json","size":2}
+12:29:56.560 +17.26s DEBUG publish.github.upload [publish.github#1 · 287 ms] Fichier envoyé 12 / 12 {"done":12,"total":12}
+12:29:56.560 +17.26s DEBUG net.request POST api.github.com/repos/aktina/site-mab/git/trees {"id":30,"method":"POST","url":"https://api.github.com/repos/aktina/site-mab/git/trees","body":{"json":["tree"],"size":1270}}
+12:29:56.572 +17.27s INFO  net.response 201 POST api.github.com/repos/aktina/site-mab/git/trees (11 ms) {"id":30,"status":201,"ms":11,"type":"application/json","size":50}
+12:29:56.572 +17.27s DEBUG net.request POST api.github.com/repos/aktina/site-mab/git/commits {"id":31,"method":"POST","url":"https://api.github.com/repos/aktina/site-mab/git/commits","body":{"json":["message","tree","parents"],"size":185}}
+12:29:56.601 +17.30s INFO  net.response 201 POST api.github.com/repos/aktina/site-mab/git/commits (29 ms) {"id":31,"status":201,"ms":29,"type":"application/json","size":50}
+12:29:56.604 +17.30s DEBUG net.request PATCH api.github.com/repos/aktina/site-mab/git/refs/heads/main {"id":32,"method":"PATCH","url":"https://api.github.com/repos/aktina/site-mab/git/refs/heads/main","body":{"json":["sha","force"],"size":64}}
+12:29:56.608 +17.30s INFO  net.response 200 PATCH api.github.com/repos/aktina/site-mab/git/refs/heads/main (4 ms) {"id":32,"status":200,"ms":4,"type":"application/json","size":2}
+12:29:56.610 +17.31s INFO  publish.github.ok [publish.github#1 · 337 ms] Publié sur GitHub : commit c0ffee1 {"commit":"c0ffee1000000000000000000000000000000000","uploaded":12,"removed":0,"unchanged":0}

@@ -1,18 +1,18 @@
-12:25:00.784 +8.13s DEBUG store.commit Modification {"source":"site","past":9,"page":"p_fub2tf7a"}
-12:25:00.786 +8.13s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
-12:25:00.792 +8.14s DEBUG publish.token-for Jeton pré-rempli pour 127.0.0.1:9551 (séance) {"origin":"http://127.0.0.1:9551","from":"séance","known":false}
-12:25:00.795 +8.14s DEBUG store.commit Modification {"source":"site","past":10,"page":"p_fub2tf7a"}
-12:25:00.798 +8.14s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
-12:25:00.804 +8.15s INFO  publish.test.start [publish.test#1] Test de connexion à publish.php {"url":"http://127.0.0.1:9551/publish.php","token":true}
-12:25:00.804 +8.15s INFO  publish.first-origin Premier envoi du jeton à 127.0.0.1:9551 depuis cet appareil (test de connexion) : confirmation demandée {"kind":"php","target":"http://127.0.0.1:9551","action":"test"}
-12:25:00.804 +8.15s DEBUG ui.dialog.open Fenêtre ouverte : Première publication vers 127.0.0.1:9551 {"id":"publishConfirmDialog","class":"audit","modal":true}
-12:25:00.860 +8.21s INFO  storage.secret-write Secret oublié sur cet appareil {"name":"php-token:http://127.0.0.1:9551"}
-12:25:00.863 +8.21s DEBUG ui.dialog.close Fenêtre fermée : Première publication vers 127.0.0.1:9551 {"id":"publishConfirmDialog"}
-12:25:00.868 +8.21s DEBUG net.request GET 127.0.0.1:9551/publish.php {"id":1,"method":"GET","url":"http://127.0.0.1:9551/publish.php?atelier_debug=1"}
-12:25:00.880 +8.22s DEBUG net.response 200 GET 127.0.0.1:9551/publish.php (11 ms) {"id":1,"status":200,"ms":11,"type":"application/json","req":"0fb101e6"}
-12:25:00.883 +8.23s DEBUG php.req.start GET reçu {"method":"GET","who":"fd80388459","bytes":0,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8811","req":"0fb101e6","srvMs":0}
-12:25:00.883 +8.23s WARN  php.diag Diagnostic de l’hébergement demandé : limite d’envoi basse (2 Mo) {"upload_max":"2M","post_max":"8M","data_writable":true,"zip":true,"mail":true,"req":"0fb101e6","srvMs":0.1}
-12:25:00.883 +8.23s DEBUG php.status Statut demandé (test de connexion) {"version":"4","zip":true,"diag":true,"req":"0fb101e6","srvMs":0.5}
-12:25:00.883 +8.23s DEBUG php.req.end Réponse 200 (status) {"status":200,"route":"status","mem_kb":741,"req":"0fb101e6","srvMs":0.5}
-12:25:00.884 +8.23s INFO  publish.test.diag [publish.test#1 · 80 ms] Diagnostic de l’hébergement {"upload_max_filesize":"2M","post_max_size":"8M","memory_limit":"-1","max_execution_time":30,"mail":true,"data_writable":true,"root_writable":true,"log_level":"info","log_files":[],"sapi":"cli-server","time":"2026-10-31T11:25:00+00:00","timezone":"UTC","disk_free_mb":29512,"extensions":{"mbstring":true,"json":true,"zip":true}}
-12:25:00.885 +8.23s INFO  publish.test.ok [publish.test#1 · 81 ms] publish.php répond {"version":"4","php":"8.3.6","zip":true,"req":"0fb101e6"}
+12:29:47.625 +8.32s DEBUG store.commit Modification {"source":"site","past":9,"page":"p_3ll0hsc8"}
+12:29:47.628 +8.32s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
+12:29:47.636 +8.33s DEBUG publish.token-for Jeton pré-rempli pour 127.0.0.1:9476 (séance) {"origin":"http://127.0.0.1:9476","from":"séance","known":false}
+12:29:47.642 +8.34s DEBUG store.commit Modification {"source":"site","past":10,"page":"p_3ll0hsc8"}
+12:29:47.646 +8.34s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
+12:29:47.656 +8.35s INFO  publish.test.start [publish.test#1] Test de connexion à publish.php {"url":"http://127.0.0.1:9476/publish.php","token":true}
+12:29:47.657 +8.35s INFO  publish.first-origin Premier envoi du jeton à 127.0.0.1:9476 depuis cet appareil (test de connexion) : confirmation demandée {"kind":"php","target":"http://127.0.0.1:9476","action":"test"}
+12:29:47.657 +8.35s DEBUG ui.dialog.open Fenêtre ouverte : Première publication vers 127.0.0.1:9476 {"id":"publishConfirmDialog","class":"audit","modal":true}
+12:29:47.729 +8.43s INFO  storage.secret-write Secret oublié sur cet appareil {"name":"php-token:http://127.0.0.1:9476"}
+12:29:47.735 +8.43s DEBUG ui.dialog.close Fenêtre fermée : Première publication vers 127.0.0.1:9476 {"id":"publishConfirmDialog"}
+12:29:47.742 +8.44s DEBUG net.request GET 127.0.0.1:9476/publish.php {"id":1,"method":"GET","url":"http://127.0.0.1:9476/publish.php?atelier_debug=1"}
+12:29:47.760 +8.46s DEBUG net.response 200 GET 127.0.0.1:9476/publish.php (19 ms) {"id":1,"status":200,"ms":19,"type":"application/json","req":"e0783d2c"}
+12:29:47.764 +8.46s DEBUG php.req.start GET reçu {"method":"GET","who":"376ecff7b3","bytes":0,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8811","req":"e0783d2c","srvMs":0}
+12:29:47.764 +8.46s WARN  php.diag Diagnostic de l’hébergement demandé : limite d’envoi basse (2 Mo) {"upload_max":"2M","post_max":"8M","data_writable":true,"zip":true,"mail":true,"req":"e0783d2c","srvMs":0.1}
+12:29:47.764 +8.46s DEBUG php.status Statut demandé (test de connexion) {"version":"4","zip":true,"diag":true,"req":"e0783d2c","srvMs":0.5}
+12:29:47.765 +8.46s DEBUG php.req.end Réponse 200 (status) {"status":200,"route":"status","mem_kb":741,"req":"e0783d2c","srvMs":0.5}
+12:29:47.765 +8.46s INFO  publish.test.diag [publish.test#1 · 109 ms] Diagnostic de l’hébergement {"upload_max_filesize":"2M","post_max_size":"8M","memory_limit":"-1","max_execution_time":30,"mail":true,"data_writable":true,"root_writable":true,"log_level":"info","log_files":[],"sapi":"cli-server","time":"2026-10-31T11:29:47+00:00","timezone":"UTC","disk_free_mb":29637,"extensions":{"mbstring":true,"json":true,"zip":true}}
+12:29:47.765 +8.46s INFO  publish.test.ok [publish.test#1 · 109 ms] publish.php répond {"version":"4","php":"8.3.6","zip":true,"req":"e0783d2c"}

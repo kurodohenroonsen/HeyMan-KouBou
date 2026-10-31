@@ -1,16 +1,16 @@
-12:25:02.186 +9.53s DEBUG store.commit Modification {"source":"site","past":13,"page":"p_fub2tf7a"}
-12:25:02.189 +9.53s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
-12:25:02.199 +9.54s INFO  publish.php.start [publish.php#3] Publication sur OVH (publish.php) {"url":"http://127.0.0.1:9551/publish.php"}
-12:25:02.200 +9.54s ERROR publish.php.fail [publish.php#3 · 1 ms] jeton absent {"error":{"name":"Error","message":"jeton absent","stack":"Error: jeton absent\nat HTMLButtonElement.run (http://localhost:8811/editor/publish-ui.js:158:32)"}}
-12:25:02.453 +9.80s DEBUG store.commit Modification {"source":"site","past":14,"page":"p_fub2tf7a"}
-12:25:02.455 +9.80s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
-12:25:02.460 +9.80s INFO  publish.test.start [publish.test#2] Test de connexion à publish.php {"url":"http://127.0.0.1:9551/publish.php","token":true}
-12:25:02.461 +9.81s INFO  storage.secret-write Secret oublié sur cet appareil {"name":"php-token:http://127.0.0.1:9551"}
-12:25:02.468 +9.81s DEBUG net.request GET 127.0.0.1:9551/publish.php {"id":6,"method":"GET","url":"http://127.0.0.1:9551/publish.php?atelier_debug=1"}
-12:25:02.477 +9.82s DEBUG net.response 200 GET 127.0.0.1:9551/publish.php (9 ms) {"id":6,"status":200,"ms":9,"type":"application/json","req":"73f8e920"}
-12:25:02.478 +9.82s DEBUG php.req.start GET reçu {"method":"GET","who":"fd80388459","bytes":0,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8811","req":"73f8e920","srvMs":0.1}
-12:25:02.478 +9.82s WARN  php.diag.denied Diagnostic refusé : jeton faux {"req":"73f8e920","srvMs":0.1}
-12:25:02.478 +9.82s DEBUG php.status Statut demandé (test de connexion) {"version":"4","zip":true,"diag":false,"req":"73f8e920","srvMs":0.2}
-12:25:02.478 +9.82s DEBUG php.req.end Réponse 200 (status) {"status":200,"route":"status","mem_kb":353,"req":"73f8e920","srvMs":0.2}
-12:25:02.478 +9.82s WARN  publish.test.token-refused [publish.test#2 · 18 ms] Le jeton saisi ne correspond pas à ce publish.php (diagnostic refusé) : la publication sera refusée
-12:25:02.478 +9.82s INFO  publish.test.ok [publish.test#2 · 18 ms] publish.php répond {"version":"4","php":"8.3.6","zip":true,"req":"73f8e920"}
+12:29:49.159 +9.86s DEBUG store.commit Modification {"source":"site","past":13,"page":"p_3ll0hsc8"}
+12:29:49.162 +9.86s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
+12:29:49.174 +9.87s INFO  publish.php.start [publish.php#3] Publication sur OVH (publish.php) {"url":"http://127.0.0.1:9476/publish.php"}
+12:29:49.175 +9.87s ERROR publish.php.fail [publish.php#3 · 1 ms] jeton absent {"error":{"name":"Error","message":"jeton absent","stack":"Error: jeton absent\nat HTMLButtonElement.run (http://localhost:8811/editor/publish-ui.js:161:32)"}}
+12:29:49.442 +10.14s DEBUG store.commit Modification {"source":"site","past":14,"page":"p_3ll0hsc8"}
+12:29:49.444 +10.14s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
+12:29:49.451 +10.15s INFO  publish.test.start [publish.test#2] Test de connexion à publish.php {"url":"http://127.0.0.1:9476/publish.php","token":true}
+12:29:49.451 +10.15s INFO  storage.secret-write Secret oublié sur cet appareil {"name":"php-token:http://127.0.0.1:9476"}
+12:29:49.458 +10.15s DEBUG net.request GET 127.0.0.1:9476/publish.php {"id":6,"method":"GET","url":"http://127.0.0.1:9476/publish.php?atelier_debug=1"}
+12:29:49.468 +10.16s DEBUG net.response 200 GET 127.0.0.1:9476/publish.php (10 ms) {"id":6,"status":200,"ms":10,"type":"application/json","req":"b6875a23"}
+12:29:49.468 +10.16s DEBUG php.req.start GET reçu {"method":"GET","who":"376ecff7b3","bytes":0,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8811","req":"b6875a23","srvMs":0}
+12:29:49.469 +10.16s WARN  php.diag.denied Diagnostic refusé : jeton faux {"req":"b6875a23","srvMs":0}
+12:29:49.469 +10.16s DEBUG php.status Statut demandé (test de connexion) {"version":"4","zip":true,"diag":false,"req":"b6875a23","srvMs":0.1}
+12:29:49.469 +10.16s DEBUG php.req.end Réponse 200 (status) {"status":200,"route":"status","mem_kb":353,"req":"b6875a23","srvMs":0.1}
+12:29:49.469 +10.16s WARN  publish.test.token-refused [publish.test#2 · 18 ms] Le jeton saisi ne correspond pas à ce publish.php (diagnostic refusé) : la publication sera refusée
+12:29:49.469 +10.16s INFO  publish.test.ok [publish.test#2 · 18 ms] publish.php répond {"version":"4","php":"8.3.6","zip":true,"req":"b6875a23"}

@@ -1,12 +1,12 @@
-12:25:00.568 +7.91s DEBUG inspector.field Champ modifié : Adresse qui reçoit les messages {"key":"email","type":"text","how":"saisie","chars":29}
-12:25:00.571 +7.92s INFO  publish.open Fenêtre Publier {"mode":"zip","tab":"php","ok":true,"errors":0,"warnings":1}
-12:25:00.572 +7.92s DEBUG ui.dialog.open Fenêtre ouverte : Publier le site {"id":"publishDialog","class":"audit","modal":true}
-12:25:00.578 +7.92s DEBUG publish.token-for Dépôt GitHub incomplet : aucun jeton pré-rempli
-12:25:00.582 +7.93s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:https://www.xn--mdia-alternatif-bnb.be"}
-12:25:00.583 +7.93s DEBUG publish.token-for Aucun jeton gardé pour www.xn--mdia-alternatif-bnb.be {"origin":"https://www.xn--mdia-alternatif-bnb.be","known":false}
-12:25:00.671 +8.02s INFO  publish.php.generate publish.php v4 téléchargé avec un nouveau jeton (l’ancien publish.php ne l’acceptera pas) {"version":"4","remember":false}
-12:25:00.672 +8.02s DEBUG store.commit Modification {"source":"site","past":7,"page":"p_fub2tf7a"}
-12:25:00.675 +8.02s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
-12:25:00.710 +8.05s DEBUG store.commit Modification {"source":"site","past":8,"page":"p_fub2tf7a"}
-12:25:00.712 +8.06s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
-12:25:00.723 +8.07s DEBUG publish.token-for Jeton pré-rempli pour 127.0.0.1:9551 (séance) {"origin":"http://127.0.0.1:9551","from":"séance","known":false}
+12:29:47.323 +8.02s DEBUG inspector.field Champ modifié : Adresse qui reçoit les messages {"key":"email","type":"text","how":"saisie","chars":29}
+12:29:47.326 +8.02s INFO  publish.open Fenêtre Publier {"mode":"zip","tab":"php","ok":true,"errors":0,"warnings":1}
+12:29:47.328 +8.02s DEBUG ui.dialog.open Fenêtre ouverte : Publier le site {"id":"publishDialog","class":"audit","modal":true}
+12:29:47.337 +8.03s DEBUG publish.token-for Dépôt GitHub incomplet : aucun jeton pré-rempli
+12:29:47.341 +8.04s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:https://www.xn--mdia-alternatif-bnb.be"}
+12:29:47.341 +8.04s DEBUG publish.token-for Aucun jeton gardé pour www.xn--mdia-alternatif-bnb.be {"origin":"https://www.xn--mdia-alternatif-bnb.be","known":false}
+12:29:47.466 +8.16s INFO  publish.php.generate publish.php v4 téléchargé avec un nouveau jeton (l’ancien publish.php ne l’acceptera pas) {"version":"4","remember":false}
+12:29:47.468 +8.16s DEBUG store.commit Modification {"source":"site","past":7,"page":"p_3ll0hsc8"}
+12:29:47.474 +8.17s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
+12:29:47.526 +8.22s DEBUG store.commit Modification {"source":"site","past":8,"page":"p_3ll0hsc8"}
+12:29:47.534 +8.23s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":5}
+12:29:47.549 +8.24s DEBUG publish.token-for Jeton pré-rempli pour 127.0.0.1:9476 (séance) {"origin":"http://127.0.0.1:9476","from":"séance","known":false}

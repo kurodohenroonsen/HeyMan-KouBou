@@ -1,8 +1,8 @@
-12:18:42.830 +6.99s DEBUG collab.ops.in 1 modification de Kudoro appliquée {"name":"Kudoro","received":1,"applied":1}
-12:18:42.831 +6.99s DEBUG store.remote Modifications d’un autre participant appliquées {"ops":1,"history":0}
-12:18:42.838 +7.00s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"remote","mode":"contenu","ms":3}
-12:18:42.845 +7.00s INFO  version.auto Première modification du jour : version automatique de l’état d’avant {"previous":null,"source":"remote"}
-12:18:42.846 +7.00s INFO  version.save.start [version.save#2] Enregistrement d’une version automatique {"kind":"auto"}
-12:18:42.850 +7.01s DEBUG storage.version-save Version enregistrée {"id":"v_mvwb5py9jwrrq","kind":"auto"}
-12:18:42.889 +7.05s DEBUG version.save.prune [version.save#2 · 43 ms] Aucune ancienne version à supprimer {"total":2}
-12:18:42.890 +7.05s INFO  version.save.ok [version.save#2 · 44 ms] Version automatique enregistrée (2 pages) {"id":"v_mvwb5py9jwrrq","kind":"auto","at":"2026-10-31T11:18:42.849Z","pages":2,"kb":12}
+12:30:05.799 +6.67s DEBUG collab.ops.in 1 modification de Kudoro appliquée {"name":"Kudoro","received":1,"applied":1}
+12:30:05.800 +6.67s DEBUG store.remote Modifications d’un autre participant appliquées {"ops":1,"history":0}
+12:30:05.804 +6.67s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"remote","mode":"contenu","ms":3}
+12:30:05.813 +6.68s INFO  version.auto Première modification du jour : version automatique de l’état d’avant {"previous":null,"source":"remote"}
+12:30:05.813 +6.68s INFO  version.save.start [version.save#2] Enregistrement d’une version automatique {"kind":"auto"}
+12:30:05.814 +6.68s DEBUG storage.version-save Version enregistrée {"id":"v_mvwbkcxirfapx","kind":"auto"}
+12:30:05.830 +6.70s DEBUG version.save.prune [version.save#2 · 17 ms] Aucune ancienne version à supprimer {"total":2}
+12:30:05.831 +6.70s INFO  version.save.ok [version.save#2 · 18 ms] Version automatique enregistrée (2 pages) {"id":"v_mvwbkcxirfapx","kind":"auto","at":"2026-10-31T11:30:05.814Z","pages":2,"kb":12}

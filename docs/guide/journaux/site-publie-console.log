@@ -1,5 +1,5 @@
 [Atelier site] site.boot Page chargée {"page":"/","lang":"fr","forms":0,"lists":0}
 [Atelier site] site.nav Menu mobile ouvert
 [Atelier site] site.boot Page chargée {"page":"/contact/","lang":"fr","forms":1,"lists":0}
-[Atelier site] site.form.submit Envoi du formulaire {"action":"http://127.0.0.1:9551/publish.php","fields":3}
-[Atelier site] site.form.ok Message envoyé {"status":200,"req":"58d5e6fc"}
+[Atelier site] site.form.submit Envoi du formulaire {"action":"http://127.0.0.1:9476/publish.php","fields":3}
+[Atelier site] site.form.ok Message envoyé {"status":200,"req":"caef1523"}

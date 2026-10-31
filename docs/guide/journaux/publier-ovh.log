@@ -1,22 +1,22 @@
-12:25:00.935 +8.28s DEBUG store.commit Modification {"source":"site","past":11,"page":"p_fub2tf7a"}
-12:25:00.938 +8.28s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
-12:25:00.944 +8.29s INFO  publish.php.start [publish.php#1] Publication sur OVH (publish.php) {"url":"http://127.0.0.1:9551/publish.php"}
-12:25:00.945 +8.29s INFO  storage.secret-write Secret oublié sur cet appareil {"name":"php-token:http://127.0.0.1:9551"}
-12:25:00.953 +8.30s INFO  publish.php.warnings [publish.php#1 · 9 ms] 1 point à vérifier (la publication continue) {"warnings":[{"pageId":"p_ekoc7x27","nodeId":"n_2l1a2m3n1p","message":"Accueil : image non choisie : rien ne s’affichera à cet endroit."}]}
-12:25:00.953 +8.30s DEBUG net.request GET 127.0.0.1:9551/publish.php {"id":2,"method":"GET","url":"http://127.0.0.1:9551/publish.php?atelier_debug=1"}
-12:25:00.957 +8.30s DEBUG net.response 200 GET 127.0.0.1:9551/publish.php (4 ms) {"id":2,"status":200,"ms":4,"type":"application/json","req":"d22a4a7b"}
-12:25:00.959 +8.30s DEBUG php.req.start GET reçu {"method":"GET","who":"fd80388459","bytes":0,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8811","req":"d22a4a7b","srvMs":0}
-12:25:00.959 +8.30s DEBUG php.status Statut demandé (test de connexion) {"version":"4","zip":true,"diag":false,"req":"d22a4a7b","srvMs":0.1}
-12:25:00.959 +8.30s DEBUG php.req.end Réponse 200 (status) {"status":200,"route":"status","mem_kb":741,"req":"d22a4a7b","srvMs":0.1}
-12:25:00.959 +8.30s DEBUG publish.php.version [publish.php#1 · 15 ms] publish.php installé : version 4 {"version":"4"}
-12:25:00.970 +8.31s INFO  publish.php.package [publish.php#1 · 26 ms] Paquet prêt : 12 fichiers {"files":12,"kb":75,"forms":1,"ms":10}
-12:25:00.971 +8.32s DEBUG net.request POST 127.0.0.1:9551/publish.php {"id":3,"method":"POST","url":"http://127.0.0.1:9551/publish.php?atelier_debug=1","body":{"site":"Blob application/zip (75 Ko)","forms":"48 car."}}
-12:25:00.991 +8.34s INFO  net.response 200 POST 127.0.0.1:9551/publish.php (20 ms) {"id":3,"status":200,"ms":20,"type":"application/json","req":"5818ec9e"}
-12:25:00.992 +8.34s DEBUG php.req.start POST reçu {"method":"POST","who":"fd80388459","bytes":77503,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8811","req":"5818ec9e","srvMs":0}
-12:25:00.992 +8.34s INFO  php.publish.start Paquet reçu {"kb":75,"req":"5818ec9e","srvMs":0}
-12:25:00.992 +8.34s DEBUG php.publish.checked Paquet vérifié {"files":12,"req":"5818ec9e","srvMs":0.4}
-12:25:00.992 +8.34s DEBUG php.publish.staged Fichiers préparés à part {"files":12,"req":"5818ec9e","srvMs":2.3}
-12:25:00.993 +8.34s INFO  php.publish.ok Site publié {"written":12,"moved":12,"removed":0,"forms":1,"req":"5818ec9e","srvMs":5.2}
-12:25:00.993 +8.34s INFO  php.req.end Réponse 200 (publish) {"status":200,"route":"publish","mem_kb":746,"req":"5818ec9e","srvMs":5.3}
-12:25:00.993 +8.34s INFO  publish.php.ok [publish.php#1 · 49 ms] Site publié : 12 fichiers {"written":12,"removed":0,"ref":"5818ec9e"}
-12:25:00.993 +8.34s INFO  ui.toast Message affiché : Site publié (12 fichiers).
+12:29:47.846 +8.54s DEBUG store.commit Modification {"source":"site","past":11,"page":"p_3ll0hsc8"}
+12:29:47.851 +8.55s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
+12:29:47.869 +8.56s INFO  publish.php.start [publish.php#1] Publication sur OVH (publish.php) {"url":"http://127.0.0.1:9476/publish.php"}
+12:29:47.869 +8.56s INFO  storage.secret-write Secret oublié sur cet appareil {"name":"php-token:http://127.0.0.1:9476"}
+12:29:47.881 +8.58s INFO  publish.php.warnings [publish.php#1 · 12 ms] 1 point à vérifier (la publication continue) {"warnings":[{"pageId":"p_lnnzc3rl","nodeId":"n_3f60031k5q","message":"Accueil : image non choisie : rien ne s’affichera à cet endroit."}]}
+12:29:47.882 +8.58s DEBUG net.request GET 127.0.0.1:9476/publish.php {"id":2,"method":"GET","url":"http://127.0.0.1:9476/publish.php?atelier_debug=1"}
+12:29:47.886 +8.58s DEBUG net.response 200 GET 127.0.0.1:9476/publish.php (5 ms) {"id":2,"status":200,"ms":5,"type":"application/json","req":"fa8d63ca"}
+12:29:47.896 +8.59s DEBUG php.req.start GET reçu {"method":"GET","who":"376ecff7b3","bytes":0,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8811","req":"fa8d63ca","srvMs":0}
+12:29:47.896 +8.59s DEBUG php.status Statut demandé (test de connexion) {"version":"4","zip":true,"diag":false,"req":"fa8d63ca","srvMs":0.1}
+12:29:47.897 +8.59s DEBUG php.req.end Réponse 200 (status) {"status":200,"route":"status","mem_kb":741,"req":"fa8d63ca","srvMs":0.1}
+12:29:47.897 +8.59s DEBUG publish.php.version [publish.php#1 · 28 ms] publish.php installé : version 4 {"version":"4"}
+12:29:47.906 +8.60s INFO  publish.php.package [publish.php#1 · 37 ms] Paquet prêt : 12 fichiers {"files":12,"kb":75,"forms":1,"ms":9}
+12:29:47.907 +8.60s DEBUG net.request POST 127.0.0.1:9476/publish.php {"id":3,"method":"POST","url":"http://127.0.0.1:9476/publish.php?atelier_debug=1","body":{"site":"Blob application/zip (75 Ko)","forms":"48 car."}}
+12:29:47.947 +8.64s INFO  net.response 200 POST 127.0.0.1:9476/publish.php (40 ms) {"id":3,"status":200,"ms":40,"type":"application/json","req":"eddb5504"}
+12:29:47.949 +8.64s DEBUG php.req.start POST reçu {"method":"POST","who":"376ecff7b3","bytes":77503,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8811","req":"eddb5504","srvMs":0}
+12:29:47.949 +8.64s INFO  php.publish.start Paquet reçu {"kb":75,"req":"eddb5504","srvMs":0.1}
+12:29:47.949 +8.64s DEBUG php.publish.checked Paquet vérifié {"files":12,"req":"eddb5504","srvMs":0.6}
+12:29:47.949 +8.64s DEBUG php.publish.staged Fichiers préparés à part {"files":12,"req":"eddb5504","srvMs":2.7}
+12:29:47.949 +8.64s INFO  php.publish.ok Site publié {"written":12,"moved":12,"removed":0,"forms":1,"req":"eddb5504","srvMs":5.5}
+12:29:47.949 +8.64s INFO  php.req.end Réponse 200 (publish) {"status":200,"route":"publish","mem_kb":746,"req":"eddb5504","srvMs":5.6}
+12:29:47.950 +8.65s INFO  publish.php.ok [publish.php#1 · 81 ms] Site publié : 12 fichiers {"written":12,"removed":0,"ref":"eddb5504"}
+12:29:47.950 +8.65s INFO  ui.toast Message affiché : Site publié (12 fichiers).
