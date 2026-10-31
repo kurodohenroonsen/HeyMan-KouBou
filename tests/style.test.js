@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { validateStyleValue, compileNodeCss, STYLE_PROPS, HOVER_PROPS } from '../core/style.js';
+import { validateStyleValue, compileNodeCss, STYLE_PROPS, HOVER_PROPS, LENGTH_UNITS, parseLength, formatLength, lengthFromInput, stepLength, isFreeLength, linkedBox, boxLinkedDefault, paletteName, colorLabel, parseColorInput, SIMPLE_GROUPS, isExpertKey } from '../core/style.js';
 
 const ctx = { asset: v => (v === 'asset:img1' ? 'assets/photo.webp' : null) };
 
@@ -99,4 +99,90 @@ test('titre et image : la typographie vise la balise intérieure, les marges res
   const img = compileNodeCss({ id: 'i', type: 'image', style: { desktop: { borderRadius: '20px', maxWidth: '50%' } } }, { target });
   assert.match(img, /\.n-i\{max-width:50%\}/);
   assert.match(img, /\.n-i img\{border-radius:20px\}/);
+});
+
+/* ---------- Cycle 30 : champs nombre + unité, côtés liés, noms de palette, mode simple ---------- */
+test('parseLength : nombre + unité, zéro, négatif ; valeurs libres → null', () => {
+  assert.deepEqual(parseLength('0.85rem'), { n: 0.85, unit: 'rem' });
+  assert.deepEqual(parseLength('24px'), { n: 24, unit: 'px' });
+  assert.deepEqual(parseLength('-8px'), { n: -8, unit: 'px' });
+  assert.deepEqual(parseLength('50%'), { n: 50, unit: '%' });
+  assert.deepEqual(parseLength('0'), { n: 0, unit: 'px' });
+  for (const free of ['clamp(1rem, 3vw, 2rem)', 'auto', 'size:xl', 'space:m', 'var(--x)', '', undefined, '12pt']) assert.equal(parseLength(free), null, String(free));
+  assert.deepEqual(LENGTH_UNITS, ['px', 'rem', 'em', '%', 'vh', 'vw']);
+});
+
+test('formatLength : arrondi, unité par défaut px', () => {
+  assert.equal(formatLength(24), '24px');
+  assert.equal(formatLength(0.85, 'rem'), '0.85rem');
+  assert.equal(formatLength(1 / 3, 'em'), '0.333em');
+  assert.equal(formatLength(-0, 'px'), '0px');
+});
+
+test('lengthFromInput : un nombre tapé prend l’unité choisie ; « 24px » est compris ; le reste passe tel quel', () => {
+  assert.equal(lengthFromInput('24', 'px'), '24px');
+  assert.equal(lengthFromInput('1,5', 'rem'), '1.5rem');
+  assert.equal(lengthFromInput(' 24px ', 'rem'), '24px');
+  assert.equal(lengthFromInput('0.85 rem', 'px'), '0.85rem');
+  assert.equal(lengthFromInput('0', 'px'), '0');
+  assert.equal(lengthFromInput('-20', 'px'), '-20px');
+  assert.equal(lengthFromInput('auto', 'px'), 'auto');
+  assert.equal(lengthFromInput('clamp(1rem, 3vw, 2rem)', 'px'), 'clamp(1rem, 3vw, 2rem)');
+  assert.equal(lengthFromInput('12pt', 'px'), '12pt', 'refusé ensuite par validateStyleValue');
+  assert.equal(lengthFromInput('', 'px'), '');
+});
+
+test('stepLength : ↑↓ = ±1 (Maj ±10) en px, ±0,1 (Maj ±1) en rem/em ; borne basse ; valeur libre → null', () => {
+  assert.equal(stepLength('24px', 1), '25px');
+  assert.equal(stepLength('24px', -1), '23px');
+  assert.equal(stepLength('24px', 1, { big: true }), '34px');
+  assert.equal(stepLength('0.85rem', 1), '0.95rem');
+  assert.equal(stepLength('0.85rem', -1, { big: true }), '0rem', 'borne 0 par défaut');
+  assert.equal(stepLength('-8px', -1, { min: -Infinity }), '-9px');
+  assert.equal(stepLength('', 1, { unit: 'px' }), '1px', 'vide : part de 0 dans l’unité choisie');
+  assert.equal(stepLength('0', 1), '1px');
+  assert.equal(stepLength('clamp(1rem, 3vw, 2rem)', 1), null);
+  assert.equal(stepLength('auto', 1), null);
+});
+
+test('isFreeLength : clamp(), auto, jetons sont des valeurs libres ; nombres et vide non', () => {
+  for (const v of ['clamp(1rem, 3vw, 2rem)', 'auto', 'size:xl', 'min(100%, 20ch)']) assert.ok(isFreeLength(v), v);
+  for (const v of ['24px', '0', '', undefined, '1.5rem']) assert.ok(!isFreeLength(v), String(v));
+});
+
+test('côtés liés : les quatre côtés reçoivent la même valeur ; liaison par défaut selon les valeurs', () => {
+  assert.deepEqual(linkedBox('margin', '24px'), { marginTop: '24px', marginRight: '24px', marginBottom: '24px', marginLeft: '24px' });
+  assert.deepEqual(Object.keys(linkedBox('padding', '')), ['paddingTop', 'paddingRight', 'paddingBottom', 'paddingLeft']);
+  assert.equal(boxLinkedDefault('padding', {}), true, 'espacement intérieur vide : lié');
+  assert.equal(boxLinkedDefault('padding', { paddingTop: '8px', paddingRight: '8px', paddingBottom: '8px', paddingLeft: '8px' }), true);
+  assert.equal(boxLinkedDefault('padding', { paddingTop: '8px', paddingBottom: '16px' }), false);
+  assert.equal(boxLinkedDefault('margin', {}), false, 'marges vides : libres (haut et bas se règlent souvent seuls)');
+  assert.equal(boxLinkedDefault('margin', { marginTop: '0', marginRight: '0', marginBottom: '0', marginLeft: '0' }), true);
+});
+
+test('noms de palette : « Couleur principale » à l’écran, palette:c1 dans le modèle', () => {
+  const names = { c1: 'Principale', c2: 'Secondaire', c3: 'Texte', c4: 'Fond', c5: 'Discrète', c6: 'Surface', c7: 'Rouge MAB', c8: 'Couleur 8' };
+  assert.equal(paletteName(names, 'c1'), 'Principale');
+  assert.equal(paletteName(names, 'c7'), 'Rouge MAB');
+  assert.equal(paletteName({}, 'c9'), 'c9');
+  assert.equal(colorLabel('palette:c1', names), 'Couleur principale');
+  assert.equal(colorLabel('palette:c3', names), 'Couleur du texte');
+  assert.equal(colorLabel('palette:c7', names), 'Rouge MAB');
+  assert.equal(colorLabel('palette:c8', names), 'Couleur 8');
+  assert.equal(colorLabel('#bbbbbb', names), '#bbbbbb');
+  assert.equal(colorLabel('transparent', names), 'Transparent');
+  assert.equal(colorLabel('', names), '');
+  assert.equal(parseColorInput('Couleur principale', names), 'palette:c1');
+  assert.equal(parseColorInput('couleur du TEXTE', names), 'palette:c3');
+  assert.equal(parseColorInput('rouge mab', names), 'palette:c7');
+  assert.equal(parseColorInput('Principale', names), 'palette:c1', 'le nom court suffit');
+  assert.equal(parseColorInput('palette:c2', names), 'palette:c2');
+  assert.equal(parseColorInput(' #ABCDEF ', names), '#ABCDEF');
+  assert.equal(parseColorInput('transparent', names), 'transparent');
+});
+
+test('mode simple : typographie, fond, espacement, bordure ; le reste est expert', () => {
+  assert.deepEqual(SIMPLE_GROUPS, ['Typographie', 'Fond', 'Espacement', 'Bordure']);
+  for (const k of ['fontSize', 'color', 'background', 'marginTop', 'paddingLeft', 'borderRadius', 'boxShadow']) assert.ok(!isExpertKey(k), k);
+  for (const k of ['maxWidth', 'span', 'gap', 'opacity', 'reveal', 'transitionDuration']) assert.ok(isExpertKey(k), k);
 });
