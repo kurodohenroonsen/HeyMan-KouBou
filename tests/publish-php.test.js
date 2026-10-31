@@ -289,7 +289,8 @@ t('v5 : trace et version de PHP réservées au jeton ; ?atelier_debug sans jeton
   assert.equal(nb.code, 'not_found');
   assert.equal(nb._trace, undefined);
   const bad = await fetch(`${URL_}?atelier_debug=1`, { headers: { 'X-Atelier-Token': 'faux' } });
-  assert.equal(bad.status, 404);
+  assert.equal(bad.status, 200, 'jeton faux : la requête continue');
+  assert.equal((await bad.json())._trace, undefined, 'mais sans trace');
   const ok = await (await fetch(URL_, { headers: { 'X-Atelier-Token': TOKEN } })).json();
   assert.match(ok.php, /^\d+\.\d+/);
   assert.equal(ok.diag.mail_domain, 'media-alternatif.be');

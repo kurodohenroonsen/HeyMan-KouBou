@@ -1,15 +1,11 @@
-20:50:55.633 +10.32s DEBUG store.commit Modification {"source":"site","past":13,"page":"p_ek56uuro"}
-20:50:55.637 +10.33s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
-20:50:55.647 +10.34s INFO  publish.php.start [publish.php#3] Publication sur OVH (publish.php) {"url":"http://127.0.0.1:9572/publish.php"}
-20:50:55.647 +10.34s ERROR publish.php.fail [publish.php#3 · 0 ms] jeton absent {"error":{"name":"Error","message":"jeton absent","stack":"Error: jeton absent\nat HTMLButtonElement.run (http://localhost:8791/editor/publish-ui.js:88:32)"}}
-20:50:55.962 +10.65s DEBUG store.commit Modification {"source":"site","past":14,"page":"p_ek56uuro"}
-20:50:55.968 +10.66s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":5}
-20:50:55.986 +10.68s INFO  publish.test.start [publish.test#2] Test de connexion à publish.php {"url":"http://127.0.0.1:9572/publish.php","token":true}
-20:50:55.986 +10.68s DEBUG net.request GET 127.0.0.1:9572/publish.php {"id":6,"method":"GET","url":"http://127.0.0.1:9572/publish.php?atelier_debug=1"}
-20:50:56.016 +10.71s DEBUG net.response 200 GET 127.0.0.1:9572/publish.php (30 ms) {"id":6,"status":200,"ms":30,"type":"application/json","req":"b8fea986"}
-20:50:56.026 +10.72s DEBUG php.req.start GET reçu {"method":"GET","who":"73535e39f8","bytes":0,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8791","req":"b8fea986","srvMs":0}
-20:50:56.026 +10.72s WARN  php.diag.denied Diagnostic refusé : jeton faux {"req":"b8fea986","srvMs":0.1}
-20:50:56.026 +10.72s DEBUG php.status Statut demandé (test de connexion) {"version":"4","zip":true,"diag":false,"req":"b8fea986","srvMs":0.2}
-20:50:56.026 +10.72s DEBUG php.req.end Réponse 200 (status) {"status":200,"route":"status","mem_kb":353,"req":"b8fea986","srvMs":0.2}
-20:50:56.032 +10.72s WARN  publish.test.token-refused [publish.test#2 · 46 ms] Le jeton saisi ne correspond pas à ce publish.php (diagnostic refusé) : la publication sera refusée
-20:50:56.033 +10.72s INFO  publish.test.ok [publish.test#2 · 47 ms] publish.php répond {"version":"4","php":"8.3.6","zip":true,"req":"b8fea986"}
+12:30:29.308 +9.82s DEBUG store.commit Modification {"source":"site","past":13,"page":"p_etij9qwa"}
+12:30:29.310 +9.82s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
+12:30:29.317 +9.82s INFO  publish.php.start [publish.php#3] Publication sur OVH (publish.php) {"url":"http://127.0.0.1:9518/publish.php"}
+12:30:29.318 +9.83s ERROR publish.php.fail [publish.php#3 · 1 ms] jeton absent {"error":{"name":"Error","message":"jeton absent","stack":"Error: jeton absent\nat HTMLButtonElement.run (http://localhost:8813/editor/publish-ui.js:96:32)"}}
+12:30:29.798 +10.31s DEBUG store.commit Modification {"source":"site","past":14,"page":"p_etij9qwa"}
+12:30:29.809 +10.32s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
+12:30:29.838 +10.35s INFO  publish.test.start [publish.test#2] Test de connexion à publish.php {"url":"http://127.0.0.1:9518/publish.php","token":true}
+12:30:29.839 +10.35s DEBUG net.request GET 127.0.0.1:9518/publish.php {"id":14,"method":"GET","url":"http://127.0.0.1:9518/publish.php?atelier_debug=1"}
+12:30:29.896 +10.40s DEBUG net.response 200 GET 127.0.0.1:9518/publish.php (57 ms) {"id":14,"status":200,"ms":57,"type":"application/json","req":"fea63910"}
+12:30:29.898 +10.41s WARN  publish.test.token-refused [publish.test#2 · 60 ms] Le jeton saisi ne correspond pas à ce publish.php (diagnostic refusé) : la publication sera refusée
+12:30:29.898 +10.41s INFO  publish.test.ok [publish.test#2 · 60 ms] publish.php répond {"version":"5","zip":true,"req":"fea63910"}

@@ -1,10 +1,10 @@
-20:50:50.502 +5.19s INFO  project.import.start [project.import#1] Ouverture d’un projet .json {"name":"mab.atelier.json","kb":34}
-20:50:50.507 +5.20s INFO  version.save.start [version.save#1] Enregistrement d’une version de sécurité : « Avant l’ouverture d’un autre projet » {"kind":"safety","name":"Avant l’ouverture d’un autre projet"}
-20:50:50.508 +5.20s DEBUG storage.version-save Version enregistrée {"id":"v_mvve0gwbs79qd","name":"Avant l’ouverture d’un autre projet","kind":"safety"}
-20:50:50.516 +5.21s DEBUG version.save.prune [version.save#1 · 9 ms] Aucune ancienne version à supprimer {"total":2}
-20:50:50.516 +5.21s INFO  version.save.ok [version.save#1 · 9 ms] Version de sécurité enregistrée (2 pages) {"id":"v_mvve0gwbs79qd","kind":"safety","at":"2026-10-30T19:50:50.507Z","pages":2,"kb":12}
-20:50:50.517 +5.21s INFO  store.load Projet chargé dans l’éditeur {"name":"MAB – Médias Alternatifs Belges","pages":2,"keepHistory":true}
-20:50:50.519 +5.21s INFO  canvas.load.start [canvas.load#2] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_nf5fbgbf","lang":"fr","device":"desktop"}
-20:50:50.521 +5.21s DEBUG canvas.load.render [canvas.load#2 · 2 ms] Page rendue {"ms":1,"kb":25}
-20:50:50.523 +5.21s INFO  project.import.ok [project.import#1 · 21 ms] Projet ouvert {"pages":2,"name":"MAB – Médias Alternatifs Belges"}
-20:50:50.523 +5.21s INFO  ui.toast Message affiché : Projet ouvert.
+12:30:24.326 +4.83s INFO  project.import.start [project.import#1] Ouverture d’un projet .json {"name":"mab.atelier.json","kb":34}
+12:30:24.346 +4.85s INFO  version.save.start [version.save#1] Enregistrement d’une version de sécurité : « Avant l’ouverture d’un autre projet » {"kind":"safety","name":"Avant l’ouverture d’un autre projet"}
+12:30:24.346 +4.85s DEBUG storage.version-save Version enregistrée {"id":"v_mvwbkr8a6gd7j","name":"Avant l’ouverture d’un autre projet","kind":"safety"}
+12:30:24.349 +4.86s DEBUG version.save.prune [version.save#1 · 3 ms] Aucune ancienne version à supprimer {"total":2}
+12:30:24.354 +4.86s INFO  version.save.ok [version.save#1 · 8 ms] Version de sécurité enregistrée (2 pages) {"id":"v_mvwbkr8a6gd7j","kind":"safety","at":"2026-10-31T11:30:24.346Z","pages":2,"kb":12}
+12:30:24.355 +4.86s INFO  store.load Projet chargé dans l’éditeur {"name":"MAB – Médias Alternatifs Belges","pages":2,"keepHistory":true}
+12:30:24.358 +4.87s INFO  canvas.load.start [canvas.load#2] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_fbt4vtje","lang":"fr","device":"desktop"}
+12:30:24.360 +4.87s DEBUG canvas.load.render [canvas.load#2 · 2 ms] Page rendue {"ms":1,"kb":29}
+12:30:24.362 +4.87s INFO  project.import.ok [project.import#1 · 36 ms] Projet ouvert {"pages":2,"name":"MAB – Médias Alternatifs Belges"}
+12:30:24.362 +4.87s INFO  ui.toast Message affiché : Projet ouvert.

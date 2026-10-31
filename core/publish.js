@@ -595,9 +595,10 @@ function signal_get(string $data): void {
 cors();
 $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
 /* Trace de débogage (?atelier_debug=1) réservée au jeton : sans lui, la requête n'existe pas */
-if (isset($_GET['atelier_debug'])) {
+if (isset($_GET['atelier_debug']) && $method !== 'OPTIONS') {
   if (token_ok()) $REQ['debug'] = true;
-  else { alog('warn', 'php.debug.denied', 'Trace demandée sans jeton valable'); fail(404, 'not_found', 'Introuvable.'); }
+  elseif (!token_given()) { alog('warn', 'php.debug.denied', 'Trace demandée sans jeton'); fail(404, 'not_found', 'Introuvable.'); }
+  else alog('warn', 'php.debug.denied', 'Trace refusée : jeton faux (la requête continue sans trace)');
 }
 alog('debug', 'php.req.start', $method . ' reçu', ['method' => $method, 'who' => substr(hash('sha256', TOKEN_SHA256 . ($_SERVER['REMOTE_ADDR'] ?? '?')), 0, 10), 'bytes' => (int) ($_SERVER['CONTENT_LENGTH'] ?? 0), 'ua' => clean_line((string) ($_SERVER['HTTP_USER_AGENT'] ?? ''), 90), 'origin' => clean_line((string) ($_SERVER['HTTP_ORIGIN'] ?? ''), 90)]);
 if (getenv('ATELIER_TEST_FAULT') && isset($_GET['atelier_fault'])) {

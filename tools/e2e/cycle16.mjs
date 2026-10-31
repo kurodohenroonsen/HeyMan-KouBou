@@ -256,9 +256,10 @@ export default async function (t) {
     await page.fill('#publishDialog [data-pub="token"]', 'mauvais-jeton');
     await page.click('#publishDialog [data-pub-run]');
     await page.waitForFunction(() => /Échec de la publication/.test(document.querySelector('#publishDialog [data-pub-status]')?.textContent || ''), null, { timeout: 15000 });
-    await waitCode(page, 'php.publish.denied', s);
     es = await since(page, s);
-    expectCodes(t, es, ['publish.php.start', 'php.publish.denied', 'publish.php.fail'], 'mauvais jeton');
+    /* publish.php v5 : pas de trace du serveur avec un jeton faux (cycle 29) ; le refus est porté par le code token_refused */
+    expectCodes(t, es, ['publish.php.start', 'publish.php.fail'], 'mauvais jeton');
+    t.ok(es.find(e => e.code === 'publish.php.fail')?.data?.code === 'token_refused' && !es.some(e => /^php\./.test(e.code)), 'mauvais jeton : code token_refused, aucune trace du serveur');
     t.ok(/référence [0-9a-f]{8}/.test(await page.textContent('#publishDialog [data-pub-status]')), 'référence de la requête affichée');
     capture('publier-ovh-mauvais-jeton', es);
 
@@ -271,7 +272,7 @@ export default async function (t) {
     await page.click('#publishDialog [data-pub-test]');
     await waitCode(page, 'publish.test.ok', s);
     es = await since(page, s);
-    expectCodes(t, es, ['publish.php.fail', 'publish.test.token-refused', 'php.diag.denied'], 'jeton absent / faux');
+    expectCodes(t, es, ['publish.php.fail', 'publish.test.token-refused'], 'jeton absent / faux');
     capture('publier-ovh-jeton-absent-faux', es);
     await page.fill('#publishDialog [data-pub="token"]', goodToken);
 
@@ -352,7 +353,7 @@ export default async function (t) {
     writeFileSync(new URL('../../docs/guide/journaux/php-journal-contact.log', import.meta.url).pathname, contactLines.map(fmt).join('\n') + '\n');
 
     /* formulaire refusé (formulaire inconnu) : vu côté serveur */
-    const r = await fetch(`${URL_}?atelier_debug=1`, { method: 'POST', body: new URLSearchParams({ _form: 'inconnu', Message: 'x' }), headers: { Accept: 'application/json' } });
+    const r = await fetch(`${URL_}?atelier_debug=1`, { method: 'POST', body: new URLSearchParams({ _form: 'inconnu', Message: 'x' }), headers: { Accept: 'application/json', 'X-Atelier-Token': goodToken } });
     const b = await r.json();
     t.ok(r.status === 404 && b._trace.some(e => e.ev === 'php.contact.unknown'), 'serveur : php.contact.unknown');
     writeFileSync(new URL('../../docs/guide/journaux/php-contact-inconnu.log', import.meta.url).pathname, b._trace.map(e => `${e.t} ${e.lvl.toUpperCase().padEnd(5)} ${e.ev} [req ${e.req} · ${e.ms} ms] ${e.msg}${e.data ? ` ${JSON.stringify(e.data)}` : ''}`).join('\n') + '\n');

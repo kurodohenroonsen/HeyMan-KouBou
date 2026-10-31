@@ -96,6 +96,7 @@ export default async function (t) {
     await p.fill('form[data-endpoint] input[type="text"]', 'Ana');
     await p.fill('form[data-endpoint] input[type="email"]', 'ana@exemple.org');
     await p.fill('form[data-endpoint] textarea', 'Notre radio associative voudrait rejoindre le MAB.');
+    await p.check('form[data-endpoint] input[name="_consent"]');
     await p.click('form[data-endpoint] [type="submit"]');
     await p.waitForFunction(() => document.querySelector('.form__status')?.textContent.length > 0, null, { timeout: 8000 });
     t.ok((await p.locator('.form__status').textContent()).includes('Merci'), `visiteur : « ${(await p.locator('.form__status').textContent()).trim()} »`);
