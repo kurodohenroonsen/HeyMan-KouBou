@@ -1,0 +1,2 @@
+07:23:32.997 +8.20s WARN  collab.snapshot.invalid Projet reçu de Kudoro refusé (document invalide) : Aucune page. {"from":"Kudoro","docId":"doc_casse","errors":["Aucune page."]}
+07:23:32.997 +8.20s ERROR ui.toast Message affiché : Projet reçu de Kudoro refusé (document invalide) : Aucune page. {"type":"error"}

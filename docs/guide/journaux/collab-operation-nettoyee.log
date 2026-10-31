@@ -1,0 +1,4 @@
+07:23:32.542 +11.50s WARN  collab.ops.sanitized 1 texte reçu de Ana nettoyé (balise ou attribut hors liste blanche) {"name":"Ana","changed":1}
+07:23:32.542 +11.50s DEBUG collab.ops.in 1 modification de Ana appliquée {"name":"Ana","received":1,"applied":1}
+07:23:32.543 +11.50s DEBUG store.remote Modifications d’un autre participant appliquées {"ops":1,"history":9}
+07:23:32.546 +11.50s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"remote","mode":"contenu","ms":2}

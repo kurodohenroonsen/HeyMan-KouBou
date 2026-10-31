@@ -232,6 +232,7 @@ export default async function (t) {
     /* 10b. tester la connexion (avec le jeton : diagnostic) */
     s = await mark(page);
     await page.click('#publishDialog [data-pub-test]');
+    await page.click('#publishConfirmDialog [data-confirm-ok]'); /* cycle 25 : premier envoi du jeton vers cette adresse */
     await page.waitForSelector('#publishDialog [data-pub-ok]');
     await waitCode(page, 'php.diag', s);
     es = await since(page, s);
@@ -388,6 +389,7 @@ export default async function (t) {
     await page.dispatchEvent('#publishDialog [data-gh="repo"]', 'change');
     await page.fill('#publishDialog [data-gh="token"]', 'github_pat_test');
     await page.click('#publishDialog [data-gh-run]');
+    await page.click('#publishConfirmDialog [data-confirm-ok]'); /* cycle 25 : première publication vers ce dépôt */
     await waitCode(page, 'publish.github.ok', s, 15000);
     let es = await since(page, s);
     expectCodes(t, es, ['publish.github.start', 'publish.github.package', 'publish.github.upload', 'publish.github.ok'], 'GitHub');

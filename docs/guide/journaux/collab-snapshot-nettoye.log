@@ -1,0 +1,11 @@
+07:23:33.071 +8.28s WARN  collab.snapshot.sanitized 1 texte du projet reçu de Kudoro nettoyé (balise ou attribut hors liste blanche) {"from":"Kudoro","changed":1}
+07:23:33.072 +8.28s INFO  collab.snapshot Projet reçu de Kudoro {"docId":"doc_piege","pages":2,"comments":0}
+07:23:33.072 +8.28s INFO  store.load Projet chargé dans l’éditeur {"name":"MAB – Médias Alternatifs Belges","pages":2,"keepHistory":false}
+07:23:33.075 +8.28s INFO  canvas.load.start [canvas.load#4] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_i2yim4d3","lang":"fr","device":"desktop"}
+07:23:33.077 +8.28s DEBUG canvas.load.render [canvas.load#4 · 2 ms] Page rendue {"ms":2,"kb":25}
+07:23:33.080 +8.28s INFO  canvas.load.cancel [canvas.load#4 · 5 ms] Chargement remplacé par un nouveau {"reason":"rechargement demandé"}
+07:23:33.081 +8.29s INFO  canvas.load.start [canvas.load#5] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_i2yim4d3","lang":"fr","device":"desktop"}
+07:23:33.083 +8.29s DEBUG canvas.load.render [canvas.load#5 · 2 ms] Page rendue {"ms":1,"kb":25}
+07:23:33.085 +8.29s INFO  ui.toast Message affiché : Projet reçu de Kudoro.
+07:23:33.116 +8.32s INFO  canvas.load.ok [canvas.load#5 · 35 ms] Canevas prêt {"nodes":30,"scale":62,"via":"dom"}
+07:23:33.328 +8.53s DEBUG canvas.resources Ressources externes du canevas chargées {"ms":245,"hosts":["fonts.googleapis.com"]}

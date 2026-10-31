@@ -77,6 +77,7 @@ export default async function (t) {
     await page.fill('#publishDialog [data-pub="url"]', `http://127.0.0.1:${port}/publish.php`);
     await page.locator('#publishDialog [data-pub="url"]').dispatchEvent('change');
     await page.click('#publishDialog [data-pub-test]');
+    await page.click('#publishConfirmDialog [data-confirm-ok]'); /* cycle 25 : premier envoi du jeton vers cette adresse */
     await page.waitForSelector('#publishDialog [data-pub-status]:is(.is-ok, .is-error)');
     t.ok(await page.locator('#publishDialog [data-pub-status].is-ok').count() === 1, `test de connexion : ${(await page.locator('#publishDialog [data-pub-status]').textContent()).trim()}`);
     await page.click('#publishDialog [data-pub-run]');
@@ -158,6 +159,7 @@ export default async function (t) {
   await page.fill('#publishDialog [data-gh="dir"]', 'www');
   await page.fill('#publishDialog [data-gh="token"]', 'github_pat_test');
   await page.click('#publishDialog [data-gh-run]');
+  await page.click('#publishConfirmDialog [data-confirm-ok]'); /* cycle 25 : première publication vers ce dépôt */
   await page.waitForSelector('#publishDialog [data-gh-status]:is(.is-ok, .is-error)', { timeout: 15000 });
   const ghText = (await page.locator('#publishDialog [data-gh-status]').textContent()).trim();
   t.ok(/commit c1abcde/.test(ghText), `GitHub : ${ghText}`);
