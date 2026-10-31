@@ -18,6 +18,7 @@ export default async function (t) {
   await page.click(`#navTree [data-node-id="${ctaId}"]`, { button: 'right' });
   await t.wait(150);
   await page.click('#ctxMenu [data-ctx="component"]');
+  await t.answer('Équipe'); /* cycle 33 : fenêtre Atelier */
   await t.wait(300);
   let s = await site();
   const cid = Object.keys(s.components)[0];

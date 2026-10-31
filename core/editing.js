@@ -235,3 +235,27 @@ export function neighbor(root, id, dir) {
   const j = index + (dir === 'prev' ? -1 : 1);
   return parent.children[j]?.id || null;
 }
+
+/* ---------- Déplacer vers… (cycle 33 : alternative au glisser-déposer, WCAG 2.5.7) ---------- */
+
+/** Conteneurs qui peuvent recevoir l'élément id (hors lui-même et ses descendants), dans l'ordre de la page.
+ *  path : [{ type: 'section' | 'row' | 'column', n }] (numéros à partir de 1) ; current : son parent actuel. */
+export function moveTargets(root, id) {
+  const node = findNode(root, id);
+  if (!node || node.type === 'section') return [];
+  const parentId = findParent(root, id).parent?.id;
+  const out = [];
+  const visit = (n, path) => (n.children || []).forEach((c, i) => {
+    if (c.id === id || !['section', 'row', 'column'].includes(c.type)) return;
+    const p = [...path, { type: c.type, n: i + 1 }];
+    if (canContain(root, c.id, node.type)) out.push({ id: c.id, type: c.type, path: p, current: c.id === parentId });
+    visit(c, p);
+  });
+  visit(root, []);
+  return out;
+}
+
+/** Place l'élément à la fin du conteneur choisi */
+export function moveTo(root, id, parentId) {
+  return moveNode(root, id, parentId);
+}

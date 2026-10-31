@@ -7,7 +7,17 @@
  * réinjection à l'export .json (`inlineAssets`), ménage des octets plus référencés (`pruneStore`).
  */
 
+import { DOC_TYPES } from './documents.js';
+import { sanitizeSvg, svgFromDataUrl, svgDataUrl } from './svg.js';
+
 export const DATA_IMG = /^data:image\/(png|jpeg|webp|gif|avif);base64,[a-z0-9+/=]+$/i;
+/* Octets acceptés par le magasin : images (dont SVG assaini, cycle 33) et documents à télécharger (cycle 33) */
+const MIMES = new Set(['image/png', 'image/jpeg', 'image/webp', 'image/gif', 'image/avif', 'image/svg+xml',
+  ...Object.values(DOC_TYPES)]);
+export const isStorableData = d => {
+  const m = /^data:([\w.+/-]+);base64,[a-z0-9+/=]*$/i.exec(String(d || ''));
+  return !!m && MIMES.has(m[1].toLowerCase());
+};
 
 /* Parties du site qui portent des octets (images, polices importées, icône) : partagées entre copies, jamais clonées */
 const SHARED = new Set(['assets', 'fonts', 'icon']);
@@ -50,7 +60,9 @@ export function createAssetStore({ objectUrls } = {}) {
     for (const [k, u] of urls) if (k.startsWith(`${id}@`)) { if (u.startsWith('blob:')) URL.revokeObjectURL(u); urls.delete(k); }
   };
   const putSync = (id, { dataUrl, variants = [] }) => {
-    if (!DATA_IMG.test(String(dataUrl || ''))) throw new Error(`image ${id} : data URL d'image attendue`);
+    if (!isStorableData(dataUrl)) throw new Error(`image ${id} : data URL d'image ou de document attendue`);
+    /* Cycle 33 : tout SVG est assaini à l'entrée du magasin (projet .json, pair, import) ; illisible → refusé */
+    if (/^data:image\/svg\+xml/i.test(dataUrl)) dataUrl = svgDataUrl(sanitizeSvg(svgFromDataUrl(dataUrl)).svg);
     const vs = new Map();
     for (const v of variants || []) if (v && v.w > 0 && DATA_IMG.test(String(v.dataUrl || ''))) vs.set(Math.round(v.w), v.dataUrl);
     revoke(id);
@@ -114,6 +126,8 @@ export function assetMeta(a) {
   if (a.width > 0 && a.height > 0) { m.width = a.width; m.height = a.height; }
   if (Array.isArray(a.variants) && a.variants.length) m.variants = a.variants.map(v => ({ w: v.w, file: v.file }));
   m.kind = a.kind || 'image';
+  /* Cycle 33 : un document garde son nom d'origine et sa taille (lien « PDF, 1,2 Mo » sur le site) */
+  if (m.kind === 'document') { if (a.name) m.name = String(a.name); if (a.size > 0) m.size = a.size; }
   return m;
 }
 
@@ -125,9 +139,10 @@ export function absorbAssets(site, store) {
   if (!src || !Object.values(src).some(a => hasBytes(a) || a?.stored)) return site;
   const assets = {};
   for (const [id, a] of Object.entries(src)) {
-    if (a?.dataUrl && DATA_IMG.test(a.dataUrl)) {
+    if (a?.dataUrl && isStorableData(a.dataUrl)) {
       const variants = (a.variants || []).filter(v => v?.dataUrl).map(v => ({ w: v.w, dataUrl: v.dataUrl }));
-      store.put(id, { dataUrl: a.dataUrl, variants });
+      /* SVG illisible (cycle 33) : métadonnées seules, l'image sera signalée manquante à l'export */
+      try { store.put(id, { dataUrl: a.dataUrl, variants }); } catch { assets[id] = assetMeta(a); continue; }
       assets[id] = assetMeta({ ...a, variants: (a.variants || []).filter(v => v?.dataUrl) });
     } else assets[id] = assetMeta(a);
   }

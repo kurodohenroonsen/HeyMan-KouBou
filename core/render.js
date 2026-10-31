@@ -19,6 +19,8 @@ import { renderMenu } from './menu.js';
 import { LANG_LABELS } from './site.js';
 import { createNode, createSectionWithColumns } from './tree.js';
 import { __ } from './ui-i18n.js';
+import { sanitizeSvg, svgFromDataUrl } from './svg.js';
+import { docMeta } from './documents.js';
 import { itemDir, collectionDir, hasDetail, bindProps, itemTitle, itemJsonLd, buildIcs, buildRss, displayValue, localToday, findItem, pick, listPageId } from './collections.js';
 
 export function pageDir(site, page, lang) {
@@ -82,7 +84,11 @@ function resolveAsset(site, id, w, { canvas, toRoot, assets }) {
 
 function assetUrl(site, value, { canvas, toRoot, assets }) {
   const v = String(value || '');
-  if (v.startsWith('asset:')) return resolveAsset(site, v.slice(6), 0, { canvas, toRoot, assets });
+  if (v.startsWith('asset:')) {
+    /* Cycle 33 : un document à télécharger n'est jamais une image */
+    if (site.assets?.[v.slice(6)]?.kind === 'document') return '';
+    return resolveAsset(site, v.slice(6), 0, { canvas, toRoot, assets });
+  }
   const u = safeUrl(v);
   return /^https:\/\//i.test(u) ? u : '';
 }
@@ -118,7 +124,9 @@ export function sizesFor(box) {
   return `(max-width: 640px) ${pct(box.m)}, (max-width: 1024px) ${pct(box.t)}, ${desk}`;
 }
 
-function imgTag(site, ctx, value, { alt = '', style = '', cls = '' } = {}) {
+/* opts (cycle 33) : frac = part de la boîte par appareil ({ d, t, m }, galerie) ; px = largeur affichée fixe (avatar,
+ * logo) ; lazy: false = image d'en-tête (ni paresseuse ni prioritaire, ne prend pas la place de l'image principale) */
+function imgTag(site, ctx, value, { alt = '', style = '', cls = '', frac = null, px = 0, lazy } = {}) {
   const src = assetUrl(site, value, { canvas: ctx.canvas, toRoot: ctx.toRoot, assets: ctx.assets });
   if (!src) return '';
   const v = String(value || '');
@@ -126,10 +134,13 @@ function imgTag(site, ctx, value, { alt = '', style = '', cls = '' } = {}) {
   let extra = '';
   if (a && !ctx.canvas && a.variants?.length && a.width) {
     const set = [...a.variants.map(x => `${ctx.asset(v.slice(6), x.w)} ${x.w}w`), `${src} ${a.width}w`].join(', ');
-    extra += ` srcset="${escapeAttr(set)}" sizes="${escapeAttr(sizesFor(ctx.box || { w: site.theme?.contentWidth || 1160, d: 1, t: 1, m: 1 }))}"`;
+    const box = ctx.box || { w: site.theme?.contentWidth || 1160, d: 1, t: 1, m: 1 };
+    const sizes = px ? `${Math.round(px)}px` : sizesFor(frac ? { w: box.w, d: box.d * frac.d, t: box.t * frac.t, m: box.m * frac.m } : box);
+    extra += ` srcset="${escapeAttr(set)}" sizes="${escapeAttr(sizes)}"`;
   }
   if (a?.width && a?.height) extra += ` width="${a.width}" height="${a.height}"`;
-  if (!ctx.canvas && ctx.lcp && !ctx.lcp.done && !ctx.locked) { ctx.lcp.done = true; extra += ' loading="eager" fetchpriority="high"'; }
+  if (lazy === false) extra += ' decoding="async"';
+  else if (!ctx.canvas && ctx.lcp && !ctx.lcp.done && !ctx.locked) { ctx.lcp.done = true; extra += ' loading="eager" fetchpriority="high"'; }
   else extra += ' loading="lazy" decoding="async"';
   return `<img src="${escapeAttr(src)}" alt="${escapeAttr(alt)}"${cls ? ` class="${cls}"` : ''}${extra}${style}>`;
 }
@@ -159,7 +170,15 @@ export function makeContext(site, lang, { canvas = false, toRoot = '', from = []
     rich: v => sanitizeRich(v, { noopener: true }),
     inline: v => sanitizeInline(v, { noopener: true }),
     text: v => richToText(v),
-    img: v => assetUrl(site, v, { canvas, toRoot, assets })
+    img: v => assetUrl(site, v, { canvas, toRoot, assets }),
+    /* Cycle 33 : document à télécharger « asset:doc_… » → { href, mime, file, name, meta } ou null */
+    doc(v) {
+      const id = String(v || '').startsWith('asset:') ? String(v).slice(6) : '';
+      const a = id ? site.assets?.[id] : null;
+      if (a?.kind !== 'document') return null;
+      const href = canvas ? '#' : `${toRoot}assets/docs/${assetFile(a, assetData(a, id, assets))}`;
+      return { href, mime: a.mime, file: a.file, name: a.name || a.file, meta: docMeta(a, lang) };
+    }
   };
 }
 
@@ -514,8 +533,9 @@ export function renderPage(site, page, lang, { canvas = false, edit = null, toda
   } else {
     const menuHtml = renderMenu(site, page, lang, from, { id: 'menu' });
     const langs = site.header?.showLangs !== false ? langLinks(site, page, lang, from, 'codes') : '';
-    const logo = assetUrl(site, site.header?.logo, { canvas, toRoot, assets });
-    const brand = `${logo ? `<img src="${escapeAttr(logo)}" alt="">` : ''}<span>${escapeHtml(site.name)}</span>`;
+    const la = site.assets?.[String(site.header?.logo || '').slice(6)];
+    const logo = ctx.imgTag(site.header?.logo, { lazy: false, px: la?.width && la?.height ? 40 * la.width / la.height : 0 });
+    const brand = `${logo}<span>${escapeHtml(site.name)}</span>`;
     const burger = site.header?.burger !== false ? `<button type="button" class="nav-burger" aria-expanded="false" aria-controls="menu"><span aria-hidden="true">☰</span> ${escapeHtml(siteText('menu', lang))}</button>` : '';
     headerHtml = `<header class="site-header${sticky}" data-zone="header"><div class="site-header__inner">
 <a class="brand" href="${ctx.homeHref}">${brand}</a>
@@ -663,6 +683,13 @@ export function renderSite(site, { today = null, now = new Date(), lastmod = nul
     if (!used.includes(`asset:${id}`)) continue;
     const data = assetData(a, id, assets);
     if (!data) { missingAssets.push(id); continue; }
+    if (a.kind === 'document') { files.set(`assets/docs/${assetFile(a, data)}`, decodeDataUrl(data)); continue; }
+    /* Cycle 33 : un SVG est assaini de nouveau à l'export (projet .json ou pair qui l'aurait modifié) */
+    const svg = /^data:image\/svg\+xml/i.test(data) ? svgFromDataUrl(data) : null;
+    if (svg !== null) {
+      try { files.set(`assets/${assetFile(a, data)}`, new TextEncoder().encode(sanitizeSvg(svg).svg)); } catch { /* SVG illisible : non exporté */ }
+      continue;
+    }
     files.set(`assets/${assetFile(a, data)}`, decodeDataUrl(data));
     for (const v of a.variants || []) { const d = assetData(a, id, assets, v.w); if (d) files.set(`assets/${assetFile(v, d)}`, decodeDataUrl(d)); }
   }

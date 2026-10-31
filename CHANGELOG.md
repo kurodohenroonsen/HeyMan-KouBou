@@ -2,6 +2,25 @@
 
 Une entrée par cycle, construite à partir de la section « Livré » de `docs/cycle-NN.md` (cycles 1 à 24), la plus récente en haut. Les numéros de version des livraisons (.zip) ne sont pas écrits dans les comptes rendus : l’entrée porte alors le numéro du cycle (v19 = état livré après le cycle 24, d’après l’audit du 30/10/2026).
 
+## cycle 33 — cycle 33 — 2026-10-31
+
+**Ajouté**
+- Déplacer sans glisser (WCAG 2.2, 2.5.7) : boutons ▲ ▼ dans la barre de l'élément sélectionné, « Déplacer vers… » (clic droit, Ctrl+K) pour choisir la colonne ou la section de destination.
+- Fenêtres d'Atelier unifiées (`openDialog`, `confirmDialog`, `askText`) : titre, Échap, focus initial et rendu, mêmes touches partout ; l'adresse d'un lien se saisit dans un champ vérifié.
+- Onglets au clavier (← → Début Fin) ; sections et widgets atteignables par Tab dans la page, Entrée sélectionne.
+- Images SVG (logo, pictogrammes) gardées vectorielles après nettoyage ; documents à télécharger (PDF, DOCX, ODT, XLSX, PPTX, ZIP, MP3, M4A, OGG, ICS, 25 Mo) dans Bouton, Liste à icônes et Carte de contenu, avec type et taille sur le site, exportés dans `assets/docs/`.
+- Scénarios `a11y-editor` (axe-core sur cinq écrans de l'éditeur) et `cycle33`.
+
+**Modifié**
+- Galerie, carte de contenu, citation, logo et en-tête : images responsives (srcset, sizes, dimensions).
+- Déclaration d'accessibilité : WCAG 2.2 AA / EN 301 549 v3.2.1, dans les langues du site (cinq), la version japonaise cite JIS X 8341-3.
+- Lightbox de la galerie : fenêtre modale, bouton Fermer visible et libellé, Tab enfermé, Échap, focus rendu à la vignette.
+- publish.php version 7 (sur la base de la version 6 du cycle 31) : extensions docx, odt, xlsx, pptx, zip ; 26 Mo par fichier ; `PUBLISH_VERSION` passe à 7.
+
+**Corrigé**
+- Éditeur conforme WCAG 2.2 AA : `aria-pressed` et clic retirés du cadre du canevas, `#peers` groupé, `<main>` et titre de niveau 1, cibles de 24 px, contraste de l'aperçu SEO, plus de deuxième « banner » dans les fenêtres.
+- Plus aucune boîte `confirm()` / `prompt()` du navigateur.
+
 ## cycle 27 — cycle 27 — 31/10/2026
 **Ajouté**
 - Magasin d'images (`core/asset-store.js`, `editor/assets.js`) : les octets des photos vivent hors du projet ; adresses `blob:` dans le canevas, fichiers `assets/` à l'export.

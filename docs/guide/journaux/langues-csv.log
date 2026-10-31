@@ -1,13 +1,13 @@
-20:53:12.197 +10.68s DEBUG ui.dialog.open Fenêtre ouverte : Traductions {"id":"i18nDialog","class":"audit i18n","modal":true}
-20:53:12.220 +10.70s INFO  i18n.open Tableau des traductions : 21 textes, 0 traduction(s) manquante(s), 60 à relire {"languages":["fr","nl","de","en"],"main":"fr","filter":"review","visible":21,"shown":21,"missing":0,"review":60,"mtLang":"nl"}
-20:53:12.221 +10.71s WARN  translate.absent Pas d’API Translator dans ce navigateur (Chrome 138+ sur ordinateur) : export CSV proposé {"from":"fr","to":"nl","ua":"HeadlessChrome 141, Not?A_Brand 8, Chromium 141"}
-20:53:12.286 +10.77s INFO  i18n.csv-export Tableau exporté en CSV : 22 ligne(s) {"rows":22,"languages":["fr","nl","de","en"],"size":5285}
-20:53:12.289 +10.77s INFO  ui.toast Message affiché : Tableau exporté en CSV (s’ouvre dans un tableur). Réimportez-le une fois traduit.
-20:53:12.319 +10.80s INFO  i18n.csv-import.start [i18n.csv-import#1] Import CSV : traductions.csv {"name":"traductions.csv","size":5730,"type":"text/csv"}
-20:53:12.323 +10.81s DEBUG i18n.csv-import.parsed [i18n.csv-import#1 · 4 ms] 23 ligne(s) lues {"rows":23,"columns":["key","type","fr","nl","de","en","ja"]}
-20:53:12.325 +10.81s WARN  i18n.csv-import.unknown-rows [i18n.csv-import#1 · 6 ms] 1 ligne(s) ignorée(s) : clé inconnue (texte supprimé depuis l’export ?) {"unknown":1,"keys":["n:inconnue:zz:text"]}
-20:53:12.325 +10.81s WARN  i18n.csv-import.unknown-columns [i18n.csv-import#1 · 6 ms] Colonne(s) ignorée(s) : ja (langue absente du site) {"columns":["ja"]}
-20:53:12.326 +10.81s DEBUG store.commit Modification {"source":"i18n","past":19,"page":"p_94oom426"}
-20:53:12.329 +10.81s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"i18n","mode":"contenu","ms":3}
-20:53:12.335 +10.82s INFO  i18n.csv-import.ok [i18n.csv-import#1 · 16 ms] Import terminé : 1 texte(s) mis à jour, 1 ligne(s) ignorée(s) {"changed":1,"unknown":1}
-20:53:12.335 +10.82s INFO  ui.toast Message affiché : Import terminé : 1 texte mis à jour, 1 ligne ignorée (texte supprimé ou inconnu).
+13:42:31.498 +10.92s DEBUG ui.dialog.open Fenêtre ouverte : Traductions {"id":"i18nDialog","class":"audit i18n","modal":true}
+13:42:31.505 +10.93s INFO  i18n.open Tableau des traductions : 21 textes, 0 traduction(s) manquante(s), 60 à relire {"languages":["fr","nl","de","en"],"main":"fr","filter":"review","visible":21,"shown":21,"missing":0,"review":60,"mtLang":"nl"}
+13:42:31.506 +10.93s WARN  translate.absent Pas d’API Translator dans ce navigateur (Chrome 138+ sur ordinateur) : export CSV proposé {"from":"fr","to":"nl","ua":"HeadlessChrome 141, Not?A_Brand 8, Chromium 141"}
+13:42:31.585 +11.01s INFO  i18n.csv-export Tableau exporté en CSV : 22 ligne(s) {"rows":22,"languages":["fr","nl","de","en"],"size":5285}
+13:42:31.587 +11.01s INFO  ui.toast Message affiché : Tableau exporté en CSV (s’ouvre dans un tableur). Réimportez-le une fois traduit.
+13:42:31.624 +11.04s INFO  i18n.csv-import.start [i18n.csv-import#1] Import CSV : traductions.csv {"name":"traductions.csv","size":5730,"type":"text/csv"}
+13:42:31.630 +11.05s DEBUG i18n.csv-import.parsed [i18n.csv-import#1 · 6 ms] 23 ligne(s) lues {"rows":23,"columns":["key","type","fr","nl","de","en","ja"]}
+13:42:31.632 +11.05s WARN  i18n.csv-import.unknown-rows [i18n.csv-import#1 · 8 ms] 1 ligne(s) ignorée(s) : clé inconnue (texte supprimé depuis l’export ?) {"unknown":1,"keys":["n:inconnue:zz:text"]}
+13:42:31.632 +11.05s WARN  i18n.csv-import.unknown-columns [i18n.csv-import#1 · 8 ms] Colonne(s) ignorée(s) : ja (langue absente du site) {"columns":["ja"]}
+13:42:31.633 +11.05s DEBUG store.commit Modification {"source":"i18n","past":19,"page":"p_og6cjhj0"}
+13:42:31.636 +11.06s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"i18n","mode":"contenu","ms":2}
+13:42:31.641 +11.06s INFO  i18n.csv-import.ok [i18n.csv-import#1 · 17 ms] Import terminé : 1 texte(s) mis à jour, 1 ligne(s) ignorée(s) {"changed":1,"unknown":1}
+13:42:31.641 +11.06s INFO  ui.toast Message affiché : Import terminé : 1 texte mis à jour, 1 ligne ignorée (texte supprimé ou inconnu).

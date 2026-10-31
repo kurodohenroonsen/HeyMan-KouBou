@@ -5,6 +5,7 @@
 import { log } from './log.js';
 import { __, __n } from '../core/ui-i18n.js';
 import { sanitizeSvg, ICON_SIZES } from '../core/siteicon.js';
+import { sanitizeSvg as cleanSvg, svgDataUrl } from '../core/svg.js';
 
 const MAX = 1600;
 const VARIANTS = [480, 960];
@@ -38,11 +39,31 @@ async function encode(bitmap, w, h, f) {
   return { blob, ms: Math.round(performance.now() - t0) };
 }
 
+/* Cycle 33 (W4) : un SVG est gardé vectoriel (pas de WebP ni de variantes), après assainissement */
+async function svgImage(file, info) {
+  const f = log.flow('image.svg', __('Import du SVG « {name} »', { name: info.name }), info);
+  let url = null;
+  try {
+    if (file.size > 2 * 1048576) throw new Error(__('SVG trop lourd (2 Mo au plus).'));
+    const { svg, removed } = cleanSvg(await file.text());
+    if (removed.length) f.warn('sanitized', __n(removed.length, 'SVG nettoyé : {n} élément ou attribut dangereux retiré ({what})', 'SVG nettoyé : {n} éléments ou attributs dangereux retirés ({what})', { what: [...new Set(removed)].join(', ') }), { removed: [...new Set(removed)] });
+    url = URL.createObjectURL(new Blob([svg], { type: 'image/svg+xml' }));
+    const img = await new Promise((resolve, reject) => { const i = new Image(); i.onload = () => resolve(i); i.onerror = () => reject(new Error(__('Image illisible.'))); i.src = url; });
+    const w = img.naturalWidth || 0;
+    const h = img.naturalHeight || 0;
+    const base = file.name.replace(/\.[^.]+$/, '') || 'image';
+    const bytes = new TextEncoder().encode(svg).length;
+    f.ok(__('SVG prêt : {kb} Ko, gardé vectoriel', { kb: kb(bytes) }), { width: w || undefined, height: h || undefined, kb: kb(bytes), removed: removed.length });
+    return { name: `${base}.svg`, mime: 'image/svg+xml', dataUrl: svgDataUrl(svg), width: w, height: h, bytes, variants: [] };
+  } catch (e) { f.fail(e, info); throw e; } finally { if (url) URL.revokeObjectURL(url); }
+}
+
 export async function imageToWebp(file) {
   const info = { name: String(file?.name || '').slice(0, 80), type: file?.type || '(inconnu)', kb: kb(file?.size || 0) };
+  if (/^image\/svg\+xml$/i.test(file.type) || /\.svg$/i.test(file.name || '')) return svgImage(file, info);
   if (!/^image\/(png|jpe?g|webp|gif|avif|bmp)$/i.test(file.type)) {
-    log.warn('image.type-refused', __('Image refusée : type « {type} » non pris en charge (JPG, PNG, WebP, GIF, AVIF ou BMP)', { type: info.type }), info);
-    throw new Error(__('Format non pris en charge. Utilisez une image JPG, PNG, WebP ou GIF.'));
+    log.warn('image.type-refused', __('Image refusée : type « {type} » non pris en charge (JPG, PNG, WebP, GIF, AVIF, BMP ou SVG)', { type: info.type }), info);
+    throw new Error(__('Format non pris en charge. Utilisez une image JPG, PNG, WebP, GIF ou SVG.'));
   }
   const f = log.flow('image.import', __('Import de l’image « {name} »', { name: info.name }), info);
   if (file.size > HEAVY_IN) f.warn('heavy', __('Fichier très lourd ({mb} Mo) : la conversion peut prendre plusieurs secondes', { mb: Math.round(file.size / 1048576) }), { kb: info.kb, limit: kb(HEAVY_IN) });

@@ -5,7 +5,7 @@
 import { walk } from './tree.js';
 import { __ } from './ui-i18n.js';
 
-export const PUBLISH_VERSION = '6';
+export const PUBLISH_VERSION = '7';
 /* Version de publish.php qui garde les copies de secours chiffrées (cycle 31) */
 export const BACKUP_SERVER_VERSION = 6;
 
@@ -124,7 +124,7 @@ export function errorMessage(body, status) {
 const PHP_TEMPLATE = String.raw`<?php
 /*
  * Atelier – publication du site, formulaires de contact, signalisation de la collaboration,
- * copies de secours chiffrées du projet (version 6).
+ * copies de secours chiffrées du projet (version 6), documents à télécharger docx, odt, xlsx, pptx, zip (version 7).
  * Fichier généré par l'éditeur Atelier : déposez-le une fois à la racine du site (FTP).
  * Il contient seulement l'empreinte SHA-256 du jeton de publication, jamais le jeton.
  * Journal : atelier-data/log-AAAA-MM.php (illisible depuis le web), lisible dans l'éditeur (🐞 Journal) avec le jeton.
@@ -137,9 +137,9 @@ const TOKEN_SHA256 = '__TOKEN_HASH__';
 /* Domaine d'expédition des formulaires, fixé à la génération d'après l'adresse du site (jamais d'après l'en-tête Host) */
 const MAIL_DOMAIN = '__MAIL_DOMAIN__';
 const MAX_ZIP = 80 * 1024 * 1024;
-const MAX_FILE = 20 * 1024 * 1024;
+const MAX_FILE = 26 * 1024 * 1024;
 const MAX_FILES = 4000;
-const ALLOWED = ['html', 'css', 'js', 'xml', 'txt', 'webp', 'jpg', 'jpeg', 'png', 'gif', 'avif', 'ico', 'svg', 'json', 'ics', 'woff2', 'pdf', 'mp3', 'm4a', 'ogg', 'webmanifest'];
+const ALLOWED = ['html', 'css', 'js', 'xml', 'txt', 'webp', 'jpg', 'jpeg', 'png', 'gif', 'avif', 'ico', 'svg', 'json', 'ics', 'woff2', 'pdf', 'mp3', 'm4a', 'ogg', 'docx', 'odt', 'xlsx', 'pptx', 'zip', 'webmanifest'];
 const RATE_MAX = 5;
 const RATE_WINDOW = 3600;
 /* Copies de secours chiffrées par l'éditeur (le serveur ne voit ni le code ni le contenu) : 100 Mo au plus, 5 gardées */
@@ -360,7 +360,7 @@ function htaccess_content(array $o): string {
   if ($o['https']) $l[] = 'Header always set Strict-Transport-Security "max-age=31536000"';
   array_push($l, 'Header always set X-Content-Type-Options "nosniff"', 'Header always set Referrer-Policy "strict-origin-when-cross-origin"', 'Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"', 'Header always set X-Frame-Options "SAMEORIGIN"',
     'Header always set Content-Security-Policy "' . HTACCESS_CSP . ($o['https'] ? '; upgrade-insecure-requests' : '') . '"',
-    '<FilesMatch "-[0-9a-f]{8}\.(woff2|webp|jpe?g|png|gif|avif|svg|ico|css|js|pdf|mp3|m4a|ogg)$">', '  Header set Cache-Control "public, max-age=31536000, immutable"', '</FilesMatch>',
+    '<FilesMatch "-[0-9a-f]{8}\.(woff2|webp|jpe?g|png|gif|avif|svg|ico|css|js|pdf|mp3|m4a|ogg|docx|odt|xlsx|pptx|zip)$">', '  Header set Cache-Control "public, max-age=31536000, immutable"', '</FilesMatch>',
     '<FilesMatch "\.(html|css|js|xml|txt|webmanifest|ics)$">', '  Header set Cache-Control "no-cache"', '</FilesMatch>', '</IfModule>',
     '<IfModule mod_deflate.c>', 'AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml text/xml application/xml application/manifest+json text/plain text/calendar', '</IfModule>');
   if ($main !== null) $l[] = '# Langue principale : ' . $main;
@@ -805,13 +805,16 @@ export async function publishGitHub({ token, owner, repo, branch = 'main', dir =
   return { commit: created.sha, uploaded: plan.upload.length, removed: plan.removed.length, unchanged: plan.unchanged };
 }
 
-/* Fichiers acceptés par la version de publish.php installée (la version 1 refuse les .ics ; avant la 5 : ni polices, ni SVG, ni manifeste) */
+/* Fichiers acceptés par la version de publish.php installée (la version 1 refuse les .ics ; avant la 5 : ni polices, ni SVG,
+ * ni manifeste, ni pdf/mp3/m4a/ogg ; avant la 7 : ni docx, odt, xlsx, pptx, zip) */
+const OLDER_THAN_5 = /\.(woff2|svg|webmanifest|pdf|mp3|m4a|ogg)$|(^|\/)\./i;
+const OLDER_THAN_7 = /\.(docx|odt|xlsx|pptx|zip)$/i;
 export function filesForServer(files, version) {
   const v = Number(version) || 1;
   const out = new Map();
   const skipped = [];
   for (const [k, val] of files) {
-    if ((v < 2 && /\.ics$/i.test(k)) || (v < 5 && /\.(woff2|svg|webmanifest|pdf|mp3|m4a|ogg)$|(^|\/)\./i.test(k))) skipped.push(k);
+    if ((v < 2 && /\.ics$/i.test(k)) || (v < 5 && OLDER_THAN_5.test(k)) || (v < 7 && OLDER_THAN_7.test(k))) skipped.push(k);
     else out.set(k, val);
   }
   return { files: out, skipped };

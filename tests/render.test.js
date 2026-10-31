@@ -133,3 +133,116 @@ test('renderNode(site, page, id) = fragment de renderPage pour chaque widget, se
   for (const t of [...types, 'section', 'row', 'column']) assert.ok(seen.has(t), t);
   assert.equal(renderNode(site, page, 'inconnu', { canvas: true, lang: 'fr' }), null);
 });
+
+/* ---------- Cycle 33 (W4) : images responsives dans chaque widget image, documents ---------- */
+import { addDocument, setHeader } from '../core/site.js';
+import { buildAccessibilityPage } from '../core/a11ypage.js';
+import { REGISTRY } from '../core/widgets.js';
+
+function withAsset() {
+  const png = 'data:image/webp;base64,' + Buffer.from([1, 2, 3]).toString('base64');
+  let site = createSite({ name: 'Démo', languages: ['fr', 'ja'], defaultLanguage: 'fr' });
+  const r = addAsset(site, { name: 'photo.webp', mime: 'image/webp', dataUrl: png, width: 1600, height: 900, variants: [{ w: 480, dataUrl: png }, { w: 960, dataUrl: png }] });
+  return { site: r.site, ref: `asset:${r.id}` };
+}
+function pageWith(site, nodes, cols = 1) {
+  let root = site.pages[0].root;
+  const sec = createSectionWithColumns(cols);
+  root = insertNode(root, root.id, sec);
+  for (const n of nodes) root = insertNode(root, sec.children[0].children[0].id, n);
+  return updatePageRoot(site, site.pages[0].id, root);
+}
+const node = (type, props) => Object.assign(createNode(type), { props: { ...REGISTRY[type].defaults(), ...props } });
+const imgsOf = html => (html.match(/<img [^>]*>/g) || []).filter(t => t.includes('photo'));
+
+test('W4 : galerie, carte, citation et logo passent par imgTag (srcset, sizes, width, height, loading)', () => {
+  const { site: s0, ref } = withAsset();
+  let site = pageWith(s0, [
+    node('gallery', { columns: '3', items: [{ src: ref, alt: { fr: 'Vue' }, caption: { fr: '' } }] }),
+    node('card', { image: ref, alt: { fr: 'Carte' } }),
+    node('quote', { photo: ref }),
+    node('site-logo', { size: '40' })
+  ]);
+  site = setHeader(site, { logo: ref });
+  const html = renderPage(site, site.pages[0], 'fr');
+  const imgs = imgsOf(html);
+  assert.equal(imgs.length, 5, imgs.join('\n'));
+  for (const t of imgs) {
+    assert.match(t, /srcset="assets\/photo-480-[0-9a-f]{8}\.webp 480w, assets\/photo-960-[0-9a-f]{8}\.webp 960w, assets\/photo-[0-9a-f]{8}\.webp 1600w"/, t);
+    assert.match(t, /width="1600" height="900"/, t);
+    assert.match(t, /sizes="/, t);
+  }
+  const [header, gal, card, quote, logo] = imgs;
+  assert.match(header, /sizes="\d+px"/);
+  assert.ok(!/loading="lazy"/.test(header) && !/fetchpriority/.test(header), 'logo de l’en-tête : ni paresseux ni prioritaire');
+  assert.match(gal, /sizes="\(max-width: 640px\) 50vw, \(max-width: 1024px\) 33vw, 387px"/);
+  assert.match(gal, /fetchpriority="high"/, 'la première image de contenu reste prioritaire');
+  assert.match(card, /loading="lazy"/);
+  assert.match(quote, /sizes="44px"/);
+  assert.match(logo, /sizes="\d+px"/);
+  assert.match(html, /<a href="assets\/photo-[0-9a-f]{8}\.webp" aria-label="Vue">/, 'la galerie agrandit l’image d’origine');
+});
+
+test('W4 : lien de téléchargement (Bouton, Liste à icônes, Carte) avec type, taille, rel="noopener", download facultatif', () => {
+  let site = createSite({ name: 'Démo', languages: ['fr', 'ja'], defaultLanguage: 'fr' });
+  const d = addDocument(site, { name: 'Statuts.pdf', dataUrl: `data:application/pdf;base64,${Buffer.alloc(1234567, 1).toString('base64')}` });
+  site = d.site;
+  const ref = `asset:${d.id}`;
+  site = pageWith(site, [
+    node('button', { label: { fr: 'Nos statuts', ja: '定款' }, file: ref, download: true }),
+    node('icon-list', { items: [{ icon: 'check', text: { fr: 'Programme' }, file: ref }] }),
+    node('card', { title: { fr: 'Dossier' }, button: { fr: 'Télécharger' }, link: '', file: ref })
+  ]);
+  const html = renderPage(site, site.pages[0], 'fr');
+  const links = html.match(/<a [^>]*href="assets\/docs\/statuts-[0-9a-f]{8}\.pdf"[^>]*>[\s\S]*?<\/a>/g) || [];
+  assert.equal(links.length, 3, html);
+  for (const l of links) {
+    assert.match(l, /type="application\/pdf"/);
+    assert.match(l, /rel="noopener"/);
+    assert.match(l, /PDF, 1,2 Mo/);
+  }
+  assert.match(links[0], / download="Statuts\.pdf"/);
+  assert.ok(!/ download=/.test(links[1]), 'download seulement si demandé');
+  assert.match(renderPage(site, site.pages[0], 'ja'), /PDF、1\.2 MB/);
+  const files = renderSite(site).files;
+  assert.ok([...files.keys()].some(k => /^assets\/docs\/statuts-[0-9a-f]{8}\.pdf$/.test(k)), [...files.keys()].join());
+});
+
+test('W4 : un SVG exporté est assaini une seconde fois (projet .json modifié à la main)', () => {
+  let site = createSite({ name: 'Démo' });
+  const svg = '<svg xmlns="http://www.w3.org/2000/svg"><rect/></svg>';
+  const r = addAsset(site, { name: 'logo.svg', mime: 'image/svg+xml', dataUrl: `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}` });
+  site = r.site;
+  site.assets[r.id].dataUrl = `data:image/svg+xml;base64,${Buffer.from('<svg xmlns="http://www.w3.org/2000/svg" onload="alert(1)"><script>alert(1)</script></svg>').toString('base64')}`;
+  site = setHeader(site, { logo: `asset:${r.id}` });
+  const files = renderSite(site).files;
+  const key = [...files.keys()].find(k => /^assets\/logo-[0-9a-f]{8}\.svg$/.test(k));
+  assert.ok(key);
+  assert.doesNotMatch(Buffer.from(files.get(key)).toString(), /script|onload/);
+});
+
+test('A2 : déclaration d’accessibilité WCAG 2.2 / EN 301 549 v3.2.1 en cinq langues, japonais avec JIS X 8341-3', () => {
+  const site = createSite({ name: 'MAB', languages: ['fr', 'nl', 'de', 'en', 'ja'], defaultLanguage: 'fr' });
+  const p = buildAccessibilityPage(site, { entity: 'ASBL MAB', email: 'a11y@mab.be', date: '2026-10-31', status: 'partial' });
+  assert.deepEqual(Object.keys(p.title), ['fr', 'nl', 'de', 'en', 'ja']);
+  const s = { ...site, pages: [...site.pages, p] };
+  for (const l of ['fr', 'nl', 'de', 'en', 'ja']) {
+    const html = renderPage(s, p, l);
+    assert.match(html, /WCAG 2\.2/, l);
+    assert.match(html, /EN 301 549 v3\.2\.1/, l);
+    assert.doesNotMatch(html, /WCAG 2\.1/, l);
+  }
+  const ja = renderPage(s, p, 'ja');
+  assert.match(ja, /JIS X 8341-3/);
+  assert.match(ja, /一部準拠/);
+  assert.match(ja, /アクセシビリティ/);
+});
+
+test('A2 : lightbox de la galerie — dialogue modal, bouton Fermer libellé, focus enfermé et rendu', () => {
+  const g = REGISTRY.gallery;
+  for (const needle of ['showModal', "'aria-modal','true'", 'data-close', 'Tab', 'focus()']) assert.ok(g.script.includes(needle), needle);
+  const { site: s0, ref } = withAsset();
+  const site = pageWith(s0, [node('gallery', { zoom: true, items: [{ src: ref, alt: { fr: 'Vue' }, caption: { fr: '' } }] })]);
+  assert.match(renderPage(site, site.pages[0], 'fr'), /class="gal"[^>]*data-zoom data-close="Fermer"/);
+  assert.match(renderPage(site, site.pages[0], 'ja'), /data-close="閉じる"/);
+});

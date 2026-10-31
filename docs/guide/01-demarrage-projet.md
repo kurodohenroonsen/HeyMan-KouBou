@@ -111,7 +111,7 @@ Extrait réel (espace plein simulé puis rétabli : [`journaux/enregistrement-im
 ```
 Les jetons de publication ne sont **jamais** dans ce fichier (ils restent sur l'appareil, voir `storage.secret-*` au chapitre 8).
 
-**Images et numéro de format** (cycle 27) : dans l'éditeur, les photos sont rangées à part (chapitre 4, 4.34) ; le fichier `.json`, lui, reste **autonome** : chaque image y est remise en entier, comme avant, et un ancien Atelier comme un nouveau sait le rouvrir. Le fichier porte aussi `"schema": 3`, le numéro du format du projet : il augmente à chaque changement de format, et Atelier met à jour tout seul, étape par étape, un projet plus ancien à l'ouverture. La ligne du journal donne le nombre d'images : `project.export-json` `{"kb":…,"pages":2,"images":10}`.
+**Images et numéro de format** (cycle 27) : dans l'éditeur, les photos sont rangées à part (chapitre 4, 4.36) ; le fichier `.json`, lui, reste **autonome** : chaque image y est remise en entier, comme avant, et un ancien Atelier comme un nouveau sait le rouvrir. Le fichier porte aussi `"schema": 3`, le numéro du format du projet : il augmente à chaque changement de format, et Atelier met à jour tout seul, étape par étape, un projet plus ancien à l'ouverture. La ligne du journal donne le nombre d'images : `project.export-json` `{"kb":…,"pages":2,"images":10}`.
 
 ---
 

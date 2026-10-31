@@ -1,5 +1,6 @@
 /* Fenêtre de contrôle : avant l'export, et liste des textes à traduire. « Aller à » ouvre l'endroit concerné. */
 import { h, $ } from './dom.js';
+import { openDialog } from './dialog.js';
 import { state, setView, select, setEditTarget } from './store.js';
 import { openTranslations } from './i18n-ui.js';
 import { auditSite } from '../core/audit.js';
@@ -15,19 +16,10 @@ import { __, __n } from '../core/ui-i18n.js';
 let onExport = null;
 export function setExportHandler(fn) { onExport = fn; }
 
-function dialog() {
-  let d = $('#auditDialog');
-  if (!d) {
-    d = h('dialog', { id: 'auditDialog', class: 'audit', 'aria-labelledby': 'auditTitle' });
-    document.body.append(d);
-    d.addEventListener('click', e => { if (e.target === d) d.close(); });
-  }
-  return d;
-}
 
 function goTo({ pageId, nodeId, lang, panel, componentId, zone, collectionId, itemId, template, field }) {
   log.info('audit.go', __('Aller à l’endroit signalé'), { pageId, nodeId, lang, panel, componentId, zone, collectionId, itemId, template, field });
-  dialog().close();
+  $('#auditDialog')?.close();
   if (lang && lang !== state.lang) setView({ lang });
   if (collectionId) { goToCollection({ collectionId, itemId, template, nodeId, field }); return; }
   if (componentId || zone) { setEditTarget(componentId ? { kind: 'component', id: componentId } : { kind: zone }); if (nodeId) select(nodeId, { scroll: true }); return; }
@@ -61,7 +53,7 @@ export function openAudit(mode = 'export') {
   const r = auditSite(s);
   const missing = missingTranslations(s).length;
   log.add(r.errors.length ? 'warn' : 'info', 'audit.open', mode === 'export' ? (r.errors.length ? __('Vérification avant export : {n} erreur(s) bloquent l’export', { n: r.errors.length }) : __('Vérification avant export : prêt ({n} point(s) à vérifier)', { n: r.warnings.length })) : __('Textes à traduire : {n}', { n: missing }), () => ({ mode, ok: r.ok, errors: r.errors.length, warnings: r.warnings.length, info: r.info.length, missing, ms: Math.round(performance.now() - t0), firstErrors: r.errors.slice(0, 3), firstWarnings: r.warnings.slice(0, 5).map(w => w.message) }));
-  const d = dialog();
+  let d = null;
   const def = s.defaultLanguage;
   const tr = missingTranslations(s).slice(0, 80).map(m => {
     const page = m.pageId ? findPage(s, m.pageId) : null;
@@ -76,9 +68,6 @@ export function openAudit(mode = 'export') {
   });
   const total = missingTranslations(s).length;
   const body = [
-    h('header', { class: 'audit__head' },
-      h('h2', { id: 'auditTitle' }, mode === 'export' ? __('Vérification avant export') : __('Textes à traduire')),
-      h('button', { type: 'button', class: 'icon-btn', 'aria-label': __('Fermer'), onclick: () => d.close() }, '✕')),
     mode === 'export' ? h('p', { class: 'audit__summary' + (r.errors.length ? ' is-error' : r.warnings.length ? ' is-warn' : ' is-ok') },
       r.errors.length ? __n(r.errors.length, '{n} erreur empêche l’export.', '{n} erreurs empêchent l’export.')
         : r.warnings.length ? __n(r.warnings.length, 'Le site peut être exporté. {n} point à vérifier.', 'Le site peut être exporté. {n} points à vérifier.') : __('Tout est en ordre. Le site est prêt à être exporté.')) : null,
@@ -87,11 +76,11 @@ export function openAudit(mode = 'export') {
     mode === 'export' ? group(__('Informations'), r.info.map(i => item('info', i.message)), false) : null,
     group(total > tr.length ? __('Textes à traduire ({n} premiers sur {total})', { n: tr.length, total }) : __('Textes à traduire'), tr, mode !== 'export'),
     s.languages.length > 1 ? h('p', { class: 'audit__summary' }, h('button', { type: 'button', class: 'btn btn--small', 'data-open-i18n': '', onclick: () => { d.close(); openTranslations(mode === 'export' ? 'all' : 'missing'); } }, __('🌐 Ouvrir le tableau des traductions')), __(' — tout traduire au même endroit, export CSV, traduction automatique.')) : null,
-    h('footer', { class: 'audit__foot' },
-      h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Fermer')),
-      mode === 'export' ? h('button', { type: 'button', class: 'btn btn--primary', id: 'auditExport', disabled: !r.ok, onclick: () => { log.info('audit.export', r.warnings.length ? __('Export malgré des points à vérifier') : __('Export demandé'), { warnings: r.warnings.length }); d.close(); onExport?.(); } }, r.warnings.length ? __('Exporter quand même') : __('Exporter le site')) : null)
   ].filter(Boolean);
-  d.replaceChildren(...body);
-  if (!d.open) d.showModal();
+  const actions = [
+    h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Fermer')),
+    mode === 'export' ? h('button', { type: 'button', class: 'btn btn--primary', id: 'auditExport', disabled: !r.ok, onclick: () => { log.info('audit.export', r.warnings.length ? __('Export malgré des points à vérifier') : __('Export demandé'), { warnings: r.warnings.length }); d.close(); onExport?.(); } }, r.warnings.length ? __('Exporter quand même') : __('Exporter le site')) : null];
+  d = openDialog({ id: 'auditDialog', titleId: 'auditTitle', title: mode === 'export' ? __('Vérification avant export') : __('Textes à traduire'), body, actions });
+  d.addEventListener('click', e => { if (e.target === d) d.close(); });
   d.querySelector('#auditExport, [data-audit-go]')?.focus();
 }

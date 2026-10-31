@@ -81,12 +81,16 @@ register('button', {
     { key: 'link', type: 'url', label: N_('Lien'), popups: true },
     { key: 'variant', type: 'select', label: N_('Apparence'), options: [opt('primary', N_('Plein')), opt('secondary', N_('Secondaire')), opt('outline', N_('Contour')), opt('link', N_('Lien simple'))] },
     { key: 'size', type: 'select', label: N_('Taille'), options: [opt('sm', N_('Petit')), opt('md', N_('Moyen')), opt('lg', N_('Grand'))] },
-    { key: 'newTab', type: 'toggle', label: N_('Ouvrir dans un nouvel onglet') }
+    { key: 'newTab', type: 'toggle', label: N_('Ouvrir dans un nouvel onglet') },
+    { key: 'file', type: 'document', label: N_('Fichier (remplace le lien)') },
+    { key: 'download', type: 'toggle', label: N_('Télécharger directement (sans ouvrir)') }
   ],
   defaults: () => ({ label: L5('En savoir plus', 'Meer weten', 'Mehr erfahren', 'Learn more', '詳しく見る'), link: '#', variant: 'primary', size: 'md', newTab: false }),
   render(p, c) {
     const variant = ['primary', 'secondary', 'outline', 'link'].includes(p.variant) ? p.variant : 'primary';
     const size = ['sm', 'md', 'lg'].includes(p.size) ? p.size : 'md';
+    const doc = c.doc?.(p.file);
+    if (doc) return `<a class="btn btn--${variant} btn--${size}" href="${c.attr(doc.href)}" type="${c.attr(doc.mime)}" rel="noopener"${p.download ? ` download="${c.attr(doc.name)}"` : ''} data-edit="label">${c.esc(c.t(p.label))} <span class="doc-meta">(${c.esc(doc.meta)})</span></a>`;
     const pop = c.popup ? c.popup(p.link) : null;
     if (pop) return `<button type="button" class="btn btn--${variant} btn--${size}" popovertarget="pop-${c.attr(pop)}" data-edit="label">${c.esc(c.t(p.label))}</button>`;
     const target = p.newTab ? ' target="_blank" rel="noopener"' : '';

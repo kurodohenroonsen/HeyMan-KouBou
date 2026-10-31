@@ -206,6 +206,11 @@ export function normalizeFieldValue(def, value) {
     }
     case 'richtext': return sanitizeRich(value);
     case 'inline': return sanitizeInline(value);
+    case 'document': {
+      const v = String(value ?? '');
+      if (v && !/^asset:doc_[a-z0-9]+$/i.test(v)) throw new Error(__('Valeur non autorisée pour « {label} » : {value}', { label: __(def.label), value: v.slice(0, 40) }));
+      return v;
+    }
     default: return String(value ?? '');
   }
 }

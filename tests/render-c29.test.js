@@ -172,7 +172,7 @@ test('.htaccess d’après baseUrl (https, www, 404 par langue, en-têtes, cache
   assert.match(h, /Header always set Referrer-Policy "strict-origin-when-cross-origin"/);
   assert.match(h, /Header always set Permissions-Policy "camera=\(\), microphone=\(\), geolocation=\(\)/);
   assert.match(h, /Content-Security-Policy "default-src 'self'; [^"]*font-src 'self'; frame-src https:\/\/www\.youtube-nocookie\.com https:\/\/player\.vimeo\.com https:\/\/maps\.google\.com https:\/\/www\.openstreetmap\.org;/);
-  assert.match(h, /<FilesMatch "-\[0-9a-f\]\{8\}\\\.\(woff2\|webp\|jpe\?g\|png\|gif\|avif\|svg\|ico\|css\|js\|pdf\|mp3\|m4a\|ogg\)\$">\s*Header set Cache-Control "public, max-age=31536000, immutable"/);
+  assert.match(h, /<FilesMatch "-\[0-9a-f\]\{8\}\\\.\(woff2\|webp\|jpe\?g\|png\|gif\|avif\|svg\|ico\|css\|js\|pdf\|mp3\|m4a\|ogg\|docx\|odt\|xlsx\|pptx\|zip\)\$">\s*Header set Cache-Control "public, max-age=31536000, immutable"/);
   assert.match(h, /AddDefaultCharset UTF-8/);
   assert.match(h, /<IfModule mod_deflate\.c>[\s\S]*AddOutputFilterByType DEFLATE text\/html text\/css application\/javascript/);
   assert.match(h, /AddType font\/woff2 \.woff2/);

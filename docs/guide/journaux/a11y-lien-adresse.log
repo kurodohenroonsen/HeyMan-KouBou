@@ -1,0 +1,4 @@
+13:52:03.786 +3.09s DEBUG ui.dialog.open Fenêtre ouverte : Lien {"id":"linkUrlDialog","class":"audit audit--sm","modal":true}
+13:52:03.860 +3.16s DEBUG ui.dialog.close Fenêtre fermée : Lien {"id":"linkUrlDialog"}
+13:52:03.865 +3.17s DEBUG edit.format Mise en forme : link (appliquée) {"cmd":"link","action":"add","chars":161,"where":"inspecteur","url":"https://www.media-alternatif.be/"}
+13:52:03.867 +3.17s DEBUG store.commit Modification {"key":"n_181g6e1l35:content:fr","source":"inspector","past":3,"page":"p_flrn81mp"}

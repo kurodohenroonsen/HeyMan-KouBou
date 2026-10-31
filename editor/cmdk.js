@@ -1,5 +1,6 @@
 /* Barre de commandes (Ctrl+K) et aide des raccourcis (?). */
 import { h, $, toast } from './dom.js';
+import { openDialog } from './dialog.js';
 import { UI_LANGS, uiLang, __, __c } from '../core/ui-i18n.js';
 import { setUiLang } from './ui-lang.js';
 import { openGuide } from './help.js';
@@ -13,7 +14,7 @@ import { translate } from '../core/render.js';
 import { LANG_LABELS } from '../core/site.js';
 import { nodeLabel, nodeSummary } from '../core/editing.js';
 import { rankCommands } from '../core/commands.js';
-import { insertWidget, insertSection, duplicateSelected, deleteSelected, copyStyle, pasteStyle, selectParent, insertComponent, createComponentFromSelected } from './actions.js';
+import { insertWidget, insertSection, duplicateSelected, deleteSelected, copyStyle, pasteStyle, selectParent, insertComponent, createComponentFromSelected, moveSelected, moveSelectedTo } from './actions.js';
 import { customizeHeader, customizeFooter } from '../core/layout.js';
 import { focusStyleField } from './styletab.js';
 import { openAudit } from './audit-ui.js';
@@ -130,6 +131,9 @@ function buildCommands() {
     add('act:copystyle', __('Action'), __('Copier le style'), copyStyle, 'copy style スタイル コピー');
     add('act:pastestyle', __('Action'), __('Coller le style'), pasteStyle, 'paste style スタイル 貼り付け');
     add('act:parent', __('Action'), __('Sélectionner le parent'), selectParent, 'select parent 親 選択', __('Échap'));
+    add('act:move-up', __('Action'), __('Monter la sélection'), () => moveSelected(-1), 'monter haut déplacer move up 上へ 移動', 'Alt+↑');
+    add('act:move-down', __('Action'), __('Descendre la sélection'), () => moveSelected(1), 'descendre bas déplacer move down 下へ 移動', 'Alt+↓');
+    add('act:move-to', __('Action'), __('Déplacer vers… (choisir la colonne ou la section)'), moveSelectedTo, 'déplacer vers colonne section glisser move to drag column 移動 列 セクション');
     add('act:component', __('Action'), __('Créer un composant à partir de la sélection'), createComponentFromSelected, 'réutiliser symbole component reuse symbol コンポーネント 再利用');
   }
   add('act:undo', __('Action'), __c('undo', 'Annuler'), undo, 'retour undo back 元に戻す 取り消し', 'Ctrl+Z');
@@ -192,9 +196,10 @@ function run(i) {
   try { c.run(); } catch (e) { log.error('cmdk.fail', __('Commande en échec : {label}', { label: c.label }), { id: c.id, error: e }); toast(e.message, 'error'); }
 }
 
+let opener = null;
 function ensure() {
   if (dialog) return dialog;
-  dialog = h('dialog', { class: 'cmdk', id: 'cmdk', 'aria-label': __('Barre de commandes') },
+  dialog = h('dialog', { class: 'cmdk', id: 'cmdk', 'aria-label': __('Barre de commandes'), 'aria-modal': 'true' },
     h('input', { class: 'cmdk__input', id: 'cmdkInput', type: 'text', role: 'combobox', 'aria-expanded': 'true', 'aria-controls': 'cmdkList', 'aria-autocomplete': 'list', autocomplete: 'off', spellcheck: 'false', placeholder: __('Que voulez-vous faire ? (ajouter, page, élément, réglage…)') }),
     h('ul', { class: 'cmdk__list', id: 'cmdkList', role: 'listbox', 'aria-label': __('Commandes') }),
     h('div', { class: 'cmdk__foot', 'aria-hidden': 'true' }, h('span', {}, __('↑↓ choisir')), h('span', {}, __('Entrée lancer')), h('span', {}, __('Échap fermer'))));
@@ -210,6 +215,11 @@ function ensure() {
     e.stopPropagation();
   });
   dialog.addEventListener('click', e => { if (e.target === dialog) dialog.close(); });
+  /* Cycle 33 : comme les fenêtres d'openDialog, le focus revient à l'élément d'origine (sauf si une commande l'a déplacé) */
+  dialog.addEventListener('close', () => setTimeout(() => {
+    const free = !document.activeElement || document.activeElement === document.body;
+    if (free && opener?.isConnected && !document.querySelector('dialog[open]')) opener.focus();
+  }));
   return dialog;
 }
 
@@ -219,7 +229,7 @@ export function openCommands() {
   const input = dialog.querySelector('#cmdkInput');
   input.value = '';
   refresh('');
-  if (!dialog.open) dialog.showModal();
+  if (!dialog.open) { opener = document.activeElement; dialog.showModal(); }
   input.focus();
 }
 
@@ -247,11 +257,12 @@ const SHORTCUTS = [
 export function openShortcuts() {
   let d = $('#shortcutsDialog');
   if (!d) {
-    d = h('dialog', { class: 'keys', id: 'shortcutsDialog', 'aria-labelledby': 'keysTitle' },
-      h('header', { class: 'audit__head' }, h('h2', { id: 'keysTitle' }, __('Raccourcis clavier')), h('button', { type: 'button', class: 'icon-btn', 'aria-label': __('Fermer'), onclick: () => d.close() }, '✕')),
-      h('table', {}, h('tbody', {}, SHORTCUTS.map(([k, v]) => h('tr', {}, h('td', {}, k), h('td', {}, v))))));
+    d = openDialog({ id: 'shortcutsDialog',
+    className: 'keys',
+    titleId: 'keysTitle',
+    title: __('Raccourcis clavier'),
+    body: [h('table', {}, h('tbody', {}, SHORTCUTS.map(([k, v]) => h('tr', {}, h('td', {}, k), h('td', {}, v)))))] });
     d.addEventListener('click', e => { if (e.target === d) d.close(); });
-    document.body.append(d);
   }
   if (!d.open) d.showModal();
 }

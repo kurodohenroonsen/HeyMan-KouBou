@@ -1,5 +1,6 @@
 /* Inspecteur : onglets Contenu, Style, Avancé pour l'élément sélectionné. */
 import { h, $, toast, icon } from './dom.js';
+import { rovingTabs } from './dialog.js';
 import { state, subscribe, nodeById, root, commitRoot, select, emit } from './store.js';
 import { REGISTRY, fieldsOf } from '../core/widgets.js';
 import { pathTo, setAdvanced, findNode } from '../core/tree.js';
@@ -56,7 +57,7 @@ function header(node) {
 
 function tabs() {
   const t = (id, label) => h('button', { type: 'button', role: 'tab', 'data-insp': id, 'aria-selected': String(state.insp === id), onclick: () => { log.debug('inspector.tab', __('Onglet de l’inspecteur : {label}', { label }), { tab: id, from: state.insp, type: nodeById(state.selected)?.type }); state.insp = id; render(); } }, label);
-  return h('div', { class: 'tabs tabs--insp', role: 'tablist' }, t('content', __('Contenu')), t('style', __('Style')), t('advanced', __('Avancé')));
+  return rovingTabs(h('div', { class: 'tabs tabs--insp', role: 'tablist', 'aria-label': __('Onglets de l’inspecteur') }, t('content', __('Contenu')), t('style', __('Style')), t('advanced', __('Avancé'))));
 }
 
 function rowLayouts(node) {
@@ -250,7 +251,7 @@ function renderNow() {
   const body = h('div', { class: 'insp-body' });
   if (state.multi.size > 1) {
     body.append(...styleTab(node, [...state.multi]).filter(Boolean));
-    p.replaceChildren(multiHeader(node), h('div', { class: 'tabs tabs--insp', role: 'tablist' }, h('button', { type: 'button', role: 'tab', 'data-insp': 'style', 'aria-selected': 'true' }, __('Style'))), body);
+    p.replaceChildren(multiHeader(node), h('div', { class: 'tabs tabs--insp', role: 'tablist', 'aria-label': __('Onglets de l’inspecteur') }, h('button', { type: 'button', role: 'tab', 'data-insp': 'style', 'aria-selected': 'true' }, __('Style'))), body);
   } else {
     if (state.insp === 'content') body.append(...contentTab(node).filter(Boolean));
     if (state.insp === 'style') body.append(...styleTab(node).filter(Boolean));

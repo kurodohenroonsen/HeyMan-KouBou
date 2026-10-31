@@ -8,6 +8,7 @@
  *     depuis un autre ordinateur avec le jeton et le code de secours (chiffrement : core/backup.js).
  */
 import { h, $, toast } from './dom.js';
+import { openDialog, confirmDialog } from './dialog.js';
 import { state, subscribe, load } from './store.js';
 import { getFolderHandle, setFolderHandle, getSecret, setSecret } from './storage.js';
 import { beforeRisky } from './versions-ui.js';
@@ -130,7 +131,6 @@ async function stopFolder(d) {
 /* Fenêtre « Enregistrer aussi dans un dossier de mon ordinateur » (ou repli : export classique) */
 export function openFolderBackup() {
   $('#folderBackupDialog')?.remove();
-  const d = h('dialog', { class: 'audit', id: 'folderBackupDialog', 'aria-labelledby': 'folderBackupTitle' });
   const lastExport = Number(lsGet(LS.lastExport)) || 0;
   const exportLine = h('p', { class: 'hint', 'data-last-export': '' }, lastExport ? __('Dernier export (.json) depuis ce navigateur : {date}.', { date: fmtDate(new Date(lastExport).toISOString(), { dateStyle: 'medium', timeStyle: 'short' }) }) : __('Aucun export (.json) depuis ce navigateur pour l’instant.'));
   const exportBtn = h('button', { type: 'button', class: 'btn btn--small', 'data-folder-export': '', onclick: () => { hooks.exportJson(); d.close(); } }, __('Enregistrer le projet (.json)'));
@@ -154,13 +154,10 @@ export function openFolderBackup() {
       exportLine,
       h('div', { class: 'row-btns' }, exportBtn)];
   }
-  d.append(
-    h('header', { class: 'audit__head' }, h('h2', { id: 'folderBackupTitle' }, __('Copie dans un dossier de mon ordinateur')), h('button', { type: 'button', class: 'icon-btn', 'aria-label': __('Fermer'), onclick: () => d.close() }, '✕')),
-    h('div', { class: 'a11y-form' }, ...body),
-    h('footer', { class: 'audit__foot' }, h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Fermer'))));
-  d.addEventListener('close', () => d.remove());
-  document.body.append(d);
-  d.showModal();
+  /* Cycle 33 : fenêtre d'Atelier (titre, Échap, focus initial et rendu) */
+  const d = openDialog({ id: 'folderBackupDialog', titleId: 'folderBackupTitle', title: __('Copie dans un dossier de mon ordinateur'),
+    body: h('div', { class: 'a11y-form' }, ...body),
+    actions: [h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Fermer'))] });
 }
 
 /* Export classique (.json) fait : date retenue pour le rappel et la barre */
@@ -291,7 +288,6 @@ async function restoreBackup({ url, token, code, name }) {
 /* Fenêtre « Restaurer depuis l'hébergement » : jeton + code → liste des copies → restauration */
 export function openHostRestore({ url = '', token = '', confirmDest = async () => false } = {}) {
   $('#hostRestoreDialog')?.remove();
-  const d = h('dialog', { class: 'audit', id: 'hostRestoreDialog', 'aria-labelledby': 'hostRestoreTitle' });
   const urlIn = h('input', { class: 'input input--mono', type: 'url', value: url, placeholder: __('https://www.votre-site.be/publish.php'), 'data-restore': 'url' });
   const tokenIn = h('input', { class: 'input input--mono', type: 'password', autocomplete: 'off', value: token, placeholder: __('Jeton de publication'), 'data-restore': 'token' });
   const codeIn = h('input', { class: 'input input--mono', type: 'password', autocomplete: 'off', placeholder: __('Code de secours'), 'data-restore': 'code' });
@@ -314,7 +310,10 @@ export function openHostRestore({ url = '', token = '', confirmDest = async () =
   };
   const restore = async name => {
     if (!codeIn.value) { say(__('Indiquez le code de secours choisi lors de la copie.'), 'error'); codeIn.focus(); return; }
-    if (!confirm(__('Remplacer le projet actuel par la copie {name} ? L’état actuel est d’abord enregistré comme version de sécurité.', { name }))) { log.info('backup.host.cancel', __('Restauration annulée'), { name }); return; }
+    const ok = await confirmDialog({ id: 'hostRestoreConfirmDialog', title: __('Restaurer depuis l’hébergement'),
+      message: __('Remplacer le projet actuel par la copie {name} ? L’état actuel est d’abord enregistré comme version de sécurité.', { name }),
+      ok: __('Restaurer'), danger: true });
+    if (!ok) { log.info('backup.host.cancel', __('Restauration annulée'), { name }); return; }
     say(__('Téléchargement et déchiffrement…'));
     try {
       const r = await restoreBackup({ url: urlIn.value, token: tokenIn.value, code: codeIn.value, name });
@@ -324,19 +323,15 @@ export function openHostRestore({ url = '', token = '', confirmDest = async () =
     } catch (e) { say(e.code === 'bad_code' ? __('Code de secours incorrect : rien n’a été chargé.') : __('Restauration impossible : {message}', { message: e.message }), 'error'); }
   };
   log.info('backup.host.open', __('Fenêtre de restauration depuis l’hébergement'), { url: !!url, token: !!token });
-  d.append(
-    h('header', { class: 'audit__head' }, h('h2', { id: 'hostRestoreTitle' }, __('Restaurer depuis l’hébergement')), h('button', { type: 'button', class: 'icon-btn', 'aria-label': __('Fermer'), onclick: () => d.close() }, '✕')),
-    h('div', { class: 'a11y-form' },
+  const d = openDialog({ id: 'hostRestoreDialog', titleId: 'hostRestoreTitle', title: __('Restaurer depuis l’hébergement'),
+    body: h('div', { class: 'a11y-form' },
       h('p', {}, __('Retrouvez votre projet sur n’importe quel ordinateur : il faut l’adresse de publish.php, le jeton de publication et le code de secours choisi lors de la copie.')),
       h('label', { class: 'mini' }, h('span', {}, __('Adresse de publish.php')), urlIn),
       h('label', { class: 'mini' }, h('span', {}, __('Jeton de publication')), tokenIn),
       h('label', { class: 'mini' }, h('span', {}, __('Code de secours')), codeIn),
       h('div', { class: 'row-btns' }, h('button', { type: 'button', class: 'btn btn--small btn--primary', 'data-restore-show': '', onclick: show }, __('Voir les copies'))),
       status, list),
-    h('footer', { class: 'audit__foot' }, h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Fermer'))));
-  d.addEventListener('close', () => d.remove());
-  document.body.append(d);
-  d.showModal();
+    actions: [h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Fermer'))] });
 }
 
 /* Bloc de l'onglet OVH (publish.php) de la fenêtre Publier */

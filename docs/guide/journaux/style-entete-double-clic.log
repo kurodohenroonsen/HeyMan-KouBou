@@ -1,9 +1,9 @@
-12:57:46.662 +40.44s DEBUG canvas.dblclick Double-clic sur l’en-tête : modification en blocs {"target":"header"}
-12:57:46.663 +40.44s INFO  store.edit-target Édition : header {"kind":"header"}
-12:57:46.681 +40.45s INFO  canvas.load.start [canvas.load#11] Chargement complet du canevas : modification de l’en-tête {"reason":"modification de l’en-tête","page":"p_fptbpb4e","lang":"fr","device":"desktop","edit":"header"}
-12:57:46.686 +40.46s DEBUG canvas.load.render [canvas.load#11 · 5 ms] Page rendue {"ms":5,"kb":35}
-12:57:46.709 +40.48s INFO  canvas.load.ok [canvas.load#11 · 28 ms] Canevas prêt {"nodes":8,"scale":62,"via":"load"}
-12:57:47.104 +40.88s INFO  store.edit-target Retour à la page
-12:57:47.113 +40.89s INFO  canvas.load.start [canvas.load#12] Chargement complet du canevas : retour à la page {"reason":"retour à la page","page":"p_fptbpb4e","lang":"fr","device":"desktop"}
-12:57:47.115 +40.89s DEBUG canvas.load.render [canvas.load#12 · 2 ms] Page rendue {"ms":1,"kb":37}
-12:57:47.142 +40.92s INFO  canvas.load.ok [canvas.load#12 · 29 ms] Canevas prêt {"nodes":68,"scale":62,"via":"load"}
+13:41:10.741 +42.22s DEBUG canvas.dblclick Double-clic sur l’en-tête : modification en blocs {"target":"header"}
+13:41:10.742 +42.22s INFO  store.edit-target Édition : header {"kind":"header"}
+13:41:10.751 +42.23s INFO  canvas.load.start [canvas.load#11] Chargement complet du canevas : modification de l’en-tête {"reason":"modification de l’en-tête","page":"p_0x1ftvm1","lang":"fr","device":"desktop","edit":"header"}
+13:41:10.753 +42.23s DEBUG canvas.load.render [canvas.load#11 · 2 ms] Page rendue {"ms":1,"kb":36}
+13:41:10.793 +42.27s INFO  canvas.load.ok [canvas.load#11 · 42 ms] Canevas prêt {"nodes":8,"scale":76,"via":"load"}
+13:41:11.186 +42.66s INFO  store.edit-target Retour à la page
+13:41:11.202 +42.68s INFO  canvas.load.start [canvas.load#12] Chargement complet du canevas : retour à la page {"reason":"retour à la page","page":"p_0x1ftvm1","lang":"fr","device":"desktop"}
+13:41:11.203 +42.68s DEBUG canvas.load.render [canvas.load#12 · 1 ms] Page rendue {"ms":1,"kb":39}
+13:41:11.229 +42.70s INFO  canvas.load.ok [canvas.load#12 · 27 ms] Canevas prêt {"nodes":68,"scale":76,"via":"load"}

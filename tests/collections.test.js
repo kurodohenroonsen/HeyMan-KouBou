@@ -625,6 +625,20 @@ test('publish.php version 2 accepte .ics ; un serveur en version 1 reçoit le si
   assert.equal(r2.skipped.length, 0);
 });
 
+test('publish.php version 7 (intégration du cycle 33 sur la v6) : documents docx, odt, xlsx, pptx, zip ; 26 Mo', () => {
+  assert.equal(PUBLISH_VERSION, '7');
+  const php = buildPublishPhp({ tokenHash: 'a'.repeat(64) });
+  assert.match(php, /const ATELIER_VERSION = '7'/);
+  for (const ext of ['docx', 'odt', 'xlsx', 'pptx', 'zip']) assert.match(php, new RegExp(`'${ext}'`), ext);
+  assert.match(php, /MAX_FILE = 26 \* 1024 \* 1024/);
+  assert.match(php, /'backup' => true/, 'les routes de copie de secours (v6) sont gardées');
+  const files = new Map([['index.html', 'x'], ['assets/docs/statuts-0123abcd.pdf', 'p'], ['assets/docs/presse-0123abcd.zip', 'z'], ['assets/docs/b.docx', 'd']]);
+  const r6 = filesForServer(files, '6');
+  assert.deepEqual([...r6.files.keys()], ['index.html', 'assets/docs/statuts-0123abcd.pdf']);
+  assert.equal(r6.skipped.length, 2, 'une v6 refuserait docx et zip : ils sont écartés');
+  assert.equal(filesForServer(files, '7').files.size, 4);
+});
+
 test('normalizeSite : collections vides pour un ancien projet ; suppression d’une collection', () => {
   const old = createSite({ languages: ['fr'] });
   delete old.collections;

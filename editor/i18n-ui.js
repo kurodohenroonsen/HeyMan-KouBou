@@ -1,5 +1,6 @@
 /* Tableau des traductions : tous les textes, une colonne par langue, filtres, relecture, traduction automatique, CSV. */
 import { h, $, toast, download } from './dom.js';
+import { openDialog } from './dialog.js';
 import { state, commit, setView, select, setEditTarget } from './store.js';
 import { translatableItems, setTranslation, autoTranslate, exportCsv, importCsv, parseCsv, reviewItems, markReviewed } from '../core/i18n.js';
 import { LANG_LABELS, findPage, slugify } from '../core/site.js';
@@ -195,9 +196,12 @@ export function openTranslations(initialFilter) {
     h('option', { value: 'review', selected: filter === 'review' }, __('Traductions automatiques à relire')));
   const mtSel = h('select', { class: 'control control--sm', 'data-mt-lang': '', 'aria-label': __('Langue cible') }, others.map(l => h('option', { value: l, selected: l === mtLang }, `${s.defaultLanguage.toUpperCase()} → ${l.toUpperCase()}`)));
   const file = h('input', { type: 'file', accept: '.csv,text/csv', 'data-i18n-import': '', 'aria-label': __('Importer un fichier CSV') });
-  const d = h('dialog', { class: 'audit i18n', id: 'i18nDialog', 'aria-labelledby': 'i18nTitle' },
-    h('header', { class: 'audit__head' }, h('h2', { id: 'i18nTitle' }, __('Traductions')), h('span', { class: 'hint', 'data-i18n-count': '' }), h('button', { type: 'button', class: 'icon-btn', 'aria-label': __('Fermer'), onclick: () => d.close() }, '✕')),
-    h('div', { class: 'i18n-tools' },
+  const d = openDialog({ id: 'i18nDialog',
+    className: 'i18n',
+    titleId: 'i18nTitle',
+    title: __('Traductions'),
+    head: [h('span', { class: 'hint', 'data-i18n-count': '' })],
+    body: [h('div', { class: 'i18n-tools' },
       search, filt,
       h('span', { class: 'i18n-mt' }, __('✨ Traduction automatique :'), mtSel,
         h('button', { type: 'button', class: 'btn btn--small btn--primary', 'data-mt-run': '', disabled: true, onclick: () => runMt(d) }, __('Traduire les textes manquants')),
@@ -209,8 +213,8 @@ export function openTranslations(initialFilter) {
     h('div', { class: 'i18n-scroll' }, h('table', { class: 'i18n-table' },
       h('thead', {}, h('tr', {}, h('th', { scope: 'col' }, __('Texte')), s.languages.map(l => h('th', { scope: 'col' }, l === s.defaultLanguage ? __('{lang} (principale)', { lang: l.toUpperCase() }) : l.toUpperCase())))),
       h('tbody', {})),
-      h('button', { type: 'button', class: 'btn btn--small', 'data-i18n-more': '', hidden: true, onclick: () => { shown += LIMIT; const n = renderTable(d); log.debug('i18n.more', __('Afficher plus : {shown} / {visible}', { shown: n.shown, visible: n.visible }), n); } })),
-    h('footer', { class: 'audit__foot' }, h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Fermer'))));
+      h('button', { type: 'button', class: 'btn btn--small', 'data-i18n-more': '', hidden: true, onclick: () => { shown += LIMIT; const n = renderTable(d); log.debug('i18n.more', __('Afficher plus : {shown} / {visible}', { shown: n.shown, visible: n.visible }), n); } }))],
+    actions: [h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Fermer'))] });
   search.addEventListener('input', () => { query = search.value; shown = LIMIT; const n = renderTable(d); log.trace('i18n.search', __('Recherche dans le tableau'), { len: query.length, visible: n.visible }); });
   filt.addEventListener('change', () => { filter = filt.value; shown = LIMIT; const n = renderTable(d); log.debug('i18n.filter', __('Filtre : {filter} ({n} textes)', { filter, n: n.visible }), { filter, ...n }); });
   mtSel.addEventListener('change', () => { mtLang = mtSel.value; updateMt(d); });
@@ -239,10 +243,7 @@ export function openTranslations(initialFilter) {
     } catch (e) { f.fail(e, { name: fl.name }, __('Import CSV refusé : {error}', { error: e?.message || e })); toast(e.message, 'error'); }
     file.value = '';
   });
-  d.addEventListener('close', () => d.remove());
-  document.body.append(d);
   const n = renderTable(d);
-  d.showModal();
   log.info('i18n.open', __('Tableau des traductions : {visible} textes, {missing} traduction(s) manquante(s), {review} à relire', { visible: n.visible, missing: n.missing, review: n.review }), { languages: s.languages, main: s.defaultLanguage, filter, query: query ? query.length : undefined, ...n, mtLang });
   updateMt(d);
 }

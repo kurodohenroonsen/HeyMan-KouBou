@@ -1,21 +1,21 @@
-20:53:10.802 +9.29s DEBUG ui.dialog.open Fenêtre ouverte : Traductions {"id":"i18nDialog","class":"audit i18n","modal":true}
-20:53:10.817 +9.30s INFO  i18n.open Tableau des traductions : 21 textes, 35 traduction(s) manquante(s), 25 à relire {"languages":["fr","nl","de","en"],"main":"fr","filter":"review","visible":21,"shown":21,"missing":35,"review":25,"mtLang":"en"}
-20:53:10.818 +9.30s INFO  translate.status Traducteur fr → en : traducteur de test {"from":"fr","to":"en","state":"available","source":"test"}
-20:53:10.902 +9.39s INFO  translate.status Traducteur fr → de : traducteur de test {"from":"fr","to":"de","state":"available","source":"test"}
-20:53:10.997 +9.48s INFO  translate.batch.start [translate.batch#2] Traduction automatique fr → de {"from":"fr","to":"de"}
-20:53:10.997 +9.48s DEBUG translate.create Traducteur fr → de : traducteur de test {"from":"fr","to":"de","source":"test"}
-20:53:10.997 +9.48s DEBUG translate.batch.ready [translate.batch#2 · 0 ms] Traducteur prêt : traduction des textes manquants
-20:53:10.998 +9.48s DEBUG translate.batch.progress [translate.batch#2 · 1 ms] 1 / 19 textes {"done":1,"total":19,"count":1,"errors":0}
-20:53:10.999 +9.48s WARN  translate.text-fail Traduction fr → de d’un texte impossible : UnknownError — Unable to translate (simulé) {"from":"fr","to":"de","inLen":23,"ms":1,"error":{"name":"UnknownError","message":"Unable to translate (simulé)","code":0}}
-20:53:11.001 +9.48s DEBUG translate.batch.progress [translate.batch#2 · 4 ms] 5 / 19 textes {"done":5,"total":19,"count":4,"errors":1}
-20:53:11.003 +9.49s WARN  translate.text-fail Traduction fr → de d’un texte impossible : UnknownError — Unable to translate (simulé) {"from":"fr","to":"de","inLen":11,"ms":0,"error":{"name":"UnknownError","message":"Unable to translate (simulé)","code":0}}
-20:53:11.004 +9.49s DEBUG translate.batch.progress [translate.batch#2 · 7 ms] 10 / 19 textes {"done":10,"total":19,"count":8,"errors":2}
-20:53:11.005 +9.49s WARN  translate.text-fail Traduction fr → de d’un texte impossible : UnknownError — Unable to translate (simulé) {"from":"fr","to":"de","inLen":15,"ms":0,"error":{"name":"UnknownError","message":"Unable to translate (simulé)","code":0}}
-20:53:11.007 +9.49s DEBUG translate.batch.progress [translate.batch#2 · 10 ms] 15 / 19 textes {"done":15,"total":19,"count":12,"errors":3}
-20:53:11.007 +9.49s WARN  translate.text-fail Traduction fr → de d’un texte impossible : UnknownError — Unable to translate (simulé) {"from":"fr","to":"de","inLen":17,"ms":0,"error":{"name":"UnknownError","message":"Unable to translate (simulé)","code":0}}
-20:53:11.008 +9.49s WARN  translate.text-fail Traduction fr → de d’un texte impossible : UnknownError — Unable to translate (simulé) {"from":"fr","to":"de","inLen":1,"ms":0,"error":{"name":"UnknownError","message":"Unable to translate (simulé)","code":0}}
-20:53:11.009 +9.49s DEBUG translate.batch.progress [translate.batch#2 · 12 ms] 19 / 19 textes {"done":19,"total":19,"count":14,"errors":5}
-20:53:11.009 +9.49s DEBUG store.commit Modification {"source":"i18n","past":15,"page":"p_94oom426"}
-20:53:11.012 +9.50s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"i18n","mode":"contenu","ms":3}
-20:53:11.019 +9.50s WARN  translate.batch.errors [translate.batch#2 · 22 ms] 5 texte(s) non traduit(s) (voir translate.text-fail) {"errors":5,"total":19}
-20:53:11.019 +9.50s INFO  translate.batch.ok [translate.batch#2 · 22 ms] 14 texte(s) traduit(s) fr → de, marqués « à relire » {"count":14,"errors":5,"total":19}
+13:42:30.365 +9.79s DEBUG ui.dialog.open Fenêtre ouverte : Traductions {"id":"i18nDialog","class":"audit i18n","modal":true}
+13:42:30.371 +9.79s INFO  i18n.open Tableau des traductions : 21 textes, 35 traduction(s) manquante(s), 25 à relire {"languages":["fr","nl","de","en"],"main":"fr","filter":"review","visible":21,"shown":21,"missing":35,"review":25,"mtLang":"en"}
+13:42:30.371 +9.79s INFO  translate.status Traducteur fr → en : traducteur de test {"from":"fr","to":"en","state":"available","source":"test"}
+13:42:30.389 +9.81s INFO  translate.status Traducteur fr → de : traducteur de test {"from":"fr","to":"de","state":"available","source":"test"}
+13:42:30.449 +9.87s INFO  translate.batch.start [translate.batch#2] Traduction automatique fr → de {"from":"fr","to":"de"}
+13:42:30.450 +9.87s DEBUG translate.create Traducteur fr → de : traducteur de test {"from":"fr","to":"de","source":"test"}
+13:42:30.450 +9.87s DEBUG translate.batch.ready [translate.batch#2 · 1 ms] Traducteur prêt : traduction des textes manquants
+13:42:30.451 +9.87s DEBUG translate.batch.progress [translate.batch#2 · 2 ms] 1 / 19 textes {"done":1,"total":19,"count":1,"errors":0}
+13:42:30.452 +9.87s WARN  translate.text-fail Traduction fr → de d’un texte impossible : UnknownError — Unable to translate (simulé) {"from":"fr","to":"de","inLen":23,"ms":0,"error":{"name":"UnknownError","message":"Unable to translate (simulé)","code":0}}
+13:42:30.452 +9.87s DEBUG translate.batch.progress [translate.batch#2 · 3 ms] 5 / 19 textes {"done":5,"total":19,"count":4,"errors":1}
+13:42:30.454 +9.88s WARN  translate.text-fail Traduction fr → de d’un texte impossible : UnknownError — Unable to translate (simulé) {"from":"fr","to":"de","inLen":11,"ms":0,"error":{"name":"UnknownError","message":"Unable to translate (simulé)","code":0}}
+13:42:30.454 +9.88s DEBUG translate.batch.progress [translate.batch#2 · 5 ms] 10 / 19 textes {"done":10,"total":19,"count":8,"errors":2}
+13:42:30.455 +9.88s WARN  translate.text-fail Traduction fr → de d’un texte impossible : UnknownError — Unable to translate (simulé) {"from":"fr","to":"de","inLen":15,"ms":0,"error":{"name":"UnknownError","message":"Unable to translate (simulé)","code":0}}
+13:42:30.456 +9.88s DEBUG translate.batch.progress [translate.batch#2 · 7 ms] 15 / 19 textes {"done":15,"total":19,"count":12,"errors":3}
+13:42:30.456 +9.88s WARN  translate.text-fail Traduction fr → de d’un texte impossible : UnknownError — Unable to translate (simulé) {"from":"fr","to":"de","inLen":17,"ms":0,"error":{"name":"UnknownError","message":"Unable to translate (simulé)","code":0}}
+13:42:30.457 +9.88s WARN  translate.text-fail Traduction fr → de d’un texte impossible : UnknownError — Unable to translate (simulé) {"from":"fr","to":"de","inLen":1,"ms":0,"error":{"name":"UnknownError","message":"Unable to translate (simulé)","code":0}}
+13:42:30.458 +9.88s DEBUG translate.batch.progress [translate.batch#2 · 9 ms] 19 / 19 textes {"done":19,"total":19,"count":14,"errors":5}
+13:42:30.458 +9.88s DEBUG store.commit Modification {"source":"i18n","past":15,"page":"p_og6cjhj0"}
+13:42:30.461 +9.88s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"i18n","mode":"contenu","ms":3}
+13:42:30.466 +9.89s WARN  translate.batch.errors [translate.batch#2 · 17 ms] 5 texte(s) non traduit(s) (voir translate.text-fail) {"errors":5,"total":19}
+13:42:30.466 +9.89s INFO  translate.batch.ok [translate.batch#2 · 17 ms] 14 texte(s) traduit(s) fr → de, marqués « à relire » {"count":14,"errors":5,"total":19}

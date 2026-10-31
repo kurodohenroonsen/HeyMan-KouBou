@@ -8,6 +8,7 @@
  */
 
 import { N_ } from './ui-i18n.js';
+import { isStorableData } from './asset-store.js';
 
 /* Parties privées, propres à chaque appareil : jamais synchronisées ni envoyées (publish : adresse du serveur, dépôt GitHub) */
 const IGNORED_TOP = new Set(['collab', 'publish']);
@@ -21,6 +22,8 @@ export function stripPrivate(doc) {
   return out;
 }
 const DATA_IMG = /^data:image\/(png|jpeg|webp|gif|avif);base64,[a-z0-9+/=]+$/i;
+/* Cycle 33 : octets d'un pair = image (dont SVG, assaini à l'entrée du magasin) ou document à télécharger */
+const MAX_BYTES_CHARS = 36_000_000;
 
 /* ---------- Horloge logique hybride : « 0001730000000000.0003.replica » ---------- */
 export function createClock(replica, now = () => Date.now()) {
@@ -272,9 +275,9 @@ function validAsset(a) {
   return isObj(a) && typeof a.file === 'string' && /^[a-z0-9._-]+$/i.test(a.file) && okBytes(a.dataUrl) && (a.variants === undefined || (Array.isArray(a.variants) && a.variants.every(v => isObj(v) && okBytes(v.dataUrl) && Number(v.w) > 0 && /^[a-z0-9._-]+$/i.test(String(v.file || '')))));
 }
 
-/* Octets d'une image envoyés par un pair : { dataUrl, variants: [{ w, dataUrl }] } */
+/* Octets d'une image ou d'un document envoyés par un pair : { dataUrl, variants: [{ w, dataUrl }] } */
 export function validAssetBytes(id, data) {
-  return /^[A-Za-z0-9_-]{1,60}$/.test(String(id)) && isObj(data) && DATA_IMG.test(String(data.dataUrl || '')) && String(data.dataUrl).length < 30_000_000 && (data.variants === undefined || (Array.isArray(data.variants) && data.variants.length <= 8 && data.variants.every(v => isObj(v) && Number(v.w) > 0 && DATA_IMG.test(String(v.dataUrl || '')))));
+  return /^[A-Za-z0-9_-]{1,60}$/.test(String(id)) && isObj(data) && isStorableData(data.dataUrl) && String(data.dataUrl).length < MAX_BYTES_CHARS && (data.variants === undefined || (Array.isArray(data.variants) && data.variants.length <= 8 && data.variants.every(v => isObj(v) && Number(v.w) > 0 && DATA_IMG.test(String(v.dataUrl || '')))));
 }
 
 export function validateOps(ops, { role = 'editor' } = {}) {

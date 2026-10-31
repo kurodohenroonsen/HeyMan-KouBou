@@ -1,7 +1,8 @@
-12:57:35.640 +29.41s INFO  style.copy Style copié : Titre {"id":"n_21454v0620","type":"heading","props":{"desktop":1,"tablet":0,"mobile":1,"hover":0}}
-12:57:35.640 +29.41s INFO  ui.toast Message affiché : Style copié.
-12:57:35.697 +29.47s DEBUG store.select Sélection : heading {"id":"n_4x5c110e00","type":"heading"}
-12:57:35.841 +29.61s DEBUG store.commit Modification {"source":"action","past":33,"page":"p_fptbpb4e"}
-12:57:35.845 +29.62s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":3}
-12:57:35.854 +29.63s INFO  style.paste Style collé {"count":1,"from":"heading","types":["heading"]}
-12:57:35.854 +29.63s INFO  ui.toast Message affiché : Style collé.
+13:40:59.088 +30.56s INFO  style.copy Style copié : Titre {"id":"n_005y294b07","type":"heading","props":{"desktop":1,"tablet":0,"mobile":1,"hover":0}}
+13:40:59.089 +30.56s INFO  ui.toast Message affiché : Style copié.
+13:40:59.157 +30.63s DEBUG store.select Sélection : heading {"id":"n_4g091s2s25","type":"heading"}
+13:40:59.236 +30.71s DEBUG storage.save Projet enregistré sur cet appareil {"ms":10,"kb":13}
+13:40:59.309 +30.78s DEBUG store.commit Modification {"source":"action","past":33,"page":"p_0x1ftvm1"}
+13:40:59.313 +30.79s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":3}
+13:40:59.342 +30.82s INFO  style.paste Style collé {"count":1,"from":"heading","types":["heading"]}
+13:40:59.347 +30.82s INFO  ui.toast Message affiché : Style collé.

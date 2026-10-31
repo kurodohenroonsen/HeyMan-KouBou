@@ -14,6 +14,7 @@ import { saveProject } from './storage.js';
 import { log, registerContext, APP_VERSION } from './log.js';
 import { initLogButton, openLog, setLogSiteInfo } from './log-ui.js';
 import { $, $$, h, toast, download } from './dom.js';
+import { confirmDialog, initTabKeys, rovingTabs } from './dialog.js';
 import { state, subscribe, load, setView, undo, redo, select, page, commit, root, emit, setEditTarget, historyBytes } from './store.js';
 import { componentUsage } from '../core/components.js';
 import { loadProject } from './storage.js';
@@ -94,7 +95,8 @@ function renderTopbar() {
   $('#langSelect').replaceChildren(...s.languages.map(l => h('option', { value: l, selected: l === state.lang }, `${l.toUpperCase()} · ${LANG_LABELS[l]}`)));
   $('#undoBtn').disabled = !state.past.length;
   $('#redoBtn').disabled = !state.future.length;
-  $$('[data-device]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.device === state.device)));
+  $$('.seg[data-device]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.device === state.device)));
+  $('#appTitle').textContent = `Atelier — ${s.name}`;
   $('#i18nBtn').hidden = s.languages.length < 2;
   const n = missingTranslations(s).length;
   const badge = $('#missingBtn');
@@ -111,6 +113,7 @@ function renderLeft() {
 }
 function renderLeftNow() {
   $$('[data-left]').forEach(t => t.setAttribute('aria-selected', String(t.dataset.left === state.left)));
+  rovingTabs($('#leftTabs'));
   const body = $('#leftBody');
   unmountNavigator();
   if (state.left === 'widgets') body.replaceChildren(...onboardingBlock(), ...libraryPanel());
@@ -216,7 +219,7 @@ function bind() {
   $('#langSelect').addEventListener('change', e => setView({ lang: e.target.value }));
   $('#undoBtn').addEventListener('click', undo);
   $('#redoBtn').addEventListener('click', redo);
-  $$('[data-device]').forEach(b => b.addEventListener('click', () => setView({ device: b.dataset.device })));
+  $$('.seg[data-device]').forEach(b => b.addEventListener('click', () => setView({ device: b.dataset.device })));
   $$('[data-left]').forEach(b => b.addEventListener('click', () => { state.left = b.dataset.left; renderLeft(); }));
   $('#missingBtn').addEventListener('click', () => openAudit('translations'));
   $('#i18nBtn').addEventListener('click', () => openTranslations());
@@ -261,10 +264,11 @@ function bind() {
     e.target.value = '';
     $('#fileMenu').open = false;
   });
-  $('#loadDemoBtn').addEventListener('click', async () => { $('#fileMenu').open = false; if (confirm(__('Remplacer le projet actuel par l’exemple ? (une version de sécurité est enregistrée)'))) { await beforeRisky(__('Avant de recharger l’exemple')); load(demoSite(), { keepHistory: true }); log.info('project.demo', __('Exemple rechargé')); } else log.info('project.cancel', __('Remplacement annulé'), { action: 'demo' }); });
+  $('#loadDemoBtn').addEventListener('click', async () => { $('#fileMenu').open = false; if (await confirmDialog({ id: 'demoConfirmDialog', title: __('Recharger l’exemple'), message: __('Remplacer le projet actuel par l’exemple ? (une version de sécurité est enregistrée)'), ok: __('Remplacer'), danger: true })) { await beforeRisky(__('Avant de recharger l’exemple')); load(demoSite(), { keepHistory: true }); log.info('project.demo', __('Exemple rechargé')); } else log.info('project.cancel', __('Remplacement annulé'), { action: 'demo' }); });
   $('#newSiteBtn').addEventListener('click', () => { $('#fileMenu').open = false; openNewSite(); });
   $('#helpKeysBtn').addEventListener('click', () => { $('#helpMenu').open = false; openShortcuts(); });
   document.addEventListener('keydown', handleKey);
+  initTabKeys();
   setCanvasKeyHandler(handleKey);
 }
 

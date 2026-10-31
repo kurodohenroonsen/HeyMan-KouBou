@@ -4,6 +4,7 @@
  * Une version de sécurité du site actuel est enregistrée avant ; Ctrl+Z revient.
  */
 import { h, $ } from './dom.js';
+import { openDialog } from './dialog.js';
 import { load } from './store.js';
 import { beforeRisky } from './versions-ui.js';
 import { LANG_LABELS } from '../core/site.js';
@@ -63,9 +64,11 @@ export function openNewSite() {
     else log.info('project.new', __('Nouveau site « {name} » depuis le modèle {template} : {n} pages, langue principale {lang}', { name: site.name, template: __(SITE_TEMPLATES.find(t => t.id === template).label), n: site.pages.length, lang: LANG_LABELS[site.defaultLanguage] }), data);
   };
   name.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); create(); } });
-  const d = h('dialog', { class: 'audit new-site', id: 'newSiteDialog', 'aria-labelledby': 'newSiteTitle' },
-    h('header', { class: 'audit__head' }, h('h2', { id: 'newSiteTitle' }, __('Nouveau site')), h('button', { type: 'button', class: 'icon-btn', 'aria-label': __('Fermer'), onclick: () => d.close() }, '✕')),
-    h('div', { class: 'a11y-form' },
+  const d = openDialog({ id: 'newSiteDialog',
+    className: 'new-site',
+    titleId: 'newSiteTitle',
+    title: __('Nouveau site'),
+    body: [h('div', { class: 'a11y-form' },
       h('div', { class: 'field' }, h('label', { class: 'field__label', for: 'newSiteName' }, __('Nom du site')), name,
         h('span', { class: 'hint', id: 'newSiteNameHint' }, __('Vous pourrez le changer plus tard dans l’onglet Site, à gauche.'))),
       h('div', { class: 'field' }, h('label', { class: 'field__label', for: 'newSiteMain' }, __('Langue principale')), main,
@@ -73,11 +76,10 @@ export function openNewSite() {
       h('fieldset', { class: 'field new-site__langs' }, h('legend', { class: 'field__label' }, __('Autres langues du site')), boxes.map(b => b.label),
         h('span', { class: 'hint' }, __('Vous pourrez en ajouter ou en retirer à tout moment dans l’onglet Site.'))),
       picker.box,
-      h('p', { class: 'hint' }, __('Le site actuel est gardé dans une version de sécurité (Fichier → Versions) ; Ctrl+Z revient aussi en arrière.'))),
-    h('footer', { class: 'audit__foot' }, h('button', { type: 'button', class: 'btn', id: 'newSiteCancel', onclick: () => d.close() }, __('Annuler')), h('button', { type: 'button', class: 'btn btn--primary', id: 'newSiteCreate', onclick: create }, __('Créer le site'))));
-  d.addEventListener('close', () => { if (!created) log.info('project.cancel', __('Remplacement annulé'), { action: 'new' }); d.remove(); });
+      h('p', { class: 'hint' }, __('Le site actuel est gardé dans une version de sécurité (Fichier → Versions) ; Ctrl+Z revient aussi en arrière.')))],
+    actions: [h('button', { type: 'button', class: 'btn', id: 'newSiteCancel', onclick: () => d.close() }, __('Annuler')),
+    h('button', { type: 'button', class: 'btn btn--primary', id: 'newSiteCreate', onclick: create }, __('Créer le site'))] });
+  d.addEventListener('close', () => { if (!created) log.info('project.cancel', __('Remplacement annulé'), { action: 'new' }); });
   boxes.forEach(b => b.cb.addEventListener('change', () => sync(true)));
-  document.body.append(d);
-  d.showModal();
   name.focus();
 }

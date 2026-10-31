@@ -81,7 +81,7 @@ Extrait réel du formulaire inconnu, vu par le serveur ([`journaux/php-contact-i
 |---|---|
 | Ouvre ou ferme le menu sur téléphone (☰) | `site.nav` « Menu mobile ouvert » / « fermé » |
 | Ouvre une page avec une liste « à venir » ou « passés » de l'agenda | `site.list` « Liste filtrée par date » `{"when":"upcoming","today":"2026-10-29","shown":3,"total":5,"limit":0}` — `shown` = événements affichés d'après la date **de l'appareil du visiteur** |
-| Clique une image d'une galerie agrandissable | `site.gallery` « Image agrandie » |
+| Clique une image d'une galerie agrandissable (ou Entrée sur la vignette) | `site.gallery` « Image agrandie » |
 | Clique une vidéo ou une carte (chargées seulement au clic, pour la vie privée) | `site.facade` « Contenu externe chargé après clic » avec l'adresse sans paramètres |
 | Une erreur JavaScript se produit sur la page | `site.fail` « Erreur JavaScript : … » avec le fichier et la ligne (affiché en avertissement) |
 
@@ -125,6 +125,19 @@ Ces lignes sont DEBUG : elles n'apparaissent dans le journal du serveur que si `
 | `php.signal.denied` | WARN | dépôt sans preuve ou avec la preuve d'une autre salle (403) |
 | `php.signal.rate` | WARN | trop de messages depuis la même adresse (429) |
 | `php.signal.room-full` | WARN | salle pleine, 2 Mo (429) |
+
+---
+
+## 9.6 Galerie agrandie (lightbox) au clavier et au lecteur d'écran
+
+**But** : que l'agrandissement d'une image de galerie soit utilisable sans souris (cycle 33).
+
+**Étapes** (côté visiteur)
+1. Tab jusqu'à une vignette, **Entrée** : l'image s'ouvre en grand dans une fenêtre modale (`aria-modal="true"`, le reste de la page devient inactif).
+2. Le focus est sur le bouton **✕** visible en haut à droite, libellé « Fermer » dans la langue de la page ; Tab reste sur ce bouton (le focus ne part pas derrière la fenêtre).
+3. **Échap**, Entrée sur ✕, ou un clic n'importe où ferment l'image ; le focus revient à la vignette.
+
+**Ce que tu vois** : l'image sur fond sombre, un rond blanc ✕ ; le journal du site (`?atelier-debug`) note `site.gallery`.
 
 ---
 

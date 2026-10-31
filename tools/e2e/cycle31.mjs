@@ -11,6 +11,7 @@ import { spawn } from 'node:child_process';
 import { mkdirSync, rmSync, readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { mark, since, waitCode, expectCodes, expectNoErrors, capture, codes } from './logs.mjs';
+import { PUBLISH_VERSION } from '../../core/publish.js';
 
 const CODE = 'radio-libre-2026';
 
@@ -227,7 +228,7 @@ export default async function (t) {
     await page.waitForSelector('#publishDialog[open]');
     const [dl] = await Promise.all([page.waitForEvent('download'), page.click('#publishDialog [data-pub-generate]')]);
     await dl.saveAs(join(www, 'publish.php'));
-    t.ok(readFileSync(join(www, 'publish.php'), 'utf8').includes("const ATELIER_VERSION = '6'"), 'publish.php version 6 téléchargé');
+    t.ok(readFileSync(join(www, 'publish.php'), 'utf8').includes(`const ATELIER_VERSION = '${PUBLISH_VERSION}'`), `publish.php version ${PUBLISH_VERSION} téléchargé`);
     const token = await page.locator('#publishDialog [data-pub="token"]').inputValue();
     await page.fill('#publishDialog [data-pub="url"]', url);
     await page.locator('#publishDialog [data-pub="url"]').dispatchEvent('change');

@@ -1,3 +1,3 @@
-12:57:24.829 +18.60s DEBUG store.select Sélection vidée {"id":null}
-12:57:24.836 +18.61s INFO  canvas.zone-locked En-tête non personnalisé : à activer dans le panneau Site {"zone":"header"}
-12:57:24.837 +18.61s INFO  ui.toast Message affiché : Pour modifier l’en-tête bloc par bloc : panneau Site → « Personnaliser ».
+13:40:49.166 +20.64s DEBUG store.select Sélection vidée {"id":null}
+13:40:49.175 +20.65s INFO  canvas.zone-locked En-tête non personnalisé : à activer dans le panneau Site {"zone":"header"}
+13:40:49.175 +20.65s INFO  ui.toast Message affiché : Pour modifier l’en-tête bloc par bloc : panneau Site → « Personnaliser ».

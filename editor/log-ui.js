@@ -1,5 +1,6 @@
 /* Fenêtre « 🐞 Journal » : filtrer, copier, télécharger le journal du navigateur et lire celui du serveur (publish.php v4). */
 import { h, $, download } from './dom.js';
+import { openDialog } from './dialog.js';
 import { log, logDump, settings, setLevels, serverTrace } from './log.js';
 import { formatEntry, LEVELS, dataText } from '../core/log.js';
 import { getSecret } from './storage.js';
@@ -45,7 +46,7 @@ export async function fetchServerLog({ url, token, lines = 300 } = {}) {
 export async function openLog() {
   $('#logDialog')?.remove();
   const state = { level: 'debug', scope: '', text: '', paused: false };
-  const list = h('ol', { class: 'log-list', 'data-log-list': '', 'aria-live': 'off' });
+  const list = h('ol', { class: 'log-list', 'data-log-list': '', 'aria-live': 'off', tabindex: '0', 'aria-label': __('Lignes du journal') });
   const count = h('span', { class: 'hint', 'data-log-count': '' });
   const status = h('p', { class: 'pub-status', role: 'status', 'data-log-status': '' });
   const scopes = h('select', { class: 'control control--sm', 'data-log-scope': '', 'aria-label': __('Domaine') });
@@ -76,9 +77,11 @@ export async function openLog() {
   if (key) getSecret(key).then(v => { if (v && !tokIn.value) tokIn.value = v; });
   const serverBox = h('pre', { class: 'log-server', 'data-log-server': '', hidden: !serverLines.length }, serverLines.join('\n'));
 
-  const d = h('dialog', { class: 'audit log-dialog', id: 'logDialog', 'aria-labelledby': 'logTitle' },
-    h('header', { class: 'audit__head' }, h('h2', { id: 'logTitle' }, __('🐞 Journal de débogage')), h('button', { type: 'button', class: 'icon-btn', 'aria-label': __('Fermer'), onclick: () => d.close() }, '✕')),
-    h('div', { class: 'a11y-form' },
+  const d = openDialog({ id: 'logDialog',
+    className: 'log-dialog',
+    titleId: 'logTitle',
+    title: __('🐞 Journal de débogage'),
+    body: [h('div', { class: 'a11y-form' },
       h('p', { class: 'hint' }, __('Tout ce que fait l’éditeur est noté ici (et dans la console, F12). Pour signaler un problème : refaites-le, puis « Copier le journal » et collez-le dans votre message. Les jetons, secrets et images sont masqués.')),
       h('div', { class: 'row-btns log-tools' },
         h('button', { type: 'button', class: 'btn btn--small btn--primary', 'data-log-copy': '', onclick: async () => { status.textContent = (await copyLog()) ? __('Journal copié : collez-le dans votre message.') : __('La copie est refusée par le navigateur : utilisez « Télécharger ».'); } }, __('📋 Copier le journal')),
@@ -106,14 +109,13 @@ export async function openLog() {
           catch (e) { status.textContent = __('Journal du serveur illisible : {message}', { message: e.message }); }
         } }, __('Lire le journal du serveur'))),
         serverBox),
-      status),
-    h('footer', { class: 'audit__foot' }, h('span', { class: 'hint' }, serverTrace() ? __('Trace du serveur : demandée.') : __('Trace du serveur : non demandée.')), h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Fermer'))));
+      status)],
+    actions: [h('span', { class: 'hint' }, serverTrace() ? __('Trace du serveur : demandée.') : __('Trace du serveur : non demandée.')),
+    h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Fermer'))] });
   scopes.addEventListener('change', () => { state.scope = scopes.value; render(); });
   d.addEventListener('close', () => { off(); d.remove(); });
-  document.body.append(d);
   fillScopes();
   render();
-  d.showModal();
 }
 
 /* Pastille du bouton 🐞 : nombre d'erreurs */

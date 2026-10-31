@@ -11,13 +11,14 @@ import { assets } from './assets.js';
 import { fontSignature } from '../core/fonts.js';
 import { fontBase } from './fontfiles.js';
 import { nodeLabel } from '../core/editing.js';
-import { selectParent, duplicateSelected, deleteSelected } from './actions.js';
+import { selectParent, duplicateSelected, deleteSelected, moveSelected } from './actions.js';
 import { $ } from './dom.js';
 import { log } from './log.js';
 import { __, N_ } from '../core/ui-i18n.js';
 
 const EDITOR_CSS = `
 [data-node]{cursor:default}
+[data-node]:focus-visible{outline:2px dashed #2563eb;outline-offset:2px}
 .ph{display:grid;place-items:center;min-height:72px;border:2px dashed #b9b6ae;border-radius:10px;color:#6b6a72;font:500 13px/1.4 system-ui,sans-serif;text-align:center;padding:12px;background:rgba(255,255,255,.4)}
 .ph--section{min-height:120px}
 .ph--page{margin:40px auto;max-width:640px;min-height:180px}
@@ -34,9 +35,9 @@ a,button,input,textarea,select,summary{pointer-events:auto}
 .ab--hover .ab__label{background:#9a3412;opacity:.85}
 .ab--section .ab__label{background:#2563eb}.ab--row .ab__label{background:#0d9488}.ab--column .ab__label{background:#7c3aed}
 .ab--below .ab__label{top:auto;bottom:-20px;border-radius:0 0 3px 3px}
-#selToolbar{position:absolute;right:-2px;top:-26px;display:flex;gap:2px;pointer-events:auto;background:#18181c;border-radius:6px;padding:2px}
-.ab--below #selToolbar{top:auto;bottom:-26px}
-#selToolbar button{all:unset;cursor:pointer;width:24px;height:22px;display:grid;place-items:center;color:#fff;border-radius:4px;font-size:13px}
+#selToolbar{position:absolute;right:-2px;top:-28px;display:flex;gap:2px;pointer-events:auto;background:#18181c;border-radius:6px;padding:2px}
+.ab--below #selToolbar{top:auto;bottom:-28px}
+#selToolbar button{all:unset;cursor:pointer;width:24px;height:24px;display:grid;place-items:center;color:#fff;border-radius:4px;font-size:13px}
 #selToolbar button:hover{background:#3a3a42}
 #selToolbar [data-act="move"]{cursor:grab}
 #atelier-drop{position:fixed;display:none;height:4px;background:#2563eb;border-radius:2px;box-shadow:0 0 0 2px rgba(37,99,235,.25)}
@@ -195,6 +196,7 @@ export function refresh(opts = {}) {
     }
   }
   doc.title = next.title;
+  markFocusable();
   schedulePosition();
 }
 
@@ -242,17 +244,20 @@ function onLoad(via = 'load') {
   doc.head.append(style);
   ui = doc.createElement('div');
   ui.id = 'atelier-ui';
-  const tt = { bar: attr(__('Élément sélectionné')), parent: attr(__('Sélectionner le parent (Échap)')), move: attr(__('Glisser pour déplacer')), duplicate: attr(__('Dupliquer (Ctrl+D)')), del: attr(__('Supprimer (Suppr)')) };
+  const tt = { bar: attr(__('Élément sélectionné')), parent: attr(__('Sélectionner le parent (Échap)')), up: attr(__('Monter (Alt+↑)')), down: attr(__('Descendre (Alt+↓)')), move: attr(__('Glisser pour déplacer')), duplicate: attr(__('Dupliquer (Ctrl+D)')), del: attr(__('Supprimer (Suppr)')) };
   ui.innerHTML = `<div id="atelier-hover" class="ab ab--hover"><span class="ab__label"></span></div>
 <div id="atelier-select" class="ab ab--select"><span class="ab__label"></span>
 <div id="selToolbar" role="toolbar" aria-label="${tt.bar}">
-<button type="button" data-act="parent" title="${tt.parent}">${uiIcon('parent', 14)}</button>
-<button type="button" data-act="move" title="${tt.move}">${uiIcon('move', 14)}</button>
-<button type="button" data-act="duplicate" title="${tt.duplicate}">${uiIcon('duplicate', 14)}</button>
-<button type="button" data-act="delete" title="${tt.del}">${uiIcon('delete', 14)}</button>
+<button type="button" data-act="parent" title="${tt.parent}" aria-label="${tt.parent}">${uiIcon('parent', 14)}</button>
+<button type="button" data-act="up" title="${tt.up}" aria-label="${tt.up}">▲</button>
+<button type="button" data-act="down" title="${tt.down}" aria-label="${tt.down}">▼</button>
+<button type="button" data-act="move" title="${tt.move}" aria-label="${tt.move}">${uiIcon('move', 14)}</button>
+<button type="button" data-act="duplicate" title="${tt.duplicate}" aria-label="${tt.duplicate}">${uiIcon('duplicate', 14)}</button>
+<button type="button" data-act="delete" title="${tt.del}" aria-label="${tt.del}">${uiIcon('delete', 14)}</button>
 </div></div>
 <div id="atelier-drop"></div>`;
   doc.body.append(ui);
+  markFocusable();
   bindCanvasEvents();
   loaded = true;
   const y = scrollMemory[`${state.pageId}|${state.lang}`] || 0;
@@ -271,6 +276,11 @@ export function setCanvasKeyHandler(fn) { keyHandler = fn; }
 export function nodeElement(id) {
   if (!doc || !id) return null;
   return doc.querySelector(`[data-node="${CSS.escape(id)}"]`);
+}
+
+/* Cycle 33 : sections et widgets atteignables par Tab dans le canevas ; Entrée sélectionne celui qui a le focus */
+function markFocusable() {
+  for (const el of doc.querySelectorAll('[data-node]:not([data-type="row"]):not([data-type="column"]):not([tabindex])')) el.tabIndex = 0;
 }
 
 function bindCanvasEvents() {
@@ -293,6 +303,8 @@ function bindCanvasEvents() {
       const act = actBtn.dataset.act;
       log.debug('canvas.toolbar', __('Barre de l’élément sélectionné : {act}', { act }), { act, id: state.selected });
       if (act === 'parent') selectParent();
+      if (act === 'up') moveSelected(-1);
+      if (act === 'down') moveSelected(1);
       if (act === 'duplicate') duplicateSelected();
       if (act === 'delete') deleteSelected();
       return;
@@ -327,6 +339,8 @@ function bindCanvasEvents() {
     }
   });
   doc.addEventListener('keydown', e => {
+    const id = e.key === 'Enter' && !e.target?.isContentEditable && e.target?.matches?.('[data-node]') ? e.target.getAttribute('data-node') : null;
+    if (id && id !== state.selected) { e.preventDefault(); log.debug('canvas.key-select', __('Élément sélectionné au clavier (Entrée)'), { id, type: e.target.getAttribute('data-type') }); select(id, { scroll: false }); return; }
     /* Le journal global ne voit pas les touches tapées dans l'iframe : même filtre que ui.key */
     const mod = e.ctrlKey || e.metaKey || e.altKey;
     if ((mod || ['Escape', 'Delete', 'Backspace', 'Enter', 'F2'].includes(e.key)) && !['Control', 'Meta', 'Alt', 'Shift'].includes(e.key) && !(e.target?.isContentEditable && !mod && e.key !== 'Escape')) {

@@ -1,0 +1,10 @@
+13:52:03.109 +2.41s DEBUG ui.dialog.open Fenêtre ouverte : Supprimer la page « Contact » {"id":"pageDeleteDialog","class":"audit audit--sm","modal":true}
+13:52:03.141 +2.44s DEBUG ui.dialog.close Fenêtre fermée : Supprimer la page « Contact » {"id":"pageDeleteDialog"}
+13:52:03.141 +2.44s DEBUG ui.confirm Confirmation refusée : Supprimer la page « Contact » {"id":"pageDeleteDialog","ok":false}
+13:52:03.141 +2.44s DEBUG page.delete-cancel Suppression de « Contact » annulée {"id":"p_7oeplhl6"}
+13:52:03.170 +2.47s DEBUG ui.dialog.open Fenêtre ouverte : Supprimer la page « Contact » {"id":"pageDeleteDialog","class":"audit audit--sm","modal":true}
+13:52:03.209 +2.51s DEBUG ui.dialog.close Fenêtre fermée : Supprimer la page « Contact » {"id":"pageDeleteDialog"}
+13:52:03.209 +2.51s DEBUG ui.confirm Confirmation acceptée : Supprimer la page « Contact » {"id":"pageDeleteDialog","ok":true}
+13:52:03.217 +2.52s DEBUG store.commit Modification {"source":"pages","past":3,"page":"p_flrn81mp"}
+13:52:03.224 +2.52s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":3}
+13:52:03.229 +2.53s INFO  page.delete Page « Contact » supprimée (Ctrl+Z pour la retrouver) {"id":"p_7oeplhl6","slug":"contact","pages":1}

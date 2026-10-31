@@ -7,7 +7,7 @@ const shots = process.argv[3] || './shots';
 const only = process.argv.slice(4);
 mkdirSync(shots, { recursive: true });
 
-const specs = ['cycle2', 'cycle3', 'cycle4', 'cycle5', 'cycle6', 'cycle7', 'cycle8', 'cycle9', 'cycle10', 'cycle11', 'cycle12', 'cycle13', 'cycle14', 'cycle15', 'cycle16', 'c16-edition', 'c16-contenus', 'c16-langues-ia', 'c16-collab', 'cycle17', 'cycle18', 'cycle19', 'cycle20', 'cycle21', 'cycle22', 'cycle22-ja-site', 'cycle23', 'cycle24', 'cycle25', 'cycle26', 'cycle27', 'cycle28', 'cycle29', 'cycle30', 'cycle31', 'cycle32', 'cycle33', 'cycle34', 'cycle35', 'cycle36'].filter(s => !only.length || only.includes(s));
+const specs = ['cycle2', 'cycle3', 'cycle4', 'cycle5', 'cycle6', 'cycle7', 'cycle8', 'cycle9', 'cycle10', 'cycle11', 'cycle12', 'cycle13', 'cycle14', 'cycle15', 'cycle16', 'c16-edition', 'c16-contenus', 'c16-langues-ia', 'c16-collab', 'cycle17', 'cycle18', 'cycle19', 'cycle20', 'cycle21', 'cycle22', 'cycle22-ja-site', 'cycle23', 'cycle24', 'cycle25', 'cycle26', 'cycle27', 'cycle28', 'cycle29', 'cycle30', 'cycle31', 'cycle32', 'cycle33', 'cycle34', 'cycle35', 'cycle36', 'a11y-editor'].filter(s => !only.length || only.includes(s));
 const browser = await chromium.launch();
 let failed = 0, passed = 0;
 
@@ -41,7 +41,18 @@ for (const name of specs) {
     page, browser, base, shots,
     canvas: () => page.frameLocator('#canvas'),
     ok(cond, msg) { if (cond) { passed++; console.log('  PASS ' + msg); } else { failed++; console.log('  FAIL ' + msg); } },
-    async wait(ms = 250) { await page.waitForTimeout(ms); }
+    async wait(ms = 250) { await page.waitForTimeout(ms); },
+    /* Cycle 33 : fenêtres Atelier à la place de confirm()/prompt() — confirmer (ou annuler), répondre (null = annuler) */
+    async confirm(ok = true, p = page) {
+      const b = p.locator(`dialog[open] [${ok ? 'data-confirm' : 'data-confirm-cancel'}]`).last();
+      await b.waitFor({ timeout: 5000 });
+      await b.click();
+    },
+    async answer(text, p = page) {
+      await p.locator('dialog[open] [data-ask-input]').last().waitFor({ timeout: 5000 });
+      if (text !== null) await p.locator('dialog[open] [data-ask-input]').last().fill(text);
+      await p.locator(`dialog[open] [${text !== null ? 'data-confirm' : 'data-confirm-cancel'}]`).last().click();
+    }
   };
   try {
     await page.goto(base + '?fresh=1', { waitUntil: 'networkidle' });

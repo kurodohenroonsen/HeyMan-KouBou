@@ -1,5 +1,6 @@
 /* Versions : enregistrer, comparer, restaurer. Versions automatiques (début de journée) et de sécurité (avant restauration, ouverture…). */
 import { h, $, toast } from './dom.js';
+import { confirmDialog, openDialog } from './dialog.js';
 import { state, subscribe, load } from './store.js';
 import { makeVersion, diffSites, describeDiff, pruneVersions, isNewDay } from '../core/versions.js';
 import { saveVersion, listVersions, loadVersion, deleteVersions } from './storage.js';
@@ -80,7 +81,7 @@ async function render(d) {
       h('div', { class: 'row-btns' },
         h('button', { type: 'button', class: 'btn btn--small', 'data-version-restore': v.id, onclick: async () => {
           const f = log.flow('version.restore', __('Restauration de « {name} » du {date}', { name: v.name || KIND[v.kind], date: fmt(v.at) }), { id: v.id, kind: v.kind, at: v.at, pages: v.summary.pages });
-          if (!confirm(__('Revenir à « {name} » du {date} ? L’état actuel est d’abord enregistré comme version de sécurité.', { name: v.name || KIND[v.kind], date: fmt(v.at) }))) { f.cancel(__('Restauration annulée')); return; }
+          if (!(await confirmDialog({ id: 'versionRestoreDialog', title: __('Restaurer une version'), ok: __('Restaurer'), danger: false, message: __('Revenir à « {name} » du {date} ? L’état actuel est d’abord enregistré comme version de sécurité.', { name: v.name || KIND[v.kind], date: fmt(v.at) }) }))) { f.cancel(__('Restauration annulée')); return; }
           let full;
           try { full = await loadVersion(v.id); } catch (e) {
             f.fail(e, { id: v.id }, __('Version illisible dans la base locale : {error}', { error: e?.message || e }));
@@ -129,17 +130,15 @@ export function openVersions() {
     if (v) { name.value = ''; toast(__('Version enregistrée.')); render(d); }
   };
   name.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); save(); } });
-  const d = h('dialog', { class: 'audit', id: 'versionsDialog', 'aria-labelledby': 'versionsTitle' },
-    h('header', { class: 'audit__head' }, h('h2', { id: 'versionsTitle' }, __('Versions du projet')), h('button', { type: 'button', class: 'icon-btn', 'aria-label': __('Fermer'), onclick: () => d.close() }, '✕')),
-    h('div', { class: 'a11y-form' },
+  const d = openDialog({ id: 'versionsDialog',
+    titleId: 'versionsTitle',
+    title: __('Versions du projet'),
+    body: [h('div', { class: 'a11y-form' },
       h('div', { class: 'add-page' }, name, h('button', { type: 'button', class: 'btn btn--small btn--primary', id: 'versionSave', onclick: save }, __('Enregistrer une version'))),
       h('p', { class: 'hint' }, __('Une version est aussi enregistrée automatiquement au début de chaque journée de travail, et avant chaque restauration ou ouverture d’un autre projet. Les versions restent dans ce navigateur (pensez à « Enregistrer le projet (.json) » pour une copie de sécurité ailleurs).')),
       gcRow()),
-    h('ul', { class: 'version-list' }),
-    h('footer', { class: 'audit__foot' }, h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Fermer'))));
-  d.addEventListener('close', () => d.remove());
-  document.body.append(d);
-  d.showModal();
+    h('ul', { class: 'version-list' })],
+    actions: [h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Fermer'))] });
   log.info('version.open', __('Fenêtre des versions ouverte'));
   render(d).catch(e => log.error('version.list-fail', __('Liste des versions non affichée : {error}', { error: e?.message || e }), { error: e }));
 }

@@ -1,5 +1,6 @@
 /* Panneau Pages : ajouter, ouvrir, renommer (par langue), adresse, description pour Google, ordre, suppression. */
 import { h, toast } from './dom.js';
+import { confirmDialog, openDialog } from './dialog.js';
 import { state, commit, setView } from './store.js';
 import { addPage, removePage, setPageSlug, setPageTitle, setPageSeo, movePage, slugify, LANG_LABELS, setPageFooterLink } from '../core/site.js';
 import { addAccessibilityPage } from '../core/a11ypage.js';
@@ -96,8 +97,8 @@ function pageCard(p, i, total) {
         h('button', { type: 'button', class: 'btn btn--small' + (current ? ' is-on' : ''), 'data-page-open': p.id, disabled: current, onclick: () => { log.info('page.open', __('Page ouverte : {name}', { name }), { id: p.id, slug: p.slug }); setView({ pageId: p.id }); } }, current ? __('Page ouverte') : __('Ouvrir')),
         isHome ? null : h('button', { type: 'button', class: 'icon-btn icon-btn--sm', 'data-page-move': p.id, 'data-dir': '-1', title: __('Monter dans le menu'), 'aria-label': __('Monter dans le menu'), disabled: i <= 1, onclick: () => { if (apply(x => movePage(x, p.id, -1), { source: 'pages' }, 'move')) log.info('page.move', __('Page « {name} » montée dans le menu (position {n})', { name, n: i }), { id: p.id, dir: -1, from: i, to: i - 1 }); } }, '↑'),
         isHome ? null : h('button', { type: 'button', class: 'icon-btn icon-btn--sm', 'data-page-move': p.id, 'data-dir': '1', title: __('Descendre dans le menu'), 'aria-label': __('Descendre dans le menu'), disabled: i >= total - 1, onclick: () => { if (apply(x => movePage(x, p.id, 1), { source: 'pages' }, 'move')) log.info('page.move', __('Page « {name} » descendue dans le menu (position {n})', { name, n: i + 2 }), { id: p.id, dir: 1, from: i, to: i + 1 }); } }, '↓'),
-        isHome ? null : h('button', { type: 'button', class: 'icon-btn icon-btn--sm is-danger', 'data-page-delete': p.id, title: __('Supprimer la page'), 'aria-label': __('Supprimer la page'), onclick: () => {
-          if (!confirm(__('Supprimer la page « {name} » ? (Ctrl+Z pour annuler.)', { name }))) { log.debug('page.delete-cancel', __('Suppression de « {name} » annulée', { name }), { id: p.id }); return; }
+        isHome ? null : h('button', { type: 'button', class: 'icon-btn icon-btn--sm is-danger', 'data-page-delete': p.id, title: __('Supprimer la page'), 'aria-label': __('Supprimer la page'), onclick: async () => {
+          if (!(await confirmDialog({ id: 'pageDeleteDialog', title: __('Supprimer la page « {name} »', { name }), ok: __('Supprimer'), danger: true, message: __('Supprimer la page « {name} » ? (Ctrl+Z pour annuler.)', { name }) }))) { log.debug('page.delete-cancel', __('Suppression de « {name} » annulée', { name }), { id: p.id }); return; }
           if (state.pageId === p.id) setView({ pageId: s.pages[0].id });
           if (apply(x => removePage(x, p.id), { source: 'pages' }, 'delete')) log.info('page.delete', __('Page « {name} » supprimée (Ctrl+Z pour la retrouver)', { name }), { id: p.id, slug: p.slug, pages: state.site.pages.length, wasOpen: current || undefined });
         } }, '✕')),
@@ -191,13 +192,13 @@ function menuSection() {
       if (act(x => addMenuLink(x, { label: linkLabel.value.trim(), url: u, lang, newTab: /^https?:/i.test(u) }), 'menu-link-add')) log.info('page.menu.link-add', __('Lien « {label} » ajouté au menu', { label: linkLabel.value.trim().slice(0, 60) }), { url: u.slice(0, 120), newTab: /^https?:/i.test(u), lang, items: state.site.menu?.length });
     } }, __('+ Lien'))),
     addPage,
-    h('button', { type: 'button', class: 'btn btn--small', 'data-menu-auto': '', onclick: () => {
-      if (!confirm(__('Revenir au menu automatique (toutes les pages) ? Les liens et libellés personnalisés seront perdus (Ctrl+Z pour annuler).'))) { log.debug('page.menu.auto-cancel', __('Retour au menu automatique annulé')); return; }
+    h('button', { type: 'button', class: 'btn btn--small', 'data-menu-auto': '', onclick: async () => {
+      if (!(await confirmDialog({ id: 'menuAutoDialog', title: __('Revenir au menu automatique'), ok: __('Revenir au menu automatique'), danger: true, message: __('Revenir au menu automatique (toutes les pages) ? Les liens et libellés personnalisés seront perdus (Ctrl+Z pour annuler).') }))) { log.debug('page.menu.auto-cancel', __('Retour au menu automatique annulé')); return; }
       if (act(x => ({ ...structuredClone(x), menu: null }), 'menu-auto')) log.info('page.menu.auto', __('Menu automatique rétabli (toutes les pages, dans l’ordre)'), { dropped: s.menu.length });
     } }, __('Revenir au menu automatique'))];
 }
 
-/* Assistant : déclaration d'accessibilité en 4 langues, pré-remplie avec la vérification du site */
+/* Assistant : déclaration d'accessibilité en 5 langues, pré-remplie avec la vérification du site */
 function openA11yDialog() {
   let d = document.getElementById('a11yDialog');
   d?.remove();
@@ -216,15 +217,15 @@ function openA11yDialog() {
   const date = h('input', { class: 'input', type: 'date', value: today, 'data-a11y': 'date' });
   const lim = h('textarea', { class: 'input', 'data-a11y': 'limits', placeholder: __('Un point par ligne') });
   lim.value = limits;
-  d = h('dialog', { class: 'audit', id: 'a11yDialog', 'aria-labelledby': 'a11yTitle' },
-    h('header', { class: 'audit__head' }, h('h2', { id: 'a11yTitle' }, __('Déclaration d’accessibilité')), h('button', { type: 'button', class: 'icon-btn', 'aria-label': __('Fermer'), onclick: () => d.close() }, '✕')),
-    h('div', { class: 'a11y-form' },
-      h('p', { class: 'hint' }, __('Crée une page « Accessibilité » en français, néerlandais, allemand et anglais (référence WCAG 2.1 AA / EN 301 549), avec un lien dans le pied de page. Relisez-la avant publication : ce modèle n’est pas un avis juridique.')),
+  d = openDialog({ id: 'a11yDialog',
+    titleId: 'a11yTitle',
+    title: __('Déclaration d’accessibilité'),
+    body: [h('div', { class: 'a11y-form' },
+      h('p', { class: 'hint' }, __('Crée une page « Accessibilité » dans les langues du site (référence WCAG 2.2 AA / EN 301 549 v3.2.1 ; en japonais, JIS X 8341-3), avec un lien dans le pied de page. Relisez-la avant publication : ce modèle n’est pas un avis juridique.')),
       field(__('Organisation responsable'), entity), field(__('Adresse de contact pour signaler un problème'), email), field(__('État de conformité'), status), field(__('Date de la vérification'), date),
-      field(__('Contenus non accessibles connus (pré-rempli avec la vérification du site)'), lim)),
-    h('footer', { class: 'audit__foot' },
-      h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Annuler')),
-      h('button', { type: 'button', class: 'btn btn--primary', id: 'a11yCreate', onclick: () => {
+      field(__('Contenus non accessibles connus (pré-rempli avec la vérification du site)'), lim))],
+    actions: [h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Annuler')),
+    h('button', { type: 'button', class: 'btn btn--primary', id: 'a11yCreate', onclick: () => {
         try {
           const r = addAccessibilityPage(state.site, { entity: entity.value, email: email.value.trim(), date: date.value || today, status: status.value, limits: lim.value.split('\n') });
           commit(r.site, { source: 'pages' });
@@ -232,11 +233,9 @@ function openA11yDialog() {
           log.info('page.a11y.create', __('Page « Accessibilité » créée en {n} langues : /{slug}/', { n: Object.keys(np?.title || {}).length, slug: np?.slug }), { id: r.pageId, slug: np?.slug, status: status.value, limits: lim.value.split('\n').filter(x => x.trim()).length, langs: Object.keys(np?.title || {}), footerLink: !!np?.footerLink });
           d.close();
           setView({ pageId: r.pageId });
-          toast(__('Page « Accessibilité » créée en 4 langues, avec un lien dans le pied de page.'));
+          toast(__('Page « Accessibilité » créée dans les langues du site, avec un lien dans le pied de page.'));
         } catch (e) { log.warn('page.a11y.refused', __('Déclaration non créée : {error}', { error: e.message }), { email: !!email.value.trim(), status: status.value, error: e }); toast(e.message, 'error'); email.focus(); }
-      } }, __('Créer la page'))));
-  document.body.append(d);
-  d.showModal();
+      } }, __('Créer la page'))] });
   email.focus();
 }
 
@@ -250,16 +249,16 @@ export function openLegalDialog() {
   const form = h('select', { class: 'control', 'data-legal': 'form' }, Object.keys(LEGAL_FORMS).map(k => h('option', { value: k, selected: (saved.form || 'asbl') === k }, LEGAL_FORMS[k][uiLang()] || LEGAL_FORMS[k].fr)));
   const ins = { name: input('name', __('Dénomination')), seat: input('seat', __('Rue, numéro, code postal, commune')), number: input('number', '0123.456.789'), rpm: input('rpm', __('ex. Liège, division Namur')), email: input('email', 'contact@exemple.be', 'email'), phone: input('phone', __('facultatif'), 'tel'), vat: input('vat', __('facultatif (ex. BE0123456789)')), host: input('host', __('ex. OVH SAS, 2 rue Kellermann, 59100 Roubaix, France')) };
   log.info('page.legal.open', __('Assistant des pages légales ouvert'), { exists: s.pages.filter(p => p.legal).map(p => p.legal) });
-  const d = h('dialog', { class: 'audit', id: 'legalDialog', 'aria-labelledby': 'legalTitle' },
-    h('header', { class: 'audit__head' }, h('h2', { id: 'legalTitle' }, __('Mentions légales et vie privée')), h('button', { type: 'button', class: 'icon-btn', 'aria-label': __('Fermer'), onclick: () => d.close() }, '✕')),
-    h('div', { class: 'a11y-form' },
+  const d = openDialog({ id: 'legalDialog',
+    titleId: 'legalTitle',
+    title: __('Mentions légales et vie privée'),
+    body: [h('div', { class: 'a11y-form' },
       h('p', { class: 'hint is-warn', 'data-legal-warning': '' }, __('Modèle à adapter, à faire relire par un juriste : ce texte n’est pas un avis juridique.')),
       h('p', { class: 'hint' }, __('Crée deux pages, « Mentions légales » et « Vie privée », dans toutes les langues du site, avec un lien dans le pied de page. La case de consentement des formulaires renvoie à la page « Vie privée ».')),
       field(__('Dénomination'), ins.name), field(__('Forme juridique'), form), field(__('Siège'), ins.seat), field(__('Numéro d’entreprise (BCE)'), ins.number),
-      field(__('RPM (tribunal de l’entreprise)'), ins.rpm), field(__('E-mail de contact'), ins.email), field(__('Téléphone'), ins.phone), field(__('Numéro de TVA'), ins.vat), field(__('Hébergeur du site'), ins.host)),
-    h('footer', { class: 'audit__foot' },
-      h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Annuler')),
-      h('button', { type: 'button', class: 'btn btn--primary', id: 'legalCreate', onclick: () => {
+      field(__('RPM (tribunal de l’entreprise)'), ins.rpm), field(__('E-mail de contact'), ins.email), field(__('Téléphone'), ins.phone), field(__('Numéro de TVA'), ins.vat), field(__('Hébergeur du site'), ins.host))],
+    actions: [h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Annuler')),
+    h('button', { type: 'button', class: 'btn btn--primary', id: 'legalCreate', onclick: () => {
         const opts = Object.fromEntries(Object.entries(ins).map(([k, el]) => [k, el.value.trim()]));
         opts.form = form.value;
         try {
@@ -274,10 +273,7 @@ export function openLegalDialog() {
           log.warn('page.legal.refused', __('Pages légales non créées : {error}', { error: e.message }), { error: e, filled: Object.keys(opts).filter(k => opts[k]) });
           toast(e.message, 'error');
         }
-      } }, __('Créer les deux pages'))));
-  d.addEventListener('close', () => d.remove());
-  document.body.append(d);
-  d.showModal();
+      } }, __('Créer les deux pages'))] });
   ins.name.focus();
 }
 

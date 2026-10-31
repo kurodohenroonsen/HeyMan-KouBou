@@ -52,6 +52,12 @@ const opt = (value, label) => ({ value, label });
 const pick = (v, allowed, dflt) => (allowed.includes(v) ? v : dflt);
 
 /* ---------- Vidéo : analyse d'adresse stricte ---------- */
+/* Cycle 33 (W4) : lien vers un document (c.doc) — type, rel="noopener", download facultatif (nom d'origine) */
+export function docAttrs(c, doc, download = false) {
+  return `href="${c.attr(doc.href)}" type="${c.attr(doc.mime)}" rel="noopener"${download ? ` download="${c.attr(doc.name)}"` : ''}`;
+}
+export function docBadge(c, doc) { return `<span class="doc-meta">(${c.esc(doc.meta)})</span>`; }
+
 export function parseVideo(url) {
   let u;
   try { u = new URL(String(url || '')); } catch { return null; }
@@ -84,21 +90,25 @@ register('icon-list', {
   fields: [
     { key: 'items', type: 'list', label: __('Éléments'), itemLabel: __('Élément'), fields: [
       { key: 'icon', type: 'icon', label: __('Icône') },
-      { key: 'text', type: 'inline', i18n: true, label: __('Texte') }
-    ], newItem: () => ({ icon: 'check', text: L5('Nouvel élément', 'Nieuw item', 'Neuer Eintrag', 'New item', '新しい項目') }) },
+      { key: 'text', type: 'inline', i18n: true, label: __('Texte') },
+      { key: 'file', type: 'document', label: __('Fichier à télécharger (facultatif)') }
+    ], newItem: () => ({ icon: 'check', text: L5('Nouvel élément', 'Nieuw item', 'Neuer Eintrag', 'New item', '新しい項目'), file: '' }) },
     { key: 'size', type: 'select', label: __('Taille des icônes'), options: [opt('18', __('Petite')), opt('22', __('Moyenne')), opt('28', __('Grande'))] }
   ],
   defaults: () => ({ size: '22', items: [
-    { icon: 'check', text: L5('Premier point important', 'Eerste belangrijk punt', 'Erster wichtiger Punkt', 'First key point', '大切なポイント その1') },
-    { icon: 'check', text: L5('Deuxième point', 'Tweede punt', 'Zweiter Punkt', 'Second point', 'ポイント その2') },
-    { icon: 'check', text: L5('Troisième point', 'Derde punt', 'Dritter Punkt', 'Third point', 'ポイント その3') }
+    { icon: 'check', text: L5('Premier point important', 'Eerste belangrijk punt', 'Erster wichtiger Punkt', 'First key point', '大切なポイント その1'), file: '' },
+    { icon: 'check', text: L5('Deuxième point', 'Tweede punt', 'Zweiter Punkt', 'Second point', 'ポイント その2'), file: '' },
+    { icon: 'check', text: L5('Troisième point', 'Derde punt', 'Dritter Punkt', 'Third point', 'ポイント その3'), file: '' }
   ] }),
   css: `.icon-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 .icon-list li{display:flex;gap:10px;align-items:flex-start}
-.icon-list .icon{flex:none;color:var(--c1);margin-top:.15em}`,
+.icon-list .icon{flex:none;color:var(--c1);margin-top:.15em}
+.doc-meta{font-size:.85em;font-weight:400;opacity:.85;white-space:nowrap}`,
   render(p, c) {
     const size = Number(pick(p.size, ['18', '22', '28'], '22'));
-    return `<ul class="icon-list">${(p.items || []).map((it, i) => `<li>${iconSvg(it.icon, size)}<span data-edit="items.${i}.text">${c.inline(c.t(it.text))}</span></li>`).join('')}</ul>`;
+    const text = (it, i) => `<span data-edit="items.${i}.text">${c.inline(c.t(it.text))}</span>`;
+    const item = (it, i) => { const doc = c.doc?.(it.file); return doc ? `<a ${docAttrs(c, doc)}>${text(it, i)} ${docBadge(c, doc)}</a>` : text(it, i); };
+    return `<ul class="icon-list">${(p.items || []).map((it, i) => `<li>${iconSvg(it.icon, size)}${item(it, i)}</li>`).join('')}</ul>`;
   }
 });
 
@@ -154,7 +164,8 @@ register('quote', {
     const variant = pick(p.variant, ['line', 'card', 'big'], 'line');
     const photo = c.img(p.photo);
     const role = c.t(p.role);
-    return `<figure class="quote quote--${variant}"><blockquote class="rich" data-edit="text">${c.rich(c.t(p.text))}</blockquote><figcaption>${photo ? `<img src="${c.attr(photo)}" alt="" loading="lazy">` : ''}<span><cite data-edit="author">${c.esc(p.author || '')}</cite>${role ? c.esc(role) : ''}</span></figcaption></figure>`;
+    const pic = photo ? (c.imgTag ? c.imgTag(p.photo, { px: 44 }) : `<img src="${c.attr(photo)}" alt="" loading="lazy">`) : '';
+    return `<figure class="quote quote--${variant}"><blockquote class="rich" data-edit="text">${c.rich(c.t(p.text))}</blockquote><figcaption>${pic}<span><cite data-edit="author">${c.esc(p.author || '')}</cite>${role ? c.esc(role) : ''}</span></figcaption></figure>`;
   }
 });
 
@@ -236,9 +247,15 @@ register('gallery', {
 .gal img,.gal .img-empty{width:100%;border-radius:var(--radius);object-fit:cover;min-height:0}
 .gal figcaption{margin-top:6px;font-size:.88em;color:var(--c5)}
 .gal a{display:block}
-.lb{position:fixed;inset:0;z-index:999;background:rgb(0 0 0/.88);display:grid;place-items:center;padding:24px;cursor:zoom-out}
-.lb img{max-height:90vh;width:auto;border-radius:6px}`,
-  script: `(function(){document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.gal[data-zoom] a');if(!a)return;e.preventDefault();var d=document.createElement('div');d.className='lb';d.setAttribute('role','dialog');d.setAttribute('aria-label',a.getAttribute('aria-label')||'');var i=document.createElement('img');i.src=a.getAttribute('href');i.alt=a.querySelector('img')?a.querySelector('img').alt:'';d.appendChild(i);var close=function(){d.remove();document.removeEventListener('keydown',k);a.focus();};var k=function(ev){if(ev.key==='Escape')close();};d.addEventListener('click',close);document.addEventListener('keydown',k);document.body.appendChild(d);if(window.__aLog)window.__aLog('site.gallery','Image agrandie',{src:a.getAttribute('href').slice(0,80)});});})();`,
+.lb{position:fixed;inset:0;z-index:999;width:100%;height:100%;max-width:none;max-height:none;margin:0;border:0;background:rgb(0 0 0/.88);padding:24px;cursor:zoom-out}
+.lb[open]{display:grid;place-items:center}
+.lb::backdrop{background:transparent}
+.lb img{max-height:90vh;max-width:100%;width:auto;height:auto;border-radius:6px}
+.lb__close{position:absolute;top:12px;right:12px;min-width:44px;min-height:44px;border:0;border-radius:50%;background:#fff;color:#111;font:700 20px/1 system-ui,sans-serif;cursor:pointer}
+.lb__close:focus-visible{outline:3px solid #fff;outline-offset:3px}`,
+  /* Cycle 33 (A2) : dialogue modal natif (le reste de la page devient inerte), bouton Fermer visible et libellé dans la
+     langue de la page, Tab enfermé sur ce bouton, Échap ou clic pour fermer, focus rendu à la vignette */
+  script: `(function(){document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.gal[data-zoom] a');if(!a)return;e.preventDefault();var g=a.closest('.gal');var lab=g.getAttribute('data-close')||'×';var d=document.createElement('dialog');d.className='lb';d.setAttribute('aria-modal','true');d.setAttribute('aria-label',a.getAttribute('aria-label')||'');var b=document.createElement('button');b.type='button';b.className='lb__close';b.textContent='✕';b.setAttribute('aria-label',lab);b.title=lab;var i=document.createElement('img');i.src=a.getAttribute('href');i.alt=a.querySelector('img')?a.querySelector('img').alt:'';d.appendChild(b);d.appendChild(i);d.addEventListener('click',function(){d.close();});d.addEventListener('keydown',function(ev){if(ev.key==='Tab'){ev.preventDefault();b.focus();}});d.addEventListener('close',function(){d.remove();a.focus();});document.body.appendChild(d);d.showModal();b.focus();if(window.__aLog)window.__aLog('site.gallery','Image agrandie',{src:a.getAttribute('href').slice(0,80)});});})();`,
   render(p, c) {
     const cols = pick(p.columns, ['2', '3', '4'], '3');
     const ratio = pick(p.ratio, ['1/1', '4/3', '16/9', 'auto'], '4/3');
@@ -248,11 +265,12 @@ register('gallery', {
       const choose = __('Image à choisir');
       if (!src) return c.canvas ? `<figure><div class="img-empty"${style}>${c.esc(choose)}</div></figure>` : '';
       const alt = c.t(it.alt);
-      const img = `<img src="${c.attr(src)}" alt="${c.attr(alt)}" loading="lazy"${style}>`;
+      const n = Number(cols);
+      const img = c.imgTag ? c.imgTag(it.src, { alt, style, frac: { d: 1 / n, t: 1 / n, m: 1 / 2 } }) : `<img src="${c.attr(src)}" alt="${c.attr(alt)}" loading="lazy"${style}>`;
       const cap = c.t(it.caption);
       return `<figure>${p.zoom ? `<a href="${c.attr(src)}" aria-label="${c.attr(alt || siteText('zoom', c.lang))}">${img}</a>` : img}${cap ? `<figcaption>${c.esc(cap)}</figcaption>` : ''}</figure>`;
     }).join('');
-    return `<div class="gal" style="--cols:${cols}"${p.zoom ? ' data-zoom' : ''}>${figs}</div>`;
+    return `<div class="gal" style="--cols:${cols}"${p.zoom ? ` data-zoom data-close="${c.attr(siteText('close', c.lang))}"` : ''}>${figs}</div>`;
   }
 });
 
@@ -442,7 +460,9 @@ register('card', {
     { key: 'title', type: 'inline', i18n: true, label: __('Titre') },
     { key: 'text', type: 'richtext', i18n: true, label: __('Texte') },
     { key: 'button', type: 'text', i18n: true, label: __('Texte du lien') },
-    { key: 'link', type: 'url', label: __('Lien') }
+    { key: 'link', type: 'url', label: __('Lien') },
+    { key: 'file', type: 'document', label: __('Fichier (remplace le lien)') },
+    { key: 'download', type: 'toggle', label: __('Télécharger directement (sans ouvrir)') }
   ],
   defaults: () => ({ image: '', alt: empty(), title: L5('Titre de la carte', 'Titel van de kaart', 'Titel der Karte', 'Card title', 'カードの見出し'),
     text: L5('<p>Un court texte de présentation.</p>', '<p>Een korte voorstellingstekst.</p>', '<p>Ein kurzer Vorstellungstext.</p>', '<p>A short introduction.</p>', '<p>短い紹介文を入れます。</p>'),
@@ -454,10 +474,14 @@ register('card', {
 .card__more{margin-top:auto;font-weight:700}`,
   render(p, c) {
     const src = c.img(p.image);
-    const img = src ? `<div class="card__img"><img src="${c.attr(src)}" alt="${c.attr(c.t(p.alt))}" loading="lazy"></div>` : c.canvas ? `<div class="card__img"><div class="img-empty">${c.esc(imageLabel())}</div></div>` : '';
-    const link = c.url(p.link);
+    const pic = c.imgTag ? c.imgTag(p.image, { alt: c.t(p.alt) }) : `<img src="${c.attr(src)}" alt="${c.attr(c.t(p.alt))}" loading="lazy">`;
+    const img = src ? `<div class="card__img">${pic}</div>` : c.canvas ? `<div class="card__img"><div class="img-empty">${c.esc(imageLabel())}</div></div>` : '';
+    const doc = c.doc?.(p.file);
+    const link = doc ? doc.href : c.url(p.link);
     const btn = c.t(p.button);
-    return `<article class="card">${img}<div class="card__body"><h3 class="card__title" data-edit="title">${c.inline(c.t(p.title))}</h3><div class="rich" data-edit="text">${c.rich(c.t(p.text))}</div>${btn && link ? `<a class="card__more" href="${c.attr(link)}" data-edit="button">${c.esc(btn)} →</a>` : ''}</div></article>`;
+    const more = doc ? `<a class="card__more" ${docAttrs(c, doc, p.download)} data-edit="button">${c.esc(btn || doc.name)} ${docBadge(c, doc)}</a>`
+      : btn && link ? `<a class="card__more" href="${c.attr(link)}" data-edit="button">${c.esc(btn)} →</a>` : '';
+    return `<article class="card">${img}<div class="card__body"><h3 class="card__title" data-edit="title">${c.inline(c.t(p.title))}</h3><div class="rich" data-edit="text">${c.rich(c.t(p.text))}</div>${more}</div></article>`;
   }
 });
 
@@ -507,7 +531,9 @@ register('site-logo', {
     const logo = c.img(c.site?.header?.logo);
     const h = pick(String(p.size), ['32', '40', '56', '72'], '40');
     const name = c.esc(c.site?.name || '');
-    return `<a class="brand" href="${c.attr(c.homeHref || './')}"${!p.showName ? ` aria-label="${c.attr(c.site?.name || siteText('home', c.lang))}"` : ''}>${logo ? `<img src="${c.attr(logo)}" alt="" style="height:${h}px">` : ''}${p.showName || !logo ? `<span>${name}</span>` : ''}</a>`;
+    const la = c.site?.assets?.[String(c.site?.header?.logo || '').slice(6)];
+    const pic = !logo ? '' : c.imgTag ? c.imgTag(c.site.header.logo, { style: ` style="height:${h}px"`, lazy: false, px: la?.width && la?.height ? h * la.width / la.height : 0 }) : `<img src="${c.attr(logo)}" alt="" style="height:${h}px">`;
+    return `<a class="brand" href="${c.attr(c.homeHref || './')}"${!p.showName ? ` aria-label="${c.attr(c.site?.name || siteText('home', c.lang))}"` : ''}>${pic}${p.showName || !logo ? `<span>${name}</span>` : ''}</a>`;
   }
 });
 

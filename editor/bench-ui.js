@@ -3,6 +3,7 @@
  * vérifie les réponses, mesure les durées, produit un rapport à copier. Rien n'est enregistré dans le projet.
  */
 import { h, $, toast, download } from './dom.js';
+import { openDialog } from './dialog.js';
 import { log } from './log.js';
 import { AI_APIS, aiStatus, chromeProvider, loggedAI } from './ai.js';
 import { BENCH_GROUPS, BENCH_CASES, STATUS_LABEL, benchFixtures, runBench, benchSummary, benchReport, benchScoreText } from '../core/bench.js';
@@ -48,21 +49,21 @@ export async function openBench() {
   const stopBtn = h('button', { type: 'button', class: 'btn', 'data-bench-stop': '', hidden: true, onclick: () => { signal.stopped = true; stopBtn.disabled = true; status.textContent = __('Arrêt après le cas en cours…'); } }, __('■ Arrêter'));
   const copyBtn = h('button', { type: 'button', class: 'btn btn--small', 'data-bench-copy': '', disabled: true, onclick: () => copy() }, __('📋 Copier le rapport'));
   const dlBtn = h('button', { type: 'button', class: 'btn btn--small', 'data-bench-download': '', disabled: true, onclick: () => save() }, '⇩ .json');
-  const d = h('dialog', { class: 'audit bench-dialog', id: 'benchDialog', 'aria-labelledby': 'benchTitle' },
-    h('header', { class: 'audit__head' }, h('h2', { id: 'benchTitle' }, __('🧪 Banc d’essai de l’IA locale')), h('button', { type: 'button', class: 'icon-btn', 'aria-label': __('Fermer'), onclick: () => d.close() }, '✕')),
-    h('div', { class: 'a11y-form' },
+  const d = openDialog({ id: 'benchDialog',
+    className: 'bench-dialog',
+    titleId: 'benchTitle',
+    title: __('🧪 Banc d’essai de l’IA locale'),
+    body: [h('div', { class: 'a11y-form' },
       h('p', { class: 'hint' }, __('Chaque tâche d’IA d’Atelier est lancée sur des exemples fixes, dans ce Chrome, avec le vrai Gemini Nano. Les réponses sont vérifiées automatiquement et les durées mesurées. Rien n’est enregistré dans le projet, rien ne quitte l’ordinateur. Copiez le rapport et envoyez-le pour améliorer les consignes.')),
       envBox, groups,
       h('div', { class: 'row-btns' }, runBtn, stopBtn, copyBtn, dlBtn),
-      status, summary, results),
-    h('footer', { class: 'audit__foot' }, h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Fermer'))));
+      status, summary, results)],
+    actions: [h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Fermer'))] });
   let res = null;
   let envInfo = {};
   let running = false;
   const signal = { stopped: false };
   d.addEventListener('close', () => { if (running) signal.stopped = true; d.remove(); });
-  document.body.append(d);
-  d.showModal();
 
   const st = await aiStatus('fr');
   let params = null;

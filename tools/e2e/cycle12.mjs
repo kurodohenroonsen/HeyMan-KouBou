@@ -30,6 +30,7 @@ export default async function (t) {
   const row = page.locator('#versionsDialog [data-version]', { hasText: 'Avant les essais' });
   t.ok((await row.locator('.version__diff').textContent()).includes('Accueil'), `comparaison : « ${(await row.locator('.version__diff').textContent()).trim()} »`);
   await row.locator('[data-version-restore]').click();
+  await t.confirm(); /* cycle 33 : fenêtre Atelier */
   await t.wait(800);
   t.ok(await sectionCount() === before, 'restaurer : la section est revenue');
   await page.click('#fileMenu summary');
@@ -120,6 +121,7 @@ export default async function (t) {
     s = await site();
     const tmp = s.pages.find(x => x.slug === 'temporaire');
     await page.locator(`[data-page-delete="${tmp.id}"]`).click();
+    await t.confirm(); /* cycle 33 : fenêtre Atelier */
     await t.wait(300);
     await page.click('#publishBtn');
     await t.wait(200);

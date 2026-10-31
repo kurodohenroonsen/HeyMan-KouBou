@@ -80,7 +80,7 @@ export default async function (t) {
   s = await site();
   const a11y = s.pages.find(p => p.slug === 'accessibilite');
   t.ok(a11y && (await page.evaluate(() => window.__atelier.pageId)) === a11y.id, 'page « Accessibilité » créée et ouverte');
-  t.ok((await c.locator('main').textContent()).includes('WCAG 2.1') && (await c.locator('footer').textContent()).includes('Accessibilité'), 'contenu de la déclaration et lien dans le pied de page');
+  t.ok((await c.locator('main').textContent()).includes('WCAG 2.2') && (await c.locator('footer').textContent()).includes('Accessibilité'), 'contenu de la déclaration et lien dans le pied de page');
   t.ok(!(await c.locator('header .menu').textContent()).includes('Accessibilité'), 'la déclaration n’encombre pas le menu principal');
 
   /* --- 6. effet d'apparition --- */

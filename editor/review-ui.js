@@ -1,5 +1,6 @@
 /* Commentaires : panneau, pastilles dans la page, signatures vérifiées. Fonctionne avec ou sans session. */
 import { h, $, toast, icon } from './dom.js';
+import { confirmDialog } from './dialog.js';
 import { state, subscribe, commit, select, setView, nodeById, setEditTarget } from './store.js';
 import { makeComment, verifyComment, addComment, addReply, setResolved, removeComment, removeReply, listComments, openCount } from '../core/review.js';
 import { findNode } from '../core/tree.js';
@@ -113,8 +114,8 @@ function commentItem(c, n) {
     h('div', { class: 'row-btns' },
       h('button', { type: 'button', class: 'btn btn--small', 'data-reply-add': c.id, onclick: sendReply }, __('Répondre')),
       h('button', { type: 'button', class: 'btn btn--small', 'data-comment-resolve': c.id, onclick: () => { if (apply(s => setResolved(s, c.id, !c.resolved), c.resolved ? 'réouverture' : 'résolution')) { log.info('review.resolve', c.resolved ? __('Commentaire rouvert') : __('Commentaire résolu'), { id: c.id, resolved: !c.resolved, role: sessionRole() || 'seul' }); render(); } } }, c.resolved ? __('Rouvrir') : __('✓ Résolu')),
-      canDelete(c) ? h('button', { type: 'button', class: 'btn btn--small is-danger', 'data-comment-delete': c.id, onclick: () => {
-        if (!confirm(__('Supprimer ce commentaire et ses réponses ?'))) { log.debug('review.delete-cancel', __('Suppression du commentaire annulée'), { id: c.id }); return; }
+      canDelete(c) ? h('button', { type: 'button', class: 'btn btn--small is-danger', 'data-comment-delete': c.id, onclick: async () => {
+        if (!(await confirmDialog({ id: 'commentDeleteDialog', title: __('Supprimer le commentaire'), ok: __('Supprimer'), danger: true, message: __('Supprimer ce commentaire et ses réponses ?') }))) { log.debug('review.delete-cancel', __('Suppression du commentaire annulée'), { id: c.id }); return; }
         if (apply(s => removeComment(s, c.id), 'suppression')) { log.info('review.delete', __('Commentaire supprimé avec ses réponses'), { id: c.id, replies: (c.replies || []).length }); render(); }
       } }, __('Supprimer')) : null));
 }

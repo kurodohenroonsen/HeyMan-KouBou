@@ -227,10 +227,14 @@ export class CollabNode {
       }
       case 'asset': {
         if (st.role === 'reviewer' || !validAssetBytes(m.id, m.data)) { log.warn('collab.asset.refused', __('Image reçue de {name} refusée (relecteur ou image non valide)', { name: st.name }), { from: st.name, role: st.role, id: String(m.id).slice(0, 60) }); return; }
-        this.assets?.put(m.id, { dataUrl: m.data.dataUrl, variants: m.data.variants || [] });
+        /* Cycle 33 : un SVG est assaini à l'entrée du magasin ; illisible → refusé ; l'hôte relaie les octets assainis */
+        try { this.assets?.put(m.id, { dataUrl: m.data.dataUrl, variants: m.data.variants || [] }); } catch {
+          log.warn('collab.asset.refused', __('Image reçue de {name} refusée (relecteur ou image non valide)', { name: st.name }), { from: st.name, role: st.role, id: String(m.id).slice(0, 60) });
+          return;
+        }
         this.asked.delete(m.id);
         log.debug('collab.asset.in', __('Image reçue de {name}', { name: st.name }), { from: st.name, id: m.id, kb: Math.round(m.data.dataUrl.length * 0.75 / 1024), variants: m.data.variants?.length || 0 });
-        if (this.isHost) this._broadcast({ t: 'asset', id: m.id, data: m.data }, st.link);
+        if (this.isHost) this._broadcast({ t: 'asset', id: m.id, data: this.assets?.entry(m.id) || m.data }, st.link);
         this.onAsset?.(m.id);
         return;
       }

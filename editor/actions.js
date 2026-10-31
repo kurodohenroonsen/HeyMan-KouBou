@@ -2,8 +2,9 @@
 import { state, root, nodeById, parentOf, commitRoot, commit, select, selectedIds, emit, setEditTarget } from './store.js';
 import { createComponent, makeInstance, detachInstance } from '../core/components.js';
 import { createNode, createSectionWithColumns, duplicateNode, removeNode, insertNode, reId, findParent, canContain, setStyleBundle } from '../core/tree.js';
-import { insertAuto, placeForType, moveSibling, nodeLabel, removeMany, duplicateMany, topLevel } from '../core/editing.js';
-import { toast } from './dom.js';
+import { insertAuto, placeForType, moveSibling, nodeLabel, nodeSummary, removeMany, duplicateMany, topLevel, moveTargets, moveTo } from '../core/editing.js';
+import { h, toast } from './dom.js';
+import { askText, openDialog } from './dialog.js';
 import { log } from './log.js';
 import { __, __n, N_ } from '../core/ui-i18n.js';
 
@@ -188,13 +189,49 @@ export function moveSelected(delta) {
   }, N_('déplacer'));
 }
 
+/* « Déplacer vers… » (cycle 33, WCAG 2.5.7) : choisir la colonne ou la section de destination sans glisser */
+const PLACE = { section: N_('Section {n}'), row: N_('Rangée {n}'), column: N_('Colonne {n}') };
+function targetLabel(t) {
+  const first = nodeById(t.id)?.children?.[0];
+  const hint = t.current ? __('position actuelle') : first ? nodeSummary(first, state.site, state.lang) || nodeLabel(first) : __('vide');
+  return `${t.path.map(p => __(PLACE[p.type], { n: p.n })).join(' › ')} — ${hint}`;
+}
+export function moveSelectedTo() {
+  const id = state.selected;
+  if (!id) { none(N_('déplacer vers')); return; }
+  const node = nodeById(id);
+  const targets = moveTargets(root(), id);
+  if (!targets.length) { log.debug('action.move-to-none', __('« Déplacer vers… » : aucune destination (une section se déplace avec Monter / Descendre)'), { id, type: node.type }); toast(__('Une section se déplace avec Monter / Descendre (Alt+↑ / Alt+↓).')); return; }
+  const sel = h('select', { class: 'control', 'data-move-target': '', size: Math.min(10, Math.max(2, targets.length)) },
+    targets.map(t => h('option', { value: t.id, selected: t.current }, targetLabel(t))));
+  const go = () => {
+    const to = targets.find(t => t.id === sel.value);
+    d.close();
+    if (!to || to.current) { log.debug('action.move-to-same', __('« Déplacer vers… » : même endroit, rien à faire'), { id }); return; }
+    safe(() => {
+      commitRoot(moveTo(root(), id, to.id), { source: 'action' });
+      select(id, { scroll: true });
+      if (applied()) log.info('action.move-to', __('Déplacé vers {target} : {type}', { target: to.path.map(p => __(PLACE[p.type], { n: p.n })).join(' › '), type: node.type }), { id, type: node.type, to: to.id, toType: to.type, path: to.path.map(p => p.n).join('.') });
+    }, N_('déplacer vers'));
+  };
+  sel.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); go(); } });
+  sel.addEventListener('dblclick', go);
+  const d = openDialog({
+    id: 'moveToDialog', size: 'sm', focus: sel, title: __('Déplacer « {label} » vers…', { label: nodeLabel(node) }),
+    body: h('div', { class: 'a11y-form' }, h('label', { class: 'field' }, h('span', { class: 'field__label' }, __('Destination (l’élément est placé à la fin)')), sel)),
+    actions: [h('button', { type: 'button', class: 'btn', 'data-confirm-cancel': '', onclick: () => d.close() }, __('Annuler')),
+      h('button', { type: 'button', class: 'btn btn--primary', 'data-confirm': '', onclick: go }, __('Déplacer'))]
+  });
+  log.debug('action.move-to-open', __n(targets.length, '« Déplacer vers… » : {n} destination possible', '« Déplacer vers… » : {n} destinations possibles'), { id, type: node.type, targets: targets.length });
+}
+
 /* ---------- Composants ---------- */
 
-export function createComponentFromSelected() {
+export async function createComponentFromSelected() {
   const n = nodeById(state.selected);
   if (!n || n.type === 'page') { log.warn('action.refused', __('Action « créer un composant » refusée : rien de sélectionné'), { action: 'créer un composant', reason: 'no-selection' }); toast(__('Sélectionnez d’abord une section, une rangée, une colonne ou un widget.'), 'error'); return; }
   if (state.editTarget) { log.warn('action.refused', __('Action « créer un composant » refusée : une autre modification (composant, en-tête…) est en cours'), { action: 'créer un composant', reason: 'edit-target', edit: state.editTarget.kind }); toast(__('Terminez d’abord la modification en cours.'), 'error'); return; }
-  const name = window.prompt(__('Nom du composant (réutilisable sur toutes les pages) :'), nodeLabel(n));
+  const name = await askText({ id: 'componentNameDialog', title: __('Créer un composant'), label: __('Nom du composant (réutilisable sur toutes les pages) :'), value: nodeLabel(n), ok: __('Créer') });
   if (name === null) { log.info('action.component-cancel', __('Création du composant annulée (nom non donné)'), { id: n.id }); return; }
   safe(() => {
     const r = createComponent(state.site, state.pageId, n.id, name);

@@ -126,6 +126,7 @@ export default async function (t) {
   await t.wait(200);
   t.ok((await site()).presets[pid].name === 'Bouton principal', 'preset renommé');
   await page.click(`[data-preset-delete="${pid}"]`);
+  await t.confirm(); /* cycle 33 : fenêtre Atelier */
   await t.wait(300);
   t.ok(!(await site()).presets[pid] && await cs(`[data-node="${b3}"] .btn`, 'backgroundColor') === c2, 'preset supprimé : les éléments gardent leur apparence');
 

@@ -149,3 +149,58 @@ test('historique de l’éditeur : les états partagent les images, borné en pa
   assert.ok(store.historyBytes() <= store.HISTORY_MAX_BYTES);
   store.stopSaving();
 });
+
+/* ---------- Intégration du cycle 33 sur le cycle 27 : documents et SVG dans le magasin ---------- */
+test('addDocument avec magasin : octets hors du modèle, export assets/docs/, .json autonome, aller-retour', async () => {
+  const { addDocument } = await import('../core/site.js');
+  const store = createAssetStore({ objectUrls: false });
+  const pdf = `data:application/pdf;base64,${Buffer.from('%PDF-1.4 statuts').toString('base64')}`;
+  const d = addDocument(createSite({ languages: ['fr'] }), { name: 'Statuts.pdf', dataUrl: pdf }, store);
+  const meta = d.site.assets[d.id];
+  assert.equal(meta.dataUrl, undefined, 'pas d’octets dans le site');
+  assert.deepEqual({ kind: meta.kind, name: meta.name, mime: meta.mime, file: meta.file }, { kind: 'document', name: 'Statuts.pdf', mime: 'application/pdf', file: 'statuts.pdf' });
+  assert.ok(meta.size > 0);
+  assert.equal(store.get(d.id).dataUrl, pdf);
+  const btn = createNode('button');
+  btn.props.file = `asset:${d.id}`;
+  const sec = createSectionWithColumns(1);
+  sec.children[0].children[0].children = [btn];
+  const root = createNode('page');
+  root.children = [sec];
+  const site = updatePageRoot(d.site, d.site.pages[0].id, root);
+  const files = renderSite(site, { assets: store }).files;
+  const key = [...files.keys()].find(k => /^assets\/docs\/statuts-[0-9a-f]{8}\.pdf$/.test(k));
+  assert.ok(key, [...files.keys()].join());
+  assert.equal(Buffer.from(files.get(key)).toString(), '%PDF-1.4 statuts');
+  assert.ok(renderPage(site, site.pages[0], 'fr', { assets: store }).includes(`href="${key}"`), 'lien vers le document');
+  const json = inlineAssets(site, store);
+  assert.equal(json.assets[d.id].dataUrl, pdf, '.json autonome');
+  const store2 = createAssetStore({ objectUrls: false });
+  const back = normalizeSite(JSON.parse(JSON.stringify(json)), { assets: store2 });
+  assert.equal(back.assets[d.id].dataUrl, undefined);
+  assert.equal(back.assets[d.id].name, 'Statuts.pdf');
+  assert.equal(store2.get(d.id).dataUrl, pdf);
+});
+
+test('magasin : un SVG est assaini à l’entrée (projet .json, pair) ; type inconnu refusé', () => {
+  const store = createAssetStore({ objectUrls: false });
+  const evil = `data:image/svg+xml;base64,${Buffer.from('<svg xmlns="http://www.w3.org/2000/svg" onload="alert(1)"><script>alert(1)</script><rect/></svg>').toString('base64')}`;
+  store.put('img_svg', { dataUrl: evil });
+  const text = Buffer.from(store.get('img_svg').dataUrl.split(',')[1], 'base64').toString();
+  assert.doesNotMatch(text, /script|onload/);
+  assert.match(text, /<rect\/>/);
+  assert.throws(() => store.put('x', { dataUrl: 'data:text/html;base64,PGI+' }));
+  const site = absorbAssets({ assets: { img_svg: { file: 'logo.svg', mime: 'image/svg+xml', dataUrl: evil } } }, store);
+  assert.equal(site.assets.img_svg.dataUrl, undefined);
+  const bad = `data:image/svg+xml;base64,${Buffer.from('pas un svg').toString('base64')}`;
+  const broken = absorbAssets({ assets: { img_bad: { file: 'b.svg', mime: 'image/svg+xml', dataUrl: bad } } }, store);
+  assert.equal(store.has('img_bad'), false, 'SVG illisible : métadonnées seules');
+  assert.equal(broken.assets.img_bad.file, 'b.svg');
+});
+
+test('collaboration : octets d’un document ou d’un SVG acceptés d’un pair, HTML refusé', async () => {
+  const { validAssetBytes } = await import('../core/collab.js');
+  assert.ok(validAssetBytes('doc_abc', { dataUrl: `data:application/pdf;base64,${Buffer.from('x').toString('base64')}` }));
+  assert.ok(validAssetBytes('img_svg', { dataUrl: `data:image/svg+xml;base64,${Buffer.from('<svg/>').toString('base64')}` }));
+  assert.ok(!validAssetBytes('doc_bad', { dataUrl: 'data:text/html;base64,PGI+' }));
+});

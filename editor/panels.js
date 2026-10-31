@@ -1,6 +1,7 @@
 /* Panneaux de gauche : Site (styles globaux, en-tête, pied de page), Pages, Modèles. */
 import { h, toast } from './dom.js';
 import { storageSection } from './safety.js';
+import { confirmDialog } from './dialog.js';
 import { state, commit, setView } from './store.js';
 import { setPalette, setTheme, setHeader, setFooterText, setSiteMeta, LANG_LABELS, addPaletteColor, removePaletteColor, setPaletteName, addFont, removeFont, setSiteIcon } from '../core/site.js';
 import { PALETTE_KEYS, BASE_PALETTE } from '../core/style.js';
@@ -149,8 +150,8 @@ function presetsSection(s) {
       h('span', { class: 'preset-row__meta' }, [__(REGISTRY[p.type]?.label) || p.type, isDef ? __('par défaut') : null, (usage[p.id] <= 1 ? __c('page', '{n} élément', { n: usage[p.id] }) : __c('page', '{n} éléments', { n: usage[p.id] }))].filter(Boolean).join(' · ')),
       h('span', { class: 'row-btns' },
         h('button', { type: 'button', class: 'icon-btn icon-btn--sm', 'data-preset-duplicate': p.id, title: __('Dupliquer'), 'aria-label': __('Dupliquer {name}', { name: p.name }), onclick: () => { if (apply(x => duplicatePreset(x, p.id).site, null, 'site', 'preset-duplicate')) log.info('settings.preset-duplicate', __('Preset « {name} » dupliqué', { name: p.name }), { id: p.id, type: p.type, presets: Object.keys(state.site.presets || {}).length }); } }, '⧉'),
-        h('button', { type: 'button', class: 'icon-btn icon-btn--sm is-danger', 'data-preset-delete': p.id, title: __('Supprimer (les éléments gardent leur apparence)'), 'aria-label': __('Supprimer {name}', { name: p.name }), onclick: () => {
-          if (usage[p.id] && !confirm(__n(usage[p.id], 'Supprimer le preset « {name} » ? L’élément concerné garde son apparence.', 'Supprimer le preset « {name} » ? Les {n} éléments concernés gardent leur apparence.', { name: p.name }))) { log.debug('settings.preset-delete-cancel', __('Suppression du preset « {name} » annulée', { name: p.name }), { id: p.id }); return; }
+        h('button', { type: 'button', class: 'icon-btn icon-btn--sm is-danger', 'data-preset-delete': p.id, title: __('Supprimer (les éléments gardent leur apparence)'), 'aria-label': __('Supprimer {name}', { name: p.name }), onclick: async () => {
+          if (usage[p.id] && !(await confirmDialog({ id: 'presetDeleteDialog', title: __('Supprimer le preset'), ok: __('Supprimer'), danger: true, message: __n(usage[p.id], 'Supprimer le preset « {name} » ? L’élément concerné garde son apparence.', 'Supprimer le preset « {name} » ? Les {n} éléments concernés gardent leur apparence.', { name: p.name }) }))) { log.debug('settings.preset-delete-cancel', __('Suppression du preset « {name} » annulée', { name: p.name }), { id: p.id }); return; }
           if (apply(x => deletePreset(x, p.id, { keepLook: true }), null, 'site', 'preset-delete')) log.info('settings.preset-delete', __n(usage[p.id], 'Preset « {name} » supprimé ({n} élément garde son apparence)', 'Preset « {name} » supprimé ({n} éléments gardent leur apparence)', { name: p.name }), { id: p.id, type: p.type, used: usage[p.id], wasDefault: isDef || undefined });
         } }, '✕')));
   }))];

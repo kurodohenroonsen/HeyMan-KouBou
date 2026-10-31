@@ -1,5 +1,5 @@
-12:57:08.953 +2.73s INFO  dnd.start [dnd#1] Glisser : Bouton {"kind":"widget","type":"button","from":"bibliothèque"}
-12:57:09.361 +3.13s DEBUG store.commit Modification {"source":"dnd","past":2,"page":"p_fptbpb4e"}
-12:57:09.365 +3.14s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"dnd","mode":"contenu","ms":3}
-12:57:09.372 +3.15s DEBUG store.select Sélection : button {"id":"n_6a6b3l1654","type":"button"}
-12:57:09.373 +3.15s INFO  dnd.ok [dnd#1 · 420 ms] Ajouté dans Colonne, position 1 {"id":"n_6a6b3l1654","type":"button","kind":"new","parentId":"n_46244v6t0e","parentType":"column","index":0,"where":"canevas"}
+13:40:31.267 +2.74s INFO  dnd.start [dnd#1] Glisser : Bouton {"kind":"widget","type":"button","from":"bibliothèque"}
+13:40:31.779 +3.25s DEBUG store.commit Modification {"source":"dnd","past":2,"page":"p_0x1ftvm1"}
+13:40:31.787 +3.26s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"dnd","mode":"contenu","ms":6}
+13:40:31.797 +3.27s DEBUG store.select Sélection : button {"id":"n_0f531s575r","type":"button"}
+13:40:31.799 +3.27s INFO  dnd.ok [dnd#1 · 532 ms] Ajouté dans Colonne, position 1 {"id":"n_0f531s575r","type":"button","kind":"new","parentId":"n_1q6d1d1i2r","parentType":"column","index":0,"where":"canevas"}

@@ -3,6 +3,7 @@
  * préparées par l'IA locale, vérifiées, montrées en aperçu, appliquées en une seule étape d'annulation.
  */
 import { h, $, toast } from './dom.js';
+import { openDialog } from './dialog.js';
 import { state, commit, setView } from './store.js';
 import { log } from './log.js';
 import { withAI, markAi, openAI } from './ai-ui.js';
@@ -33,18 +34,19 @@ export function openAsk(request = '') {
   const prepare = h('button', { type: 'button', class: 'btn btn--small btn--primary btn--ai', 'data-ask-plan': '', onclick: () => run() }, __('✨ Préparer'));
   const apply = h('button', { type: 'button', class: 'btn btn--primary', 'data-ask-apply': '', hidden: true, onclick: () => doApply() }, __('Appliquer'));
   input.addEventListener('keydown', e => { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); run(); } });
-  const d = h('dialog', { class: 'audit smart-dialog', id: 'askDialog', 'aria-labelledby': 'askTitle' },
-    h('header', { class: 'audit__head' }, h('h2', { id: 'askTitle' }, __('✨ Demander à Atelier')), h('button', { type: 'button', class: 'icon-btn', 'aria-label': __('Fermer'), onclick: () => d.close() }, '✕')),
-    h('div', { class: 'a11y-form' },
+  const d = openDialog({ id: 'askDialog',
+    className: 'smart-dialog',
+    titleId: 'askTitle',
+    title: __('✨ Demander à Atelier'),
+    body: [h('div', { class: 'a11y-form' },
       h('p', { class: 'hint' }, __('Décrivez ce que vous voulez : l’IA locale le traduit en actions que l’éditeur sait faire (ajouter une section, une FAQ, un élément, mettre en forme, créer une page…). Vous voyez tout avant d’appliquer ; Ctrl+Z annule en une fois.')),
       input,
       h('div', { class: 'row-btns' }, prepare, h('span', { class: 'hint' }, __('Ctrl+Entrée'))),
       h('details', { class: 'collab-adv' }, h('summary', {}, __('Exemples')), h('ul', {}, EXAMPLES().map(x => h('li', {}, h('button', { type: 'button', class: 'btn btn--small', 'data-ask-example': '', onclick: () => { input.value = x; input.focus(); } }, x))))),
-      status, out),
-    h('footer', { class: 'audit__foot' }, h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Fermer')), apply));
+      status, out)],
+    actions: [h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Fermer')),
+    apply] });
   d.addEventListener('close', () => { if (plan && !applied) log.info('assist.cancel', __('Demande fermée sans appliquer'), { steps: plan.steps.length }); d.remove(); });
-  document.body.append(d);
-  d.showModal();
   input.focus();
 
   async function run() {

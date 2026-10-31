@@ -11,6 +11,7 @@
 </head>
 <body>
 <header class="topbar">
+  <h1 class="vh" id="appTitle">Atelier</h1>
   <div class="tb-group tb-brand"><span class="logo" aria-hidden="true">◧</span><input id="siteName" class="site-name" aria-label="Nom du site" spellcheck="false"></div>
   <div class="tb-group">
     <label class="vh" for="pageSelect">Page</label>
@@ -33,7 +34,7 @@
     <button class="btn btn--small" id="seoBtn" type="button" title="Référencement (SEO) : notes, aperçu Google, conseils" aria-label="Référencement (SEO)"><span class="ico" data-icon="seo"></span><span class="btn__label">SEO</span></button>
   </div>
   <div class="tb-group tb-collab">
-    <div class="peers" id="peers" aria-label="Participants"></div>
+    <div class="peers" id="peers" role="group" aria-label="Participants"></div>
     <button class="btn btn--small" id="collabBtn" type="button" title="Travailler à plusieurs (pair-à-pair)" aria-label="Travailler à plusieurs"><span class="ico" data-icon="users"></span></button>
     <button class="btn btn--small" id="commentsBtn" type="button" title="Commentaires" aria-label="Commentaires" aria-pressed="false"><span class="ico" data-icon="comment"></span></button>
     <button class="btn btn--small" id="aiBtn" type="button" title="IA locale (Gemini Nano dans Chrome)" aria-label="IA locale"><span class="ico" data-icon="sparkle"></span></button>
@@ -72,7 +73,7 @@
 
 <div class="workspace">
   <aside class="panel panel--left" aria-label="Outils">
-    <nav class="tabs" role="tablist" aria-label="Panneau de gauche">
+    <nav class="tabs" id="leftTabs" role="tablist" aria-label="Panneau de gauche">
       <button type="button" role="tab" data-left="widgets" aria-selected="true">Widgets</button>
       <button type="button" role="tab" data-left="templates" aria-selected="false">Modèles</button>
       <button type="button" role="tab" data-left="navigator" aria-selected="false">Structure</button>
@@ -83,12 +84,12 @@
     <div class="panel__body" id="leftBody"></div>
   </aside>
 
-  <section class="stage" id="stage" aria-label="Canevas">
+  <main class="stage" id="stage" aria-label="Canevas">
     <div class="edit-banner" id="editBanner" role="status" hidden></div>
     <div class="frame" id="frame" data-device="desktop">
       <iframe id="canvas" title="Page en cours d’édition"></iframe>
     </div>
-  </section>
+  </main>
 
   <aside class="panel panel--right" id="inspector" aria-label="Inspecteur"></aside>
   <aside class="panel panel--right panel--review" id="reviewPanel" aria-label="Commentaires" hidden></aside>

@@ -5,6 +5,7 @@
  * jamais utilisée sur cet appareil demande une confirmation explicite.
  */
 import { h, $, toast, download } from './dom.js';
+import { openDialog, rovingTabs } from './dialog.js';
 import { state, commit } from './store.js';
 import { setPublishSettings, slugify } from '../core/site.js';
 import { renderSite, withoutHtaccess } from '../core/render.js';
@@ -70,17 +71,15 @@ function confirmFirst(kind, target, action) {
     const what = kind === 'github'
       ? __('Vous allez publier dans le dépôt GitHub {host} pour la première fois depuis cet appareil.', { host })
       : action === 'test' ? __('Vous allez envoyer votre jeton de publication à {host} pour la première fois depuis cet appareil (test de connexion).', { host }) : __('Vous allez publier sur {host} pour la première fois depuis cet appareil.', { host });
-    const d = h('dialog', { class: 'audit', id: 'publishConfirmDialog', 'aria-labelledby': 'publishConfirmTitle' },
-      h('header', { class: 'audit__head' }, h('h2', { id: 'publishConfirmTitle' }, __('Première publication vers {host}', { host })), h('button', { type: 'button', class: 'icon-btn', 'aria-label': __('Fermer'), onclick: () => finish(false) }, '✕')),
-      h('div', { class: 'a11y-form' },
+    const d = openDialog({ id: 'publishConfirmDialog',
+    titleId: 'publishConfirmTitle',
+    title: __('Première publication vers {host}', { host }),
+    body: [h('div', { class: 'a11y-form' },
         h('p', {}, what),
-        h('p', { class: 'hint' }, __('Vérifiez que c’est bien votre site : le jeton donne le droit de publier à cette adresse. Si l’adresse vient d’un projet reçu ou modifié par quelqu’un d’autre, annulez et contrôlez-la dans l’onglet Publier.'))),
-      h('footer', { class: 'audit__foot' },
-        h('button', { type: 'button', class: 'btn', 'data-confirm-cancel': '', onclick: () => finish(false) }, __('Annuler')),
-        h('button', { type: 'button', class: 'btn btn--primary', 'data-confirm-ok': '', onclick: () => finish(true) }, __('Continuer vers {host}', { host }))));
+        h('p', { class: 'hint' }, __('Vérifiez que c’est bien votre site : le jeton donne le droit de publier à cette adresse. Si l’adresse vient d’un projet reçu ou modifié par quelqu’un d’autre, annulez et contrôlez-la dans l’onglet Publier.')))],
+    actions: [h('button', { type: 'button', class: 'btn', 'data-confirm-cancel': '', onclick: () => finish(false) }, __('Annuler')),
+    h('button', { type: 'button', class: 'btn btn--primary', 'data-confirm-ok': '', 'data-confirm': '', onclick: () => finish(true) }, __('Continuer vers {host}', { host }))] });
     d.addEventListener('close', () => { d.remove(); if (!answered) resolve(false); });
-    document.body.append(d);
-    d.showModal();
   });
 }
 
@@ -104,7 +103,7 @@ async function siteZip(version = PUBLISH_VERSION) {
   return { zip: createZip([...r.files].map(([name, data]) => ({ name, data }))), files: r.files, skipped: r.skipped };
 }
 
-function phpTab(d) {
+function phpTab() {
   const p = state.site.publish || {};
   const url = h('input', { class: 'input input--mono', type: 'url', value: p.url || (state.site.baseUrl ? `${state.site.baseUrl}/publish.php` : ''), placeholder: __('https://www.votre-site.be/publish.php'), 'data-pub': 'url' });
   const token = h('input', { class: 'input input--mono', type: 'password', autocomplete: 'off', placeholder: __('Jeton de publication'), 'data-pub': 'token' });
@@ -275,10 +274,10 @@ function githubTab() {
     status);
 }
 
-function zipTab(d) {
+function zipTab(close) {
   return h('div', { class: 'pub-pane', 'data-pane': 'zip' },
     h('p', { class: 'hint' }, __('Téléchargez le site complet en .zip, puis déposez son contenu sur n’importe quel hébergement (FTP, gestionnaire de fichiers).')),
-    h('button', { type: 'button', class: 'btn btn--small btn--primary', 'data-pub-zip': '', onclick: () => { d.close(); exportZipHandler?.(); } }, __('⇩ Télécharger le site (.zip)')));
+    h('button', { type: 'button', class: 'btn btn--small btn--primary', 'data-pub-zip': '', onclick: () => { close(); exportZipHandler?.(); } }, __('⇩ Télécharger le site (.zip)')));
 }
 
 export function openPublish() {
@@ -288,19 +287,15 @@ export function openPublish() {
   const audit = auditSite(state.site);
   log.info('publish.open', __('Fenêtre Publier'), { mode, tab, ok: audit.ok, errors: audit.errors.length, warnings: audit.warnings.length, firstError: audit.errors[0] });
   migration = migrateLegacyTokens(state.site).catch(() => {});
-  const d = h('dialog', { class: 'audit', id: 'publishDialog', 'aria-labelledby': 'publishTitle' });
-  const panes = { php: phpTab(d), github: githubTab(), zip: zipTab(d) };
-  const tabs = h('div', { class: 'tabs', role: 'tablist' }, [['php', 'OVH (publish.php)'], ['github', 'GitHub → OVH'], ['zip', __('Fichier .zip')]].map(([k, l]) => h('button', {
+  let d = null;
+  const panes = { php: phpTab(), github: githubTab(), zip: zipTab(() => d.close()) };
+  const tabs = rovingTabs(h('div', { class: 'tabs', role: 'tablist', 'aria-label': __('Mode de publication') }, [['php', 'OVH (publish.php)'], ['github', 'GitHub → OVH'], ['zip', __('Fichier .zip')]].map(([k, l]) => h('button', {
     type: 'button', role: 'tab', 'data-pub-tab': k, 'aria-selected': String(tab === k),
-    onclick: () => { tab = k; tabs.querySelectorAll('[role=tab]').forEach(b => b.setAttribute('aria-selected', String(b.dataset.pubTab === k))); Object.entries(panes).forEach(([n, el]) => { el.hidden = n !== k; }); }
-  }, l)));
+    onclick: () => { tab = k; tabs.querySelectorAll('[role=tab]').forEach(b => b.setAttribute('aria-selected', String(b.dataset.pubTab === k))); rovingTabs(tabs); Object.entries(panes).forEach(([n, el]) => { el.hidden = n !== k; }); }
+  }, l))));
   Object.entries(panes).forEach(([n, el]) => { el.hidden = n !== tab; });
-  d.append(
-    h('header', { class: 'audit__head' }, h('h2', { id: 'publishTitle' }, __('Publier le site')), h('button', { type: 'button', class: 'icon-btn', 'aria-label': __('Fermer'), onclick: () => d.close() }, '✕')),
-    h('p', { class: `audit__summary ${audit.ok ? (audit.warnings.length ? 'is-warn' : 'is-ok') : 'is-error'}` }, audit.ok ? (audit.warnings.length ? __n(audit.warnings.length, '{n} point à vérifier (bouton « Exporter le site » pour le détail) : vous pouvez publier.', '{n} points à vérifier (bouton « Exporter le site » pour le détail) : vous pouvez publier.') : __('Vérification réussie : prêt à publier.')) : __('Publication bloquée : {error}', { error: audit.errors[0] })),
-    tabs, h('div', { class: 'a11y-form' }, ...Object.values(panes)),
-    h('footer', { class: 'audit__foot' }, h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Fermer'))));
-  d.addEventListener('close', () => d.remove());
-  document.body.append(d);
-  d.showModal();
+  d = openDialog({ id: 'publishDialog', titleId: 'publishTitle', title: __('Publier le site'),
+    body: [h('p', { class: `audit__summary ${audit.ok ? (audit.warnings.length ? 'is-warn' : 'is-ok') : 'is-error'}` }, audit.ok ? (audit.warnings.length ? __n(audit.warnings.length, '{n} point à vérifier (bouton « Exporter le site » pour le détail) : vous pouvez publier.', '{n} points à vérifier (bouton « Exporter le site » pour le détail) : vous pouvez publier.') : __('Vérification réussie : prêt à publier.')) : __('Publication bloquée : {error}', { error: audit.errors[0] })),
+      tabs, h('div', { class: 'a11y-form' }, ...Object.values(panes))],
+    actions: [h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Fermer'))] });
 }

@@ -1,18 +1,17 @@
-12:57:30.102 +23.88s DEBUG store.view Vue : pageId=p_623wewzp {"pageId":"p_623wewzp"}
-12:57:30.104 +23.88s INFO  canvas.load.start [canvas.load#2] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_623wewzp","lang":"fr","device":"desktop"}
-12:57:30.105 +23.88s DEBUG canvas.load.render [canvas.load#2 · 1 ms] Page rendue {"ms":1,"kb":20}
-12:57:30.108 +23.88s DEBUG store.view Vue : lang=nl {"lang":"nl"}
-12:57:30.112 +23.89s INFO  canvas.load.cancel [canvas.load#2 · 8 ms] Chargement remplacé par un nouveau {"reason":"autre langue"}
-12:57:30.112 +23.89s INFO  canvas.load.start [canvas.load#3] Chargement complet du canevas : autre langue {"reason":"autre langue","page":"p_623wewzp","lang":"nl","device":"desktop"}
-12:57:30.116 +23.89s DEBUG canvas.load.render [canvas.load#3 · 4 ms] Page rendue {"ms":4,"kb":20}
-12:57:30.151 +23.93s INFO  canvas.load.ok [canvas.load#3 · 39 ms] Canevas prêt {"nodes":5,"scale":62,"via":"dom"}
-12:57:30.157 +23.93s DEBUG store.view Vue : lang=fr {"lang":"fr"}
-12:57:30.158 +23.93s INFO  canvas.load.start [canvas.load#4] Chargement complet du canevas : autre langue {"reason":"autre langue","page":"p_623wewzp","lang":"fr","device":"desktop"}
-12:57:30.158 +23.93s DEBUG canvas.load.render [canvas.load#4 · 0 ms] Page rendue {"ms":0,"kb":20}
-12:57:30.159 +23.93s DEBUG store.view Vue : pageId=p_fptbpb4e {"pageId":"p_fptbpb4e"}
-12:57:30.160 +23.93s INFO  canvas.load.cancel [canvas.load#4 · 2 ms] Chargement remplacé par un nouveau {"reason":"autre page"}
-12:57:30.160 +23.93s INFO  canvas.load.start [canvas.load#5] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_fptbpb4e","lang":"fr","device":"desktop"}
-12:57:30.161 +23.93s DEBUG canvas.load.render [canvas.load#5 · 1 ms] Page rendue {"ms":1,"kb":27}
-12:57:30.190 +23.96s INFO  canvas.load.ok [canvas.load#5 · 30 ms] Canevas prêt {"nodes":35,"scale":62,"via":"dom"}
-12:57:30.333 +24.11s DEBUG canvas.resources Ressources externes du canevas chargées {"ms":172,"hosts":["fonts.googleapis.com"]}
-12:57:30.506 +24.28s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":13}
+13:40:53.041 +24.52s DEBUG store.view Vue : pageId=p_nzofc1cw {"pageId":"p_nzofc1cw"}
+13:40:53.044 +24.52s INFO  canvas.load.start [canvas.load#2] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_nzofc1cw","lang":"fr","device":"desktop"}
+13:40:53.045 +24.52s DEBUG canvas.load.render [canvas.load#2 · 1 ms] Page rendue {"ms":1,"kb":24}
+13:40:53.048 +24.52s DEBUG store.view Vue : lang=nl {"lang":"nl"}
+13:40:53.050 +24.52s INFO  canvas.load.cancel [canvas.load#2 · 6 ms] Chargement remplacé par un nouveau {"reason":"autre langue"}
+13:40:53.050 +24.52s INFO  canvas.load.start [canvas.load#3] Chargement complet du canevas : autre langue {"reason":"autre langue","page":"p_nzofc1cw","lang":"nl","device":"desktop"}
+13:40:53.051 +24.53s DEBUG canvas.load.render [canvas.load#3 · 1 ms] Page rendue {"ms":0,"kb":24}
+13:40:53.072 +24.55s INFO  canvas.load.ok [canvas.load#3 · 22 ms] Canevas prêt {"nodes":5,"scale":76,"via":"load"}
+13:40:53.088 +24.56s DEBUG store.view Vue : lang=fr {"lang":"fr"}
+13:40:53.088 +24.56s INFO  canvas.load.start [canvas.load#4] Chargement complet du canevas : autre langue {"reason":"autre langue","page":"p_nzofc1cw","lang":"fr","device":"desktop"}
+13:40:53.089 +24.56s DEBUG canvas.load.render [canvas.load#4 · 1 ms] Page rendue {"ms":0,"kb":24}
+13:40:53.089 +24.56s DEBUG store.view Vue : pageId=p_0x1ftvm1 {"pageId":"p_0x1ftvm1"}
+13:40:53.090 +24.57s INFO  canvas.load.cancel [canvas.load#4 · 2 ms] Chargement remplacé par un nouveau {"reason":"autre page"}
+13:40:53.091 +24.57s INFO  canvas.load.start [canvas.load#5] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_0x1ftvm1","lang":"fr","device":"desktop"}
+13:40:53.091 +24.57s DEBUG canvas.load.render [canvas.load#5 · 0 ms] Page rendue {"ms":1,"kb":31}
+13:40:53.127 +24.60s INFO  canvas.load.ok [canvas.load#5 · 36 ms] Canevas prêt {"nodes":35,"scale":76,"via":"load"}
+13:40:53.401 +24.88s DEBUG storage.save Projet enregistré sur cet appareil {"ms":5,"kb":13}
