@@ -438,7 +438,7 @@ export default async function (t) {
     await page.keyboard.press('Escape');
   }
 
-  /* 2.13 Raccourcis : ? (aide), Ctrl+Alt+J (journal), Ctrl+S (fichier .json) */
+  /* 2.13 Raccourcis : ? (aide), Ctrl+Alt+J (journal), Ctrl+S (rappel « déjà enregistré », cycle 26) ; .json par le menu Fichier */
   {
     await c.locator('[data-type="heading"]').first().click();
     const s = await mark(page);
@@ -452,7 +452,13 @@ export default async function (t) {
     const help = await page.locator('dialog[open]').count();
     await page.keyboard.press('Escape');
     await t.wait(100);
-    const [dl] = await Promise.all([page.waitForEvent('download'), page.keyboard.press('Control+s')]);
+    let download = null;
+    page.once('download', d => { download = d; });
+    await page.keyboard.press('Control+s');
+    await t.wait(250);
+    const reminder = await page.locator('#toasts .toast').filter({ hasText: /Déjà enregistré/ }).count();
+    await page.click('#fileMenu > summary');
+    const [dl] = await Promise.all([page.waitForEvent('download'), page.click('#exportJsonBtn')]);
     await t.wait(100);
     await page.keyboard.press('Control+Alt+j');
     await t.wait(200);
@@ -460,8 +466,9 @@ export default async function (t) {
     await page.keyboard.press('Escape');
     await t.wait(100);
     const es = await since(page, s);
-    t.ok(help === 1 && logOpen === 1 && !!dl, 'raccourcis : aide, enregistrement .json, journal');
-    expectCodes(t, es, ['canvas.key', 'action.move', 'ui.key', 'ui.dialog.open', 'project.export-json'], 'raccourcis');
+    t.ok(help === 1 && logOpen === 1 && !!dl, 'raccourcis : aide, enregistrement .json (menu Fichier), journal');
+    t.ok(reminder === 1 && download === null, 'Ctrl+S : rappel « Déjà enregistré », aucun téléchargement');
+    expectCodes(t, es, ['canvas.key', 'action.move', 'ui.key', 'ui.dialog.open', 'project.already-saved', 'project.export-json'], 'raccourcis');
     capture('edition-raccourcis', es, { ui: true });
   }
 

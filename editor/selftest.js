@@ -380,7 +380,8 @@ const RUNS = {
   },
 
   async 'enregistrer-json'(x) {
-    await key(document.body, 's', { ctrl: true });
+    await click('#fileMenu > summary');
+    await click('#exportJsonBtn');
     await sleep(200);
     const d = x.downloads.find(f => /\.atelier\.json$/.test(f.name));
     x.check(!!d, __('fichier .json proposé au téléchargement'));

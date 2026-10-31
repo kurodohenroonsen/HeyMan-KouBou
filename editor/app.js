@@ -118,7 +118,7 @@ export function handleKey(e, fromCanvas = false) {
   const k = e.key.toLowerCase();
   if (mod && k === 'z' && !e.shiftKey) { if (isTyping(e) && !e.target.isContentEditable) return; e.preventDefault(); undo(); return; }
   if (mod && (k === 'y' || (k === 'z' && e.shiftKey))) { if (isTyping(e) && !e.target.isContentEditable) return; e.preventDefault(); redo(); return; }
-  if (mod && k === 's') { e.preventDefault(); exportJson(); return; }
+  if (mod && k === 's') { e.preventDefault(); alreadySaved(); return; }
   if (mod && k === 'k') { if (e.target?.isContentEditable) return; e.preventDefault(); openCommands(); return; }
   if (mod && e.altKey && k === 'j') { e.preventDefault(); openLog(); return; }
   const inInspectorField = e.target?.closest?.('#inspector') && e.target.tagName === 'INPUT';
@@ -149,6 +149,12 @@ export function handleKey(e, fromCanvas = false) {
 }
 
 /* ---------- Fichier et export ---------- */
+/* Ctrl+S (cycle 26) : tout est déjà enregistré sur l'appareil ; le fichier .json reste dans le menu Fichier */
+function alreadySaved() {
+  log.info('project.already-saved', __('Ctrl+S : le projet est déjà enregistré sur cet appareil (fichier .json : menu Fichier)'), { status: $('#saveState').textContent || undefined });
+  toast(__('Déjà enregistré : chaque modification est gardée sur cet appareil. Pour un fichier : Fichier → Enregistrer le projet (.json).'));
+}
+
 function exportJson() {
   const json = JSON.stringify(state.site, null, 2);
   log.info('project.export-json', __('Projet enregistré en fichier .json'), { kb: Math.round(json.length / 1024), pages: state.site.pages.length });

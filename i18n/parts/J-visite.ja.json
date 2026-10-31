@@ -1,0 +1,15 @@
+{
+ "Supprimé : {label} — Ctrl+Z pour annuler": "削除しました：{label} — Ctrl+Z で元に戻せます",
+ "Ctrl+S : le projet est déjà enregistré sur cet appareil (fichier .json : menu Fichier)": "Ctrl+S：プロジェクトはこの端末にすでに保存されています（.json ファイルは「ファイル」メニューから）",
+ "Déjà enregistré : chaque modification est gardée sur cet appareil. Pour un fichier : Fichier → Enregistrer le projet (.json).": "保存済みです：変更はすべてこの端末に保存されています。ファイルにするには「ファイル → プロジェクトを保存（.json）」を使ってください。",
+ "Rappel : tout est déjà enregistré (le fichier .json est dans le menu Fichier)": "確認：すべて保存済みです（.json ファイルは「ファイル」メニューにあります）",
+ "Impossible de déposer ici. {hint}": "ここには置けません。{hint}",
+ "Ajouté dans une nouvelle section, position {index}": "新しいセクションに追加しました（位置 {index}）",
+ "Déplacé dans une nouvelle section, position {index}": "新しいセクションに移動しました（位置 {index}）",
+ "Une section se dépose sur la page, entre deux sections.": "セクションはページ上の、セクションとセクションの間に置きます。",
+ "Une rangée se dépose dans une section ou dans une colonne (une seule imbrication).": "行はセクションの中、または列の中に置きます（入れ子は一段まで）。",
+ "Une colonne se dépose dans une rangée.": "列は行の中に置きます。",
+ "Un widget se dépose dans une colonne, ou sur la page : une section est créée pour lui.": "ウィジェットは列の中、またはページ上に置きます。ページ上に置くとセクションが自動で作られます。",
+ "Page vide : glissez un widget, une section ou un modèle depuis le panneau de gauche": "空のページです：左のパネルからウィジェット、セクション、テンプレートをドラッグしてください",
+ "Enregistrer le projet en .json (menu Fichier)": "プロジェクトを .json に保存（「ファイル」メニュー）"
+}

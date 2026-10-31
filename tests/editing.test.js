@@ -76,3 +76,64 @@ test('nodeLabel et nodeSummary décrivent un nœud pour le navigateur', () => {
   const site = { defaultLanguage: 'fr', languages: ['fr'] };
   assert.equal(nodeSummary(h, site, 'fr'), 'Votre titre ici');
 });
+
+/* Cycle 26 (X4) : dépôt d'un widget sur la page elle-même → enveloppe section + rangée + colonne, comme le clic */
+import { dropContainer, applyDrop, dropHint } from '../core/editing.js';
+
+test('dropContainer : un widget lâché sur la page (aucune colonne sous le pointeur) → la page elle-même', () => {
+  const root = createNode('page');
+  assert.equal(dropContainer(root, [root.id], 'heading'), root.id);
+  assert.equal(dropContainer(root, [root.id], 'section'), root.id);
+  assert.equal(dropContainer(root, [root.id], 'row'), null, 'une rangée ne va pas directement dans la page');
+  assert.equal(dropContainer(root, [root.id], 'column'), null);
+});
+
+test('dropContainer : sous le pointeur, une colonne garde la priorité sur la page', () => {
+  const { root, c1 } = base();
+  assert.equal(dropContainer(root, [c1.id, root.id], 'heading'), c1.id);
+});
+
+test('applyDrop : nouveau widget sur la page vide → section > rangée > colonne > widget, à l’index demandé', () => {
+  const root = createNode('page');
+  const node = createNode('heading');
+  const r = applyDrop(root, { kind: 'new', node }, root.id, 0);
+  assert.equal(r.id, node.id);
+  assert.equal(r.root.children.length, 1);
+  const sec = r.root.children[0];
+  assert.equal(sec.type, 'section');
+  assert.equal(sec.children[0].type, 'row');
+  assert.equal(sec.children[0].children[0].type, 'column');
+  assert.equal(sec.children[0].children[0].children[0].id, node.id);
+  assert.equal(r.wrapped, true);
+});
+
+test('applyDrop : widget déposé entre deux sections → nouvelle section à cette position', () => {
+  const { root } = base();
+  const sec2 = createSectionWithColumns(1);
+  const r0 = insertNode(root, root.id, sec2);
+  const node = createNode('text');
+  const r = applyDrop(r0, { kind: 'new', node }, r0.id, 1);
+  assert.equal(r.root.children.length, 3);
+  assert.equal(r.root.children[1].children[0].children[0].children[0].id, node.id);
+  assert.deepEqual(findParent(r.root, node.id).parent.type, 'column');
+});
+
+test('applyDrop : déplacer un widget vers la page l’enveloppe aussi ; une section reste insérée telle quelle', () => {
+  const { root, h } = base();
+  const r = applyDrop(root, { kind: 'move', id: h.id }, root.id, 1);
+  assert.equal(r.root.children.length, 2);
+  assert.equal(findParent(r.root, h.id).parent.type, 'column');
+  assert.equal(r.wrapped, true);
+  const sec = createSectionWithColumns(1);
+  const r2 = applyDrop(root, { kind: 'new', node: sec }, root.id, 0);
+  assert.equal(r2.root.children[0].id, sec.id);
+  assert.equal(r2.wrapped, undefined);
+});
+
+test('dropHint : dit où déposer chaque type', () => {
+  assert.match(dropHint('section'), /page/);
+  assert.match(dropHint('row'), /section|colonne/);
+  assert.match(dropHint('column'), /rangée/);
+  assert.match(dropHint('heading'), /colonne/);
+  assert.match(dropHint('heading'), /page/);
+});

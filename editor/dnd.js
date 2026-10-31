@@ -8,7 +8,7 @@ import { state, root, nodeById, commitRoot, select, emit } from './store.js';
 import { createNode, createSectionWithColumns, findNode, findParent, pathTo, canContain } from '../core/tree.js';
 import { buildTemplate } from '../core/templates.js';
 import { makeInstance } from '../core/components.js';
-import { dropContainer, dropIndex, applyDrop, isNoopDrop, nodeLabel } from '../core/editing.js';
+import { dropContainer, dropIndex, applyDrop, isNoopDrop, nodeLabel, dropHint } from '../core/editing.js';
 import { canvasDoc, canvasWin, canvasScale, nodeElement, onCanvasReady, schedulePosition } from './canvas.js';
 import { log } from './log.js';
 import { __, N_ } from '../core/ui-i18n.js';
@@ -90,6 +90,8 @@ function move(p) {
   const navEl = !inCanvas ? document.elementsFromPoint(p.x, p.y).find(el => el.closest?.('#navTree')) : null;
   drag.target = inCanvas ? canvasTarget(p, r) : navEl ? navTarget(p, navEl.closest('.nav-row')) : null;
   if (!drag.target) drag.reason = inCanvas || navEl ? 'forbidden' : 'outside';
+  /* Fantôme barré : aucun emplacement possible ici (cycle 26) */
+  ghost.classList.toggle('is-forbidden', !drag.target && drag.reason === 'forbidden');
   const t = drag.target;
   const sig = t ? `${t.where}|${t.parentId}|${t.index}|${!!t.noop}` : drag.reason;
   if (sig !== drag.sig) {
@@ -215,6 +217,7 @@ function onUp() {
     if (reason === 'forbidden') {
       f.warn('refused', __('Dépôt refusé : « {type} » ne peut pas aller à cet endroit (une section va dans la page, un widget dans une colonne, et rien dans son propre contenu)', { type }), { type, reason });
       f.cancel(__('Rien n’a changé'), { reason });
+      toast(__('Impossible de déposer ici. {hint}', { hint: dropHint(type) }), 'warn');
     } else f.cancel(__('Lâché hors du canevas et de la structure : rien n’a changé'), { reason });
     return;
   }
@@ -225,6 +228,7 @@ function onUp() {
     if (!r) {
       f.warn('refused', __('Dépôt refusé par la structure de la page (emplacement interdit pour ce type)'), { type, parentId: target.parentId, index: target.index, reason: 'invalid' });
       f.cancel(__('Rien n’a changé'), { reason: 'invalid' });
+      toast(__('Impossible de déposer ici. {hint}', { hint: dropHint(type) }), 'warn');
       return;
     }
     commitRoot(r.root, { source: 'dnd' });
@@ -232,7 +236,9 @@ function onUp() {
     const parent = findNode(root(), target.parentId);
     if (state.readOnly) { f.cancel(__('Dépôt refusé : mode relecture (voir store.readonly)'), { reason: 'readonly' }); return; }
     const pp = { label: parent ? nodeLabel(parent) : '', index: target.index + 1 };
-    f.ok(parent ? (node ? __('Ajouté dans {label}, position {index}', pp) : __('Déplacé dans {label}, position {index}', pp)) : (node ? __('Ajouté dans la page, position {index}', pp) : __('Déplacé dans la page, position {index}', pp)), { id: r.id, type, kind: node ? 'new' : 'move', parentId: target.parentId, parentType: parent?.type, index: target.index, where: target.where === 'nav' ? 'structure' : 'canevas' });
+    const data = { id: r.id, type, kind: node ? 'new' : 'move', parentId: target.parentId, parentType: parent?.type, index: target.index, where: target.where === 'nav' ? 'structure' : 'canevas', wrapped: r.wrapped || undefined };
+    if (r.wrapped) f.ok(node ? __('Ajouté dans une nouvelle section, position {index}', pp) : __('Déplacé dans une nouvelle section, position {index}', pp), data);
+    else f.ok(parent ? (node ? __('Ajouté dans {label}, position {index}', pp) : __('Déplacé dans {label}, position {index}', pp)) : (node ? __('Ajouté dans la page, position {index}', pp) : __('Déplacé dans la page, position {index}', pp)), data);
   } catch (err) { f.fail(err, { type, parentId: target.parentId, index: target.index }, __('Dépôt impossible : {error}', { error: err.message })); toast(err.message, 'error'); }
 }
 
@@ -250,6 +256,7 @@ function cleanup() {
   document.body.classList.remove('is-dragging');
   canvasDoc()?.documentElement.classList.remove('atelier-dragging');
   $('#dragGhost').hidden = true;
+  $('#dragGhost').classList.remove('is-forbidden');
   const line = canvasDoc()?.getElementById('atelier-drop');
   if (line) line.style.display = 'none';
   navDrop().hidden = true;

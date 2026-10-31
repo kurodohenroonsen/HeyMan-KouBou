@@ -121,7 +121,7 @@ function buildCommands() {
   add('act:translate', __('Action'), __('Textes à traduire'), () => openAudit('translations'), 'traduction langues translation languages 翻訳 言語 未翻訳');
   add('act:i18n', __('Action'), __('Tableau des traductions (CSV, traduction automatique)'), () => openTranslations(), 'langues traduire relire csv translations translate review languages 翻訳 言語 要確認');
   add('act:newpage', __('Action'), __('Nouvelle page'), () => { panel('pages'); setTimeout(() => $('#newPageTitle')?.focus(), 0); }, 'ajouter page new add 新規 ページ 追加');
-  add('act:save', __('Action'), __('Enregistrer le projet (.json)'), () => hooks.exportJson?.(), 'sauvegarder save project 保存 プロジェクト', 'Ctrl+S');
+  add('act:save', __('Action'), __('Enregistrer le projet (.json)'), () => hooks.exportJson?.(), 'sauvegarder save project 保存 プロジェクト');
   add('act:publish', __('Action'), __('Publier le site (OVH, GitHub)'), () => openPublish(), 'mettre en ligne ftp déployer publish deploy online 公開 デプロイ');
   add('act:versions', __('Action'), __('Versions du projet (enregistrer, restaurer)'), () => openVersions(), 'historique sauvegarde revenir history backup restore versions 履歴 バージョン 復元');
   add('act:preview', __('Action'), __('Aperçu dans un nouvel onglet'), () => hooks.preview?.(), 'voir preview view tab プレビュー タブ');
@@ -217,7 +217,7 @@ const SHORTCUTS = [
   ['Alt+↑ / Alt+↓', __('Monter / descendre')],
   [__('Ctrl+Z / Ctrl+Maj+Z'), __('Annuler / rétablir')],
   ['Ctrl+B / I / U', __('Gras / italique / souligné')],
-  ['Ctrl+S', __('Enregistrer le projet (.json)')],
+  ['Ctrl+S', __('Rappel : tout est déjà enregistré (le fichier .json est dans le menu Fichier)')],
   ['Ctrl+Alt+J', __('Journal de débogage (copier pour signaler un problème)')],
   ['?', __('Cette aide')]
 ];

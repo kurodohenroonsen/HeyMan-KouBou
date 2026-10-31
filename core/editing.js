@@ -116,6 +116,8 @@ export function nodeSummary(node, site, lang) {
 /**
  * chain : identifiants du plus profond (sous le pointeur) jusqu'à la page.
  * Renvoie le premier conteneur qui accepte dragType, en ignorant l'élément déplacé et ses descendants.
+ * Un widget lâché sur la page elle-même (page vide, marge entre deux sections) est accepté : applyDrop
+ * l'enveloppera dans une section, exactement comme le clic dans la bibliothèque (cycle 26).
  */
 export function dropContainer(root, chain, dragType, dragId = null) {
   for (const id of chain) {
@@ -125,7 +127,16 @@ export function dropContainer(root, chain, dragType, dragId = null) {
       return id;
     }
   }
+  if (isWidget(dragType) && chain.includes(root.id)) return root.id;
   return null;
+}
+
+/* Où déposer un élément de ce type (message montré quand un dépôt est refusé) */
+export function dropHint(type) {
+  if (type === 'section') return __('Une section se dépose sur la page, entre deux sections.');
+  if (type === 'row') return __('Une rangée se dépose dans une section ou dans une colonne (une seule imbrication).');
+  if (type === 'column') return __('Une colonne se dépose dans une rangée.');
+  return __('Un widget se dépose dans une colonne, ou sur la page : une section est créée pour lui.');
 }
 
 function rowNestingTooDeep(root, parentId, rowId) {
@@ -149,9 +160,20 @@ export function isNoopDrop(root, drag, parentId, index) {
   return !!parent && parent.id === parentId && (index === from || index === from + 1);
 }
 
-/** drag : { kind: 'new', node } ou { kind: 'move', id }. Renvoie { root, id } ou null si rien ne change. */
+/**
+ * drag : { kind: 'new', node } ou { kind: 'move', id }. Renvoie { root, id, wrapped? } ou null si rien ne change.
+ * Un widget déposé directement sur la page reçoit sa section (une rangée, une colonne) : wrapped = true.
+ */
 export function applyDrop(root, drag, parentId, index) {
   if (isNoopDrop(root, drag, parentId, index)) return null;
+  const type = drag.kind === 'new' ? drag.node.type : findNode(root, drag.id)?.type;
+  if (parentId === root.id && isWidget(type)) {
+    const sec = createSectionWithColumns(1);
+    const node = drag.kind === 'new' ? drag.node : findNode(root, drag.id);
+    sec.children[0].children[0].children.push(node);
+    const base = drag.kind === 'new' ? root : removeNode(root, drag.id);
+    return { root: insertNode(base, root.id, sec, index), id: node.id, wrapped: true };
+  }
   if (drag.kind === 'new') return { root: insertNode(root, parentId, drag.node, index), id: drag.node.id };
   return { root: moveNode(root, drag.id, parentId, index), id: drag.id };
 }

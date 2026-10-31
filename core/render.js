@@ -478,7 +478,7 @@ ${langs}
     }
   }
   const script = !canvas && pageUsesScript(site, page) ? `<script src="${toRoot}site.js" defer></script>` : '';
-  const emptyPage = __('Page vide : glissez une section ou un modèle depuis le panneau de gauche');
+  const emptyPage = __('Page vide : glissez un widget, une section ou un modèle depuis le panneau de gauche');
 
   return `<!DOCTYPE html>
 <html lang="${lang}">

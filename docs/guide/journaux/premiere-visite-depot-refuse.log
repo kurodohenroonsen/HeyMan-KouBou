@@ -1,0 +1,5 @@
+02:07:38.915 +2.96s INFO  dnd.start [dnd#3] Glisser : Section {"kind":"move","type":"section","id":"n_6b2v110v10","from":"page ou structure"}
+02:07:39.040 +3.09s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":3}
+02:07:39.319 +3.37s WARN  dnd.refused [dnd#3 · 404 ms] Dépôt refusé : « section » ne peut pas aller à cet endroit (une section va dans la page, un widget dans une colonne, et rien dans son propre contenu) {"type":"section","reason":"forbidden"}
+02:07:39.319 +3.37s INFO  dnd.cancel [dnd#3 · 404 ms] Rien n’a changé {"reason":"forbidden"}
+02:07:39.319 +3.37s WARN  ui.toast Message affiché : Impossible de déposer ici. Une section se dépose sur la page, entre deux sections. {"type":"warn"}

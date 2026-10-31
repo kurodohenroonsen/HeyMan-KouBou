@@ -1,0 +1,6 @@
+02:07:39.750 +3.80s DEBUG canvas.key Raccourci dans la page : Delete {"key":"Delete","in":"page","selected":"n_415u072g1d"}
+02:07:39.751 +3.80s DEBUG store.commit Modification {"source":"action","past":4,"page":"p_8h2tez89"}
+02:07:39.755 +3.80s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":3}
+02:07:39.756 +3.80s DEBUG store.select Sélection : column {"id":"n_2k2o6j5i48","type":"column"}
+02:07:39.756 +3.80s INFO  action.delete Supprimé : text {"id":"n_415u072g1d","type":"text","next":"n_2k2o6j5i48"}
+02:07:39.756 +3.80s INFO  ui.toast Message affiché : Supprimé : Texte — Ctrl+Z pour annuler

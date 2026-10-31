@@ -71,7 +71,9 @@ export function duplicateSelected() {
   }, N_('dupliquer'));
 }
 
-export function deleteSelected() {
+/* opts.quiet : pas de message (couper affiche le sien) ; un évènement DOM passé par un bouton est ignoré */
+export function deleteSelected(opts) {
+  const quiet = !!(opts && !(opts instanceof Event) && opts.quiet);
   if (state.multi.size > 1) {
     safe(() => {
       const n = topLevel(root(), [...state.multi]).length;
@@ -86,13 +88,17 @@ export function deleteSelected() {
   if (!id) { none(N_('supprimer')); return; }
   safe(() => {
     const type = typeOf(id);
+    const label = nodeLabel(nodeById(id));
     const { parent, index } = findParent(root(), id);
     const r = removeNode(root(), id);
     commitRoot(r, { source: 'action' });
     const sibling = parent?.children?.[index + 1] || parent?.children?.[index - 1];
     const next = sibling && sibling.id !== id ? sibling.id : (parent && parent.type !== 'page' ? parent.id : null);
     select(next && nodeById(next) ? next : null);
-    if (applied()) log.info('action.delete', __('Supprimé : {type}', { type }), { id, type, next: state.selected || null });
+    if (applied()) {
+      log.info('action.delete', __('Supprimé : {type}', { type }), { id, type, next: state.selected || null });
+      if (!quiet) toast(__('Supprimé : {label} — Ctrl+Z pour annuler', { label }));
+    }
   }, N_('supprimer'));
 }
 
@@ -166,7 +172,7 @@ export function cutSelected() {
   }
   state.clipboard = structuredClone(n);
   log.info('action.cut', __('Coupé : {label} (dans le presse-papiers d’Atelier)', { label: nodeLabel(n) }), { id: n.id, type: n.type });
-  deleteSelected();
+  deleteSelected({ quiet: true });
   toast(__('« {label} » coupé. Sélectionnez la destination puis Ctrl+V.', { label: nodeLabel(n) }));
 }
 

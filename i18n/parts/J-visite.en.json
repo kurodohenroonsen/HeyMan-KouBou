@@ -1,0 +1,15 @@
+{
+ "Supprimé : {label} — Ctrl+Z pour annuler": "Deleted: {label} — Ctrl+Z to undo",
+ "Ctrl+S : le projet est déjà enregistré sur cet appareil (fichier .json : menu Fichier)": "Ctrl+S: the project is already saved on this device (.json file: File menu)",
+ "Déjà enregistré : chaque modification est gardée sur cet appareil. Pour un fichier : Fichier → Enregistrer le projet (.json).": "Already saved: every change is kept on this device. For a file: File → Save the project (.json).",
+ "Rappel : tout est déjà enregistré (le fichier .json est dans le menu Fichier)": "Reminder: everything is already saved (the .json file is in the File menu)",
+ "Impossible de déposer ici. {hint}": "Cannot drop here. {hint}",
+ "Ajouté dans une nouvelle section, position {index}": "Added in a new section, position {index}",
+ "Déplacé dans une nouvelle section, position {index}": "Moved into a new section, position {index}",
+ "Une section se dépose sur la page, entre deux sections.": "A section is dropped on the page, between two sections.",
+ "Une rangée se dépose dans une section ou dans une colonne (une seule imbrication).": "A row is dropped in a section or in a column (one level of nesting only).",
+ "Une colonne se dépose dans une rangée.": "A column is dropped in a row.",
+ "Un widget se dépose dans une colonne, ou sur la page : une section est créée pour lui.": "A widget is dropped in a column, or on the page: a section is created for it.",
+ "Page vide : glissez un widget, une section ou un modèle depuis le panneau de gauche": "Empty page: drag a widget, a section or a template from the left panel",
+ "Enregistrer le projet en .json (menu Fichier)": "Save the project as .json (File menu)"
+}

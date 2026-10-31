@@ -114,7 +114,8 @@ export default async function (t) {
   /* ===== 6. Fichiers .json : enregistrer, ouvrir, refuser ===== */
   {
     let s = await mark(page);
-    const [dl] = await Promise.all([page.waitForEvent('download'), page.keyboard.press('Control+s')]);
+    await page.click('#fileMenu > summary');
+    const [dl] = await Promise.all([page.waitForEvent('download'), page.click('#exportJsonBtn')]);
     const json = readFileSync(await dl.path(), 'utf8');
     let es = await since(page, s);
     expectCodes(t, es, ['project.export-json'], 'enregistrer .json');

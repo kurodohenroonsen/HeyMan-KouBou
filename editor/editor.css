@@ -640,3 +640,8 @@ body.is-resizing #canvas{pointer-events:none}
 .new-site__langs{border:0;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:6px 18px}
 .new-site__langs legend{width:100%;margin-bottom:4px}
 .new-site__langs .hint{width:100%}
+
+/* Cycle 26 : dépôt refusé (fantôme barré, message d'avertissement) */
+.drag-ghost.is-forbidden{background:#b91c1c;color:#fff;text-decoration:line-through;opacity:.9}
+.drag-ghost.is-forbidden::before{content:"⊘ ";text-decoration:none;display:inline-block}
+.toast--warn{background:var(--warn-soft);color:var(--warn);border:1px solid var(--warn)}

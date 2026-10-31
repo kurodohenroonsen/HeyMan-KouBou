@@ -57,7 +57,7 @@ Trois façons, du plus simple au plus détaillé. À chaque fois : ne touche à 
 | `seo` | 6 | Référencement, autre langue | analyse relancée |
 | `ia-etat` | 7 | État des modèles | fenêtre remplie |
 | `verifier-exporter` | 8 | Vérification puis .zip | export autorisé, .zip produit |
-| `enregistrer-json` | 1 | Ctrl+S | .json lisible avec toutes les pages |
+| `enregistrer-json` | 1 | Fichier → Enregistrer le projet (.json) | .json lisible avec toutes les pages |
 | `publication` | 8 | Tester la connexion à publish.php | réponse de publish.php, version à jour |
 | `palette` | 12 | Palette depuis le logo, annuler | couleurs AA, appliquée puis annulée |
 | `contenus-texte` | 12 | Fiches depuis un texte collé (IA) | 3 fiches proposées puis créées |
@@ -117,7 +117,7 @@ Puis, cas par cas ([`journaux/autotest-lancement.log`](journaux/autotest-lanceme
 …
 14:33:25.632 +17.45s INFO  selftest.case ✓ Vérifier puis exporter le site en .zip {"id":"verifier-exporter","status":"ok","ms":333}
 …
-14:33:26.170 +17.99s INFO  selftest.case ✓ Enregistrer le projet en .json (Ctrl+S) {"id":"enregistrer-json","status":"ok","ms":457}
+14:33:26.170 +17.99s INFO  selftest.case ✓ Enregistrer le projet en .json (menu Fichier) {"id":"enregistrer-json","status":"ok","ms":457}
 …
 14:33:26.692 +18.51s INFO  selftest.case ✓ Tester la connexion à publish.php (sans publier) {"id":"publication","status":"ok","ms":441}
 …

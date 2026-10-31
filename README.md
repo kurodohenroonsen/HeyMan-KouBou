@@ -182,7 +182,7 @@ Renseignez l'**adresse du site** (panneau Site) avant l'export : elle sert aux l
 | Alt+↑ / Alt+↓ | Monter / descendre |
 | Ctrl+Z / Ctrl+Maj+Z | Annuler / rétablir |
 | Ctrl+B / I / U | Gras / italique / souligné |
-| Ctrl+S | Enregistrer le projet (.json) |
+| Ctrl+S | Rappel « Déjà enregistré » (le fichier .json : Fichier → Enregistrer le projet) |
 | Ctrl+Alt+J | Journal de débogage |
 
 ## Pour les développeurs

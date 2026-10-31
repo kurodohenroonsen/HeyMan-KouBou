@@ -579,7 +579,7 @@ Widget rencontré : [Liste de contenus](widgets.md#liste-de-contenus) (deuxième
 
 **Ce que tu fais**
 1. **Fichier** → **Versions…** → nom : `Site complet avant publication` → **Enregistrer une version**.
-2. **Fichier** → **Enregistrer le projet (.json)** (ou **Ctrl+S**) : une copie complète du projet, images comprises, dans un fichier.
+2. **Fichier** → **Enregistrer le projet (.json)** : une copie complète du projet, images comprises, dans un fichier. (**Ctrl+S** rappelle seulement que tout est déjà enregistré sur ton ordinateur.)
 
 **Ce que tu vois** : la version s'ajoute à la liste, à côté de la version automatique du jour.
 

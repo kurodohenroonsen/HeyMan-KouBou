@@ -31,7 +31,7 @@ export const SELFTEST_CASES = [
   C('seo', 6, __('Référencement : ouvrir, changer de langue'), ['seo.open', 'seo.lang']),
   C('ia-etat', 7, __('IA locale : état des modèles'), ['ai.dialog']),
   C('verifier-exporter', 8, __('Vérifier puis exporter le site en .zip'), ['audit.open', 'audit.export', 'export.zip.start', 'export.zip.ok']),
-  C('enregistrer-json', 1, __('Enregistrer le projet en .json (Ctrl+S)'), ['project.export-json']),
+  C('enregistrer-json', 1, __('Enregistrer le projet en .json (menu Fichier)'), ['project.export-json']),
   C('publication', 8, __('Tester la connexion à publish.php (sans publier)'), ['publish.test.start', 'publish.test.ok|publish.test.fail'], { needs: ['publish'], allow: ['publish.test.*', 'net.fail'], timeout: 20000 }),
   C('palette', 12, __('Palette depuis le logo, puis annuler'), ['smart.palette.start', 'smart.palette.colors', 'smart.palette.ok', 'store.undo']),
   C('contenus-texte', 12, __('Fiches créées depuis un texte collé (IA)'), ['smart.paste.start', 'ai.extract.start', 'ai.extract.ok', 'smart.paste.ok'], { needs: ['ai'], timeout: 60000 }),

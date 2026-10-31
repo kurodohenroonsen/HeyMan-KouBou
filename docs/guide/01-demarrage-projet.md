@@ -98,9 +98,11 @@ Extrait réel (espace plein simulé puis rétabli : [`journaux/enregistrement-im
 
 **But** : garder une copie, changer d'ordinateur, envoyer le projet.
 
-**Étapes** : Fichier → « Enregistrer le projet (.json) », ou **Ctrl+S**.
+**Étapes** : Fichier → « Enregistrer le projet (.json) » (ou Ctrl+K « Enregistrer le projet »).
 
 **Ce que tu vois** : un fichier `nom-du-site.atelier.json` est téléchargé (images comprises) ; message « Projet enregistré en fichier .json. ».
+
+**Ctrl+S** ne télécharge plus rien depuis le cycle 26 : tout est déjà enregistré sur l'appareil à chaque modification (1.2). Le raccourci affiche le rappel « Déjà enregistré : chaque modification est gardée sur cet appareil. Pour un fichier : Fichier → Enregistrer le projet (.json). » (`project.already-saved`, INFO, puis `ui.toast` ; extrait : [`journaux/premiere-visite-ctrl-s.log`](journaux/premiere-visite-ctrl-s.log)).
 
 **Journal attendu** ([`journaux/projet-enregistrer-json.log`](journaux/projet-enregistrer-json.log))
 ```log
@@ -221,6 +223,7 @@ Tout suit la langue choisie : boutons, panneaux, fenêtres, messages, infobulles
 | `boot.ok` | INFO | éditeur prêt (durée totale du démarrage) |
 | `boot.project` | INFO | projet choisi au démarrage (`source` : saved, demo, fresh) |
 | `boot.start` | INFO | début du démarrage |
+| `project.already-saved` | INFO | Ctrl+S : rappel que tout est déjà enregistré (aucun téléchargement) |
 | `project.cancel` | INFO | remplacement du projet annulé |
 | `project.demo` | INFO | exemple rechargé |
 | `project.export-json` | INFO | projet enregistré en .json |
