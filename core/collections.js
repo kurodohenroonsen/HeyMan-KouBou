@@ -11,6 +11,8 @@ import { escapeHtml, safeUrl } from './escape.js';
 import './collection-widgets.js';
 import { __, __c } from './ui-i18n.js';
 import { slugify } from './site.js';
+import { siteTimezone, isoWithOffset, icsUtc, vtimezone } from './timezone.js';
+import { examplesFor, SHOP_CATEGORIES } from './collection-examples.js';
 
 const clone = v => structuredClone(v);
 const rand = () => Math.random().toString(36).slice(2, 10);
@@ -91,6 +93,20 @@ export const COLLECTION_KINDS = {
       { key: 'link', type: 'url', label: __('Inscription ou billetterie') }
     ]
   },
+  shops: {
+    label: __('Commerces'), icon: '🏪', hint: __('Annuaire des commerces membres : catégorie, adresse, horaires, téléphone, site web.'),
+    titleField: 'name', imageField: 'logo', excerptField: 'intro', sort: { field: 'name', dir: 'asc' },
+    fields: [
+      { key: 'name', type: 'text', label: __('Nom'), i18n: false },
+      { key: 'logo', type: 'image', label: __('Logo ou photo') },
+      { key: 'category', type: 'select', label: __('Catégorie'), options: SHOP_CATEGORIES.map(([v, l]) => opt(v, l)) },
+      { key: 'intro', type: 'richtext', label: __('Présentation'), i18n: true },
+      { key: 'address', type: 'text', label: __('Adresse'), i18n: false },
+      { key: 'hours', type: 'text', label: __('Horaires'), i18n: true },
+      { key: 'phone', type: 'text', label: __('Téléphone'), i18n: false },
+      { key: 'website', type: 'url', label: __('Site web') }
+    ]
+  },
   custom: {
     label: __('Personnalisée'), icon: '▦', hint: __('Un titre, une image, un texte : ajoutez vos propres champs.'),
     titleField: 'title', imageField: 'image', excerptField: 'text', sort: { field: '', dir: 'asc' },
@@ -133,12 +149,16 @@ export function cardTemplate(kind) {
     case 'events': return cardColumn([
       w('image', { ratio: '16/9' }, { src: 'image', alt: 'title' }), field('@when', 'calendar'), field('status', 'none'), h3('title'),
       field('place', 'pin'), more()]);
+    case 'shops': return cardColumn([
+      w('image', { ratio: '4/3' }, { src: 'logo', alt: 'name' }), field('category', 'tag'), h3('name'), field('address', 'pin'), field('hours', 'clock'),
+      more(L('Voir la fiche', 'Bekijk de fiche', 'Zum Eintrag', 'View details', '詳しく見る'))]);
     default: return cardColumn([w('image', { ratio: '16/9' }, { src: 'image', alt: 'title' }), h3('title'), w('text', {}, { content: 'text' }), more()]);
   }
 }
 
 const BACK = {
   members: L('← Tous les membres', '← Alle leden', '← Alle Mitglieder', '← All members', '← メンバー一覧'),
+  shops: L('← Tous les commerces', '← Alle handelszaken', '← Alle Geschäfte', '← All shops', '← お店一覧'),
   news: L('← Toutes les actualités', '← Alle nieuws', '← Alle Nachrichten', '← All news', '← ニュース一覧'),
   events: L('← Tout l’agenda', '← Volledige agenda', '← Alle Termine', '← Full calendar', '← イベント一覧'),
   custom: L('← Retour à la liste', '← Terug naar de lijst', '← Zurück zur Liste', '← Back to the list', '← 一覧に戻る')
@@ -148,6 +168,16 @@ export function detailTemplate(kind) {
   const page = createNode('page');
   const back = w('button', { label: BACK[kind] || BACK.custom, variant: 'link', size: 'sm' }, { link: '@list' });
   const h1 = key => w('heading', { level: 'h1' }, { text: key });
+  if (kind === 'shops') {
+    const sec = createSectionWithColumns(2, [5, 7]);
+    const [left, right] = sec.children[0].children;
+    left.children = [w('image', { ratio: '4/3' }, { src: 'logo', alt: 'name' })];
+    right.children = [back, h1('name'), field('category', 'tag'), field('address', 'pin'), field('hours', 'clock'), field('phone', 'phone'),
+      w('text', {}, { content: 'intro' }),
+      w('button', { label: L('Visiter le site', 'Website bezoeken', 'Website besuchen', 'Visit the website', 'ウェブサイトを見る'), variant: 'primary', newTab: true }, { link: 'website' })];
+    page.children = [sec];
+    return page;
+  }
   if (kind === 'members') {
     const sec = createSectionWithColumns(2, [4, 8]);
     const [left, right] = sec.children[0].children;
@@ -700,9 +730,10 @@ export function itemJsonLd(site, col, item, lang, { url, image } = {}) {
   const base = { '@context': 'https://schema.org', ...(url ? { url } : {}), ...(image ? { image } : {}), ...(desc ? { description: desc } : {}) };
   if (col.kind === 'events') {
     if (!validDate(v.date)) return null;
-    const start = v.time ? `${v.date}T${v.time}` : v.date;
+    const tz = siteTimezone(site);
+    const start = v.time ? isoWithOffset(tz, v.date, v.time) : v.date;
     const endD = validDate(v.endDate) ? v.endDate : '';
-    const end = endD ? (v.endTime ? `${endD}T${v.endTime}` : endD) : (v.endTime && v.time ? `${v.date}T${v.endTime}` : '');
+    const end = endD ? (v.endTime ? isoWithOffset(tz, endD, v.endTime) : endD) : (v.endTime && v.time ? isoWithOffset(tz, v.date, v.endTime) : '');
     const status = { cancelled: 'EventCancelled', postponed: 'EventPostponed', rescheduled: 'EventRescheduled' }[v.status] || 'EventScheduled';
     const ev = { ...base, '@type': 'Event', name: title, startDate: start, ...(end ? { endDate: end } : {}), eventStatus: `https://schema.org/${status}`, eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode' };
     if (v.place || v.address) ev.location = { '@type': 'Place', name: cleanText(v.place || v.address, 200), ...(v.address ? { address: cleanText(v.address, 300) } : {}) };
@@ -713,6 +744,10 @@ export function itemJsonLd(site, col, item, lang, { url, image } = {}) {
   }
   if (col.kind === 'news') {
     return { ...base, '@type': 'NewsArticle', headline: title.slice(0, 110), ...(validDate(v.date) ? { datePublished: v.date } : {}), ...(v.author ? { author: { '@type': 'Person', name: cleanText(v.author, 100) } } : {}), publisher: { '@type': 'Organization', name: site.name }, inLanguage: lang };
+  }
+  if (col.kind === 'shops') {
+    const web = safeUrl(v.website || '');
+    return { ...base, '@type': 'LocalBusiness', name: title, ...(/^https?:\/\//i.test(web) ? { sameAs: [web] } : {}), ...(v.address ? { address: cleanText(v.address, 300) } : {}), ...(v.phone ? { telephone: cleanText(v.phone, 40) } : {}) };
   }
   if (col.kind === 'members') {
     const web = safeUrl(v.website || '');
@@ -744,21 +779,24 @@ const nextDay = iso => { const d = toDate(iso); d.setUTCDate(d.getUTCDate() + 1)
 const stamp = now => now.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
 const richLines = html => decodeEntities(String(html || '').replace(/<br\s*\/?>/gi, '\n').replace(/<\/(p|li|h[1-6])>/gi, '\n').replace(/<[^>]*>/g, '')).replace(/[ \t]+/g, ' ').replace(/\n\s*/g, '\n').trim();
 
-const VTIMEZONE = ['BEGIN:VTIMEZONE', 'TZID:Europe/Brussels', 'BEGIN:DAYLIGHT', 'TZOFFSETFROM:+0100', 'TZOFFSETTO:+0200', 'TZNAME:CEST', 'DTSTART:19700329T020000', 'RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU', 'END:DAYLIGHT', 'BEGIN:STANDARD', 'TZOFFSETFROM:+0200', 'TZOFFSETTO:+0100', 'TZNAME:CET', 'DTSTART:19701025T030000', 'RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU', 'END:STANDARD', 'END:VTIMEZONE'];
 
 export function buildIcs(site, col, items, lang, { now = new Date(), host = '', urlOf = null } = {}) {
   const evs = items.filter(i => validDate(i.values.date));
   const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Atelier//Site ' + icsText(site.name) + '//' + String(lang).toUpperCase(), 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', `X-WR-CALNAME:${icsText(`${site.name} – ${col.name}`)}`];
-  if (evs.some(i => i.values.time)) lines.push(...VTIMEZONE);
+  /* Fuseau du site (cycle 28) : TZID + VTIMEZONE pour les fuseaux courants, sinon heures converties en UTC */
+  const tz = siteTimezone(site);
+  const vtz = vtimezone(tz);
+  const at = (d, t) => (vtz ? `;TZID=${tz}:${compactDate(d)}T${t.replace(':', '')}00` : `:${icsUtc(tz, d, t)}`);
+  if (vtz && evs.some(i => i.values.time)) lines.push(...vtz);
   const uidHost = host || (String(site.baseUrl || '').replace(/^https?:\/\//, '').replace(/\/.*$/, '')) || 'atelier.local';
   for (const it of evs) {
     const v = it.values;
     lines.push('BEGIN:VEVENT', `UID:${it.id}@${uidHost}`, `DTSTAMP:${stamp(now)}`);
     if (v.time) {
-      lines.push(`DTSTART;TZID=Europe/Brussels:${compactDate(v.date)}T${v.time.replace(':', '')}00`);
+      lines.push(`DTSTART${at(v.date, v.time)}`);
       const endD = validDate(v.endDate) && v.endDate >= v.date ? v.endDate : v.date;
-      if (v.endTime) lines.push(`DTEND;TZID=Europe/Brussels:${compactDate(endD)}T${v.endTime.replace(':', '')}00`);
-      else if (endD !== v.date) lines.push(`DTEND;TZID=Europe/Brussels:${compactDate(endD)}T235900`);
+      if (v.endTime) lines.push(`DTEND${at(endD, v.endTime)}`);
+      else if (endD !== v.date) lines.push(`DTEND${at(endD, '23:59')}`);
     } else {
       lines.push(`DTSTART;VALUE=DATE:${compactDate(v.date)}`);
       const endD = validDate(v.endDate) && v.endDate >= v.date ? v.endDate : v.date;
@@ -947,46 +985,37 @@ export function setCollectionTranslation(site, key, lang, value) {
 }
 
 /* ---------- Création assistée (collection + page de liste + exemples) ---------- */
-const EXAMPLES = {
-  members: [
-    { name: 'Radio Vallée', city: 'Couvin', type: 'radio', intro: { fr: '<p>Radio associative du sud de l’Entre-Sambre-et-Meuse (exemple à remplacer).</p>' } },
-    { name: 'TV Quartiers', city: 'Liège', type: 'tv', intro: { fr: '<p>Télévision de proximité faite par et pour les habitants (exemple).</p>' } },
-    { name: 'Le Journal des Communes', city: 'Namur', type: 'press', intro: { fr: '<p>Mensuel indépendant d’information locale (exemple).</p>' } }
-  ],
-  news: [
-    { title: { fr: 'Le MAB ouvre son site' }, excerpt: { fr: 'Une vitrine commune pour les médias membres (exemple à remplacer).' }, body: { fr: '<p>Texte de l’article.</p>' } },
-    { title: { fr: 'Appel aux médias indépendants' }, excerpt: { fr: 'Rejoignez la fédération : matériel, techniciens et diffusion mutualisés (exemple).' }, body: { fr: '<p>Texte de l’article.</p>' } }
-  ],
-  events: [
-    { title: { fr: 'Assemblée générale du MAB' }, time: '19:00', place: 'Maison des associations', address: 'Rue de l’Exemple 1, 5000 Namur', description: { fr: '<p>Ouverte à tous les médias membres (exemple à remplacer).</p>' } },
-    { title: { fr: 'Atelier : tourner avec un smartphone' }, time: '14:00', endTime: '17:00', place: 'Studio partagé', description: { fr: '<p>Initiation pratique (exemple).</p>' } },
-    { title: { fr: 'Festival des médias libres' }, place: 'Centre culturel', description: { fr: '<p>Deux jours de rencontres (exemple).</p>' } }
-  ],
-  custom: [{ title: { fr: 'Premier élément' }, text: { fr: '<p>Texte d’exemple.</p>' } }, { title: { fr: 'Deuxième élément' }, text: { fr: '<p>Texte d’exemple.</p>' } }]
-};
-
 const addDays = (iso, n) => { const d = toDate(iso); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
 
-export function exampleValues(kind, today = localToday()) {
-  const list = clone(EXAMPLES[kind] || EXAMPLES.custom);
-  if (kind === 'events') { list[0].date = addDays(today, 14); list[1].date = addDays(today, 28); list[2].date = addDays(today, 45); list[2].endDate = addDays(today, 46); }
-  if (kind === 'news') { list[0].date = addDays(today, -3); list[1].date = addDays(today, -20); }
-  return list;
+/*
+ * Exemples d'un type de collection (cycle 28) : par domaine (association, tourism, shop, merchants, event ; voir
+ * core/collection-examples.js), textes dans les cinq langues, dates calculées depuis aujourd'hui.
+ */
+export function exampleValues(kind, today = localToday(), { domain } = {}) {
+  return examplesFor(kind, domain).map(({ days, endDays, ...v }) => ({
+    ...v, ...(days !== undefined ? { date: addDays(today, days) } : {}), ...(endDays !== undefined ? { endDate: addDays(today, endDays) } : {})
+  }));
 }
 
-export function createCollectionWithPage(site, { kind = 'custom', name, withPage = true, examples = true, today } = {}) {
+/* Valeurs d'exemple posées sous les langues voulues (textes traduisibles) ou la langue principale (champs simples) */
+function exampleFor(c, v, langs) {
+  const out = {};
+  for (const [k, x] of Object.entries(v)) {
+    const f = c.fields.find(ff => ff.key === k);
+    if (!f) continue;
+    if (!x || typeof x !== 'object') out[k] = x;
+    else out[k] = f.i18n ? Object.fromEntries(langs.map(l => [l, x[l] ?? x.fr])) : (x[langs[0]] ?? x.fr);
+  }
+  return out;
+}
+
+/* { domain } : exemples du domaine ; { langs } : langues où poser les exemples (défaut : la langue principale) */
+export function createCollectionWithPage(site, { kind = 'custom', name, withPage = true, examples = true, today, domain, langs } = {}) {
   let { site: s, id } = createCollection(site, { kind, name });
   const c = s.collections[id];
   const lang = s.defaultLanguage;
-  if (examples) for (const v of exampleValues(kind, today)) {
-    const vv = {};
-    for (const [k, x] of Object.entries(v)) {
-      const f = c.fields.find(ff => ff.key === k);
-      if (!f) continue;
-      vv[k] = f.i18n && x && typeof x === 'object' ? { [lang]: x.fr } : x;
-    }
-    s = addItem(s, id, vv).site;
-  }
+  const want = [lang, ...(langs || []).filter(l => l !== lang && s.languages.includes(l))];
+  if (examples) for (const v of exampleValues(kind, today, { domain })) s = addItem(s, id, exampleFor(c, v, want)).site;
   let pageId = '';
   if (withPage) {
     const col = s.collections[id];

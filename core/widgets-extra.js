@@ -4,14 +4,15 @@
  * formulaire de contact, carte de contenu, tarif.
  * Chaque widget apporte sa CSS ; ceux qui ont besoin de JavaScript sur le site publié déclarent `script`.
  */
-import { register } from './widgets.js';
+import { register, L5 } from './widgets.js';
 import { iconSvg } from './icons.js';
 import { __, __c, N_ } from './ui-i18n.js';
 
 /*
  * Libellés de l'éditeur (widgets, réglages, choix) : __(), langue de l'interface.
  * Textes publiés sur le site (boutons, libellés accessibles, messages du formulaire…) : SITE_TEXT,
- * dans la langue de la page affichée — jamais celle de l'éditeur. Valeurs par défaut du contenu : fr(…).
+ * dans la langue de la page affichée — jamais celle de l'éditeur. Valeurs par défaut du contenu : L5(fr, nl, de, en, ja),
+ * posées sous la langue principale du site à l'insertion (cycle 28).
  */
 export const SITE_TEXT = {
   skip: { fr: 'Aller au contenu', nl: 'Naar de inhoud', de: 'Zum Inhalt', en: 'Skip to content', ja: '本文へ移動' },
@@ -46,7 +47,7 @@ export function siteText(key, lang, params) {
   return params ? s.replace(/\{(\w+)\}/g, (m, k) => (params[k] !== undefined && params[k] !== null ? String(params[k]) : m)) : s;
 }
 
-const fr = v => ({ fr: v });
+const empty = () => L5('');
 const opt = (value, label) => ({ value, label });
 const pick = (v, allowed, dflt) => (allowed.includes(v) ? v : dflt);
 
@@ -84,13 +85,13 @@ register('icon-list', {
     { key: 'items', type: 'list', label: __('Éléments'), itemLabel: __('Élément'), fields: [
       { key: 'icon', type: 'icon', label: __('Icône') },
       { key: 'text', type: 'inline', i18n: true, label: __('Texte') }
-    ], newItem: () => ({ icon: 'check', text: fr('Nouvel élément') }) },
+    ], newItem: () => ({ icon: 'check', text: L5('Nouvel élément', 'Nieuw item', 'Neuer Eintrag', 'New item', '新しい項目') }) },
     { key: 'size', type: 'select', label: __('Taille des icônes'), options: [opt('18', __('Petite')), opt('22', __('Moyenne')), opt('28', __('Grande'))] }
   ],
   defaults: () => ({ size: '22', items: [
-    { icon: 'check', text: fr('Matériel partagé entre médias') },
-    { icon: 'check', text: fr('Techniciens neutres') },
-    { icon: 'check', text: fr('Dépenses publiées chaque trimestre') }
+    { icon: 'check', text: L5('Premier point important', 'Eerste belangrijk punt', 'Erster wichtiger Punkt', 'First key point', '大切なポイント その1') },
+    { icon: 'check', text: L5('Deuxième point', 'Tweede punt', 'Zweiter Punkt', 'Second point', 'ポイント その2') },
+    { icon: 'check', text: L5('Troisième point', 'Derde punt', 'Dritter Punkt', 'Third point', 'ポイント その3') }
   ] }),
   css: `.icon-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 .icon-list li{display:flex;gap:10px;align-items:flex-start}
@@ -112,7 +113,8 @@ register('icon-box', {
     { key: 'layout', type: 'select', label: __('Disposition'), options: [opt('top', __('Icône au-dessus')), opt('left', __('Icône à gauche')), opt('center', __('Centré'))] },
     { key: 'link', type: 'url', label: __('Lien (facultatif)') }
   ],
-  defaults: () => ({ icon: 'bolt', title: fr('Un avantage clair'), text: fr('<p>Expliquez en une ou deux phrases ce que cela change concrètement.</p>'), layout: 'top', link: '' }),
+  defaults: () => ({ icon: 'bolt', title: L5('Un avantage clair', 'Een duidelijk voordeel', 'Ein klarer Vorteil', 'A clear benefit', 'わかりやすい利点'),
+    text: L5('<p>Expliquez en une ou deux phrases ce que cela change concrètement.</p>', '<p>Leg in een of twee zinnen uit wat het concreet verandert.</p>', '<p>Erklären Sie in ein, zwei Sätzen, was sich konkret ändert.</p>', '<p>Explain in one or two sentences what difference it makes.</p>', '<p>何がどう変わるのかを、1〜2文で具体的に説明しましょう。</p>'), layout: 'top', link: '' }),
   css: `.ibox{display:grid;gap:10px}
 .ibox__icon{width:48px;height:48px;border-radius:calc(var(--radius) + 2px);display:grid;place-items:center;background:color-mix(in srgb,var(--c1) 12%,transparent);color:var(--c1)}
 .ibox--left{grid-template-columns:auto 1fr;column-gap:16px}.ibox--left .ibox__icon{grid-row:span 2}
@@ -137,7 +139,8 @@ register('quote', {
     { key: 'photo', type: 'image', label: __('Photo (facultatif)') },
     { key: 'variant', type: 'select', label: __('Apparence'), options: [opt('line', __('Trait')), opt('card', __c('card', 'Carte')), opt('big', __('Grande citation'))] }
   ],
-  defaults: () => ({ text: fr('<p>Grâce à la mutualisation, nous avons pu couvrir trois fois plus d’évènements cette année.</p>'), author: 'Prénom Nom', role: fr('Rédaction d’un média membre'), photo: '', variant: 'line' }),
+  defaults: () => ({ text: L5('<p>Un accueil chaleureux et des conseils précieux : nous reviendrons !</p>', '<p>Een warm onthaal en waardevol advies: we komen zeker terug!</p>', '<p>Ein herzlicher Empfang und wertvolle Tipps: Wir kommen wieder!</p>', '<p>A warm welcome and great advice: we will be back!</p>', '<p>温かく迎えていただき、アドバイスもとても役立ちました。また来ます！</p>'),
+    author: 'Prénom Nom', role: L5('Client ou membre', 'Klant of lid', 'Kunde oder Mitglied', 'Customer or member', 'お客さま・会員'), photo: '', variant: 'line' }),
   css: `.quote{margin:0;display:grid;gap:14px}
 .quote blockquote{margin:0;font-size:1.15rem}
 .quote--line blockquote{border-left:4px solid var(--c1);padding-left:18px}
@@ -162,13 +165,13 @@ register('stats', {
     { key: 'items', type: 'list', label: __('Chiffres'), itemLabel: __('Chiffre'), fields: [
       { key: 'value', type: 'text', label: __('Valeur (ex. 120, 35 %, 2 k€)') },
       { key: 'label', type: 'text', i18n: true, label: __('Légende') }
-    ], newItem: () => ({ value: '10', label: fr('Nouvelle légende') }) },
+    ], newItem: () => ({ value: '10', label: L5('Nouvelle légende', 'Nieuw onderschrift', 'Neue Beschriftung', 'New caption', '新しい説明') }) },
     { key: 'align', type: 'select', label: __('Alignement'), options: [opt('center', __('Centré')), opt('left', __('À gauche'))] }
   ],
   defaults: () => ({ align: 'center', items: [
-    { value: '12', label: fr('médias membres') },
-    { value: '1', label: fr('siège au CA par média') },
-    { value: '100 %', label: fr('des dépenses publiées') }
+    { value: '12', label: L5('années d’expérience', 'jaar ervaring', 'Jahre Erfahrung', 'years of experience', '年の実績') },
+    { value: '250', label: L5('personnes accueillies', 'bezoekers ontvangen', 'Gäste empfangen', 'people welcomed', '人の来訪者') },
+    { value: '100 %', label: L5('local et indépendant', 'lokaal en onafhankelijk', 'lokal und unabhängig', 'local and independent', '地元密着・独立運営') }
   ] }),
   css: `.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(140px,100%),1fr));gap:24px}
 .stats--center{text-align:center}
@@ -187,13 +190,15 @@ register('accordion', {
     { key: 'items', type: 'list', label: __('Questions'), itemLabel: __('Question'), fields: [
       { key: 'title', type: 'inline', i18n: true, label: __('Question') },
       { key: 'content', type: 'richtext', i18n: true, label: __('Réponse') }
-    ], newItem: () => ({ title: fr('Nouvelle question ?'), content: fr('<p>Réponse.</p>') }) },
+    ], newItem: () => ({ title: L5('Nouvelle question ?', 'Nieuwe vraag?', 'Neue Frage?', 'New question?', '新しい質問は？'), content: L5('<p>Réponse.</p>', '<p>Antwoord.</p>', '<p>Antwort.</p>', '<p>Answer.</p>', '<p>回答。</p>') }) },
     { key: 'firstOpen', type: 'toggle', label: __('Première réponse ouverte') },
     { key: 'faqSchema', type: 'toggle', label: __('Signaler à Google comme FAQ (données structurées)') }
   ],
   defaults: () => ({ firstOpen: true, faqSchema: false, items: [
-    { title: fr('Mon média garde-t-il son indépendance ?'), content: fr('<p>Oui. Le MAB mutualise les moyens, jamais la ligne éditoriale.</p>') },
-    { title: fr('Comment sont décidées les dépenses ?'), content: fr('<p>Chaque média a un siège au conseil d’administration et toutes les dépenses sont publiées.</p>') }
+    { title: L5('Comment vous contacter ?', 'Hoe kan ik u bereiken?', 'Wie erreiche ich Sie?', 'How can I contact you?', 'お問い合わせ方法は？'),
+      content: L5('<p>Par le formulaire de contact, par téléphone ou en passant nous voir.</p>', '<p>Via het contactformulier, telefonisch of door langs te komen.</p>', '<p>Über das Kontaktformular, telefonisch oder bei einem Besuch.</p>', '<p>Through the contact form, by phone or by dropping in.</p>', '<p>お問い合わせフォーム、お電話、またはご来訪でどうぞ。</p>') },
+    { title: L5('Quels sont vos horaires ?', 'Wat zijn uw openingsuren?', 'Wann haben Sie geöffnet?', 'What are your opening hours?', '営業時間は？'),
+      content: L5('<p>Indiquez ici vos jours et heures d’ouverture.</p>', '<p>Vermeld hier uw openingsdagen en -uren.</p>', '<p>Geben Sie hier Ihre Öffnungstage und -zeiten an.</p>', '<p>Give your opening days and hours here.</p>', '<p>営業日と営業時間をここに書きます。</p>') }
   ] }),
   css: `.acc{display:grid;gap:8px}
 .acc details{border:1px solid var(--line);border-radius:var(--radius);background:var(--c6)}
@@ -219,12 +224,12 @@ register('gallery', {
       { key: 'src', type: 'image', label: __('Image') },
       { key: 'alt', type: 'text', i18n: true, label: __('Description') },
       { key: 'caption', type: 'text', i18n: true, label: __('Légende') }
-    ], newItem: () => ({ src: '', alt: fr(''), caption: fr('') }) },
+    ], newItem: () => ({ src: '', alt: empty(), caption: empty() }) },
     { key: 'columns', type: 'select', label: __('Colonnes (ordinateur)'), options: [opt('2', '2'), opt('3', '3'), opt('4', '4')] },
     { key: 'ratio', type: 'select', label: __('Format'), options: [opt('1/1', __('Carré')), opt('4/3', '4:3'), opt('16/9', '16:9'), opt('auto', __('Original'))] },
     { key: 'zoom', type: 'toggle', label: __('Agrandir au clic') }
   ],
-  defaults: () => ({ columns: '3', ratio: '4/3', zoom: true, items: [{ src: '', alt: fr(''), caption: fr('') }, { src: '', alt: fr(''), caption: fr('') }, { src: '', alt: fr(''), caption: fr('') }] }),
+  defaults: () => ({ columns: '3', ratio: '4/3', zoom: true, items: [0, 1, 2].map(() => ({ src: '', alt: empty(), caption: empty() })) }),
   css: `.gal{display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));gap:12px}
 @media (max-width:640px){.gal{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .gal figure{margin:0}
@@ -262,7 +267,7 @@ register('video', {
     { key: 'poster', type: 'image', label: __('Image d’aperçu (facultatif)') },
     { key: 'ratio', type: 'select', label: __('Format'), options: [opt('16/9', '16:9'), opt('4/3', '4:3'), opt('1/1', __('Carré')), opt('9/16', __('Vertical 9:16'))] }
   ],
-  defaults: () => ({ url: '', title: fr('Vidéo'), poster: '', ratio: '16/9' }),
+  defaults: () => ({ url: '', title: L5('Vidéo', 'Video', 'Video', 'Video', '動画'), poster: '', ratio: '16/9' }),
   css: `.vid{position:relative;width:100%;border-radius:var(--radius);overflow:hidden;background:var(--c3)}
 .vid__play{all:unset;box-sizing:border-box;position:absolute;inset:0;cursor:pointer;display:grid;place-items:center;align-content:center;gap:10px;color:#fff;text-align:center;padding:16px;background:linear-gradient(rgb(0 0 0/.15),rgb(0 0 0/.45)) center/cover}
 .vid__play:focus-visible{outline:3px solid var(--c2);outline-offset:-3px}
@@ -362,19 +367,19 @@ register('form', {
       { key: 'label', type: 'text', i18n: true, label: __('Libellé') },
       { key: 'type', type: 'select', label: __('Type'), options: [opt('text', __('Texte court')), opt('email', __('E-mail')), opt('tel', __('Téléphone')), opt('textarea', __('Texte long'))] },
       { key: 'required', type: 'toggle', label: __('Obligatoire') }
-    ], newItem: () => ({ label: fr('Nouveau champ'), type: 'text', required: false }) },
+    ], newItem: () => ({ label: L5('Nouveau champ', 'Nieuw veld', 'Neues Feld', 'New field', '新しい項目'), type: 'text', required: false }) },
     { key: 'submit', type: 'text', i18n: true, label: __('Texte du bouton') },
     { key: 'consent', type: 'text', i18n: true, label: __('Mention vie privée (facultatif)') }
   ],
   defaults: () => ({
-    email: '', action: '', subject: fr('Message depuis le site'),
+    email: '', action: '', subject: L5('Message depuis le site', 'Bericht via de website', 'Nachricht über die Website', 'Message from the website', 'サイトからのお問い合わせ'),
     fields: [
-      { label: fr('Nom'), type: 'text', required: true },
-      { label: fr('E-mail'), type: 'email', required: true },
-      { label: fr('Message'), type: 'textarea', required: true }
+      { label: L5('Nom', 'Naam', 'Name', 'Name', 'お名前'), type: 'text', required: true },
+      { label: L5('E-mail', 'E-mail', 'E-Mail', 'Email', 'メールアドレス'), type: 'email', required: true },
+      { label: L5('Message', 'Bericht', 'Nachricht', 'Message', 'メッセージ'), type: 'textarea', required: true }
     ],
-    submit: fr('Envoyer'),
-    consent: fr('Vos données servent uniquement à vous répondre.')
+    submit: L5('Envoyer', 'Verzenden', 'Senden', 'Send', '送信'),
+    consent: L5('Vos données servent uniquement à vous répondre.', 'Uw gegevens dienen enkel om u te antwoorden.', 'Ihre Daten dienen nur zur Beantwortung Ihrer Nachricht.', 'Your details are only used to reply to you.', 'ご入力の情報は返信のためにのみ使用します。')
   }),
   css: `.form{display:grid;gap:14px}
 .form label{display:grid;gap:6px;font-weight:600}
@@ -439,7 +444,9 @@ register('card', {
     { key: 'button', type: 'text', i18n: true, label: __('Texte du lien') },
     { key: 'link', type: 'url', label: __('Lien') }
   ],
-  defaults: () => ({ image: '', alt: fr(''), title: fr('Titre de la carte'), text: fr('<p>Un court texte de présentation.</p>'), button: fr('Lire la suite'), link: '#' }),
+  defaults: () => ({ image: '', alt: empty(), title: L5('Titre de la carte', 'Titel van de kaart', 'Titel der Karte', 'Card title', 'カードの見出し'),
+    text: L5('<p>Un court texte de présentation.</p>', '<p>Een korte voorstellingstekst.</p>', '<p>Ein kurzer Vorstellungstext.</p>', '<p>A short introduction.</p>', '<p>短い紹介文を入れます。</p>'),
+    button: L5('Lire la suite', 'Lees meer', 'Weiterlesen', 'Read more', '続きを読む'), link: '#' }),
   css: `.card{display:flex;flex-direction:column;height:100%;background:var(--c6);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
 .card__img img,.card__img .img-empty{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:0;border:0;min-height:0}
 .card__body{padding:20px;display:grid;gap:10px;flex:1;align-content:start}
@@ -468,7 +475,9 @@ register('pricing', {
     { key: 'highlight', type: 'toggle', label: __('Mettre en avant') },
     { key: 'badge', type: 'text', i18n: true, label: __('Badge (ex. Le plus choisi)') }
   ],
-  defaults: () => ({ title: fr('Membre'), price: '49 €', period: fr('par mois'), features: fr('<ul><li>Accès au matériel</li><li>Techniciens sur réservation</li><li>Un siège au CA</li></ul>'), button: fr('Rejoindre'), link: '#contact', highlight: false, badge: fr('') }),
+  defaults: () => ({ title: L5('Formule', 'Formule', 'Angebot', 'Plan', 'プラン'), price: '49 €', period: L5('par mois', 'per maand', 'pro Monat', 'per month', '月額'),
+    features: L5('<ul><li>Premier avantage</li><li>Deuxième avantage</li><li>Troisième avantage</li></ul>', '<ul><li>Eerste voordeel</li><li>Tweede voordeel</li><li>Derde voordeel</li></ul>', '<ul><li>Erster Vorteil</li><li>Zweiter Vorteil</li><li>Dritter Vorteil</li></ul>', '<ul><li>First benefit</li><li>Second benefit</li><li>Third benefit</li></ul>', '<ul><li>特典 その1</li><li>特典 その2</li><li>特典 その3</li></ul>'),
+    button: L5('Choisir', 'Kiezen', 'Auswählen', 'Choose', '選ぶ'), link: '#contact', highlight: false, badge: empty() }),
   css: `.price{position:relative;height:100%;display:flex;flex-direction:column;gap:14px;padding:28px;background:var(--c6);border:1px solid var(--line);border-radius:var(--radius)}
 .price--hi{border:2px solid var(--c1);box-shadow:0 18px 40px -24px color-mix(in srgb,var(--c1) 70%,transparent)}
 .price__badge{position:absolute;top:-12px;left:24px;background:var(--c1);color:var(--c6);font-size:.78rem;font-weight:700;padding:4px 10px;border-radius:999px}

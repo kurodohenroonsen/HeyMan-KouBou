@@ -37,7 +37,7 @@ register('collection-list', {
       if (c) for (const f of c.fields.filter(x => x.type === 'select')) for (const o of f.options || []) out.push(opt(`${f.key}=${o.value}`, `${f.label} : ${o.label?.[site.defaultLanguage] || o.value}`));
       return out;
     } },
-    { key: 'empty', type: 'text', i18n: true, label: __('Texte si la liste est vide') },
+    { key: 'empty', type: 'text', i18n: true, siteText: true, label: __('Texte si la liste est vide') },
     { key: 'moreLabel', type: 'text', i18n: true, label: __('Lien sous la liste (ex. Voir tout l’agenda)') },
     { key: 'moreLink', type: 'url', label: __('Adresse du lien sous la liste') }
   ],

@@ -148,3 +148,58 @@ test('image sans fichier : rien sur le site publié, repère visible dans l’é
   assert.ok(!renderNode(n, ctx()).includes('img-empty'));
   assert.ok(renderNode(n, ctx(true)).includes('img-empty'));
 });
+
+/* ---------- Cycle 28 (A8) : contenus par défaut dans la langue principale du site ---------- */
+const JA = /[぀-ヿ一-鿿]/;
+const i18nValues = node => {
+  const out = [];
+  for (const f of fieldsOf(node.type)) {
+    if (f.i18n && !f.siteText && node.props[f.key] && typeof node.props[f.key] === 'object') out.push(node.props[f.key]);
+    if (f.type === 'list') for (const it of node.props[f.key] || []) for (const sf of f.fields || []) if (sf.i18n && it[sf.key]) out.push(it[sf.key]);
+  }
+  return out;
+};
+
+test('site japonais : chaque widget reçoit ses textes d’exemple sous « ja », en japonais', () => {
+  for (const type of Object.keys(REGISTRY).filter(isWidget)) {
+    const n = createNode(type, { lang: 'ja' });
+    for (const v of i18nValues(n)) {
+      assert.deepEqual(Object.keys(v), ['ja'], `${type} : seulement la langue principale`);
+      if (v.ja) assert.match(v.ja.replace(/<[^>]*>/g, ''), JA, `${type} : « ${v.ja} » en japonais`);
+    }
+  }
+});
+
+test('textes d’exemple dans les cinq langues, neutres : aucune mention du MAB', () => {
+  for (const lang of ['fr', 'nl', 'de', 'en', 'ja']) {
+    for (const type of Object.keys(REGISTRY).filter(isWidget)) {
+      const n = createNode(type, { lang });
+      assert.ok(!JSON.stringify(n.props).includes('MAB'), `${type} (${lang})`);
+      for (const v of i18nValues(n)) assert.equal(typeof v[lang], 'string', `${type} : ${lang}`);
+    }
+  }
+  const n = createNode('heading', { lang: 'de' });
+  assert.equal(n.props.text.de, 'Ihre Überschrift');
+  assert.deepEqual(createNode('heading', { lang: 'ja', langs: ['ja', 'en'] }).props.text, { ja: '見出しを入力', en: 'Your heading here' }, 'aussi sous les autres langues si demandé');
+});
+
+test('nouvel élément de liste dans la langue principale', () => {
+  const n = createNode('accordion', { lang: 'ja' });
+  const r = addListItem(n, n.id, 'items', 'ja');
+  const last = r.props.items.at(-1);
+  assert.deepEqual(Object.keys(last.title), ['ja']);
+  assert.match(last.title.ja, JA);
+});
+
+test('modèle de section inséré dans un site japonais : textes en japonais, rien en français', () => {
+  for (const t of TEMPLATES) {
+    const sec = buildTemplate(t.id, { lang: 'ja' });
+    const json = JSON.stringify(sec);
+    assert.ok(!/"fr":/.test(json), `${t.id} : aucune clé fr`);
+    assert.ok(!json.includes('MAB'), `${t.id} : sans MAB`);
+    let h = null;
+    const walkIn = x => { if (!h && x.type === 'heading' && x.props.text?.ja) h = x; (x.children || []).forEach(walkIn); };
+    walkIn(sec);
+    if (h) assert.match(h.props.text.ja.replace(/<[^>]*>/g, ''), JA, `${t.id} : titre japonais`);
+  }
+});

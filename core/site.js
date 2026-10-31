@@ -9,6 +9,7 @@ import { validIcon, ICON_SIZES } from './siteicon.js';
 import { missingFrom } from './i18n.js';
 import { validateCollections } from './collections.js';
 import { sanitizeSiteTexts } from './sanitize-site.js';
+import { defaultTimezone } from './timezone.js';
 import { __, N_ } from './ui-i18n.js';
 
 /* Langues de contenu des sites (noms jamais traduits) */
@@ -122,6 +123,7 @@ export function createSite({ name = 'Mon site', languages = ['fr'], defaultLangu
   return {
     version: 2,
     name,
+    timezone: defaultTimezone(def),
     baseUrl,
     languages: [def, ...languages.filter(l => l !== def)],
     defaultLanguage: def,

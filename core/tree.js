@@ -17,11 +17,37 @@ const clone = v => structuredClone(v);
 const emptyStyle = () => ({ desktop: {}, tablet: {}, mobile: {}, hover: {} });
 const emptyAdvanced = () => ({ anchor: '', cssClass: '', hideOn: { desktop: false, tablet: false, mobile: false } });
 
-export function createNode(type) {
+/*
+ * Nouveau nœud. Les textes d'exemple sont déclarés dans les cinq langues (core/widgets.js) et ne sont posés que sous
+ * { lang } (langue principale du site ; français par défaut) ou sous { langs } (langues à remplir) : les autres langues
+ * restent « à traduire » (cycle 28). Les champs marqués siteText (textes fixes du site publié) gardent les cinq langues.
+ */
+export function createNode(type, { lang = 'fr', langs } = {}) {
   const def = REGISTRY[type];
   if (!def) throw new Error(__('Type inconnu : {type}', { type }));
   const node = { id: newId(), type, props: def.defaults(), style: emptyStyle(), advanced: emptyAdvanced() };
   if (STRUCTURE.has(type)) node.children = [];
+  localizeProps(type, node.props, langs?.length ? langs : [lang]);
+  return node;
+}
+
+/* Réduit une valeur multilingue aux langues voulues (repli : français, puis anglais) */
+const pickLangs = (v, langs) => Object.fromEntries(langs.map(l => [l, v[l] ?? v.fr ?? v.en ?? '']));
+const isLangMap = v => !!v && typeof v === 'object' && !Array.isArray(v);
+
+/* Textes multilingues (champs i18n, y compris dans les listes) d'un nœud, posés sous les langues voulues ; en place */
+export function localizeProps(type, props, langs) {
+  for (const f of REGISTRY[type]?.fields || []) {
+    if (f.i18n && !f.siteText && isLangMap(props[f.key])) props[f.key] = pickLangs(props[f.key], langs);
+    if (f.type !== 'list' || !Array.isArray(props[f.key])) continue;
+    for (const it of props[f.key]) for (const sf of f.fields || []) if (sf.i18n && isLangMap(it[sf.key])) it[sf.key] = pickLangs(it[sf.key], langs);
+  }
+  return props;
+}
+
+/* Tout un arbre (modèle de section, page d'un modèle de site) posé sous les langues voulues ; en place */
+export function localizeTree(node, langs) {
+  walk(node, n => { localizeProps(n.type, n.props || {}, langs); return true; });
   return node;
 }
 
@@ -204,10 +230,12 @@ export function setListItemProp(root, id, key, index, subKey, value, lang) {
   });
 }
 
-export function addListItem(root, id, key) {
+export function addListItem(root, id, key, lang) {
   return update(root, id, n => {
     const list = fieldDef(n.type, key);
-    n.props[key] = [...(n.props[key] || []), list?.newItem ? list.newItem() : {}];
+    const item = list?.newItem ? list.newItem() : {};
+    for (const sf of lang ? list?.fields || [] : []) if (sf.i18n && isLangMap(item[sf.key])) item[sf.key] = pickLangs(item[sf.key], [lang]);
+    n.props[key] = [...(n.props[key] || []), item];
   });
 }
 
