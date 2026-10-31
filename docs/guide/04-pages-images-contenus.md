@@ -1138,6 +1138,30 @@ Réglage par réglage : voir [Tous les widgets](widgets.md#liste-de-contenus).
 
 ---
 
+## 4.34 Nettoyer les images inutilisées
+
+**But** : libérer de la place dans le navigateur. Une image retirée du projet reste gardée tant qu'une version l'utilise (pour pouvoir y revenir) ; quand plus rien ne l'utilise, elle ne sert plus à rien.
+
+**Étapes**
+- **Automatique** : chaque fois qu'Atelier supprime d'anciennes versions automatiques ou de sécurité (30 gardées au plus, 4.25), il retire aussi les images que seules ces versions utilisaient.
+- **Sur demande** : Fichier → Versions… → « Nettoyer les images inutilisées ».
+
+**Ce que tu vois** : « 1 image inutilisée retirée (29 Ko libérés). » ou « Aucune image inutilisée. ». La place libérée se voit dans l'onglet Site (« Stockage : … utilisés sur … », 1.9). Les images du projet, des versions gardées et de la copie de l'auto-test ne sont jamais touchées.
+
+**Journal attendu** ([`journaux/nettoyage-images.log`](journaux/nettoyage-images.log))
+```log
+13:28:15.902 +2.38s DEBUG storage.asset-delete 1 image retirée de la base locale {"ids":["orpheline-test"]}
+13:28:15.903 +2.38s INFO  storage.gc 1 image inutilisée retirée de la base locale (29 Ko) {"count":1,"bytes":30017,"stored":1,"source":"button"}
+```
+À vérifier : `storage.gc` avec `count`, `bytes` (octets libérés) et `source` (button : bouton ; prune : après la suppression d'anciennes versions, juste après `version.save.prune`).
+
+**Erreurs**
+| Situation | Message affiché | Journal | Que faire |
+|---|---|---|---|
+| Base locale inaccessible (autre onglet qui la bloque, navigation privée) | « Nettoyage impossible (voir le journal). » | `storage.gc-fail` (ERROR) | ferme les autres onglets d'Atelier et recommence |
+
+---
+
 ## Codes de ce chapitre
 
 | Code | Niveau | Sens |
@@ -1272,3 +1296,5 @@ Réglage par réglage : voir [Tous les widgets](widgets.md#liste-de-contenus).
 | `page.legal.open`, `page.legal.create`, `page.legal.refused` | INFO / INFO / WARN | (cycle 29) pages légales |
 | `settings.font-import`, `settings.font-refused`, `settings.font-remove` | INFO / WARN / INFO | (cycle 29) police personnalisée |
 | `settings.icon.start`, `settings.icon.decode`, `settings.icon.not-square`, `settings.icon.ok`, `settings.icon.fail`, `settings.icon-refused`, `settings.icon-remove` | INFO / DEBUG / WARN / INFO / ERROR / WARN / INFO | (cycle 29) icône du site |
+| `storage.gc` | INFO | (cycle 31) images inutilisées retirées de la base locale (`count`, `bytes`, `source` : button ou prune) |
+| `storage.gc-fail` | ERROR | (cycle 31) nettoyage des images impossible |

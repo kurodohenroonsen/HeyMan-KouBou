@@ -2,7 +2,7 @@
 
 Avant de mettre le site en ligne, Atelier le **vérifie** (erreurs bloquantes, points à vérifier), puis le **génère** (pages HTML statiques, styles, images, sitemap, flux, agenda) et l'envoie : en **.zip** à déposer soi-même, sur **OVH avec publish.php** (un seul fichier PHP déposé une fois), ou dans un **dépôt GitHub** que l'hébergement déploie.
 
-**Domaines du journal** : `audit.*` (vérification), `export.*` (fichier .zip), `publish.*` (fenêtre Publier : publish.php, test de connexion, GitHub), `storage.secret-*` (jetons gardés sur l'appareil), `net.*` (requêtes), `php.*` (ce que publish.php a fait, côté serveur).
+**Domaines du journal** : `audit.*` (vérification), `export.*` (fichier .zip), `publish.*` (fenêtre Publier : publish.php, test de connexion, GitHub), `storage.secret-*` (jetons gardés sur l'appareil), `net.*` (requêtes), `php.*` (ce que publish.php a fait, côté serveur), `backup.host.*` (copie de secours chiffrée sur l’hébergement, restauration).
 
 ---
 
@@ -313,6 +313,8 @@ Avant de mettre le site en ligne, Atelier le **vérifie** (erreurs bloquantes, p
 | `rejected` | 400 | fichier non autorisé dans le paquet (liste `rejected`), rien n'est publié | envoie le journal |
 | `htaccess_invalid` | 400 | options du `.htaccess` refusées | vérifie l'adresse du site |
 | `read_failed`, `write_failed` | 500 | lecture ou écriture impossible | espace disque, droits |
+| `bad_backup` | 400 | (v6) le fichier déposé n'est pas une copie chiffrée d'Atelier | envoie le journal |
+| `backup_missing` | 404 | (v6) copie de secours introuvable (effacée par la rotation) | rafraîchis la liste |
 | `move_failed` | 500 | publication incomplète : liste `failed`, manifeste inchangé | un fichier ou dossier du même nom bloque : supprime-le par FTP et republie |
 | `data_dir` | 500 | dossier `atelier-data` impossible à créer | droits d'écriture |
 | `internal`, `fatal` | 500 | panne de PHP | journal du serveur |
@@ -326,6 +328,78 @@ Avant de mettre le site en ligne, Atelier le **vérifie** (erreurs bloquantes, p
 | Publication incomplète (version 5) | « Échec de la publication : Publication incomplète… — bloque/page.html » | `publish.php.partial` (ERROR) avec `failed` ; serveur `php.publish.partial` (ERROR) |
 | `.htaccess` écrit | `"htaccess":true` dans `php.publish.ok` | serveur `php.publish.htaccess` (DEBUG) ; échec : `php.publish.htaccess-fail` (ERROR) ; options refusées : `php.publish.htaccess-invalid` (WARN) |
 | Trace de débogage demandée sans jeton | réponse 404 | serveur `php.debug.denied` (WARN) ; avec un jeton faux, la requête continue sans trace |
+
+---
+
+## 8.9 Copie de secours chiffrée sur l'hébergement, restauration (publish.php version 6)
+
+**But** : retrouver ton projet sur **n'importe quel ordinateur**, même si le tien est perdu ou si le navigateur a tout effacé.
+
+**Étapes**
+1. Installe publish.php **version 6** (8.3 : « ⇩ Télécharger publish.php », dépôt FTP ; « Tester la connexion » propose la mise à jour si une version plus ancienne répond).
+2. 🚀 Publier → onglet OVH (publish.php) → rubrique « Copie de secours sur l'hébergement » : coche « Envoyer une copie chiffrée du projet à chaque publication (5 dernières gardées) » et choisis un **code de secours** (8 caractères au moins). Coche « Se souvenir du code sur cet appareil » si tu veux qu'il soit rempli la prochaine fois (jamais dans le projet).
+3. « Envoyer une copie maintenant » pour une première copie ; ensuite, chaque « 🚀 Publier le site » en envoie une.
+
+**Le code de secours** : le projet est chiffré **dans ton navigateur** (AES-GCM 256 bits, clé tirée du code par PBKDF2 avec 310 000 tours) avant de partir. L'hébergement ne voit ni le code ni le contenu : seulement un fichier `atelier-data/backup-AAAAMMJJ-HHMM.json.enc` illisible, dans un dossier fermé au web. **Si tu le perds, personne ne peut lire la copie**, ni l'hébergeur, ni nous, ni toi. Note-le avec le jeton de publication, dans un endroit sûr (gestionnaire de mots de passe, papier rangé).
+
+**Ce que tu vois** : « Copie de secours chiffrée enregistrée : backup-20261031-1405.json.enc (2 gardées sur l'hébergement). » ; après une publication, le message de publication se termine par « Copie de secours chiffrée enregistrée sur l'hébergement. ». Au-delà de cinq copies, la plus ancienne est effacée.
+
+**Journal attendu** ([`journaux/copie-hebergement.log`](journaux/copie-hebergement.log))
+```log
+13:28:23.538 +1.52s INFO  backup.host.enable Copie de secours sur l’hébergement activée (à chaque publication) {"on":true}
+13:28:23.622 +1.60s INFO  backup.host.send.start [backup.host.send#1] Copie de secours chiffrée sur l’hébergement {"host":"127.0.0.1:8972","reason":"button"}
+13:28:23.723 +1.71s DEBUG backup.host.send.encrypted [backup.host.send#1 · 101 ms] Projet chiffré sur cet appareil (3 Ko) {"bytes":2583,"ms":74}
+13:28:23.747 +1.73s INFO  php.backup.saved Copie de secours chiffrée enregistrée {"name":"backup-20261031-1228.json.enc","kb":2,"removed":0,"req":"6f42da88","srvMs":0.9}
+13:28:23.747 +1.73s INFO  backup.host.send.ok [backup.host.send#1 · 125 ms] Copie de secours enregistrée sur l’hébergement : backup-20261031-1228.json.enc (1 gardées) {…}
+…
+13:28:23.998 +1.98s INFO  publish.php.ok [publish.php#1 · 150 ms] Site publié : 24 fichiers {"written":24,"removed":0,"ref":"625a20cc"}
+13:28:23.999 +1.98s INFO  backup.host.send.start [backup.host.send#2] Copie de secours chiffrée après la publication {"host":"127.0.0.1:8972","reason":"publish"}
+13:28:24.085 +2.07s INFO  backup.host.send.ok [backup.host.send#2 · 86 ms] Copie de secours enregistrée sur l’hébergement : backup-20261031-1228-2.json.enc (2 gardées) {…}
+```
+À vérifier : `backup.host.send.encrypted` (le chiffrement se fait avant l'envoi), `php.backup.saved` côté serveur (nom, taille, copies retirées par la rotation), `backup.host.send.ok`. Jamais le code dans le journal.
+
+### Restaurer depuis l'hébergement (autre ordinateur)
+
+**Étapes**
+1. Ouvre Atelier sur l'autre ordinateur (n'importe quel navigateur récent), 🚀 Publier → onglet OVH → « Restaurer depuis l'hébergement… » (ou Ctrl+K « Restaurer depuis l'hébergement »).
+2. Indique l'adresse de publish.php, le jeton de publication, puis « Voir les copies » (une confirmation est demandée la première fois que le jeton part vers cette adresse depuis cet ordinateur).
+3. Tape le code de secours, « Restaurer » sur la copie voulue (la plus récente en haut), confirme.
+
+**Ce que tu vois** : « Projet restauré depuis l'hébergement (2 pages). Ctrl+Z pour annuler. » ; le projet qui était ouvert est d'abord gardé comme version de sécurité « Avant la restauration depuis l'hébergement » (Fichier → Versions…). Pense ensuite à activer la copie dans un dossier (1.9) sur ce nouvel ordinateur.
+
+**Journal attendu** ([`journaux/restauration-hebergement.log`](journaux/restauration-hebergement.log))
+```log
+13:28:25.672 +1.03s INFO  backup.host.list 2 copie(s) de secours sur l’hébergement {"count":2}
+13:28:26.053 +1.41s INFO  backup.host.restore.start [backup.host.restore#2] Restauration de la copie backup-20261031-1228-2.json.enc depuis l’hébergement {…}
+13:28:26.067 +1.42s DEBUG backup.host.restore.downloaded [backup.host.restore#2 · 14 ms] Copie téléchargée (3 Ko) {"bytes":2583}
+13:28:26.136 +1.49s DEBUG backup.host.restore.decrypted [backup.host.restore#2 · 83 ms] Copie déchiffrée (enregistrée le 31 oct. 2026, 13:28) {"at":"2026-10-31T12:28:24.006Z"}
+13:28:26.150 +1.50s INFO  version.save.ok [version.save#1 · 10 ms] Version de sécurité enregistrée (2 pages) {…}
+13:28:26.162 +1.52s INFO  backup.host.restore.ok [backup.host.restore#2 · 109 ms] Projet restauré depuis l’hébergement (Ctrl+Z pour annuler) {"name":"backup-20261031-1228-2.json.enc","pages":2,"at":"2026-10-31T12:28:24.006Z"}
+```
+À vérifier : `backup.host.list`, puis le parcours `backup.host.restore` (`downloaded`, `decrypted`, version de sécurité, `ok`). Le texte du projet est nettoyé comme à l'ouverture d'un .json (`backup.host.restore.sanitized` s'il y avait quelque chose à retirer).
+
+**Variantes**
+| Situation | Ce qui change à l'écran | Journal |
+|---|---|---|
+| Copie activée, mais code inconnu sur cet appareil | la publication se fait ; « Copie de secours non envoyée : indiquez le code de secours ci-dessous. » | `backup.host.no-code` (WARN) |
+| Restauration refusée à la confirmation | rien ne change | `backup.host.cancel` (INFO) |
+| Option décochée | plus de copie à la publication | `backup.host.enable` (INFO, `on` : false) |
+| Fenêtre de restauration ouverte | — | `backup.host.open` (INFO) |
+
+**Erreurs**
+| Situation | Message affiché | Journal | Que faire |
+|---|---|---|---|
+| Mauvais code de secours (ou fichier modifié) | « Code de secours incorrect : rien n'a été chargé. » | `backup.host.restore.fail` (ERROR, `code` : bad_code) | retrouve le bon code ; sans lui, la copie est perdue |
+| Code trop court | « Le code de secours doit avoir au moins 8 caractères. » | aucun envoi | choisis un code plus long |
+| publish.php version 5 ou plus ancien | « publish.php version 5 installé : la version 6 est nécessaire pour les copies de secours. Retéléchargez-le et redéposez-le par FTP. » | `backup.host.send.fail` (ERROR) | mets publish.php à jour (8.8) |
+| Jeton faux ou absent | « Jeton de publication refusé. » | `backup.host.send.fail` ; serveur : `php.backup.denied` (WARN) | reprends le jeton |
+| Projet de plus de 100 Mo | « Copie de secours trop volumineuse (100 Mo au plus)… » | `backup.host.send.fail` (`code` : too_big) ; serveur : `php.backup.too-big` | nettoie les images inutilisées (4.34), allège les photos |
+| Envoi coupé par la limite de l'hébergement (`post_max_size`) | « Fichier du site manquant… » | serveur : `php.backup.empty` (WARN, `why`) | augmente `post_max_size` chez l'hébergeur |
+| Fichier déposé qui n'est pas une copie chiffrée | « Copie de secours refusée : ce n’est pas une copie chiffrée d’Atelier. » | serveur : `php.backup.invalid` (WARN), code `bad_backup` | envoie le journal |
+| Copie effacée entre-temps (rotation) | « Copie de secours introuvable sur l’hébergement. » | serveur : `php.backup.missing` (WARN), code `backup_missing` | rafraîchis la liste (« Voir les copies ») |
+| Disque de l'hébergement plein | « Écriture impossible sur l’hébergement (disque plein ou droits ?). » | serveur : `php.backup.write-fail` (ERROR) | fais de la place chez l'hébergeur |
+
+**Routes de publish.php v6** (pour les curieux) : `POST publish.php?backup` (corps : le fichier chiffré, en-tête `X-Atelier-Token`), `GET ?backups` (liste : nom, taille, date), `GET ?backup=<nom>` (relecture) ; toutes refusées sans jeton (`token_refused`, 401). Le serveur vérifie seulement que le fichier commence par `ATELIER-BACKUP` et pèse 100 Mo au plus ; il garde les cinq plus récents. Le fichier `.json.enc` contient une ligne d'en-tête lisible (version, algorithme, nombre de tours, sel et IV aléatoires, date) puis les données chiffrées : modifier l'en-tête fait échouer le déchiffrement.
 
 ---
 
@@ -379,3 +453,14 @@ Avant de mettre le site en ligne, Atelier le **vérifie** (erreurs bloquantes, p
 | `php.publish.htaccess`, `php.publish.htaccess-fail`, `php.publish.htaccess-invalid` | DEBUG / ERROR / WARN | (serveur, v5) .htaccess du site écrit, impossible, options refusées |
 | `php.publish.partial` | ERROR | (serveur, v5) publication incomplète, manifeste inchangé |
 | `publish.php.partial` | ERROR | (v5) publication incomplète affichée dans l'éditeur |
+| `backup.host.enable` | INFO | (cycle 31) copie de secours à chaque publication activée ou désactivée (`on`) |
+| `backup.host.send.start`, `backup.host.send.encrypted`, `backup.host.send.ok`, `backup.host.send.fail` | INFO / DEBUG / INFO / ERROR | (cycle 31) copie chiffrée envoyée à l'hébergement (`reason` : button ou publish) |
+| `backup.host.no-code` | WARN | (cycle 31) copie activée mais code de secours inconnu : non envoyée |
+| `backup.host.open` | INFO | (cycle 31) fenêtre « Restaurer depuis l'hébergement » |
+| `backup.host.list` | INFO | (cycle 31) copies listées sur l'hébergement |
+| `backup.host.restore.start`, `backup.host.restore.downloaded`, `backup.host.restore.decrypted`, `backup.host.restore.sanitized`, `backup.host.restore.ok`, `backup.host.restore.fail` | INFO / DEBUG / DEBUG / WARN / INFO / ERROR | (cycle 31) restauration d'une copie (téléchargée, déchiffrée, nettoyée, chargée) |
+| `backup.host.cancel` | INFO | (cycle 31) restauration annulée à la confirmation |
+| `php.backup.saved`, `php.backup.list`, `php.backup.read` | INFO | (serveur, v6) copie déposée (rotation : `removed`), listée, relue |
+| `php.backup.denied` | WARN | (serveur, v6) copie, liste ou relecture refusée : jeton absent ou faux |
+| `php.backup.too-big`, `php.backup.empty`, `php.backup.invalid`, `php.backup.missing` | WARN | (serveur, v6) plus de 100 Mo, corps vide (limite d'envoi), pas une copie chiffrée, copie introuvable |
+| `php.backup.write-fail` | ERROR | (serveur, v6) copie non écrite (disque plein ou droits) |

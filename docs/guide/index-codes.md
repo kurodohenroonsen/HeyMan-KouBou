@@ -2,7 +2,7 @@
 
 Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire, par domaine. Fichier généré par `node tools/guide-index.mjs` à partir du code source : il est toujours à jour avec le code.
 
-**973 codes** dans 47 domaines.
+**1012 codes** dans 48 domaines.
 
 | Domaine | Codes |
 |---|---|
@@ -11,6 +11,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | [`app`](#app) | 10 |
 | [`assist`](#assist) | 13 |
 | [`audit`](#audit) | 3 |
+| [`backup`](#backup) | 23 |
 | [`bench`](#bench) | 14 |
 | [`boot`](#boot) | 10 |
 | [`canvas`](#canvas) | 21 |
@@ -32,8 +33,8 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | [`onboarding`](#onboarding) | 6 |
 | [`page`](#page) | 30 |
 | [`perf`](#perf) | 1 |
-| [`php`](#php) | 50 |
-| [`project`](#project) | 13 |
+| [`php`](#php) | 59 |
+| [`project`](#project) | 14 |
 | [`publish`](#publish) | 30 |
 | [`review`](#review) | 18 |
 | [`rtc`](#rtc) | 53 |
@@ -43,7 +44,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | [`signal`](#signal) | 25 |
 | [`site`](#site) | 9 |
 | [`smart`](#smart) | 38 |
-| [`storage`](#storage) | 23 |
+| [`storage`](#storage) | 29 |
 | [`store`](#store) | 15 |
 | [`structure`](#structure) | 4 |
 | [`style`](#style) | 27 |
@@ -261,6 +262,34 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `audit.export` | INFO | [8](08-verifier-exporter-publier.md) | `editor/audit-ui.js` |
 | `audit.go` | INFO | [8](08-verifier-exporter-publier.md) | `editor/audit-ui.js` |
 | `audit.open` | INFO, WARN | [8](08-verifier-exporter-publier.md) | `editor/audit-ui.js` |
+
+## backup
+
+| Code | Niveau | Chapitre | Source |
+|---|---|---|---|
+| `backup.folder.cancel` | INFO | [1](01-demarrage-projet.md) | `editor/backup-ui.js` |
+| `backup.folder.choose` | INFO | [1](01-demarrage-projet.md) | `editor/backup-ui.js` |
+| `backup.folder.fail` | ERROR, WARN | [1](01-demarrage-projet.md) | `editor/backup-ui.js` |
+| `backup.folder.open` | INFO | [1](01-demarrage-projet.md) | `editor/backup-ui.js` |
+| `backup.folder.permission` | INFO, WARN | [1](01-demarrage-projet.md) | `editor/backup-ui.js` |
+| `backup.folder.stop` | INFO | [1](01-demarrage-projet.md) | `editor/backup-ui.js` |
+| `backup.folder.unsupported` | INFO | [1](01-demarrage-projet.md) | `editor/backup-ui.js` |
+| `backup.host.cancel` | INFO | [8](08-verifier-exporter-publier.md) | `editor/backup-ui.js` |
+| `backup.host.enable` | INFO | [8](08-verifier-exporter-publier.md) | `editor/backup-ui.js` |
+| `backup.host.list` | INFO | [8](08-verifier-exporter-publier.md) | `editor/backup-ui.js` |
+| `backup.host.no-code` | WARN | [8](08-verifier-exporter-publier.md) | `editor/backup-ui.js` |
+| `backup.host.open` | INFO | [8](08-verifier-exporter-publier.md) | `editor/backup-ui.js` |
+| `backup.host.restore.decrypted` | DEBUG | [8](08-verifier-exporter-publier.md) | `editor/backup-ui.js` |
+| `backup.host.restore.downloaded` | DEBUG | [8](08-verifier-exporter-publier.md) | `editor/backup-ui.js` |
+| `backup.host.restore.fail` | ERROR | [8](08-verifier-exporter-publier.md) | `editor/backup-ui.js` |
+| `backup.host.restore.ok` | INFO | [8](08-verifier-exporter-publier.md) | `editor/backup-ui.js` |
+| `backup.host.restore.sanitized` | WARN | [8](08-verifier-exporter-publier.md) | `editor/backup-ui.js` |
+| `backup.host.restore.start` | INFO | [8](08-verifier-exporter-publier.md) | `editor/backup-ui.js` |
+| `backup.host.send.encrypted` | DEBUG | [8](08-verifier-exporter-publier.md) | `editor/backup-ui.js` |
+| `backup.host.send.fail` | ERROR | [8](08-verifier-exporter-publier.md) | `editor/backup-ui.js` |
+| `backup.host.send.ok` | INFO | [8](08-verifier-exporter-publier.md) | `editor/backup-ui.js` |
+| `backup.host.send.start` | INFO | [8](08-verifier-exporter-publier.md) | `editor/backup-ui.js` |
+| `backup.remind` | INFO | [1](01-demarrage-projet.md) | `editor/backup-ui.js` |
 
 ## bench
 
@@ -701,6 +730,15 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 
 | Code | Niveau | Chapitre | Source |
 |---|---|---|---|
+| `php.backup.denied` | WARN | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
+| `php.backup.empty` | WARN | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
+| `php.backup.invalid` | WARN | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
+| `php.backup.list` | INFO | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
+| `php.backup.missing` | WARN | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
+| `php.backup.read` | INFO | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
+| `php.backup.saved` | INFO | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
+| `php.backup.too-big` | WARN | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
+| `php.backup.write-fail` | ERROR | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
 | `php.contact.bot` | INFO | [9](09-site-publie.md) | `core/publish.js` |
 | `php.contact.empty` | INFO | [9](09-site-publie.md) | `core/publish.js` |
 | `php.contact.mail-fail` | ERROR | [9](09-site-publie.md) | `core/publish.js` |
@@ -760,6 +798,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `project.cancel` | INFO | [1](01-demarrage-projet.md) | `editor/app.js`, `editor/new-site-ui.js` |
 | `project.demo` | INFO | [1](01-demarrage-projet.md) | `editor/app.js` |
 | `project.export-json` | INFO | [1](01-demarrage-projet.md) [2](02-edition.md) | `editor/app.js` |
+| `project.import-too-big` | WARN | [1](01-demarrage-projet.md) | `editor/app.js` |
 | `project.import.fail` | ERROR | [1](01-demarrage-projet.md) | `editor/app.js` |
 | `project.import.invalid` | WARN | [1](01-demarrage-projet.md) | `editor/app.js` |
 | `project.import.ok` | INFO | [1](01-demarrage-projet.md) | `editor/app.js` |
@@ -1080,15 +1119,20 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 
 | Code | Niveau | Chapitre | Source |
 |---|---|---|---|
-| `storage.asset-delete` | DEBUG | [15](15-auto-test.md) | `editor/storage.js` |
+| `storage.asset-delete` | DEBUG | [4](04-pages-images-contenus.md) [15](15-auto-test.md) | `editor/storage.js` |
 | `storage.assets-missing` | WARN | [1](01-demarrage-projet.md) | `editor/storage.js` |
 | `storage.blocked` | WARN | [1](01-demarrage-projet.md) [4](04-pages-images-contenus.md) | `editor/storage.js` |
+| `storage.estimate` | INFO | [1](01-demarrage-projet.md) | `editor/safety.js` |
+| `storage.gc` | INFO | [4](04-pages-images-contenus.md) | `editor/safety.js` |
+| `storage.gc-fail` | ERROR | [4](04-pages-images-contenus.md) | `editor/safety.js` |
 | `storage.load` | INFO | [1](01-demarrage-projet.md) [15](15-auto-test.md) | `editor/storage.js` |
 | `storage.load-empty` | INFO | [1](01-demarrage-projet.md) | `editor/storage.js` |
 | `storage.load-fail` | ERROR | [1](01-demarrage-projet.md) | `editor/storage.js` |
 | `storage.open` | DEBUG | [1](01-demarrage-projet.md) | `editor/storage.js` |
 | `storage.open-fail` | ERROR | [1](01-demarrage-projet.md) | `editor/storage.js` |
+| `storage.persist` | INFO | [1](01-demarrage-projet.md) | `editor/safety.js` |
 | `storage.project-delete` | DEBUG | [15](15-auto-test.md) | `editor/storage.js` |
+| `storage.quota` | ERROR | [1](01-demarrage-projet.md) | `editor/safety.js` |
 | `storage.save` | DEBUG | [1](01-demarrage-projet.md) [4](04-pages-images-contenus.md) [15](15-auto-test.md) | `editor/store.js` |
 | `storage.save-fail` | ERROR | [1](01-demarrage-projet.md) [4](04-pages-images-contenus.md) | `editor/store.js` |
 | `storage.save-recovered` | INFO | [1](01-demarrage-projet.md) | `editor/store.js` |
@@ -1097,6 +1141,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `storage.secret-read` | DEBUG | [1](01-demarrage-projet.md) [8](08-verifier-exporter-publier.md) | `editor/storage.js` |
 | `storage.secret-write` | INFO | [8](08-verifier-exporter-publier.md) [10](10-collaboration.md) | `editor/storage.js` |
 | `storage.unavailable` | ERROR | [1](01-demarrage-projet.md) [4](04-pages-images-contenus.md) | `editor/storage.js` |
+| `storage.unload-warn` | WARN | [1](01-demarrage-projet.md) | `editor/safety.js` |
 | `storage.upgrade` | INFO | [1](01-demarrage-projet.md) | `editor/storage.js` |
 | `storage.version-change` | WARN | [1](01-demarrage-projet.md) | `editor/storage.js` |
 | `storage.version-delete` | DEBUG | [4](04-pages-images-contenus.md) [15](15-auto-test.md) | `editor/storage.js` |
@@ -1251,7 +1296,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `version.restore.safety-missing` | WARN | [4](04-pages-images-contenus.md) | `editor/versions-ui.js` |
 | `version.restore.start` | INFO | [4](04-pages-images-contenus.md) | `editor/versions-ui.js` |
 | `version.save.fail` | ERROR | [4](04-pages-images-contenus.md) | `editor/versions-ui.js` |
-| `version.save.ok` | INFO | [1](01-demarrage-projet.md) [4](04-pages-images-contenus.md) | `editor/versions-ui.js` |
+| `version.save.ok` | INFO | [1](01-demarrage-projet.md) [4](04-pages-images-contenus.md) [8](08-verifier-exporter-publier.md) | `editor/versions-ui.js` |
 | `version.save.start` | INFO | [4](04-pages-images-contenus.md) | `editor/versions-ui.js` |
 | `version.unnamed` | DEBUG | [4](04-pages-images-contenus.md) | `editor/versions-ui.js` |
 

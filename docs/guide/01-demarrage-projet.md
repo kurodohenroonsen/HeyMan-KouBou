@@ -2,7 +2,7 @@
 
 Atelier fonctionne entièrement dans le navigateur : le projet est enregistré **automatiquement sur cet appareil** (base locale IndexedDB du navigateur), et peut être enregistré ou ouvert en fichier `.json` pour le changer d'ordinateur ou le partager.
 
-**Domaines du journal** : `boot.*` (démarrage), `storage.*` (base locale : projet, images, versions, jetons), `store.*` (historique des modifications, sélection, vue), `project.*` (fichiers .json, exemple, nouveau site, aperçu).
+**Domaines du journal** : `boot.*` (démarrage), `storage.*` (base locale : projet, images, versions, jetons), `store.*` (historique des modifications, sélection, vue), `project.*` (fichiers .json, exemple, nouveau site, aperçu), `backup.folder.*` et `backup.remind` (copie dans un dossier, rappel d’export).
 
 ---
 
@@ -145,6 +145,7 @@ Un projet fait avec Atelier ne contient rien à nettoyer : `project.import.sanit
 | Situation | Message affiché | Journal | Que faire |
 |---|---|---|---|
 | Le fichier n'est pas du JSON (abîmé, coupé, autre format) | « Fichier illisible : ce n’est pas du JSON valide (…) » | `project.import.fail` (ERROR) avec la position de l'erreur | reprends une copie complète du fichier |
+| Fichier de plus de 200 Mo (cycle 31) | « Fichier trop volumineux (250 Mo) : un projet Atelier fait au plus 200 Mo. Vérifiez que c’est bien un projet .json d’Atelier. » ; le fichier n'est même pas lu (l'onglet ne gèle pas) | `project.import-too-big` (WARN) avec la taille | vérifie le fichier ; un projet avec beaucoup de photos : allège les images |
 | JSON valide mais pas un projet Atelier (ou d'une version inconnue) | « Fichier illisible : Format de projet non reconnu (version 2 attendue). » (ou la première erreur de validation) | `project.import.invalid` (WARN) avec les 5 premières erreurs, puis `project.import.fail` (ERROR) | vérifie que c'est bien un fichier `.atelier.json` ; envoie-nous le journal si c'en est un |
 
 ```log
@@ -309,6 +310,63 @@ Une fois passée ou terminée, la visite n'est **plus jamais proposée d'elle-m�
 
 ---
 
+## 1.9 Ne rien perdre : stockage persistant, copie dans un dossier, rappel d'export
+
+**But** : que ton travail survive même si le navigateur fait le ménage, si l'onglet se ferme trop tôt ou si l'ordinateur tombe en panne.
+
+Atelier garde tout dans ton navigateur (1.2). C'est rapide et ça marche sans Internet, mais un navigateur peut **effacer** ces données : Chrome quand le disque est plein, Safari après sept jours sans visite. Trois protections, de la plus simple à la plus sûre :
+
+### Stockage persistant (automatique)
+
+**Étapes** : rien à faire. À ta première modification (un clic ou une touche), Atelier demande au navigateur de ne pas vider sa base de lui-même. Le résultat s'affiche dans l'onglet **Site**, tout en bas, rubrique « Stockage sur cet appareil » : « Stockage : persistant · 42 Mo utilisés sur 2 Go ».
+
+**Ce que tu vois** : « persistant » (le navigateur a dit oui) ou « non persistant (le navigateur peut l'effacer) ». Chrome dit oui aux sites que tu utilises souvent ou que tu as mis en favori ; Firefox peut te poser la question. Ce n'est **pas** une sauvegarde : un disque qui meurt emporte tout. Garde aussi une copie ailleurs (ci-dessous).
+
+**Journal attendu** ([`journaux/stockage-persistant.log`](journaux/stockage-persistant.log))
+```log
+13:28:11.448 +0.62s DEBUG store.commit Modification {"key":"site-name","source":"topbar","past":1,"page":"p_eycjdrrh"}
+…
+13:28:11.456 +0.63s INFO  storage.persist Stockage persistant accordé : le navigateur ne l’effacera pas de lui-même {"granted":true,"source":"save"}
+13:28:11.471 +0.65s INFO  storage.estimate Stockage : persistant · 14 Ko utilisés sur 526 Mo {"persisted":true,"usage":14146,"quota":551553562}
+```
+À vérifier : `storage.persist` juste après la première modification (jamais au chargement de la page), avec `granted` ; puis `storage.estimate` (octets utilisés, quota).
+
+### Copie dans un dossier de ton ordinateur (Chrome, Edge)
+
+**Étapes**
+1. Fichier → « Enregistrer aussi dans un dossier de mon ordinateur… » (ou Ctrl+K « 💾 Enregistrer aussi dans un dossier »).
+2. « Choisir un dossier… » : prends de préférence un dossier synchronisé (OneDrive, Google Drive, Nextcloud) ; le navigateur te demande d'autoriser l'écriture.
+3. C'est tout : à chaque modification (au plus une fois toutes les 5 secondes), Atelier réécrit `nom-du-site.atelier.json` dans ce dossier (le projet complet, images comprises, qui s'ouvre par Fichier → « Ouvrir un projet (.json) »), et une fois par jour `versions/AAAA-MM-JJ.json`.
+
+**Ce que tu vois** : en haut à droite, à côté de « Enregistré », « Copie : à l'instant », puis « Copie : il y a 2 min ». Au démarrage suivant, Atelier retrouve le dossier ; si le navigateur a oublié l'autorisation, la barre affiche « Copie : autoriser le dossier » : un clic suffit.
+
+**Journal attendu** ([`journaux/copie-dossier.log`](journaux/copie-dossier.log))
+```log
+13:28:16.683 +3.16s INFO  backup.folder.open Fenêtre de la copie dans un dossier {"supported":true,"active":false}
+13:28:16.790 +3.27s INFO  backup.folder.choose Dossier de copie choisi : « copie-atelier » {"name":"copie-atelier"}
+13:28:16.790 +3.27s INFO  backup.folder.permission Écriture autorisée dans le dossier « copie-atelier » {"state":"granted","how":"choose"}
+13:28:16.799 +3.28s INFO  backup.folder.write Copie écrite dans le dossier, avec la version du jour (versions/2026-10-31.json) {"file":"radio-copie-31.atelier.json","daily":"versions/2026-10-31.json","kb":34,"reason":"choose"}
+```
+À vérifier : `backup.folder.choose`, `backup.folder.permission` (`granted`), `backup.folder.write` avec `daily` la première fois de la journée. Les copies suivantes sont en DEBUG (`backup.folder.write`, `reason` : save).
+
+**Variantes**
+| Situation | Ce qui change à l'écran | Journal |
+|---|---|---|
+| Firefox, Safari (pas d'écriture dans un dossier) | la fenêtre explique et propose « Enregistrer le projet (.json) », avec la date du dernier export | `backup.folder.unsupported` (INFO) |
+| Pas d'export depuis plus d'une semaine, sans copie automatique | message discret « Pensez à exporter une copie du projet (dernier export : …) » (une fois par semaine au plus) ; la barre montre « Export : il y a 9 j » | `backup.remind` (INFO) |
+| Autorisation oubliée au démarrage | « Copie : autoriser le dossier » en haut ; clic → autorisation redemandée | `backup.folder.permission` (WARN, `state` : prompt) puis (INFO, `how` : regrant) |
+| « Copier maintenant », « Choisir un autre dossier… », « Arrêter la copie » | dans la même fenêtre | `backup.folder.write` (`reason` : button), `backup.folder.stop` (INFO) |
+| Choix du dossier annulé | rien ne change | `backup.folder.cancel` (INFO) |
+
+**Erreurs**
+| Situation | Message affiché | Journal | Que faire |
+|---|---|---|---|
+| Dossier supprimé, disque débranché, droits retirés | « Copie : échec » ou « Copie : autoriser le dossier » | `backup.folder.fail` (ERROR) avec le nom de l'erreur | rebranche le disque ou choisis un autre dossier |
+| Fermer l'onglet pendant l'enregistrement (« Modifié ») ou quand « Non enregistré » s'affiche | le navigateur demande « Quitter le site ? » | `storage.unload-warn` (WARN) | reste sur la page quelques secondes, ou exporte une copie |
+| Base du navigateur pleine | « L’espace de stockage du navigateur est plein : votre dernière modification n’est pas enregistrée. Exportez une copie (Fichier → Enregistrer le projet .json), puis supprimez d’anciennes versions (Fichier → Versions…) et nettoyez les images inutilisées. » ; « Non enregistré » en haut | `storage.save-fail` puis `storage.quota` (ERROR) ; `storage.save-recovered` quand ça repart | exporte d'abord (.json), puis fais de la place (4.34) |
+
+---
+
 ## Codes de ce chapitre
 | Code | Niveau | Sens |
 |---|---|---|
@@ -372,3 +430,17 @@ Une fois passée ou terminée, la visite n'est **plus jamais proposée d'elle-m�
 | `ui.lang-ready` | DEBUG | interface prête dans la langue choisie |
 | `ui.lang-save-fail` | WARN | projet non enregistré juste avant le changement de langue |
 | `ui.help` | INFO | guide d'utilisation ouvert (bouton Guide (icône point d’interrogation), Fichier, F1, Ctrl+K) |
+| `backup.folder.open` | INFO | (cycle 31) fenêtre de la copie dans un dossier (`supported`, `active`) |
+| `backup.folder.choose` | INFO | dossier de copie choisi |
+| `backup.folder.permission` | INFO / WARN | autorisation d'écrire dans le dossier : accordée (`how` : choose, boot, regrant) ou en attente au démarrage |
+| `backup.folder.write` | INFO / DEBUG | copie écrite (`file`, `daily` pour la version du jour, `reason`) |
+| `backup.folder.fail` | ERROR / WARN | copie dans le dossier impossible (dossier disparu, autorisation retirée) |
+| `backup.folder.cancel` | INFO | choix du dossier annulé |
+| `backup.folder.stop` | INFO | copie dans un dossier arrêtée |
+| `backup.folder.unsupported` | INFO | navigateur sans écriture dans un dossier : export classique proposé |
+| `backup.remind` | INFO | rappel hebdomadaire « exporter une copie » (`lastExport`) |
+| `project.import-too-big` | WARN | (cycle 31) projet .json de plus de 200 Mo refusé avant d'être lu |
+| `storage.persist` | INFO | stockage persistant demandé au premier enregistrement après un geste (`granted`, `already`) |
+| `storage.estimate` | INFO | place utilisée et quota du navigateur (`usage`, `quota`, `persisted`) |
+| `storage.quota` | ERROR | base du navigateur pleine : modification non enregistrée, conseil affiché |
+| `storage.unload-warn` | WARN | fermeture de la page avec « Modifié » ou « Non enregistré » : confirmation demandée |

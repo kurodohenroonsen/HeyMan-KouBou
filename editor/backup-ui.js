@@ -347,12 +347,17 @@ export function hostBackupSection({ url, token, confirmDest, apply }) {
   const status = h('p', { class: 'pub-status', 'data-backup-status': '', role: 'status' });
   const say = (text, kind) => { status.textContent = text; status.className = `pub-status${kind ? ` is-${kind}` : ''}`; };
   const origin = () => publishOrigin(url());
-  codeFor(origin()).then(c => { if (c && !code.value) { code.value = c; keep.checked = !sessionCodes.has(origin()); } }).catch(() => {});
+  /* Code gardé sur l'appareil pour cette adresse : écrit seulement si la case est cochée, effacé une fois si elle est décochée */
+  let kept = '';
+  codeFor(origin()).then(c => { if (c && !code.value) { code.value = c; keep.checked = !sessionCodes.has(origin()); kept = keep.checked ? c : ''; } }).catch(() => {});
   const remember = async () => {
     const o = origin();
     if (!o) return;
     sessionCodes.set(o, code.value);
-    try { await setSecret(codeKey(o), keep.checked ? code.value : ''); } catch { /* stockage indisponible */ }
+    const next = keep.checked ? code.value : '';
+    if (next === kept) return;
+    kept = next;
+    try { await setSecret(codeKey(o), next); } catch { /* stockage indisponible */ }
   };
   enabled.addEventListener('change', () => { if (apply({ backup: enabled.checked })) log.info('backup.host.enable', enabled.checked ? __('Copie de secours sur l’hébergement activée (à chaque publication)') : __('Copie de secours sur l’hébergement désactivée'), { on: enabled.checked }); });
   code.addEventListener('change', remember);
