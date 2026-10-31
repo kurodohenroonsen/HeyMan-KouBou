@@ -4,6 +4,7 @@
  * WebCrypto uniquement (navigateur et Node 22), aucune dépendance.
  */
 import { __, N_ } from './ui-i18n.js';
+import { cloneSite } from './asset-store.js';
 
 const subtle = globalThis.crypto.subtle;
 const te = new TextEncoder();
@@ -168,7 +169,7 @@ export async function verifyComment(c) {
 }
 
 function withReview(site) {
-  const s = clone(site);
+  const s = cloneSite(site);
   s.review = { comments: {}, ...(s.review || {}) };
   s.review.comments = { ...(s.review.comments || {}) };
   return s;

@@ -13,6 +13,7 @@ import { addItem, setItemValue, itemTitle, localToday, displayValue } from '../c
 import { reviewDigest, digestText, dominantColors, paletteFromColors } from '../core/smart.js';
 import { formatRatio } from '../core/contrast.js';
 import { __, __n, __c } from '../core/ui-i18n.js';
+import { assets } from './assets.js';
 
 const col = id => state.site.collections?.[id] || null;
 const def = () => state.site.defaultLanguage;
@@ -138,7 +139,7 @@ export function openSmartImport(colId, mode = 'poster') {
     const ids = [];
     let assetId = null;
     try {
-      if (poster && img && c.imageField) { const ra = addAsset(s, img); s = ra.site; assetId = ra.id; }
+      if (poster && img && c.imageField) { const ra = addAsset(s, img, assets); s = ra.site; assetId = ra.id; }
       for (const i of picks) {
         const x = result.value[i];
         const values = { ...x.values };
@@ -270,7 +271,7 @@ async function pixelsOf(src) {
 export async function openLogoPalette() {
   const logo = String(state.site.header?.logo || '');
   const a = logo.startsWith('asset:') ? state.site.assets?.[logo.slice(6)] : null;
-  const src = a ? a.dataUrl : /^https:/i.test(logo) ? logo : '';
+  const src = a ? assets.url(logo.slice(6)) || a.dataUrl || '' : /^https:/i.test(logo) ? logo : '';
   const f = log.flow('smart.palette', __('Palette depuis le logo'), { logo: a ? 'importé' : src ? 'en ligne' : 'aucun', file: a?.file || undefined });
   const out = h('div', { class: 'smart-out', 'data-palette-out': '' });
   const apply = h('button', { type: 'button', class: 'btn btn--primary', 'data-palette-apply': '', hidden: true }, __('Appliquer la palette'));

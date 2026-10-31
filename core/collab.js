@@ -265,8 +265,16 @@ export function createReplica({ replica, doc, docId = null, table = {}, now } = 
 }
 
 /* ---------- Vérification des opérations reçues ---------- */
+/* Cycle 27 : une image reçue est faite de métadonnées (octets envoyés à part, message « asset ») ; une data URL éventuelle
+   (pair d'une version précédente) doit être une image */
+const okBytes = d => d === undefined || DATA_IMG.test(String(d));
 function validAsset(a) {
-  return isObj(a) && typeof a.file === 'string' && /^[a-z0-9._-]+$/i.test(a.file) && DATA_IMG.test(String(a.dataUrl || '')) && (a.variants === undefined || (Array.isArray(a.variants) && a.variants.every(v => isObj(v) && DATA_IMG.test(String(v.dataUrl || '')) && /^[a-z0-9._-]+$/i.test(String(v.file || '')))));
+  return isObj(a) && typeof a.file === 'string' && /^[a-z0-9._-]+$/i.test(a.file) && okBytes(a.dataUrl) && (a.variants === undefined || (Array.isArray(a.variants) && a.variants.every(v => isObj(v) && okBytes(v.dataUrl) && Number(v.w) > 0 && /^[a-z0-9._-]+$/i.test(String(v.file || '')))));
+}
+
+/* Octets d'une image envoyés par un pair : { dataUrl, variants: [{ w, dataUrl }] } */
+export function validAssetBytes(id, data) {
+  return /^[A-Za-z0-9_-]{1,60}$/.test(String(id)) && isObj(data) && DATA_IMG.test(String(data.dataUrl || '')) && String(data.dataUrl).length < 30_000_000 && (data.variants === undefined || (Array.isArray(data.variants) && data.variants.length <= 8 && data.variants.every(v => isObj(v) && Number(v.w) > 0 && DATA_IMG.test(String(v.dataUrl || '')))));
 }
 
 export function validateOps(ops, { role = 'editor' } = {}) {

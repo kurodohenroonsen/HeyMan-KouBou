@@ -1,8 +1,8 @@
-12:40:57.978 +0.13s INFO  collab.join.link Lien d’invitation ouvert
-12:40:57.985 +0.14s DEBUG storage.secret-read Aucun secret gardé {"name":"identity"}
-12:40:57.987 +0.14s WARN  collab.invite.invalid Invitation refusée : Signature de l’invitation invalide. {"reason":"Signature de l’invitation invalide."}
-12:40:57.987 +0.14s DEBUG ui.dialog.open Fenêtre ouverte : 👥 Rejoindre une session {"id":"joinDialog","class":"audit collab","modal":true}
-12:40:58.073 +0.23s INFO  collab.join.link Lien d’invitation ouvert
-12:40:58.074 +0.23s DEBUG storage.secret-read Aucun secret gardé {"name":"identity"}
-12:40:58.076 +0.23s WARN  collab.invite.invalid Invitation refusée : Invitation expirée : demandez un nouveau lien. {"reason":"Invitation expirée : demandez un nouveau lien."}
-12:40:58.077 +0.23s DEBUG ui.dialog.open Fenêtre ouverte : 👥 Rejoindre une session {"id":"joinDialog","class":"audit collab","modal":true}
+13:44:02.674 +0.17s INFO  collab.join.link Lien d’invitation ouvert
+13:44:02.676 +0.17s DEBUG storage.secret-read Aucun secret gardé {"name":"identity"}
+13:44:02.678 +0.17s WARN  collab.invite.invalid Invitation refusée : Signature de l’invitation invalide. {"reason":"Signature de l’invitation invalide."}
+13:44:02.679 +0.17s DEBUG ui.dialog.open Fenêtre ouverte : 👥 Rejoindre une session {"id":"joinDialog","class":"audit collab","modal":true}
+13:44:02.793 +0.29s INFO  collab.join.link Lien d’invitation ouvert
+13:44:02.794 +0.29s DEBUG storage.secret-read Aucun secret gardé {"name":"identity"}
+13:44:02.795 +0.29s WARN  collab.invite.invalid Invitation refusée : Invitation expirée : demandez un nouveau lien. {"reason":"Invitation expirée : demandez un nouveau lien."}
+13:44:02.796 +0.29s DEBUG ui.dialog.open Fenêtre ouverte : 👥 Rejoindre une session {"id":"joinDialog","class":"audit collab","modal":true}

@@ -1,13 +1,13 @@
-13:51:27.958 +19.16s DEBUG store.commit Modification {"source":"pages","past":32,"page":"p_1qv72xb6"}
-13:51:27.963 +19.16s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":2}
-13:51:27.964 +19.16s INFO  page.slug Adresse de la page modifiée : /notre-equipe/ → /equipe/ {"id":"p_1qv72xb6","from":"notre-equipe","to":"equipe","lang":"fr"}
-13:51:27.964 +19.16s INFO  ui.toast Message affiché : Adresse : /equipe/
-13:51:28.290 +19.49s WARN  page.refused Modification refusée : Une page « contact » existe déjà. {"action":"slug","error":{"name":"Error","message":"Une page « contact » existe déjà.","stack":"Error: Une page « contact » existe déjà.\nat setPageSlug (http://localhost:8832/core/site.js:198:144)\nat apply.source (http://localhost:8832/editor/pages.js:41:22)\nat apply (http://localhost:8832/editor/pages.js:19:23)\nat saveSlug (http://localhost:8832/editor/pages.js:41:11)"}}
-13:51:28.291 +19.49s ERROR ui.toast Message affiché : Une page « contact » existe déjà. {"type":"error"}
-13:51:28.560 +19.76s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":13}
-13:51:28.610 +19.81s DEBUG store.commit Modification {"key":"ptitle-p_1qv72xb6-nl","source":"panel","past":33,"page":"p_1qv72xb6"}
-13:51:28.631 +19.83s INFO  page.title Titre de la page (NL) : « Ons team » {"id":"p_1qv72xb6","lang":"nl","length":8}
-13:51:28.910 +20.11s DEBUG page.slug-suggest Adresse NL proposée depuis le titre traduit {"id":"p_1qv72xb6","lang":"nl","slug":"ons-team"}
-13:51:28.915 +20.11s DEBUG store.commit Modification {"source":"pages","past":34,"page":"p_1qv72xb6"}
-13:51:28.920 +20.12s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":2}
-13:51:28.921 +20.12s INFO  page.slug Adresse en NL : /nl/ons-team/ {"id":"p_1qv72xb6","from":"","to":"ons-team","lang":"nl"}
+13:42:49.215 +19.34s DEBUG store.commit Modification {"source":"pages","past":32,"page":"p_sbnxok5y"}
+13:42:49.220 +19.34s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":2}
+13:42:49.221 +19.34s INFO  page.slug Adresse de la page modifiée : /notre-equipe/ → /equipe/ {"id":"p_sbnxok5y","from":"notre-equipe","to":"equipe","lang":"fr"}
+13:42:49.221 +19.34s INFO  ui.toast Message affiché : Adresse : /equipe/
+13:42:49.554 +19.68s WARN  page.refused Modification refusée : Une page « contact » existe déjà. {"action":"slug","error":{"name":"Error","message":"Une page « contact » existe déjà.","stack":"Error: Une page « contact » existe déjà.\nat setPageSlug (http://localhost:8831/core/site.js:223:144)\nat apply.source (http://localhost:8831/editor/pages.js:41:22)\nat apply (http://localhost:8831/editor/pages.js:19:23)\nat saveSlug (http://localhost:8831/editor/pages.js:41:11)"}}
+13:42:49.555 +19.68s ERROR ui.toast Message affiché : Une page « contact » existe déjà. {"type":"error"}
+13:42:49.818 +19.94s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":13}
+13:42:49.877 +20.00s DEBUG store.commit Modification {"key":"ptitle-p_sbnxok5y-nl","source":"panel","past":33,"page":"p_sbnxok5y"}
+13:42:49.893 +20.02s INFO  page.title Titre de la page (NL) : « Ons team » {"id":"p_sbnxok5y","lang":"nl","length":8}
+13:42:50.165 +20.29s DEBUG page.slug-suggest Adresse NL proposée depuis le titre traduit {"id":"p_sbnxok5y","lang":"nl","slug":"ons-team"}
+13:42:50.166 +20.29s DEBUG store.commit Modification {"source":"pages","past":34,"page":"p_sbnxok5y"}
+13:42:50.172 +20.30s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":2}
+13:42:50.173 +20.30s INFO  page.slug Adresse en NL : /nl/ons-team/ {"id":"p_sbnxok5y","from":"","to":"ons-team","lang":"nl"}

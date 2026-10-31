@@ -6,6 +6,7 @@ import { createNode, createSectionWithColumns } from './tree.js';
 import { newPageId } from './site.js';
 import { escapeHtml } from './escape.js';
 import { __ } from './ui-i18n.js';
+import { cloneSite } from './asset-store.js';
 
 const STATUS = {
   full: { fr: 'totalement conforme', nl: 'volledig conform', de: 'vollständig konform', en: 'fully compliant' },
@@ -112,7 +113,7 @@ export function addAccessibilityPage(site, opts) {
   let slug = 'accessibilite';
   for (let n = 2; site.pages.some(p => p.slug === slug); n++) slug = `accessibilite-${n}`;
   const page = buildAccessibilityPage(site, { ...opts, slug });
-  const s = structuredClone(site);
+  const s = cloneSite(site);
   s.pages.push(page);
   return { site: s, pageId: page.id };
 }

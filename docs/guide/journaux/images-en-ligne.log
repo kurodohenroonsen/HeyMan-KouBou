@@ -1,9 +1,9 @@
-13:51:22.595 +13.79s DEBUG inspector.image-remove Image retirée du champ (le fichier reste dans le projet) {"field":"logo"}
-13:51:22.599 +13.80s DEBUG store.commit Modification {"key":null,"source":"site","past":25,"page":"p_1ktrqpn6"}
-13:51:22.604 +13.80s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
-13:51:22.619 +13.82s INFO  settings.logo Logo retiré : le nom du site s’affiche à sa place {"kind":"none"}
-13:51:22.967 +14.17s DEBUG inspector.image-url Image en ligne choisie (adresse https) {"field":"logo","https":true,"chars":40}
-13:51:22.981 +14.18s DEBUG store.commit Modification {"key":null,"source":"site","past":26,"page":"p_1ktrqpn6"}
-13:51:22.992 +14.19s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":4}
-13:51:23.017 +14.22s INFO  settings.logo Logo en ligne : https://www.media-alternatif.be/logo.png {"kind":"url","url":"https://www.media-alternatif.be/logo.png"}
-13:51:23.591 +14.79s DEBUG storage.save Projet enregistré sur cet appareil {"ms":9,"kb":12,"newImages":1}
+13:42:44.098 +14.22s DEBUG inspector.image-remove Image retirée du champ (le fichier reste dans le projet) {"field":"logo"}
+13:42:44.099 +14.22s DEBUG store.commit Modification {"key":null,"source":"site","past":25,"page":"p_y6hkhp5h"}
+13:42:44.104 +14.23s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
+13:42:44.118 +14.24s INFO  settings.logo Logo retiré : le nom du site s’affiche à sa place {"kind":"none"}
+13:42:44.461 +14.59s DEBUG inspector.image-url Image en ligne choisie (adresse https) {"field":"logo","https":true,"chars":40}
+13:42:44.461 +14.59s DEBUG store.commit Modification {"key":null,"source":"site","past":26,"page":"p_y6hkhp5h"}
+13:42:44.468 +14.59s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
+13:42:44.487 +14.61s INFO  settings.logo Logo en ligne : https://www.media-alternatif.be/logo.png {"kind":"url","url":"https://www.media-alternatif.be/logo.png"}
+13:42:45.077 +15.20s DEBUG storage.save Projet enregistré sur cet appareil {"ms":16,"kb":13,"newImages":1}

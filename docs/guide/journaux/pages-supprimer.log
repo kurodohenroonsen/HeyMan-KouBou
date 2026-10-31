@@ -1,11 +1,11 @@
-13:51:26.609 +17.81s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":13}
-13:51:26.612 +17.81s DEBUG page.delete-cancel Suppression de « Notre équipe » annulée {"id":"p_9icnmqpd"}
-13:51:26.797 +18.00s DEBUG store.view Vue : pageId=p_1ktrqpn6 {"pageId":"p_1ktrqpn6"}
-13:51:26.804 +18.00s INFO  canvas.load.start [canvas.load#7] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_1ktrqpn6","lang":"fr","device":"desktop"}
-13:51:26.805 +18.00s DEBUG canvas.load.render [canvas.load#7 · 1 ms] Page rendue {"ms":1,"kb":25}
-13:51:26.811 +18.01s DEBUG store.commit Modification {"source":"pages","past":31,"page":"p_1ktrqpn6"}
-13:51:26.814 +18.01s INFO  canvas.load.cancel [canvas.load#7 · 10 ms] Chargement remplacé par un nouveau {"reason":"chargement précédent non terminé"}
-13:51:26.814 +18.01s INFO  canvas.load.start [canvas.load#8] Chargement complet du canevas : chargement précédent non terminé {"reason":"chargement précédent non terminé","page":"p_1ktrqpn6","lang":"fr","device":"desktop"}
-13:51:26.815 +18.02s DEBUG canvas.load.render [canvas.load#8 · 1 ms] Page rendue {"ms":1,"kb":25}
-13:51:26.817 +18.02s INFO  page.delete Page « Notre équipe » supprimée (Ctrl+Z pour la retrouver) {"id":"p_9icnmqpd","slug":"notre-equipe-2","pages":3,"wasOpen":true}
-13:51:26.843 +18.04s INFO  canvas.load.ok [canvas.load#8 · 29 ms] Canevas prêt {"nodes":30,"scale":76,"via":"load"}
+13:42:47.915 +18.04s DEBUG page.delete-cancel Suppression de « Notre équipe » annulée {"id":"p_r05n15mr"}
+13:42:47.933 +18.06s DEBUG storage.save Projet enregistré sur cet appareil {"ms":5,"kb":13}
+13:42:48.082 +18.21s DEBUG store.view Vue : pageId=p_y6hkhp5h {"pageId":"p_y6hkhp5h"}
+13:42:48.090 +18.21s INFO  canvas.load.start [canvas.load#7] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_y6hkhp5h","lang":"fr","device":"desktop"}
+13:42:48.091 +18.21s DEBUG canvas.load.render [canvas.load#7 · 1 ms] Page rendue {"ms":1,"kb":25}
+13:42:48.094 +18.22s DEBUG store.commit Modification {"source":"pages","past":31,"page":"p_y6hkhp5h"}
+13:42:48.096 +18.22s INFO  canvas.load.cancel [canvas.load#7 · 6 ms] Chargement remplacé par un nouveau {"reason":"chargement précédent non terminé"}
+13:42:48.096 +18.22s INFO  canvas.load.start [canvas.load#8] Chargement complet du canevas : chargement précédent non terminé {"reason":"chargement précédent non terminé","page":"p_y6hkhp5h","lang":"fr","device":"desktop"}
+13:42:48.105 +18.23s DEBUG canvas.load.render [canvas.load#8 · 9 ms] Page rendue {"ms":1,"kb":25}
+13:42:48.106 +18.23s INFO  page.delete Page « Notre équipe » supprimée (Ctrl+Z pour la retrouver) {"id":"p_r05n15mr","slug":"notre-equipe-2","pages":3,"wasOpen":true}
+13:42:48.123 +18.25s INFO  canvas.load.ok [canvas.load#8 · 27 ms] Canevas prêt {"nodes":30,"scale":76,"via":"load"}

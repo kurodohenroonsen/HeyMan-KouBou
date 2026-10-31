@@ -407,6 +407,7 @@ Avant de mettre le site en ligne, Atelier le **vérifie** (erreurs bloquantes, p
 | Code | Niveau | Sens |
 |---|---|---|
 | `audit.export` | INFO | export demandé depuis la vérification |
+| `export.zip.missing-images` | WARN | image sans octets (ni en mémoire ni dans la base locale) : absente du .zip (cycle 27) |
 | `audit.go` | INFO | « Aller à » un point signalé |
 | `audit.open` | INFO / WARN | vérification ouverte (WARN si des erreurs bloquent) |
 | `export.zip.start`, `export.zip.render`, `export.zip.ok`, `export.zip.fail` | INFO / DEBUG / INFO / ERROR | export en .zip |

@@ -20,6 +20,7 @@ import { siteWithRoot, textKey, commit } from './store.js';
 import { pageText } from '../core/seo.js';
 import { log } from './log.js';
 import { __, __n } from '../core/ui-i18n.js';
+import { richToText, sanitizeRich, decodeEntities } from '../core/sanitize.js';
 
 const panel = () => $('#inspector');
 
@@ -263,6 +264,22 @@ function renderNow() {
   lastRendered = node.id;
 }
 
+/*
+ * Frappe dans la page (cycle 27) : l'inspecteur n'est pas redessiné ; seule la valeur du champ correspondant est mise à
+ * jour s'il est affiché (même élément, même langue) et que la personne n'est pas en train d'y écrire.
+ */
+function syncField({ node: id, field, lang }) {
+  if (!id || id !== state.selected || !field || field.includes('.')) return;
+  const sel = `[data-field="${CSS.escape(field)}"]`;
+  const el = panel().querySelector(`${sel}[lang="${CSS.escape(lang || '')}"]`) || panel().querySelector(`input${sel}:not([lang])`);
+  if (!el || el === document.activeElement) return;
+  const raw = nodeById(id)?.props?.[field];
+  const value = String((raw && typeof raw === 'object' ? raw[lang] : raw) ?? '');
+  if (el.matches('input,textarea')) el.value = /<[a-z]/i.test(value) ? richToText(value) : decodeEntities(value);
+  else el.innerHTML = sanitizeRich(value);
+  log.trace('inspector.sync', __('Champ de l’inspecteur mis à jour (frappe dans la page)'), { id, field, lang });
+}
+
 let pendingRemote = false;
 export function initInspector() {
   panel().addEventListener('focusout', () => setTimeout(() => { if (pendingRemote && !panel().contains(document.activeElement)) { pendingRemote = false; render(); } }, 0));
@@ -272,6 +289,7 @@ export function initInspector() {
       if (!pendingRemote) log.debug('inspector.remote-deferred', __('Modification d’un autre participant : inspecteur redessiné à la sortie du champ'), { field: document.activeElement.getAttribute('data-field') || document.activeElement.getAttribute('data-style') || undefined });
       pendingRemote = true;
     }
+    else if (reason === 'doc' && opts.source === 'canvas') syncField(opts);
     else if (reason === 'doc' && opts.source !== 'inspector') render();
     else if (reason === 'styleState' || reason === 'mode') render();
     else if (reason === 'presence' && !panel().contains(document.activeElement)) render();

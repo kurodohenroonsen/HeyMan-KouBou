@@ -98,7 +98,7 @@ function targetFor(node, multi) {
       const p = preset ? full(preset.style, key) : undefined;
       return p !== undefined ? __('{value} · preset', { value: p }) : undefined;
     },
-    write: (st, key, v) => commitRoot(setStyle(root(), node.id, st, key, v), { source: 'inspector-style' }),
+    write: (st, key, v) => commitRoot(setStyle(root(), node.id, st, key, v), { source: 'inspector-style', node: node.id }),
     writeMany: (st, keys) => many(st, Object.fromEntries(keys.map(k => [k, '']))),
     writeEntries: many,
     writeAsset: (site, st, key, v) => commit(siteWithRoot(site, setStyle(root(), node.id, st, key, v)), { source: 'inspector-style' })

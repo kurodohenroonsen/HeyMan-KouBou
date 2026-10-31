@@ -2,6 +2,21 @@
 
 Une entrée par cycle, construite à partir de la section « Livré » de `docs/cycle-NN.md` (cycles 1 à 24), la plus récente en haut. Les numéros de version des livraisons (.zip) ne sont pas écrits dans les comptes rendus : l’entrée porte alors le numéro du cycle (v19 = état livré après le cycle 24, d’après l’audit du 30/10/2026).
 
+## cycle 27 — cycle 27 — 31/10/2026
+**Ajouté**
+- Magasin d'images (`core/asset-store.js`, `editor/assets.js`) : les octets des photos vivent hors du projet ; adresses `blob:` dans le canevas, fichiers `assets/` à l'export.
+- Rendu ciblé : `renderNode(site, page, id)` ; une frappe ou un réglage ne redessine que l'élément modifié ; l'inspecteur n'est plus redessiné pendant une frappe dans la page.
+- Numéro de format `site.schema` (3) et migrations numérotées ; projets de référence dans `tests/fixtures/projets/` ; projet d'un format plus récent refusé avec un message clair.
+- Journal : `asset.*`, `perf.commit`, `inspector.sync`, `collab.asset.*`, `export.zip.missing-images`.
+
+**Modifié**
+- Plus aucune copie de site ne recopie les images, les polices importées ni l'icône ; historique borné à 150 pas et 40 Mo, images partagées entre les étapes.
+- Collaboration : les photos voyagent à part (après le projet, avant la modification qui les utilise, ou à la demande).
+- Le fichier `.json` reste autonome (photos incluses) et porte `"schema": 3`.
+
+**Corrigé**
+- Un site avec des photos ne ralentit plus l'éditeur : frappe ≈ 1 ms au lieu de 200 ms avec 10 photos, 9 Mo de mémoire après 300 modifications au lieu de plus d'1 Go ; un accordéon ouvert ou une vidéo lancée survivent à une modification ailleurs.
+
 ## v28 — cycle 28 — 31/10/2026
 
 **Ajouté**

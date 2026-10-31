@@ -14,7 +14,7 @@ import { saveProject } from './storage.js';
 import { log, registerContext, APP_VERSION } from './log.js';
 import { initLogButton, openLog, setLogSiteInfo } from './log-ui.js';
 import { $, $$, h, toast, download } from './dom.js';
-import { state, subscribe, load, setView, undo, redo, select, page, commit, root, emit, setEditTarget } from './store.js';
+import { state, subscribe, load, setView, undo, redo, select, page, commit, root, emit, setEditTarget, historyBytes } from './store.js';
 import { componentUsage } from '../core/components.js';
 import { loadProject } from './storage.js';
 import { demoSite } from './demo.js';
@@ -23,6 +23,7 @@ import { sanitizeSiteTexts } from '../core/sanitize-site.js';
 import { publishOrigin, githubTarget, hostLabel } from '../core/publish.js';
 import { translate, renderSite, renderPage } from '../core/render.js';
 import { createZip } from '../core/zip.js';
+import { assets, assets as assetStore, inline as inlineAssets } from './assets.js';
 import { initCanvas, setCanvasKeyHandler, onCanvasReady } from './canvas.js';
 import { loadFontData, fontBase } from './fontfiles.js';
 import { initInspector } from './inspector.js';
@@ -168,9 +169,10 @@ function alreadySaved() {
 }
 
 function exportJson() {
-  const json = JSON.stringify(state.site, null, 2);
-  log.info('project.export-json', __('Projet enregistré en fichier .json'), { kb: Math.round(json.length / 1024), pages: state.site.pages.length });
-  download(`${slugify(state.site.name) || 'site'}.atelier.json`, JSON.stringify(state.site, null, 2), 'application/json');
+  /* Cycle 27 : fichier autonome, les octets des images y sont réinjectés (data URL), comme avant */
+  const json = JSON.stringify(inlineAssets(state.site), null, 2);
+  log.info('project.export-json', __('Projet enregistré en fichier .json'), { kb: Math.round(json.length / 1024), pages: state.site.pages.length, images: Object.keys(state.site.assets || {}).length });
+  download(`${slugify(state.site.name) || 'site'}.atelier.json`, json, 'application/json');
   toast(__('Projet enregistré en fichier .json.'));
   noteExport();
 }
@@ -186,7 +188,9 @@ async function exportZip() {
   try {
     const t0 = performance.now();
     const fontData = await loadFontData(state.site);
-    ({ files } = renderSite(state.site, { fontData, lastmod: lastModified() }));
+    let missingAssets;
+    ({ files, missingAssets } = renderSite(state.site, { fontData, lastmod: lastModified(), assets }));
+    if (missingAssets.length) f.warn('missing-images', __n(missingAssets.length, '{n} image sans octets : absente du .zip', '{n} images sans octets : absentes du .zip'), { ids: missingAssets.slice(0, 10) });
     f.step('render', __('Pages générées'), { files: files.size, fonts: fontData.size || undefined, ms: Math.round(performance.now() - t0) });
     zip = createZip([...files].map(([name, data]) => ({ name, data })));
   } catch (e) { f.fail(e); toast(__('Export impossible : {error}', { error: e.message }), 'error'); return; }
@@ -198,7 +202,7 @@ async function exportZip() {
 
 function previewTab() {
   log.info('project.preview', __('Aperçu dans un nouvel onglet'), { page: state.pageId, lang: state.lang });
-  const html = renderPage(state.site, page(), state.lang, { canvas: true, fontBase: fontBase() })
+  const html = renderPage(state.site, page(), state.lang, { canvas: true, fontBase: fontBase(), assets })
     .replace(/ data-node=\x22[^\x22]*\x22 data-type=\x22[^\x22]*\x22/g, '')
     .replace(/<div class=\x22ph[^\x22]*\x22[^>]*>[^<]*<\/div>/g, '');
   const url = URL.createObjectURL(new Blob([html], { type: 'text/html' }));
@@ -279,7 +283,7 @@ async function boot() {
   if (saved && !valid.ok) fb.warn('invalid-save', __('Projet enregistré illisible : l’exemple est chargé à la place (une version de sécurité reste dans « Versions »)'), { errors: valid.errors.slice(0, 5) });
   const site = saved && valid.ok ? saved : demoSite();
   fb.step('project', fresh ? __('Démarrage à neuf (?fresh) : exemple chargé') : saved && valid.ok ? __('Projet enregistré sur cet appareil rechargé') : __('Aucun projet enregistré : exemple chargé'), { source: fresh ? 'fresh' : saved && valid.ok ? 'saved' : 'demo', name: site.name, pages: site.pages.length, languages: site.languages }, 'info');
-  state.site = normalizeSite(site);
+  state.site = normalizeSite(site, { assets });
   state.pageId = site.pages[0].id;
   state.lang = site.defaultLanguage;
   if (rec) rec.finish().then(() => toast(rec.kind === 'demo' ? __('La démonstration avait été interrompue : ton projet a été remis comme avant.') : __('L’auto-test avait été interrompu : ton projet a été remis comme avant.'))).catch(e => log.error('selftest.recover-fail', __('Nettoyage après l’auto-test impossible : {error}', { error: e?.message || e }), { error: e }));
@@ -297,8 +301,8 @@ async function boot() {
     const count = n => { nodes++; (n.children || []).forEach(count); };
     s.pages.forEach(p => count(p.root));
     const assets = Object.values(s.assets || {});
-    const kb = Math.round(assets.reduce((t, a) => t + (a.dataUrl?.length || 0) * 0.75, 0) / 1024);
-    return { nom: s.name, langues: s.languages, pages: s.pages.length, éléments: nodes, collections: Object.keys(s.collections || {}).length, composants: Object.keys(s.components || {}).length, images: `${assets.length} (${kb} Ko)`, publication: s.publish?.mode || 'aucune', adresse: s.baseUrl || '' };
+    const kb = Math.round(assetStore.bytes() / 1024);
+    return { nom: s.name, langues: s.languages, pages: s.pages.length, éléments: nodes, collections: Object.keys(s.collections || {}).length, composants: Object.keys(s.components || {}).length, images: `${assets.length} (${kb} Ko)`, historique: `${state.past.length} (${Math.round(historyBytes() / 1024)} Ko)`, publication: s.publish?.mode || 'aucune', adresse: s.baseUrl || '' };
   });
   setLogSiteInfo(() => ({ url: state.site?.publish?.url || (state.site?.baseUrl ? `${state.site.baseUrl}/publish.php` : '') }));
   registerContext('éditeur', () => ({ page: state.pageId, langue: state.lang, appareil: state.device, sélection: state.selected, édition: state.editTarget ? `${state.editTarget.kind}:${state.editTarget.id || ''}` : 'page', relecture: state.readOnly, annuler: state.past.length, rétablir: state.future.length }));

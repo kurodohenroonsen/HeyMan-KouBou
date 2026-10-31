@@ -2,8 +2,8 @@
 import { escapeHtml, escapeAttr, safeUrl } from './escape.js';
 import { pageDir, relative, translate } from './render.js';
 import { __ } from './ui-i18n.js';
+import { cloneSite } from './asset-store.js';
 
-const clone = v => structuredClone(v);
 const newItemId = () => 'm_' + Math.random().toString(36).slice(2, 9);
 
 export function effectiveMenu(site) {
@@ -12,7 +12,7 @@ export function effectiveMenu(site) {
 }
 
 export function customizeMenu(site) {
-  const s = clone(site);
+  const s = cloneSite(site);
   s.menu = site.pages.map(p => ({ id: newItemId(), kind: 'page', pageId: p.id, label: {}, newTab: false, children: [] }));
   return s;
 }
@@ -28,7 +28,7 @@ function locate(menu, id) {
 
 function withMenu(site, fn) {
   if (!Array.isArray(site.menu)) site = customizeMenu(site);
-  const s = clone(site);
+  const s = cloneSite(site);
   fn(s.menu, s);
   return s;
 }
@@ -107,7 +107,7 @@ export function pruneMenu(site) {
   if (!Array.isArray(site.menu)) return site;
   const ids = new Set(site.pages.map(p => p.id));
   const keep = it => it.kind !== 'page' || ids.has(it.pageId);
-  const s = clone(site);
+  const s = cloneSite(site);
   s.menu = s.menu.filter(keep).map(it => ({ ...it, children: (it.children || []).filter(keep) }));
   return s;
 }

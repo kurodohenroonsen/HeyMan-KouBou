@@ -876,6 +876,11 @@ Les versions sont des copies complètes du projet, gardées **dans ce navigateur
 Ce que signifient les lignes `storage.*` des versions (écrites par la base locale, `editor/storage.js`) :
 | Code | Niveau | Sens |
 |---|---|---|
+| `asset.absorb` | DEBUG | Images trouvées dans un projet ouvert (fichier, version, pair) rangées dans le magasin d'images (nombre, poids) |
+| `asset.missing` | WARN | Image du projet sans octets en mémoire ni dans la base locale : elle ne peut pas être affichée |
+| `asset.prune` | DEBUG | Images plus utilisées (même par l'historique) retirées de la mémoire |
+| `inspector.sync` | TRACE | Frappe dans la page : seul le champ correspondant de l'inspecteur est mis à jour |
+| `perf.commit` | TRACE | Durée d'une modification, de l'enregistrement à l'affichage (ms) |
 | `storage.version-save` | DEBUG | La version est en cours d'écriture dans la base locale (avec son `id`) ; suivie de `version.save.ok` ou `version.save.fail`. |
 | `storage.version-delete` | DEBUG | Des versions ont été effacées de la base (suppression à la main ou nettoyage), avec leurs identifiants. |
 | `storage.version-missing` | WARN | Une version demandée n'existe plus dans la base (supprimée par un autre onglet, base effacée). |
@@ -1187,6 +1192,42 @@ Réglage par réglage : voir [Tous les widgets](widgets.md#liste-de-contenus).
 | Situation | Message affiché | Journal | Que faire |
 |---|---|---|---|
 | Nom de fuseau inconnu ou mal écrit | « Fuseau horaire inconnu : … (exemple : Europe/Brussels). » ; l'ancien fuseau est remis | `settings.refused` (WARN) `{"setting":"timezone"}` | choisis dans la liste, ou écris le nom exact (Continent/Ville, en anglais) |
+
+---
+
+## 4.36 Des photos sans ralentir l'éditeur
+
+**But** : écrire et mettre en page un site plein de photos (le site touristique de Kumakōgen en a plus de quinze) aussi vite qu'un site sans photo, sans que l'onglet finisse par planter.
+
+**Étapes** : rien de nouveau. Importe tes photos comme d'habitude (4.13), puis écris, annule, rétablis, exporte, publie : tout se fait comme avant.
+
+**Ce que tu vois** : la frappe reste immédiate, même avec beaucoup de photos ; les photos s'affichent dans la page sans clignoter quand tu modifies un autre élément ; un accordéon ouvert ou une vidéo lancée dans la page restent comme ils sont pendant que tu modifies autre chose. Mesuré avec 10 photos de 600 Ko : environ 1 ms entre la frappe et l'affichage, et moins de 10 Mo de mémoire après 300 modifications (contre 200 ms par frappe et plus d'1 Go avant).
+
+**Ce qui a changé sous le capot** (cycle 27) :
+- les **octets** des photos sont rangés dans un « magasin d'images » à part ; le projet ne garde que leur nom, leur format, leurs dimensions et leurs variantes ; la page de l'éditeur montre chaque photo par une adresse `blob:` créée une seule fois ;
+- l'historique (Ctrl+Z) ne recopie plus les photos : toutes les étapes partagent les mêmes images ; il garde au plus 150 étapes et 40 Mo de texte ;
+- une frappe ne redessine que **l'élément modifié** dans la page, et l'inspecteur n'est plus redessiné pendant que tu écris dans la page (seul le champ correspondant suit) ;
+- sur l'appareil, les photos étaient déjà rangées à part dans la base locale : rien ne change ; le fichier `.json` contient toujours les photos (1.3) ; le `.zip`, la publication, les versions et la collaboration reçoivent les mêmes fichiers qu'avant.
+
+**Journal attendu** (frappe dans un titre, extrait réel : [`journaux/photos-frappe-dans-la-page.log`](journaux/photos-frappe-dans-la-page.log), niveau « trace » du journal)
+```log
+13:40:21.478 +22.52s DEBUG store.commit Modification {"key":"edit-n_4m3t416p34-text-1","source":"canvas","past":20,"page":"p_588935jb"}
+13:40:21.479 +22.52s DEBUG canvas.render Canevas mis à jour : styles seulement {"source":"canvas","mode":"styles","node":"n_4m3t416p34","ms":1}
+13:40:21.480 +22.52s DEBUG perf.commit Modification appliquée et affichée {"ms":1.7,"source":"canvas","node":"n_4m3t416p34","past":20}
+```
+À vérifier : `perf.commit` donne la durée totale d'une modification, de l'enregistrement à l'affichage (`ms`, à garder sous 20 ms) ; `canvas.render` dit ce qui a été redessiné : `"mode":"styles"` (frappe dans la page : le texte est déjà à l'écran), `"mode":"nœud"` (un seul élément remplacé, après une frappe dans l'inspecteur), `"mode":"contenu"` (toute la page : structure, page, langue, composant partagé). Aucun `inspector.render` pendant une frappe dans la page, seulement `inspector.sync` (TRACE). Ces lignes sont en TRACE : 🐞 → Réglages → garder « trace » pour les voir.
+
+**Variantes**
+| Situation | Ce qui change à l'écran | Journal |
+|---|---|---|
+| Ouvrir un `.json`, restaurer une version, recevoir un projet en collaboration | rien de visible | `asset.absorb` (DEBUG) : les images trouvées dans le projet sont rangées dans le magasin, avec le poids total |
+| Longue séance (plus de 150 étapes) : les plus anciennes étapes d'annulation sont oubliées | Ctrl+Z ne remonte pas plus loin | `asset.prune` (DEBUG) si des photos n'étaient plus utilisées que par ces étapes : elles quittent la mémoire (elles restent dans la base locale et dans les versions) |
+| Collaboration : une photo ajoutée par l'autre personne | elle apparaît chez toi quelques instants après | `collab.asset.in` puis `collab.ops.in` (chapitre 10, 10.13) |
+
+**Erreurs**
+| Situation | Message affiché | Journal | Que faire |
+|---|---|---|---|
+| Une image du projet n'a plus ses octets (base locale effacée par le navigateur, projet modifié à la main) | l'image est remplacée par « Choisissez une image dans l’inspecteur » ; à l'export, elle manque dans le `.zip` | `asset.missing` (WARN) à l'enregistrement, `export.zip.missing-images` (WARN) à l'export, avec les identifiants | réimporte la photo, ou rouvre une copie `.json` du projet (elle contient les photos) |
 
 ---
 

@@ -4,6 +4,7 @@
  */
 import { findNode, findParent, walk, reId, createNode } from './tree.js';
 import { __ } from './ui-i18n.js';
+import { cloneSite } from './asset-store.js';
 
 const clone = v => structuredClone(v);
 const newComponentId = () => 'cp_' + Math.random().toString(36).slice(2, 10);
@@ -49,7 +50,7 @@ export function makeInstance(site, id) {
 }
 
 export function createComponent(site, pageId, nodeId, name) {
-  const s = clone(site);
+  const s = cloneSite(site);
   s.components ||= {};
   const page = s.pages.find(p => p.id === pageId);
   const node = page && findNode(page.root, nodeId);
@@ -67,14 +68,14 @@ export function setComponentNode(site, id, node) {
   if (!site.components?.[id]) throw new Error(__('Composant introuvable.'));
   if (!node || node.type === 'page') throw new Error(__('Un composant contient un seul bloc.'));
   if (references(site, node, id)) throw new Error(__('Un composant ne peut pas s’inclure lui-même.'));
-  const s = clone(site);
+  const s = cloneSite(site);
   s.components[id].node = clone(node);
   return s;
 }
 
 export function renameComponent(site, id, name) {
   if (!site.components?.[id]) throw new Error(__('Composant introuvable.'));
-  const s = clone(site);
+  const s = cloneSite(site);
   s.components[id].name = cleanName(name);
   return s;
 }
@@ -92,7 +93,7 @@ function detachIn(root, site, nodeId) {
 }
 
 export function detachInstance(site, pageId, nodeId) {
-  const s = clone(site);
+  const s = cloneSite(site);
   const page = s.pages.find(p => p.id === pageId);
   if (!page) throw new Error(__('Page introuvable.'));
   const id = detachIn(page.root, s, nodeId);
@@ -102,7 +103,7 @@ export function detachInstance(site, pageId, nodeId) {
 
 export function deleteComponent(site, id) {
   if (!site.components?.[id]) throw new Error(__('Composant introuvable.'));
-  const s = clone(site);
+  const s = cloneSite(site);
   allRoots(s, root => {
     const ids = [];
     walk(root, n => { if (n.ref === id) ids.push(n.id); return true; });
@@ -136,7 +137,7 @@ export function applyEditRoot(site, target, root) {
   if (target.kind === 'detail') {
     if (!site.collections?.[target.id]) throw new Error(__('Collection introuvable.'));
     if (root?.type !== 'page') throw new Error(__('Page de détail invalide.'));
-    const s = clone(site);
+    const s = cloneSite(site);
     s.collections[target.id].detail = clone(root);
     return s;
   }
@@ -147,11 +148,11 @@ export function applyEditRoot(site, target, root) {
   if (target.kind === 'card') {
     if (!site.collections?.[target.id]) throw new Error(__('Collection introuvable.'));
     if (node.type !== 'column') throw new Error(__('La carte est une colonne : ajoutez les éléments à l’intérieur.'));
-    const s = clone(site);
+    const s = cloneSite(site);
     s.collections[target.id].card = clone(node);
     return s;
   }
-  const s = clone(site);
+  const s = cloneSite(site);
   s.layout ||= { header: null, footer: null };
   s.layout[target.kind] = clone(node);
   return s;

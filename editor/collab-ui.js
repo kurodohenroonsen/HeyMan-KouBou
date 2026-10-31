@@ -14,6 +14,7 @@ import { addOverlay, onUiAction, schedulePosition } from './canvas.js';
 import { findNode } from '../core/tree.js';
 import { nodeLabel } from '../core/editing.js';
 import { __, __n, N_ } from '../core/ui-i18n.js';
+import { assets } from './assets.js';
 
 let identity = null;
 let session = null;
@@ -70,9 +71,17 @@ function presenceNow() {
 const sanitizeDoc = doc => { const r = sanitizeSiteTexts(doc); return { doc: r.site, changed: r.changed }; };
 const validateDoc = doc => validateSite(normalizeSite(doc));
 
+/* Octets d'une image reçus d'un pair (cycle 27) : le canevas est redessiné une fois les images arrivées */
+let assetTimer = 0;
+function assetArrived() {
+  clearTimeout(assetTimer);
+  assetTimer = setTimeout(() => emit('doc', { source: 'remote', assets: true }), 60);
+}
+
 function makeNode({ role, secret, roomId, invite, replica }) {
   return new CollabNode({
-    identity, role, secret, roomId, invite, replica, log, sanitizeDoc, validateDoc,
+    identity, role, secret, roomId, invite, replica, log, sanitizeDoc, validateDoc, assets,
+    onAsset: assetArrived,
     onRemote: (doc, ops, info) => {
       if (info?.snapshot) {
         load(doc);

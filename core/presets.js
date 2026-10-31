@@ -8,6 +8,7 @@ import { STATES } from './style.js';
 import { REGISTRY } from './widgets.js';
 import { editRoot, applyEditRoot } from './components.js';
 import { __ } from './ui-i18n.js';
+import { cloneSite } from './asset-store.js';
 
 const clone = v => structuredClone(v);
 const emptyStyle = () => ({ desktop: {}, tablet: {}, mobile: {}, hover: {} });
@@ -34,7 +35,7 @@ function rootOf(site, where) {
 }
 
 function withNode(site, where, nodeId, fn) {
-  const s = clone(site);
+  const s = cloneSite(site);
   const r = rootOf(s, where);
   if (!r) throw new Error(__('Page introuvable.'));
   const node = findNode(r, nodeId);
@@ -49,7 +50,7 @@ function allNodes(site, fn) {
 
 export function createPreset(site, { name, type, style }) {
   if (!REGISTRY[type] || type === 'page') throw new Error(__('Type inconnu : {type}', { type }));
-  const s = clone(site);
+  const s = cloneSite(site);
   s.presets ||= {};
   const id = newPresetId();
   s.presets[id] = { id, name: cleanName(name), type, style: cleanStyle(style) };
@@ -98,14 +99,14 @@ function mergeStyles(base, over) {
 
 export function setPresetStyle(site, id, state, key, value) {
   if (!site.presets?.[id]) throw new Error(__('Preset introuvable.'));
-  const s = clone(site);
+  const s = cloneSite(site);
   writeStyleValue(s.presets[id].style, state, key, value);
   return s;
 }
 
 export function renamePreset(site, id, name) {
   if (!site.presets?.[id]) throw new Error(__('Preset introuvable.'));
-  const s = clone(site);
+  const s = cloneSite(site);
   s.presets[id].name = cleanName(name);
   return s;
 }
@@ -119,7 +120,7 @@ export function duplicatePreset(site, id) {
 export function deletePreset(site, id, { keepLook = true } = {}) {
   const p = site.presets?.[id];
   if (!p) throw new Error(__('Preset introuvable.'));
-  const s = clone(site);
+  const s = cloneSite(site);
   const wasDefault = s.defaultPresets?.[p.type] === id;
   allNodes(s, n => {
     const uses = n.preset === id || (wasDefault && n.type === p.type && !n.preset);
@@ -133,7 +134,7 @@ export function deletePreset(site, id, { keepLook = true } = {}) {
 }
 
 export function setDefaultPreset(site, type, id) {
-  const s = clone(site);
+  const s = cloneSite(site);
   s.defaultPresets ||= {};
   if (!id) { delete s.defaultPresets[type]; return s; }
   const p = s.presets?.[id];

@@ -6,6 +6,7 @@ import { log } from './log.js';
 import { publishOrigin, githubTarget, tokenKey } from '../core/publish.js';
 import { __, __n } from '../core/ui-i18n.js';
 import { orphanAssets, storedAssetIds } from '../core/storage-gc.js';
+import { assets } from './assets.js';
 
 const DB = 'atelier-v2';
 const STORE = 'projects';
@@ -38,13 +39,17 @@ function open() {
 
 const req = r => new Promise((resolve, reject) => { r.onsuccess = () => resolve(r.result); r.onerror = () => reject(r.error); });
 
-/* Sépare les données lourdes (data URL) des métadonnées */
-export function splitAssets(site) {
+/*
+ * Sépare les données lourdes des métadonnées. Depuis le cycle 27 le site n'a plus d'octets : ils sont lus dans le
+ * magasin d'images (`store`) ; un site d'avant (data URL dans site.assets) est encore accepté.
+ */
+export function splitAssets(site, store = assets) {
   const light = {};
   const heavy = {};
   for (const [id, a] of Object.entries(site.assets || {})) {
     light[id] = { ...a, dataUrl: undefined, variants: a.variants?.map(v => ({ ...v, dataUrl: undefined })), stored: true };
-    heavy[id] = { dataUrl: a.dataUrl, variants: (a.variants || []).map(v => v.dataUrl) };
+    const hv = a.dataUrl ? { dataUrl: a.dataUrl, variants: (a.variants || []).map(v => v.dataUrl) } : store?.heavy(id, a);
+    if (hv) heavy[id] = hv;
   }
   return { light: { ...site, assets: light }, heavy };
 }
@@ -83,6 +88,8 @@ export async function saveProject(site, key = 'current') {
   const db = await open();
   const { light, heavy } = splitAssets(site);
   const fresh = Object.keys(heavy).filter(id => !savedAssets.has(id));
+  const lost = Object.keys(light.assets).filter(id => !heavy[id] && !savedAssets.has(id));
+  if (lost.length) log.warn('asset.missing', __n(lost.length, '{n} image du projet n’a pas d’octets en mémoire ni dans la base locale : elle ne pourra pas être affichée', '{n} images du projet n’ont pas d’octets en mémoire ni dans la base locale : elles ne pourront pas être affichées'), { ids: lost.slice(0, 10) });
   await new Promise((resolve, reject) => {
     const tx = db.transaction([STORE, ASSETS], 'readwrite');
     tx.objectStore(STORE).put(light, key);

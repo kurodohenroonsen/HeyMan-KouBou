@@ -1,6 +1,7 @@
 /*
  * Rendu : arbre → HTML, styles → CSS, site → fichiers. Fonctions pures, sans DOM.
- * Mode « canvas » : CSS en ligne, attributs data-node pour l'éditeur, images en data URL.
+ * Mode « canvas » : CSS en ligne, attributs data-node pour l'éditeur, images servies par le magasin d'images (`blob:`).
+ * opts.assets (cycle 27) : magasin d'images (core/asset-store.js) — adresses du canevas et octets de l'export.
  */
 import { REGISTRY, STRUCTURE } from './widgets.js';
 import { siteText } from './widgets-extra.js';
@@ -56,19 +57,32 @@ export function translate(site, value, lang) {
 
 /* Nom publié d'une image (ou d'une variante) : suffixé d'une empreinte de son contenu, pour un cache long sans risque */
 const assetNames = new WeakMap();
-export function assetFile(a) {
+export function assetFile(a, data = a.dataUrl) {
+  const d = String(data || '');
   let n = assetNames.get(a);
-  if (!n) { n = suffixed(String(a.file || 'image'), fingerprint(String(a.dataUrl || ''))); assetNames.set(a, n); }
-  return n;
+  if (!n || n.data !== d) { n = { data: d, name: suffixed(String(a.file || 'image'), fingerprint(d)) }; assetNames.set(a, n); }
+  return n.name;
 }
 
-function assetUrl(site, value, { canvas, toRoot }) {
+/* Octets d'une image (ou de sa variante de largeur w) : magasin d'images, sinon data URL d'un projet d'avant le cycle 27 */
+function assetData(a, id, assets, w = 0) {
+  const got = assets?.get(id, w);
+  if (got && (!w || got.w === w)) return got.dataUrl;
+  return w ? a.variants?.find(v => v.w === w)?.dataUrl || '' : a.dataUrl || '';
+}
+
+/* Résolveur d'adresse d'une image : `blob:` du magasin dans le canevas, `assets/<fichier>` à l'export */
+function resolveAsset(site, id, w, { canvas, toRoot, assets }) {
+  const a = site.assets?.[id];
+  if (!a) return '';
+  if (canvas) return assets?.has(id) ? assets.url(id, w) : assetData(a, id, null, w);
+  const v = w ? a.variants?.find(x => x.w === w) : null;
+  return `${toRoot}assets/${assetFile(v || a, assetData(a, id, assets, v ? w : 0))}`;
+}
+
+function assetUrl(site, value, { canvas, toRoot, assets }) {
   const v = String(value || '');
-  if (v.startsWith('asset:')) {
-    const a = site.assets?.[v.slice(6)];
-    if (!a) return '';
-    return canvas ? a.dataUrl : `${toRoot}assets/${assetFile(a)}`;
-  }
+  if (v.startsWith('asset:')) return resolveAsset(site, v.slice(6), 0, { canvas, toRoot, assets });
   const u = safeUrl(v);
   return /^https:\/\//i.test(u) ? u : '';
 }
@@ -105,13 +119,13 @@ export function sizesFor(box) {
 }
 
 function imgTag(site, ctx, value, { alt = '', style = '', cls = '' } = {}) {
-  const src = assetUrl(site, value, { canvas: ctx.canvas, toRoot: ctx.toRoot });
+  const src = assetUrl(site, value, { canvas: ctx.canvas, toRoot: ctx.toRoot, assets: ctx.assets });
   if (!src) return '';
   const v = String(value || '');
   const a = v.startsWith('asset:') ? site.assets?.[v.slice(6)] : null;
   let extra = '';
   if (a && !ctx.canvas && a.variants?.length && a.width) {
-    const set = [...a.variants.map(x => `${ctx.toRoot}assets/${assetFile(x)} ${x.w}w`), `${src} ${a.width}w`].join(', ');
+    const set = [...a.variants.map(x => `${ctx.asset(v.slice(6), x.w)} ${x.w}w`), `${src} ${a.width}w`].join(', ');
     extra += ` srcset="${escapeAttr(set)}" sizes="${escapeAttr(sizesFor(ctx.box || { w: site.theme?.contentWidth || 1160, d: 1, t: 1, m: 1 }))}"`;
   }
   if (a?.width && a?.height) extra += ` width="${a.width}" height="${a.height}"`;
@@ -120,10 +134,11 @@ function imgTag(site, ctx, value, { alt = '', style = '', cls = '' } = {}) {
   return `<img src="${escapeAttr(src)}" alt="${escapeAttr(alt)}"${cls ? ` class="${cls}"` : ''}${extra}${style}>`;
 }
 
-export function makeContext(site, lang, { canvas = false, toRoot = '', from = [], page = null, popups = null, lcp = null, item = null, today = null } = {}) {
+export function makeContext(site, lang, { canvas = false, toRoot = '', from = [], page = null, popups = null, lcp = null, item = null, today = null, assets = null } = {}) {
   const home = site.pages?.find(p => p.slug === '') || site.pages?.[0];
   return {
-    canvas, lang, site, page, from, toRoot, item, today: today || localToday(),
+    canvas, lang, site, page, from, toRoot, item, today: today || localToday(), assets,
+    asset: (id, w = 0) => resolveAsset(site, id, w, { canvas, toRoot, assets }),
     renderTree(node, extra = {}) { return renderNode(node, { ...this, ...extra }); },
     lcp: lcp || { done: false },
     imgTag(value, opts) { return imgTag(site, this, value, opts); },
@@ -144,7 +159,7 @@ export function makeContext(site, lang, { canvas = false, toRoot = '', from = []
     rich: v => sanitizeRich(v, { noopener: true }),
     inline: v => sanitizeInline(v, { noopener: true }),
     text: v => richToText(v),
-    img: v => assetUrl(site, v, { canvas, toRoot })
+    img: v => assetUrl(site, v, { canvas, toRoot, assets })
   };
 }
 
@@ -171,7 +186,45 @@ function attrs(node, ctx) {
 
 const MAX_DEPTH = 6;
 
-export function renderNode(node, ctx) {
+/* Contexte transmis aux enfants d'une structure (largeur occupée pour les images, empilement des colonnes) */
+function childCtxOf(node, ctx) {
+  const childCtx = ctx.instance ? { ...ctx, instance: null } : ctx;
+  if (node.type === 'section') {
+    const cw = Number(ctx.site?.theme?.contentWidth) || 1160;
+    return { ...childCtx, box: { w: node.props?.width === 'full' ? null : node.props?.width === 'wide' ? 1440 : cw, d: 1, t: 1, m: 1 } };
+  }
+  if (node.type === 'row') return { ...childCtx, stack: ['mobile', 'tablet', 'never'].includes(node.props?.stack) ? node.props.stack : 'mobile' };
+  if (node.type !== 'column') return childCtx;
+  const box = ctx.box || { w: Number(ctx.site?.theme?.contentWidth) || 1160, d: 1, t: 1, m: 1 };
+  const sd = Number(node.style?.desktop?.span) || 12;
+  let st = Number(node.style?.tablet?.span) || sd;
+  let sm = Number(node.style?.mobile?.span) || st;
+  if (ctx.stack === 'tablet' && !node.style?.tablet?.span) st = 12;
+  if ((ctx.stack === 'tablet' || ctx.stack === 'mobile') && !node.style?.mobile?.span) sm = 12;
+  return { ...childCtx, box: { w: box.w, d: box.d * sd / 12, t: box.t * st / 12, m: box.m * sm / 12 } };
+}
+
+/*
+ * Rendu ciblé (cycle 27) : renderNode(site, page, id, opts) donne exactement le fragment que renderPage produit pour ce
+ * nœud de la page (même contexte : largeur, empilement, langue) ; null si le nœud n'est pas dans le contenu de la page
+ * ou s'il est dans un composant ou un widget conteneur (le canevas recharge alors tout le contenu).
+ */
+function renderNodeById(site, page, id, { canvas = false, lang = site.defaultLanguage, today = null, assets = null } = {}) {
+  const path = [];
+  const find = n => { path.push(n); if (n.id === id) return true; if (!n.ref && (n.children || []).some(find)) return true; path.pop(); return false; };
+  if (!page?.root || !find(page.root) || path.length < 2) return null;
+  const from = pageDir(site, page, lang);
+  const item = page.collection ? { col: page.collection, item: page.item } : null;
+  let ctx = makeContext(site, lang, { canvas, toRoot: '../'.repeat(from.length), from, page, item, today, assets });
+  for (const n of path.slice(0, -1)) {
+    if (n.ref || !STRUCTURE.has(n.type)) return null;
+    ctx = childCtxOf(n, ctx);
+  }
+  return renderNode(path[path.length - 1], ctx);
+}
+
+export function renderNode(node, ctx, id, opts) {
+  if (typeof id === 'string') return renderNodeById(node, ctx, id, opts);
   if (node.ref) {
     if (node.advanced?.hideLangs?.[ctx.lang] && !ctx.canvas) return '';
     const comp = ctx.site?.components?.[node.ref];
@@ -190,8 +243,7 @@ export function renderNode(node, ctx) {
   switch (node.type) {
     case 'page': return kids();
     case 'section': {
-      const cw = Number(ctx.site?.theme?.contentWidth) || 1160;
-      const secCtx = { ...childCtx, box: { w: node.props?.width === 'full' ? null : node.props?.width === 'wide' ? 1440 : cw, d: 1, t: 1, m: 1 } };
+      const secCtx = childCtxOf(node, ctx);
       const kidsS = () => (node.children || []).map(c => renderNode(c, secCtx)).join('');
       const tag = ['section', 'div', 'aside', 'article', 'nav', 'header', 'footer'].includes(node.props?.tag) ? node.props.tag : 'section';
       const width = node.props?.width === 'full' ? ' sec__inner--full' : node.props?.width === 'wide' ? ' sec__inner--wide' : '';
@@ -200,19 +252,13 @@ export function renderNode(node, ctx) {
       return `<${tag} class="${classes(node, 'sec', ctx)}"${attrs(node, ctx)}><div class="sec__inner${width}">${inner}</div></${tag}>`;
     }
     case 'row': {
-      const stack = ['mobile', 'tablet', 'never'].includes(node.props?.stack) ? node.props.stack : 'mobile';
-      const rowCtx = { ...childCtx, stack };
+      const rowCtx = childCtxOf(node, ctx);
+      const stack = rowCtx.stack;
       return `<div class="${classes(node, `row row--stack-${stack}`, ctx)}"${attrs(node, ctx)}>${(node.children || []).map(c => renderNode(c, rowCtx)).join('')}</div>`;
     }
     case 'column': {
       const flags = (node.style?.tablet?.span ? ' col--ts' : '') + (node.style?.mobile?.span ? ' col--ms' : '');
-      const box = ctx.box || { w: Number(ctx.site?.theme?.contentWidth) || 1160, d: 1, t: 1, m: 1 };
-      const sd = Number(node.style?.desktop?.span) || 12;
-      let st = Number(node.style?.tablet?.span) || sd;
-      let sm = Number(node.style?.mobile?.span) || st;
-      if (ctx.stack === 'tablet' && !node.style?.tablet?.span) st = 12;
-      if ((ctx.stack === 'tablet' || ctx.stack === 'mobile') && !node.style?.mobile?.span) sm = 12;
-      const colCtx = { ...childCtx, box: { w: box.w, d: box.d * sd / 12, t: box.t * st / 12, m: box.m * sm / 12 } };
+      const colCtx = childCtxOf(node, ctx);
       const dropHere = __('Déposez un widget ici');
       const inner = (node.children || []).map(c => renderNode(c, colCtx)).join('') || (ctx.canvas && !ctx.locked ? `<div class="ph" data-ph="column">${escapeHtml(dropHere)}</div>` : '');
       return `<div class="${classes(node, 'col' + flags, ctx)}"${attrs(node, ctx)}>${inner}</div>`;
@@ -258,14 +304,14 @@ export function jaCss(theme, stacks = {}) {
 }
 
 /* fontBase : adresse du dossier fonts/ de l'éditeur (canevas et aperçu) ; sur le site, les polices sont dans assets/fonts/ */
-export function buildCss(site, pages, { canvas = false, fontBase = 'fonts/' } = {}) {
+export function buildCss(site, pages, { canvas = false, fontBase = 'fonts/', assets = null } = {}) {
   const stacks = { heading: fontStack(site, 'heading'), body: fontStack(site, 'body') };
   const parts = [fontsCss(site, { canvas, fontBase }), buildBaseCss(site.theme, site.tokens, stacks)].filter(Boolean);
   if (site.languages?.includes('ja')) parts.push(jaCss(site.theme, stacks));
   for (const type of Object.keys(REGISTRY)) if (REGISTRY[type].css) parts.push(REGISTRY[type].css);
   const ctx = {
     canvas,
-    asset: v => assetUrl(site, v, { canvas, toRoot: '' }),
+    asset: v => assetUrl(site, v, { canvas, toRoot: '', assets }),
     target: type => REGISTRY[type]?.styleTarget || ''
   };
   for (const p of Object.values(site.presets || {})) {
@@ -342,12 +388,12 @@ export function previewItem(site, col, itemId) {
   return { id: 'apercu', slug: 'apercu', status: 'draft', values };
 }
 
-function absoluteAsset(site, value) {
+function absoluteAsset(site, value, assets = null) {
   const v = String(value || '');
   if (/^https:\/\//i.test(v)) return v;
   const a = v.startsWith('asset:') ? site.assets?.[v.slice(6)] : null;
   const base = String(site.baseUrl || '').replace(/\/+$/, '');
-  return a && base ? `${base}/assets/${assetFile(a)}` : '';
+  return a && base ? `${base}/assets/${assetFile(a, assetData(a, v.slice(6), assets))}` : '';
 }
 
 /* og:locale avec la région, comme le demande Open Graph (fr_BE, ja_JP…) */
@@ -387,13 +433,13 @@ const rssCollections = site => (site.baseUrl ? Object.values(site.collections ||
  * fontBase : dossier fonts/ de l'éditeur pour le canevas et l'aperçu ; base : <base href> de la page 404 (servie pour
  * n'importe quelle adresse, ses liens relatifs doivent partir de son propre dossier).
  */
-export function renderPage(site, page, lang, { canvas = false, edit = null, today = null, fontBase = 'fonts/', base = '' } = {}) {
+export function renderPage(site, page, lang, { canvas = false, edit = null, today = null, fontBase = 'fonts/', base = '', assets = null } = {}) {
   const from = pageDir(site, page, lang);
   const toRoot = '../'.repeat(from.length);
   const popups = new Set();
   const editCol = canvas && (edit?.kind === 'card' || edit?.kind === 'detail') ? site.collections?.[edit.id] : null;
   const pageItem = page.collection ? { col: page.collection, item: page.item } : null;
-  const ctx = makeContext(site, lang, { canvas, toRoot, from, page, popups, item: pageItem, today });
+  const ctx = makeContext(site, lang, { canvas, toRoot, from, page, popups, item: pageItem, today, assets });
   const lockedCtx = { ...ctx, locked: true };
   const zoneCtx = zone => (canvas && edit?.kind === zone ? ctx : lockedCtx);
   const home = site.pages.find(p => p.slug === '') || site.pages[0];
@@ -403,13 +449,13 @@ export function renderPage(site, page, lang, { canvas = false, edit = null, toda
   const canonical = page.notFound ? null : absolute(site, from);
   const alternates = site.languages.map(l => ({ lang: l, segs: pageDir(site, page, l) }));
   const preload = canvas ? null : preloadFont(site);
-  const itemImage = page.collection && page.collection.imageField ? absoluteAsset(site, page.item.values[page.collection.imageField]) : '';
-  const ogImage = absoluteAsset(site, page.seo?.image) || itemImage || absoluteAsset(site, firstImage(site, page, lang));
+  const itemImage = page.collection && page.collection.imageField ? absoluteAsset(site, page.item.values[page.collection.imageField], assets) : '';
+  const ogImage = absoluteAsset(site, page.seo?.image, assets) || itemImage || absoluteAsset(site, firstImage(site, page, lang), assets);
   const root0 = absolute(site, []);
   const isHome = page.slug === '' && !page.collection && !page.notFound;
   const ld = [];
   if (isHome) {
-    const logo = absoluteAsset(site, site.header?.logo);
+    const logo = absoluteAsset(site, site.header?.logo, assets);
     const same = sameAsLinks(site);
     ld.push({ '@context': 'https://schema.org', '@type': 'Organization', name: site.name, ...(root0 ? { url: root0 } : {}), ...(logo ? { logo } : {}), ...(same.length ? { sameAs: same } : {}) });
     ld.push({ '@context': 'https://schema.org', '@type': 'WebSite', name: site.name, inLanguage: lang, ...(canonical ? { url: canonical } : {}) });
@@ -450,7 +496,7 @@ export function renderPage(site, page, lang, { canvas = false, edit = null, toda
     `<meta name="theme-color" content="${escapeAttr(site.theme?.palette?.c1 || '#0f766e')}">`,
     ...(canvas ? [] : iconHead(site, toRoot)),
     preload ? `<link rel="preload" href="${toRoot}${preload.name}" as="font" type="font/woff2" crossorigin>` : '',
-    canvas ? `<style id="atelier-css">${buildCss(site, [page], { canvas: true, fontBase })}</style>` : `<link rel="stylesheet" href="${toRoot}styles.css">`,
+    canvas ? `<style id="atelier-css">${buildCss(site, [page], { canvas: true, fontBase, assets })}</style>` : `<link rel="stylesheet" href="${toRoot}styles.css">`,
     `<script type="application/ld+json">${JSON.stringify({
       '@context': 'https://schema.org', '@type': 'WebPage', name: docTitle, inLanguage: lang,
       ...(canonical ? { url: canonical } : {}),
@@ -468,7 +514,7 @@ export function renderPage(site, page, lang, { canvas = false, edit = null, toda
   } else {
     const menuHtml = renderMenu(site, page, lang, from, { id: 'menu' });
     const langs = site.header?.showLangs !== false ? langLinks(site, page, lang, from, 'codes') : '';
-    const logo = assetUrl(site, site.header?.logo, { canvas, toRoot });
+    const logo = assetUrl(site, site.header?.logo, { canvas, toRoot, assets });
     const brand = `${logo ? `<img src="${escapeAttr(logo)}" alt="">` : ''}<span>${escapeHtml(site.name)}</span>`;
     const burger = site.header?.burger !== false ? `<button type="button" class="nav-burger" aria-expanded="false" aria-controls="menu"><span aria-hidden="true">☰</span> ${escapeHtml(siteText('menu', lang))}</button>` : '';
     headerHtml = `<header class="site-header${sticky}" data-zone="header"><div class="site-header__inner">
@@ -580,14 +626,14 @@ function notFoundTarget(site, lang) {
  * fontData : contenu des polices embarquées (chemin dans l'éditeur → octets), lues par l'éditeur avec fetch ;
  * lastmod : date (AAAA-MM-JJ) de dernière modification pour le plan du site. Renvoie aussi les polices manquantes.
  */
-export function renderSite(site, { today = null, now = new Date(), lastmod = null, fontData = null } = {}) {
+export function renderSite(site, { today = null, now = new Date(), lastmod = null, fontData = null, assets = null } = {}) {
   const files = new Map();
   const day = today || localToday(now);
-  for (const page of site.pages) for (const lang of site.languages) files.set(pagePath(site, page, lang), renderPage(site, page, lang, { today: day }));
+  for (const page of site.pages) for (const lang of site.languages) files.set(pagePath(site, page, lang), renderPage(site, page, lang, { today: day, assets }));
   const nf = notFoundPage(site);
   for (const lang of site.languages) {
     const t = notFoundTarget(site, lang);
-    files.set(t.path, renderPage(site, notFoundPage(site, lang), lang, { today: day, base: t.base }));
+    files.set(t.path, renderPage(site, notFoundPage(site, lang), lang, { today: day, base: t.base, assets }));
   }
   const itemPages = [];
   const root = absolute(site, []);
@@ -597,7 +643,7 @@ export function renderSite(site, { today = null, now = new Date(), lastmod = nul
     if (hasDetail(col)) for (const item of published) {
       const ip = itemPage(site, col, item);
       itemPages.push(ip);
-      for (const lang of site.languages) files.set(pagePath(site, ip, lang), renderPage(site, ip, lang, { today: day }));
+      for (const lang of site.languages) files.set(pagePath(site, ip, lang), renderPage(site, ip, lang, { today: day, assets }));
     }
     for (const lang of site.languages) {
       const dir = collectionDir(site, col, lang).join('/');
@@ -609,13 +655,16 @@ export function renderSite(site, { today = null, now = new Date(), lastmod = nul
       if (root && col.settings?.rss && col.dateField) files.set(`${dir}/feed.xml`, buildRss(site, col, lang, { now, absolute: segs => absolute(site, segs), today: day }));
     }
   }
-  files.set('styles.css', buildCss(site, site.pages));
+  files.set('styles.css', buildCss(site, site.pages, { assets }));
   if ([...site.pages, ...itemPages, nf].some(p => pageUsesScript(site, p))) files.set('site.js', siteScript());
   const used = JSON.stringify({ pages: site.pages, header: site.header, components: site.components, layout: site.layout, collections: site.collections });
+  const missingAssets = [];
   for (const [id, a] of Object.entries(site.assets || {})) {
     if (!used.includes(`asset:${id}`)) continue;
-    files.set(`assets/${assetFile(a)}`, decodeDataUrl(a.dataUrl));
-    for (const v of a.variants || []) if (v.dataUrl) files.set(`assets/${assetFile(v)}`, decodeDataUrl(v.dataUrl));
+    const data = assetData(a, id, assets);
+    if (!data) { missingAssets.push(id); continue; }
+    files.set(`assets/${assetFile(a, data)}`, decodeDataUrl(data));
+    for (const v of a.variants || []) { const d = assetData(a, id, assets, v.w); if (d) files.set(`assets/${assetFile(v, d)}`, decodeDataUrl(d)); }
   }
   const missingFonts = [];
   for (const f of fontFilesFor(site)) {
@@ -634,7 +683,7 @@ export function renderSite(site, { today = null, now = new Date(), lastmod = nul
     files.set('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${root}sitemap.xml\n`);
   } else files.set('robots.txt', 'User-agent: *\nAllow: /\n');
   if (site.publish?.server !== 'pages') files.set('.htaccess', buildHtaccess(htaccessOptions(site)));
-  return { files, missingFonts };
+  return { files, missingFonts, missingAssets };
 }
 
 /* Fichiers envoyés à publish.php : sans le .htaccess (il l'écrit lui-même d'après les options, voir core/publish.js) */

@@ -1,20 +1,20 @@
-13:33:49.483 +1.75s DEBUG ui.dialog.open Fenêtre ouverte : cmdk {"id":"cmdk","class":"cmdk","modal":true}
-13:33:49.657 +1.92s INFO  cmdk.run Commande : ✨ Demander à Atelier (décrire ce que vous voulez) {"id":"act:ask","query":"demander à atelier"}
-13:33:49.657 +1.92s INFO  assist.open Demander à Atelier {"chars":0,"page":"p_mkshecap","selected":"n_5x5b0y0w6b","lang":"fr"}
-13:33:49.658 +1.93s DEBUG ui.dialog.open Fenêtre ouverte : ✨ Demander à Atelier {"id":"askDialog","class":"audit smart-dialog","modal":true}
-13:33:49.661 +1.93s DEBUG ui.dialog.close Fenêtre fermée : cmdk {"id":"cmdk"}
-13:33:49.685 +1.95s DEBUG ai.provider Fournisseur d’IA de test (window.__atelierAI) {"source":"test","lang":"fr","has":{"prompt":true,"multimodal":true,"summarizer":true,"translator":true},"methods":["prompt"]}
-13:33:49.685 +1.95s INFO  ai.plan.start [ai.plan#2] IA locale : préparer une demande (actions de la liste fermée) {"task":"plan","request":"mets les titres de cette page en rouge et centrés","inLen":49,"page":"p_mkshecap","selected":"n_5x5b0y0w6b","lang":"fr","sourceLang":"fr","gen":"fr","api":"prompt","source":"test"}
-13:33:49.685 +1.95s DEBUG ai.plan.call [ai.plan#2 · 0 ms] Appel Prompt API (Gemini Nano) (fr) {"api":"prompt","lang":"fr","schema":"actions,summary","system":"2696 car.","inLen":330}
-13:33:49.685 +1.95s DEBUG ai.plan.reply [ai.plan#2 · 0 ms] Réponse Prompt API (Gemini Nano) : 224 car. en 0 ms {"api":"prompt","ms":0,"outLen":224,"excerpt":"{\"summary\":\"Je mets les titres en rouge et je les centre.\",…"}
-13:33:49.686 +1.95s INFO  ai.plan.actions [ai.plan#2 · 1 ms] 2 actions valides : style, style {"steps":["style","style"],"summary":"Je mets les titres en rouge et je les centre."}
-13:33:49.687 +1.95s INFO  ai.plan.ok [ai.plan#2 · 2 ms] Demande à Atelier : proposition prête (Prompt API) {"via":"prompt","fallback":false,"translated":false,"calls":1,"steps":2,"rejected":0,"warnings":0}
-13:33:49.687 +1.95s INFO  assist.plan 2 action(s) prête(s), 0 refusée(s) {"request":"mets les titres de cette page en rouge et centrés","summary":"Je mets les titres en rouge et je les centre.","steps":["style","style"],"rejected":0,"warnings":0}
-13:33:49.750 +2.02s INFO  assist.apply.start [assist.apply#2] Application de 2 action(s) {"steps":["style","style"]}
-13:33:49.753 +2.02s INFO  assist.apply.step [assist.apply#2 · 3 ms] Couleur du texte : #dc2626 pour tous les titres de la page (7)
-13:33:49.754 +2.02s INFO  assist.apply.step [assist.apply#2 · 4 ms] Alignement : center pour tous les titres de la page (7)
-13:33:49.754 +2.02s DEBUG store.commit Modification {"source":"assistant","past":1,"page":"p_mkshecap"}
-13:33:49.758 +2.02s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"assistant","mode":"contenu","ms":3}
-13:33:49.762 +2.03s INFO  assist.apply.ok [assist.apply#2 · 12 ms] 2 action(s) appliquée(s) (Ctrl+Z pour tout annuler) {"done":2,"errors":0,"aiTexts":0,"view":{},"ui":[],"changed":true}
-13:33:49.762 +2.03s INFO  ui.toast Message affiché : 2 actions appliquées : Ctrl+Z pour tout annuler.
-13:33:49.770 +2.04s DEBUG ui.dialog.close Fenêtre fermée : ✨ Demander à Atelier {"id":"askDialog"}
+13:45:05.814 +1.65s DEBUG ui.dialog.open Fenêtre ouverte : cmdk {"id":"cmdk","class":"cmdk","modal":true}
+13:45:06.015 +1.85s INFO  cmdk.run Commande : ✨ Demander à Atelier (décrire ce que vous voulez) {"id":"act:ask","query":"demander à atelier"}
+13:45:06.016 +1.85s INFO  assist.open Demander à Atelier {"chars":0,"page":"p_bg4uc6oq","selected":"n_4d1d3m5l6n","lang":"fr"}
+13:45:06.017 +1.85s DEBUG ui.dialog.open Fenêtre ouverte : ✨ Demander à Atelier {"id":"askDialog","class":"audit smart-dialog","modal":true}
+13:45:06.024 +1.86s DEBUG ui.dialog.close Fenêtre fermée : cmdk {"id":"cmdk"}
+13:45:06.048 +1.88s DEBUG ai.provider Fournisseur d’IA de test (window.__atelierAI) {"source":"test","lang":"fr","has":{"prompt":true,"multimodal":true,"summarizer":true,"translator":true},"methods":["prompt"]}
+13:45:06.049 +1.88s INFO  ai.plan.start [ai.plan#2] IA locale : préparer une demande (actions de la liste fermée) {"task":"plan","request":"mets les titres de cette page en rouge et centrés","inLen":49,"page":"p_bg4uc6oq","selected":"n_4d1d3m5l6n","lang":"fr","sourceLang":"fr","gen":"fr","api":"prompt","source":"test"}
+13:45:06.051 +1.88s DEBUG ai.plan.call [ai.plan#2 · 1 ms] Appel Prompt API (Gemini Nano) (fr) {"api":"prompt","lang":"fr","schema":"actions,summary","system":"2696 car.","inLen":330}
+13:45:06.051 +1.88s DEBUG ai.plan.reply [ai.plan#2 · 2 ms] Réponse Prompt API (Gemini Nano) : 224 car. en 0 ms {"api":"prompt","ms":0,"outLen":224,"excerpt":"{\"summary\":\"Je mets les titres en rouge et je les centre.\",…"}
+13:45:06.052 +1.88s INFO  ai.plan.actions [ai.plan#2 · 3 ms] 2 actions valides : style, style {"steps":["style","style"],"summary":"Je mets les titres en rouge et je les centre."}
+13:45:06.052 +1.88s INFO  ai.plan.ok [ai.plan#2 · 3 ms] Demande à Atelier : proposition prête (Prompt API) {"via":"prompt","fallback":false,"translated":false,"calls":1,"steps":2,"rejected":0,"warnings":0}
+13:45:06.053 +1.89s INFO  assist.plan 2 action(s) prête(s), 0 refusée(s) {"request":"mets les titres de cette page en rouge et centrés","summary":"Je mets les titres en rouge et je les centre.","steps":["style","style"],"rejected":0,"warnings":0}
+13:45:06.094 +1.93s INFO  assist.apply.start [assist.apply#2] Application de 2 action(s) {"steps":["style","style"]}
+13:45:06.097 +1.93s INFO  assist.apply.step [assist.apply#2 · 3 ms] Couleur du texte : #dc2626 pour tous les titres de la page (7)
+13:45:06.098 +1.93s INFO  assist.apply.step [assist.apply#2 · 4 ms] Alignement : center pour tous les titres de la page (7)
+13:45:06.098 +1.93s DEBUG store.commit Modification {"source":"assistant","past":1,"page":"p_bg4uc6oq"}
+13:45:06.102 +1.93s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"assistant","mode":"contenu","ms":3}
+13:45:06.106 +1.94s INFO  assist.apply.ok [assist.apply#2 · 12 ms] 2 action(s) appliquée(s) (Ctrl+Z pour tout annuler) {"done":2,"errors":0,"aiTexts":0,"view":{},"ui":[],"changed":true}
+13:45:06.106 +1.94s INFO  ui.toast Message affiché : 2 actions appliquées : Ctrl+Z pour tout annuler.
+13:45:06.113 +1.95s DEBUG ui.dialog.close Fenêtre fermée : ✨ Demander à Atelier {"id":"askDialog"}

@@ -1,15 +1,15 @@
-13:51:30.601 +21.80s DEBUG store.commit Modification {"source":"pages","past":38,"page":"p_1qv72xb6"}
-13:51:30.607 +21.81s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":2}
-13:51:30.609 +21.81s INFO  page.move Page « Notre équipe » montée dans le menu (position 2) {"id":"p_1qv72xb6","dir":-1,"from":2,"to":1}
-13:51:30.999 +22.20s DEBUG store.commit Modification {"source":"pages","past":39,"page":"p_1qv72xb6"}
-13:51:31.004 +22.20s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":2}
-13:51:31.005 +22.20s INFO  page.footer-link « Notre équipe » : lien dans le pied de page (retirée du menu) {"id":"p_1qv72xb6","footer":true}
-13:51:31.350 +22.55s DEBUG store.commit Modification {"source":"pages","past":40,"page":"p_1qv72xb6"}
-13:51:31.355 +22.55s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":2}
-13:51:31.356 +22.56s INFO  page.footer-link « Notre équipe » : de retour dans le menu {"id":"p_1qv72xb6","footer":false}
-13:51:31.844 +23.04s INFO  page.open Page ouverte : Accueil {"id":"p_1ktrqpn6","slug":""}
-13:51:31.844 +23.04s DEBUG store.view Vue : pageId=p_1ktrqpn6 {"pageId":"p_1ktrqpn6"}
-13:51:31.857 +23.06s INFO  canvas.load.start [canvas.load#10] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_1ktrqpn6","lang":"fr","device":"desktop"}
-13:51:31.860 +23.06s DEBUG canvas.load.render [canvas.load#10 · 3 ms] Page rendue {"ms":1,"kb":25}
-13:51:31.881 +23.08s INFO  canvas.load.ok [canvas.load#10 · 23 ms] Canevas prêt {"nodes":30,"scale":76,"via":"load"}
-13:51:31.952 +23.15s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":13}
+13:42:51.881 +22.00s DEBUG store.commit Modification {"source":"pages","past":38,"page":"p_sbnxok5y"}
+13:42:51.885 +22.01s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":2}
+13:42:51.886 +22.01s INFO  page.move Page « Notre équipe » montée dans le menu (position 2) {"id":"p_sbnxok5y","dir":-1,"from":2,"to":1}
+13:42:52.217 +22.34s DEBUG store.commit Modification {"source":"pages","past":39,"page":"p_sbnxok5y"}
+13:42:52.222 +22.35s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":2}
+13:42:52.223 +22.35s INFO  page.footer-link « Notre équipe » : lien dans le pied de page (retirée du menu) {"id":"p_sbnxok5y","footer":true}
+13:42:52.566 +22.69s DEBUG store.commit Modification {"source":"pages","past":40,"page":"p_sbnxok5y"}
+13:42:52.571 +22.70s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":2}
+13:42:52.572 +22.70s INFO  page.footer-link « Notre équipe » : de retour dans le menu {"id":"p_sbnxok5y","footer":false}
+13:42:53.056 +23.18s INFO  page.open Page ouverte : Accueil {"id":"p_y6hkhp5h","slug":""}
+13:42:53.056 +23.18s DEBUG store.view Vue : pageId=p_y6hkhp5h {"pageId":"p_y6hkhp5h"}
+13:42:53.065 +23.19s INFO  canvas.load.start [canvas.load#10] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_y6hkhp5h","lang":"fr","device":"desktop"}
+13:42:53.066 +23.19s DEBUG canvas.load.render [canvas.load#10 · 1 ms] Page rendue {"ms":1,"kb":25}
+13:42:53.101 +23.23s INFO  canvas.load.ok [canvas.load#10 · 36 ms] Canevas prêt {"nodes":30,"scale":76,"via":"load"}
+13:42:53.181 +23.30s DEBUG storage.save Projet enregistré sur cet appareil {"ms":5,"kb":13}

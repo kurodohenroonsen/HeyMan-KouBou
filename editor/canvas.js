@@ -6,7 +6,8 @@ import { state, subscribe, emit, select, hover, page, nodeById, toggleMulti, roo
 import { fitCanvas, nextZoom, DEVICE_WIDTH } from '../core/canvas-fit.js';
 import { uiIcon } from '../core/icons.js';
 import { toast } from './dom.js';
-import { renderPage } from '../core/render.js';
+import { renderPage, renderNode, buildCss } from '../core/render.js';
+import { assets } from './assets.js';
 import { fontSignature } from '../core/fonts.js';
 import { fontBase } from './fontfiles.js';
 import { nodeLabel } from '../core/editing.js';
@@ -83,7 +84,7 @@ export const canvasWin = () => iframe().contentWindow;
 function html() {
   const t = state.editTarget;
   const edit = t ? { kind: t.kind, root: root(), id: t.id, item: t.item } : null;
-  try { return renderPage(state.site, page(), state.lang, { canvas: true, edit, fontBase: fontBase() }); }
+  try { return renderPage(state.site, page(), state.lang, { canvas: true, edit, fontBase: fontBase(), assets }); }
   catch (e) {
     log.error('canvas.render-fail', __('Rendu de la page impossible : {error} (projet incohérent ou bogue de rendu)', { error: e.message }), { page: state.pageId, lang: state.lang, edit: t?.kind, error: e });
     throw e;
@@ -173,6 +174,7 @@ export function refresh(opts = {}) {
     return;
   }
   const t0 = performance.now();
+  if (refreshNode(opts, t0)) return;
   const next = new DOMParser().parseFromString(html(), 'text/html');
   doc.getElementById('atelier-css').textContent = next.getElementById('atelier-css').textContent;
   const typing = doc.activeElement?.isContentEditable;
@@ -194,6 +196,35 @@ export function refresh(opts = {}) {
   }
   doc.title = next.title;
   schedulePosition();
+}
+
+/*
+ * Rendu ciblé (cycle 27) : une modification locale à un nœud de la page (frappe, réglage de contenu ou de style,
+ * opts.node) met à jour la CSS et remplace seulement ce nœud ; le reste du DOM (accordéon ouvert, vidéo lancée,
+ * images décodées) est gardé. Frappe dans la page (source « canvas ») : la CSS seulement (le curseur reste en place).
+ * Faux (rendu complet du contenu) pour une structure, un composant partagé, l'en-tête, le pied ou une édition de zone.
+ */
+function refreshNode(opts, t0) {
+  if (typeof opts.node !== 'string' || state.editTarget || opts.source === 'remote') return false;
+  const el = doc.querySelector(`main [data-node="${CSS.escape(opts.node)}"]`);
+  if (!el) return false;
+  let frag = null;
+  if (opts.source !== 'canvas') {
+    frag = renderNode(state.site, page(), opts.node, { canvas: true, lang: state.lang, assets });
+    if (!frag) return false;
+  }
+  const css = buildCss(state.site, [page()], { canvas: true, fontBase: fontBase(), assets });
+  const style = doc.getElementById('atelier-css');
+  if (style.textContent !== css) style.textContent = css;
+  if (frag !== null) {
+    const next = new DOMParser().parseFromString(`<!DOCTYPE html><body>${frag}`, 'text/html').body.firstElementChild;
+    if (!next) return false;
+    el.replaceWith(doc.importNode(next, true));
+  }
+  const mode = frag === null ? N_('styles') : N_('nœud');
+  log.trace('canvas.render', frag === null ? __('Canevas mis à jour : styles seulement') : __('Canevas mis à jour : un seul élément remplacé'), { source: opts.source, mode, node: opts.node, ms: Math.round(performance.now() - t0) });
+  schedulePosition();
+  return true;
 }
 
 function onLoad(via = 'load') {

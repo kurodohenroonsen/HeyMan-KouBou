@@ -1,6 +1,6 @@
-13:51:29.496 +20.70s DEBUG store.commit Modification {"key":"ptitle-p_1qv72xb6-de","source":"panel","past":35,"page":"p_1qv72xb6"}
-13:51:29.514 +20.71s INFO  page.title Titre de la page (DE) : « Unser Team » {"id":"p_1qv72xb6","lang":"de","length":10}
-13:51:29.785 +20.98s DEBUG store.commit Modification {"key":"pseo-p_1qv72xb6-fr","source":"panel","past":36,"page":"p_1qv72xb6"}
-13:51:29.799 +21.00s INFO  page.seo Description pour Google (FR) : 44 caractères {"id":"p_1qv72xb6","lang":"fr","length":44}
-13:51:30.070 +21.27s DEBUG store.commit Modification {"key":"pseo-p_1qv72xb6-nl","source":"panel","past":37,"page":"p_1qv72xb6"}
-13:51:30.105 +21.30s WARN  page.seo Description pour Google trop longue (175/160) : Google la coupera {"id":"p_1qv72xb6","lang":"nl","length":175}
+13:42:50.743 +20.87s DEBUG store.commit Modification {"key":"ptitle-p_sbnxok5y-de","source":"panel","past":35,"page":"p_sbnxok5y"}
+13:42:50.769 +20.89s INFO  page.title Titre de la page (DE) : « Unser Team » {"id":"p_sbnxok5y","lang":"de","length":10}
+13:42:51.040 +21.16s DEBUG store.commit Modification {"key":"pseo-p_sbnxok5y-fr","source":"panel","past":36,"page":"p_sbnxok5y"}
+13:42:51.061 +21.18s INFO  page.seo Description pour Google (FR) : 44 caractères {"id":"p_sbnxok5y","lang":"fr","length":44}
+13:42:51.347 +21.47s DEBUG store.commit Modification {"key":"pseo-p_sbnxok5y-nl","source":"panel","past":37,"page":"p_sbnxok5y"}
+13:42:51.377 +21.50s WARN  page.seo Description pour Google trop longue (175/160) : Google la coupera {"id":"p_sbnxok5y","lang":"nl","length":175}

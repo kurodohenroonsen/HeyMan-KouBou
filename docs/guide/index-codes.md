@@ -2,13 +2,14 @@
 
 Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire, par domaine. Fichier généré par `node tools/guide-index.mjs` à partir du code source : il est toujours à jour avec le code.
 
-**1014 codes** dans 48 domaines.
+**1025 codes** dans 49 domaines.
 
 | Domaine | Codes |
 |---|---|
 | [`action`](#action) | 22 |
 | [`ai`](#ai) | 135 |
 | [`app`](#app) | 10 |
+| [`asset`](#asset) | 3 |
 | [`assist`](#assist) | 13 |
 | [`audit`](#audit) | 3 |
 | [`backup`](#backup) | 23 |
@@ -16,23 +17,23 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | [`boot`](#boot) | 10 |
 | [`canvas`](#canvas) | 21 |
 | [`cmdk`](#cmdk) | 2 |
-| [`collab`](#collab) | 76 |
+| [`collab`](#collab) | 81 |
 | [`collection`](#collection) | 42 |
 | [`ctxmenu`](#ctxmenu) | 4 |
 | [`demo`](#demo) | 12 |
 | [`dnd`](#dnd) | 8 |
 | [`edit`](#edit) | 36 |
-| [`export`](#export) | 4 |
+| [`export`](#export) | 5 |
 | [`fonts`](#fonts) | 2 |
 | [`i18n`](#i18n) | 15 |
 | [`image`](#image) | 10 |
-| [`inspector`](#inspector) | 22 |
+| [`inspector`](#inspector) | 23 |
 | [`library`](#library) | 3 |
 | [`log`](#log) | 8 |
 | [`net`](#net) | 4 |
 | [`onboarding`](#onboarding) | 6 |
 | [`page`](#page) | 30 |
-| [`perf`](#perf) | 1 |
+| [`perf`](#perf) | 2 |
 | [`php`](#php) | 59 |
 | [`project`](#project) | 15 |
 | [`publish`](#publish) | 30 |
@@ -237,6 +238,14 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `app.uncaught` | ERROR | [0](00-journal.md) | `editor/log.js` |
 | `app.visibility` | DEBUG | [0](00-journal.md) | `editor/log.js` |
 
+## asset
+
+| Code | Niveau | Chapitre | Source |
+|---|---|---|---|
+| `asset.absorb` | DEBUG | [4](04-pages-images-contenus.md) | `editor/assets.js` |
+| `asset.missing` | WARN | [4](04-pages-images-contenus.md) | `editor/storage.js` |
+| `asset.prune` | DEBUG | [4](04-pages-images-contenus.md) | `editor/assets.js` |
+
 ## assist
 
 | Code | Niveau | Chapitre | Source |
@@ -339,7 +348,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `canvas.overlay-fail` | TRACE, WARN | [2](02-edition.md) | `editor/canvas.js` |
 | `canvas.remote-applied` | DEBUG | [2](02-edition.md) | `editor/canvas.js` |
 | `canvas.remote-deferred` | DEBUG | [2](02-edition.md) | `editor/canvas.js` |
-| `canvas.render` | DEBUG, TRACE | [2](02-edition.md) [10](10-collaboration.md) | `editor/canvas.js` |
+| `canvas.render` | DEBUG, TRACE | [2](02-edition.md) [4](04-pages-images-contenus.md) [10](10-collaboration.md) | `editor/canvas.js` |
 | `canvas.render-fail` | ERROR | [2](02-edition.md) | `editor/canvas.js` |
 | `canvas.resources` | DEBUG | [2](02-edition.md) | `editor/canvas.js` |
 | `canvas.resources-slow` | WARN | [0](00-journal.md) [2](02-edition.md) | `editor/canvas.js` |
@@ -362,6 +371,11 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 
 | Code | Niveau | Chapitre | Source |
 |---|---|---|---|
+| `collab.asset.ask` | DEBUG | [10](10-collaboration.md) | `core/collab-protocol.js` |
+| `collab.asset.in` | DEBUG | [4](04-pages-images-contenus.md) [10](10-collaboration.md) | `core/collab-protocol.js` |
+| `collab.asset.out` | DEBUG | [10](10-collaboration.md) | `core/collab-protocol.js` |
+| `collab.asset.refused` | WARN | [10](10-collaboration.md) | `core/collab-protocol.js` |
+| `collab.asset.req` | DEBUG | [10](10-collaboration.md) | `core/collab-protocol.js` |
 | `collab.auth` | INFO | [10](10-collaboration.md) [11](11-relecture-commentaires.md) | `core/collab-protocol.js` |
 | `collab.auth.early` | TRACE | [10](10-collaboration.md) | `core/collab-protocol.js` |
 | `collab.close-fail` | WARN | [10](10-collaboration.md) | `core/collab-protocol.js` |
@@ -406,7 +420,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `collab.node.close` | DEBUG | [10](10-collaboration.md) | `core/collab-protocol.js` |
 | `collab.open` | INFO | [10](10-collaboration.md) | `editor/collab-ui.js` |
 | `collab.ops.early` | DEBUG | [10](10-collaboration.md) | `core/collab-protocol.js` |
-| `collab.ops.in` | DEBUG | [10](10-collaboration.md) [11](11-relecture-commentaires.md) | `core/collab-protocol.js` |
+| `collab.ops.in` | DEBUG | [4](04-pages-images-contenus.md) [10](10-collaboration.md) [11](11-relecture-commentaires.md) | `core/collab-protocol.js` |
 | `collab.ops.out` | DEBUG | [10](10-collaboration.md) [11](11-relecture-commentaires.md) | `core/collab-protocol.js` |
 | `collab.ops.rejected` | WARN | [10](10-collaboration.md) [11](11-relecture-commentaires.md) | `core/collab-protocol.js` |
 | `collab.ops.relay` | TRACE | [10](10-collaboration.md) | `core/collab-protocol.js` |
@@ -571,6 +585,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | Code | Niveau | Chapitre | Source |
 |---|---|---|---|
 | `export.zip.fail` | ERROR | [8](08-verifier-exporter-publier.md) | `editor/app.js` |
+| `export.zip.missing-images` | WARN | [4](04-pages-images-contenus.md) [8](08-verifier-exporter-publier.md) | `editor/app.js` |
 | `export.zip.ok` | INFO | [1](01-demarrage-projet.md) [8](08-verifier-exporter-publier.md) | `editor/app.js` |
 | `export.zip.render` | DEBUG | [8](08-verifier-exporter-publier.md) | `editor/app.js` |
 | `export.zip.start` | INFO | [8](08-verifier-exporter-publier.md) | `editor/app.js` |
@@ -641,7 +656,8 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `inspector.list` | DEBUG | [3](03-style-design.md) | `editor/fields.js` |
 | `inspector.refused` | WARN | [3](03-style-design.md) | `editor/fields.js`, `editor/inspector.js` |
 | `inspector.remote-deferred` | DEBUG | [3](03-style-design.md) [10](10-collaboration.md) | `editor/inspector.js` |
-| `inspector.render` | TRACE | [3](03-style-design.md) | `editor/inspector.js` |
+| `inspector.render` | TRACE | [3](03-style-design.md) [4](04-pages-images-contenus.md) | `editor/inspector.js` |
+| `inspector.sync` | TRACE | [4](04-pages-images-contenus.md) | `editor/inspector.js` |
 | `inspector.tab` | DEBUG | [3](03-style-design.md) | `editor/inspector.js` |
 
 ## library
@@ -724,6 +740,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 
 | Code | Niveau | Chapitre | Source |
 |---|---|---|---|
+| `perf.commit` | TRACE | [4](04-pages-images-contenus.md) | `editor/store.js` |
 | `perf.longtask` | DEBUG | [0](00-journal.md) | `editor/log.js` |
 
 ## php

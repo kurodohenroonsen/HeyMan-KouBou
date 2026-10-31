@@ -1,4 +1,4 @@
-13:51:53.893 +45.09s DEBUG collection.tab Onglet « Éléments » {"collection":"col_3fcascp5","tab":"items"}
-13:51:54.019 +45.22s DEBUG storage.save Projet enregistré sur cet appareil {"ms":7,"kb":39}
-13:51:54.144 +45.34s INFO  collection.csv-export 4 éléments exportés en CSV : agenda.csv {"collection":"col_3fcascp5","file":"agenda.csv","items":4,"columns":20,"kb":1}
-13:51:54.145 +45.34s INFO  ui.toast Message affiché : Éléments exportés en CSV (ouvrable dans un tableur).
+13:43:13.675 +43.80s DEBUG collection.tab Onglet « Éléments » {"collection":"col_8sc0w7es","tab":"items"}
+13:43:13.702 +43.83s DEBUG storage.save Projet enregistré sur cet appareil {"ms":5,"kb":39}
+13:43:13.933 +44.06s INFO  collection.csv-export 4 éléments exportés en CSV : agenda.csv {"collection":"col_8sc0w7es","file":"agenda.csv","items":4,"columns":20,"kb":1}
+13:43:13.933 +44.06s INFO  ui.toast Message affiché : Éléments exportés en CSV (ouvrable dans un tableur).

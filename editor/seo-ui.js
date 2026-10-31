@@ -10,6 +10,7 @@ import { imageControl } from './fields.js';
 import { withAI, markAi, describeImage } from './ai-ui.js';
 import { log } from './log.js';
 import { __, __n } from '../core/ui-i18n.js';
+import { assets } from './assets.js';
 
 let cur = null;
 /* Langue principale : description absente ou automatique ; autres langues : pas encore écrite dans cette langue */
@@ -40,7 +41,7 @@ function googlePreview(page, lang) {
 function sharePreview(page, lang) {
   const img = page.seo?.image || (() => { let s = ''; const w = n => { if (s) return; if (n.type === 'image' && n.props?.src) s = n.props.src; (n.children || []).forEach(w); }; w(page.root); return s; })();
   const a = String(img).startsWith('asset:') ? state.site.assets?.[img.slice(6)] : null;
-  const src = a ? a.dataUrl : /^https:/.test(img) ? img : '';
+  const src = a ? assets.url(img.slice(6)) || a.dataUrl || '' : /^https:/.test(img) ? img : '';
   return h('div', { class: 'share' },
     src ? h('img', { src, alt: '' }) : h('div', { class: 'share__noimg' }, __('Pas d’image de partage')),
     h('div', { class: 'share__body' }, h('small', { 'data-site-content': '' }, host().toUpperCase()), h('strong', {}, seoTitle(state.site, page, lang)), h('span', {}, seoDescription(state.site, page, lang).text.slice(0, 110))));

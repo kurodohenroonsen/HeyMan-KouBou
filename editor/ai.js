@@ -10,6 +10,7 @@ import { createAI, parseJson, cleanOut, cleanAlt, clampAtWord, NANO_LANGS } from
 import { getTranslator, translatorStates } from './translator.js';
 import { log, registerContext } from './log.js';
 import { __, __n } from '../core/ui-i18n.js';
+import { assets } from './assets.js';
 
 export const AI_APIS = {
   prompt: { label: 'Prompt API (Gemini Nano)', global: 'LanguageModel', stable: true, use: __('Reformuler, corriger, titres et descriptions, mots-clés') },
@@ -393,7 +394,7 @@ export async function ai(lang) { return loggedAI(await chromeProvider(lang)); }
 export async function imageBlob(site, src) {
   const v = String(src || '');
   const a = v.startsWith('asset:') ? site.assets?.[v.slice(6)] : null;
-  const url = a ? a.dataUrl : v;
+  const url = a ? assets.get(v.slice(6))?.dataUrl || a.dataUrl || '' : v;
   if (!url) { log.warn('ai.image-missing', __('Pas d’image à décrire'), { src: excerpt(v) }); throw new Error(__('Pas d’image.')); }
   try { return await (await fetch(url)).blob(); }
   catch (e) {

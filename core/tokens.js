@@ -4,6 +4,7 @@
  * sans palier : clamp(min, a + b vw, max).
  */
 import { __, N_ } from './ui-i18n.js';
+import { cloneSite } from './asset-store.js';
 
 export const TYPE_STEPS = ['sm', 'base', 'lg', 'xl', '2xl', '3xl', '4xl'];
 const TYPE_POWER = { sm: -1, base: 0, lg: 1, xl: 2, '2xl': 3, '3xl': 4, '4xl': 5 };
@@ -72,7 +73,7 @@ function num(v, what) {
 }
 
 export function setTypeTokens(site, patch) {
-  const s = structuredClone(site);
+  const s = cloneSite(site);
   s.tokens ||= defaultTokens();
   const t = { ...defaultTokens().type, ...s.tokens.type };
   if ('minSize' in patch) t.minSize = clamp(num(patch.minSize, __('la taille mobile')), 12, 24);
@@ -84,7 +85,7 @@ export function setTypeTokens(site, patch) {
 }
 
 export function setSpaceTokens(site, patch) {
-  const s = structuredClone(site);
+  const s = cloneSite(site);
   s.tokens ||= defaultTokens();
   const sp = { ...defaultTokens().space, ...s.tokens.space };
   if ('minSize' in patch) sp.minSize = clamp(num(patch.minSize, __('l’espacement mobile')), 8, 32);
