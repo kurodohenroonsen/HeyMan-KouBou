@@ -1,24 +1,25 @@
-12:57:36.288 +30.06s DEBUG style.preset-form Formulaire « nouveau preset » ouvert {"open":true,"type":"button"}
-12:57:36.342 +30.12s DEBUG store.commit Modification {"source":"inspector-style","past":34,"page":"p_fptbpb4e"}
-12:57:36.346 +30.12s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"inspector-style","mode":"contenu","ms":3}
-12:57:36.355 +30.13s INFO  style.preset-create Preset « Bouton sombre » créé à partir de l’élément {"preset":"ps_prq3g2cg","type":"button","id":"n_2i4g1j1c35","props":1}
-12:57:36.355 +30.13s INFO  ui.toast Message affiché : Preset « Bouton sombre » créé. Appliquez-le à d’autres « Bouton » depuis cette liste.
-12:57:36.659 +30.43s DEBUG store.select Sélection : button {"id":"n_6z2n4n3i4y","type":"button"}
-12:57:36.782 +30.56s DEBUG store.commit Modification {"source":"inspector-style","past":35,"page":"p_fptbpb4e"}
-12:57:36.786 +30.56s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"inspector-style","mode":"contenu","ms":3}
-12:57:36.797 +30.57s INFO  style.preset-apply Preset « Bouton sombre » appliqué {"id":"n_6z2n4n3i4y","type":"button","preset":"ps_prq3g2cg"}
-12:57:37.074 +30.85s INFO  style.preset-edit Modification du preset « Bouton sombre » : les réglages s’appliquent à 2 éléments {"preset":"ps_prq3g2cg","on":true,"uses":2}
-12:57:37.290 +31.06s DEBUG store.commit Modification {"source":"inspector-style","past":36,"page":"p_fptbpb4e"}
-12:57:37.294 +31.07s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"inspector-style","mode":"contenu","ms":3}
-12:57:37.304 +31.08s DEBUG style.set Couleur de fond = palette:c2 (Ordinateur, preset « Bouton sombre ») {"key":"background","state":"normal","device":"desktop","target":"preset","preset":"ps_prq3g2cg","value":"palette:c2","palette":true}
-12:57:37.540 +31.31s INFO  style.preset-edit Fin de la modification du preset « Bouton sombre » {"preset":"ps_prq3g2cg","on":false,"uses":2}
-12:57:37.542 +31.32s WARN  style.contrast-low Contraste insuffisant : 1,5:1 pour 4,5:1 requis {"id":"n_6z2n4n3i4y","type":"button","ratio":1.49,"required":4.5,"fg":"#ffffff","bg":"#f6d200"}
-12:57:37.589 +31.36s DEBUG store.commit Modification {"source":"inspector-style","past":37,"page":"p_fptbpb4e"}
-12:57:37.593 +31.37s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"inspector-style","mode":"contenu","ms":3}
-12:57:37.601 +31.38s INFO  style.preset-default Preset « Bouton sombre » par défaut pour les nouveaux « Bouton » {"type":"button","preset":"ps_prq3g2cg"}
-12:57:37.792 +31.57s DEBUG store.commit Modification {"source":"inspector-style","past":38,"page":"p_fptbpb4e"}
-12:57:37.797 +31.57s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"inspector-style","mode":"contenu","ms":4}
-12:57:37.812 +31.59s INFO  style.preset-detach Élément détaché du preset « Bouton sombre » : apparence gardée {"id":"n_6z2n4n3i4y","preset":"ps_prq3g2cg"}
-12:57:38.057 +31.83s DEBUG style.preset-form Formulaire « nouveau preset » ouvert {"open":true,"type":"button"}
-12:57:38.126 +31.90s WARN  style.preset-refused Preset non créé : Donnez un nom au preset. {"what":"create","id":"n_6z2n4n3i4y","type":"button","chars":0,"error":{"name":"Error","message":"Donnez un nom au preset.","stack":"Error: Donnez un nom au preset.\nat cleanName (http://localhost:8812/core/presets.js:18:17)\nat createPreset (http://localhost:8812/core/presets.js:55:31)\nat presetFromNode (http://localhost:8812/core/presets.js:68:13)\nat HTMLButtonElement.create (http://localhost:8812/editor/styletab.js:303:17)"}}
-12:57:38.127 +31.90s ERROR ui.toast Message affiché : Donnez un nom au preset. {"type":"error"}
+13:40:59.837 +31.31s DEBUG style.preset-form Formulaire « nouveau preset » ouvert {"open":true,"type":"button"}
+13:40:59.911 +31.39s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":13}
+13:40:59.971 +31.45s DEBUG store.commit Modification {"source":"inspector-style","past":34,"page":"p_0x1ftvm1"}
+13:40:59.975 +31.45s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"inspector-style","mode":"contenu","ms":4}
+13:40:59.987 +31.46s INFO  style.preset-create Preset « Bouton sombre » créé à partir de l’élément {"preset":"ps_zmg7reba","type":"button","id":"n_18445d4j59","props":1}
+13:40:59.988 +31.46s INFO  ui.toast Message affiché : Preset « Bouton sombre » créé. Appliquez-le à d’autres « Bouton » depuis cette liste.
+13:41:00.308 +31.78s DEBUG store.select Sélection : button {"id":"n_3c2y4w4j3p","type":"button"}
+13:41:00.455 +31.93s DEBUG store.commit Modification {"source":"inspector-style","past":35,"page":"p_0x1ftvm1"}
+13:41:00.461 +31.94s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"inspector-style","mode":"contenu","ms":3}
+13:41:00.476 +31.95s INFO  style.preset-apply Preset « Bouton sombre » appliqué {"id":"n_3c2y4w4j3p","type":"button","preset":"ps_zmg7reba"}
+13:41:00.752 +32.23s INFO  style.preset-edit Modification du preset « Bouton sombre » : les réglages s’appliquent à 2 éléments {"preset":"ps_zmg7reba","on":true,"uses":2}
+13:41:00.987 +32.46s DEBUG store.commit Modification {"source":"inspector-style","past":36,"page":"p_0x1ftvm1"}
+13:41:00.991 +32.47s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"inspector-style","mode":"contenu","ms":4}
+13:41:01.004 +32.48s DEBUG style.set Couleur de fond = palette:c2 (Ordinateur, preset « Bouton sombre ») {"key":"background","state":"normal","device":"desktop","target":"preset","preset":"ps_zmg7reba","value":"palette:c2","palette":true}
+13:41:01.236 +32.71s INFO  style.preset-edit Fin de la modification du preset « Bouton sombre » {"preset":"ps_zmg7reba","on":false,"uses":2}
+13:41:01.237 +32.71s WARN  style.contrast-low Contraste insuffisant : 1,5:1 pour 4,5:1 requis {"id":"n_3c2y4w4j3p","type":"button","ratio":1.49,"required":4.5,"fg":"#ffffff","bg":"#f6d200"}
+13:41:01.289 +32.76s DEBUG store.commit Modification {"source":"inspector-style","past":37,"page":"p_0x1ftvm1"}
+13:41:01.292 +32.77s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"inspector-style","mode":"contenu","ms":3}
+13:41:01.305 +32.78s INFO  style.preset-default Preset « Bouton sombre » par défaut pour les nouveaux « Bouton » {"type":"button","preset":"ps_zmg7reba"}
+13:41:01.490 +32.97s DEBUG store.commit Modification {"source":"inspector-style","past":38,"page":"p_0x1ftvm1"}
+13:41:01.494 +32.97s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"inspector-style","mode":"contenu","ms":3}
+13:41:01.511 +32.99s INFO  style.preset-detach Élément détaché du preset « Bouton sombre » : apparence gardée {"id":"n_3c2y4w4j3p","preset":"ps_zmg7reba"}
+13:41:01.752 +33.23s DEBUG style.preset-form Formulaire « nouveau preset » ouvert {"open":true,"type":"button"}
+13:41:01.823 +33.30s WARN  style.preset-refused Preset non créé : Donnez un nom au preset. {"what":"create","id":"n_3c2y4w4j3p","type":"button","chars":0,"error":{"name":"Error","message":"Donnez un nom au preset.","stack":"Error: Donnez un nom au preset.\nat cleanName (http://localhost:8834/core/presets.js:18:17)\nat createPreset (http://localhost:8834/core/presets.js:55:31)\nat presetFromNode (http://localhost:8834/core/presets.js:68:13)\nat HTMLButtonElement.create (http://localhost:8834/editor/styletab.js:438:17)"}}
+13:41:01.824 +33.30s ERROR ui.toast Message affiché : Donnez un nom au preset. {"type":"error"}

@@ -1,3 +1,4 @@
-13:16:26.493 +15.77s DEBUG store.commit Modification {"key":null,"source":"panel","past":28,"page":"p_fo91di7o"}
-13:16:26.497 +15.77s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"panel","mode":"contenu","ms":3}
-13:16:26.511 +15.79s INFO  settings.base-url Adresse du site effacée (plan du site, RSS et liens de langue absolus désactivés) {"url":null}
+13:41:30.436 +16.96s DEBUG storage.save Projet enregistré sur cet appareil {"ms":3,"kb":12}
+13:41:30.446 +16.97s DEBUG store.commit Modification {"key":null,"source":"panel","past":28,"page":"p_z99uys9d"}
+13:41:30.450 +16.98s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"panel","mode":"contenu","ms":2}
+13:41:30.469 +17.00s INFO  settings.base-url Adresse du site effacée (plan du site, RSS et liens de langue absolus désactivés) {"url":null}

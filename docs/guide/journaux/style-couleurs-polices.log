@@ -1,7 +1,7 @@
-12:57:38.513 +32.29s DEBUG store.commit Modification {"key":"palette-c1","source":"panel","past":39,"page":"p_fptbpb4e"}
-12:57:38.532 +32.31s INFO  settings.color Couleur « Principale » : #0055aa {"key":"c1","value":"#0055aa"}
-12:57:38.842 +32.62s DEBUG store.commit Modification {"key":null,"source":"panel","past":40,"page":"p_fptbpb4e"}
-12:57:38.843 +32.62s INFO  canvas.load.start [canvas.load#6] Chargement complet du canevas : polices du site {"reason":"polices du site","page":"p_fptbpb4e","lang":"fr","device":"desktop"}
-12:57:38.844 +32.62s DEBUG canvas.load.render [canvas.load#6 · 1 ms] Page rendue {"ms":1,"kb":28}
-12:57:38.854 +32.63s INFO  settings.font Police des titres : Georgia (classique) {"role":"heading","font":"georgia","google":true}
-12:57:38.876 +32.65s INFO  canvas.load.ok [canvas.load#6 · 33 ms] Canevas prêt {"nodes":35,"scale":62,"via":"load"}
+13:41:02.195 +33.67s DEBUG store.commit Modification {"key":"palette-c1","source":"panel","past":39,"page":"p_0x1ftvm1"}
+13:41:02.212 +33.69s INFO  settings.color Couleur « Principale » : #0055aa {"key":"c1","value":"#0055aa"}
+13:41:02.531 +34.01s DEBUG store.commit Modification {"key":null,"source":"panel","past":40,"page":"p_0x1ftvm1"}
+13:41:02.532 +34.01s INFO  canvas.load.start [canvas.load#6] Chargement complet du canevas : polices du site {"reason":"polices du site","page":"p_0x1ftvm1","lang":"fr","device":"desktop"}
+13:41:02.533 +34.01s DEBUG canvas.load.render [canvas.load#6 · 1 ms] Page rendue {"ms":1,"kb":29}
+13:41:02.546 +34.02s INFO  settings.font Police des titres : Georgia (classique) {"role":"heading","font":"georgia"}
+13:41:02.564 +34.04s INFO  canvas.load.ok [canvas.load#6 · 32 ms] Canevas prêt {"nodes":35,"scale":76,"via":"load"}

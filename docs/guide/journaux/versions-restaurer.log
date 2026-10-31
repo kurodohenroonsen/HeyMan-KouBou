@@ -1,18 +1,18 @@
-13:17:05.029 +54.30s INFO  version.restore.start [version.restore#2] Restauration de « Avant les essais » du 31 oct. 2026, 13:17 {"id":"v_mvwd8phz28bov","kind":"manual","at":"2026-10-31T12:17:01.463Z","pages":5}
-13:17:05.029 +54.30s DEBUG ui.dialog.open Fenêtre ouverte : Restaurer une version {"id":"versionRestoreDialog","class":"audit audit--sm","modal":true}
-13:17:05.088 +54.36s DEBUG ui.dialog.close Fenêtre fermée : Restaurer une version {"id":"versionRestoreDialog"}
-13:17:05.088 +54.36s DEBUG ui.confirm Confirmation acceptée : Restaurer une version {"id":"versionRestoreDialog","ok":true}
-13:17:05.106 +54.38s DEBUG version.restore.loaded [version.restore#2 · 77 ms] Version lue : 5 page(s), 5 image(s) {"pages":5,"images":5}
-13:17:05.107 +54.38s INFO  version.save.start [version.save#4] Enregistrement d’une version de sécurité : « Avant de revenir au 31 oct. 2026, 13:17 » {"kind":"safety","name":"Avant de revenir au 31 oct. 2026, 13:17"}
-13:17:05.112 +54.39s DEBUG storage.version-save Version enregistrée {"id":"v_mvwd8sb7t2v88","name":"Avant de revenir au 31 oct. 2026, 13:17","kind":"safety"}
-13:17:05.145 +54.42s INFO  version.save.prune [version.save#4 · 38 ms] 3 ancienne(s) version(s) automatique(s) ou de sécurité supprimée(s) (30 gardées au plus) {"total":34,"removed":3,"oldest":"2025-01-01T09:00:00.000Z"}
-13:17:05.145 +54.42s DEBUG storage.version-delete 3 versions supprimées {"ids":["v_ancienne2","v_ancienne1","v_ancienne0"]}
-13:17:05.163 +54.44s INFO  version.save.ok [version.save#4 · 56 ms] Version de sécurité enregistrée (6 pages) {"id":"v_mvwd8sb7t2v88","kind":"safety","at":"2026-10-31T12:17:05.107Z","pages":6,"kb":2223}
-13:17:05.164 +54.44s DEBUG version.restore.safety [version.restore#2 · 135 ms] État actuel gardé comme version de sécurité {"id":"v_mvwd8sb7t2v88"}
-13:17:05.164 +54.44s INFO  store.load Projet chargé dans l’éditeur {"name":"MAB – Médias Alternatifs Belges","pages":5,"keepHistory":true}
-13:17:05.179 +54.45s INFO  canvas.load.start [canvas.load#20] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_fo91di7o","lang":"fr","device":"desktop"}
-13:17:05.181 +54.46s DEBUG canvas.load.render [canvas.load#20 · 2 ms] Page rendue {"ms":1,"kb":26}
-13:17:05.185 +54.46s INFO  version.restore.ok [version.restore#2 · 156 ms] Version du 31 oct. 2026, 13:17 restaurée (Ctrl+Z pour annuler) {"id":"v_mvwd8phz28bov","pages":5}
-13:17:05.186 +54.46s INFO  ui.toast Message affiché : Version du 31 oct. 2026, 13:17 restaurée (Ctrl+Z pour annuler).
-13:17:05.190 +54.47s DEBUG ui.dialog.close Fenêtre fermée : Versions du projet {"id":"versionsDialog"}
-13:17:05.205 +54.48s INFO  canvas.load.ok [canvas.load#20 · 26 ms] Canevas prêt {"nodes":30,"scale":76,"via":"load"}
+13:42:15.419 +61.95s INFO  version.restore.start [version.restore#2] Restauration de « Avant les essais » du 31 oct. 2026, 13:42 {"id":"v_mvwe52iw267zn","kind":"manual","at":"2026-10-31T12:42:11.336Z","pages":5}
+13:42:15.420 +61.95s DEBUG ui.dialog.open Fenêtre ouverte : Restaurer une version {"id":"versionRestoreDialog","class":"audit audit--sm","modal":true}
+13:42:15.494 +62.02s DEBUG ui.dialog.close Fenêtre fermée : Restaurer une version {"id":"versionRestoreDialog"}
+13:42:15.494 +62.02s DEBUG ui.confirm Confirmation acceptée : Restaurer une version {"id":"versionRestoreDialog","ok":true}
+13:42:15.570 +62.10s DEBUG version.restore.loaded [version.restore#2 · 151 ms] Version lue : 5 page(s), 5 image(s) {"pages":5,"images":5}
+13:42:15.571 +62.10s INFO  version.save.start [version.save#4] Enregistrement d’une version de sécurité : « Avant de revenir au 31 oct. 2026, 13:42 » {"kind":"safety","name":"Avant de revenir au 31 oct. 2026, 13:42"}
+13:42:15.600 +62.13s DEBUG storage.version-save Version enregistrée {"id":"v_mvwe55skccpbn","name":"Avant de revenir au 31 oct. 2026, 13:42","kind":"safety"}
+13:42:15.743 +62.27s INFO  version.save.prune [version.save#4 · 172 ms] 3 ancienne(s) version(s) automatique(s) ou de sécurité supprimée(s) (30 gardées au plus) {"total":34,"removed":3,"oldest":"2025-01-01T09:00:00.000Z"}
+13:42:15.744 +62.27s DEBUG storage.version-delete 3 versions supprimées {"ids":["v_ancienne2","v_ancienne1","v_ancienne0"]}
+13:42:15.752 +62.28s INFO  version.save.ok [version.save#4 · 181 ms] Version de sécurité enregistrée (6 pages) {"id":"v_mvwe55skccpbn","kind":"safety","at":"2026-10-31T12:42:15.572Z","pages":6,"kb":2223}
+13:42:15.754 +62.28s DEBUG version.restore.safety [version.restore#2 · 335 ms] État actuel gardé comme version de sécurité {"id":"v_mvwe55skccpbn"}
+13:42:15.754 +62.28s INFO  store.load Projet chargé dans l’éditeur {"name":"MAB – Médias Alternatifs Belges","pages":5,"keepHistory":true}
+13:42:15.770 +62.30s INFO  canvas.load.start [canvas.load#20] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_z99uys9d","lang":"fr","device":"desktop"}
+13:42:15.776 +62.30s DEBUG canvas.load.render [canvas.load#20 · 6 ms] Page rendue {"ms":1,"kb":26}
+13:42:15.782 +62.31s INFO  version.restore.ok [version.restore#2 · 363 ms] Version du 31 oct. 2026, 13:42 restaurée (Ctrl+Z pour annuler) {"id":"v_mvwe52iw267zn","pages":5}
+13:42:15.783 +62.31s INFO  ui.toast Message affiché : Version du 31 oct. 2026, 13:42 restaurée (Ctrl+Z pour annuler).
+13:42:15.798 +62.33s INFO  canvas.load.ok [canvas.load#20 · 28 ms] Canevas prêt {"nodes":30,"scale":76,"via":"load"}
+13:42:15.808 +62.34s DEBUG ui.dialog.close Fenêtre fermée : Versions du projet {"id":"versionsDialog"}

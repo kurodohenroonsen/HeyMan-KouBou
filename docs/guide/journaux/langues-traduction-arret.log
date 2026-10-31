@@ -1,12 +1,12 @@
-20:53:11.127 +9.61s DEBUG ui.dialog.open Fenêtre ouverte : Traductions {"id":"i18nDialog","class":"audit i18n","modal":true}
-20:53:11.141 +9.63s INFO  i18n.open Tableau des traductions : 21 textes, 21 traduction(s) manquante(s), 39 à relire {"languages":["fr","nl","de","en"],"main":"fr","filter":"review","visible":21,"shown":21,"missing":21,"review":39,"mtLang":"de"}
-20:53:11.141 +9.63s INFO  translate.status Traducteur fr → de : traducteur de test {"from":"fr","to":"de","state":"available","source":"test"}
-20:53:11.172 +9.66s INFO  translate.status Traducteur fr → nl : traducteur de test {"from":"fr","to":"nl","state":"available","source":"test"}
-20:53:11.236 +9.72s INFO  translate.batch.start [translate.batch#3] Traduction automatique fr → nl {"from":"fr","to":"nl"}
-20:53:11.236 +9.72s DEBUG translate.create Traducteur fr → nl : traducteur de test {"from":"fr","to":"nl","source":"test"}
-20:53:11.237 +9.72s DEBUG translate.batch.ready [translate.batch#3 · 1 ms] Traducteur prêt : traduction des textes manquants
-20:53:11.278 +9.76s DEBUG translate.batch.progress [translate.batch#3 · 42 ms] 1 / 16 textes {"done":1,"total":16,"count":1,"errors":0}
-20:53:11.403 +9.89s DEBUG translate.batch.progress [translate.batch#3 · 167 ms] 4 / 16 textes {"done":4,"total":16,"count":4,"errors":0}
-20:53:11.528 +10.01s DEBUG store.commit Modification {"source":"i18n","past":16,"page":"p_94oom426"}
-20:53:11.534 +10.02s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"i18n","mode":"contenu","ms":5}
-20:53:11.545 +10.03s INFO  translate.batch.cancel [translate.batch#3 · 309 ms] Arrêté par la personne : 7 / 16 textes traduits {"count":7,"errors":0,"total":16}
+13:42:30.564 +9.98s DEBUG ui.dialog.open Fenêtre ouverte : Traductions {"id":"i18nDialog","class":"audit i18n","modal":true}
+13:42:30.571 +9.99s INFO  i18n.open Tableau des traductions : 21 textes, 21 traduction(s) manquante(s), 39 à relire {"languages":["fr","nl","de","en"],"main":"fr","filter":"review","visible":21,"shown":21,"missing":21,"review":39,"mtLang":"de"}
+13:42:30.571 +9.99s INFO  translate.status Traducteur fr → de : traducteur de test {"from":"fr","to":"de","state":"available","source":"test"}
+13:42:30.590 +10.01s INFO  translate.status Traducteur fr → nl : traducteur de test {"from":"fr","to":"nl","state":"available","source":"test"}
+13:42:30.653 +10.07s INFO  translate.batch.start [translate.batch#3] Traduction automatique fr → nl {"from":"fr","to":"nl"}
+13:42:30.653 +10.07s DEBUG translate.create Traducteur fr → nl : traducteur de test {"from":"fr","to":"nl","source":"test"}
+13:42:30.653 +10.07s DEBUG translate.batch.ready [translate.batch#3 · 0 ms] Traducteur prêt : traduction des textes manquants
+13:42:30.694 +10.12s DEBUG translate.batch.progress [translate.batch#3 · 41 ms] 1 / 16 textes {"done":1,"total":16,"count":1,"errors":0}
+13:42:30.816 +10.24s DEBUG translate.batch.progress [translate.batch#3 · 163 ms] 4 / 16 textes {"done":4,"total":16,"count":4,"errors":0}
+13:42:30.940 +10.36s DEBUG store.commit Modification {"source":"i18n","past":16,"page":"p_og6cjhj0"}
+13:42:30.943 +10.36s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"i18n","mode":"contenu","ms":2}
+13:42:30.947 +10.37s INFO  translate.batch.cancel [translate.batch#3 · 294 ms] Arrêté par la personne : 7 / 16 textes traduits {"count":7,"errors":0,"total":16}

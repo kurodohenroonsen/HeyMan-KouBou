@@ -1,15 +1,15 @@
-13:16:59.760 +49.03s INFO  collection.open Collection « Médias membres » ouverte : 0 élément, 6 champs {"id":"col_mjw4ghca","kind":"members","items":0,"drafts":0,"fields":6,"tab":"items","item":null}
-13:16:59.760 +49.03s DEBUG ui.dialog.open Fenêtre ouverte : Médias membres {"id":"collectionDialog","class":"audit col-dialog","modal":true}
-13:16:59.811 +49.09s DEBUG collection.tab Onglet « Réglages » {"collection":"col_mjw4ghca","tab":"settings"}
-13:16:59.996 +49.27s DEBUG ui.dialog.open Fenêtre ouverte : Supprimer la collection {"id":"collectionDeleteDialog","class":"audit audit--sm","modal":true}
-13:17:00.055 +49.33s DEBUG ui.dialog.close Fenêtre fermée : Supprimer la collection {"id":"collectionDeleteDialog"}
-13:17:00.055 +49.33s DEBUG ui.confirm Confirmation refusée : Supprimer la collection {"id":"collectionDeleteDialog","ok":false}
-13:17:00.055 +49.33s DEBUG collection.delete-cancel Suppression de la collection annulée {"collection":"col_mjw4ghca"}
-13:17:00.210 +49.48s DEBUG ui.dialog.open Fenêtre ouverte : Supprimer la collection {"id":"collectionDeleteDialog","class":"audit audit--sm","modal":true}
-13:17:00.255 +49.53s DEBUG ui.dialog.close Fenêtre fermée : Supprimer la collection {"id":"collectionDeleteDialog"}
-13:17:00.255 +49.53s DEBUG ui.confirm Confirmation acceptée : Supprimer la collection {"id":"collectionDeleteDialog","ok":true}
-13:17:00.260 +49.53s DEBUG store.commit Modification {"source":"collections","past":81,"page":"p_dq3r1apc"}
-13:17:00.266 +49.54s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":5}
-13:17:00.267 +49.54s INFO  collection.delete Collection « Médias membres » supprimée avec ses 0 éléments (Ctrl+Z pour annuler) {"collection":"col_mjw4ghca","kind":"members","items":0}
-13:17:00.267 +49.54s INFO  ui.toast Message affiché : Collection « Médias membres » supprimée.
-13:17:00.275 +49.55s DEBUG ui.dialog.close Fenêtre fermée : 📻 Médias membres /medias-membres/ {"id":"collectionDialog"}
+13:42:09.352 +55.88s INFO  collection.open Collection « Médias membres » ouverte : 0 élément, 6 champs {"id":"col_4qcyng8d","kind":"members","items":0,"drafts":0,"fields":6,"tab":"items","item":null}
+13:42:09.353 +55.88s DEBUG ui.dialog.open Fenêtre ouverte : Médias membres {"id":"collectionDialog","class":"audit col-dialog","modal":true}
+13:42:09.402 +55.93s DEBUG collection.tab Onglet « Réglages » {"collection":"col_4qcyng8d","tab":"settings"}
+13:42:09.590 +56.12s DEBUG ui.dialog.open Fenêtre ouverte : Supprimer la collection {"id":"collectionDeleteDialog","class":"audit audit--sm","modal":true}
+13:42:09.680 +56.21s DEBUG ui.dialog.close Fenêtre fermée : Supprimer la collection {"id":"collectionDeleteDialog"}
+13:42:09.681 +56.21s DEBUG ui.confirm Confirmation refusée : Supprimer la collection {"id":"collectionDeleteDialog","ok":false}
+13:42:09.681 +56.21s DEBUG collection.delete-cancel Suppression de la collection annulée {"collection":"col_4qcyng8d"}
+13:42:09.866 +56.39s DEBUG ui.dialog.open Fenêtre ouverte : Supprimer la collection {"id":"collectionDeleteDialog","class":"audit audit--sm","modal":true}
+13:42:09.913 +56.44s DEBUG ui.dialog.close Fenêtre fermée : Supprimer la collection {"id":"collectionDeleteDialog"}
+13:42:09.913 +56.44s DEBUG ui.confirm Confirmation acceptée : Supprimer la collection {"id":"collectionDeleteDialog","ok":true}
+13:42:09.918 +56.45s DEBUG store.commit Modification {"source":"collections","past":81,"page":"p_2fa3e8yw"}
+13:42:09.926 +56.45s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":5}
+13:42:09.928 +56.45s INFO  collection.delete Collection « Médias membres » supprimée avec ses 0 éléments (Ctrl+Z pour annuler) {"collection":"col_4qcyng8d","kind":"members","items":0}
+13:42:09.928 +56.45s INFO  ui.toast Message affiché : Collection « Médias membres » supprimée.
+13:42:09.951 +56.48s DEBUG ui.dialog.close Fenêtre fermée : 📻 Médias membres /medias-membres/ {"id":"collectionDialog"}

@@ -1,13 +1,13 @@
-13:32:48.865 +1.33s DEBUG canvas.toolbar Barre de l’élément sélectionné : down {"act":"down","id":"n_4v0t0i4x2d"}
-13:32:48.868 +1.33s DEBUG store.commit Modification {"source":"action","past":1,"page":"p_hyhohvk5"}
-13:32:48.876 +1.34s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":6}
-13:32:48.884 +1.35s INFO  version.auto Première modification du jour : version automatique de l’état d’avant {"previous":null,"source":"action"}
-13:32:48.885 +1.35s INFO  version.save.start [version.save#1] Enregistrement d’une version automatique {"kind":"auto"}
-13:32:48.886 +1.35s DEBUG storage.version-save Version enregistrée {"id":"v_mvwdt0jami1qg","kind":"auto"}
-13:32:48.889 +1.35s INFO  action.move Descendu : heading {"id":"n_4v0t0i4x2d","type":"heading","delta":1,"index":1}
-13:32:48.901 +1.36s DEBUG version.save.prune [version.save#1 · 16 ms] Aucune ancienne version à supprimer {"total":1}
-13:32:48.901 +1.36s INFO  version.save.ok [version.save#1 · 16 ms] Version automatique enregistrée (2 pages) {"id":"v_mvwdt0jami1qg","kind":"auto","at":"2026-10-31T12:32:48.886Z","pages":2,"kb":12}
-13:32:48.983 +1.45s DEBUG canvas.toolbar Barre de l’élément sélectionné : up {"act":"up","id":"n_4v0t0i4x2d"}
-13:32:48.984 +1.45s DEBUG store.commit Modification {"source":"action","past":2,"page":"p_hyhohvk5"}
-13:32:48.988 +1.45s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":3}
-13:32:48.995 +1.46s INFO  action.move Monté : heading {"id":"n_4v0t0i4x2d","type":"heading","delta":-1,"index":0}
+13:52:02.164 +1.46s DEBUG canvas.toolbar Barre de l’élément sélectionné : down {"act":"down","id":"n_656q6l155o"}
+13:52:02.166 +1.47s DEBUG store.commit Modification {"source":"action","past":1,"page":"p_flrn81mp"}
+13:52:02.172 +1.47s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":6}
+13:52:02.179 +1.48s INFO  version.auto Première modification du jour : version automatique de l’état d’avant {"previous":null,"source":"action"}
+13:52:02.180 +1.48s INFO  version.save.start [version.save#1] Enregistrement d’une version automatique {"kind":"auto"}
+13:52:02.181 +1.48s DEBUG storage.version-save Version enregistrée {"id":"v_mvwehqf8yoyer","kind":"auto"}
+13:52:02.184 +1.48s INFO  action.move Descendu : heading {"id":"n_656q6l155o","type":"heading","delta":1,"index":1}
+13:52:02.213 +1.51s DEBUG version.save.prune [version.save#1 · 33 ms] Aucune ancienne version à supprimer {"total":1}
+13:52:02.214 +1.51s INFO  version.save.ok [version.save#1 · 34 ms] Version automatique enregistrée (2 pages) {"id":"v_mvwehqf8yoyer","kind":"auto","at":"2026-10-31T12:52:02.180Z","pages":2,"kb":12}
+13:52:02.262 +1.56s DEBUG canvas.toolbar Barre de l’élément sélectionné : up {"act":"up","id":"n_656q6l155o"}
+13:52:02.264 +1.56s DEBUG store.commit Modification {"source":"action","past":2,"page":"p_flrn81mp"}
+13:52:02.268 +1.57s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":3}
+13:52:02.275 +1.57s INFO  action.move Monté : heading {"id":"n_656q6l155o","type":"heading","delta":-1,"index":0}

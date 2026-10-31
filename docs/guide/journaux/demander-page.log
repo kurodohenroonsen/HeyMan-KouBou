@@ -1,28 +1,27 @@
-20:55:06.670 +2.67s INFO  assist.open Demander à Atelier {"chars":23,"page":"p_02k295vs","selected":"n_4i6j3w595l","lang":"fr"}
-20:55:06.671 +2.67s DEBUG ui.dialog.open Fenêtre ouverte : ✨ Demander à Atelier {"id":"askDialog","class":"audit smart-dialog","modal":true}
-20:55:06.760 +2.76s DEBUG ai.provider Fournisseur d’IA de test (window.__atelierAI) {"source":"test","lang":"fr","has":{"prompt":true,"multimodal":true,"summarizer":true,"translator":true},"methods":["prompt"]}
-20:55:06.760 +2.76s INFO  ai.plan.start [ai.plan#3] IA locale : préparer une demande (actions de la liste fermée) {"task":"plan","request":"Crée une page « Notre radio » avec un héros, un texte et im…","inLen":76,"page":"p_02k295vs","selected":"n_4i6j3w595l","lang":"fr","sourceLang":"fr","gen":"fr","api":"prompt","source":"test"}
-20:55:06.762 +2.76s DEBUG ai.plan.call [ai.plan#3 · 2 ms] Appel Prompt API (Gemini Nano) (fr) {"api":"prompt","lang":"fr","schema":"actions,summary","system":"2696 car.","inLen":357}
-20:55:06.762 +2.76s DEBUG ai.plan.reply [ai.plan#3 · 2 ms] Réponse Prompt API (Gemini Nano) : 371 car. en 1 ms {"api":"prompt","ms":1,"outLen":371,"excerpt":"{\"summary\":\"Je crée la page « Notre radio » avec trois sect…"}
-20:55:06.763 +2.76s WARN  ai.plan.rejected [ai.plan#3 · 3 ms] Action refusée (add_page) : Modèle de section inconnu : carrousel-3d (section ignorée dans la page « Notre radio »). {"action":"add_page"}
-20:55:06.764 +2.76s INFO  ai.plan.actions [ai.plan#3 · 4 ms] 2 actions valides : add_page, open_tool {"steps":["add_page","open_tool"],"summary":"Je crée la page « Notre radio » avec trois sections."}
-20:55:06.765 +2.76s INFO  ai.plan.ok [ai.plan#3 · 5 ms] Demande à Atelier : proposition prête (Prompt API) {"via":"prompt","fallback":false,"translated":false,"calls":1,"steps":2,"rejected":1,"warnings":0}
-20:55:06.765 +2.76s INFO  assist.plan 2 action(s) prête(s), 1 refusée(s) {"request":"Crée une page « Notre radio » avec un héros, un texte et image et le contact","summary":"Je crée la page « Notre radio » avec trois sections.","steps":["add_page","open_tool"],"rejected":1,"warnings":0}
-20:55:06.766 +2.77s WARN  assist.rejected Action refusée (add_page) : Modèle de section inconnu : carrousel-3d (section ignorée dans la page « Notre radio »). {"action":"add_page"}
-20:55:06.824 +2.82s INFO  assist.apply.start [assist.apply#3] Application de 2 action(s) {"steps":["add_page","open_tool"]}
-20:55:06.828 +2.83s INFO  assist.apply.step [assist.apply#3 · 4 ms] Créer la page « Notre radio » avec « Héros », « Texte et image », « Contact »
-20:55:06.829 +2.83s INFO  assist.apply.step [assist.apply#3 · 5 ms] Ouvrir « Référencement »
-20:55:06.829 +2.83s DEBUG store.commit Modification {"source":"assistant","past":2,"page":"p_02k295vs"}
-20:55:06.837 +2.84s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"assistant","mode":"contenu","ms":6}
-20:55:06.846 +2.85s DEBUG store.view Vue : pageId=p_bj8iosix {"pageId":"p_bj8iosix"}
-20:55:06.866 +2.87s INFO  canvas.load.start [canvas.load#2] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_bj8iosix","lang":"fr","device":"desktop"}
-20:55:06.869 +2.87s DEBUG canvas.load.render [canvas.load#2 · 3 ms] Page rendue {"ms":3,"kb":28}
-20:55:06.884 +2.88s DEBUG seo.analysis Analyse : page 82/100, site 83/100 {"pageId":"p_bj8iosix","lang":"fr","page":82,"site":83,"points":{"good":2,"warn":3,"info":1},"sitePoints":{"warn":1},"words":78,"imagesNoAlt":0}
-20:55:06.891 +2.89s DEBUG ui.dialog.open Fenêtre ouverte : 🔎 Référencement {"id":"seoDialog","class":"audit col-dialog seo-dialog","modal":true}
-20:55:06.911 +2.91s INFO  seo.open Fenêtre Référencement : note du site 83/100 {"lang":"fr","pageId":"p_bj8iosix","pages":3,"site":83,"page":82,"sitePoints":{"warn":1},"pagePoints":{"good":2,"warn":3,"info":1},"missingDesc":3,"baseUrl":true}
-20:55:06.911 +2.91s INFO  assist.apply.ok [assist.apply#3 · 87 ms] 2 action(s) appliquée(s) (Ctrl+Z pour tout annuler) {"done":2,"errors":0,"aiTexts":3,"view":{"pageId":"p_bj8iosix"},"ui":["seo"],"changed":true}
-20:55:06.912 +2.91s INFO  ui.toast Message affiché : 2 actions appliquées : Ctrl+Z pour tout annuler.
-20:55:06.920 +2.92s DEBUG ui.dialog.close Fenêtre fermée : ✨ Demander à Atelier {"id":"askDialog"}
-20:55:06.953 +2.95s INFO  canvas.load.ok [canvas.load#2 · 87 ms] Canevas prêt {"nodes":27,"scale":62,"via":"dom"}
-20:55:07.197 +3.20s DEBUG canvas.resources Ressources externes du canevas chargées {"ms":327,"hosts":["fonts.googleapis.com"]}
-20:55:07.329 +3.33s DEBUG ui.dialog.close Fenêtre fermée : 🔎 Référencement {"id":"seoDialog"}
+13:43:52.930 +2.21s INFO  assist.open Demander à Atelier {"chars":23,"page":"p_a2nz37zb","selected":"n_346h416q0j","lang":"fr"}
+13:43:52.930 +2.21s DEBUG ui.dialog.open Fenêtre ouverte : ✨ Demander à Atelier {"id":"askDialog","class":"audit smart-dialog","modal":true}
+13:43:52.998 +2.28s DEBUG ai.provider Fournisseur d’IA de test (window.__atelierAI) {"source":"test","lang":"fr","has":{"prompt":true,"multimodal":true,"summarizer":true,"translator":true},"methods":["prompt"]}
+13:43:52.998 +2.28s INFO  ai.plan.start [ai.plan#3] IA locale : préparer une demande (actions de la liste fermée) {"task":"plan","request":"Crée une page « Notre radio » avec un héros, un texte et im…","inLen":76,"page":"p_a2nz37zb","selected":"n_346h416q0j","lang":"fr","sourceLang":"fr","gen":"fr","api":"prompt","source":"test"}
+13:43:52.999 +2.28s DEBUG ai.plan.call [ai.plan#3 · 1 ms] Appel Prompt API (Gemini Nano) (fr) {"api":"prompt","lang":"fr","schema":"actions,summary","system":"2696 car.","inLen":357}
+13:43:52.999 +2.28s DEBUG ai.plan.reply [ai.plan#3 · 1 ms] Réponse Prompt API (Gemini Nano) : 371 car. en 0 ms {"api":"prompt","ms":0,"outLen":371,"excerpt":"{\"summary\":\"Je crée la page « Notre radio » avec trois sect…"}
+13:43:53.000 +2.28s WARN  ai.plan.rejected [ai.plan#3 · 2 ms] Action refusée (add_page) : Modèle de section inconnu : carrousel-3d (section ignorée dans la page « Notre radio »). {"action":"add_page"}
+13:43:53.000 +2.28s INFO  ai.plan.actions [ai.plan#3 · 2 ms] 2 actions valides : add_page, open_tool {"steps":["add_page","open_tool"],"summary":"Je crée la page « Notre radio » avec trois sections."}
+13:43:53.000 +2.28s INFO  ai.plan.ok [ai.plan#3 · 2 ms] Demande à Atelier : proposition prête (Prompt API) {"via":"prompt","fallback":false,"translated":false,"calls":1,"steps":2,"rejected":1,"warnings":0}
+13:43:53.000 +2.28s INFO  assist.plan 2 action(s) prête(s), 1 refusée(s) {"request":"Crée une page « Notre radio » avec un héros, un texte et image et le contact","summary":"Je crée la page « Notre radio » avec trois sections.","steps":["add_page","open_tool"],"rejected":1,"warnings":0}
+13:43:53.001 +2.28s WARN  assist.rejected Action refusée (add_page) : Modèle de section inconnu : carrousel-3d (section ignorée dans la page « Notre radio »). {"action":"add_page"}
+13:43:53.046 +2.33s INFO  assist.apply.start [assist.apply#3] Application de 2 action(s) {"steps":["add_page","open_tool"]}
+13:43:53.048 +2.33s INFO  assist.apply.step [assist.apply#3 · 2 ms] Créer la page « Notre radio » avec « Héros », « Texte et image », « Contact »
+13:43:53.048 +2.33s INFO  assist.apply.step [assist.apply#3 · 2 ms] Ouvrir « Référencement »
+13:43:53.048 +2.33s DEBUG store.commit Modification {"source":"assistant","past":2,"page":"p_a2nz37zb"}
+13:43:53.051 +2.33s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"assistant","mode":"contenu","ms":3}
+13:43:53.055 +2.33s DEBUG store.view Vue : pageId=p_svurzhut {"pageId":"p_svurzhut"}
+13:43:53.063 +2.34s INFO  canvas.load.start [canvas.load#2] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_svurzhut","lang":"fr","device":"desktop"}
+13:43:53.065 +2.35s DEBUG canvas.load.render [canvas.load#2 · 2 ms] Page rendue {"ms":1,"kb":32}
+13:43:53.067 +2.35s DEBUG ui.dialog.open Fenêtre ouverte : 🔎 Référencement {"id":"seoDialog","class":"audit col-dialog seo-dialog","modal":true}
+13:43:53.074 +2.35s DEBUG seo.analysis Analyse : page 82/100, site 83/100 {"pageId":"p_svurzhut","lang":"fr","page":82,"site":83,"points":{"good":2,"warn":3,"info":1},"sitePoints":{"warn":1},"words":78,"imagesNoAlt":0}
+13:43:53.084 +2.36s INFO  seo.open Fenêtre Référencement : note du site 83/100 {"lang":"fr","pageId":"p_svurzhut","pages":3,"site":83,"page":82,"sitePoints":{"warn":1},"pagePoints":{"good":2,"warn":3,"info":1},"missingDesc":3,"baseUrl":true}
+13:43:53.084 +2.36s INFO  assist.apply.ok [assist.apply#3 · 38 ms] 2 action(s) appliquée(s) (Ctrl+Z pour tout annuler) {"done":2,"errors":0,"aiTexts":3,"view":{"pageId":"p_svurzhut"},"ui":["seo"],"changed":true}
+13:43:53.084 +2.36s INFO  ui.toast Message affiché : 2 actions appliquées : Ctrl+Z pour tout annuler.
+13:43:53.089 +2.37s DEBUG ui.dialog.close Fenêtre fermée : ✨ Demander à Atelier {"id":"askDialog"}
+13:43:53.110 +2.39s INFO  canvas.load.ok [canvas.load#2 · 47 ms] Canevas prêt {"nodes":27,"scale":76,"via":"load"}
+13:43:53.460 +2.74s DEBUG ui.dialog.close Fenêtre fermée : 🔎 Référencement {"id":"seoDialog"}

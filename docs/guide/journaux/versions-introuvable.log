@@ -1,7 +1,7 @@
-13:17:06.395 +55.67s INFO  version.restore.start [version.restore#3] Restauration de « Avant les essais » du 31 oct. 2026, 13:17 {"id":"v_mvwd8phz28bov","kind":"manual","at":"2026-10-31T12:17:01.463Z","pages":5}
-13:17:06.395 +55.67s DEBUG ui.dialog.open Fenêtre ouverte : Restaurer une version {"id":"versionRestoreDialog","class":"audit audit--sm","modal":true}
-13:17:06.454 +55.73s DEBUG ui.dialog.close Fenêtre fermée : Restaurer une version {"id":"versionRestoreDialog"}
-13:17:06.455 +55.73s DEBUG ui.confirm Confirmation acceptée : Restaurer une version {"id":"versionRestoreDialog","ok":true}
-13:17:06.457 +55.73s WARN  storage.version-missing Version introuvable {"id":"v_mvwd8phz28bov"}
-13:17:06.457 +55.73s ERROR version.restore.fail [version.restore#3 · 62 ms] Version introuvable : supprimée entre-temps (autre onglet, nettoyage) ou base locale effacée {"id":"v_mvwd8phz28bov","error":{"name":"Error","message":"Version introuvable","stack":"Error: Version introuvable\nat HTMLButtonElement.onclick (http://localhost:8834/editor/versions-ui.js:87:31)"}}
-13:17:06.458 +55.73s ERROR ui.toast Message affiché : Version introuvable. {"type":"error"}
+13:42:17.173 +63.70s INFO  version.restore.start [version.restore#3] Restauration de « Avant les essais » du 31 oct. 2026, 13:42 {"id":"v_mvwe52iw267zn","kind":"manual","at":"2026-10-31T12:42:11.336Z","pages":5}
+13:42:17.174 +63.70s DEBUG ui.dialog.open Fenêtre ouverte : Restaurer une version {"id":"versionRestoreDialog","class":"audit audit--sm","modal":true}
+13:42:17.311 +63.84s DEBUG ui.dialog.close Fenêtre fermée : Restaurer une version {"id":"versionRestoreDialog"}
+13:42:17.311 +63.84s DEBUG ui.confirm Confirmation acceptée : Restaurer une version {"id":"versionRestoreDialog","ok":true}
+13:42:17.314 +63.84s WARN  storage.version-missing Version introuvable {"id":"v_mvwe52iw267zn"}
+13:42:17.315 +63.84s ERROR version.restore.fail [version.restore#3 · 142 ms] Version introuvable : supprimée entre-temps (autre onglet, nettoyage) ou base locale effacée {"id":"v_mvwe52iw267zn","error":{"name":"Error","message":"Version introuvable","stack":"Error: Version introuvable\nat HTMLButtonElement.onclick (http://localhost:8834/editor/versions-ui.js:87:31)"}}
+13:42:17.316 +63.84s ERROR ui.toast Message affiché : Version introuvable. {"type":"error"}

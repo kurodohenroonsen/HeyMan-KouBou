@@ -476,12 +476,12 @@ Dans les extraits ci-dessous, les lignes `store.commit` (une par modification), 
 
 **But** : comprendre pourquoi une image n'est pas acceptée ou alourdit le site.
 
-**Journal attendu — fichier d'un type refusé** (SVG, PDF… : [`journaux/images-type-refuse.log`](journaux/images-type-refuse.log))
+**Journal attendu — fichier d'un type refusé** (TIFF, PDF… ; un SVG est accepté, voir 4.34 : [`journaux/images-type-refuse.log`](journaux/images-type-refuse.log))
 ```log
-04:57:43.803 +12.04s INFO  inspector.image.start [inspector.image#4] Import d’une image {"field":"logo","type":"image/svg+xml","kb":0}
-04:57:43.803 +12.04s WARN  image.type-refused Image refusée : type « image/svg+xml » non pris en charge (JPG, PNG, WebP, GIF, AVIF ou BMP) {"name":"logo.svg","type":"image/svg+xml","kb":1}
-04:57:43.804 +12.04s ERROR inspector.image.fail [inspector.image#4 · 1 ms] Image non importée : Format non pris en charge. Utilisez une image JPG, PNG, WebP ou GIF. {"field":"logo","type":"image/svg+xml","error":{"name":"Error","message":"Format non pris en charge. Utilisez une image JPG, PNG, WebP ou GIF.","stack":"Error: Format non pris en charge. Utilisez une image JPG, PNG, WebP ou GIF.\nat imageToWebp (http://localhost:8791/editor/images.js:43:11)\nat HTMLInputElement.<anonymous> (http://localhost:8791/editor/fields.js:154:25)\nat eval (eval at evaluate (:290:30), <anonymous>:28:11)\nat UtilityScript.evaluate (<anonymous>:292:16)"}}
-04:57:43.804 +12.04s ERROR ui.toast Message affiché : Format non pris en charge. Utilisez une image JPG, PNG, WebP ou GIF. {"type":"error"}
+13:41:25.814 +12.34s INFO  inspector.image.start [inspector.image#4] Import d’une image {"field":"logo","type":"image/tiff","kb":0}
+13:41:25.815 +12.34s WARN  image.type-refused Image refusée : type « image/tiff » non pris en charge (JPG, PNG, WebP, GIF, AVIF, BMP ou SVG) {"name":"scan.tiff","type":"image/tiff","kb":1}
+13:41:25.815 +12.34s ERROR inspector.image.fail [inspector.image#4 · 1 ms] Image non importée : Format non pris en charge. Utilisez une image JPG, PNG, WebP, GIF ou SVG. {"field":"logo","type":"image/tiff","error":{"name":"Error","message":"Format non pris en charge. Utilisez une image JPG, PNG, WebP, GIF ou SVG.","stack":"Error: Format non pris en charge. Utilisez une image JPG, PNG, WebP, GIF ou SVG.\nat imageToWebp (http://localhost:8834/editor/images.js:66:11)\nat HTMLInputElement.<anonymous> (http://localhost:8834/editor/fields.js:224:25)\nat eval (eval at evaluate (:290:30), <anonymous>:28:11)\nat UtilityScript.evaluate (<anonymous>:292:16)"}}
+13:41:25.816 +12.34s ERROR ui.toast Message affiché : Format non pris en charge. Utilisez une image JPG, PNG, WebP, GIF ou SVG. {"type":"error"}
 ```
 
 **Journal attendu — fichier illisible** (abîmé, incomplet, ou format que ce navigateur ne décode pas : [`journaux/images-illisible.log`](journaux/images-illisible.log))

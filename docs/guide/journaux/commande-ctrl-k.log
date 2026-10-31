@@ -1,10 +1,7 @@
-13:15:59.618 +6.17s DEBUG ui.key Raccourci : Ctrl+K {"key":"Ctrl+K","in":"body"}
-13:15:59.622 +6.17s DEBUG ui.dialog.open Fenêtre ouverte : cmdk {"id":"cmdk","class":"cmdk","modal":true}
-13:15:59.705 +6.26s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":12}
-13:15:59.805 +6.36s INFO  cmdk.run Commande : Journal de débogage : copier, télécharger, journal du serveur {"id":"act:log","query":"journal de débogage"}
-13:15:59.806 +6.36s DEBUG ui.dialog.open Fenêtre ouverte : 🐞 Journal de débogage {"id":"logDialog","class":"audit log-dialog","modal":true}
-13:15:59.810 +6.36s DEBUG ui.change Champ modifié : cmdkInput {"el":"input","id":"cmdkInput","dialog":"cmdk","value":"journal de débogage"}
-13:15:59.824 +6.38s DEBUG ui.dialog.close Fenêtre fermée : cmdk {"id":"cmdk"}
-13:15:59.839 +6.39s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:https://www.xn--mdia-alternatif-bnb.be"}
-13:15:59.918 +6.47s DEBUG ui.key Raccourci : Escape {"key":"Escape","in":"input"}
-13:15:59.924 +6.48s DEBUG ui.dialog.close Fenêtre fermée : 🐞 Journal de débogage {"id":"logDialog"}
+13:40:14.772 +6.59s DEBUG ui.key Raccourci : Ctrl+K {"key":"Ctrl+K","in":"body"}
+13:40:14.776 +6.59s DEBUG ui.dialog.open Fenêtre ouverte : cmdk {"id":"cmdk","class":"cmdk","modal":true}
+13:40:14.846 +6.66s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":12}
+13:40:14.979 +6.79s INFO  cmdk.run Commande : Journal de débogage : copier, télécharger, journal du serveur {"id":"act:log","query":"journal de débogage"}
+13:40:14.981 +6.79s DEBUG ui.dialog.open Fenêtre ouverte : 🐞 Journal de débogage {"id":"logDialog","class":"audit log-dialog","modal":true}
+13:40:14.983 +6.80s DEBUG ui.change Champ modifié : cmdkInput {"el":"input","id":"cmdkInput","dialog":"cmdk","value":"journal de débogage"}
+13:40:14.999 +6.81s DEBUG ui.key Raccourci : Escape {"key":"Escape","in":"input"}

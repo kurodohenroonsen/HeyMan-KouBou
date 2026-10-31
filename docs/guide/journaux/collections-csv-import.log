@@ -1,8 +1,8 @@
-13:16:55.160 +44.44s INFO  collection.csv-import.start [collection.csv-import#1] Import CSV dans « Agenda du MAB » {"collection":"col_wjcuxs44","file":"agenda-c16.csv","kb":1,"type":"text/csv"}
-13:16:55.165 +44.44s DEBUG collection.csv-import.read [collection.csv-import#1 · 5 ms] Fichier lu : 4 ligne(s) de données {"rows":4,"separator":";","columns":["slug","title.fr","date","place","status_field"]}
-13:16:55.182 +44.46s DEBUG store.commit Modification {"source":"collections","past":80,"page":"p_dq3r1apc"}
-13:16:55.189 +44.46s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":5}
-13:16:55.193 +44.47s WARN  collection.csv-import.row-refused [collection.csv-import#1 · 33 ms] Ligne 4 : Date invalide : utilisez le format AAAA-MM-JJ. {"line":4}
-13:16:55.193 +44.47s WARN  collection.csv-import.row-refused [collection.csv-import#1 · 33 ms] Ligne 5 : Choix inconnu pour « Statut » : Inconnu {"line":5}
-13:16:55.193 +44.47s INFO  collection.csv-import.ok [collection.csv-import#1 · 33 ms] Import terminé : 1 ajouté(s), 1 mis à jour, 2 ligne(s) refusée(s) {"added":1,"updated":1,"refused":2,"items":5}
-13:16:55.193 +44.47s ERROR ui.toast Message affiché : Import : 1 élément ajouté, 1 mis à jour, 2 ligne(s) ignorée(s) — Ligne 4 : Date invalide : utilisez le format AAAA-MM-JJ.. {"type":"error"}
+13:42:03.955 +50.48s INFO  collection.csv-import.start [collection.csv-import#1] Import CSV dans « Agenda du MAB » {"collection":"col_7n3yhpon","file":"agenda-c16.csv","kb":1,"type":"text/csv"}
+13:42:03.962 +50.49s DEBUG collection.csv-import.read [collection.csv-import#1 · 7 ms] Fichier lu : 4 ligne(s) de données {"rows":4,"separator":";","columns":["slug","title.fr","date","place","status_field"]}
+13:42:03.983 +50.51s DEBUG store.commit Modification {"source":"collections","past":80,"page":"p_2fa3e8yw"}
+13:42:03.989 +50.52s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":4}
+13:42:03.990 +50.52s WARN  collection.csv-import.row-refused [collection.csv-import#1 · 35 ms] Ligne 4 : Date invalide : utilisez le format AAAA-MM-JJ. {"line":4}
+13:42:03.990 +50.52s WARN  collection.csv-import.row-refused [collection.csv-import#1 · 35 ms] Ligne 5 : Choix inconnu pour « Statut » : Inconnu {"line":5}
+13:42:03.990 +50.52s INFO  collection.csv-import.ok [collection.csv-import#1 · 35 ms] Import terminé : 1 ajouté(s), 1 mis à jour, 2 ligne(s) refusée(s) {"added":1,"updated":1,"refused":2,"items":5}
+13:42:03.990 +50.52s ERROR ui.toast Message affiché : Import : 1 élément ajouté, 1 mis à jour, 2 ligne(s) ignorée(s) — Ligne 4 : Date invalide : utilisez le format AAAA-MM-JJ.. {"type":"error"}

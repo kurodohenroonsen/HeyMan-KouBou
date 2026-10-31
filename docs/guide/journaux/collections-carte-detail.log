@@ -1,32 +1,32 @@
-13:16:55.828 +45.10s DEBUG collection.item.select Élément « Fête de la radio à Couvin » affiché {"collection":"col_wjcuxs44","item":"it_gswrcuii","status":"published"}
-13:16:56.060 +45.34s INFO  collection.item.preview Page de détail ouverte avec l’élément « Fête de la radio à Couvin » {"collection":"col_wjcuxs44","item":"it_gswrcuii","detail":true}
-13:16:56.061 +45.34s INFO  store.edit-target Édition : detail « col_wjcuxs44 » {"kind":"detail","id":"col_wjcuxs44"}
-13:16:56.067 +45.34s INFO  canvas.load.start [canvas.load#13] Chargement complet du canevas : modification de la page de détail {"reason":"modification de la page de détail","page":"p_dq3r1apc","lang":"fr","device":"desktop","edit":"detail"}
-13:16:56.068 +45.34s DEBUG canvas.load.render [canvas.load#13 · 1 ms] Page rendue {"ms":1,"kb":32}
-13:16:56.087 +45.36s DEBUG ui.dialog.close Fenêtre fermée : 📅 Agenda du MAB /agenda/ {"id":"collectionDialog"}
-13:16:56.102 +45.38s INFO  canvas.load.ok [canvas.load#13 · 35 ms] Canevas prêt {"nodes":13,"scale":76,"via":"load"}
-13:16:56.625 +45.90s INFO  store.edit-target Retour à la page
-13:16:56.628 +45.90s INFO  canvas.load.start [canvas.load#14] Chargement complet du canevas : retour à la page {"reason":"retour à la page","page":"p_dq3r1apc","lang":"fr","device":"desktop"}
-13:16:56.630 +45.91s DEBUG canvas.load.render [canvas.load#14 · 2 ms] Page rendue {"ms":2,"kb":37}
-13:16:56.650 +45.92s INFO  canvas.load.ok [canvas.load#14 · 22 ms] Canevas prêt {"nodes":5,"scale":76,"via":"load"}
-13:16:57.213 +46.49s INFO  collection.edit-card Modification de la carte de « Agenda du MAB » (dessinée une fois pour tous les éléments) {"collection":"col_wjcuxs44"}
-13:16:57.214 +46.49s INFO  store.edit-target Édition : card « col_wjcuxs44 » {"kind":"card","id":"col_wjcuxs44"}
-13:16:57.217 +46.49s INFO  canvas.load.start [canvas.load#15] Chargement complet du canevas : modification de la carte {"reason":"modification de la carte","page":"p_dq3r1apc","lang":"fr","device":"desktop","edit":"card"}
-13:16:57.219 +46.49s DEBUG canvas.load.render [canvas.load#15 · 2 ms] Page rendue {"ms":1,"kb":34}
-13:16:57.268 +46.54s INFO  canvas.load.ok [canvas.load#15 · 51 ms] Canevas prêt {"nodes":7,"scale":76,"via":"load"}
-13:16:57.775 +47.05s INFO  store.edit-target Retour à la page
-13:16:57.778 +47.05s INFO  canvas.load.start [canvas.load#16] Chargement complet du canevas : retour à la page {"reason":"retour à la page","page":"p_dq3r1apc","lang":"fr","device":"desktop"}
-13:16:57.780 +47.05s DEBUG canvas.load.render [canvas.load#16 · 2 ms] Page rendue {"ms":2,"kb":37}
-13:16:57.800 +47.08s INFO  canvas.load.ok [canvas.load#16 · 22 ms] Canevas prêt {"nodes":5,"scale":76,"via":"load"}
-13:16:58.343 +47.62s INFO  collection.open Collection « Agenda du MAB » ouverte : 5 éléments, 12 champs {"id":"col_wjcuxs44","kind":"events","items":5,"drafts":0,"fields":12,"tab":"items","item":"it_wm5ciyha"}
-13:16:58.343 +47.62s DEBUG ui.dialog.open Fenêtre ouverte : Agenda du MAB {"id":"collectionDialog","class":"audit col-dialog","modal":true}
-13:16:58.396 +47.67s INFO  collection.edit-detail Modification de la page de détail de « Agenda du MAB » {"collection":"col_wjcuxs44","item":"it_wm5ciyha"}
-13:16:58.397 +47.67s INFO  store.edit-target Édition : detail « col_wjcuxs44 » {"kind":"detail","id":"col_wjcuxs44"}
-13:16:58.401 +47.68s INFO  canvas.load.start [canvas.load#17] Chargement complet du canevas : modification de la page de détail {"reason":"modification de la page de détail","page":"p_dq3r1apc","lang":"fr","device":"desktop","edit":"detail"}
-13:16:58.403 +47.68s DEBUG canvas.load.render [canvas.load#17 · 2 ms] Page rendue {"ms":1,"kb":22}
-13:16:58.425 +47.70s DEBUG ui.dialog.close Fenêtre fermée : 📅 Agenda du MAB /agenda/ {"id":"collectionDialog"}
-13:16:58.444 +47.72s INFO  canvas.load.ok [canvas.load#17 · 43 ms] Canevas prêt {"nodes":13,"scale":76,"via":"load"}
-13:16:58.975 +48.25s INFO  store.edit-target Retour à la page
-13:16:58.978 +48.25s INFO  canvas.load.start [canvas.load#18] Chargement complet du canevas : retour à la page {"reason":"retour à la page","page":"p_dq3r1apc","lang":"fr","device":"desktop"}
-13:16:58.980 +48.26s DEBUG canvas.load.render [canvas.load#18 · 2 ms] Page rendue {"ms":2,"kb":37}
-13:16:58.997 +48.27s INFO  canvas.load.ok [canvas.load#18 · 19 ms] Canevas prêt {"nodes":5,"scale":76,"via":"load"}
+13:42:04.734 +51.26s DEBUG collection.item.select Élément « Fête de la radio à Couvin » affiché {"collection":"col_7n3yhpon","item":"it_dkrahsej","status":"published"}
+13:42:04.973 +51.50s INFO  collection.item.preview Page de détail ouverte avec l’élément « Fête de la radio à Couvin » {"collection":"col_7n3yhpon","item":"it_dkrahsej","detail":true}
+13:42:04.974 +51.50s INFO  store.edit-target Édition : detail « col_7n3yhpon » {"kind":"detail","id":"col_7n3yhpon"}
+13:42:04.981 +51.51s INFO  canvas.load.start [canvas.load#13] Chargement complet du canevas : modification de la page de détail {"reason":"modification de la page de détail","page":"p_2fa3e8yw","lang":"fr","device":"desktop","edit":"detail"}
+13:42:04.982 +51.51s DEBUG canvas.load.render [canvas.load#13 · 1 ms] Page rendue {"ms":1,"kb":33}
+13:42:05.003 +51.53s DEBUG ui.dialog.close Fenêtre fermée : 📅 Agenda du MAB /agenda/ {"id":"collectionDialog"}
+13:42:05.055 +51.58s INFO  canvas.load.ok [canvas.load#13 · 74 ms] Canevas prêt {"nodes":13,"scale":76,"via":"load"}
+13:42:05.676 +52.20s INFO  store.edit-target Retour à la page
+13:42:05.686 +52.21s INFO  canvas.load.start [canvas.load#14] Chargement complet du canevas : retour à la page {"reason":"retour à la page","page":"p_2fa3e8yw","lang":"fr","device":"desktop"}
+13:42:05.726 +52.25s DEBUG canvas.load.render [canvas.load#14 · 40 ms] Page rendue {"ms":40,"kb":37}
+13:42:05.781 +52.31s INFO  canvas.load.ok [canvas.load#14 · 95 ms] Canevas prêt {"nodes":5,"scale":76,"via":"load"}
+13:42:06.435 +52.96s INFO  collection.edit-card Modification de la carte de « Agenda du MAB » (dessinée une fois pour tous les éléments) {"collection":"col_7n3yhpon"}
+13:42:06.436 +52.96s INFO  store.edit-target Édition : card « col_7n3yhpon » {"kind":"card","id":"col_7n3yhpon"}
+13:42:06.440 +52.97s INFO  canvas.load.start [canvas.load#15] Chargement complet du canevas : modification de la carte {"reason":"modification de la carte","page":"p_2fa3e8yw","lang":"fr","device":"desktop","edit":"card"}
+13:42:06.441 +52.97s DEBUG canvas.load.render [canvas.load#15 · 1 ms] Page rendue {"ms":1,"kb":34}
+13:42:06.577 +53.10s INFO  canvas.load.ok [canvas.load#15 · 137 ms] Canevas prêt {"nodes":7,"scale":76,"via":"load"}
+13:42:07.121 +53.65s INFO  store.edit-target Retour à la page
+13:42:07.125 +53.65s INFO  canvas.load.start [canvas.load#16] Chargement complet du canevas : retour à la page {"reason":"retour à la page","page":"p_2fa3e8yw","lang":"fr","device":"desktop"}
+13:42:07.128 +53.66s DEBUG canvas.load.render [canvas.load#16 · 3 ms] Page rendue {"ms":2,"kb":37}
+13:42:07.152 +53.68s INFO  canvas.load.ok [canvas.load#16 · 27 ms] Canevas prêt {"nodes":5,"scale":76,"via":"load"}
+13:42:07.771 +54.30s INFO  collection.open Collection « Agenda du MAB » ouverte : 5 éléments, 12 champs {"id":"col_7n3yhpon","kind":"events","items":5,"drafts":0,"fields":12,"tab":"items","item":"it_u4cy3cqi"}
+13:42:07.771 +54.30s DEBUG ui.dialog.open Fenêtre ouverte : Agenda du MAB {"id":"collectionDialog","class":"audit col-dialog","modal":true}
+13:42:07.836 +54.36s INFO  collection.edit-detail Modification de la page de détail de « Agenda du MAB » {"collection":"col_7n3yhpon","item":"it_u4cy3cqi"}
+13:42:07.837 +54.36s INFO  store.edit-target Édition : detail « col_7n3yhpon » {"kind":"detail","id":"col_7n3yhpon"}
+13:42:07.840 +54.37s INFO  canvas.load.start [canvas.load#17] Chargement complet du canevas : modification de la page de détail {"reason":"modification de la page de détail","page":"p_2fa3e8yw","lang":"fr","device":"desktop","edit":"detail"}
+13:42:07.841 +54.37s DEBUG canvas.load.render [canvas.load#17 · 1 ms] Page rendue {"ms":1,"kb":23}
+13:42:07.864 +54.39s DEBUG ui.dialog.close Fenêtre fermée : 📅 Agenda du MAB /agenda/ {"id":"collectionDialog"}
+13:42:07.884 +54.41s INFO  canvas.load.ok [canvas.load#17 · 44 ms] Canevas prêt {"nodes":13,"scale":76,"via":"load"}
+13:42:08.467 +54.99s INFO  store.edit-target Retour à la page
+13:42:08.470 +55.00s INFO  canvas.load.start [canvas.load#18] Chargement complet du canevas : retour à la page {"reason":"retour à la page","page":"p_2fa3e8yw","lang":"fr","device":"desktop"}
+13:42:08.473 +55.00s DEBUG canvas.load.render [canvas.load#18 · 3 ms] Page rendue {"ms":3,"kb":37}
+13:42:08.493 +55.02s INFO  canvas.load.ok [canvas.load#18 · 23 ms] Canevas prêt {"nodes":5,"scale":76,"via":"load"}

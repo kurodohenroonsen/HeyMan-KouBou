@@ -1,21 +1,21 @@
-13:16:02.101 +8.65s DEBUG store.commit Modification {"source":"site","past":11,"page":"p_fqiihqqr"}
-13:16:02.104 +8.66s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
-13:16:02.111 +8.66s INFO  publish.php.start [publish.php#1] Publication sur OVH (publish.php) {"url":"http://127.0.0.1:9592/publish.php"}
-13:16:02.112 +8.66s INFO  storage.secret-write Secret oublié sur cet appareil {"name":"php-token:http://127.0.0.1:9592"}
-13:16:02.121 +8.67s INFO  publish.php.warnings [publish.php#1 · 10 ms] 1 point à vérifier (la publication continue) {"warnings":[{"pageId":"p_esn30bvs","nodeId":"n_0f710y6j2x","message":"Accueil : image non choisie : rien ne s’affichera à cet endroit."}]}
-13:16:02.124 +8.68s DEBUG net.request GET 127.0.0.1:9592/publish.php {"id":10,"method":"GET","url":"http://127.0.0.1:9592/publish.php"}
-13:16:02.144 +8.70s DEBUG net.response 200 GET 127.0.0.1:9592/publish.php (20 ms) {"id":10,"status":200,"ms":20,"type":"application/json","req":"e8e5b240"}
-13:16:02.147 +8.70s DEBUG publish.php.version [publish.php#1 · 36 ms] publish.php installé : version 5 {"version":"5"}
-13:16:02.147 +8.70s DEBUG fonts.load 8 fichiers de polices prêts pour le site {"files":8,"kb":112}
-13:16:02.158 +8.71s INFO  publish.php.package [publish.php#1 · 47 ms] Paquet prêt : 24 fichiers {"files":24,"kb":211,"forms":1,"ms":11}
-13:16:02.161 +8.71s DEBUG net.request POST 127.0.0.1:9592/publish.php {"id":11,"method":"POST","url":"http://127.0.0.1:9592/publish.php?atelier_debug=1","body":{"site":"Blob application/zip (211 Ko)","forms":"48 car.","htaccess":"107 car."}}
-13:16:02.200 +8.75s INFO  net.response 200 POST 127.0.0.1:9592/publish.php (39 ms) {"id":11,"status":200,"ms":39,"type":"application/json","req":"935c909d"}
-13:16:02.203 +8.76s DEBUG php.req.start POST reçu {"method":"POST","who":"e9cd0732d5","bytes":216211,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8834","req":"935c909d","srvMs":0}
-13:16:02.203 +8.76s INFO  php.publish.start Paquet reçu {"kb":210,"req":"935c909d","srvMs":0.1}
-13:16:02.203 +8.76s DEBUG php.publish.checked Paquet vérifié {"files":24,"req":"935c909d","srvMs":0.6}
-13:16:02.203 +8.76s DEBUG php.publish.staged Fichiers préparés à part {"files":24,"req":"935c909d","srvMs":2.4}
-13:16:02.203 +8.76s DEBUG php.publish.htaccess .htaccess écrit {"host":"www.xn--mdia-alternatif-bnb.be","https":true,"www":"add","langs":4,"req":"935c909d","srvMs":6.6}
-13:16:02.203 +8.76s INFO  php.publish.ok Site publié {"written":24,"moved":24,"removed":0,"forms":1,"htaccess":true,"req":"935c909d","srvMs":7.3}
-13:16:02.203 +8.76s INFO  php.req.end Réponse 200 (publish) {"status":200,"route":"publish","mem_kb":831,"req":"935c909d","srvMs":7.3}
-13:16:02.203 +8.76s INFO  publish.php.ok [publish.php#1 · 92 ms] Site publié : 24 fichiers {"written":24,"removed":0,"ref":"935c909d"}
-13:16:02.203 +8.76s INFO  ui.toast Message affiché : Site publié (24 fichiers).
+13:40:17.827 +9.64s DEBUG store.commit Modification {"source":"site","past":11,"page":"p_b7ybbtxb"}
+13:40:17.835 +9.65s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":7}
+13:40:17.842 +9.66s INFO  publish.php.start [publish.php#1] Publication sur OVH (publish.php) {"url":"http://127.0.0.1:9556/publish.php"}
+13:40:17.843 +9.66s INFO  storage.secret-write Secret oublié sur cet appareil {"name":"php-token:http://127.0.0.1:9556"}
+13:40:17.855 +9.67s INFO  publish.php.warnings [publish.php#1 · 13 ms] 1 point à vérifier (la publication continue) {"warnings":[{"pageId":"p_njuiy2o5","nodeId":"n_5u1r0k2j2h","message":"Accueil : image non choisie : rien ne s’affichera à cet endroit."}]}
+13:40:17.856 +9.67s DEBUG net.request GET 127.0.0.1:9556/publish.php {"id":10,"method":"GET","url":"http://127.0.0.1:9556/publish.php"}
+13:40:17.898 +9.71s DEBUG net.response 200 GET 127.0.0.1:9556/publish.php (43 ms) {"id":10,"status":200,"ms":43,"type":"application/json","req":"f4d29dd0"}
+13:40:17.901 +9.71s DEBUG publish.php.version [publish.php#1 · 59 ms] publish.php installé : version 5 {"version":"5"}
+13:40:17.902 +9.72s DEBUG fonts.load 8 fichiers de polices prêts pour le site {"files":8,"kb":112}
+13:40:17.917 +9.73s INFO  publish.php.package [publish.php#1 · 75 ms] Paquet prêt : 24 fichiers {"files":24,"kb":211,"forms":1,"ms":15}
+13:40:17.920 +9.73s DEBUG net.request POST 127.0.0.1:9556/publish.php {"id":11,"method":"POST","url":"http://127.0.0.1:9556/publish.php?atelier_debug=1","body":{"site":"Blob application/zip (211 Ko)","forms":"48 car.","htaccess":"107 car."}}
+13:40:17.944 +9.76s INFO  net.response 200 POST 127.0.0.1:9556/publish.php (24 ms) {"id":11,"status":200,"ms":24,"type":"application/json","req":"0025bb59"}
+13:40:17.946 +9.76s DEBUG php.req.start POST reçu {"method":"POST","who":"c612e2bafc","bytes":216946,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8834","req":"0025bb59","srvMs":0}
+13:40:17.946 +9.76s INFO  php.publish.start Paquet reçu {"kb":211,"req":"0025bb59","srvMs":0}
+13:40:17.946 +9.76s DEBUG php.publish.checked Paquet vérifié {"files":24,"req":"0025bb59","srvMs":6}
+13:40:17.946 +9.76s DEBUG php.publish.staged Fichiers préparés à part {"files":24,"req":"0025bb59","srvMs":7.6}
+13:40:17.946 +9.76s DEBUG php.publish.htaccess .htaccess écrit {"host":"www.xn--mdia-alternatif-bnb.be","https":true,"www":"add","langs":4,"req":"0025bb59","srvMs":12.5}
+13:40:17.946 +9.76s INFO  php.publish.ok Site publié {"written":24,"moved":24,"removed":0,"forms":1,"htaccess":true,"req":"0025bb59","srvMs":13.1}
+13:40:17.947 +9.76s INFO  php.req.end Réponse 200 (publish) {"status":200,"route":"publish","mem_kb":831,"req":"0025bb59","srvMs":13.1}
+13:40:17.947 +9.76s INFO  publish.php.ok [publish.php#1 · 105 ms] Site publié : 24 fichiers {"written":24,"removed":0,"ref":"0025bb59"}
+13:40:17.947 +9.76s INFO  ui.toast Message affiché : Site publié (24 fichiers).

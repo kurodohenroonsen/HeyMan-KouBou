@@ -1,29 +1,30 @@
-12:40:58.115 +0.27s INFO  collab.join.link Lien d’invitation ouvert
-12:40:58.124 +0.28s INFO  collab.invite.open Invitation de Faussaire : éditeur {"role":"editor","owner":"Faussaire","ownerFp":"UDFAQ2qceE8ll5nr","via":"boîte aux lettres","signal":"http://127.0.0.1:8852/publish.php","hours":168}
-12:40:58.125 +0.28s DEBUG ui.dialog.open Fenêtre ouverte : 👥 Rejoindre une session {"id":"joinDialog","class":"audit collab","modal":true}
-12:40:58.210 +0.36s INFO  collab.identity.new Clé personnelle créée pour Faussaire {"fp":"eOuTA--OjaiU9MhZ","did":"did:key:zDnaeZCboRjusZbM"}
-12:40:58.213 +0.37s INFO  collab.join.start [collab.join#1] Rejoindre une session {"name":"Faussaire","fp":"eOuTA--OjaiU9MhZ","via":"boîte aux lettres"}
-12:40:58.216 +0.37s DEBUG collab.join.invite [collab.join#1 · 3 ms] Invitation valable : Faussaire invite comme éditeur {"role":"editor","owner":"Faussaire","host":"863c9ffed095d177","signal":"http://127.0.0.1:8852/publish.php","hours":168}
-12:40:58.217 +0.37s INFO  version.save.start [version.save#1] Enregistrement d’une version de sécurité : « Avant de rejoindre une session de collaboration » {"kind":"safety","name":"Avant de rejoindre une session de collaboration"}
-12:40:58.220 +0.37s DEBUG version.save.prune [version.save#1 · 3 ms] Aucune ancienne version à supprimer {"total":1}
-12:40:58.220 +0.37s INFO  version.save.ok [version.save#1 · 3 ms] Version de sécurité enregistrée (2 pages) {"id":"v_mvwbycbthguko","kind":"safety","at":"2026-10-31T11:40:58.217Z","pages":2,"kb":12}
-12:40:58.220 +0.37s DEBUG collab.join.backup [collab.join#1 · 7 ms] Projet actuel enregistré dans les versions avant de recevoir celui de l’hôte
-12:40:58.221 +0.37s INFO  rtc.join.start [rtc.join#1] Connexion à l’hôte 863c9ffed095d177 par la boîte aux lettres {"host":"863c9ffed095d177","url":"http://127.0.0.1:8852/publish.php","room":"7400cb20"}
-12:40:58.229 +0.38s DEBUG rtc.join.offer [rtc.join#1 · 8 ms] Demande de connexion créée : collecte des adresses réseau
-12:41:02.230 +4.38s DEBUG signal.post Dépôt d’un message chiffré « offer » pour 863c9ffed095d177 {"room":"7400cb20","from":"55d3ec415ce328b1","to":"863c9ffed095d177","t":"offer","bytes":922}
-12:41:02.231 +4.38s DEBUG net.request POST 127.0.0.1:8852/publish.php {"id":1,"method":"POST","url":"http://127.0.0.1:8852/publish.php","body":{"json":["signal","proof","from","to","data"],"size":1134}}
-12:41:02.238 +4.39s INFO  net.response 200 POST 127.0.0.1:8852/publish.php (7 ms) {"id":1,"status":200,"ms":7,"type":"application/json","req":"cf26e021"}
-12:41:02.240 +4.39s INFO  rtc.join.sent [rtc.join#1 · 4019 ms] Demande déposée dans la boîte aux lettres : en attente de la réponse de l’hôte {"local":{"host":1,"srflx":0,"relay":0,"prflx":0}}
-12:41:02.241 +4.39s DEBUG signal.start Relève de la boîte aux lettres toutes les 1 s {"room":"7400cb20","peer":"55d3ec415ce328b1","every":1000}
-12:41:04.256 +6.41s DEBUG signal.receive 1 message relevé dans la boîte aux lettres {"room":"7400cb20","count":1,"from":["863c9ffed095d177"]}
-12:41:04.257 +6.41s DEBUG signal.stop Relève de la boîte aux lettres arrêtée {"room":"7400cb20","polls":3,"received":1}
-12:41:04.262 +6.42s INFO  rtc.join.answer [rtc.join#1 · 6041 ms] Réponse de l’hôte reçue : ouverture du canal… {"remote":{"host":1,"srflx":0,"relay":0,"prflx":0}}
-12:41:04.268 +6.42s INFO  rtc.pair Chemin réseau utilisé : host ↔ host (udp) {"label":"863c9ffed095d177","local":"host","remote":"host","protocol":"udp","rttMs":1,"ms":6045}
-12:41:04.270 +6.42s INFO  rtc.channel.open Canal de données ouvert avec 863c9ffed095d177 {"label":"863c9ffed095d177","ms":6047}
-12:41:04.271 +6.42s INFO  rtc.join.ok [rtc.join#1 · 6050 ms] Liaison directe prête avec l’hôte {"ms":6048}
-12:41:04.272 +6.42s DEBUG collab.link.new Nouveau lien : présentation (invité) {"label":"863c9ffed095d177","links":1}
-12:41:04.273 +6.43s INFO  collab.join.ok [collab.join#1 · 6060 ms] Connecté·e à l’hôte : vérification des identités puis réception du projet {"role":"editor","room":"7400cb20"}
-12:41:04.275 +6.43s WARN  collab.refused.host Hôte inconnu : Kudoro n’est pas la personne qui a signé l’invitation (Faussaire) {"name":"Kudoro","fp":"LuDEOMAfBUzHnPZb","expected":"UDFAQ2qceE8ll5nr"}
-12:41:04.277 +6.43s ERROR ui.toast Message affiché : Hôte inconnu : ce n’est pas la personne qui a envoyé l’invitation. {"type":"error"}
-12:41:04.282 +6.43s WARN  collab.remote-error L’autre côté signale : Invitation refusée : elle n’a pas été créée par cette session. {"from":"863c9ffed095d177","message":"Invitation refusée : elle n’a pas été créée par cette session."}
-12:41:04.283 +6.44s ERROR ui.toast Message affiché : Invitation refusée : elle n’a pas été créée par cette session. {"type":"error"}
+13:59:19.371 +0.20s DEBUG ui.dialog.close Fenêtre fermée : 👥 Rejoindre une session {"id":"joinDialog"}
+13:59:19.378 +0.21s INFO  collab.join.link Lien d’invitation ouvert
+13:59:19.380 +0.21s INFO  collab.invite.open Invitation de Faussaire : éditeur {"role":"editor","owner":"Faussaire","ownerFp":"NMNvjm5HO2YX1nll","via":"boîte aux lettres","signal":"http://127.0.0.1:8878/publish.php","hours":168}
+13:59:19.380 +0.21s DEBUG ui.dialog.open Fenêtre ouverte : 👥 Rejoindre une session {"id":"joinDialog","class":"audit collab","modal":true}
+13:59:19.454 +0.29s INFO  collab.identity.new Clé personnelle créée pour Faussaire {"fp":"Hz5cJI92_8MJGQM4","did":"did:key:zDnaeTUC8vuLZqbB"}
+13:59:19.458 +0.29s INFO  collab.join.start [collab.join#1] Rejoindre une session {"name":"Faussaire","fp":"Hz5cJI92_8MJGQM4","via":"boîte aux lettres"}
+13:59:19.459 +0.29s DEBUG collab.join.invite [collab.join#1 · 1 ms] Invitation valable : Faussaire invite comme éditeur {"role":"editor","owner":"Faussaire","host":"a45fe5527a36fdad","signal":"http://127.0.0.1:8878/publish.php","hours":168}
+13:59:19.460 +0.29s INFO  version.save.start [version.save#1] Enregistrement d’une version de sécurité : « Avant de rejoindre une session de collaboration » {"kind":"safety","name":"Avant de rejoindre une session de collaboration"}
+13:59:19.464 +0.30s DEBUG version.save.prune [version.save#1 · 4 ms] Aucune ancienne version à supprimer {"total":1}
+13:59:19.464 +0.30s INFO  version.save.ok [version.save#1 · 4 ms] Version de sécurité enregistrée (2 pages) {"id":"v_mvwer3txcqkpr","kind":"safety","at":"2026-10-31T12:59:19.460Z","pages":2,"kb":12}
+13:59:19.465 +0.30s DEBUG collab.join.backup [collab.join#1 · 7 ms] Projet actuel enregistré dans les versions avant de recevoir celui de l’hôte
+13:59:19.466 +0.30s INFO  rtc.join.start [rtc.join#1] Connexion à l’hôte a45fe5527a36fdad par la boîte aux lettres {"host":"a45fe5527a36fdad","url":"http://127.0.0.1:8878/publish.php","room":"4a479122"}
+13:59:19.473 +0.31s DEBUG rtc.join.offer [rtc.join#1 · 7 ms] Demande de connexion créée : collecte des adresses réseau
+13:59:23.482 +4.32s DEBUG signal.post Dépôt d’un message chiffré « offer » pour a45fe5527a36fdad {"room":"4a479122","from":"5e82e3cfe76a0d52","to":"a45fe5527a36fdad","t":"offer","bytes":922}
+13:59:23.483 +4.32s DEBUG net.request POST 127.0.0.1:8878/publish.php {"id":1,"method":"POST","url":"http://127.0.0.1:8878/publish.php","body":{"json":["signal","proof","from","to","data"],"size":1134}}
+13:59:23.491 +4.33s INFO  net.response 200 POST 127.0.0.1:8878/publish.php (9 ms) {"id":1,"status":200,"ms":9,"type":"application/json","req":"c6de16ca"}
+13:59:23.494 +4.33s INFO  rtc.join.sent [rtc.join#1 · 4028 ms] Demande déposée dans la boîte aux lettres : en attente de la réponse de l’hôte {"local":{"host":1,"srflx":0,"relay":0,"prflx":0}}
+13:59:23.495 +4.33s DEBUG signal.start Relève de la boîte aux lettres toutes les 1 s {"room":"4a479122","peer":"5e82e3cfe76a0d52","every":1000}
+13:59:25.510 +6.34s DEBUG signal.receive 1 message relevé dans la boîte aux lettres {"room":"4a479122","count":1,"from":["a45fe5527a36fdad"]}
+13:59:25.511 +6.34s DEBUG signal.stop Relève de la boîte aux lettres arrêtée {"room":"4a479122","polls":3,"received":1}
+13:59:25.513 +6.35s INFO  rtc.join.answer [rtc.join#1 · 6047 ms] Réponse de l’hôte reçue : ouverture du canal… {"remote":{"host":1,"srflx":0,"relay":0,"prflx":0}}
+13:59:25.521 +6.36s INFO  rtc.pair Chemin réseau utilisé : host ↔ host (udp) {"label":"a45fe5527a36fdad","local":"host","remote":"host","protocol":"udp","rttMs":1,"ms":6052}
+13:59:25.523 +6.36s INFO  rtc.channel.open Canal de données ouvert avec a45fe5527a36fdad {"label":"a45fe5527a36fdad","ms":6054}
+13:59:25.524 +6.36s INFO  rtc.join.ok [rtc.join#1 · 6058 ms] Liaison directe prête avec l’hôte {"ms":6055}
+13:59:25.524 +6.36s DEBUG collab.link.new Nouveau lien : présentation (invité) {"label":"a45fe5527a36fdad","links":1}
+13:59:25.526 +6.36s INFO  collab.join.ok [collab.join#1 · 6068 ms] Connecté·e à l’hôte : vérification des identités puis réception du projet {"role":"editor","room":"4a479122"}
+13:59:25.528 +6.36s WARN  collab.refused.host Hôte inconnu : Kudoro n’est pas la personne qui a signé l’invitation (Faussaire) {"name":"Kudoro","fp":"PeoHwUG7WuikhRby","expected":"NMNvjm5HO2YX1nll"}
+13:59:25.528 +6.36s ERROR ui.toast Message affiché : Hôte inconnu : ce n’est pas la personne qui a envoyé l’invitation. {"type":"error"}
+13:59:25.530 +6.36s WARN  collab.remote-error L’autre côté signale : Invitation refusée : elle n’a pas été créée par cette session. {"from":"a45fe5527a36fdad","message":"Invitation refusée : elle n’a pas été créée par cette session."}
+13:59:25.530 +6.36s ERROR ui.toast Message affiché : Invitation refusée : elle n’a pas été créée par cette session. {"type":"error"}

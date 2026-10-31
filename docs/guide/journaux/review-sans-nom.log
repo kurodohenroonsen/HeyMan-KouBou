@@ -1,5 +1,5 @@
-12:41:04.955 +0.20s DEBUG store.select Sélection : heading {"id":"n_3l2g0t2u26","type":"heading"}
-12:41:05.018 +0.26s INFO  review.panel Panneau des commentaires ouvert {"open":true,"comments":0,"openCount":0,"readOnly":false}
-12:41:05.092 +0.34s DEBUG storage.secret-read Aucun secret gardé {"name":"identity"}
-12:41:05.092 +0.34s WARN  review.no-identity Commentaire non signé : nom manquant
-12:41:05.092 +0.34s ERROR ui.toast Message affiché : Indiquez votre nom pour signer vos commentaires. {"type":"error"}
+13:59:26.150 +0.18s DEBUG store.select Sélection : heading {"id":"n_6n3t714v64","type":"heading"}
+13:59:26.192 +0.22s INFO  review.panel Panneau des commentaires ouvert {"open":true,"comments":0,"openCount":0,"readOnly":false}
+13:59:26.254 +0.29s DEBUG storage.secret-read Aucun secret gardé {"name":"identity"}
+13:59:26.254 +0.29s WARN  review.no-identity Commentaire non signé : nom manquant
+13:59:26.255 +0.29s ERROR ui.toast Message affiché : Indiquez votre nom pour signer vos commentaires. {"type":"error"}

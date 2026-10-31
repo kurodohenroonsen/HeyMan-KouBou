@@ -1,11 +1,11 @@
-13:16:27.871 +17.15s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":13}
-13:16:27.910 +17.18s WARN  page.add-refused Page non créée : titre vide
-13:16:27.911 +17.19s ERROR ui.toast Message affiché : Donnez un titre à la page. {"type":"error"}
-13:16:28.085 +17.36s DEBUG store.commit Modification {"source":"pages","past":30,"page":"p_yy4i1dp4"}
-13:16:28.089 +17.36s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":2}
-13:16:28.090 +17.36s INFO  page.add Page « Notre équipe » créée : /notre-equipe-2/ {"id":"p_rmcggfzg","slug":"notre-equipe-2","deduplicated":true,"lang":"fr","pages":4,"menu":"automatique"}
-13:16:28.090 +17.36s DEBUG store.view Vue : pageId=p_rmcggfzg {"pageId":"p_rmcggfzg"}
-13:16:28.095 +17.37s INFO  canvas.load.start [canvas.load#6] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_rmcggfzg","lang":"fr","device":"desktop"}
-13:16:28.096 +17.37s DEBUG canvas.load.render [canvas.load#6 · 1 ms] Page rendue {"ms":0,"kb":19}
-13:16:28.097 +17.37s INFO  ui.toast Message affiché : Page « Notre équipe » créée : /notre-equipe-2/
-13:16:28.116 +17.39s INFO  canvas.load.ok [canvas.load#6 · 21 ms] Canevas prêt {"nodes":0,"scale":76,"via":"load"}
+13:41:31.848 +18.38s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":13}
+13:41:31.868 +18.39s WARN  page.add-refused Page non créée : titre vide
+13:41:31.869 +18.40s ERROR ui.toast Message affiché : Donnez un titre à la page. {"type":"error"}
+13:41:32.043 +18.57s DEBUG store.commit Modification {"source":"pages","past":30,"page":"p_dujr7tx6"}
+13:41:32.050 +18.58s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":2}
+13:41:32.051 +18.58s INFO  page.add Page « Notre équipe » créée : /notre-equipe-2/ {"id":"p_lagz5hfx","slug":"notre-equipe-2","deduplicated":true,"lang":"fr","pages":4,"menu":"automatique"}
+13:41:32.051 +18.58s DEBUG store.view Vue : pageId=p_lagz5hfx {"pageId":"p_lagz5hfx"}
+13:41:32.058 +18.59s INFO  canvas.load.start [canvas.load#6] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_lagz5hfx","lang":"fr","device":"desktop"}
+13:41:32.058 +18.59s DEBUG canvas.load.render [canvas.load#6 · 0 ms] Page rendue {"ms":0,"kb":19}
+13:41:32.059 +18.59s INFO  ui.toast Message affiché : Page « Notre équipe » créée : /notre-equipe-2/
+13:41:32.075 +18.60s INFO  canvas.load.ok [canvas.load#6 · 17 ms] Canevas prêt {"nodes":0,"scale":76,"via":"load"}

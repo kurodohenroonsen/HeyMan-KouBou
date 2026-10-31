@@ -1,11 +1,11 @@
-13:16:13.329 +2.60s DEBUG store.commit Modification {"key":null,"source":"panel","past":3,"page":"p_fo91di7o"}
-13:16:13.333 +2.61s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"panel","mode":"contenu","ms":3}
-13:16:13.333 +2.61s INFO  settings.lang-remove Langue retirée : English (ses traductions restent dans le projet) {"lang":"en","languages":["fr","nl","de"],"main":"fr"}
-13:16:13.334 +2.61s INFO  onboarding.step-done Pour commencer : « Choisir les langues » fait (29 %) {"step":"languages","done":2,"total":7,"percent":29,"by":"settings.lang-remove"}
-13:16:13.335 +2.61s DEBUG store.view Vue : 
-13:16:13.352 +2.63s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":3}
-13:16:13.630 +2.90s DEBUG store.commit Modification {"key":null,"source":"panel","past":4,"page":"p_fo91di7o"}
-13:16:13.634 +2.91s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"panel","mode":"contenu","ms":3}
-13:16:13.635 +2.91s INFO  settings.lang-add Langue ajoutée : English (textes à traduire) {"lang":"en","languages":["fr","nl","de","en"],"main":"fr"}
-13:16:13.635 +2.91s DEBUG store.view Vue : 
-13:16:13.655 +2.93s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":3}
+13:41:16.206 +2.73s DEBUG store.commit Modification {"key":null,"source":"panel","past":3,"page":"p_z99uys9d"}
+13:41:16.210 +2.74s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"panel","mode":"contenu","ms":4}
+13:41:16.211 +2.74s INFO  settings.lang-remove Langue retirée : English (ses traductions restent dans le projet) {"lang":"en","languages":["fr","nl","de"],"main":"fr"}
+13:41:16.212 +2.74s INFO  onboarding.step-done Pour commencer : « Choisir les langues » fait (29 %) {"step":"languages","done":2,"total":7,"percent":29,"by":"settings.lang-remove"}
+13:41:16.212 +2.74s DEBUG store.view Vue : 
+13:41:16.231 +2.76s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":3}
+13:41:16.537 +3.06s DEBUG store.commit Modification {"key":null,"source":"panel","past":4,"page":"p_z99uys9d"}
+13:41:16.541 +3.07s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"panel","mode":"contenu","ms":3}
+13:41:16.543 +3.07s INFO  settings.lang-add Langue ajoutée : English (textes à traduire) {"lang":"en","languages":["fr","nl","de","en"],"main":"fr"}
+13:41:16.543 +3.07s DEBUG store.view Vue : 
+13:41:16.563 +3.09s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":4}

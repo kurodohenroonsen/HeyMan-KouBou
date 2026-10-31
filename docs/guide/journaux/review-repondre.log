@@ -1,6 +1,6 @@
-12:40:41.848 +17.62s INFO  storage.secret-write Secret gardé sur cet appareil (jamais dans le projet) {"name":"identity"}
-12:40:41.865 +17.64s DEBUG store.commit Modification {"source":"review","past":4,"page":"p_gvomubtq"}
-12:40:41.869 +17.64s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"review","mode":"contenu","ms":3}
-12:40:41.874 +17.65s DEBUG collab.ops.out 2 modification(s) envoyée(s) à 2 participant(s) {"n":2,"to":2,"review":2}
-12:40:41.893 +17.67s INFO  review.reply Réponse ajoutée et signée par Kudoro {"comment":"cm_pP1zXhNrEH6r","id":"cm_AOhLuTZjhmvS","chars":24,"role":"owner"}
-12:40:41.896 +17.67s DEBUG review.sig.ok Signature vérifiée : Kudoro {"id":"cm_AOhLuTZjhmvS","fp":"LuDEOMAfBUzHnPZb","reply":true}
+13:59:03.427 +17.66s INFO  storage.secret-write Secret gardé sur cet appareil (jamais dans le projet) {"name":"identity"}
+13:59:03.441 +17.68s DEBUG store.commit Modification {"source":"review","past":4,"page":"p_o591khuu"}
+13:59:03.446 +17.68s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"review","mode":"contenu","ms":3}
+13:59:03.449 +17.68s DEBUG collab.ops.out 2 modification(s) envoyée(s) à 2 participant(s) {"n":2,"to":2,"review":2}
+13:59:03.459 +17.69s INFO  review.reply Réponse ajoutée et signée par Kudoro {"comment":"cm_futaxxQCCMtu","id":"cm_WWckY-REvgB5","chars":24,"role":"owner"}
+13:59:03.464 +17.70s DEBUG review.sig.ok Signature vérifiée : Kudoro {"id":"cm_WWckY-REvgB5","fp":"PeoHwUG7WuikhRby","reply":true}

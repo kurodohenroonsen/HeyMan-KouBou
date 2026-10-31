@@ -1,11 +1,11 @@
-20:53:05.014 +3.50s DEBUG canvas.key Raccourci dans la page : Ctrl+A {"key":"Ctrl+A","in":"texte","selected":"n_4b5a28285w"}
-20:53:05.046 +3.53s DEBUG edit.ai-menu [edit#1 · 2394 ms] Menu ✨ ouvert {"open":true,"modes":["shorter","simpler","formal","friendly","longer"]}
-20:53:05.100 +3.58s DEBUG edit.ai-ask [edit#1 · 2449 ms] Demande à l’IA locale : corriger {"mode":"proofread","chars":76,"selection":true}
-20:53:05.101 +3.58s DEBUG ai.provider Fournisseur d’IA de test (window.__atelierAI) {"source":"test","lang":"fr","has":{"prompt":true,"multimodal":true,"summarizer":true,"rewriter":true,"proofreader":false,"translator":true},"methods":["prompt","summarize","rewrite","translate"]}
-20:53:05.101 +3.58s INFO  ai.proofread.start [ai.proofread#2] IA locale : corriger les fautes {"task":"proofread","inLen":76,"excerpt":"Le MAB réunit les médias alternatifs belges. Ensemble, nous…","lang":"fr","gen":"fr","api":"prompt","source":"test"}
-20:53:05.102 +3.59s WARN  ai.proofread.fallback [ai.proofread#2 · 1 ms] Proofreader non disponible : repli sur la Prompt API (schéma JSON) {"wanted":"proofreader","has":false,"flag":"chrome://flags/#proofreader-api"}
-20:53:05.102 +3.59s DEBUG ai.proofread.call [ai.proofread#2 · 1 ms] Appel Prompt API (Gemini Nano) (fr) {"api":"prompt","lang":"fr","schema":"corrections","system":"303 car.","inLen":76}
-20:53:05.102 +3.59s DEBUG ai.proofread.reply [ai.proofread#2 · 1 ms] Réponse Prompt API (Gemini Nano) : 61 car. en 0 ms {"api":"prompt","ms":0,"outLen":61,"excerpt":"{\"corrections\":[{\"original\":\"tout.\",\"replacement\":\"tout !\"}…"}
-20:53:05.102 +3.59s INFO  ai.proofread.ok [ai.proofread#2 · 1 ms] Corriger : proposition prête (Prompt API) {"via":"prompt","fallback":true,"translated":false,"calls":1,"corrections":1,"outLen":77}
-20:53:05.103 +3.59s DEBUG edit.ai-proposal [edit#1 · 2452 ms] Correction : 1 proposition affichée {"corrections":1}
-20:53:05.166 +3.65s INFO  edit.ai-cancel [edit#1 · 2515 ms] Proposition de l’IA écartée {"pending":true}
+13:42:24.751 +4.17s DEBUG canvas.key Raccourci dans la page : Ctrl+A {"key":"Ctrl+A","in":"texte","selected":"n_19384j055y"}
+13:42:24.829 +4.25s DEBUG edit.ai-menu [edit#1 · 3075 ms] Menu ✨ ouvert {"open":true,"modes":["shorter","simpler","formal","friendly","longer"]}
+13:42:24.893 +4.31s DEBUG edit.ai-ask [edit#1 · 3139 ms] Demande à l’IA locale : corriger {"mode":"proofread","chars":76,"selection":true}
+13:42:24.896 +4.32s DEBUG ai.provider Fournisseur d’IA de test (window.__atelierAI) {"source":"test","lang":"fr","has":{"prompt":true,"multimodal":true,"summarizer":true,"rewriter":true,"proofreader":false,"translator":true},"methods":["prompt","summarize","rewrite","translate"]}
+13:42:24.897 +4.32s INFO  ai.proofread.start [ai.proofread#2] IA locale : corriger les fautes {"task":"proofread","inLen":76,"excerpt":"Le MAB réunit les médias alternatifs belges. Ensemble, nous…","lang":"fr","gen":"fr","api":"prompt","source":"test"}
+13:42:24.899 +4.32s WARN  ai.proofread.fallback [ai.proofread#2 · 2 ms] Proofreader non disponible : repli sur la Prompt API (schéma JSON) {"wanted":"proofreader","has":false,"flag":"chrome://flags/#proofreader-api"}
+13:42:24.899 +4.32s DEBUG ai.proofread.call [ai.proofread#2 · 2 ms] Appel Prompt API (Gemini Nano) (fr) {"api":"prompt","lang":"fr","schema":"corrections","system":"303 car.","inLen":76}
+13:42:24.900 +4.32s DEBUG ai.proofread.reply [ai.proofread#2 · 3 ms] Réponse Prompt API (Gemini Nano) : 61 car. en 0 ms {"api":"prompt","ms":0,"outLen":61,"excerpt":"{\"corrections\":[{\"original\":\"tout.\",\"replacement\":\"tout !\"}…"}
+13:42:24.901 +4.32s INFO  ai.proofread.ok [ai.proofread#2 · 4 ms] Corriger : proposition prête (Prompt API) {"via":"prompt","fallback":true,"translated":false,"calls":1,"corrections":1,"outLen":77}
+13:42:24.901 +4.32s DEBUG edit.ai-proposal [edit#1 · 3147 ms] Correction : 1 proposition affichée {"corrections":1}
+13:42:24.974 +4.39s INFO  edit.ai-cancel [edit#1 · 3220 ms] Proposition de l’IA écartée {"pending":true}

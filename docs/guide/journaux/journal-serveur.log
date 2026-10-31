@@ -1,15 +1,15 @@
-13:16:04.912 +11.46s DEBUG ui.dialog.open Fenêtre ouverte : 🐞 Journal de débogage {"id":"logDialog","class":"audit log-dialog","modal":true}
-13:16:04.963 +11.52s DEBUG storage.secret-read Secret retrouvé sur cet appareil {"name":"php-token:http://127.0.0.1:9592"}
-13:16:05.399 +11.95s DEBUG storage.save Projet enregistré sur cet appareil {"ms":3,"kb":13}
-13:16:05.463 +12.02s INFO  log.server.start [log.server#1] Lecture du journal du serveur {"url":"http://127.0.0.1:9592/publish.php","lines":300}
-13:16:05.464 +12.02s DEBUG net.request GET 127.0.0.1:9592/publish.php {"id":21,"method":"GET","url":"http://127.0.0.1:9592/publish.php?logs=300&atelier_debug=1"}
-13:16:05.496 +12.05s DEBUG net.response 200 GET 127.0.0.1:9592/publish.php (32 ms) {"id":21,"status":200,"ms":32,"type":"application/json","req":"d17d9750"}
-13:16:05.497 +12.05s DEBUG php.req.start GET reçu {"method":"GET","who":"e9cd0732d5","bytes":0,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8834","req":"d17d9750","srvMs":0}
-13:16:05.497 +12.05s INFO  php.logs.read Journal du serveur lu depuis l’éditeur {"lines":12,"files":1,"req":"d17d9750","srvMs":0.2}
-13:16:05.497 +12.05s DEBUG php.req.end Réponse 200 (logs) {"status":200,"route":"logs","mem_kb":372,"req":"d17d9750","srvMs":0.2}
-13:16:05.498 +12.05s INFO  log.server.ok [log.server#1 · 35 ms] 12 lignes du serveur {"lines":12,"files":["log-2026-10.php"]}
-13:16:05.611 +12.16s INFO  log.download Journal téléchargé {"chars":53874}
-13:16:05.713 +12.27s INFO  log.server.start [log.server#2] Lecture du journal du serveur {"url":"http://127.0.0.1:9592/publish.php","lines":300}
-13:16:05.713 +12.27s DEBUG net.request GET 127.0.0.1:9592/publish.php {"id":22,"method":"GET","url":"http://127.0.0.1:9592/publish.php?logs=300&atelier_debug=1"}
-13:16:06.830 +13.38s WARN  net.response 401 GET 127.0.0.1:9592/publish.php (1117 ms) {"id":22,"status":401,"ms":1117,"type":"application/json","req":"1cbdf5e9"}
-13:16:06.832 +13.38s ERROR log.server.fail [log.server#2 · 1119 ms] Jeton refusé par publish.php. {"error":{"name":"Error","message":"Jeton refusé par publish.php.","stack":"Error: Jeton refusé par publish.php.\nat fetchServerLog (http://localhost:8834/editor/log-ui.js:38:33)\nat async HTMLButtonElement.onclick (http://localhost:8834/editor/log-ui.js:108:27)"}}
+13:40:21.523 +13.34s DEBUG ui.dialog.open Fenêtre ouverte : 🐞 Journal de débogage {"id":"logDialog","class":"audit log-dialog","modal":true}
+13:40:21.618 +13.43s DEBUG storage.secret-read Secret retrouvé sur cet appareil {"name":"php-token:http://127.0.0.1:9556"}
+13:40:21.965 +13.78s DEBUG storage.save Projet enregistré sur cet appareil {"ms":3,"kb":13}
+13:40:22.123 +13.94s INFO  log.server.start [log.server#1] Lecture du journal du serveur {"url":"http://127.0.0.1:9556/publish.php","lines":300}
+13:40:22.123 +13.94s DEBUG net.request GET 127.0.0.1:9556/publish.php {"id":21,"method":"GET","url":"http://127.0.0.1:9556/publish.php?logs=300&atelier_debug=1"}
+13:40:22.153 +13.97s DEBUG net.response 200 GET 127.0.0.1:9556/publish.php (31 ms) {"id":21,"status":200,"ms":31,"type":"application/json","req":"69aff5f7"}
+13:40:22.179 +13.99s DEBUG php.req.start GET reçu {"method":"GET","who":"c612e2bafc","bytes":0,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8834","req":"69aff5f7","srvMs":0}
+13:40:22.179 +13.99s INFO  php.logs.read Journal du serveur lu depuis l’éditeur {"lines":12,"files":1,"req":"69aff5f7","srvMs":0.1}
+13:40:22.179 +13.99s DEBUG php.req.end Réponse 200 (logs) {"status":200,"route":"logs","mem_kb":372,"req":"69aff5f7","srvMs":0.2}
+13:40:22.180 +13.99s INFO  log.server.ok [log.server#1 · 57 ms] 12 lignes du serveur {"lines":12,"files":["log-2026-10.php"]}
+13:40:22.304 +14.12s INFO  log.download Journal téléchargé {"chars":53893}
+13:40:22.405 +14.22s INFO  log.server.start [log.server#2] Lecture du journal du serveur {"url":"http://127.0.0.1:9556/publish.php","lines":300}
+13:40:22.406 +14.22s DEBUG net.request GET 127.0.0.1:9556/publish.php {"id":22,"method":"GET","url":"http://127.0.0.1:9556/publish.php?logs=300&atelier_debug=1"}
+13:40:23.424 +15.24s WARN  net.response 401 GET 127.0.0.1:9556/publish.php (1019 ms) {"id":22,"status":401,"ms":1019,"type":"application/json","req":"299e3566"}
+13:40:23.426 +15.24s ERROR log.server.fail [log.server#2 · 1021 ms] Jeton refusé par publish.php. {"error":{"name":"Error","message":"Jeton refusé par publish.php.","stack":"Error: Jeton refusé par publish.php.\nat fetchServerLog (http://localhost:8834/editor/log-ui.js:38:33)\nat async HTMLButtonElement.onclick (http://localhost:8834/editor/log-ui.js:108:27)"}}

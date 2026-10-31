@@ -1,4 +1,4 @@
-13:16:42.562 +31.84s INFO  collection.open Collection « Agenda » ouverte : 3 éléments, 11 champs {"id":"col_wjcuxs44","kind":"events","items":3,"drafts":0,"fields":11,"tab":"items","item":"it_wm5ciyha"}
-13:16:42.562 +31.84s DEBUG ui.dialog.open Fenêtre ouverte : Agenda {"id":"collectionDialog","class":"audit col-dialog","modal":true}
-13:16:42.633 +31.91s DEBUG collection.tab Onglet « Champs » {"collection":"col_wjcuxs44","tab":"fields"}
-13:16:42.680 +31.95s DEBUG collection.tab Onglet « Éléments » {"collection":"col_wjcuxs44","tab":"items"}
+13:41:48.923 +35.45s INFO  collection.open Collection « Agenda » ouverte : 3 éléments, 11 champs {"id":"col_7n3yhpon","kind":"events","items":3,"drafts":0,"fields":11,"tab":"items","item":"it_u4cy3cqi"}
+13:41:48.924 +35.45s DEBUG ui.dialog.open Fenêtre ouverte : Agenda {"id":"collectionDialog","class":"audit col-dialog","modal":true}
+13:41:49.000 +35.53s DEBUG collection.tab Onglet « Champs » {"collection":"col_7n3yhpon","tab":"fields"}
+13:41:49.049 +35.58s DEBUG collection.tab Onglet « Éléments » {"collection":"col_7n3yhpon","tab":"items"}
