@@ -5,7 +5,8 @@ import { spawn, execFileSync } from 'node:child_process';
 import { mkdtempSync, writeFileSync, readFileSync, existsSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
-import { buildPublishPhp, sha256Hex } from '../core/publish.js';
+import { buildPublishPhp, sha256Hex, signalRoom } from '../core/publish.js';
+import { buildHtaccess } from '../core/htaccess.js';
 import { createZip } from '../core/zip.js';
 
 let php = true;
@@ -17,10 +18,11 @@ const URL_ = `http://127.0.0.1:${PORT}/publish.php`;
 let dir, mailLog, server;
 
 const zip = files => new Blob([createZip(Object.entries(files).map(([name, data]) => ({ name, data })))], { type: 'application/zip' });
-async function publish(files, { token = TOKEN, forms } = {}) {
+async function publish(files, { token = TOKEN, forms, htaccess } = {}) {
   const fd = new FormData();
   fd.append('site', zip(files), 'site.zip');
   if (forms) fd.append('forms', JSON.stringify(forms));
+  if (htaccess) fd.append('htaccess', typeof htaccess === 'string' ? htaccess : JSON.stringify(htaccess));
   const r = await fetch(URL_, { method: 'POST', body: fd, headers: token ? { 'X-Atelier-Token': token } : {} });
   return { status: r.status, body: await r.json() };
 }
@@ -35,7 +37,7 @@ before(async () => {
   if (!php) return;
   dir = mkdtempSync(join(tmpdir(), 'atelier-php-'));
   mailLog = join(dir, '..', `mail-${PORT}.log`);
-  writeFileSync(join(dir, 'publish.php'), buildPublishPhp({ tokenHash: await sha256Hex(TOKEN) }));
+  writeFileSync(join(dir, 'publish.php'), buildPublishPhp({ tokenHash: await sha256Hex(TOKEN), baseUrl: 'https://www.media-alternatif.be' }));
   writeFileSync(join(dir, 'google1234.html'), 'google-site-verification');
   server = spawn('php', ['-S', `127.0.0.1:${PORT}`, '-t', dir], { env: { ...process.env, ATELIER_MAIL_LOG: mailLog, ATELIER_TEST_FAULT: '1' }, stdio: 'ignore' });
   for (let i = 0; i < 50; i++) {
@@ -84,7 +86,7 @@ t('publication : fichiers écrits, formulaires enregistrés hors d’atteinte du
 });
 
 t('paquet dangereux refusé en entier : rien n’est écrit', async () => {
-  for (const bad of ['../evil.html', '/etc/x.html', 'x.php', 'a/.htaccess', 'shell.php.html', 'atelier-data/forms.php', 'img/a.svg', 'publish.php', 'a b.html']) {
+  for (const bad of ['../evil.html', '/etc/x.html', 'x.php', 'a/.htaccess', 'shell.php.html', 'atelier-data/forms.php', 'img/a.exe', 'publish.php', 'a b.html']) {
     const r = await publish({ 'ok.html': 'ok', [bad]: 'x' });
     assert.equal(r.status, 400, `${bad} : ${JSON.stringify(r.body)}`);
     assert.ok(r.body.rejected.some(x => x.startsWith(bad.replace(/^\//, '')) || x.includes(bad)), JSON.stringify(r.body));
@@ -104,7 +106,7 @@ t('nouvelle publication : anciens fichiers retirés, fichiers ajoutés à la mai
 
 t('formulaire de contact : e-mail envoyé à l’adresse configurée, Reply-To validé, pas d’injection d’en-tête', async () => {
   await publish({ 'index.html': 'x' }, { forms: { f1: 'redaction@exemple.be' } });
-  const r = await contact({ _form: 'f1', _back: 'contact/', 'Nom': 'Ana\r\nBcc: victime@exemple.org', 'E-mail': 'ana@exemple.org', 'Message': 'Bonjour, je voudrais rejoindre le MAB.', website: '' });
+  const r = await contact({ _form: 'f1', _back: 'contact/', 'Nom': 'Ana\r\nBcc: victime@exemple.org', 'E-mail': 'ana@exemple.org', 'Message': 'Bonjour, je voudrais rejoindre le MAB.', website: '', _consent: 'oui' });
   assert.equal(r.status, 200, JSON.stringify(r.body));
   const log = readFileSync(mailLog, 'utf8').trim().split('\n').map(l => JSON.parse(l));
   const m = log.at(-1);
@@ -112,7 +114,7 @@ t('formulaire de contact : e-mail envoyé à l’adresse configurée, Reply-To v
   assert.match(m.headers, /Reply-To: ana@exemple\.org/);
   assert.ok(!/Bcc/i.test(m.headers));
   assert.ok(m.body.includes('Bonjour, je voudrais rejoindre le MAB.'));
-  assert.match(m.headers, /^From: Site <noreply@127\.0\.0\.1>/, 'adresse d’expéditeur sans le port');
+  assert.match(m.headers, /^From: Site <noreply@media-alternatif\.be>/, 'expéditeur fixé à la génération (adresse du site, sans www)');
 });
 
 t('formulaire : robot (champ piège), formulaire inconnu, message vide', async () => {
@@ -120,33 +122,35 @@ t('formulaire : robot (champ piège), formulaire inconnu, message vide', async (
   const bot = await contact({ _form: 'f1', Message: 'spam', website: 'http://spam' });
   assert.equal(bot.status, 200);
   assert.equal((existsSync(mailLog) ? readFileSync(mailLog, 'utf8').length : 0), before, 'aucun e-mail pour le robot');
-  assert.equal((await contact({ _form: 'inconnu', Message: 'x' })).status, 404);
-  assert.equal((await contact({ _form: 'f1', Message: '   ' })).status, 422);
+  assert.equal((await contact({ _form: 'inconnu', Message: 'x', _consent: 'oui' })).status, 404);
+  assert.equal((await contact({ _form: 'f1', Message: '   ', _consent: 'oui' })).status, 422);
 });
 
 t('formulaire sans JavaScript : redirection vers la page avec un message', async () => {
-  const r = await contact({ _form: 'f1', _back: 'nl/contact/', Message: 'Hallo' }, {});
+  const r = await contact({ _form: 'f1', _back: 'nl/contact/', Message: 'Hallo', _consent: 'oui' }, {});
   assert.equal(r.status, 303);
   assert.equal(r.location, 'nl/contact/?form=ok');
-  const evil = await contact({ _form: 'f1', _back: 'https://evil.example/', Message: 'x' }, {});
+  const evil = await contact({ _form: 'f1', _back: 'https://evil.example/', Message: 'x', _consent: 'oui' }, {});
   assert.equal(evil.location, './?form=ok');
 });
 
 t('formulaire : 5 messages par heure et par adresse IP', async () => {
   let last;
-  for (let i = 0; i < 8; i++) last = await contact({ _form: 'f1', Message: `m${i}` });
+  for (let i = 0; i < 8; i++) last = await contact({ _form: 'f1', Message: `m${i}`, _consent: 'oui' });
   assert.equal(last.status, 429);
 });
 
 /* ---------- Boîte aux lettres de signalisation (collaboration) ---------- */
-const ROOM = 'a'.repeat(32) + 'b'.repeat(32);
-const signal = body => fetch(URL_, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).then(async r => ({ status: r.status, body: await r.json() }));
+const SR = await signalRoom('secret-de-salle-de-test');
+const ROOM = SR.room;
+const signal = body => fetch(URL_, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ proof: SR.proof, ...body }) }).then(async r => ({ status: r.status, body: await r.json() }));
 const poll = (room, peer, after = 0) => fetch(`${URL_}?signal=${room}&peer=${peer}&after=${after}`).then(async r => ({ status: r.status, body: await r.json() }));
 
 t('signalisation : déposer et relever des messages chiffrés par destinataire', async () => {
   const st = await (await fetch(URL_)).json();
   assert.equal(st.signal, true, 'le statut annonce la signalisation');
-  assert.equal(st.version, '4');
+  assert.equal(st.version, '5');
+  assert.equal(st.php, undefined, 'version de PHP réservée au jeton');
   let r = await signal({ signal: ROOM, from: 'guest01', to: 'host0001', data: 'Y2hpZmZyw6k=' });
   assert.equal(r.status, 200);
   assert.ok(r.body.id > 0);
@@ -166,7 +170,7 @@ t('signalisation : déposer et relever des messages chiffrés par destinataire',
 t('signalisation : salle, participant et taille vérifiés ; rien de lisible depuis le web', async () => {
   assert.equal((await signal({ signal: '../etc', from: 'g1', to: 'h1', data: 'x' })).status, 400);
   assert.equal((await signal({ signal: ROOM, from: 'g/../1', to: 'h1', data: 'x' })).status, 400);
-  assert.equal((await signal({ signal: ROOM, from: 'g1', to: 'h1', data: 'x'.repeat(70000) })).status, 413);
+  assert.equal((await signal({ signal: ROOM, from: 'g1', to: 'h1', data: 'x'.repeat(17000) })).status, 413, 'plus de 16 Ko : refusé');
   assert.equal((await signal({ signal: ROOM, from: 'g1', to: 'h1', data: '<script>' })).status, 400, 'données en base64 uniquement');
   assert.equal((await poll('zz', 'h1')).status, 400);
   const files = execFileSync('ls', ['-R', dir]).toString();
@@ -201,7 +205,7 @@ t('journal : statut avec le jeton → diagnostic de l’hébergement', async () 
 });
 
 t('journal : ?atelier_debug=1 renvoie la trace de la requête', async () => {
-  const r = await fetch(`${URL_}?atelier_debug=1`);
+  const r = await fetch(`${URL_}?atelier_debug=1`, { headers: { 'X-Atelier-Token': TOKEN } });
   const b = await r.json();
   assert.ok(Array.isArray(b._trace));
   const evs = b._trace.map(e => e.ev);
@@ -214,10 +218,11 @@ t('journal : ?atelier_debug=1 renvoie la trace de la requête', async () => {
 t('journal : publication refusée puis réussie, écrites dans le fichier protégé, sans jeton ni IP', async () => {
   const fd = new FormData();
   fd.append('site', zip({ 'index.html': 'x' }), 'site.zip');
-  const denied = await fetch(`${URL_}?atelier_debug=1`, { method: 'POST', body: fd, headers: { 'X-Atelier-Token': 'mauvais-jeton-123' } });
+  const denied = await fetch(URL_, { method: 'POST', body: fd, headers: { 'X-Atelier-Token': 'mauvais-jeton-123' } });
   assert.equal(denied.status, 401);
   const db = await denied.json();
-  assert.ok(db._trace.some(e => e.ev === 'php.publish.denied' && e.lvl === 'warn'));
+  assert.equal(db.code, 'token_refused');
+  assert.equal(db._trace, undefined);
   const ok = await publish({ 'index.html': '<h1>Journal</h1>', 'a.css': 'b{}' });
   assert.equal(ok.status, 200);
   const raw = readFileSync(logFile(), 'utf8');
@@ -235,7 +240,7 @@ t('journal : publication refusée puis réussie, écrites dans le fichier proté
 
 t('journal : contact noté sans le contenu du message, adresse abrégée', async () => {
   await publish({ 'index.html': 'x' }, { forms: { f9: 'redaction@exemple.be' } });
-  const r = await contact({ _form: 'f9', Message: 'Contenu très privé du visiteur' }, { Accept: 'application/json', 'X-Forwarded-For': '9.9.9.9' });
+  const r = await contact({ _form: 'f9', Message: 'Contenu très privé du visiteur', _consent: 'oui' }, { Accept: 'application/json', 'X-Forwarded-For': '9.9.9.9' });
   assert.ok([200, 429].includes(r.status));
   const raw = readFileSync(logFile(), 'utf8');
   assert.ok(!raw.includes('Contenu très privé'), 'pas le contenu');
@@ -264,14 +269,119 @@ t('journal : une exception renvoie 500 avec la référence de la requête et res
   assert.equal(b.ok, false);
   assert.ok(b.error.includes(id), b.error);
   assert.ok(logLines().some(l => l.ev === 'php.exception' && l.req === id));
-  const w = await fetch(`${URL_}?atelier_fault=warning&atelier_debug=1`);
+  const w = await fetch(`${URL_}?atelier_fault=warning&atelier_debug=1`, { headers: { 'X-Atelier-Token': TOKEN } });
   const wb = await w.json();
   assert.ok(wb._trace.some(e => e.ev === 'php.warning'), 'avertissement PHP noté');
 });
 
 t('journal : signalisation tracée en mode debug', async () => {
-  const r = await fetch(`${URL_}?atelier_debug=1`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ signal: ROOM, from: 'guest09', to: 'host0001', data: 'QUJD' }) });
+  const r = await fetch(`${URL_}?atelier_debug=1`, { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Atelier-Token': TOKEN }, body: JSON.stringify({ signal: ROOM, proof: SR.proof, from: 'guest09', to: 'host0001', data: 'QUJD' }) });
   const b = await r.json();
   assert.ok(b._trace.some(e => e.ev === 'php.signal.post'));
   assert.ok(!JSON.stringify(b._trace).includes(ROOM), 'salle abrégée');
+});
+
+/* ---------- publish.php v5 (cycle 29) ---------- */
+t('v5 : trace et version de PHP réservées au jeton ; ?atelier_debug sans jeton → 404', async () => {
+  const no = await fetch(`${URL_}?atelier_debug=1`);
+  assert.equal(no.status, 404);
+  const nb = await no.json();
+  assert.equal(nb.code, 'not_found');
+  assert.equal(nb._trace, undefined);
+  const bad = await fetch(`${URL_}?atelier_debug=1`, { headers: { 'X-Atelier-Token': 'faux' } });
+  assert.equal(bad.status, 404);
+  const ok = await (await fetch(URL_, { headers: { 'X-Atelier-Token': TOKEN } })).json();
+  assert.match(ok.php, /^\d+\.\d+/);
+  assert.equal(ok.diag.mail_domain, 'media-alternatif.be');
+  assert.equal(ok.htaccess, true);
+});
+
+t('v5 : chaque erreur porte un code machine et un message', async () => {
+  const r = await publish({ 'index.html': 'x' }, { token: 'mauvais' });
+  assert.equal(r.body.code, 'token_refused');
+  assert.equal(r.body.ok, false);
+  assert.ok(r.body.message && r.body.req);
+  const m = await fetch(URL_, { method: 'PUT' });
+  assert.equal((await m.json()).code, 'method');
+});
+
+t('v5 : nouvelles extensions acceptées, .php et .htaccess dans le paquet toujours refusés', async () => {
+  const files = { 'index.html': 'x', 'assets/fonts/a-0123abcd.woff2': 'w', 'favicon.svg': '<svg/>', 'favicon.ico': 'i', 'assets/statuts.pdf': 'p', 'assets/emission.mp3': 'm', 'assets/e.m4a': 'm', 'assets/e.ogg': 'o', 'agenda/calendar.ics': 'c', 'site.webmanifest': '{}' };
+  const r = await publish(files);
+  assert.equal(r.status, 200, JSON.stringify(r.body));
+  for (const k of Object.keys(files)) assert.ok(existsSync(join(dir, k)), k);
+  for (const bad of ['evil.php', '.htaccess', 'a/.htaccess', 'x.phtml']) {
+    const b = await publish({ 'index.html': 'x', [bad]: 'x' });
+    assert.equal(b.status, 400, bad);
+    assert.equal(b.body.code, 'rejected');
+  }
+});
+
+t('v5 : .htaccess écrit par publish.php lui-même, identique au gabarit de l’éditeur ; options forgées refusées', async () => {
+  const o = { host: 'www.media-alternatif.be', https: true, www: 'add', path: '/', langs: ['fr', 'nl'] };
+  const r = await publish({ 'index.html': 'x', '404.html': 'nf' }, { htaccess: o });
+  assert.equal(r.status, 200, JSON.stringify(r.body));
+  assert.equal(r.body.htaccess, true);
+  assert.equal(readFileSync(join(dir, '.htaccess'), 'utf8'), buildHtaccess(o));
+  const bad = await publish({ 'index.html': 'y' }, { htaccess: { ...o, host: 'evil.be"\nRewriteRule' } });
+  assert.equal(bad.status, 400);
+  assert.equal(bad.body.code, 'htaccess_invalid');
+  assert.equal(readFileSync(join(dir, 'index.html'), 'utf8'), 'x', 'rien publié');
+});
+
+t('v5 : mise en place impossible (moved < count) → 500 avec la liste, manifeste inchangé', async () => {
+  await publish({ 'index.html': 'ok' });
+  const before = readFileSync(join(dir, 'atelier-data', 'manifest.php'), 'utf8');
+  writeFileSync(join(dir, 'bloque'), 'fichier régulier qui bloque un dossier');
+  const r = await publish({ 'index.html': 'neuf', 'bloque/page.html': 'x' });
+  assert.equal(r.status, 500, JSON.stringify(r.body));
+  assert.equal(r.body.code, 'move_failed');
+  assert.deepEqual(r.body.failed, ['bloque/page.html']);
+  assert.equal(readFileSync(join(dir, 'atelier-data', 'manifest.php'), 'utf8'), before, 'manifeste non écrit');
+  rmSync(join(dir, 'bloque'), { force: true });
+});
+
+t('v5 : expéditeur fixé à la génération, un en-tête Host forgé est sans effet', async () => {
+  await publish({ 'index.html': 'x' }, { forms: { fh: 'redaction@exemple.be' } });
+  const fd = new FormData();
+  for (const [k, v] of Object.entries({ _form: 'fh', Message: 'Bonjour', _consent: 'oui' })) fd.append(k, v);
+  const { request } = await import('node:http');
+  const req0 = new Request('http://x', { method: 'POST', body: fd });
+  const ct = req0.headers.get('content-type');
+  const raw = Buffer.from(await req0.arrayBuffer());
+  await new Promise((res, rej) => {
+    const req = request({ host: '127.0.0.1', port: PORT, path: '/publish.php', method: 'POST', headers: { Host: 'www.attaquant.example', Accept: 'application/json', 'Content-Type': ct } }, r => { r.resume(); r.on('end', res); });
+    req.on('error', rej);
+    req.end(raw);
+  });
+  const m = readFileSync(mailLog, 'utf8').trim().split('\n').map(l => JSON.parse(l)).at(-1);
+  assert.match(m.headers, /^From: Site <noreply@media-alternatif\.be>/);
+  assert.ok(!m.headers.includes('attaquant'));
+});
+
+t('v5 : formulaire sans consentement → 400 avec code, aucun e-mail', async () => {
+  await publish({ 'index.html': 'x' }, { forms: { fc: 'redaction@exemple.be' } });
+  const before = existsSync(mailLog) ? readFileSync(mailLog, 'utf8').length : 0;
+  const r = await contact({ _form: 'fc', Message: 'Sans case cochée' }, { Accept: 'application/json', 'X-Forwarded-For': '1.1.1.1' });
+  assert.equal(r.status, 400);
+  assert.equal(r.body.code, 'consent_required');
+  assert.equal(existsSync(mailLog) ? readFileSync(mailLog, 'utf8').length : 0, before);
+});
+
+t('v5 : signalisation — preuve de salle exigée, 201ᵉ message → 429, salle bornée à 2 Mo', async () => {
+  const other = await signalRoom('autre-secret');
+  const noProof = await fetch(URL_, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ signal: other.room, from: 'g1', to: 'h1', data: 'QQ==' }) });
+  assert.equal(noProof.status, 403);
+  assert.equal((await noProof.json()).code, 'signal_proof');
+  const wrong = await fetch(URL_, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ signal: other.room, proof: SR.proof, from: 'g1', to: 'h1', data: 'QQ==' }) });
+  assert.equal(wrong.status, 403, 'preuve d’une autre salle');
+  const post = body => fetch(URL_, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ signal: other.room, proof: other.proof, from: 'g1', to: 'h1', ...body }) });
+  const big = 'A'.repeat(16000);
+  let full = null;
+  for (let i = 0; i < 140 && !full; i++) { const r = await post({ data: big }); if (r.status !== 200) full = { status: r.status, code: (await r.json()).code }; }
+  assert.deepEqual(full, { status: 429, code: 'signal_room_full' }, 'salle pleine avant 2 Mo + 16 Ko');
+  let last;
+  for (let i = 0; i < 210; i++) { last = await post({ data: 'QQ==', signal: (await signalRoom(`s${i % 3}`)).room, proof: (await signalRoom(`s${i % 3}`)).proof }); if (last.status === 429) break; }
+  assert.equal(last.status, 429);
+  assert.equal((await last.json()).code, 'signal_rate', 'limite par adresse hachée');
 });

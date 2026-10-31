@@ -8,6 +8,7 @@
  */
 import { splitMessage, Reassembler } from '../core/collab-protocol.js';
 import { encryptFor, decryptFrom } from '../core/review.js';
+import { signalRoom, errorMessage } from '../core/publish.js';
 import { formatEntry } from '../core/log.js';
 import { log } from './log.js';
 import { __, __n, N_ } from '../core/ui-i18n.js';
@@ -277,17 +278,20 @@ export class Mailbox {
     this.polls = 0;
     this.got = 0;
   }
+  /* Salle de la boîte aux lettres et preuve (publish.php v5) : dérivées du secret, qui ne quitte jamais le navigateur */
+  box() { return (this.boxP ||= signalRoom(this.secret)); }
   async post(to, obj) {
     const data = await encryptFor(this.secret, obj);
     log.debug('signal.post', __('Dépôt d’un message chiffré « {t} » pour {to}', { t: obj.t, to }), { room: short(this.roomId), from: this.peerId, to, t: obj.t, bytes: data.length });
     let r;
-    try { r = await fetch(this.url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ signal: this.roomId, from: this.peerId, to, data }) }); } catch (e) {
+    const box = await this.box();
+    try { r = await fetch(this.url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ signal: box.room, proof: box.proof, from: this.peerId, to, data }) }); } catch (e) {
       log.warn('signal.post-fail', __('Boîte aux lettres injoignable : publish.php arrêté ou déplacé, hors ligne, ou requête bloquée ({error})', { error: e.message }), { url: this.url, t: obj.t, online: globalThis.navigator?.onLine, error: e });
       throw Object.assign(new Error(__('boîte aux lettres injoignable ({error})', { error: e.message })), { cause: e });
     }
     if (!r.ok) {
       const b = await r.json().catch(e => { log.warn('signal.not-json', __('Réponse {status} de la boîte aux lettres illisible (pas du JSON) : publish.php absent, trop ancien, ou page d’erreur de l’hébergement', { status: r.status }), { status: r.status, error: e }); return {}; });
-      const err = new Error(b.error || __('boîte aux lettres : erreur {status}', { status: r.status }));
+      const err = Object.assign(new Error(errorMessage(b, r.status)), { code: b.code });
       log.warn('signal.post-refused', __('Dépôt refusé par publish.php ({status}) : {error}', { status: r.status, error: err.message }), { status: r.status, t: obj.t, error: err });
       throw err;
     }
@@ -298,7 +302,7 @@ export class Mailbox {
       if (this.stopped) return;
       try {
         this.polls++;
-        const r = await fetch(`${this.url}?signal=${this.roomId}&peer=${this.peerId}&after=${this.after}`, { cache: 'no-store' });
+        const r = await fetch(`${this.url}?signal=${(await this.box()).room}&peer=${this.peerId}&after=${this.after}`, { cache: 'no-store' });
         let b;
         try { b = await r.json(); } catch { throw Object.assign(new Error(__('réponse {status} qui n’est pas du JSON (publish.php absent, trop ancien ou en erreur)', { status: r.status })), { status: r.status }); }
         if (this.failing) { log.info('signal.recovered', __n(this.failing, 'Boîte aux lettres de nouveau joignable après {n} échec', 'Boîte aux lettres de nouveau joignable après {n} échecs'), { room: short(this.roomId), failures: this.failing }); this.failing = 0; }
