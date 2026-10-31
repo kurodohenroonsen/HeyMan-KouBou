@@ -216,11 +216,11 @@ const RUNS = {
   },
 
   async appareils(x) {
-    await click('[data-device="mobile"]');
+    await click('.seg[data-device="mobile"]');
     await sleep(250);
     x.check(state.device === 'mobile', __('vue mobile'));
     x.check(document.querySelector('#canvas')?.offsetWidth <= 400, __('canevas à la largeur d’un téléphone'), `${document.querySelector('#canvas')?.offsetWidth} px`);
-    await click('[data-device="desktop"]');
+    await click('.seg[data-device="desktop"]');
     await sleep(250);
     x.check(state.device === 'desktop', __('retour à la vue ordinateur'));
   },

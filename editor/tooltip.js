@@ -14,9 +14,9 @@ const IS_MAC = /Mac|iPhone|iPad/i.test(globalThis.navigator?.userAgentData?.plat
 const DESC = [
   ['#undoBtn', __('Revient sur la dernière modification (jusqu’à 150 étapes).')],
   ['#redoBtn', __('Refait ce que tu viens d’annuler.')],
-  ['[data-device="desktop"]', __('Voir et régler la page comme sur un ordinateur : elle prend toute la largeur disponible (1040 px au moins).')],
-  ['[data-device="tablet"]', __('Voir et régler la page comme sur une tablette ; les réglages faits ici ne valent que pour la tablette.')],
-  ['[data-device="mobile"]', __('Voir et régler la page comme sur un téléphone ; les réglages faits ici ne valent que pour le mobile.')],
+  ['.seg[data-device="desktop"]', __('Voir et régler la page comme sur un ordinateur : elle prend toute la largeur disponible (1040 px au moins).')],
+  ['.seg[data-device="tablet"]', __('Voir et régler la page comme sur une tablette ; les réglages faits ici ne valent que pour la tablette.')],
+  ['.seg[data-device="mobile"]', __('Voir et régler la page comme sur un téléphone ; les réglages faits ici ne valent que pour le mobile.')],
   ['#aiBtn', __('Reformuler, corriger, décrire les images, traduire… avec Gemini Nano, sur ton ordinateur : rien n’est envoyé.')],
   ['#collabBtn', __('Inviter quelqu’un à modifier le site avec toi, en direct, d’ordinateur à ordinateur.')],
   ['#commentsBtn', __('Laisser ou lire des remarques sur la page (relecture), signées par leur auteur.')],

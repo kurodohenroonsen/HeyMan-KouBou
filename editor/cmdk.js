@@ -14,7 +14,7 @@ import { translate } from '../core/render.js';
 import { LANG_LABELS } from '../core/site.js';
 import { nodeLabel, nodeSummary } from '../core/editing.js';
 import { rankCommands } from '../core/commands.js';
-import { insertWidget, insertSection, duplicateSelected, deleteSelected, copyStyle, pasteStyle, selectParent, insertComponent, createComponentFromSelected } from './actions.js';
+import { insertWidget, insertSection, duplicateSelected, deleteSelected, copyStyle, pasteStyle, selectParent, insertComponent, createComponentFromSelected, moveSelected, moveSelectedTo } from './actions.js';
 import { customizeHeader, customizeFooter } from '../core/layout.js';
 import { focusStyleField } from './styletab.js';
 import { openAudit } from './audit-ui.js';
@@ -127,6 +127,9 @@ function buildCommands() {
     add('act:copystyle', __('Action'), __('Copier le style'), copyStyle, 'copy style スタイル コピー');
     add('act:pastestyle', __('Action'), __('Coller le style'), pasteStyle, 'paste style スタイル 貼り付け');
     add('act:parent', __('Action'), __('Sélectionner le parent'), selectParent, 'select parent 親 選択', __('Échap'));
+    add('act:move-up', __('Action'), __('Monter la sélection'), () => moveSelected(-1), 'monter haut déplacer move up 上へ 移動', 'Alt+↑');
+    add('act:move-down', __('Action'), __('Descendre la sélection'), () => moveSelected(1), 'descendre bas déplacer move down 下へ 移動', 'Alt+↓');
+    add('act:move-to', __('Action'), __('Déplacer vers… (choisir la colonne ou la section)'), moveSelectedTo, 'déplacer vers colonne section glisser move to drag column 移動 列 セクション');
     add('act:component', __('Action'), __('Créer un composant à partir de la sélection'), createComponentFromSelected, 'réutiliser symbole component reuse symbol コンポーネント 再利用');
   }
   add('act:undo', __('Action'), __c('undo', 'Annuler'), undo, 'retour undo back 元に戻す 取り消し', 'Ctrl+Z');

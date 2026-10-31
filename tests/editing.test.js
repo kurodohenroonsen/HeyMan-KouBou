@@ -137,3 +137,30 @@ test('dropHint : dit où déposer chaque type', () => {
   assert.match(dropHint('heading'), /colonne/);
   assert.match(dropHint('heading'), /page/);
 });
+
+/* Cycle 33 (A1, WCAG 2.5.7) : « Déplacer vers… », alternative au glisser-déposer */
+test('moveTargets : colonnes possibles pour un widget, avec un chemin lisible ; moveTo le place à la fin', async () => {
+  const { moveTargets, moveTo } = await import('../core/editing.js');
+  let root = createNode('page');
+  const s1 = createSectionWithColumns(2);
+  const s2 = createSectionWithColumns(1);
+  root = insertNode(root, root.id, s1);
+  root = insertNode(root, root.id, s2);
+  const [c1, c2] = s1.children[0].children;
+  const c3 = s2.children[0].children[0];
+  const h = createNode('heading');
+  const t = createNode('text');
+  root = insertNode(root, c1.id, h);
+  root = insertNode(root, c3.id, t);
+  const list = moveTargets(root, h.id);
+  assert.deepEqual(list.map(x => x.id), [c1.id, c2.id, c3.id]);
+  assert.equal(list[0].current, true);
+  assert.deepEqual(list[1].path, [{ type: 'section', n: 1 }, { type: 'row', n: 1 }, { type: 'column', n: 2 }]);
+  assert.equal(list[2].path[0].n, 2);
+  const r = moveTo(root, h.id, c3.id);
+  assert.deepEqual(findNode(r, c3.id).children.map(x => x.id), [t.id, h.id]);
+  /* une rangée peut aller dans une autre section, jamais dans elle-même ; une section n'a pas de cible */
+  const rows = moveTargets(root, s1.children[0].id);
+  assert.ok(rows.some(x => x.id === s2.id) && !rows.some(x => x.id === c1.id));
+  assert.deepEqual(moveTargets(root, s1.id), []);
+});

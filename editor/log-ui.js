@@ -46,7 +46,7 @@ export async function fetchServerLog({ url, token, lines = 300 } = {}) {
 export async function openLog() {
   $('#logDialog')?.remove();
   const state = { level: 'debug', scope: '', text: '', paused: false };
-  const list = h('ol', { class: 'log-list', 'data-log-list': '', 'aria-live': 'off' });
+  const list = h('ol', { class: 'log-list', 'data-log-list': '', 'aria-live': 'off', tabindex: '0', 'aria-label': __('Lignes du journal') });
   const count = h('span', { class: 'hint', 'data-log-count': '' });
   const status = h('p', { class: 'pub-status', role: 'status', 'data-log-status': '' });
   const scopes = h('select', { class: 'control control--sm', 'data-log-scope': '', 'aria-label': __('Domaine') });

@@ -4,7 +4,7 @@ import { state, nodeById, select } from './store.js';
 import { nodeLabel } from '../core/editing.js';
 import { findParent } from '../core/tree.js';
 import { root } from './store.js';
-import { selectParent, duplicateSelected, deleteSelected, copySelected, pasteClipboard, copyStyle, pasteStyle, moveSelected, createComponentFromSelected, detachSelected, editSelectedComponent } from './actions.js';
+import { selectParent, duplicateSelected, deleteSelected, copySelected, pasteClipboard, copyStyle, pasteStyle, moveSelected, moveSelectedTo, createComponentFromSelected, detachSelected, editSelectedComponent } from './actions.js';
 import { onCanvasReady, canvasScale } from './canvas.js';
 import { editSelected } from './inline.js';
 import { log } from './log.js';
@@ -39,6 +39,7 @@ function items(node, canvasEl) {
     '-',
     ['up', __('Monter'), 'Alt+↑', () => moveSelected(-1), !parent || index === 0],
     ['down', __('Descendre'), 'Alt+↓', () => moveSelected(1), last],
+    ['moveTo', __('Déplacer vers…'), '', moveSelectedTo, node.type === 'section'],
     ['parent', __('Sélectionner le parent'), __('Échap'), selectParent, !parent || parent.type === 'page'],
     '-',
     ['delete', __('Supprimer'), __('Suppr'), deleteSelected, false, true]

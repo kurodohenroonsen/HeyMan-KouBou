@@ -91,7 +91,8 @@ function renderTopbar() {
   $('#langSelect').replaceChildren(...s.languages.map(l => h('option', { value: l, selected: l === state.lang }, `${l.toUpperCase()} · ${LANG_LABELS[l]}`)));
   $('#undoBtn').disabled = !state.past.length;
   $('#redoBtn').disabled = !state.future.length;
-  $$('[data-device]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.device === state.device)));
+  $$('.seg[data-device]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.device === state.device)));
+  $('#appTitle').textContent = `Atelier — ${s.name}`;
   $('#i18nBtn').hidden = s.languages.length < 2;
   const n = missingTranslations(s).length;
   const badge = $('#missingBtn');
@@ -108,6 +109,7 @@ function renderLeft() {
 }
 function renderLeftNow() {
   $$('[data-left]').forEach(t => t.setAttribute('aria-selected', String(t.dataset.left === state.left)));
+  rovingTabs($('#leftTabs'));
   const body = $('#leftBody');
   unmountNavigator();
   if (state.left === 'widgets') body.replaceChildren(...onboardingBlock(), ...libraryPanel());
@@ -209,7 +211,7 @@ function bind() {
   $('#langSelect').addEventListener('change', e => setView({ lang: e.target.value }));
   $('#undoBtn').addEventListener('click', undo);
   $('#redoBtn').addEventListener('click', redo);
-  $$('[data-device]').forEach(b => b.addEventListener('click', () => setView({ device: b.dataset.device })));
+  $$('.seg[data-device]').forEach(b => b.addEventListener('click', () => setView({ device: b.dataset.device })));
   $$('[data-left]').forEach(b => b.addEventListener('click', () => { state.left = b.dataset.left; renderLeft(); }));
   $('#missingBtn').addEventListener('click', () => openAudit('translations'));
   $('#i18nBtn').addEventListener('click', () => openTranslations());
@@ -250,6 +252,7 @@ function bind() {
   $('#newSiteBtn').addEventListener('click', () => { $('#fileMenu').open = false; openNewSite(); });
   $('#helpKeysBtn').addEventListener('click', () => { $('#helpMenu').open = false; openShortcuts(); });
   document.addEventListener('keydown', handleKey);
+  initTabKeys();
   setCanvasKeyHandler(handleKey);
 }
 
