@@ -229,7 +229,7 @@ export function listControl(node, field) {
     }
     return card;
   })));
-  wrap.append(h('button', { class: 'btn btn--small', type: 'button', 'data-list-add': field.key, onclick: () => apply(r => addListItem(r, node.id, field.key), undefined, { action: N_('ajouté'), count: items.length + 1 }) }, `+ ${itemLabel}`));
+  wrap.append(h('button', { class: 'btn btn--small', type: 'button', 'data-list-add': field.key, onclick: () => apply(r => addListItem(r, node.id, field.key, state.site.defaultLanguage), undefined, { action: N_('ajouté'), count: items.length + 1 }) }, `+ ${itemLabel}`));
   return wrap;
 }
 

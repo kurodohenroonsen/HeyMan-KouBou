@@ -68,7 +68,7 @@ export function templatesPanel() {
       type: 'button', class: 'tpl', 'data-template': tpl.id, title: __(tpl.description),
       onclick: () => {
         let sec;
-        try { sec = buildTemplate(tpl.id); } catch (e) { log.error('template.fail', __('Modèle « {label} » impossible à construire : {error} (bogue)', { label: __(tpl.label), error: e.message }), { template: tpl.id, error: e }); throw e; }
+        try { sec = buildTemplate(tpl.id, { lang: state.site.defaultLanguage }); } catch (e) { log.error('template.fail', __('Modèle « {label} » impossible à construire : {error} (bogue)', { label: __(tpl.label), error: e.message }), { template: tpl.id, error: e }); throw e; }
         const id = insertSection(null, sec);
         if (id) log.info('template.insert', __('Modèle de section inséré : {label}', { label: __(tpl.label) }), { template: tpl.id, id, rows: sec.children?.length });
       },

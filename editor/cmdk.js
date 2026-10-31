@@ -64,7 +64,7 @@ function buildCommands() {
   const add = (id, group, label, run, keywords = '', kbd = '', weight = 1) => list.push({ id, group, label, run, keywords, kbd, weight });
 
   for (const [type, d] of Object.entries(REGISTRY)) if (isWidget(type)) add(`add:${type}`, __('Ajouter'), __('Ajouter : {label}', { label: __(d.label) }), () => insertWidget(type), `${d.label} ${d.category} ${__(d.category)} widget insérer add insert 追加 挿入`);
-  for (const t of TEMPLATES) add(`tpl:${t.id}`, __('Modèle'), __('Modèle : {label}', { label: __(t.label) }), () => insertSection(null, buildTemplate(t.id)), `${t.description} ${__(t.description)} section template テンプレート セクション`);
+  for (const t of TEMPLATES) add(`tpl:${t.id}`, __('Modèle'), __('Modèle : {label}', { label: __(t.label) }), () => insertSection(null, buildTemplate(t.id, { lang: state.site.defaultLanguage })), `${t.description} ${__(t.description)} section template テンプレート セクション`);
   for (const c of Object.values(s.components || {})) add(`cmp:${c.id}`, __('Composant'), __('Composant : {name}', { name: c.name }), () => insertComponent(c.id), 'réutilisable insérer bloc component reusable insert block コンポーネント 再利用 ブロック');
   for (const c of Object.values(s.collections || {})) {
     add(`col:${c.id}`, __('Contenus'), __('Contenus : {name} ({n})', { name: c.name, n: c.items.length }), () => openCollection(c.id), 'collection éléments liste membres agenda actualités items list members events news コレクション 項目 リスト メンバー イベント ニュース');

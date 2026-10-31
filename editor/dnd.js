@@ -223,7 +223,8 @@ function onUp() {
   }
   if (target.noop) { f.cancel(__('Lâché à la même place : rien n’a changé'), { reason: 'noop', where: target.where }); return; }
   try {
-    const node = payload.kind === 'widget' ? createNode(payload.type) : payload.kind === 'section' ? createSectionWithColumns(payload.spans.length, payload.spans) : payload.kind === 'template' ? buildTemplate(payload.id) : payload.kind === 'component' ? makeInstance(state.site, payload.id) : null;
+    const lang = state.site.defaultLanguage;
+    const node = payload.kind === 'widget' ? createNode(payload.type, { lang }) : payload.kind === 'section' ? createSectionWithColumns(payload.spans.length, payload.spans) : payload.kind === 'template' ? buildTemplate(payload.id, { lang }) : payload.kind === 'component' ? makeInstance(state.site, payload.id) : null;
     const r = applyDrop(root(), node ? { kind: 'new', node } : { kind: 'move', id: payload.id }, target.parentId, target.index);
     if (!r) {
       f.warn('refused', __('Dépôt refusé par la structure de la page (emplacement interdit pour ce type)'), { type, parentId: target.parentId, index: target.index, reason: 'invalid' });
