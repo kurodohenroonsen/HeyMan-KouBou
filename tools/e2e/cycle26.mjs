@@ -133,7 +133,8 @@ export default async function (t) {
   {
     t.ok(await page.locator('#tourBubble').count() === 0, 'avec ?fresh (tests), aucune visite proposée');
     await page.evaluate(() => localStorage.removeItem('atelier-tour'));
-    await page.goto(t.base, { waitUntil: 'networkidle' });
+    /* ?tour : le navigateur est piloté par Playwright, la première visite n'est proposée qu'avec ce paramètre */
+    await page.goto(t.base + '?tour', { waitUntil: 'networkidle' });
     await page.waitForFunction(() => window.__atelier?.ready === true);
     await page.waitForSelector('#tourBubble', { timeout: 5000 });
     let s = await mark(page);

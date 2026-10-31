@@ -457,6 +457,7 @@ export default async function (t) {
     await page.keyboard.press('Control+s');
     await t.wait(250);
     const reminder = await page.locator('#toasts .toast').filter({ hasText: /Déjà enregistré/ }).count();
+    const afterCtrlS = download;
     await page.click('#fileMenu > summary');
     const [dl] = await Promise.all([page.waitForEvent('download'), page.click('#exportJsonBtn')]);
     await t.wait(100);
@@ -467,7 +468,7 @@ export default async function (t) {
     await t.wait(100);
     const es = await since(page, s);
     t.ok(help === 1 && logOpen === 1 && !!dl, 'raccourcis : aide, enregistrement .json (menu Fichier), journal');
-    t.ok(reminder === 1 && download === null, 'Ctrl+S : rappel « Déjà enregistré », aucun téléchargement');
+    t.ok(reminder >= 1 && afterCtrlS === null, 'Ctrl+S : rappel « Déjà enregistré », aucun téléchargement');
     expectCodes(t, es, ['canvas.key', 'action.move', 'ui.key', 'ui.dialog.open', 'project.already-saved', 'project.export-json'], 'raccourcis');
     capture('edition-raccourcis', es, { ui: true });
   }

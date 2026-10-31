@@ -37,6 +37,8 @@ test('proposée à la première visite seulement, jamais pendant un test, un aut
   assert.equal(shouldOfferTour({ stored: null, search: '?autotest', hash: '' }), false);
   assert.equal(shouldOfferTour({ stored: null, search: '', hash: '#join=abc' }), false);
   assert.equal(shouldOfferTour({ stored: 'illisible', search: '', hash: '' }), false, 'une valeur quelconque vaut « déjà vue »');
+  assert.equal(shouldOfferTour({ stored: null, search: '', hash: '', automated: true }), false, 'navigateur piloté par un test');
+  assert.equal(shouldOfferTour({ stored: null, search: '?tour', hash: '', automated: true }), true, '?tour la force');
 });
 
 test('déroulement automatique : accueil, puis les étapes, puis terminé et retenu', () => {

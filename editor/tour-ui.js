@@ -68,14 +68,14 @@ function render() {
   const next = welcome ? btn('btn--primary', __('Commencer la visite'), () => tour.next(), { 'data-tour': 'next' })
     : btn('btn--primary', st.last ? __('Terminer') : __('Suivant'), () => tour.next(), { 'data-tour': 'next' });
   const dots = welcome ? null : h('div', { class: 'tour__dots', 'aria-hidden': 'true' }, TOUR_STEPS.map((s, i) => h('i', { class: i === st.index ? 'is-on' : i < st.index ? 'is-done' : '' })));
-  bubble.replaceChildren(
+  bubble.replaceChildren(...[
     h('div', { class: 'tour__head' }, h('span', { class: 'tour__count', id: 'tourCount' }, count), h('h2', { id: 'tourTitle' }, title)),
     h('p', { id: 'tourText' }, text),
     dots,
     h('div', { class: 'tour__foot' },
       btn('tour__skip', __('Passer'), () => tour.skip(), { 'data-tour': 'skip', title: __('Quitter la visite (Échap)') }),
       welcome || st.first ? null : btn('', __('Précédent'), () => tour.prev(), { 'data-tour': 'prev' }),
-      next));
+      next)].filter(Boolean));
   bubble.setAttribute('aria-describedby', 'tourText');
   if (!welcome && lastLogged !== st.index) { lastLogged = st.index; log.debug('tour.step', __('Visite : étape {n} sur {total} ({id})', { n: st.index + 1, total: st.total, id: st.step.id }), { index: st.index, id: st.step.id }); }
   place();
@@ -174,7 +174,7 @@ export function closeTour() { if (tourActive()) tour.skip(); }
 
 /* Première visite : proposée une fois l'éditeur prêt, sauf en test (?fresh), en auto-test ou sur une invitation */
 export function offerTour() {
-  if (!shouldOfferTour({ stored: lsRead(TOUR_KEY), search: location.search, hash: location.hash })) return false;
+  if (!shouldOfferTour({ stored: lsRead(TOUR_KEY), search: location.search, hash: location.hash, automated: !!navigator.webdriver })) return false;
   setTimeout(() => { if (!document.querySelector('dialog[open]')) startTour({ auto: true, from: 'première visite' }); }, 400);
   return true;
 }

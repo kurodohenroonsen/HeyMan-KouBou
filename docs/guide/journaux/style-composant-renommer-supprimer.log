@@ -1,13 +1,13 @@
-20:51:47.080 +42.70s DEBUG store.commit Modification {"source":"site","past":46,"page":"p_fg7hya37"}
-20:51:47.092 +42.71s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":4}
-20:51:47.093 +42.71s INFO  action.component-rename Composant renommé {"component":"cp_6yu8reoy","chars":16}
-20:51:47.318 +42.93s DEBUG structure.open Panneau Structure ouvert {"rows":42}
-20:51:47.495 +43.11s DEBUG store.select Sélection : heading {"id":"n_1z1f523j4z","type":"heading"}
-20:51:47.531 +43.15s DEBUG canvas.scroll Défilement vers l’élément sélectionné {"id":"n_1z1f523j4z","from":467,"to":0}
-20:51:47.609 +43.23s DEBUG inspector.tab Onglet de l’inspecteur : Avancé {"tab":"advanced","from":"style","type":"heading"}
-20:51:47.685 +43.30s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":20}
-20:51:47.714 +43.33s WARN  action.refused Action « créer un composant » refusée : une autre modification (composant, en-tête…) est en cours {"action":"créer un composant","reason":"edit-target","edit":"header"}
-20:51:47.715 +43.33s ERROR ui.toast Message affiché : Terminez d’abord la modification en cours. {"type":"error"}
-20:51:48.138 +43.75s DEBUG store.commit Modification {"source":"site","past":47,"page":"p_fg7hya37"}
-20:51:48.173 +43.79s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":25}
-20:51:48.222 +43.84s INFO  action.component-delete Composant « Appel à l’action » supprimé : 2 instances deviennent des copies {"component":"cp_6yu8reoy","uses":2}
+12:57:44.136 +37.91s DEBUG store.commit Modification {"source":"site","past":46,"page":"p_fptbpb4e"}
+12:57:44.145 +37.92s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":4}
+12:57:44.146 +37.92s INFO  action.component-rename Composant renommé {"component":"cp_pumdkm6j","chars":16}
+12:57:44.342 +38.12s DEBUG structure.open Panneau Structure ouvert {"rows":42}
+12:57:44.472 +38.25s DEBUG store.select Sélection : heading {"id":"n_21454v0620","type":"heading"}
+12:57:44.503 +38.28s DEBUG canvas.scroll Défilement vers l’élément sélectionné {"id":"n_21454v0620","from":467,"to":0}
+12:57:44.541 +38.31s DEBUG inspector.tab Onglet de l’inspecteur : Avancé {"tab":"advanced","from":"style","type":"heading"}
+12:57:44.593 +38.37s WARN  action.refused Action « créer un composant » refusée : une autre modification (composant, en-tête…) est en cours {"action":"créer un composant","reason":"edit-target","edit":"header"}
+12:57:44.594 +38.37s ERROR ui.toast Message affiché : Terminez d’abord la modification en cours. {"type":"error"}
+12:57:44.740 +38.51s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":20}
+12:57:44.845 +38.62s DEBUG store.commit Modification {"source":"site","past":47,"page":"p_fptbpb4e"}
+12:57:44.852 +38.63s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":4}
+12:57:44.857 +38.63s INFO  action.component-delete Composant « Appel à l’action » supprimé : 2 instances deviennent des copies {"component":"cp_pumdkm6j","uses":2}

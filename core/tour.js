@@ -27,11 +27,12 @@ export const TOUR_STEPS = [
     text: N_('Le menu Fichier : nouveau site, versions, aperçu, enregistrer en fichier, cette visite et la démonstration. Le bouton ❓ ouvre le guide complet ; la flèche à côté propose la visite, une démonstration et les raccourcis. Bonne construction !') }
 ];
 
-/* Proposer la visite ? Jamais si elle a déjà été vue ou passée, pendant un test (?fresh), un auto-test (?autotest)
-   ni à l'ouverture d'une invitation (#join=) */
-export function shouldOfferTour({ stored, search = '', hash = '' } = {}) {
+/* Proposer la visite ? Jamais si elle a déjà été vue ou passée, pendant un test (?fresh, ou navigateur piloté par un
+   outil de test sans ?tour), un auto-test (?autotest) ni à l'ouverture d'une invitation (#join=) */
+export function shouldOfferTour({ stored, search = '', hash = '', automated = false } = {}) {
   if (stored !== null && stored !== undefined) return false;
   const q = String(search || '');
+  if (automated && !/[?&]tour(=|&|$)/.test(q)) return false;
   if (/[?&](fresh|autotest)(=|&|$)/.test(q)) return false;
   if (/^#join=/.test(String(hash || ''))) return false;
   return true;

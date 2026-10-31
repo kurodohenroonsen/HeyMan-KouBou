@@ -1,10 +1,9 @@
-20:51:23.842 +19.46s DEBUG canvas.key Raccourci dans la page : Ctrl+K {"key":"Ctrl+K","in":"page","selected":"n_4y390z0l4z"}
-20:51:23.846 +19.46s DEBUG ui.dialog.open Fenêtre ouverte : cmdk {"id":"cmdk","class":"cmdk","modal":true}
-20:51:24.176 +19.79s DEBUG storage.save Projet enregistré sur cet appareil {"ms":7,"kb":12}
-20:51:24.199 +19.82s INFO  cmdk.run Commande : Ajouter : Séparateur {"id":"add:divider","query":"ajouter séparateur"}
-20:51:24.201 +19.82s DEBUG store.commit Modification {"source":"library","past":13,"page":"p_fg7hya37"}
-20:51:24.207 +19.82s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"library","mode":"contenu","ms":4}
-20:51:24.217 +19.83s DEBUG store.select Sélection : divider {"id":"n_25562c532a","type":"divider"}
-20:51:24.227 +19.84s INFO  action.add Widget ajouté : Séparateur {"type":"divider","id":"n_25562c532a","parentType":"column"}
-20:51:24.233 +19.85s DEBUG ui.dialog.close Fenêtre fermée : cmdk {"id":"cmdk"}
-20:51:24.240 +19.86s DEBUG ui.change Champ modifié : cmdkInput {"el":"input","id":"cmdkInput","dialog":"cmdk","value":"ajouter séparateur"}
+12:57:22.685 +16.46s DEBUG canvas.key Raccourci dans la page : Ctrl+K {"key":"Ctrl+K","in":"page","selected":"n_1w4k1c3v43"}
+12:57:22.691 +16.46s DEBUG ui.dialog.open Fenêtre ouverte : cmdk {"id":"cmdk","class":"cmdk","modal":true}
+12:57:23.021 +16.80s INFO  cmdk.run Commande : Ajouter : Séparateur {"id":"add:divider","query":"ajouter séparateur"}
+12:57:23.023 +16.80s DEBUG store.commit Modification {"source":"library","past":13,"page":"p_fptbpb4e"}
+12:57:23.026 +16.80s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"library","mode":"contenu","ms":3}
+12:57:23.033 +16.81s DEBUG store.select Sélection : divider {"id":"n_1l6m183118","type":"divider"}
+12:57:23.040 +16.81s INFO  action.add Widget ajouté : Séparateur {"type":"divider","id":"n_1l6m183118","parentType":"column"}
+12:57:23.044 +16.82s DEBUG ui.dialog.close Fenêtre fermée : cmdk {"id":"cmdk"}
+12:57:23.056 +16.83s DEBUG ui.change Champ modifié : cmdkInput {"el":"input","id":"cmdkInput","dialog":"cmdk","value":"ajouter séparateur"}

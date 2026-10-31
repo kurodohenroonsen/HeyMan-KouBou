@@ -64,13 +64,17 @@ function render() {
     all && !st.collapsed ? h('p', { class: 'hint onboard__bravo' }, __('Bravo, les sept premiers pas sont faits ! La suite est dans le guide (❓) et dans la démonstration.')) : null);
 }
 
+/* Pendant les tests (?fresh, navigateur piloté sans ?tour) et l'auto-test, la liste n'apparaît que si elle a déjà
+   été utilisée sur cet appareil */
+const testRun = () => lsRead(ONBOARDING_KEY) === null && (/[?&](fresh|autotest)(=|&|$)/.test(location.search) || (!!navigator.webdriver && !/[?&]tour(=|&|$)/.test(location.search)));
+
 /* Éléments à placer en tête de l'onglet Widgets (rien si la liste est masquée) */
-export function onboardingBlock() { return st.hidden ? [] : [render()]; }
+export function onboardingBlock() { return st.hidden || testRun() ? [] : [render()]; }
 
 function refresh() {
   const cur = $('#onboarding');
   if (cur) { if (st.hidden) cur.remove(); else cur.replaceWith(render()); return; }
-  if (!st.hidden && state.left === 'widgets') $('#leftBody')?.prepend(render());
+  if (!st.hidden && !testRun() && state.left === 'widgets') $('#leftBody')?.prepend(render());
 }
 
 export function showOnboarding() {
