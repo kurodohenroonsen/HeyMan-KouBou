@@ -28,6 +28,9 @@ import { openAsk } from './assistant-ui.js';
 import { openBench } from './bench-ui.js';
 import { log } from './log.js';
 import { openAI } from './ai-ui.js';
+import { setZoom } from './canvas.js';
+import { togglePanels } from './topbar.js';
+import { isExpert, setExpert } from './mode.js';
 
 const RECENT_KEY = 'atelier-cmdk-recent';
 let recent = [];
@@ -97,6 +100,10 @@ function buildCommands() {
   add('device:desktop', __('Affichage'), __('Appareil : Ordinateur'), () => setView({ device: 'desktop' }), 'écran desktop computer screen デスクトップ 画面 パソコン');
   add('device:tablet', __('Affichage'), __('Appareil : Tablette'), () => setView({ device: 'tablet' }), 'ipad tablet タブレット');
   add('device:mobile', __('Affichage'), __('Appareil : Mobile'), () => setView({ device: 'mobile' }), 'téléphone smartphone phone mobile モバイル スマホ 携帯');
+  add('view:zoom-fit', __('Affichage'), __('Zoom : ajuster à la fenêtre'), () => setZoom('fit', 'commande'), 'zoom ajuster fit taille ズーム 合わせる', 'Ctrl+0');
+  for (const z of [100, 75, 50]) add(`view:zoom-${z}`, __('Affichage'), __('Zoom : {pct} %', { pct: z }), () => setZoom(z, 'commande'), `zoom ${z} taille ズーム`);
+  add('view:panels', __('Affichage'), __('Replier ou afficher les panneaux'), () => togglePanels('commande'), 'panneaux plein écran portable panels full width パネル 全幅', __('Ctrl+Maj+F'));
+  add('act:expert', __('Action'), isExpert() ? __('Revenir au mode simple') : __('Mode expert (tous les réglages)'), () => setExpert(!isExpert(), 'commande'), 'expert simple réglages avancés css classes settings advanced エキスパート シンプル 詳細設定');
   for (const l of s.languages) add(`lang:${l}`, __('Affichage'), __('Langue : {lang}', { lang: LANG_LABELS[l] }), () => setView({ lang: l }), `${l} language 言語`);
   for (const [k, label, kw] of [['widgets', __('Widgets'), 'widgets ウィジェット'], ['templates', __('Modèles'), 'templates テンプレート'], ['navigator', __('Structure'), 'structure tree 構造'], ['pages', __('Pages'), 'pages ページ'], ['content', __('Contenus (collections)'), 'content collections コンテンツ コレクション'], ['site', __('Site (couleurs, polices, presets)'), 'site colours colors fonts presets サイト 色 フォント プリセット']]) add(`panel:${k}`, __('Panneau'), __('Panneau : {label}', { label }), () => panel(k), `panneau panel パネル ${kw}`);
 
@@ -217,6 +224,9 @@ const SHORTCUTS = [
   ['Alt+↑ / Alt+↓', __('Monter / descendre')],
   [__('Ctrl+Z / Ctrl+Maj+Z'), __('Annuler / rétablir')],
   ['Ctrl+B / I / U', __('Gras / italique / souligné')],
+  [__('« - » ou « 1. » puis espace'), __('Liste à puces ou numérotée (dans un texte) ; Tab / Maj+Tab : imbriquer')],
+  ['Ctrl+0 / Ctrl+= / Ctrl+-', __('Zoom : ajuster / plus grand / plus petit')],
+  [__('Ctrl+Maj+F'), __('Replier ou afficher les panneaux')],
   ['Ctrl+S', __('Enregistrer le projet (.json)')],
   ['Ctrl+Alt+J', __('Journal de débogage (copier pour signaler un problème)')],
   ['?', __('Cette aide')]

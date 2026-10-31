@@ -1,12 +1,12 @@
-12:37:52.976 +1.68s INFO  ui.panels Panneaux repliés : la page prend toute la largeur {"collapsed":true,"by":"bouton"}
-12:37:53.395 +2.10s INFO  ui.panels Panneaux affichés {"collapsed":false,"by":"clavier"}
-12:37:53.728 +2.43s INFO  canvas.zoom Zoom : 100 % {"zoom":100,"by":"liste"}
-12:37:53.729 +2.43s DEBUG canvas.scale Canevas ordinateur : 1040 px {"device":"desktop","width":1040,"scale":100,"available":718,"zoom":100,"overflow":true}
-12:37:54.083 +2.79s INFO  canvas.zoom Zoom : 75 % {"zoom":75,"by":"clavier"}
-12:37:54.084 +2.79s DEBUG canvas.scale Canevas ordinateur : 1040 px, réduit à 75 % {"device":"desktop","width":1040,"scale":75,"available":718,"zoom":75,"overflow":true}
-12:37:54.317 +3.02s INFO  canvas.zoom Zoom : 50 % {"zoom":50,"by":"clavier"}
-12:37:54.318 +3.02s DEBUG canvas.scale Canevas ordinateur : 1436 px, réduit à 50 % {"device":"desktop","width":1436,"scale":50,"available":718,"zoom":50}
-12:37:54.545 +3.25s INFO  canvas.zoom Zoom : 75 % {"zoom":75,"by":"clavier"}
-12:37:54.545 +3.25s DEBUG canvas.scale Canevas ordinateur : 1040 px, réduit à 75 % {"device":"desktop","width":1040,"scale":75,"available":718,"zoom":75,"overflow":true}
-12:37:54.765 +3.47s INFO  canvas.zoom Zoom : ajuster à la fenêtre {"zoom":"fit","by":"clavier"}
-12:37:54.765 +3.47s DEBUG canvas.scale Canevas ordinateur : 1040 px, réduit à 69 % {"device":"desktop","width":1040,"scale":69,"available":718,"zoom":"fit"}
+12:42:32.928 +1.52s INFO  ui.panels Panneaux repliés : la page prend toute la largeur {"collapsed":true,"by":"bouton"}
+12:42:33.348 +1.94s INFO  ui.panels Panneaux affichés {"collapsed":false,"by":"clavier"}
+12:42:33.700 +2.29s INFO  canvas.zoom Zoom : 100 % {"zoom":100,"by":"liste"}
+12:42:33.701 +2.29s DEBUG canvas.scale Canevas ordinateur : 1040 px {"device":"desktop","width":1040,"scale":100,"available":718,"zoom":100,"overflow":true}
+12:42:33.961 +2.55s INFO  canvas.zoom Zoom : 75 % {"zoom":75,"by":"clavier"}
+12:42:33.962 +2.55s DEBUG canvas.scale Canevas ordinateur : 1040 px, réduit à 75 % {"device":"desktop","width":1040,"scale":75,"available":718,"zoom":75,"overflow":true}
+12:42:34.174 +2.76s INFO  canvas.zoom Zoom : 50 % {"zoom":50,"by":"clavier"}
+12:42:34.174 +2.76s DEBUG canvas.scale Canevas ordinateur : 1436 px, réduit à 50 % {"device":"desktop","width":1436,"scale":50,"available":718,"zoom":50}
+12:42:34.387 +2.98s INFO  canvas.zoom Zoom : 75 % {"zoom":75,"by":"clavier"}
+12:42:34.388 +2.98s DEBUG canvas.scale Canevas ordinateur : 1040 px, réduit à 75 % {"device":"desktop","width":1040,"scale":75,"available":718,"zoom":75,"overflow":true}
+12:42:34.612 +3.20s INFO  canvas.zoom Zoom : ajuster à la fenêtre {"zoom":"fit","by":"clavier"}
+12:42:34.612 +3.20s DEBUG canvas.scale Canevas ordinateur : 1040 px, réduit à 69 % {"device":"desktop","width":1040,"scale":69,"available":718,"zoom":"fit"}

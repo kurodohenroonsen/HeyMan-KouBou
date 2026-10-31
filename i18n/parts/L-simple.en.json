@@ -76,5 +76,10 @@
  "Travailler à plusieurs": "Work together",
  "Exporter le site : vérifier puis télécharger le .zip": "Export the site: check, then download the .zip",
  "SEO": "SEO",
- "Exporter": "Export"
+ "Exporter": "Export",
+ "Replier ou afficher les panneaux": "Collapse or show the panels",
+ "« - » ou « 1. » puis espace": "“-” or “1.” then space",
+ "Liste à puces ou numérotée (dans un texte) ; Tab / Maj+Tab : imbriquer": "Bulleted or numbered list (in a text); Tab / Shift+Tab: nest",
+ "Zoom : ajuster / plus grand / plus petit": "Zoom: fit / larger / smaller",
+ "Ctrl+Maj+F": "Ctrl+Shift+F"
 }

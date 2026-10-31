@@ -20,9 +20,9 @@ Le projet s'enregistre tout seul dans le navigateur (IndexedDB ; les images sont
 > **Le guide complet, à lire dans le navigateur** : [`guide/`](guide/index.html) (français, anglais, japonais ; recherche, captures d’écran, détails techniques repliés). Dans l’éditeur : bouton **❓**, **Fichier → Guide d’utilisation**, **F1** (dans une fenêtre, F1 ouvre son chapitre) ou Ctrl+K « Guide ». Pour commencer : *Bienvenue* (ce que l’atelier fait pour vous), *Prise en main* (deux pages d’un site touristique de Kumakōgen, pas à pas) et *Les widgets*. Les sources Markdown, avec ce que le journal doit montrer dans chaque cas, sont dans [`docs/guide/`](docs/guide/README.md). Ce qui suit en est le résumé.
 
 ### L'écran
-- **En haut** : nom du site, page affichée, annuler / rétablir, appareil (ordinateur, tablette, mobile), langue affichée, badge « à traduire », menu Fichier, **Exporter le site**.
+- **En haut** (une ligne, icônes SVG) : nom du site, page affichée, annuler / rétablir, appareil (ordinateur, tablette, mobile), langue affichée, badge « à traduire », Traductions, SEO, à plusieurs, commentaires, IA locale, guide, journal, menu Fichier, **Exporter**, **Publier**.
 - **À gauche** : Widgets, Modèles, Structure (arbre de la page), Pages, Site (couleurs, polices, en-tête, pied de page).
-- **Au centre** : la page, telle qu'elle sera en ligne, à la vraie largeur de l'appareil choisi.
+- **Au centre** : la page, telle qu'elle sera en ligne ; en mode Ordinateur elle prend la largeur disponible (réduite seulement sous 1 040 px). En bas à droite : zoom (ajuster, 100, 75, 50 %) et bouton qui replie les deux panneaux (Ctrl+Maj+F) pour écrire à 100 % sur un portable.
 - **À droite** : l'inspecteur de l'élément sélectionné (Contenu, Style, Avancé).
 
 ### Construire une page
@@ -30,7 +30,7 @@ Le projet s'enregistre tout seul dans le navigateur (IndexedDB ; les images sont
 - **Widgets** : 18 blocs (titre, texte, bouton, image, espace, séparateur, liste à icônes, encadré, citation, chiffres clés, FAQ, galerie, vidéo, carte, réseaux sociaux, formulaire, carte de contenu, tarif). Clic = ajout après la sélection ; glisser = à l'endroit exact (une ligne bleue montre où).
 - **Structure** : section → rangée → colonnes → widgets. Les dispositions de colonnes se choisissent sur la rangée (onglet Contenu).
 - **Déplacer** : glisser l'élément sélectionné, ou sa poignée ✥, ou une ligne de l'onglet Structure. Alt+↑ / Alt+↓ au clavier.
-- **Écrire** : double-clic sur un texte, un titre ou un bouton, et tapez. Une barre propose gras, italique, souligné, lien. Entrée valide un titre, Échap termine.
+- **Écrire** : double-clic sur un texte, un titre ou un bouton, et tapez. Une barre propose gras, italique, souligné, lien, listes, « Format » (titre 2, titre 3, citation, exposant, indice). « - » ou « 1. » puis espace en début de ligne commence une liste ; Tab l'imbrique. Un collage depuis Word ou Google Docs garde gras, liens et listes. Entrée valide un titre, Échap termine.
 - **Clic droit** : dupliquer, copier / coller, copier / coller le style, monter / descendre, supprimer.
 
 ### Aller vite
@@ -47,7 +47,8 @@ Le projet s'enregistre tout seul dans le navigateur (IndexedDB ; les images sont
 - Les champs de longueur acceptent aussi `clamp()`, `min()`, `max()`, `calc()`. L'onglet Avancé accepte de la CSS personnalisée (déclarations simples).
 
 ### Style et adaptation aux écrans
-- Onglet **Style** : typographie, fond, marges, bordures, dimensions, disposition, effets.
+- Onglet **Style** : typographie, fond, marges, bordures (mode simple, par défaut) ; dimensions, disposition, effets, classes et CSS personnalisée en **mode expert** (« Tous les réglages » ou Fichier → Mode expert).
+- Longueurs en **nombre + unité** (↑↓ ±1, Maj ±10, « valeur libre » pour `clamp()`), marges avec **cadenas** « 4 côtés », couleurs nommées (« Couleur principale »), curseurs d'arrondi et d'opacité.
 - Un réglage fait sur **Ordinateur** vaut aussi pour la tablette et le mobile, sauf si vous le changez sur ces appareils : choisissez l'appareil en haut, puis réglez. La valeur héritée est affichée en grisé ; ↺ revient à l'héritage.
 - **Survol** : couleur, fond, ombre ou petit mouvement quand la souris passe dessus.
 - On peut écrire `30` pour 30 px ; les valeurs incorrectes sont refusées avec un exemple.
@@ -182,6 +183,9 @@ Renseignez l'**adresse du site** (panneau Site) avant l'export : elle sert aux l
 | Alt+↑ / Alt+↓ | Monter / descendre |
 | Ctrl+Z / Ctrl+Maj+Z | Annuler / rétablir |
 | Ctrl+B / I / U | Gras / italique / souligné |
+| « - » ou « 1. » + espace, Tab | Liste à puces ou numérotée, imbriquer |
+| Ctrl+0 / Ctrl+= / Ctrl+- | Zoom : ajuster / plus grand / plus petit |
+| Ctrl+Maj+F | Replier ou afficher les panneaux |
 | Ctrl+S | Enregistrer le projet (.json) |
 | Ctrl+Alt+J | Journal de débogage |
 

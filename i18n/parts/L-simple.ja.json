@@ -76,5 +76,10 @@
  "Travailler à plusieurs": "共同作業",
  "Exporter le site : vérifier puis télécharger le .zip": "サイトを書き出す：確認してから .zip をダウンロード",
  "SEO": "SEO",
- "Exporter": "書き出し"
+ "Exporter": "書き出し",
+ "Replier ou afficher les panneaux": "パネルをたたむ／表示する",
+ "« - » ou « 1. » puis espace": "「-」または「1.」とスペース",
+ "Liste à puces ou numérotée (dans un texte) ; Tab / Maj+Tab : imbriquer": "箇条書き・番号付きリスト（テキスト内）。Tab / Shift+Tab：入れ子",
+ "Zoom : ajuster / plus grand / plus petit": "ズーム：合わせる／拡大／縮小",
+ "Ctrl+Maj+F": "Ctrl+Shift+F"
 }
