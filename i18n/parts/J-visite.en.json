@@ -11,5 +11,15 @@
  "Une colonne se dépose dans une rangée.": "A column is dropped in a row.",
  "Un widget se dépose dans une colonne, ou sur la page : une section est créée pour lui.": "A widget is dropped in a column, or on the page: a section is created for it.",
  "Page vide : glissez un widget, une section ou un modèle depuis le panneau de gauche": "Empty page: drag a widget, a section or a template from the left panel",
- "Enregistrer le projet en .json (menu Fichier)": "Save the project as .json (File menu)"
+ "Enregistrer le projet en .json (menu Fichier)": "Save the project as .json (File menu)",
+ "La bibliothèque, à gauche": "The library, on the left",
+ "Les briques du site : widgets (titre, texte, image, bouton…), modèles de sections, structure de la page, pages, contenus et réglages du site. Cliquez sur un widget pour l’ajouter, ou glissez-le dans la page.": "The building blocks of the site: widgets (heading, text, image, button…), section templates, the page structure, pages, content and site settings. Click a widget to add it, or drag it into the page.",
+ "La page, au centre": "The page, in the middle",
+ "La page telle que les visiteurs la verront. Cliquez sur un élément pour le sélectionner, double-cliquez sur un texte pour l’écrire directement. Les boutons Ordinateur, Tablette et Mobile la montrent à la taille de chaque appareil.": "The page as visitors will see it. Click an element to select it, double-click a text to write it directly. The Desktop, Tablet and Mobile buttons show it at the size of each device.",
+ "L’inspecteur, à droite": "The inspector, on the right",
+ "Les réglages de l’élément sélectionné : son contenu (textes dans chaque langue, image, lien), son style (couleurs, marges, tailles) et les options avancées. Rien à sélectionner ? Il vous donne des conseils.": "The settings of the selected element: its content (texts in each language, image, link), its style (colours, spacing, sizes) and the advanced options. Nothing selected? It gives you tips.",
+ "La barre du haut": "The top bar",
+ "Le nom du site, la page affichée, annuler et rétablir, l’appareil, la langue écrite dans la page, les traductions, le référencement, puis « Exporter le site » et « 🚀 Publier ». « Enregistré » : chaque modification est gardée sur cet ordinateur.": "The site name, the page shown, undo and redo, the device, the language written in the page, translations, SEO, then “Export site” and “🚀 Publish”. “Saved”: every change is kept on this computer.",
+ "Fichier et ❓": "File and ❓",
+ "Le menu Fichier : nouveau site, versions, aperçu, enregistrer en fichier, cette visite et la démonstration. Le bouton ❓ ouvre le guide complet ; la flèche à côté propose la visite, une démonstration et les raccourcis. Bonne construction !": "The File menu: new site, versions, preview, save to a file, this tour and the demonstration. The ❓ button opens the full guide; the arrow next to it offers the tour, a demonstration and the shortcuts. Happy building!"
 }

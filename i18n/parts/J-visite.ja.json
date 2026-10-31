@@ -11,5 +11,15 @@
  "Une colonne se dépose dans une rangée.": "列は行の中に置きます。",
  "Un widget se dépose dans une colonne, ou sur la page : une section est créée pour lui.": "ウィジェットは列の中、またはページ上に置きます。ページ上に置くとセクションが自動で作られます。",
  "Page vide : glissez un widget, une section ou un modèle depuis le panneau de gauche": "空のページです：左のパネルからウィジェット、セクション、テンプレートをドラッグしてください",
- "Enregistrer le projet en .json (menu Fichier)": "プロジェクトを .json に保存（「ファイル」メニュー）"
+ "Enregistrer le projet en .json (menu Fichier)": "プロジェクトを .json に保存（「ファイル」メニュー）",
+ "La bibliothèque, à gauche": "左のライブラリ",
+ "Les briques du site : widgets (titre, texte, image, bouton…), modèles de sections, structure de la page, pages, contenus et réglages du site. Cliquez sur un widget pour l’ajouter, ou glissez-le dans la page.": "サイトの部品です：ウィジェット（見出し、テキスト、画像、ボタンなど）、セクションのテンプレート、ページの構造、ページ、コンテンツ、サイトの設定。ウィジェットをクリックすると追加され、ページにドラッグして置くこともできます。",
+ "La page, au centre": "中央のページ",
+ "La page telle que les visiteurs la verront. Cliquez sur un élément pour le sélectionner, double-cliquez sur un texte pour l’écrire directement. Les boutons Ordinateur, Tablette et Mobile la montrent à la taille de chaque appareil.": "訪問者が見るとおりのページです。要素をクリックすると選択され、テキストをダブルクリックするとその場で書けます。「デスクトップ」「タブレット」「モバイル」のボタンで各デバイスの大きさで表示できます。",
+ "L’inspecteur, à droite": "右のインスペクター",
+ "Les réglages de l’élément sélectionné : son contenu (textes dans chaque langue, image, lien), son style (couleurs, marges, tailles) et les options avancées. Rien à sélectionner ? Il vous donne des conseils.": "選択した要素の設定です：コンテンツ（各言語のテキスト、画像、リンク）、スタイル（色、余白、サイズ）、詳細オプション。何も選択していないときはヒントを表示します。",
+ "La barre du haut": "上のバー",
+ "Le nom du site, la page affichée, annuler et rétablir, l’appareil, la langue écrite dans la page, les traductions, le référencement, puis « Exporter le site » et « 🚀 Publier ». « Enregistré » : chaque modification est gardée sur cet ordinateur.": "サイト名、表示中のページ、元に戻す／やり直す、デバイス、ページに書く言語、翻訳、SEO、そして「サイトを書き出す」と「🚀 公開」。「保存済み」と表示されていれば、変更はすべてこのパソコンに保存されています。",
+ "Fichier et ❓": "「ファイル」と ❓",
+ "Le menu Fichier : nouveau site, versions, aperçu, enregistrer en fichier, cette visite et la démonstration. Le bouton ❓ ouvre le guide complet ; la flèche à côté propose la visite, une démonstration et les raccourcis. Bonne construction !": "「ファイル」メニュー：新しいサイト、バージョン、プレビュー、ファイルへの保存、このツアー、デモ。❓ ボタンはガイド全体を開きます。隣の矢印からはツアー、デモ、ショートカットを選べます。それでは、サイト作りを楽しんでください！"
 }
