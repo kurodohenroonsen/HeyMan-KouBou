@@ -1,3 +1,3 @@
-20:53:08.766 +7.25s DEBUG seo.goto Aller à l’élément signalé (img-alt) {"check":"img-alt","pageId":"p_94oom426","nodeId":"n_5l133d0w3s"}
-20:53:08.774 +7.26s DEBUG ui.dialog.close Fenêtre fermée : 🔎 Référencement {"id":"seoDialog"}
-20:53:09.023 +7.51s DEBUG store.select Sélection : image {"id":"n_5l133d0w3s","type":"image"}
+14:28:46.071 +5.64s DEBUG seo.goto Aller à l’élément signalé (img-alt) {"check":"img-alt","pageId":"p_qfa485rg","nodeId":"n_2w564d5b6h"}
+14:28:46.082 +5.65s DEBUG ui.dialog.close Fenêtre fermée : 🔎 Référencement {"id":"seoDialog"}
+14:28:46.324 +5.89s DEBUG store.select Sélection : image {"id":"n_2w564d5b6h","type":"image"}

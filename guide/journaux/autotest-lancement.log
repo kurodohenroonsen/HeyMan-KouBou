@@ -1,70 +1,69 @@
-13:34:56.010 +2.68s INFO  selftest.run.start [selftest.run#1] Auto-test : 26 cas d’usage {"cases":["demarrage","journal","selection","ajout","annuler","raccourcis","texte","infobulles","panneaux","commande","style","appareils","pages","image","collection","versions","traductions","seo","ia-etat","verifier-exporter","… +6"],"ai":"fake","publish":true}
-13:34:56.029 +2.70s INFO  selftest.backup.start [selftest.backup#1] Mise de côté du projet avant l’auto-test {"name":"MAB – Médias Alternatifs Belges","pages":3,"past":3,"kind":"selftest"}
-13:34:56.053 +2.72s DEBUG selftest.backup.slot [selftest.backup#1 · 24 ms] Copie de secours écrite dans la base locale {"slot":"selftest-backup"}
-13:34:56.057 +2.73s INFO  selftest.backup.ok [selftest.backup#1 · 28 ms] Projet mis de côté (mémoire, copie de secours, version de sécurité) {"safety":"v_mvwdvqnrqtwzl","versions":1,"images":1}
-13:34:56.067 +2.74s DEBUG selftest.case-start Cas : Projet de test chargé et enregistré sur l’appareil {"id":"demarrage","chapter":1}
-13:34:56.828 +3.50s INFO  selftest.case ✓ Projet de test chargé et enregistré sur l’appareil {"id":"demarrage","status":"ok","ms":760}
-13:34:56.909 +3.58s DEBUG selftest.case-start Cas : Fenêtre 🐞 Journal : ouvrir, régler, fermer {"id":"journal","chapter":0}
-13:34:57.630 +4.30s INFO  selftest.case ✓ Fenêtre 🐞 Journal : ouvrir, régler, fermer {"id":"journal","status":"ok","ms":721}
-13:34:57.713 +4.38s DEBUG selftest.case-start Cas : Sélectionner : clic, flèche ↓, Échap {"id":"selection","chapter":2}
-13:34:58.173 +4.84s INFO  selftest.case ✓ Sélectionner : clic, flèche ↓, Échap {"id":"selection","status":"ok","ms":460}
-13:34:58.254 +4.92s DEBUG selftest.case-start Cas : Ajouter un widget depuis la bibliothèque {"id":"ajout","chapter":2}
-13:34:58.887 +5.56s INFO  selftest.case ✓ Ajouter un widget depuis la bibliothèque {"id":"ajout","status":"ok","ms":633}
-13:34:58.968 +5.64s DEBUG selftest.case-start Cas : Annuler puis rétablir {"id":"annuler","chapter":2}
-13:35:00.169 +6.84s INFO  selftest.case ✓ Annuler puis rétablir {"id":"annuler","status":"ok","ms":1202}
-13:35:00.250 +6.92s DEBUG selftest.case-start Cas : Dupliquer, copier, coller, supprimer au clavier {"id":"raccourcis","chapter":2}
-13:35:01.698 +8.37s INFO  selftest.case ✓ Dupliquer, copier, coller, supprimer au clavier {"id":"raccourcis","status":"ok","ms":1447}
-13:35:01.779 +8.45s DEBUG selftest.case-start Cas : Modifier un titre directement dans la page {"id":"texte","chapter":2}
-13:35:02.099 +8.77s INFO  selftest.case ✓ Modifier un titre directement dans la page {"id":"texte","status":"ok","ms":320}
-13:35:02.203 +8.87s DEBUG selftest.case-start Cas : Infobulles des boutons : survol, raccourci, masquage {"id":"infobulles","chapter":2}
-13:35:02.840 +9.51s INFO  selftest.case ✓ Infobulles des boutons : survol, raccourci, masquage {"id":"infobulles","status":"ok","ms":637}
-13:35:02.921 +9.59s DEBUG selftest.case-start Cas : Élargir les panneaux de gauche et de droite (clavier, double-clic) {"id":"panneaux","chapter":2}
-13:35:03.379 +10.05s INFO  selftest.case ✓ Élargir les panneaux de gauche et de droite (clavier, double-clic) {"id":"panneaux","status":"ok","ms":458}
-13:35:03.460 +10.13s DEBUG selftest.case-start Cas : Ctrl+K : lancer une commande {"id":"commande","chapter":2}
-13:35:04.090 +10.76s INFO  selftest.case ✓ Ctrl+K : lancer une commande {"id":"commande","status":"ok","ms":630}
-13:35:04.171 +10.84s DEBUG selftest.case-start Cas : Style : taille du texte, puis réinitialiser {"id":"style","chapter":3}
-13:35:05.191 +11.86s INFO  selftest.case ✓ Style : taille du texte, puis réinitialiser {"id":"style","status":"ok","ms":1020}
-13:35:05.272 +11.94s DEBUG selftest.case-start Cas : Aperçu mobile puis ordinateur {"id":"appareils","chapter":3}
-13:35:06.060 +12.73s INFO  selftest.case ✓ Aperçu mobile puis ordinateur {"id":"appareils","status":"ok","ms":788}
-13:35:06.140 +12.81s DEBUG selftest.case-start Cas : Créer puis supprimer une page {"id":"pages","chapter":4}
-13:35:06.584 +13.25s INFO  selftest.case ✓ Créer puis supprimer une page {"id":"pages","status":"ok","ms":443}
-13:35:06.664 +13.33s DEBUG selftest.case-start Cas : Importer un logo (image dessinée par le test) {"id":"image","chapter":4}
-13:35:06.939 +13.61s INFO  selftest.case ✓ Importer un logo (image dessinée par le test) {"id":"image","status":"ok","ms":274}
-13:35:07.020 +13.69s DEBUG selftest.case-start Cas : Agenda : créer, ajouter un événement, exporter en CSV {"id":"collection","chapter":4}
-13:35:07.917 +14.59s DEBUG selftest.download Téléchargement intercepté : agenda.csv {"name":"agenda.csv"}
-13:35:08.129 +14.80s INFO  selftest.case ✓ Agenda : créer, ajouter un événement, exporter en CSV {"id":"collection","status":"ok","ms":1109}
-13:35:08.210 +14.88s DEBUG selftest.case-start Cas : Versions : enregistrer puis supprimer {"id":"versions","chapter":4}
-13:35:08.720 +15.39s DEBUG storage.version-delete 1 version supprimée {"ids":["v_mvwdw0dusr9oo"]}
-13:35:08.931 +15.60s INFO  selftest.case ✓ Versions : enregistrer puis supprimer {"id":"versions","status":"ok","ms":721}
-13:35:09.011 +15.68s DEBUG selftest.case-start Cas : Tableau des traductions : ouvrir, filtrer {"id":"traductions","chapter":5}
-13:35:09.536 +16.21s INFO  selftest.case ✓ Tableau des traductions : ouvrir, filtrer {"id":"traductions","status":"ok","ms":524}
-13:35:09.617 +16.29s DEBUG selftest.case-start Cas : Référencement : ouvrir, changer de langue {"id":"seo","chapter":6}
-13:35:10.298 +16.97s INFO  selftest.case ✓ Référencement : ouvrir, changer de langue {"id":"seo","status":"ok","ms":682}
-13:35:10.379 +17.05s DEBUG selftest.case-start Cas : IA locale : état des modèles {"id":"ia-etat","chapter":7}
-13:35:11.002 +17.67s INFO  selftest.case ✓ IA locale : état des modèles {"id":"ia-etat","status":"ok","ms":623}
-13:35:11.083 +17.75s DEBUG selftest.case-start Cas : Vérifier puis exporter le site en .zip {"id":"verifier-exporter","chapter":8}
-13:35:11.233 +17.90s DEBUG selftest.download Téléchargement intercepté : mab-medias-alternatifs-belges.zip {"name":"mab-medias-alternatifs-belges.zip"}
-13:35:11.387 +18.06s INFO  selftest.case ✓ Vérifier puis exporter le site en .zip {"id":"verifier-exporter","status":"ok","ms":304}
-13:35:11.467 +18.14s DEBUG selftest.case-start Cas : Enregistrer le projet en .json (menu Fichier) {"id":"enregistrer-json","chapter":1}
-13:35:11.534 +18.20s DEBUG selftest.download Téléchargement intercepté : mab-medias-alternatifs-belges.atelier.json {"name":"mab-medias-alternatifs-belges.atelier.json"}
-13:35:11.947 +18.62s INFO  selftest.case ✓ Enregistrer le projet en .json (menu Fichier) {"id":"enregistrer-json","status":"ok","ms":479}
-13:35:12.028 +18.70s DEBUG selftest.case-start Cas : Tester la connexion à publish.php (sans publier) {"id":"publication","chapter":8}
-13:35:12.478 +19.15s WARN  selftest.check-fail Tester la connexion à publish.php (sans publier) : ✗ publish.php à jour — publish.php installé en version 4 : la version 6 ajoute le .htaccess, les polices, la page 404 et protège mieux la collaboration {"id":"publication"}
-13:35:12.478 +19.15s WARN  selftest.case ✗ Tester la connexion à publish.php (sans publier) {"id":"publication","status":"fail","ms":450}
-13:35:12.559 +19.23s DEBUG selftest.case-start Cas : Palette depuis le logo, puis annuler {"id":"palette","chapter":12}
-13:35:13.190 +19.86s INFO  selftest.case ✓ Palette depuis le logo, puis annuler {"id":"palette","status":"ok","ms":631}
-13:35:13.270 +19.94s DEBUG selftest.case-start Cas : Fiches créées depuis un texte collé (IA) {"id":"contenus-texte","chapter":12}
-13:35:14.110 +20.78s INFO  selftest.case ✓ Fiches créées depuis un texte collé (IA) {"id":"contenus-texte","status":"ok","ms":840}
-13:35:14.191 +20.86s DEBUG selftest.case-start Cas : Demander à Atelier : « ajoute une FAQ de 3 questions » (IA) {"id":"demander","chapter":13}
-13:35:15.266 +21.94s INFO  selftest.case ✓ Demander à Atelier : « ajoute une FAQ de 3 questions » (IA) {"id":"demander","status":"ok","ms":1075}
-13:35:15.358 +22.03s INFO  selftest.case – Collaboration en direct (deux appareils) : ignoré (demande deux appareils : voir le chapitre 10 du guide) {"id":"collaboration","status":"skipped","reason":"demande deux appareils : voir le chapitre 10 du guide"}
-13:35:15.359 +22.03s INFO  selftest.rollback.start [selftest.rollback#1] Retour arrière : le projet d’avant l’auto-test est remis {"name":"MAB – Médias Alternatifs Belges"}
-13:35:15.360 +22.03s INFO  store.restore Éditeur remis dans l’état photographié {"name":"MAB – Médias Alternatifs Belges","pages":3,"past":3,"future":1}
-13:35:15.378 +22.05s DEBUG selftest.rollback.memory [selftest.rollback#1 · 19 ms] Projet et historique remis en mémoire {"same":true,"past":3,"future":1}
-13:35:15.405 +22.07s DEBUG selftest.rollback.saved [selftest.rollback#1 · 46 ms] Projet réenregistré et relu à l’identique {"stored":true}
-13:35:15.410 +22.08s DEBUG storage.version-delete 1 version supprimée {"ids":["v_mvwdvqnrqtwzl"]}
-13:35:15.411 +22.08s DEBUG storage.asset-delete 1 image retirée de la base locale {"ids":["img_9kx63d9c"]}
-13:35:15.415 +22.09s DEBUG storage.project-delete Emplacement de projet effacé {"slot":"selftest-backup"}
-13:35:15.416 +22.09s INFO  selftest.rollback.ok [selftest.rollback#1 · 57 ms] Retour arrière terminé : projet identique à l’original {"ok":true,"same":true,"name":"MAB – Médias Alternatifs Belges","pages":3,"versions":0,"assets":1,"problems":[]}
-13:35:19.424 +26.09s INFO  selftest.run.ok [selftest.run#1 · 23414 ms] Auto-test terminé : 24 / 25 réussis, note 96 / 100 — Retour arrière : ✓ ton projet est revenu exactement comme avant (« MAB – Médias Alternatifs Belges », 3 pages) ; 0 version(s) et 1 image(s) temporaires supprimées. {"total":26,"ok":24,"fail":1,"error":0,"skipped":1,"score":96,"ms":19406}
-13:35:19.425 +26.09s DEBUG selftest.copy-fail Presse-papiers refusé : utilise copy(await atelierDebug.selftest()) ou atelierDebug.report() {"error":"NotAllowedError"}
+14:30:43.512 +2.54s INFO  selftest.run.start [selftest.run#1] Auto-test : 26 cas d’usage {"cases":["demarrage","journal","selection","ajout","annuler","raccourcis","texte","infobulles","panneaux","commande","style","appareils","pages","image","collection","versions","traductions","seo","ia-etat","verifier-exporter","… +6"],"ai":"fake","publish":true}
+14:30:43.513 +2.54s INFO  selftest.backup.start [selftest.backup#1] Mise de côté du projet avant l’auto-test {"name":"MAB – Médias Alternatifs Belges","pages":3,"past":3,"kind":"selftest"}
+14:30:43.517 +2.55s DEBUG selftest.backup.slot [selftest.backup#1 · 4 ms] Copie de secours écrite dans la base locale {"slot":"selftest-backup"}
+14:30:43.520 +2.55s INFO  selftest.backup.ok [selftest.backup#1 · 7 ms] Projet mis de côté (mémoire, copie de secours, version de sécurité) {"safety":"v_mvwfvhkv7ittc","versions":1,"images":1}
+14:30:43.526 +2.56s DEBUG selftest.case-start Cas : Projet de test chargé et enregistré sur l’appareil {"id":"demarrage","chapter":1}
+14:30:44.305 +3.34s INFO  selftest.case ✓ Projet de test chargé et enregistré sur l’appareil {"id":"demarrage","status":"ok","ms":779}
+14:30:44.386 +3.42s DEBUG selftest.case-start Cas : Fenêtre 🐞 Journal : ouvrir, régler, fermer {"id":"journal","chapter":0}
+14:30:45.086 +4.12s INFO  selftest.case ✓ Fenêtre 🐞 Journal : ouvrir, régler, fermer {"id":"journal","status":"ok","ms":700}
+14:30:45.167 +4.20s DEBUG selftest.case-start Cas : Sélectionner : clic, flèche ↓, Échap {"id":"selection","chapter":2}
+14:30:45.605 +4.64s INFO  selftest.case ✓ Sélectionner : clic, flèche ↓, Échap {"id":"selection","status":"ok","ms":439}
+14:30:45.687 +4.72s DEBUG selftest.case-start Cas : Ajouter un widget depuis la bibliothèque {"id":"ajout","chapter":2}
+14:30:46.317 +5.35s INFO  selftest.case ✓ Ajouter un widget depuis la bibliothèque {"id":"ajout","status":"ok","ms":630}
+14:30:46.399 +5.43s DEBUG selftest.case-start Cas : Annuler puis rétablir {"id":"annuler","chapter":2}
+14:30:47.569 +6.60s INFO  selftest.case ✓ Annuler puis rétablir {"id":"annuler","status":"ok","ms":1170}
+14:30:47.652 +6.68s DEBUG selftest.case-start Cas : Dupliquer, copier, coller, supprimer au clavier {"id":"raccourcis","chapter":2}
+14:30:49.036 +8.07s INFO  selftest.case ✓ Dupliquer, copier, coller, supprimer au clavier {"id":"raccourcis","status":"ok","ms":1385}
+14:30:49.119 +8.15s DEBUG selftest.case-start Cas : Modifier un titre directement dans la page {"id":"texte","chapter":2}
+14:30:49.395 +8.43s INFO  selftest.case ✓ Modifier un titre directement dans la page {"id":"texte","status":"ok","ms":276}
+14:30:49.478 +8.51s DEBUG selftest.case-start Cas : Infobulles des boutons : survol, raccourci, masquage {"id":"infobulles","chapter":2}
+14:30:50.113 +9.14s INFO  selftest.case ✓ Infobulles des boutons : survol, raccourci, masquage {"id":"infobulles","status":"ok","ms":635}
+14:30:50.193 +9.22s DEBUG selftest.case-start Cas : Élargir les panneaux de gauche et de droite (clavier, double-clic) {"id":"panneaux","chapter":2}
+14:30:50.649 +9.68s INFO  selftest.case ✓ Élargir les panneaux de gauche et de droite (clavier, double-clic) {"id":"panneaux","status":"ok","ms":455}
+14:30:50.730 +9.76s DEBUG selftest.case-start Cas : Ctrl+K : lancer une commande {"id":"commande","chapter":2}
+14:30:51.358 +10.39s INFO  selftest.case ✓ Ctrl+K : lancer une commande {"id":"commande","status":"ok","ms":628}
+14:30:51.439 +10.47s DEBUG selftest.case-start Cas : Style : taille du texte, puis réinitialiser {"id":"style","chapter":3}
+14:30:52.296 +11.33s INFO  selftest.case ✓ Style : taille du texte, puis réinitialiser {"id":"style","status":"ok","ms":857}
+14:30:52.377 +11.41s DEBUG selftest.case-start Cas : Aperçu mobile puis ordinateur {"id":"appareils","chapter":3}
+14:30:53.162 +12.19s INFO  selftest.case ✓ Aperçu mobile puis ordinateur {"id":"appareils","status":"ok","ms":785}
+14:30:53.242 +12.27s DEBUG selftest.case-start Cas : Créer puis supprimer une page {"id":"pages","chapter":4}
+14:30:53.679 +12.71s INFO  selftest.case ✓ Créer puis supprimer une page {"id":"pages","status":"ok","ms":436}
+14:30:53.759 +12.79s DEBUG selftest.case-start Cas : Importer un logo (image dessinée par le test) {"id":"image","chapter":4}
+14:30:54.047 +13.08s INFO  selftest.case ✓ Importer un logo (image dessinée par le test) {"id":"image","status":"ok","ms":288}
+14:30:54.128 +13.16s DEBUG selftest.case-start Cas : Agenda : créer, ajouter un événement, exporter en CSV {"id":"collection","chapter":4}
+14:30:55.060 +14.09s DEBUG selftest.download Téléchargement intercepté : agenda.csv {"name":"agenda.csv"}
+14:30:55.271 +14.30s INFO  selftest.case ✓ Agenda : créer, ajouter un événement, exporter en CSV {"id":"collection","status":"ok","ms":1143}
+14:30:55.352 +14.38s DEBUG selftest.case-start Cas : Versions : enregistrer puis supprimer {"id":"versions","chapter":4}
+14:30:55.861 +14.89s DEBUG storage.version-delete 1 version supprimée {"ids":["v_mvwfvr1z9zreq"]}
+14:30:56.073 +15.11s INFO  selftest.case ✓ Versions : enregistrer puis supprimer {"id":"versions","status":"ok","ms":721}
+14:30:56.153 +15.19s DEBUG selftest.case-start Cas : Tableau des traductions : ouvrir, filtrer {"id":"traductions","chapter":5}
+14:30:56.666 +15.70s INFO  selftest.case ✓ Tableau des traductions : ouvrir, filtrer {"id":"traductions","status":"ok","ms":513}
+14:30:56.747 +15.78s DEBUG selftest.case-start Cas : Référencement : ouvrir, changer de langue {"id":"seo","chapter":6}
+14:30:57.433 +16.46s INFO  selftest.case ✓ Référencement : ouvrir, changer de langue {"id":"seo","status":"ok","ms":686}
+14:30:57.514 +16.55s DEBUG selftest.case-start Cas : IA locale : état des modèles {"id":"ia-etat","chapter":7}
+14:30:58.134 +17.17s INFO  selftest.case ✓ IA locale : état des modèles {"id":"ia-etat","status":"ok","ms":620}
+14:30:58.215 +17.25s DEBUG selftest.case-start Cas : Vérifier puis exporter le site en .zip {"id":"verifier-exporter","chapter":8}
+14:30:58.367 +17.40s DEBUG selftest.download Téléchargement intercepté : mab-medias-alternatifs-belges.zip {"name":"mab-medias-alternatifs-belges.zip"}
+14:30:58.520 +17.55s INFO  selftest.case ✓ Vérifier puis exporter le site en .zip {"id":"verifier-exporter","status":"ok","ms":305}
+14:30:58.601 +17.63s DEBUG selftest.case-start Cas : Enregistrer le projet en .json (menu Fichier) {"id":"enregistrer-json","chapter":1}
+14:30:58.666 +17.70s DEBUG selftest.download Téléchargement intercepté : mab-medias-alternatifs-belges.atelier.json {"name":"mab-medias-alternatifs-belges.atelier.json"}
+14:30:59.079 +18.11s INFO  selftest.case ✓ Enregistrer le projet en .json (menu Fichier) {"id":"enregistrer-json","status":"ok","ms":478}
+14:30:59.160 +18.19s DEBUG selftest.case-start Cas : Tester la connexion à publish.php (sans publier) {"id":"publication","chapter":8}
+14:30:59.597 +18.63s INFO  selftest.case ✓ Tester la connexion à publish.php (sans publier) {"id":"publication","status":"ok","ms":437}
+14:30:59.678 +18.71s DEBUG selftest.case-start Cas : Palette depuis le logo, puis annuler {"id":"palette","chapter":12}
+14:31:00.305 +19.34s INFO  selftest.case ✓ Palette depuis le logo, puis annuler {"id":"palette","status":"ok","ms":627}
+14:31:00.386 +19.42s DEBUG selftest.case-start Cas : Fiches créées depuis un texte collé (IA) {"id":"contenus-texte","chapter":12}
+14:31:01.222 +20.25s INFO  selftest.case ✓ Fiches créées depuis un texte collé (IA) {"id":"contenus-texte","status":"ok","ms":836}
+14:31:01.303 +20.34s DEBUG selftest.case-start Cas : Demander à Atelier : « ajoute une FAQ de 3 questions » (IA) {"id":"demander","chapter":13}
+14:31:02.379 +21.41s INFO  selftest.case ✓ Demander à Atelier : « ajoute une FAQ de 3 questions » (IA) {"id":"demander","status":"ok","ms":1076}
+14:31:02.460 +21.49s INFO  selftest.case – Collaboration en direct (deux appareils) : ignoré (demande deux appareils : voir le chapitre 10 du guide) {"id":"collaboration","status":"skipped","reason":"demande deux appareils : voir le chapitre 10 du guide"}
+14:31:02.461 +21.49s INFO  selftest.rollback.start [selftest.rollback#1] Retour arrière : le projet d’avant l’auto-test est remis {"name":"MAB – Médias Alternatifs Belges"}
+14:31:02.461 +21.49s INFO  store.restore Éditeur remis dans l’état photographié {"name":"MAB – Médias Alternatifs Belges","pages":3,"past":3,"future":1}
+14:31:02.477 +21.51s DEBUG selftest.rollback.memory [selftest.rollback#1 · 16 ms] Projet et historique remis en mémoire {"same":true,"past":3,"future":1}
+14:31:02.506 +21.54s DEBUG selftest.rollback.saved [selftest.rollback#1 · 45 ms] Projet réenregistré et relu à l’identique {"stored":true}
+14:31:02.508 +21.54s DEBUG storage.version-delete 1 version supprimée {"ids":["v_mvwfvhkv7ittc"]}
+14:31:02.515 +21.55s DEBUG storage.asset-delete 1 image retirée de la base locale {"ids":["img_6zoh9j64"]}
+14:31:02.516 +21.55s DEBUG storage.project-delete Emplacement de projet effacé {"slot":"selftest-backup"}
+14:31:02.517 +21.55s INFO  selftest.rollback.ok [selftest.rollback#1 · 56 ms] Retour arrière terminé : projet identique à l’original {"ok":true,"same":true,"name":"MAB – Médias Alternatifs Belges","pages":3,"versions":0,"assets":1,"problems":[]}
+14:31:06.528 +25.56s INFO  selftest.run.ok [selftest.run#1 · 23016 ms] Auto-test terminé : 25 / 25 réussis, note 100 / 100 — Retour arrière : ✓ ton projet est revenu exactement comme avant (« MAB – Médias Alternatifs Belges », 3 pages) ; 0 version(s) et 1 image(s) temporaires supprimées. {"total":26,"ok":25,"fail":0,"error":0,"skipped":1,"score":100,"ms":19006}
+14:31:06.529 +25.56s DEBUG selftest.copy-fail Presse-papiers refusé : utilise copy(await atelierDebug.selftest()) ou atelierDebug.report() {"error":"NotAllowedError"}

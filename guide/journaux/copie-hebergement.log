@@ -1,65 +1,65 @@
-13:34:14.207 +1.26s DEBUG store.commit Modification {"source":"site","past":6,"page":"p_zi23gg85"}
-13:34:14.212 +1.27s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":4}
-13:34:14.268 +1.32s DEBUG store.commit Modification {"source":"site","past":7,"page":"p_zi23gg85"}
-13:34:14.270 +1.32s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
-13:34:14.271 +1.33s INFO  backup.host.enable Copie de secours sur l’hébergement activée (à chaque publication) {"on":true}
-13:34:14.336 +1.39s DEBUG store.commit Modification {"source":"site","past":8,"page":"p_zi23gg85"}
-13:34:14.338 +1.39s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
-13:34:14.339 +1.39s INFO  backup.host.send.start [backup.host.send#1] Copie de secours chiffrée sur l’hébergement {"host":"127.0.0.1:8965","reason":"button"}
-13:34:14.340 +1.40s DEBUG net.request GET 127.0.0.1:8965/publish.php {"id":2,"method":"GET","url":"http://127.0.0.1:8965/publish.php"}
-13:34:14.358 +1.41s DEBUG net.response 200 GET 127.0.0.1:8965/publish.php (19 ms) {"id":2,"status":200,"ms":19,"type":"application/json","req":"178a2265"}
-13:34:14.419 +1.47s DEBUG backup.host.send.encrypted [backup.host.send#1 · 80 ms] Projet chiffré sur cet appareil (3 Ko) {"bytes":2593,"ms":58}
-13:34:14.420 +1.48s DEBUG net.request POST 127.0.0.1:8965/publish.php {"id":3,"method":"POST","url":"http://127.0.0.1:8965/publish.php?backup&atelier_debug=1","body":"Blob application/octet-stream (3 Ko)"}
-13:34:14.430 +1.49s INFO  net.response 200 POST 127.0.0.1:8965/publish.php (11 ms) {"id":3,"status":200,"ms":11,"type":"application/json","req":"6a886f73"}
-13:34:14.431 +1.49s DEBUG php.req.start POST reçu {"method":"POST","who":"2598436d2a","bytes":2593,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8833","req":"6a886f73","srvMs":0}
-13:34:14.432 +1.49s INFO  php.backup.saved Copie de secours chiffrée enregistrée {"name":"backup-20261031-1234.json.enc","kb":2,"removed":0,"req":"6a886f73","srvMs":0.4}
-13:34:14.432 +1.49s INFO  php.req.end Réponse 200 (backup) {"status":200,"route":"backup","mem_kb":924,"req":"6a886f73","srvMs":0.5}
-13:34:14.432 +1.49s INFO  backup.host.send.ok [backup.host.send#1 · 93 ms] Copie de secours enregistrée sur l’hébergement : backup-20261031-1234.json.enc (1 gardées) {"name":"backup-20261031-1234.json.enc","kept":1,"bytes":2593}
-13:34:14.488 +1.54s DEBUG store.commit Modification {"source":"site","past":9,"page":"p_zi23gg85"}
-13:34:14.491 +1.55s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
-13:34:14.492 +1.55s INFO  publish.php.start [publish.php#1] Publication sur OVH (publish.php) {"url":"http://127.0.0.1:8965/publish.php"}
-13:34:14.492 +1.55s INFO  storage.secret-write Secret oublié sur cet appareil {"name":"php-token:http://127.0.0.1:8965"}
-13:34:14.500 +1.55s INFO  publish.php.warnings [publish.php#1 · 8 ms] 1 point à vérifier (la publication continue) {"warnings":[{"pageId":"p_zi23gg85","nodeId":"n_3z261g0y19","message":"Accueil : image non choisie : rien ne s’affichera à cet endroit."}]}
-13:34:14.501 +1.56s DEBUG net.request GET 127.0.0.1:8965/publish.php {"id":4,"method":"GET","url":"http://127.0.0.1:8965/publish.php"}
-13:34:14.507 +1.56s DEBUG net.response 200 GET 127.0.0.1:8965/publish.php (7 ms) {"id":4,"status":200,"ms":7,"type":"application/json","req":"dc558840"}
-13:34:14.509 +1.56s DEBUG publish.php.version [publish.php#1 · 17 ms] publish.php installé : version 6 {"version":"6"}
-13:34:14.510 +1.56s DEBUG net.request GET fonts/archivo/archivo-latin-400-italic.woff2 {"id":5,"method":"GET","url":"fonts/archivo/archivo-latin-400-italic.woff2"}
-13:34:14.515 +1.57s DEBUG net.response 200 GET fonts/archivo/archivo-latin-400-italic.woff2 (6 ms) {"id":5,"status":200,"ms":6,"type":"font/woff2","size":15820}
-13:34:14.517 +1.57s DEBUG net.request GET fonts/archivo/archivo-latin-400-normal.woff2 {"id":6,"method":"GET","url":"fonts/archivo/archivo-latin-400-normal.woff2"}
-13:34:14.520 +1.57s DEBUG net.response 200 GET fonts/archivo/archivo-latin-400-normal.woff2 (2 ms) {"id":6,"status":200,"ms":2,"type":"font/woff2","size":14700}
-13:34:14.521 +1.58s DEBUG net.request GET fonts/archivo/archivo-latin-700-italic.woff2 {"id":7,"method":"GET","url":"fonts/archivo/archivo-latin-700-italic.woff2"}
-13:34:14.523 +1.58s DEBUG net.response 200 GET fonts/archivo/archivo-latin-700-italic.woff2 (2 ms) {"id":7,"status":200,"ms":2,"type":"font/woff2","size":16004}
-13:34:14.524 +1.58s DEBUG net.request GET fonts/archivo/archivo-latin-700-normal.woff2 {"id":8,"method":"GET","url":"fonts/archivo/archivo-latin-700-normal.woff2"}
-13:34:14.526 +1.58s DEBUG net.response 200 GET fonts/archivo/archivo-latin-700-normal.woff2 (2 ms) {"id":8,"status":200,"ms":2,"type":"font/woff2","size":14508}
-13:34:14.527 +1.58s DEBUG net.request GET fonts/archivo/archivo-latin-ext-400-italic.woff2 {"id":9,"method":"GET","url":"fonts/archivo/archivo-latin-ext-400-italic.woff2"}
-13:34:14.529 +1.58s DEBUG net.response 200 GET fonts/archivo/archivo-latin-ext-400-italic.woff2 (2 ms) {"id":9,"status":200,"ms":2,"type":"font/woff2","size":13568}
-13:34:14.531 +1.59s DEBUG net.request GET fonts/archivo/archivo-latin-ext-400-normal.woff2 {"id":10,"method":"GET","url":"fonts/archivo/archivo-latin-ext-400-normal.woff2"}
-13:34:14.537 +1.59s DEBUG net.response 200 GET fonts/archivo/archivo-latin-ext-400-normal.woff2 (6 ms) {"id":10,"status":200,"ms":6,"type":"font/woff2","size":12928}
-13:34:14.538 +1.59s DEBUG net.request GET fonts/archivo/archivo-latin-ext-700-italic.woff2 {"id":11,"method":"GET","url":"fonts/archivo/archivo-latin-ext-700-italic.woff2"}
-13:34:14.547 +1.60s DEBUG net.response 200 GET fonts/archivo/archivo-latin-ext-700-italic.woff2 (9 ms) {"id":11,"status":200,"ms":9,"type":"font/woff2","size":14112}
-13:34:14.549 +1.60s DEBUG net.request GET fonts/archivo/archivo-latin-ext-700-normal.woff2 {"id":12,"method":"GET","url":"fonts/archivo/archivo-latin-ext-700-normal.woff2"}
-13:34:14.551 +1.61s DEBUG net.response 200 GET fonts/archivo/archivo-latin-ext-700-normal.woff2 (2 ms) {"id":12,"status":200,"ms":2,"type":"font/woff2","size":13272}
-13:34:14.552 +1.61s DEBUG fonts.load 8 fichiers de polices prêts pour le site {"files":8,"kb":112}
-13:34:14.559 +1.61s INFO  publish.php.package [publish.php#1 · 67 ms] Paquet prêt : 24 fichiers {"files":24,"kb":203,"forms":0,"ms":49}
-13:34:14.561 +1.62s DEBUG net.request POST 127.0.0.1:8965/publish.php {"id":13,"method":"POST","url":"http://127.0.0.1:8965/publish.php?atelier_debug=1","body":{"site":"Blob application/zip (203 Ko)","forms":"2 car.","htaccess":"107 car."}}
-13:34:14.572 +1.63s INFO  net.response 200 POST 127.0.0.1:8965/publish.php (11 ms) {"id":13,"status":200,"ms":11,"type":"application/json","req":"a009629c"}
-13:34:14.574 +1.63s DEBUG php.req.start POST reçu {"method":"POST","who":"2598436d2a","bytes":207978,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8833","req":"a009629c","srvMs":0}
-13:34:14.574 +1.63s INFO  php.publish.start Paquet reçu {"kb":202,"req":"a009629c","srvMs":0}
-13:34:14.574 +1.63s DEBUG php.publish.checked Paquet vérifié {"files":24,"req":"a009629c","srvMs":0.4}
-13:34:14.574 +1.63s DEBUG php.publish.staged Fichiers préparés à part {"files":24,"req":"a009629c","srvMs":1.3}
-13:34:14.574 +1.63s DEBUG php.publish.htaccess .htaccess écrit {"host":"www.xn--mdia-alternatif-bnb.be","https":true,"www":"add","langs":4,"req":"a009629c","srvMs":2.6}
-13:34:14.574 +1.63s INFO  php.publish.ok Site publié {"written":24,"moved":24,"removed":0,"forms":0,"htaccess":true,"req":"a009629c","srvMs":2.6}
-13:34:14.574 +1.63s INFO  php.req.end Réponse 200 (publish) {"status":200,"route":"publish","mem_kb":923,"req":"a009629c","srvMs":2.6}
-13:34:14.574 +1.63s INFO  publish.php.ok [publish.php#1 · 82 ms] Site publié : 24 fichiers {"written":24,"removed":0,"ref":"a009629c"}
-13:34:14.575 +1.63s INFO  onboarding.step-done Pour commencer : « Prévisualiser puis publier » fait (29 %) {"step":"publish","done":2,"total":7,"percent":29,"by":"publish.php.ok"}
-13:34:14.576 +1.63s INFO  ui.toast Message affiché : Site publié (24 fichiers).
-13:34:14.576 +1.63s INFO  backup.host.send.start [backup.host.send#2] Copie de secours chiffrée après la publication {"host":"127.0.0.1:8965","reason":"publish"}
-13:34:14.576 +1.63s DEBUG net.request GET 127.0.0.1:8965/publish.php {"id":14,"method":"GET","url":"http://127.0.0.1:8965/publish.php"}
-13:34:14.588 +1.64s DEBUG net.response 200 GET 127.0.0.1:8965/publish.php (12 ms) {"id":14,"status":200,"ms":12,"type":"application/json","req":"a3560c82"}
-13:34:14.641 +1.70s DEBUG backup.host.send.encrypted [backup.host.send#2 · 65 ms] Projet chiffré sur cet appareil (3 Ko) {"bytes":2593,"ms":51}
-13:34:14.641 +1.70s DEBUG net.request POST 127.0.0.1:8965/publish.php {"id":15,"method":"POST","url":"http://127.0.0.1:8965/publish.php?backup&atelier_debug=1","body":"Blob application/octet-stream (3 Ko)"}
-13:34:14.646 +1.70s INFO  net.response 200 POST 127.0.0.1:8965/publish.php (5 ms) {"id":15,"status":200,"ms":5,"type":"application/json","req":"7860da46"}
-13:34:14.648 +1.70s DEBUG php.req.start POST reçu {"method":"POST","who":"2598436d2a","bytes":2593,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8833","req":"7860da46","srvMs":0}
-13:34:14.649 +1.70s INFO  php.backup.saved Copie de secours chiffrée enregistrée {"name":"backup-20261031-1234-2.json.enc","kb":2,"removed":0,"req":"7860da46","srvMs":0.3}
-13:34:14.649 +1.70s INFO  php.req.end Réponse 200 (backup) {"status":200,"route":"backup","mem_kb":924,"req":"7860da46","srvMs":0.3}
-13:34:14.649 +1.70s INFO  backup.host.send.ok [backup.host.send#2 · 73 ms] Copie de secours enregistrée sur l’hébergement : backup-20261031-1234-2.json.enc (2 gardées) {"name":"backup-20261031-1234-2.json.enc","kept":2,"bytes":2593}
+14:39:06.579 +1.14s DEBUG store.commit Modification {"source":"site","past":6,"page":"p_jjlfxe0x"}
+14:39:06.582 +1.14s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
+14:39:06.629 +1.19s DEBUG store.commit Modification {"source":"site","past":7,"page":"p_jjlfxe0x"}
+14:39:06.632 +1.19s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
+14:39:06.632 +1.19s INFO  backup.host.enable Copie de secours sur l’hébergement activée (à chaque publication) {"on":true}
+14:39:06.697 +1.26s DEBUG store.commit Modification {"source":"site","past":8,"page":"p_jjlfxe0x"}
+14:39:06.699 +1.26s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
+14:39:06.700 +1.26s INFO  backup.host.send.start [backup.host.send#1] Copie de secours chiffrée sur l’hébergement {"host":"127.0.0.1:8988","reason":"button"}
+14:39:06.701 +1.26s DEBUG net.request GET 127.0.0.1:8988/publish.php {"id":2,"method":"GET","url":"http://127.0.0.1:8988/publish.php"}
+14:39:06.710 +1.27s DEBUG net.response 200 GET 127.0.0.1:8988/publish.php (9 ms) {"id":2,"status":200,"ms":9,"type":"application/json","req":"9a4c09d3"}
+14:39:06.772 +1.33s DEBUG backup.host.send.encrypted [backup.host.send#1 · 72 ms] Projet chiffré sur cet appareil (3 Ko) {"bytes":2618,"ms":52}
+14:39:06.772 +1.33s DEBUG net.request POST 127.0.0.1:8988/publish.php {"id":3,"method":"POST","url":"http://127.0.0.1:8988/publish.php?backup&atelier_debug=1","body":"Blob application/octet-stream (3 Ko)"}
+14:39:06.780 +1.34s INFO  net.response 200 POST 127.0.0.1:8988/publish.php (8 ms) {"id":3,"status":200,"ms":8,"type":"application/json","req":"b1edced2"}
+14:39:06.781 +1.34s DEBUG php.req.start POST reçu {"method":"POST","who":"6e48122d8e","bytes":2618,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8851","req":"b1edced2","srvMs":0}
+14:39:06.781 +1.34s INFO  php.backup.saved Copie de secours chiffrée enregistrée {"name":"backup-20261031-1339.json.enc","kb":2,"removed":0,"req":"b1edced2","srvMs":0.4}
+14:39:06.781 +1.34s INFO  php.req.end Réponse 200 (backup) {"status":200,"route":"backup","mem_kb":924,"req":"b1edced2","srvMs":0.4}
+14:39:06.781 +1.34s INFO  backup.host.send.ok [backup.host.send#1 · 81 ms] Copie de secours enregistrée sur l’hébergement : backup-20261031-1339.json.enc (1 gardées) {"name":"backup-20261031-1339.json.enc","kept":1,"bytes":2618}
+14:39:06.830 +1.39s DEBUG store.commit Modification {"source":"site","past":9,"page":"p_jjlfxe0x"}
+14:39:06.833 +1.39s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
+14:39:06.834 +1.40s INFO  publish.php.start [publish.php#1] Publication sur OVH (publish.php) {"url":"http://127.0.0.1:8988/publish.php"}
+14:39:06.834 +1.40s INFO  storage.secret-write Secret oublié sur cet appareil {"name":"php-token:http://127.0.0.1:8988"}
+14:39:06.846 +1.41s INFO  publish.php.warnings [publish.php#1 · 12 ms] 1 point à vérifier (la publication continue) {"warnings":[{"pageId":"p_jjlfxe0x","nodeId":"n_2z5y683d0w","message":"Accueil : image non choisie : rien ne s’affichera à cet endroit."}]}
+14:39:06.851 +1.41s DEBUG net.request GET 127.0.0.1:8988/publish.php {"id":4,"method":"GET","url":"http://127.0.0.1:8988/publish.php"}
+14:39:06.855 +1.42s DEBUG net.response 200 GET 127.0.0.1:8988/publish.php (4 ms) {"id":4,"status":200,"ms":4,"type":"application/json","req":"bc8c729a"}
+14:39:06.856 +1.42s DEBUG publish.php.version [publish.php#1 · 22 ms] publish.php installé : version 7 {"version":"7"}
+14:39:06.857 +1.42s DEBUG net.request GET fonts/archivo/archivo-latin-400-italic.woff2 {"id":5,"method":"GET","url":"fonts/archivo/archivo-latin-400-italic.woff2"}
+14:39:06.865 +1.43s DEBUG net.response 200 GET fonts/archivo/archivo-latin-400-italic.woff2 (7 ms) {"id":5,"status":200,"ms":7,"type":"font/woff2","size":15820}
+14:39:06.866 +1.43s DEBUG net.request GET fonts/archivo/archivo-latin-400-normal.woff2 {"id":6,"method":"GET","url":"fonts/archivo/archivo-latin-400-normal.woff2"}
+14:39:06.869 +1.43s DEBUG net.response 200 GET fonts/archivo/archivo-latin-400-normal.woff2 (3 ms) {"id":6,"status":200,"ms":3,"type":"font/woff2","size":14700}
+14:39:06.870 +1.43s DEBUG net.request GET fonts/archivo/archivo-latin-700-italic.woff2 {"id":7,"method":"GET","url":"fonts/archivo/archivo-latin-700-italic.woff2"}
+14:39:06.873 +1.43s DEBUG net.response 200 GET fonts/archivo/archivo-latin-700-italic.woff2 (3 ms) {"id":7,"status":200,"ms":3,"type":"font/woff2","size":16004}
+14:39:06.875 +1.44s DEBUG net.request GET fonts/archivo/archivo-latin-700-normal.woff2 {"id":8,"method":"GET","url":"fonts/archivo/archivo-latin-700-normal.woff2"}
+14:39:06.878 +1.44s DEBUG net.response 200 GET fonts/archivo/archivo-latin-700-normal.woff2 (2 ms) {"id":8,"status":200,"ms":2,"type":"font/woff2","size":14508}
+14:39:06.879 +1.44s DEBUG net.request GET fonts/archivo/archivo-latin-ext-400-italic.woff2 {"id":9,"method":"GET","url":"fonts/archivo/archivo-latin-ext-400-italic.woff2"}
+14:39:06.882 +1.44s DEBUG net.response 200 GET fonts/archivo/archivo-latin-ext-400-italic.woff2 (3 ms) {"id":9,"status":200,"ms":3,"type":"font/woff2","size":13568}
+14:39:06.884 +1.45s DEBUG net.request GET fonts/archivo/archivo-latin-ext-400-normal.woff2 {"id":10,"method":"GET","url":"fonts/archivo/archivo-latin-ext-400-normal.woff2"}
+14:39:06.887 +1.45s DEBUG net.response 200 GET fonts/archivo/archivo-latin-ext-400-normal.woff2 (3 ms) {"id":10,"status":200,"ms":3,"type":"font/woff2","size":12928}
+14:39:06.889 +1.45s DEBUG net.request GET fonts/archivo/archivo-latin-ext-700-italic.woff2 {"id":11,"method":"GET","url":"fonts/archivo/archivo-latin-ext-700-italic.woff2"}
+14:39:06.892 +1.45s DEBUG net.response 200 GET fonts/archivo/archivo-latin-ext-700-italic.woff2 (4 ms) {"id":11,"status":200,"ms":4,"type":"font/woff2","size":14112}
+14:39:06.894 +1.46s DEBUG net.request GET fonts/archivo/archivo-latin-ext-700-normal.woff2 {"id":12,"method":"GET","url":"fonts/archivo/archivo-latin-ext-700-normal.woff2"}
+14:39:06.896 +1.46s DEBUG net.response 200 GET fonts/archivo/archivo-latin-ext-700-normal.woff2 (3 ms) {"id":12,"status":200,"ms":3,"type":"font/woff2","size":13272}
+14:39:06.898 +1.46s DEBUG fonts.load 8 fichiers de polices prêts pour le site {"files":8,"kb":112}
+14:39:06.906 +1.47s INFO  publish.php.package [publish.php#1 · 72 ms] Paquet prêt : 24 fichiers {"files":24,"kb":203,"forms":0,"ms":49}
+14:39:06.909 +1.47s DEBUG net.request POST 127.0.0.1:8988/publish.php {"id":13,"method":"POST","url":"http://127.0.0.1:8988/publish.php?atelier_debug=1","body":{"site":"Blob application/zip (203 Ko)","forms":"2 car.","htaccess":"107 car."}}
+14:39:06.924 +1.49s INFO  net.response 200 POST 127.0.0.1:8988/publish.php (16 ms) {"id":13,"status":200,"ms":16,"type":"application/json","req":"0110ae17"}
+14:39:06.925 +1.49s DEBUG php.req.start POST reçu {"method":"POST","who":"6e48122d8e","bytes":208713,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8851","req":"0110ae17","srvMs":0}
+14:39:06.925 +1.49s INFO  php.publish.start Paquet reçu {"kb":203,"req":"0110ae17","srvMs":0.1}
+14:39:06.925 +1.49s DEBUG php.publish.checked Paquet vérifié {"files":24,"req":"0110ae17","srvMs":0.5}
+14:39:06.925 +1.49s DEBUG php.publish.staged Fichiers préparés à part {"files":24,"req":"0110ae17","srvMs":2.1}
+14:39:06.926 +1.49s DEBUG php.publish.htaccess .htaccess écrit {"host":"www.xn--mdia-alternatif-bnb.be","https":true,"www":"add","langs":4,"req":"0110ae17","srvMs":4.1}
+14:39:06.926 +1.49s INFO  php.publish.ok Site publié {"written":24,"moved":24,"removed":0,"forms":0,"htaccess":true,"req":"0110ae17","srvMs":4.1}
+14:39:06.926 +1.49s INFO  php.req.end Réponse 200 (publish) {"status":200,"route":"publish","mem_kb":923,"req":"0110ae17","srvMs":4.2}
+14:39:06.926 +1.49s INFO  publish.php.ok [publish.php#1 · 92 ms] Site publié : 24 fichiers {"written":24,"removed":0,"ref":"0110ae17"}
+14:39:06.926 +1.49s INFO  onboarding.step-done Pour commencer : « Prévisualiser puis publier » fait (29 %) {"step":"publish","done":2,"total":7,"percent":29,"by":"publish.php.ok"}
+14:39:06.927 +1.49s INFO  ui.toast Message affiché : Site publié (24 fichiers).
+14:39:06.927 +1.49s INFO  backup.host.send.start [backup.host.send#2] Copie de secours chiffrée après la publication {"host":"127.0.0.1:8988","reason":"publish"}
+14:39:06.927 +1.49s DEBUG net.request GET 127.0.0.1:8988/publish.php {"id":14,"method":"GET","url":"http://127.0.0.1:8988/publish.php"}
+14:39:06.931 +1.49s DEBUG net.response 200 GET 127.0.0.1:8988/publish.php (4 ms) {"id":14,"status":200,"ms":4,"type":"application/json","req":"0124aa5d"}
+14:39:06.990 +1.55s DEBUG backup.host.send.encrypted [backup.host.send#2 · 63 ms] Projet chiffré sur cet appareil (3 Ko) {"bytes":2618,"ms":58}
+14:39:06.990 +1.55s DEBUG net.request POST 127.0.0.1:8988/publish.php {"id":15,"method":"POST","url":"http://127.0.0.1:8988/publish.php?backup&atelier_debug=1","body":"Blob application/octet-stream (3 Ko)"}
+14:39:06.995 +1.56s INFO  net.response 200 POST 127.0.0.1:8988/publish.php (5 ms) {"id":15,"status":200,"ms":5,"type":"application/json","req":"e2727019"}
+14:39:06.996 +1.56s DEBUG php.req.start POST reçu {"method":"POST","who":"6e48122d8e","bytes":2618,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8851","req":"e2727019","srvMs":0}
+14:39:06.996 +1.56s INFO  php.backup.saved Copie de secours chiffrée enregistrée {"name":"backup-20261031-1339-2.json.enc","kb":2,"removed":0,"req":"e2727019","srvMs":0.2}
+14:39:06.996 +1.56s INFO  php.req.end Réponse 200 (backup) {"status":200,"route":"backup","mem_kb":924,"req":"e2727019","srvMs":0.3}
+14:39:06.997 +1.56s INFO  backup.host.send.ok [backup.host.send#2 · 70 ms] Copie de secours enregistrée sur l’hébergement : backup-20261031-1339-2.json.enc (2 gardées) {"name":"backup-20261031-1339-2.json.enc","kept":2,"bytes":2618}

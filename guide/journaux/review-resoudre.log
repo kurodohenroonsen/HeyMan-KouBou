@@ -1,5 +1,5 @@
-12:40:42.016 +17.79s DEBUG store.commit Modification {"source":"review","past":5,"page":"p_gvomubtq"}
-12:40:42.021 +17.80s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"review","mode":"contenu","ms":3}
-12:40:42.024 +17.80s DEBUG collab.ops.out 1 modification(s) envoyée(s) à 2 participant(s) {"n":1,"to":2,"review":1}
-12:40:42.038 +17.81s INFO  review.resolve Commentaire résolu {"id":"cm_pP1zXhNrEH6r","resolved":true,"role":"owner"}
-12:40:42.050 +8.96s INFO  review.remote Commentaire résolu par un autre participant {"id":"cm_pP1zXhNrEH6r","resolved":true}
+14:29:08.270 +17.37s DEBUG store.commit Modification {"source":"review","past":5,"page":"p_mf3x4le3"}
+14:29:08.274 +17.37s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"review","mode":"contenu","ms":3}
+14:29:08.276 +17.37s DEBUG collab.ops.out 1 modification(s) envoyée(s) à 2 participant(s) {"n":1,"to":2,"review":1}
+14:29:08.283 +17.38s INFO  review.resolve Commentaire résolu {"id":"cm_69PTjPWPDQXR","resolved":true,"role":"owner"}
+14:29:08.287 +8.60s INFO  review.remote Commentaire résolu par un autre participant {"id":"cm_69PTjPWPDQXR","resolved":true}

@@ -1,25 +1,25 @@
-12:57:42.442 +36.22s DEBUG canvas.dblclick Double-clic sur une instance : modification du composant {"target":"component","id":"cp_pumdkm6j"}
-12:57:42.443 +36.22s INFO  store.edit-target Édition : component « cp_pumdkm6j » {"kind":"component","id":"cp_pumdkm6j"}
-12:57:42.451 +36.23s INFO  canvas.load.start [canvas.load#7] Chargement complet du canevas : modification du composant {"reason":"modification du composant","page":"p_fptbpb4e","lang":"fr","device":"desktop","edit":"component"}
-12:57:42.453 +36.23s DEBUG canvas.load.render [canvas.load#7 · 2 ms] Page rendue {"ms":1,"kb":24}
-12:57:42.505 +36.28s INFO  canvas.load.ok [canvas.load#7 · 54 ms] Canevas prêt {"nodes":14,"scrollY":467,"scale":62,"via":"load"}
-12:57:42.578 +36.35s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":20}
-12:57:42.931 +36.70s DEBUG store.select Sélection : heading {"id":"n_403s6f070z","type":"heading"}
-12:57:42.964 +36.74s DEBUG edit.dblclick Double-clic sur un texte de la page {"key":"text","id":"n_403s6f070z"}
-12:57:42.965 +36.74s INFO  edit.start [edit#5] Édition dans la page : heading · text {"id":"n_403s6f070z","type":"heading","key":"text","field":"inline","lang":"fr","chars":16,"edit":"component"}
-12:57:43.130 +36.90s DEBUG canvas.key Raccourci dans la page : Ctrl+A {"key":"Ctrl+A","in":"texte","selected":"n_403s6f070z"}
-12:57:43.137 +36.91s DEBUG store.commit Modification {"key":"edit-n_403s6f070z-text-5","source":"canvas","past":45,"page":"p_fptbpb4e","edit":"component"}
-12:57:43.165 +36.94s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_403s6f070z-text-5","source":"canvas","merged":true,"past":45,"page":"p_fptbpb4e","edit":"component"}
-12:57:43.187 +36.96s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_403s6f070z-text-5","source":"canvas","merged":true,"past":45,"page":"p_fptbpb4e","edit":"component"}
-12:57:43.224 +37.00s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_403s6f070z-text-5","source":"canvas","merged":true,"past":45,"page":"p_fptbpb4e","edit":"component"}
-12:57:43.255 +37.03s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_403s6f070z-text-5","source":"canvas","merged":true,"past":45,"page":"p_fptbpb4e","edit":"component"}
-12:57:43.284 +37.06s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_403s6f070z-text-5","source":"canvas","merged":true,"past":45,"page":"p_fptbpb4e","edit":"component"}
-12:57:43.314 +37.09s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_403s6f070z-text-5","source":"canvas","merged":true,"past":45,"page":"p_fptbpb4e","edit":"component"}
-12:57:43.346 +37.12s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_403s6f070z-text-5","source":"canvas","merged":true,"past":45,"page":"p_fptbpb4e","edit":"component"}
-12:57:43.387 +37.16s INFO  edit.ok [edit#5 · 422 ms] Édition terminée : texte enregistré (une seule étape d’annulation) {"id":"n_403s6f070z","key":"text","changed":true,"chars":8,"before":16,"inputs":8}
-12:57:43.394 +37.17s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"edit-done","mode":"contenu","ms":6}
-12:57:43.639 +37.41s INFO  store.edit-target Retour à la page
-12:57:43.645 +37.42s INFO  canvas.load.start [canvas.load#8] Chargement complet du canevas : retour à la page {"reason":"retour à la page","page":"p_fptbpb4e","lang":"fr","device":"desktop"}
-12:57:43.646 +37.42s DEBUG canvas.load.render [canvas.load#8 · 1 ms] Page rendue {"ms":1,"kb":35}
-12:57:43.676 +37.45s INFO  canvas.load.ok [canvas.load#8 · 31 ms] Canevas prêt {"nodes":42,"scrollY":467,"scale":62,"via":"load"}
-12:57:43.949 +37.72s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":19}
+14:27:38.325 +35.80s DEBUG canvas.dblclick Double-clic sur une instance : modification du composant {"target":"component","id":"cp_e9mzdbns"}
+14:27:38.326 +35.81s INFO  store.edit-target Édition : component « cp_e9mzdbns » {"kind":"component","id":"cp_e9mzdbns"}
+14:27:38.332 +35.81s INFO  canvas.load.start [canvas.load#7] Chargement complet du canevas : modification du composant {"reason":"modification du composant","page":"p_0juocaxz","lang":"fr","device":"desktop","edit":"component"}
+14:27:38.333 +35.81s DEBUG canvas.load.render [canvas.load#7 · 1 ms] Page rendue {"ms":1,"kb":25}
+14:27:38.380 +35.86s INFO  canvas.load.ok [canvas.load#7 · 48 ms] Canevas prêt {"nodes":14,"scrollY":500,"scale":76,"via":"load"}
+14:27:38.493 +35.97s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":20}
+14:27:38.797 +36.28s DEBUG store.select Sélection : heading {"id":"n_07235o4w1d","type":"heading"}
+14:27:38.826 +36.31s DEBUG edit.dblclick Double-clic sur un texte de la page {"key":"text","id":"n_07235o4w1d"}
+14:27:38.827 +36.31s INFO  edit.start [edit#5] Édition dans la page : heading · text {"id":"n_07235o4w1d","type":"heading","key":"text","field":"inline","lang":"fr","chars":16,"edit":"component"}
+14:27:38.990 +36.47s DEBUG canvas.key Raccourci dans la page : Ctrl+A {"key":"Ctrl+A","in":"texte","selected":"n_07235o4w1d"}
+14:27:38.999 +36.48s DEBUG store.commit Modification {"key":"edit-n_07235o4w1d-text-5","source":"canvas","past":45,"page":"p_0juocaxz","edit":"component"}
+14:27:39.008 +36.49s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_07235o4w1d-text-5","source":"canvas","merged":true,"past":45,"page":"p_0juocaxz","edit":"component"}
+14:27:39.015 +36.49s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_07235o4w1d-text-5","source":"canvas","merged":true,"past":45,"page":"p_0juocaxz","edit":"component"}
+14:27:39.025 +36.51s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_07235o4w1d-text-5","source":"canvas","merged":true,"past":45,"page":"p_0juocaxz","edit":"component"}
+14:27:39.031 +36.51s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_07235o4w1d-text-5","source":"canvas","merged":true,"past":45,"page":"p_0juocaxz","edit":"component"}
+14:27:39.042 +36.52s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_07235o4w1d-text-5","source":"canvas","merged":true,"past":45,"page":"p_0juocaxz","edit":"component"}
+14:27:39.048 +36.53s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_07235o4w1d-text-5","source":"canvas","merged":true,"past":45,"page":"p_0juocaxz","edit":"component"}
+14:27:39.058 +36.54s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_07235o4w1d-text-5","source":"canvas","merged":true,"past":45,"page":"p_0juocaxz","edit":"component"}
+14:27:39.063 +36.54s INFO  edit.ok [edit#5 · 236 ms] Édition terminée : texte enregistré (une seule étape d’annulation) {"id":"n_07235o4w1d","key":"text","changed":true,"chars":8,"before":16,"inputs":8}
+14:27:39.065 +36.55s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"edit-done","mode":"contenu","ms":2}
+14:27:39.307 +36.79s INFO  store.edit-target Retour à la page
+14:27:39.313 +36.79s INFO  canvas.load.start [canvas.load#8] Chargement complet du canevas : retour à la page {"reason":"retour à la page","page":"p_0juocaxz","lang":"fr","device":"desktop"}
+14:27:39.314 +36.79s DEBUG canvas.load.render [canvas.load#8 · 1 ms] Page rendue {"ms":1,"kb":36}
+14:27:39.336 +36.82s INFO  canvas.load.ok [canvas.load#8 · 23 ms] Canevas prêt {"nodes":42,"scrollY":500,"scale":76,"via":"load"}
+14:27:39.660 +37.14s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":20}

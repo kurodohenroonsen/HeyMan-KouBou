@@ -1,17 +1,19 @@
-13:00:20.384 +0.77s DEBUG store.view Vue : device=mobile {"device":"mobile"}
-13:00:20.384 +0.77s INFO  onboarding.step-done Pour commencer : « Regarder sur mobile » fait (14 %) {"step":"mobile","done":1,"total":7,"percent":14,"by":"store.view"}
-13:00:20.387 +0.77s DEBUG canvas.scale Canevas mobile : 390 px {"device":"mobile","width":390,"scale":100,"available":792}
-13:00:20.390 +0.77s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":2}
-13:00:20.635 +1.02s DEBUG store.view Vue : device=desktop {"device":"desktop"}
-13:00:20.636 +1.02s DEBUG canvas.scale Canevas ordinateur : 1280 px, réduit à 62 % {"device":"desktop","width":1280,"scale":62,"available":792}
-13:00:20.639 +1.02s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":2}
-13:00:20.735 +1.12s DEBUG store.commit Modification {"source":"library","past":1,"page":"p_tlk9wgfz"}
-13:00:20.741 +1.12s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"library","mode":"contenu","ms":4}
-13:00:20.742 +1.12s DEBUG store.select Sélection : section {"id":"n_0k4h1k146s","type":"section"}
-13:00:20.742 +1.12s INFO  action.add-section Section ajoutée depuis un modèle (2 rangées) {"id":"n_0k4h1k146s","template":true,"index":2}
-13:00:20.743 +1.13s INFO  onboarding.step-done Pour commencer : « Ajouter une section » fait (29 %) {"step":"section","done":2,"total":7,"percent":29,"by":"action.add-section"}
-13:00:20.743 +1.13s INFO  template.insert Modèle de section inséré : Avantages {"template":"features","id":"n_0k4h1k146s","rows":2}
-13:00:21.300 +1.68s DEBUG store.commit Modification {"key":"site-name","source":"panel","past":2,"page":"p_tlk9wgfz"}
-13:00:21.301 +1.68s INFO  onboarding.step-done Pour commencer : « Nommer le site » fait (43 %) {"step":"name","done":3,"total":7,"percent":43,"by":"store.commit"}
-13:00:21.311 +1.69s INFO  settings.name Nom du site : « Mon site à moi » {"length":14}
-13:00:21.348 +1.73s INFO  settings.name Nom du site : « Mon site à moi » {"length":14}
+14:34:42.341 +0.78s DEBUG store.view Vue : device=mobile {"device":"mobile"}
+14:34:42.341 +0.78s INFO  onboarding.step-done Pour commencer : « Regarder sur mobile » fait (14 %) {"step":"mobile","done":1,"total":7,"percent":14,"by":"store.view"}
+14:34:42.344 +0.78s DEBUG canvas.scale Canevas mobile : 390 px {"device":"mobile","width":390,"scale":100,"available":792,"zoom":"fit"}
+14:34:42.347 +0.79s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":2}
+14:34:42.590 +1.03s DEBUG store.view Vue : device=desktop {"device":"desktop"}
+14:34:42.591 +1.03s DEBUG canvas.scale Canevas ordinateur : 1040 px, réduit à 76 % {"device":"desktop","width":1040,"scale":76,"available":792,"zoom":"fit"}
+14:34:42.594 +1.03s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":3}
+14:34:42.692 +1.13s DEBUG store.commit Modification {"source":"library","past":1,"page":"p_zcie8m24"}
+14:34:42.696 +1.14s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"library","mode":"contenu","ms":3}
+14:34:42.697 +1.14s DEBUG store.select Sélection : section {"id":"n_3o2g2n2o1v","type":"section"}
+14:34:42.698 +1.14s INFO  action.add-section Section ajoutée depuis un modèle (2 rangées) {"id":"n_3o2g2n2o1v","template":true,"index":2}
+14:34:42.698 +1.14s INFO  onboarding.step-done Pour commencer : « Ajouter une section » fait (29 %) {"step":"section","done":2,"total":7,"percent":29,"by":"action.add-section"}
+14:34:42.698 +1.14s INFO  template.insert Modèle de section inséré : Avantages {"template":"features","id":"n_3o2g2n2o1v","rows":2}
+14:34:42.708 +1.15s INFO  storage.persist Stockage persistant refusé par le navigateur : gardez une copie hors du navigateur (dossier, export, hébergement) {"granted":false,"source":"save"}
+14:34:42.712 +1.15s INFO  storage.estimate Stockage : non persistant (le navigateur peut l’effacer) · 26 Ko utilisés sur 440 Mo {"persisted":false,"usage":26225,"quota":461193879}
+14:34:43.265 +1.70s DEBUG store.commit Modification {"key":"site-name","source":"panel","past":2,"page":"p_zcie8m24"}
+14:34:43.265 +1.70s INFO  onboarding.step-done Pour commencer : « Nommer le site » fait (43 %) {"step":"name","done":3,"total":7,"percent":43,"by":"store.commit"}
+14:34:43.278 +1.72s INFO  settings.name Nom du site : « Mon site à moi » {"length":14}
+14:34:43.306 +1.75s INFO  settings.name Nom du site : « Mon site à moi » {"length":14}

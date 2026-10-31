@@ -1,26 +1,26 @@
-12:58:42.010 +0.81s INFO  selftest.run.start [selftest.run#1] Auto-test : 14 cas d’usage {"cases":["selection","ajout","annuler","raccourcis","texte","infobulles","panneaux","commande","style","appareils","pages","image","collection","versions"],"ai":"fake","publish":true}
-12:58:42.010 +0.81s INFO  selftest.backup.start [selftest.backup#1] Mise de côté du projet avant l’auto-test {"name":"MAB – Médias Alternatifs Belges","pages":3,"past":0,"kind":"selftest"}
-12:58:42.013 +0.81s DEBUG selftest.backup.slot [selftest.backup#1 · 3 ms] Copie de secours écrite dans la base locale {"slot":"selftest-backup"}
-12:58:42.016 +0.81s INFO  selftest.backup.ok [selftest.backup#1 · 6 ms] Projet mis de côté (mémoire, copie de secours, version de sécurité) {"safety":"v_mvwcl55pq4fpy","versions":1,"images":1}
-12:58:42.631 +1.43s DEBUG selftest.case-start Cas : Sélectionner : clic, flèche ↓, Échap {"id":"selection","chapter":2}
-12:58:43.069 +1.86s INFO  selftest.case ✓ Sélectionner : clic, flèche ↓, Échap {"id":"selection","status":"ok","ms":437}
-12:58:43.086 +1.88s INFO  selftest.stop Arrêt demandé : le projet sera remis après le cas en cours
-12:58:43.149 +1.94s INFO  selftest.case – Ajouter un widget depuis la bibliothèque : ignoré (arrêté : retour arrière demandé) {"id":"ajout","status":"skipped","reason":"arrêté : retour arrière demandé"}
-12:58:43.150 +1.95s INFO  selftest.case – Annuler puis rétablir : ignoré (arrêté : retour arrière demandé) {"id":"annuler","status":"skipped","reason":"arrêté : retour arrière demandé"}
-12:58:43.150 +1.95s INFO  selftest.case – Dupliquer, copier, coller, supprimer au clavier : ignoré (arrêté : retour arrière demandé) {"id":"raccourcis","status":"skipped","reason":"arrêté : retour arrière demandé"}
-12:58:43.150 +1.95s INFO  selftest.case – Modifier un titre directement dans la page : ignoré (arrêté : retour arrière demandé) {"id":"texte","status":"skipped","reason":"arrêté : retour arrière demandé"}
-12:58:43.150 +1.95s INFO  selftest.case – Infobulles des boutons : survol, raccourci, masquage : ignoré (arrêté : retour arrière demandé) {"id":"infobulles","status":"skipped","reason":"arrêté : retour arrière demandé"}
-12:58:43.150 +1.95s INFO  selftest.case – Élargir les panneaux de gauche et de droite (clavier, double-clic) : ignoré (arrêté : retour arrière demandé) {"id":"panneaux","status":"skipped","reason":"arrêté : retour arrière demandé"}
-12:58:43.150 +1.95s INFO  selftest.case – Ctrl+K : lancer une commande : ignoré (arrêté : retour arrière demandé) {"id":"commande","status":"skipped","reason":"arrêté : retour arrière demandé"}
-12:58:43.150 +1.95s INFO  selftest.case – Style : taille du texte, puis réinitialiser : ignoré (arrêté : retour arrière demandé) {"id":"style","status":"skipped","reason":"arrêté : retour arrière demandé"}
-12:58:43.150 +1.95s INFO  selftest.case – Aperçu mobile puis ordinateur : ignoré (arrêté : retour arrière demandé) {"id":"appareils","status":"skipped","reason":"arrêté : retour arrière demandé"}
-12:58:43.150 +1.95s INFO  selftest.case – Créer puis supprimer une page : ignoré (arrêté : retour arrière demandé) {"id":"pages","status":"skipped","reason":"arrêté : retour arrière demandé"}
-12:58:43.150 +1.95s INFO  selftest.case – Importer un logo (image dessinée par le test) : ignoré (arrêté : retour arrière demandé) {"id":"image","status":"skipped","reason":"arrêté : retour arrière demandé"}
-12:58:43.150 +1.95s INFO  selftest.case – Agenda : créer, ajouter un événement, exporter en CSV : ignoré (arrêté : retour arrière demandé) {"id":"collection","status":"skipped","reason":"arrêté : retour arrière demandé"}
-12:58:43.150 +1.95s INFO  selftest.case – Versions : enregistrer puis supprimer : ignoré (arrêté : retour arrière demandé) {"id":"versions","status":"skipped","reason":"arrêté : retour arrière demandé"}
-12:58:43.151 +1.95s INFO  selftest.rollback.start [selftest.rollback#2] Retour arrière : le projet d’avant l’auto-test est remis {"name":"MAB – Médias Alternatifs Belges"}
-12:58:43.157 +1.95s DEBUG selftest.rollback.memory [selftest.rollback#2 · 6 ms] Projet et historique remis en mémoire {"same":true,"past":0,"future":0}
-12:58:43.177 +1.97s DEBUG selftest.rollback.saved [selftest.rollback#2 · 26 ms] Projet réenregistré et relu à l’identique {"stored":true}
-12:58:43.181 +1.98s INFO  selftest.rollback.ok [selftest.rollback#2 · 30 ms] Retour arrière terminé : projet identique à l’original {"ok":true,"same":true,"name":"MAB – Médias Alternatifs Belges","pages":3,"versions":0,"assets":0,"problems":[]}
-12:58:47.191 +5.99s INFO  selftest.run.ok [selftest.run#1 · 5181 ms] Auto-test terminé : 1 / 1 réussis, note 100 / 100 — Retour arrière : ✓ ton projet est revenu exactement comme avant (« MAB – Médias Alternatifs Belges », 3 pages). {"total":14,"ok":1,"fail":0,"error":0,"skipped":13,"score":100,"ms":1172}
-12:58:47.192 +5.99s DEBUG selftest.copy-fail Presse-papiers refusé : utilise copy(await atelierDebug.selftest()) ou atelierDebug.report() {"error":"NotAllowedError"}
+14:31:33.517 +0.62s INFO  selftest.run.start [selftest.run#1] Auto-test : 14 cas d’usage {"cases":["selection","ajout","annuler","raccourcis","texte","infobulles","panneaux","commande","style","appareils","pages","image","collection","versions"],"ai":"fake","publish":true}
+14:31:33.518 +0.62s INFO  selftest.backup.start [selftest.backup#1] Mise de côté du projet avant l’auto-test {"name":"MAB – Médias Alternatifs Belges","pages":3,"past":0,"kind":"selftest"}
+14:31:33.522 +0.63s DEBUG selftest.backup.slot [selftest.backup#1 · 4 ms] Copie de secours écrite dans la base locale {"slot":"selftest-backup"}
+14:31:33.524 +0.63s INFO  selftest.backup.ok [selftest.backup#1 · 6 ms] Projet mis de côté (mémoire, copie de secours, version de sécurité) {"safety":"v_mvwfwk5vgh5g8","versions":1,"images":1}
+14:31:34.141 +1.25s DEBUG selftest.case-start Cas : Sélectionner : clic, flèche ↓, Échap {"id":"selection","chapter":2}
+14:31:34.578 +1.68s INFO  selftest.case ✓ Sélectionner : clic, flèche ↓, Échap {"id":"selection","status":"ok","ms":437}
+14:31:34.595 +1.70s INFO  selftest.stop Arrêt demandé : le projet sera remis après le cas en cours
+14:31:34.659 +1.76s INFO  selftest.case – Ajouter un widget depuis la bibliothèque : ignoré (arrêté : retour arrière demandé) {"id":"ajout","status":"skipped","reason":"arrêté : retour arrière demandé"}
+14:31:34.660 +1.76s INFO  selftest.case – Annuler puis rétablir : ignoré (arrêté : retour arrière demandé) {"id":"annuler","status":"skipped","reason":"arrêté : retour arrière demandé"}
+14:31:34.660 +1.76s INFO  selftest.case – Dupliquer, copier, coller, supprimer au clavier : ignoré (arrêté : retour arrière demandé) {"id":"raccourcis","status":"skipped","reason":"arrêté : retour arrière demandé"}
+14:31:34.660 +1.76s INFO  selftest.case – Modifier un titre directement dans la page : ignoré (arrêté : retour arrière demandé) {"id":"texte","status":"skipped","reason":"arrêté : retour arrière demandé"}
+14:31:34.660 +1.76s INFO  selftest.case – Infobulles des boutons : survol, raccourci, masquage : ignoré (arrêté : retour arrière demandé) {"id":"infobulles","status":"skipped","reason":"arrêté : retour arrière demandé"}
+14:31:34.660 +1.76s INFO  selftest.case – Élargir les panneaux de gauche et de droite (clavier, double-clic) : ignoré (arrêté : retour arrière demandé) {"id":"panneaux","status":"skipped","reason":"arrêté : retour arrière demandé"}
+14:31:34.660 +1.76s INFO  selftest.case – Ctrl+K : lancer une commande : ignoré (arrêté : retour arrière demandé) {"id":"commande","status":"skipped","reason":"arrêté : retour arrière demandé"}
+14:31:34.660 +1.76s INFO  selftest.case – Style : taille du texte, puis réinitialiser : ignoré (arrêté : retour arrière demandé) {"id":"style","status":"skipped","reason":"arrêté : retour arrière demandé"}
+14:31:34.660 +1.76s INFO  selftest.case – Aperçu mobile puis ordinateur : ignoré (arrêté : retour arrière demandé) {"id":"appareils","status":"skipped","reason":"arrêté : retour arrière demandé"}
+14:31:34.661 +1.76s INFO  selftest.case – Créer puis supprimer une page : ignoré (arrêté : retour arrière demandé) {"id":"pages","status":"skipped","reason":"arrêté : retour arrière demandé"}
+14:31:34.661 +1.76s INFO  selftest.case – Importer un logo (image dessinée par le test) : ignoré (arrêté : retour arrière demandé) {"id":"image","status":"skipped","reason":"arrêté : retour arrière demandé"}
+14:31:34.661 +1.76s INFO  selftest.case – Agenda : créer, ajouter un événement, exporter en CSV : ignoré (arrêté : retour arrière demandé) {"id":"collection","status":"skipped","reason":"arrêté : retour arrière demandé"}
+14:31:34.661 +1.76s INFO  selftest.case – Versions : enregistrer puis supprimer : ignoré (arrêté : retour arrière demandé) {"id":"versions","status":"skipped","reason":"arrêté : retour arrière demandé"}
+14:31:34.661 +1.76s INFO  selftest.rollback.start [selftest.rollback#2] Retour arrière : le projet d’avant l’auto-test est remis {"name":"MAB – Médias Alternatifs Belges"}
+14:31:34.666 +1.77s DEBUG selftest.rollback.memory [selftest.rollback#2 · 5 ms] Projet et historique remis en mémoire {"same":true,"past":0,"future":0}
+14:31:34.702 +1.81s DEBUG selftest.rollback.saved [selftest.rollback#2 · 41 ms] Projet réenregistré et relu à l’identique {"stored":true}
+14:31:34.734 +1.84s INFO  selftest.rollback.ok [selftest.rollback#2 · 73 ms] Retour arrière terminé : projet identique à l’original {"ok":true,"same":true,"name":"MAB – Médias Alternatifs Belges","pages":3,"versions":0,"assets":0,"problems":[]}
+14:31:38.741 +5.84s INFO  selftest.run.ok [selftest.run#1 · 5224 ms] Auto-test terminé : 1 / 1 réussis, note 100 / 100 — Retour arrière : ✓ ton projet est revenu exactement comme avant (« MAB – Médias Alternatifs Belges », 3 pages). {"total":14,"ok":1,"fail":0,"error":0,"skipped":13,"score":100,"ms":1218}
+14:31:38.741 +5.84s DEBUG selftest.copy-fail Presse-papiers refusé : utilise copy(await atelierDebug.selftest()) ou atelierDebug.report() {"error":"NotAllowedError"}

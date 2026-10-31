@@ -1,0 +1,15 @@
+14:37:42.520 +1.33s INFO  version.save.start [version.save#1] Enregistrement d’une version de sécurité : « Avant un nouveau site » {"kind":"safety","name":"Avant un nouveau site"}
+14:37:42.522 +1.33s DEBUG storage.version-save Version enregistrée {"id":"v_mvwg4gvtwrlok","name":"Avant un nouveau site","kind":"safety"}
+14:37:42.528 +1.34s DEBUG ui.dialog.close Fenêtre fermée : Nouveau site {"id":"newSiteDialog"}
+14:37:42.533 +1.35s DEBUG version.save.prune [version.save#1 · 13 ms] Aucune ancienne version à supprimer {"total":1}
+14:37:42.533 +1.35s INFO  version.save.ok [version.save#1 · 13 ms] Version de sécurité enregistrée (2 pages) {"id":"v_mvwg4gvtwrlok","kind":"safety","at":"2026-10-31T13:37:42.521Z","pages":2,"kb":12}
+14:37:42.572 +1.39s INFO  store.load Projet chargé dans l’éditeur {"name":"Commerces de Couvin","pages":8,"keepHistory":true}
+14:37:42.584 +1.40s INFO  canvas.load.start [canvas.load#2] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_5m45x7lr","lang":"fr","device":"desktop"}
+14:37:42.611 +1.42s DEBUG canvas.load.render [canvas.load#2 · 27 ms] Page rendue {"ms":27,"kb":48}
+14:37:42.613 +1.43s INFO  project.new Nouveau site « Commerces de Couvin » depuis le modèle Association de commerçants / promotion d’une ville : 8 pages, langue principale Français {"lang":"fr","languages":["fr","nl","de","en"],"template":"merchants","pages":8,"timezone":"Europe/Brussels"}
+14:37:42.613 +1.43s INFO  onboarding.step-done Pour commencer : « Nommer le site » fait (14 %) {"step":"name","done":1,"total":7,"percent":14,"by":"project.new"}
+14:37:42.615 +1.43s INFO  onboarding.step-done Pour commencer : « Choisir les langues » fait (29 %) {"step":"languages","done":2,"total":7,"percent":29,"by":"project.new"}
+14:37:42.625 +1.44s INFO  storage.persist Stockage persistant refusé par le navigateur : gardez une copie hors du navigateur (dossier, export, hébergement) {"granted":false,"source":"save"}
+14:37:42.669 +1.48s INFO  storage.estimate Stockage : non persistant (le navigateur peut l’effacer) · 14 Ko utilisés sur 497 Mo {"persisted":false,"usage":14416,"quota":521071083}
+14:37:42.671 +1.48s INFO  canvas.load.ok [canvas.load#2 · 87 ms] Canevas prêt {"nodes":40,"scale":76,"via":"dom"}
+14:37:42.683 +1.50s DEBUG canvas.resources Ressources externes du canevas chargées {"ms":72,"hosts":[]}

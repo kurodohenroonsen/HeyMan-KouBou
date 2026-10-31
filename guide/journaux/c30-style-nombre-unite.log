@@ -1,5 +1,5 @@
-12:42:36.534 +5.12s DEBUG style.set Marge haut = 10px (Ordinateur) {"key":"marginTop","state":"normal","device":"desktop","target":"node","id":"n_415g185566","value":"10px","autoPx":true}
-12:42:36.692 +5.28s DEBUG style.set Marge haut = 11px (Ordinateur) {"key":"marginTop","state":"normal","device":"desktop","target":"node","id":"n_415g185566","value":"11px"}
-12:42:36.929 +5.52s DEBUG style.set Marge haut = 21px (Ordinateur) {"key":"marginTop","state":"normal","device":"desktop","target":"node","id":"n_415g185566","value":"21px"}
-12:42:37.130 +5.72s DEBUG style.box-lock Marges extérieures : les 4 côtés sont liés {"prefix":"margin","linked":true,"target":"node"}
-12:42:37.214 +5.80s DEBUG style.set Marges extérieures (4 côtés) = 16px (Ordinateur) {"key":"marginBottom","keys":["marginTop","marginRight","marginBottom","marginLeft"],"state":"normal","device":"desktop","target":"node","id":"n_415g185566","value":"16px","autoPx":true,"linked":true}
+14:37:59.616 +5.29s DEBUG style.set Marge haut = 10px (Ordinateur) {"key":"marginTop","state":"normal","device":"desktop","target":"node","id":"n_361u433b5j","value":"10px","autoPx":true}
+14:37:59.746 +5.42s DEBUG style.set Marge haut = 11px (Ordinateur) {"key":"marginTop","state":"normal","device":"desktop","target":"node","id":"n_361u433b5j","value":"11px"}
+14:37:59.955 +5.63s DEBUG style.set Marge haut = 21px (Ordinateur) {"key":"marginTop","state":"normal","device":"desktop","target":"node","id":"n_361u433b5j","value":"21px"}
+14:38:00.149 +5.82s DEBUG style.box-lock Marges extérieures : les 4 côtés sont liés {"prefix":"margin","linked":true,"target":"node"}
+14:38:00.207 +5.88s DEBUG style.set Marges extérieures (4 côtés) = 16px (Ordinateur) {"key":"marginBottom","keys":["marginTop","marginRight","marginBottom","marginLeft"],"state":"normal","device":"desktop","target":"node","id":"n_361u433b5j","value":"16px","autoPx":true,"linked":true}

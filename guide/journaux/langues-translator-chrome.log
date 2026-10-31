@@ -1,31 +1,31 @@
-20:53:11.661 +10.14s DEBUG ui.dialog.open Fenêtre ouverte : Traductions {"id":"i18nDialog","class":"audit i18n","modal":true}
-20:53:11.680 +10.16s INFO  i18n.open Tableau des traductions : 21 textes, 14 traduction(s) manquante(s), 46 à relire {"languages":["fr","nl","de","en"],"main":"fr","filter":"review","visible":21,"shown":21,"missing":14,"review":46,"mtLang":"nl"}
-20:53:11.681 +10.16s INFO  translate.status Traducteur fr → nl : downloadable (modèle à télécharger au premier clic) {"from":"fr","to":"nl","state":"downloadable","ms":0,"source":"chrome"}
-20:53:11.706 +10.19s INFO  translate.status Traducteur fr → de : downloadable (modèle à télécharger au premier clic) {"from":"fr","to":"de","state":"downloadable","ms":0,"source":"chrome"}
-20:53:11.788 +10.27s INFO  translate.batch.start [translate.batch#4] Traduction automatique fr → de {"from":"fr","to":"de"}
-20:53:11.788 +10.27s INFO  translate.model.start [translate.model#2] Préparation du traducteur fr → de {"from":"fr","to":"de"}
-20:53:11.795 +10.28s DEBUG translate.model.download [translate.model#2 · 7 ms] Téléchargement du modèle fr → de : 30 % {"pct":30}
-20:53:11.801 +10.29s DEBUG translate.model.download [translate.model#2 · 13 ms] Téléchargement du modèle fr → de : 60 % {"pct":60}
-20:53:11.809 +10.29s DEBUG translate.model.download [translate.model#2 · 21 ms] Téléchargement du modèle fr → de : 100 % {"pct":100}
-20:53:11.815 +10.30s INFO  translate.model.ok [translate.model#2 · 27 ms] Traducteur fr → de prêt {"downloaded":true}
-20:53:11.816 +10.30s DEBUG translate.batch.ready [translate.batch#4 · 28 ms] Traducteur prêt : traduction des textes manquants
-20:53:11.817 +10.30s DEBUG translate.batch.progress [translate.batch#4 · 29 ms] 1 / 5 textes {"done":1,"total":5,"count":1,"errors":0}
-20:53:11.817 +10.30s DEBUG translate.batch.progress [translate.batch#4 · 29 ms] 2 / 5 textes {"done":2,"total":5,"count":2,"errors":0}
-20:53:11.818 +10.30s DEBUG translate.batch.progress [translate.batch#4 · 30 ms] 3 / 5 textes {"done":3,"total":5,"count":3,"errors":0}
-20:53:11.818 +10.30s DEBUG translate.batch.progress [translate.batch#4 · 30 ms] 4 / 5 textes {"done":4,"total":5,"count":4,"errors":0}
-20:53:11.819 +10.30s DEBUG translate.batch.progress [translate.batch#4 · 31 ms] 5 / 5 textes {"done":5,"total":5,"count":5,"errors":0}
-20:53:11.820 +10.30s DEBUG store.commit Modification {"source":"i18n","past":17,"page":"p_94oom426"}
-20:53:11.823 +10.31s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"i18n","mode":"contenu","ms":3}
-20:53:11.829 +10.31s INFO  translate.batch.ok [translate.batch#4 · 41 ms] 5 texte(s) traduit(s) fr → de, marqués « à relire » {"count":5,"errors":0,"total":5}
-20:53:11.888 +10.37s INFO  translate.status Traducteur fr → nl : downloadable (modèle à télécharger au premier clic) {"from":"fr","to":"nl","state":"downloadable","ms":0,"source":"chrome"}
-20:53:11.931 +10.41s INFO  translate.batch.start [translate.batch#5] Traduction automatique fr → nl {"from":"fr","to":"nl"}
-20:53:11.931 +10.41s DEBUG translate.reuse Traducteur fr → nl déjà prêt {"from":"fr","to":"nl"}
-20:53:11.931 +10.41s DEBUG translate.batch.ready [translate.batch#5 · 0 ms] Traducteur prêt : traduction des textes manquants
-20:53:11.932 +10.42s DEBUG translate.batch.progress [translate.batch#5 · 1 ms] 1 / 9 textes {"done":1,"total":9,"count":1,"errors":0}
-20:53:11.934 +10.42s DEBUG translate.batch.progress [translate.batch#5 · 3 ms] 3 / 9 textes {"done":3,"total":9,"count":3,"errors":0}
-20:53:11.936 +10.42s DEBUG translate.batch.progress [translate.batch#5 · 5 ms] 5 / 9 textes {"done":5,"total":9,"count":5,"errors":0}
-20:53:11.937 +10.42s DEBUG translate.batch.progress [translate.batch#5 · 6 ms] 7 / 9 textes {"done":7,"total":9,"count":7,"errors":0}
-20:53:11.938 +10.42s DEBUG translate.batch.progress [translate.batch#5 · 7 ms] 9 / 9 textes {"done":9,"total":9,"count":9,"errors":0}
-20:53:11.939 +10.42s DEBUG store.commit Modification {"source":"i18n","past":18,"page":"p_94oom426"}
-20:53:11.944 +10.43s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"i18n","mode":"contenu","ms":4}
-20:53:11.953 +10.44s INFO  translate.batch.ok [translate.batch#5 · 22 ms] 9 texte(s) traduit(s) fr → nl, marqués « à relire » {"count":9,"errors":0,"total":9}
+14:28:48.405 +7.97s DEBUG ui.dialog.open Fenêtre ouverte : Traductions {"id":"i18nDialog","class":"audit i18n","modal":true}
+14:28:48.413 +7.98s INFO  i18n.open Tableau des traductions : 21 textes, 14 traduction(s) manquante(s), 46 à relire {"languages":["fr","nl","de","en"],"main":"fr","filter":"review","visible":21,"shown":21,"missing":14,"review":46,"mtLang":"nl"}
+14:28:48.414 +7.98s INFO  translate.status Traducteur fr → nl : downloadable (modèle à télécharger au premier clic) {"from":"fr","to":"nl","state":"downloadable","ms":0,"source":"chrome"}
+14:28:48.440 +8.01s INFO  translate.status Traducteur fr → de : downloadable (modèle à télécharger au premier clic) {"from":"fr","to":"de","state":"downloadable","ms":0,"source":"chrome"}
+14:28:48.477 +8.05s INFO  translate.batch.start [translate.batch#4] Traduction automatique fr → de {"from":"fr","to":"de"}
+14:28:48.477 +8.05s INFO  translate.model.start [translate.model#2] Préparation du traducteur fr → de {"from":"fr","to":"de"}
+14:28:48.487 +8.06s DEBUG translate.model.download [translate.model#2 · 10 ms] Téléchargement du modèle fr → de : 30 % {"pct":30}
+14:28:48.493 +8.06s DEBUG translate.model.download [translate.model#2 · 16 ms] Téléchargement du modèle fr → de : 60 % {"pct":60}
+14:28:48.499 +8.07s DEBUG translate.model.download [translate.model#2 · 22 ms] Téléchargement du modèle fr → de : 100 % {"pct":100}
+14:28:48.504 +8.07s INFO  translate.model.ok [translate.model#2 · 27 ms] Traducteur fr → de prêt {"downloaded":true}
+14:28:48.504 +8.07s DEBUG translate.batch.ready [translate.batch#4 · 27 ms] Traducteur prêt : traduction des textes manquants
+14:28:48.505 +8.07s DEBUG translate.batch.progress [translate.batch#4 · 28 ms] 1 / 5 textes {"done":1,"total":5,"count":1,"errors":0}
+14:28:48.506 +8.08s DEBUG translate.batch.progress [translate.batch#4 · 29 ms] 2 / 5 textes {"done":2,"total":5,"count":2,"errors":0}
+14:28:48.506 +8.08s DEBUG translate.batch.progress [translate.batch#4 · 29 ms] 3 / 5 textes {"done":3,"total":5,"count":3,"errors":0}
+14:28:48.507 +8.08s DEBUG translate.batch.progress [translate.batch#4 · 30 ms] 4 / 5 textes {"done":4,"total":5,"count":4,"errors":0}
+14:28:48.507 +8.08s DEBUG translate.batch.progress [translate.batch#4 · 30 ms] 5 / 5 textes {"done":5,"total":5,"count":5,"errors":0}
+14:28:48.508 +8.08s DEBUG store.commit Modification {"source":"i18n","past":17,"page":"p_qfa485rg"}
+14:28:48.511 +8.08s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"i18n","mode":"contenu","ms":3}
+14:28:48.517 +8.09s INFO  translate.batch.ok [translate.batch#4 · 40 ms] 5 texte(s) traduit(s) fr → de, marqués « à relire » {"count":5,"errors":0,"total":5}
+14:28:48.552 +8.12s INFO  translate.status Traducteur fr → nl : downloadable (modèle à télécharger au premier clic) {"from":"fr","to":"nl","state":"downloadable","ms":0,"source":"chrome"}
+14:28:48.603 +8.17s INFO  translate.batch.start [translate.batch#5] Traduction automatique fr → nl {"from":"fr","to":"nl"}
+14:28:48.603 +8.17s DEBUG translate.reuse Traducteur fr → nl déjà prêt {"from":"fr","to":"nl"}
+14:28:48.603 +8.17s DEBUG translate.batch.ready [translate.batch#5 · 0 ms] Traducteur prêt : traduction des textes manquants
+14:28:48.604 +8.17s DEBUG translate.batch.progress [translate.batch#5 · 1 ms] 1 / 9 textes {"done":1,"total":9,"count":1,"errors":0}
+14:28:48.605 +8.18s DEBUG translate.batch.progress [translate.batch#5 · 2 ms] 3 / 9 textes {"done":3,"total":9,"count":3,"errors":0}
+14:28:48.606 +8.18s DEBUG translate.batch.progress [translate.batch#5 · 3 ms] 5 / 9 textes {"done":5,"total":9,"count":5,"errors":0}
+14:28:48.606 +8.18s DEBUG translate.batch.progress [translate.batch#5 · 3 ms] 7 / 9 textes {"done":7,"total":9,"count":7,"errors":0}
+14:28:48.607 +8.18s DEBUG translate.batch.progress [translate.batch#5 · 4 ms] 9 / 9 textes {"done":9,"total":9,"count":9,"errors":0}
+14:28:48.607 +8.18s DEBUG store.commit Modification {"source":"i18n","past":18,"page":"p_qfa485rg"}
+14:28:48.610 +8.18s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"i18n","mode":"contenu","ms":2}
+14:28:48.615 +8.19s INFO  translate.batch.ok [translate.batch#5 · 12 ms] 9 texte(s) traduit(s) fr → nl, marqués « à relire » {"count":9,"errors":0,"total":9}

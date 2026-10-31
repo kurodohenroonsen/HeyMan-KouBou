@@ -1,3 +1,6 @@
-12:41:05.598 +0.84s DEBUG store.commit Modification {"source":"review","past":3,"page":"p_knuhgmm3"}
-12:41:05.601 +0.85s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"review","mode":"contenu","ms":3}
-12:41:05.605 +0.85s INFO  review.delete Commentaire supprimé avec ses réponses {"id":"cm_XN12BWqxjU6U","replies":0}
+14:29:31.902 +0.83s DEBUG ui.dialog.open Fenêtre ouverte : Supprimer le commentaire {"id":"commentDeleteDialog","class":"audit audit--sm","modal":true}
+14:29:31.964 +0.89s DEBUG ui.dialog.close Fenêtre fermée : Supprimer le commentaire {"id":"commentDeleteDialog"}
+14:29:31.965 +0.89s DEBUG ui.confirm Confirmation acceptée : Supprimer le commentaire {"id":"commentDeleteDialog","ok":true}
+14:29:31.965 +0.89s DEBUG store.commit Modification {"source":"review","past":3,"page":"p_8jmomq89"}
+14:29:31.969 +0.90s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"review","mode":"contenu","ms":3}
+14:29:31.973 +0.90s INFO  review.delete Commentaire supprimé avec ses réponses {"id":"cm_8iCAvd5fHuBg","replies":0}

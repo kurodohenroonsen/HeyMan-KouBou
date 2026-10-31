@@ -1,7 +1,10 @@
-20:51:56.270 +1.25s DEBUG store.commit Modification {"key":"site-name","source":"panel","past":1,"page":"p_a3je7ile"}
-20:51:56.280 +1.26s INFO  version.auto Première modification du jour : version automatique de l’état d’avant {"previous":null,"source":"panel"}
-20:51:56.282 +1.26s INFO  version.save.start [version.save#1] Enregistrement d’une version automatique {"kind":"auto"}
-20:51:56.283 +1.26s DEBUG storage.version-save Version enregistrée {"id":"v_mvve1vnf7o2po","kind":"auto"}
-20:51:56.304 +1.28s DEBUG version.save.prune [version.save#1 · 22 ms] Aucune ancienne version à supprimer {"total":1}
-20:51:56.307 +1.28s INFO  version.save.ok [version.save#1 · 25 ms] Version automatique enregistrée (2 pages) {"id":"v_mvve1vnf7o2po","kind":"auto","at":"2026-10-30T19:51:56.283Z","pages":2,"kb":12}
-20:51:56.317 +1.29s INFO  settings.name Nom du site : « MAB – Médias Alternatifs Belges (test) » {"length":38}
+14:27:45.475 +0.96s DEBUG store.commit Modification {"key":"site-name","source":"panel","past":1,"page":"p_e5t0kx20"}
+14:27:45.476 +0.96s INFO  onboarding.step-done Pour commencer : « Nommer le site » fait (14 %) {"step":"name","done":1,"total":7,"percent":14,"by":"store.commit"}
+14:27:45.483 +0.97s INFO  version.auto Première modification du jour : version automatique de l’état d’avant {"previous":null,"source":"panel"}
+14:27:45.484 +0.97s INFO  version.save.start [version.save#1] Enregistrement d’une version automatique {"kind":"auto"}
+14:27:45.485 +0.97s DEBUG storage.version-save Version enregistrée {"id":"v_mvwfro7gaffbb","kind":"auto"}
+14:27:45.496 +0.98s INFO  storage.persist Stockage persistant refusé par le navigateur : gardez une copie hors du navigateur (dossier, export, hébergement) {"granted":false,"source":"save"}
+14:27:45.499 +0.99s INFO  storage.estimate Stockage : non persistant (le navigateur peut l’effacer) · 14 Ko utilisés sur 427 Mo {"persisted":false,"usage":14394,"quota":447449857}
+14:27:45.500 +0.99s DEBUG version.save.prune [version.save#1 · 16 ms] Aucune ancienne version à supprimer {"total":1}
+14:27:45.501 +0.99s INFO  version.save.ok [version.save#1 · 17 ms] Version automatique enregistrée (2 pages) {"id":"v_mvwfro7gaffbb","kind":"auto","at":"2026-10-31T13:27:45.484Z","pages":2,"kb":12}
+14:27:45.505 +0.99s INFO  settings.name Nom du site : « MAB – Médias Alternatifs Belges (test) » {"length":38}

@@ -1,2 +1,2 @@
-13:00:13.953 +4.23s INFO  project.already-saved Ctrl+S : le projet est déjà enregistré sur cet appareil (fichier .json : menu Fichier) {"status":"Modifié"}
-13:00:13.953 +4.23s INFO  ui.toast Message affiché : Déjà enregistré : chaque modification est gardée sur cet appareil. Pour un fichier : Fichier → Enregistrer le projet (.json).
+14:34:35.809 +4.14s INFO  project.already-saved Ctrl+S : le projet est déjà enregistré sur cet appareil (fichier .json : menu Fichier) {"status":"Modifié"}
+14:34:35.810 +4.14s INFO  ui.toast Message affiché : Déjà enregistré : chaque modification est gardée sur cet appareil. Pour un fichier : Fichier → Enregistrer le projet (.json).

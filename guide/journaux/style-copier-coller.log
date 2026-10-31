@@ -1,7 +1,7 @@
-12:57:35.640 +29.41s INFO  style.copy Style copié : Titre {"id":"n_21454v0620","type":"heading","props":{"desktop":1,"tablet":0,"mobile":1,"hover":0}}
-12:57:35.640 +29.41s INFO  ui.toast Message affiché : Style copié.
-12:57:35.697 +29.47s DEBUG store.select Sélection : heading {"id":"n_4x5c110e00","type":"heading"}
-12:57:35.841 +29.61s DEBUG store.commit Modification {"source":"action","past":33,"page":"p_fptbpb4e"}
-12:57:35.845 +29.62s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":3}
-12:57:35.854 +29.63s INFO  style.paste Style collé {"count":1,"from":"heading","types":["heading"]}
-12:57:35.854 +29.63s INFO  ui.toast Message affiché : Style collé.
+14:27:31.422 +28.90s INFO  style.copy Style copié : Titre {"id":"n_6k3253575d","type":"heading","props":{"desktop":1,"tablet":0,"mobile":1,"hover":0}}
+14:27:31.422 +28.90s INFO  ui.toast Message affiché : Style copié.
+14:27:31.462 +28.94s DEBUG store.select Sélection : heading {"id":"n_6s3f68052o","type":"heading"}
+14:27:31.609 +29.09s DEBUG store.commit Modification {"source":"action","past":33,"page":"p_0juocaxz"}
+14:27:31.613 +29.09s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":3}
+14:27:31.625 +29.11s INFO  style.paste Style collé {"count":1,"from":"heading","types":["heading"]}
+14:27:31.625 +29.11s INFO  ui.toast Message affiché : Style collé.

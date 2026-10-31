@@ -1,3 +1,6 @@
-12:41:05.524 +0.77s DEBUG store.commit Modification {"source":"review","past":2,"page":"p_knuhgmm3"}
-12:41:05.529 +0.77s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"review","mode":"contenu","ms":3}
-12:41:05.536 +0.78s WARN  review.sig.bad Signature invalide : le texte ou l’auteur de ce commentaire ne correspondent pas à la signature (modifié après coup ?) {"id":"cm_XN12BWqxjU6U","author":"Misako","fp":"RRJWDgk1z7uH8kul","reply":false}
+14:29:31.832 +0.76s DEBUG version.save.prune [version.save#1 · 37 ms] Aucune ancienne version à supprimer {"total":1}
+14:29:31.832 +0.76s INFO  version.save.ok [version.save#1 · 37 ms] Version automatique enregistrée (2 pages) {"id":"v_mvwfty8k3hga8","kind":"auto","at":"2026-10-31T13:29:31.796Z","pages":2,"kb":12}
+14:29:31.833 +0.76s INFO  storage.estimate Stockage : non persistant (le navigateur peut l’effacer) · 15 Ko utilisés sur 423 Mo {"persisted":false,"usage":15509,"quota":443051616}
+14:29:31.835 +0.76s DEBUG store.commit Modification {"source":"review","past":2,"page":"p_8jmomq89"}
+14:29:31.840 +0.77s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"review","mode":"contenu","ms":4}
+14:29:31.846 +0.77s WARN  review.sig.bad Signature invalide : le texte ou l’auteur de ce commentaire ne correspondent pas à la signature (modifié après coup ?) {"id":"cm_8iCAvd5fHuBg","author":"Misako","fp":"0k4A1P1vnDEPwfdu","reply":false}

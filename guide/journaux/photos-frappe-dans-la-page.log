@@ -1,0 +1,6 @@
+14:36:37.394 +18.42s DEBUG store.commit Modification {"key":"edit-n_03714r145q-text-1","source":"canvas","past":20,"page":"p_6egyzfbk"}
+14:36:37.395 +18.42s DEBUG canvas.render Canevas mis à jour : styles seulement {"source":"canvas","mode":"styles","node":"n_03714r145q","ms":0}
+14:36:37.395 +18.42s DEBUG perf.commit Modification appliquée et affichée {"ms":1.2,"source":"canvas","node":"n_03714r145q","past":20}
+14:36:37.430 +18.46s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_03714r145q-text-1","source":"canvas","merged":true,"past":20,"page":"p_6egyzfbk"}
+14:36:37.430 +18.46s DEBUG canvas.render Canevas mis à jour : styles seulement {"source":"canvas","mode":"styles","node":"n_03714r145q","ms":0}
+14:36:37.431 +18.46s DEBUG perf.commit Modification appliquée et affichée {"ms":1.1,"source":"canvas","node":"n_03714r145q","past":20}

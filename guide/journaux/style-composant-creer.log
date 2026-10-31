@@ -1,17 +1,18 @@
-12:57:41.089 +34.86s DEBUG store.select Sélection : section {"id":"n_0s4n354w1f","type":"section"}
-12:57:41.117 +34.89s DEBUG ctxmenu.open Menu contextuel : Section (structure) {"id":"n_0s4n354w1f","type":"section","from":"structure","items":10,"disabled":["parent"]}
-12:57:41.192 +34.97s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":19}
-12:57:41.307 +35.08s DEBUG ctxmenu.action Menu contextuel : Créer un composant… {"action":"component","id":"n_0s4n354w1f","type":"section"}
-12:57:41.311 +35.09s DEBUG store.commit Modification {"source":"pages","past":43,"page":"p_fptbpb4e"}
-12:57:41.318 +35.09s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":5}
-12:57:41.322 +35.10s DEBUG store.select Sélection : section {"id":"n_0g6j4u1r1u","type":"section"}
-12:57:41.337 +35.11s INFO  action.component-create Composant « Équipe » créé : l’élément devient une instance {"component":"cp_pumdkm6j","type":"section","instance":"n_0g6j4u1r1u"}
-12:57:41.337 +35.11s INFO  ui.toast Message affiché : Composant « Équipe » créé. Retrouvez-le dans le panneau Modèles.
-12:57:41.914 +35.69s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":19}
-12:57:41.931 +35.70s DEBUG store.select Sélection : heading {"id":"n_21454v0620","type":"heading"}
-12:57:41.973 +35.75s DEBUG template.component Panneau Modèles : clic sur le composant « Équipe » {"component":"cp_pumdkm6j","uses":1}
-12:57:41.975 +35.75s DEBUG store.commit Modification {"source":"library","past":44,"page":"p_fptbpb4e"}
-12:57:41.980 +35.75s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"library","mode":"contenu","ms":4}
-12:57:41.992 +35.77s DEBUG store.select Sélection : section {"id":"n_1e4z4r0m6g","type":"section"}
-12:57:41.997 +35.77s INFO  action.component-insert Composant « Équipe » inséré {"component":"cp_pumdkm6j","type":"section","id":"n_1e4z4r0m6g","parentType":"page"}
-12:57:42.024 +35.80s DEBUG canvas.scroll Défilement vers l’élément sélectionné {"id":"n_1e4z4r0m6g","from":0,"to":485}
+14:27:36.989 +34.47s DEBUG store.select Sélection : section {"id":"n_064z636x2o","type":"section"}
+14:27:37.005 +34.48s DEBUG ctxmenu.open Menu contextuel : Section (structure) {"id":"n_064z636x2o","type":"section","from":"structure","items":11,"disabled":["moveTo","parent"]}
+14:27:37.080 +34.56s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":19}
+14:27:37.191 +34.67s DEBUG ctxmenu.action Menu contextuel : Créer un composant… {"action":"component","id":"n_064z636x2o","type":"section"}
+14:27:37.192 +34.67s DEBUG ui.dialog.open Fenêtre ouverte : Créer un composant {"id":"componentNameDialog","class":"audit audit--sm","modal":true}
+14:27:37.289 +34.77s DEBUG ui.dialog.close Fenêtre fermée : Créer un composant {"id":"componentNameDialog"}
+14:27:37.290 +34.77s DEBUG store.commit Modification {"source":"pages","past":43,"page":"p_0juocaxz"}
+14:27:37.296 +34.78s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":4}
+14:27:37.299 +34.78s DEBUG store.select Sélection : section {"id":"n_4r26350y1r","type":"section"}
+14:27:37.311 +34.79s INFO  action.component-create Composant « Équipe » créé : l’élément devient une instance {"component":"cp_e9mzdbns","type":"section","instance":"n_4r26350y1r"}
+14:27:37.311 +34.79s INFO  ui.toast Message affiché : Composant « Équipe » créé. Retrouvez-le dans le panneau Modèles.
+14:27:37.845 +35.33s DEBUG store.select Sélection : heading {"id":"n_6k3253575d","type":"heading"}
+14:27:37.890 +35.37s DEBUG template.component Panneau Modèles : clic sur le composant « Équipe » {"component":"cp_e9mzdbns","uses":1}
+14:27:37.891 +35.37s DEBUG store.commit Modification {"source":"library","past":44,"page":"p_0juocaxz"}
+14:27:37.895 +35.38s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"library","mode":"contenu","ms":3}
+14:27:37.907 +35.39s DEBUG store.select Sélection : section {"id":"n_1p1b1h5528","type":"section"}
+14:27:37.912 +35.39s INFO  action.component-insert Composant « Équipe » inséré {"component":"cp_e9mzdbns","type":"section","id":"n_1p1b1h5528","parentType":"page"}
+14:27:37.937 +35.42s DEBUG canvas.scroll Défilement vers l’élément sélectionné {"id":"n_1p1b1h5528","from":0,"to":534}

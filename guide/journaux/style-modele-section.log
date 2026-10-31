@@ -1,13 +1,13 @@
-12:57:39.574 +33.35s DEBUG store.commit Modification {"source":"library","past":41,"page":"p_fptbpb4e"}
-12:57:39.578 +33.35s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"library","mode":"contenu","ms":3}
-12:57:39.588 +33.36s DEBUG store.select Sélection : section {"id":"n_176o2e2i70","type":"section"}
-12:57:39.593 +33.37s INFO  action.add-section Section ajoutée depuis un modèle (1 rangée) {"id":"n_176o2e2i70","template":true,"index":1}
-12:57:39.593 +33.37s INFO  onboarding.step-done Pour commencer : « Ajouter une section » fait (43 %) {"step":"section","done":3,"total":7,"percent":43,"by":"action.add-section"}
-12:57:39.593 +33.37s INFO  template.insert Modèle de section inséré : Héros {"template":"hero","id":"n_176o2e2i70","rows":1}
-12:57:39.619 +33.39s DEBUG canvas.scroll Défilement vers l’élément sélectionné {"id":"n_176o2e2i70","from":0,"to":554}
-12:57:40.187 +33.96s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":16}
-12:57:40.202 +33.98s INFO  dnd.start [dnd#7] Glisser : Contact {"kind":"template","type":"section","id":"contact","from":"modèles"}
-12:57:40.590 +34.36s DEBUG store.commit Modification {"source":"dnd","past":42,"page":"p_fptbpb4e"}
-12:57:40.597 +34.37s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"dnd","mode":"contenu","ms":4}
-12:57:40.609 +34.38s DEBUG store.select Sélection : section {"id":"n_5x0k4i175d","type":"section"}
-12:57:40.613 +34.39s INFO  dnd.ok [dnd#7 · 411 ms] Ajouté dans Page, position 5 {"id":"n_5x0k4i175d","type":"section","kind":"new","parentId":"n_4x6n0b0j3w","parentType":"page","index":4,"where":"canevas"}
+14:27:35.428 +32.91s DEBUG store.commit Modification {"source":"library","past":41,"page":"p_0juocaxz"}
+14:27:35.433 +32.91s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"library","mode":"contenu","ms":4}
+14:27:35.444 +32.92s DEBUG store.select Sélection : section {"id":"n_725z20313b","type":"section"}
+14:27:35.450 +32.93s INFO  action.add-section Section ajoutée depuis un modèle (1 rangée) {"id":"n_725z20313b","template":true,"index":1}
+14:27:35.451 +32.93s INFO  onboarding.step-done Pour commencer : « Ajouter une section » fait (43 %) {"step":"section","done":3,"total":7,"percent":43,"by":"action.add-section"}
+14:27:35.451 +32.93s INFO  template.insert Modèle de section inséré : Héros {"template":"hero","id":"n_725z20313b","rows":1}
+14:27:35.475 +32.95s DEBUG canvas.scroll Défilement vers l’élément sélectionné {"id":"n_725z20313b","from":0,"to":594}
+14:27:36.033 +33.51s DEBUG storage.save Projet enregistré sur cet appareil {"ms":5,"kb":16}
+14:27:36.069 +33.55s INFO  dnd.start [dnd#7] Glisser : Contact {"kind":"template","type":"section","id":"contact","from":"modèles"}
+14:27:36.477 +33.96s DEBUG store.commit Modification {"source":"dnd","past":42,"page":"p_0juocaxz"}
+14:27:36.483 +33.96s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"dnd","mode":"contenu","ms":5}
+14:27:36.499 +33.98s DEBUG store.select Sélection : section {"id":"n_386a4o5m40","type":"section"}
+14:27:36.504 +33.98s INFO  dnd.ok [dnd#7 · 435 ms] Ajouté dans Page, position 5 {"id":"n_386a4o5m40","type":"section","kind":"new","parentId":"n_5v335j413o","parentType":"page","index":4,"where":"canevas"}

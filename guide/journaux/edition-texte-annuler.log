@@ -1,13 +1,13 @@
-12:57:16.994 +10.77s DEBUG edit.dblclick Double-clic sur un texte de la page {"key":"content","id":"n_1w4k1c3v43"}
-12:57:16.995 +10.77s INFO  edit.start [edit#3] Édition dans la page : text · content {"id":"n_1w4k1c3v43","type":"text","key":"content","field":"richtext","lang":"fr","chars":188}
-12:57:17.112 +10.89s DEBUG store.commit Modification {"key":"edit-n_1w4k1c3v43-content-3","source":"canvas","past":7,"page":"p_fptbpb4e"}
-12:57:17.139 +10.91s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_1w4k1c3v43-content-3","source":"canvas","merged":true,"past":7,"page":"p_fptbpb4e"}
-12:57:17.151 +10.93s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_1w4k1c3v43-content-3","source":"canvas","merged":true,"past":7,"page":"p_fptbpb4e"}
-12:57:17.166 +10.94s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_1w4k1c3v43-content-3","source":"canvas","merged":true,"past":7,"page":"p_fptbpb4e"}
-12:57:17.179 +10.95s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_1w4k1c3v43-content-3","source":"canvas","merged":true,"past":7,"page":"p_fptbpb4e"}
-12:57:17.194 +10.97s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_1w4k1c3v43-content-3","source":"canvas","merged":true,"past":7,"page":"p_fptbpb4e"}
-12:57:17.210 +10.98s INFO  edit.ok [edit#3 · 215 ms] Édition terminée : texte enregistré (une seule étape d’annulation) {"id":"n_1w4k1c3v43","key":"content","changed":true,"chars":193,"before":188,"inputs":6}
-12:57:17.214 +10.99s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"edit-done","mode":"contenu","ms":3}
-12:57:17.220 +10.99s DEBUG canvas.key Raccourci dans la page : Ctrl+Z {"key":"Ctrl+Z","in":"page","selected":"n_1w4k1c3v43"}
-12:57:17.220 +10.99s INFO  store.undo Annuler {"left":6,"redo":1}
-12:57:17.222 +11.00s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"history","mode":"contenu","ms":2}
+14:27:12.796 +10.28s DEBUG edit.dblclick Double-clic sur un texte de la page {"key":"content","id":"n_4u0i3c645z"}
+14:27:12.796 +10.28s INFO  edit.start [edit#3] Édition dans la page : text · content {"id":"n_4u0i3c645z","type":"text","key":"content","field":"richtext","lang":"fr","chars":188}
+14:27:12.908 +10.39s DEBUG store.commit Modification {"key":"edit-n_4u0i3c645z-content-3","source":"canvas","past":7,"page":"p_0juocaxz"}
+14:27:12.926 +10.41s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_4u0i3c645z-content-3","source":"canvas","merged":true,"past":7,"page":"p_0juocaxz"}
+14:27:12.945 +10.43s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_4u0i3c645z-content-3","source":"canvas","merged":true,"past":7,"page":"p_0juocaxz"}
+14:27:12.955 +10.44s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_4u0i3c645z-content-3","source":"canvas","merged":true,"past":7,"page":"p_0juocaxz"}
+14:27:12.968 +10.45s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_4u0i3c645z-content-3","source":"canvas","merged":true,"past":7,"page":"p_0juocaxz"}
+14:27:12.984 +10.46s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_4u0i3c645z-content-3","source":"canvas","merged":true,"past":7,"page":"p_0juocaxz"}
+14:27:13.000 +10.48s INFO  edit.ok [edit#3 · 204 ms] Édition terminée : texte enregistré (une seule étape d’annulation) {"id":"n_4u0i3c645z","key":"content","changed":true,"chars":183,"before":188,"inputs":6}
+14:27:13.005 +10.48s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"edit-done","mode":"contenu","ms":4}
+14:27:13.019 +10.50s DEBUG canvas.key Raccourci dans la page : Ctrl+Z {"key":"Ctrl+Z","in":"page","selected":"n_4u0i3c645z"}
+14:27:13.020 +10.50s INFO  store.undo Annuler {"left":6,"redo":1}
+14:27:13.024 +10.50s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"history","mode":"contenu","ms":3}

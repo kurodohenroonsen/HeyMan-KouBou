@@ -1,9 +1,9 @@
-12:41:55.778 +91.55s INFO  storage.secret-write Secret gardé sur cet appareil (jamais dans le projet) {"name":"identity"}
-12:41:55.792 +91.57s INFO  collab.open Fenêtre « Travailler à plusieurs » {"state":"owner","peers":1,"identity":true,"publish":"oui"}
-12:41:55.793 +91.57s DEBUG ui.dialog.open Fenêtre ouverte : 👥 Travailler à plusieurs {"id":"collabDialog","class":"audit collab","modal":true}
-12:41:55.863 +91.64s INFO  collab.leave Session fermée par l’hôte {"role":"owner","peers":1,"room":"7400cb20"}
-12:41:55.864 +91.64s DEBUG signal.stop Relève de la boîte aux lettres arrêtée {"room":"7400cb20","polls":46,"received":4}
-12:41:55.864 +91.64s DEBUG collab.node.close Fermeture de 1 lien {"links":1}
-12:41:55.868 +91.64s INFO  storage.secret-write Secret oublié sur cet appareil {"name":"collab-session"}
-12:41:55.874 +91.65s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"history","mode":"contenu","ms":4}
-12:41:55.888 +91.66s INFO  rtc.channel.close Canal de données fermé avec c249ef099468adae {"label":"c249ef099468adae","pc":"closed","ice":"closed","sent":12,"received":10}
+14:30:21.584 +90.68s INFO  storage.secret-write Secret gardé sur cet appareil (jamais dans le projet) {"name":"identity"}
+14:30:21.600 +90.70s INFO  collab.open Fenêtre « Travailler à plusieurs » {"state":"owner","peers":1,"identity":true,"publish":"oui"}
+14:30:21.601 +90.70s DEBUG ui.dialog.open Fenêtre ouverte : 👥 Travailler à plusieurs {"id":"collabDialog","class":"audit collab","modal":true}
+14:30:21.654 +90.75s INFO  collab.leave Session fermée par l’hôte {"role":"owner","peers":1,"room":"525230ab"}
+14:30:21.654 +90.75s DEBUG signal.stop Relève de la boîte aux lettres arrêtée {"room":"525230ab","polls":45,"received":4}
+14:30:21.654 +90.75s DEBUG collab.node.close Fermeture de 1 lien {"links":1}
+14:30:21.659 +90.76s INFO  storage.secret-write Secret oublié sur cet appareil {"name":"collab-session"}
+14:30:21.668 +90.77s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"history","mode":"contenu","ms":5}
+14:30:21.686 +90.78s INFO  rtc.channel.close Canal de données fermé avec 8282836cf42fb87d {"label":"8282836cf42fb87d","pc":"closed","ice":"closed","sent":12,"received":10}

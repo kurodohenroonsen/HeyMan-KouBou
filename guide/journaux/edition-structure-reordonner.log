@@ -1,5 +1,5 @@
-12:57:13.369 +7.14s INFO  dnd.start [dnd#6] Glisser : Titre {"kind":"move","type":"heading","id":"n_21454v0620","from":"page ou structure"}
-12:57:13.757 +7.53s DEBUG store.commit Modification {"source":"dnd","past":4,"page":"p_fptbpb4e"}
-12:57:13.764 +7.54s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"dnd","mode":"contenu","ms":4}
-12:57:13.773 +7.55s DEBUG store.select Sélection : heading {"id":"n_21454v0620","type":"heading"}
-12:57:13.783 +7.56s INFO  dnd.ok [dnd#6 · 414 ms] Déplacé dans Colonne, position 1 {"id":"n_21454v0620","type":"heading","kind":"move","parentId":"n_5m4m0q6a2y","parentType":"column","index":0,"where":"structure"}
+14:27:09.386 +6.87s INFO  dnd.start [dnd#6] Glisser : Titre {"kind":"move","type":"heading","id":"n_6k3253575d","from":"page ou structure"}
+14:27:09.774 +7.25s DEBUG store.commit Modification {"source":"dnd","past":4,"page":"p_0juocaxz"}
+14:27:09.779 +7.26s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"dnd","mode":"contenu","ms":3}
+14:27:09.786 +7.27s DEBUG store.select Sélection : heading {"id":"n_6k3253575d","type":"heading"}
+14:27:09.794 +7.27s INFO  dnd.ok [dnd#6 · 408 ms] Déplacé dans Colonne, position 1 {"id":"n_6k3253575d","type":"heading","kind":"move","parentId":"n_402q4g5n08","parentType":"column","index":0,"where":"structure"}

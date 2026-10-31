@@ -1,13 +1,13 @@
-13:34:34.889 +2.73s DEBUG ui.change Champ modifié : Nom du site {"el":"input","id":"siteName","name":"Nom du site","value":"MAB – Médias Alternatifs Belges"}
-13:34:34.890 +2.73s DEBUG ui.click Clic : 3 {"el":"button","id":"logBtn","text":"3"}
-13:34:34.893 +2.73s DEBUG ui.dialog.open Fenêtre ouverte : 🐞 Journal de débogage {"id":"logDialog","class":"audit log-dialog","modal":true}
-13:34:34.919 +2.76s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:https://www.xn--mdia-alternatif-bnb.be"}
-13:34:35.373 +3.21s DEBUG ui.key Raccourci : Delete {"key":"Delete","in":"input"}
-13:34:35.656 +3.50s DEBUG ui.click Clic : 📋 Copier le journal {"el":"button","text":"📋 Copier le journal","data":{"logCopy":""},"dialog":"logDialog"}
-13:34:35.696 +3.54s WARN  log.copy-fail Copie refusée par le navigateur : utilisez « Télécharger » {"error":"Failed to execute 'writeText' on 'Clipboard': Write permission denied."}
-13:34:36.134 +3.97s DEBUG ui.click Clic : ⇩ Télécharger (.log) {"el":"button","text":"⇩ Télécharger (.log)","data":{"logDownload":""},"dialog":"logDialog"}
-13:34:36.172 +4.01s DEBUG ui.click Clic : a {"el":"a"}
-13:34:36.173 +4.01s INFO  log.download Journal téléchargé {"chars":5850}
-13:34:36.351 +4.19s INFO  log.clear Journal vidé
-13:34:36.513 +4.35s INFO  log.settings Réglages du journal modifiés {"console":"debug","keep":"debug","server":true}
-13:34:36.521 +4.36s DEBUG ui.key Raccourci : Escape {"key":"Escape","in":"button"}
+14:26:48.561 +2.48s DEBUG ui.change Champ modifié : Nom du site {"el":"input","id":"siteName","name":"Nom du site","value":"MAB – Médias Alternatifs Belges"}
+14:26:48.562 +2.48s DEBUG ui.click Clic : 3 {"el":"button","id":"logBtn","text":"3"}
+14:26:48.565 +2.48s DEBUG ui.dialog.open Fenêtre ouverte : 🐞 Journal de débogage {"id":"logDialog","class":"audit log-dialog","modal":true}
+14:26:48.585 +2.50s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:https://www.xn--mdia-alternatif-bnb.be"}
+14:26:48.791 +2.71s DEBUG ui.key Raccourci : Delete {"key":"Delete","in":"input"}
+14:26:49.011 +2.93s DEBUG ui.click Clic : 📋 Copier le journal {"el":"button","text":"📋 Copier le journal","data":{"logCopy":""},"dialog":"logDialog"}
+14:26:49.039 +2.96s WARN  log.copy-fail Copie refusée par le navigateur : utilisez « Télécharger » {"error":"Failed to execute 'writeText' on 'Clipboard': Write permission denied."}
+14:26:49.444 +3.36s DEBUG ui.click Clic : ⇩ Télécharger (.log) {"el":"button","text":"⇩ Télécharger (.log)","data":{"logDownload":""},"dialog":"logDialog"}
+14:26:49.460 +3.38s DEBUG ui.click Clic : a {"el":"a"}
+14:26:49.464 +3.38s INFO  log.download Journal téléchargé {"chars":5875}
+14:26:49.576 +3.49s INFO  log.clear Journal vidé
+14:26:49.737 +3.65s INFO  log.settings Réglages du journal modifiés {"console":"debug","keep":"debug","server":true}
+14:26:49.741 +3.66s DEBUG ui.key Raccourci : Escape {"key":"Escape","in":"button"}

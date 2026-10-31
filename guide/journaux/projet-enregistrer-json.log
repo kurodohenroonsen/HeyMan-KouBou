@@ -1,2 +1,2 @@
-13:34:37.689 +5.53s INFO  project.export-json Projet enregistré en fichier .json {"kb":34,"pages":2}
-13:34:37.693 +5.53s INFO  ui.toast Message affiché : Projet enregistré en fichier .json.
+14:26:50.777 +4.69s INFO  project.export-json Projet enregistré en fichier .json {"kb":34,"pages":2,"images":0}
+14:26:50.779 +4.70s INFO  ui.toast Message affiché : Projet enregistré en fichier .json.

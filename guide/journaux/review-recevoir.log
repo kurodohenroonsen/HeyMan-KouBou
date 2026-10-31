@@ -1,8 +1,9 @@
-12:40:41.584 +17.36s DEBUG collab.ops.in 1 modification de Laurent appliquée {"name":"Laurent","received":1,"applied":1,"review":1}
-12:40:41.588 +17.36s DEBUG store.remote Modifications d’un autre participant appliquées {"ops":1,"history":3}
-12:40:41.595 +17.37s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"remote","mode":"contenu","ms":6}
-12:40:41.600 +17.38s DEBUG inspector.remote-deferred Modification d’un autre participant : inspecteur redessiné à la sortie du champ {"field":"text"}
-12:40:41.600 +17.38s INFO  review.remote Commentaire reçu de Laurent {"id":"cm_pP1zXhNrEH6r","fp":"gRRPu1w4iuwe-3J0","page":"p_gvomubtq","node":"n_5y42365y34"}
-12:40:41.764 +17.54s DEBUG inspector.field Champ modifié : Texte {"key":"text","type":"inline","lang":"fr","how":"saisie","chars":23}
-12:40:41.767 +17.54s INFO  review.panel Panneau des commentaires ouvert {"open":true,"comments":1,"openCount":1,"readOnly":false}
-12:40:41.774 +17.55s DEBUG review.sig.ok Signature vérifiée : Laurent {"id":"cm_pP1zXhNrEH6r","fp":"gRRPu1w4iuwe-3J0","reply":false}
+14:29:07.982 +17.08s DEBUG collab.ops.in 1 modification de Laurent appliquée {"name":"Laurent","received":1,"applied":1,"review":1}
+14:29:07.983 +17.08s DEBUG store.remote Modifications d’un autre participant appliquées {"ops":1,"history":3}
+14:29:07.988 +17.09s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"remote","mode":"contenu","ms":4}
+14:29:07.989 +17.09s DEBUG inspector.remote-deferred Modification d’un autre participant : inspecteur redessiné à la sortie du champ {"field":"text"}
+14:29:07.990 +17.09s INFO  review.remote Commentaire reçu de Laurent {"id":"cm_69PTjPWPDQXR","fp":"g1VxaIMVrL_25dpO","page":"p_mf3x4le3","node":"n_345x5u2i3z"}
+14:29:08.070 +17.17s DEBUG inspector.field Champ modifié : Texte {"key":"text","type":"inline","lang":"fr","how":"saisie","chars":23}
+14:29:08.072 +17.17s INFO  onboarding.step-done Pour commencer : « Écrire un titre » fait (14 %) {"step":"heading","done":1,"total":7,"percent":14,"by":"inspector.field"}
+14:29:08.080 +17.18s INFO  review.panel Panneau des commentaires ouvert {"open":true,"comments":1,"openCount":1,"readOnly":false}
+14:29:08.088 +17.18s DEBUG review.sig.ok Signature vérifiée : Laurent {"id":"cm_69PTjPWPDQXR","fp":"g1VxaIMVrL_25dpO","reply":false}

@@ -1,10 +1,10 @@
-12:57:21.762 +15.54s DEBUG ctxmenu.open Menu contextuel : Titre (page) {"id":"n_0w3l1v4j22","type":"heading","from":"canevas","items":11,"disabled":["pasteStyle"]}
-12:57:21.877 +15.65s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":12}
-12:57:21.958 +15.73s DEBUG ctxmenu.action Menu contextuel : Dupliquer {"action":"duplicate","id":"n_0w3l1v4j22","type":"heading"}
-12:57:21.959 +15.73s DEBUG store.commit Modification {"source":"action","past":13,"page":"p_fptbpb4e"}
-12:57:21.964 +15.74s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":3}
-12:57:21.970 +15.74s DEBUG store.select Sélection : heading {"id":"n_1d1y2b012z","type":"heading"}
-12:57:21.978 +15.75s INFO  action.duplicate Dupliqué : heading {"id":"n_0w3l1v4j22","newId":"n_1d1y2b012z","type":"heading"}
-12:57:22.232 +16.01s DEBUG store.select Sélection : heading {"id":"n_0w3l1v4j22","type":"heading"}
-12:57:22.237 +16.01s DEBUG ctxmenu.open Menu contextuel : Titre (page) {"id":"n_0w3l1v4j22","type":"heading","from":"canevas","items":11,"disabled":["pasteStyle"]}
-12:57:22.349 +16.12s DEBUG ctxmenu.close Menu contextuel fermé (Échap) {"by":"Échap"}
+14:27:17.564 +15.04s DEBUG ctxmenu.open Menu contextuel : Titre (page) {"id":"n_18013e1t4z","type":"heading","from":"canevas","items":12,"disabled":["pasteStyle"]}
+14:27:17.695 +15.18s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":12}
+14:27:17.757 +15.24s DEBUG ctxmenu.action Menu contextuel : Dupliquer {"action":"duplicate","id":"n_18013e1t4z","type":"heading"}
+14:27:17.758 +15.24s DEBUG store.commit Modification {"source":"action","past":13,"page":"p_0juocaxz"}
+14:27:17.762 +15.24s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":3}
+14:27:17.768 +15.25s DEBUG store.select Sélection : heading {"id":"n_6q340v3g5k","type":"heading"}
+14:27:17.775 +15.26s INFO  action.duplicate Dupliqué : heading {"id":"n_18013e1t4z","newId":"n_6q340v3g5k","type":"heading"}
+14:27:18.012 +15.49s DEBUG store.select Sélection : heading {"id":"n_18013e1t4z","type":"heading"}
+14:27:18.018 +15.50s DEBUG ctxmenu.open Menu contextuel : Titre (page) {"id":"n_18013e1t4z","type":"heading","from":"canevas","items":12,"disabled":["pasteStyle"]}
+14:27:18.139 +15.62s DEBUG ctxmenu.close Menu contextuel fermé (Échap) {"by":"Échap"}

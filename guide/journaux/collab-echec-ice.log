@@ -1,35 +1,37 @@
-12:41:20.083 +0.01s DEBUG widgets.extra Widgets supplémentaires chargés : 15 {"widgets":23,"extra":15}
-12:41:20.085 +0.01s DEBUG ui.lang-ready Interface en Français {"lang":"fr","static":0,"catalog":false}
-12:41:20.123 +0.04s DEBUG canvas.scale Canevas ordinateur : 1280 px, réduit à 62 % {"device":"desktop","width":1280,"scale":62,"available":792}
-12:41:20.124 +0.05s INFO  canvas.load.start [canvas.load#1] Chargement complet du canevas : premier chargement {"reason":"premier chargement","page":"p_ic0hd6gn","lang":"fr","device":"desktop"}
-12:41:20.132 +0.05s DEBUG canvas.load.render [canvas.load#1 · 8 ms] Page rendue {"ms":7,"kb":29}
-12:41:20.134 +0.06s INFO  collab.join.link Lien d’invitation ouvert
-12:41:20.168 +0.09s DEBUG version.init 0 version(s) dans ce navigateur {"count":0,"manual":0,"lastAuto":null,"autoToday":false}
-12:41:20.181 +0.10s INFO  canvas.load.ok [canvas.load#1 · 57 ms] Canevas prêt {"nodes":30,"scale":62,"via":"load"}
-12:41:20.372 +0.29s INFO  collab.invite.open Invitation de Hôte isolé : éditeur {"role":"editor","owner":"Hôte isolé","ownerFp":"A2GAa3O5NX3yVHBd","via":"boîte aux lettres","signal":"http://127.0.0.1:8852/publish.php","hours":168}
-12:41:20.373 +0.29s DEBUG ui.dialog.open Fenêtre ouverte : 👥 Rejoindre une session {"id":"joinDialog","class":"audit collab","modal":true}
-12:41:20.559 +0.48s INFO  collab.identity.new Clé personnelle créée pour Invité isolé {"fp":"BxAR2U9vH5kzwHJ2","did":"did:key:zDnaejSaz1LB2fNJ"}
-12:41:20.563 +0.48s INFO  collab.join.start [collab.join#1] Rejoindre une session {"name":"Invité isolé","fp":"BxAR2U9vH5kzwHJ2","via":"boîte aux lettres"}
-12:41:20.564 +0.49s DEBUG collab.join.invite [collab.join#1 · 1 ms] Invitation valable : Hôte isolé invite comme éditeur {"role":"editor","owner":"Hôte isolé","host":"c3d5eabec1b8bea8","signal":"http://127.0.0.1:8852/publish.php","hours":168}
-12:41:20.566 +0.49s INFO  version.save.start [version.save#1] Enregistrement d’une version de sécurité : « Avant de rejoindre une session de collaboration » {"kind":"safety","name":"Avant de rejoindre une session de collaboration"}
-12:41:20.570 +0.49s DEBUG version.save.prune [version.save#1 · 4 ms] Aucune ancienne version à supprimer {"total":1}
-12:41:20.571 +0.49s INFO  version.save.ok [version.save#1 · 5 ms] Version de sécurité enregistrée (2 pages) {"id":"v_mvwbytkm8o6hu","kind":"safety","at":"2026-10-31T11:41:20.566Z","pages":2,"kb":12}
-12:41:20.571 +0.49s DEBUG collab.join.backup [collab.join#1 · 8 ms] Projet actuel enregistré dans les versions avant de recevoir celui de l’hôte
-12:41:20.572 +0.49s INFO  rtc.join.start [rtc.join#1] Connexion à l’hôte c3d5eabec1b8bea8 par la boîte aux lettres {"host":"c3d5eabec1b8bea8","url":"http://127.0.0.1:8852/publish.php","room":"504d920e"}
-12:41:20.576 +0.50s DEBUG rtc.pc.create Connexion WebRTC créée (côté demande) {"side":"offer","label":"c3d5eabec1b8bea8","stun":["stun:127.0.0.1:9"]}
-12:41:20.581 +0.50s DEBUG rtc.join.offer [rtc.join#1 · 9 ms] Demande de connexion créée : collecte des adresses réseau
-12:41:20.582 +0.50s DEBUG rtc.ice.gathering Collecte des candidats : gathering {"label":"c3d5eabec1b8bea8","state":"gathering","local":{"host":0,"srflx":0,"relay":0,"prflx":0}}
-12:41:24.598 +4.52s WARN  rtc.ice.gather-timeout Collecte des adresses non terminée après 4 s : envoi de 1 adresse trouvée (serveur STUN lent ou injoignable ?) {"label":"c3d5eabec1b8bea8","ms":4017,"local":{"host":1,"srflx":0,"relay":0,"prflx":0},"stun":["stun:127.0.0.1:9"]}
-12:41:24.601 +4.52s WARN  rtc.ice.no-srflx Aucune adresse publique obtenue (pas de candidat srflx) : serveur STUN injoignable ou UDP bloqué ; la connexion ne marchera que sur le même réseau {"label":"c3d5eabec1b8bea8","stun":["stun:127.0.0.1:9"],"iceErrors":0}
-12:41:24.602 +4.52s DEBUG signal.post Dépôt d’un message chiffré « offer » pour c3d5eabec1b8bea8 {"room":"504d920e","from":"fc9cb33c222f54a3","to":"c3d5eabec1b8bea8","t":"offer","bytes":920}
-12:41:24.603 +4.53s DEBUG net.request POST 127.0.0.1:8852/publish.php {"id":1,"method":"POST","url":"http://127.0.0.1:8852/publish.php","body":{"json":["signal","proof","from","to","data"],"size":1132}}
-12:41:24.609 +4.53s INFO  net.response 200 POST 127.0.0.1:8852/publish.php (6 ms) {"id":1,"status":200,"ms":6,"type":"application/json","req":"5ee60067"}
-12:41:24.610 +4.53s INFO  rtc.join.sent [rtc.join#1 · 4038 ms] Demande déposée dans la boîte aux lettres : en attente de la réponse de l’hôte {"local":{"host":1,"srflx":0,"relay":0,"prflx":0}}
-12:41:24.611 +4.53s DEBUG signal.start Relève de la boîte aux lettres toutes les 1 s {"room":"504d920e","peer":"fc9cb33c222f54a3","every":1000}
-12:41:30.651 +10.57s DEBUG signal.receive 1 message relevé dans la boîte aux lettres {"room":"504d920e","count":1,"from":["c3d5eabec1b8bea8"]}
-12:41:30.652 +10.57s DEBUG signal.stop Relève de la boîte aux lettres arrêtée {"room":"504d920e","polls":7,"received":1}
-12:41:30.654 +10.58s DEBUG rtc.ice.remote Adresses reçues de l’autre navigateur : 1 host {"label":"c3d5eabec1b8bea8","type":"answer","remote":{"host":1,"srflx":0,"relay":0,"prflx":0}}
-12:41:30.654 +10.58s INFO  rtc.join.answer [rtc.join#1 · 10082 ms] Réponse de l’hôte reçue : ouverture du canal… {"remote":{"host":1,"srflx":0,"relay":0,"prflx":0}}
-12:41:50.656 +30.58s WARN  rtc.channel.timeout Canal non ouvert après 20 s : Ce navigateur n’a obtenu aucune adresse publique (aucun candidat srflx) : serveur STUN injoignable ou UDP bloqué par un pare-feu (réseau d’entreprise, hôtel). Essaie un autre réseau, par exemple le partage de connexion d’un téléphone. {"label":"c3d5eabec1b8bea8","ice":"new","pc":"new","gathering":"gathering","local":{"host":1,"srflx":0,"relay":0,"prflx":0},"remote":{"host":1,"srflx":0,"relay":0,"prflx":0},"stun":["stun:127.0.0.1:9"],"ms":30079}
-12:41:50.657 +30.58s ERROR rtc.join.fail [rtc.join#1 · 30085 ms] la connexion directe n’a pas abouti (pare-feu ou réseau d’entreprise ?) {"label":"c3d5eabec1b8bea8","ice":"new","pc":"new","gathering":"gathering","local":{"host":1,"srflx":0,"relay":0,"prflx":0},"remote":{"host":1,"srflx":0,"relay":0,"prflx":0},"stun":["stun:127.0.0.1:9"],"ms":30081,"error":{"name":"Error","message":"la connexion directe n’a pas abouti (pare-feu ou réseau d’entreprise ?)","stack":"Error: la connexion directe n’a pas abouti (pare-feu ou réseau d’entreprise ?)\nat http://localhost:8800/editor/collab-net.js:264:14"}}
-12:41:50.658 +30.58s ERROR collab.join.fail [collab.join#1 · 30095 ms] la connexion directe n’a pas abouti (pare-feu ou réseau d’entreprise ?) {"error":{"name":"Error","message":"la connexion directe n’a pas abouti (pare-feu ou réseau d’entreprise ?)","stack":"Error: la connexion directe n’a pas abouti (pare-feu ou réseau d’entreprise ?)\nat http://localhost:8800/editor/collab-net.js:264:14"}}
+14:29:45.884 +0.01s DEBUG widgets.extra Widgets supplémentaires chargés : 15 {"widgets":23,"extra":15}
+14:29:45.886 +0.01s DEBUG ui.lang-ready Interface en Français {"lang":"fr","static":0,"catalog":false}
+14:29:45.889 +0.01s DEBUG ui.icons Icônes de l’interface montées : 14 {"n":14}
+14:29:45.922 +0.04s DEBUG canvas.scale Canevas ordinateur : 1040 px, réduit à 76 % {"device":"desktop","width":1040,"scale":76,"available":792,"zoom":"fit"}
+14:29:45.924 +0.05s INFO  canvas.load.start [canvas.load#1] Chargement complet du canevas : premier chargement {"reason":"premier chargement","page":"p_0rpssoig","lang":"fr","device":"desktop"}
+14:29:45.932 +0.05s DEBUG canvas.load.render [canvas.load#1 · 8 ms] Page rendue {"ms":7,"kb":29}
+14:29:45.934 +0.06s INFO  collab.join.link Lien d’invitation ouvert
+14:29:46.004 +0.13s DEBUG version.init 0 version(s) dans ce navigateur {"count":0,"manual":0,"lastAuto":null,"autoToday":false}
+14:29:46.008 +0.13s INFO  canvas.load.ok [canvas.load#1 · 84 ms] Canevas prêt {"nodes":30,"scale":76,"via":"dom"}
+14:29:46.015 +0.14s DEBUG canvas.resources Ressources externes du canevas chargées {"ms":83,"hosts":[]}
+14:29:46.214 +0.34s INFO  collab.invite.open Invitation de Hôte isolé : éditeur {"role":"editor","owner":"Hôte isolé","ownerFp":"sRbOmpx6eRhMf8Gg","via":"boîte aux lettres","signal":"http://127.0.0.1:8854/publish.php","hours":168}
+14:29:46.216 +0.34s DEBUG ui.dialog.open Fenêtre ouverte : 👥 Rejoindre une session {"id":"joinDialog","class":"audit collab","modal":true}
+14:29:46.382 +0.50s INFO  collab.identity.new Clé personnelle créée pour Invité isolé {"fp":"pe88U7ooC-7Scjfo","did":"did:key:zDnaeXJB8h3qsXY7"}
+14:29:46.388 +0.51s INFO  collab.join.start [collab.join#1] Rejoindre une session {"name":"Invité isolé","fp":"pe88U7ooC-7Scjfo","via":"boîte aux lettres"}
+14:29:46.390 +0.51s DEBUG collab.join.invite [collab.join#1 · 2 ms] Invitation valable : Hôte isolé invite comme éditeur {"role":"editor","owner":"Hôte isolé","host":"4962af14f53a6d9c","signal":"http://127.0.0.1:8854/publish.php","hours":168}
+14:29:46.392 +0.51s INFO  version.save.start [version.save#1] Enregistrement d’une version de sécurité : « Avant de rejoindre une session de collaboration » {"kind":"safety","name":"Avant de rejoindre une session de collaboration"}
+14:29:46.395 +0.52s DEBUG version.save.prune [version.save#1 · 3 ms] Aucune ancienne version à supprimer {"total":1}
+14:29:46.396 +0.52s INFO  version.save.ok [version.save#1 · 4 ms] Version de sécurité enregistrée (2 pages) {"id":"v_mvwfu9i0a19l9","kind":"safety","at":"2026-10-31T13:29:46.392Z","pages":2,"kb":12}
+14:29:46.396 +0.52s DEBUG collab.join.backup [collab.join#1 · 8 ms] Projet actuel enregistré dans les versions avant de recevoir celui de l’hôte
+14:29:46.397 +0.52s INFO  rtc.join.start [rtc.join#1] Connexion à l’hôte 4962af14f53a6d9c par la boîte aux lettres {"host":"4962af14f53a6d9c","url":"http://127.0.0.1:8854/publish.php","room":"cc3a9d67"}
+14:29:46.400 +0.52s DEBUG rtc.pc.create Connexion WebRTC créée (côté demande) {"side":"offer","label":"4962af14f53a6d9c","stun":["stun:127.0.0.1:9"]}
+14:29:46.408 +0.53s DEBUG rtc.join.offer [rtc.join#1 · 10 ms] Demande de connexion créée : collecte des adresses réseau
+14:29:46.409 +0.53s DEBUG rtc.ice.gathering Collecte des candidats : gathering {"label":"4962af14f53a6d9c","state":"gathering","local":{"host":0,"srflx":0,"relay":0,"prflx":0}}
+14:29:50.408 +4.53s WARN  rtc.ice.gather-timeout Collecte des adresses non terminée après 4 s : envoi de 1 adresse trouvée (serveur STUN lent ou injoignable ?) {"label":"4962af14f53a6d9c","ms":4001,"local":{"host":1,"srflx":0,"relay":0,"prflx":0},"stun":["stun:127.0.0.1:9"]}
+14:29:50.409 +4.53s WARN  rtc.ice.no-srflx Aucune adresse publique obtenue (pas de candidat srflx) : serveur STUN injoignable ou UDP bloqué ; la connexion ne marchera que sur le même réseau {"label":"4962af14f53a6d9c","stun":["stun:127.0.0.1:9"],"iceErrors":0}
+14:29:50.410 +4.53s DEBUG signal.post Dépôt d’un message chiffré « offer » pour 4962af14f53a6d9c {"room":"cc3a9d67","from":"99e2de99cb7e0aca","to":"4962af14f53a6d9c","t":"offer","bytes":922}
+14:29:50.411 +4.53s DEBUG net.request POST 127.0.0.1:8854/publish.php {"id":1,"method":"POST","url":"http://127.0.0.1:8854/publish.php","body":{"json":["signal","proof","from","to","data"],"size":1134}}
+14:29:50.419 +4.54s INFO  net.response 200 POST 127.0.0.1:8854/publish.php (8 ms) {"id":1,"status":200,"ms":8,"type":"application/json","req":"93d94468"}
+14:29:50.419 +4.54s INFO  rtc.join.sent [rtc.join#1 · 4022 ms] Demande déposée dans la boîte aux lettres : en attente de la réponse de l’hôte {"local":{"host":1,"srflx":0,"relay":0,"prflx":0}}
+14:29:50.420 +4.54s DEBUG signal.start Relève de la boîte aux lettres toutes les 1 s {"room":"cc3a9d67","peer":"99e2de99cb7e0aca","every":1000}
+14:29:56.452 +10.57s DEBUG signal.receive 1 message relevé dans la boîte aux lettres {"room":"cc3a9d67","count":1,"from":["4962af14f53a6d9c"]}
+14:29:56.453 +10.57s DEBUG signal.stop Relève de la boîte aux lettres arrêtée {"room":"cc3a9d67","polls":7,"received":1}
+14:29:56.455 +10.58s DEBUG rtc.ice.remote Adresses reçues de l’autre navigateur : 1 host {"label":"4962af14f53a6d9c","type":"answer","remote":{"host":1,"srflx":0,"relay":0,"prflx":0}}
+14:29:56.455 +10.58s INFO  rtc.join.answer [rtc.join#1 · 10058 ms] Réponse de l’hôte reçue : ouverture du canal… {"remote":{"host":1,"srflx":0,"relay":0,"prflx":0}}
+14:30:16.456 +30.58s WARN  rtc.channel.timeout Canal non ouvert après 20 s : Ce navigateur n’a obtenu aucune adresse publique (aucun candidat srflx) : serveur STUN injoignable ou UDP bloqué par un pare-feu (réseau d’entreprise, hôtel). Essaie un autre réseau, par exemple le partage de connexion d’un téléphone. {"label":"4962af14f53a6d9c","ice":"new","pc":"new","gathering":"gathering","local":{"host":1,"srflx":0,"relay":0,"prflx":0},"remote":{"host":1,"srflx":0,"relay":0,"prflx":0},"stun":["stun:127.0.0.1:9"],"ms":30056}
+14:30:16.456 +30.58s ERROR rtc.join.fail [rtc.join#1 · 30059 ms] la connexion directe n’a pas abouti (pare-feu ou réseau d’entreprise ?) {"label":"4962af14f53a6d9c","ice":"new","pc":"new","gathering":"gathering","local":{"host":1,"srflx":0,"relay":0,"prflx":0},"remote":{"host":1,"srflx":0,"relay":0,"prflx":0},"stun":["stun:127.0.0.1:9"],"ms":30056,"error":{"name":"Error","message":"la connexion directe n’a pas abouti (pare-feu ou réseau d’entreprise ?)","stack":"Error: la connexion directe n’a pas abouti (pare-feu ou réseau d’entreprise ?)\nat http://localhost:8851/editor/collab-net.js:264:14"}}
+14:30:16.457 +30.58s ERROR collab.join.fail [collab.join#1 · 30069 ms] la connexion directe n’a pas abouti (pare-feu ou réseau d’entreprise ?) {"error":{"name":"Error","message":"la connexion directe n’a pas abouti (pare-feu ou réseau d’entreprise ?)","stack":"Error: la connexion directe n’a pas abouti (pare-feu ou réseau d’entreprise ?)\nat http://localhost:8851/editor/collab-net.js:264:14"}}

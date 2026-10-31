@@ -1,17 +1,17 @@
-12:40:55.330 +31.11s DEBUG signal.receive 1 message relevé dans la boîte aux lettres {"room":"7400cb20","count":1,"from":["393c1813bcf60717"]}
-12:40:55.331 +31.11s INFO  rtc.accept.start [rtc.accept#3] Demande de connexion reçue de 393c1813bcf60717 {"from":"393c1813bcf60717","via":"boîte aux lettres"}
-12:40:55.352 +31.13s DEBUG rtc.accept.answer [rtc.accept#3 · 21 ms] Réponse créée : collecte des adresses réseau
-12:40:55.363 +31.14s DEBUG signal.post Dépôt d’un message chiffré « answer » pour 393c1813bcf60717 {"room":"7400cb20","from":"863c9ffed095d177","to":"393c1813bcf60717","t":"answer","bytes":922}
-12:40:55.363 +31.14s DEBUG net.request POST 127.0.0.1:8852/publish.php {"id":20,"method":"POST","url":"http://127.0.0.1:8852/publish.php","body":{"json":["signal","proof","from","to","data"],"size":1134}}
-12:40:55.370 +31.15s INFO  net.response 200 POST 127.0.0.1:8852/publish.php (7 ms) {"id":20,"status":200,"ms":7,"type":"application/json","req":"0a6e3f33"}
-12:40:55.372 +31.15s INFO  rtc.accept.sent [rtc.accept#3 · 41 ms] Réponse déposée dans la boîte aux lettres : ouverture du canal… {"local":{"host":1,"srflx":0,"relay":0,"prflx":0}}
-12:40:56.149 +31.93s INFO  rtc.pair Chemin réseau utilisé : host ↔ host (udp) {"label":"393c1813bcf60717","local":"host","remote":"host","protocol":"udp","rttMs":1,"ms":807}
-12:40:56.157 +31.93s INFO  rtc.channel.open Canal de données ouvert avec 393c1813bcf60717 {"label":"393c1813bcf60717","ms":815}
-12:40:56.165 +31.94s INFO  rtc.accept.ok [rtc.accept#3 · 834 ms] Liaison directe prête avec 393c1813bcf60717 {"ms":823}
-12:40:56.166 +31.94s DEBUG collab.link.new Nouveau lien : présentation (hôte) {"label":"393c1813bcf60717","links":2}
-12:40:56.172 +31.95s DEBUG collab.hello Présentation de Ana : invitation valable (éditeur, expire dans 168 h) {"name":"Ana","fp":"fXJc6D3cE5MgY45S","role":"editor"}
-12:40:56.173 +31.95s INFO  collab.auth Identité vérifiée : Ana (éditeur) {"name":"Ana","fp":"fXJc6D3cE5MgY45S","role":"editor","peers":2}
-12:40:56.180 +31.96s INFO  collab.sync.delta Reprise de Ana : 4 modifications manquées envoyées {"name":"Ana","ops":4}
-12:40:56.207 +31.98s DEBUG collab.ops.in 1 modification de Ana appliquée {"name":"Ana","received":1,"applied":1}
-12:40:56.208 +31.98s DEBUG store.remote Modifications d’un autre participant appliquées {"ops":1,"history":5}
-12:40:56.214 +31.99s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"remote","mode":"contenu","ms":4}
+14:29:21.988 +31.09s DEBUG signal.receive 1 message relevé dans la boîte aux lettres {"room":"525230ab","count":1,"from":["5f3c982d531eac28"]}
+14:29:21.989 +31.09s INFO  rtc.accept.start [rtc.accept#3] Demande de connexion reçue de 5f3c982d531eac28 {"from":"5f3c982d531eac28","via":"boîte aux lettres"}
+14:29:21.993 +31.09s DEBUG rtc.accept.answer [rtc.accept#3 · 4 ms] Réponse créée : collecte des adresses réseau
+14:29:21.997 +31.09s DEBUG signal.post Dépôt d’un message chiffré « answer » pour 5f3c982d531eac28 {"room":"525230ab","from":"a839a570140b6207","to":"5f3c982d531eac28","t":"answer","bytes":922}
+14:29:21.997 +31.09s DEBUG net.request POST 127.0.0.1:8854/publish.php {"id":20,"method":"POST","url":"http://127.0.0.1:8854/publish.php","body":{"json":["signal","proof","from","to","data"],"size":1134}}
+14:29:22.002 +31.10s INFO  net.response 200 POST 127.0.0.1:8854/publish.php (5 ms) {"id":20,"status":200,"ms":5,"type":"application/json","req":"4ae4a222"}
+14:29:22.004 +31.10s INFO  rtc.accept.sent [rtc.accept#3 · 15 ms] Réponse déposée dans la boîte aux lettres : ouverture du canal… {"local":{"host":1,"srflx":0,"relay":0,"prflx":0}}
+14:29:22.654 +31.75s INFO  rtc.pair Chemin réseau utilisé : host ↔ host (udp) {"label":"5f3c982d531eac28","local":"host","remote":"host","protocol":"udp","rttMs":0,"ms":664}
+14:29:22.656 +31.75s INFO  rtc.channel.open Canal de données ouvert avec 5f3c982d531eac28 {"label":"5f3c982d531eac28","ms":666}
+14:29:22.657 +31.75s INFO  rtc.accept.ok [rtc.accept#3 · 668 ms] Liaison directe prête avec 5f3c982d531eac28 {"ms":667}
+14:29:22.657 +31.75s DEBUG collab.link.new Nouveau lien : présentation (hôte) {"label":"5f3c982d531eac28","links":2}
+14:29:22.660 +31.76s DEBUG collab.hello Présentation de Ana : invitation valable (éditeur, expire dans 168 h) {"name":"Ana","fp":"YGdfT8uRvYIMHoQm","role":"editor"}
+14:29:22.665 +31.76s INFO  collab.auth Identité vérifiée : Ana (éditeur) {"name":"Ana","fp":"YGdfT8uRvYIMHoQm","role":"editor","peers":2}
+14:29:22.672 +31.77s INFO  collab.sync.delta Reprise de Ana : 4 modifications manquées envoyées {"name":"Ana","ops":4}
+14:29:22.706 +31.80s DEBUG collab.ops.in 1 modification de Ana appliquée {"name":"Ana","received":1,"applied":1}
+14:29:22.707 +31.80s DEBUG store.remote Modifications d’un autre participant appliquées {"ops":1,"history":5}
+14:29:22.713 +31.81s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"remote","mode":"contenu","ms":4}

@@ -1,8 +1,7 @@
-20:51:56.809 +1.79s DEBUG store.commit Modification (même étape d’annulation) {"key":"site-name","source":"panel","merged":true,"past":1,"page":"p_a3je7ile"}
-20:51:56.843 +1.82s INFO  settings.name Nom du site : « MAB – Médias Alternatifs Belges » {"length":31}
-20:51:57.138 +2.12s WARN  settings.refused Réglage refusé : L’adresse du site doit commencer par https:// {"setting":"base-url","error":{"name":"Error","message":"L’adresse du site doit commencer par https://","stack":"Error: L’adresse du site doit commencer par https://\nat setSiteMeta (http://localhost:8791/core/site.js:313:75)\nat http://localhost:8791/editor/panels.js:163:58\nat apply (http://localhost:8791/editor/panels.js:25:23)\nat HTMLInputElement.<anonymous> (http://localhost:8791/editor/panels.js:163:47)"}}
-20:51:57.140 +2.12s ERROR ui.toast Message affiché : L’adresse du site doit commencer par https:// {"type":"error"}
-20:51:57.418 +2.40s DEBUG storage.save Projet enregistré sur cet appareil {"ms":9,"kb":12}
-20:51:57.449 +2.43s DEBUG store.commit Modification {"key":null,"source":"panel","past":2,"page":"p_a3je7ile"}
-20:51:57.458 +2.44s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"panel","mode":"contenu","ms":7}
-20:51:57.460 +2.44s INFO  settings.base-url Adresse du site : https://www.media-alternatif.be {"url":"https://www.media-alternatif.be"}
+14:27:45.986 +1.47s DEBUG store.commit Modification (même étape d’annulation) {"key":"site-name","source":"panel","merged":true,"past":1,"page":"p_e5t0kx20"}
+14:27:46.008 +1.50s INFO  settings.name Nom du site : « MAB – Médias Alternatifs Belges » {"length":31}
+14:27:46.282 +1.77s WARN  settings.refused Réglage refusé : L’adresse du site doit commencer par https:// {"setting":"base-url","error":{"name":"Error","message":"L’adresse du site doit commencer par https://","stack":"Error: L’adresse du site doit commencer par https://\nat setSiteMeta (http://localhost:8851/core/site.js:370:75)\nat http://localhost:8851/editor/panels.js:167:58\nat apply (http://localhost:8851/editor/panels.js:29:23)\nat HTMLInputElement.<anonymous> (http://localhost:8851/editor/panels.js:167:47)"}}
+14:27:46.282 +1.77s ERROR ui.toast Message affiché : L’adresse du site doit commencer par https:// {"type":"error"}
+14:27:46.567 +2.06s DEBUG store.commit Modification {"key":null,"source":"panel","past":2,"page":"p_e5t0kx20"}
+14:27:46.571 +2.06s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"panel","mode":"contenu","ms":3}
+14:27:46.572 +2.06s INFO  settings.base-url Adresse du site : https://www.media-alternatif.be {"url":"https://www.media-alternatif.be"}

@@ -1,14 +1,14 @@
-20:55:02.352 +11.17s INFO  smart.palette.start [smart.palette#1] Palette depuis le logo {"logo":"aucun"}
-20:55:02.353 +11.17s DEBUG ui.dialog.open Fenêtre ouverte : 🎨 Palette depuis le logo {"id":"paletteDialog","class":"audit smart-dialog","modal":true}
-20:55:02.360 +11.18s INFO  smart.palette.no-logo [smart.palette#1 · 8 ms] Pas de logo importé : choisir une image
-20:55:02.385 +11.20s DEBUG smart.palette.file [smart.palette#1 · 33 ms] Image choisie : logo-mab.png {"type":"image/png","kb":0}
-20:55:02.389 +11.21s DEBUG smart.palette.pixels [smart.palette#1 · 37 ms] Logo lu : 120×60 px (analysé en 120×60) {"natural":"120×60","sample":"120×60"}
-20:55:02.391 +11.21s INFO  smart.palette.colors [smart.palette#1 · 39 ms] 2 couleur(s) dominante(s) {"colors":["#ffd400 51 %","#f2353f 49 %"]}
-20:55:02.392 +11.21s INFO  smart.palette.proposal [smart.palette#1 · 40 ms] Proposition : #e00e1a #ffd400 #231516 #fbf7f7 #725a5b #ffffff · 1 correction de contraste {"palette":{"c1":"#e00e1a","c2":"#ffd400","c3":"#231516","c4":"#fbf7f7","c5":"#725a5b","c6":"#ffffff"},"roles":{"c1":"du logo","c2":"du logo","c3":"dérivée","c4":"dérivée","c5":"dérivée","c6":"blanc"},"changes":[{"key":"c1","from":"#f2353f","to":"#e00e1a","why":"assombrie pour le texte blanc des boutons et les liens sur le fond"}],"ok":true,"failing":[]}
-20:55:02.614 +11.43s DEBUG store.commit Modification {"source":"site","past":10,"page":"p_4r2k4t7q"}
-20:55:02.623 +11.44s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":4}
-20:55:02.634 +11.45s INFO  smart.palette.ok [smart.palette#1 · 282 ms] Palette appliquée (Ctrl+Z pour revenir à l’ancienne) {"palette":{"c1":"#e00e1a","c2":"#ffd400","c3":"#231516","c4":"#fbf7f7","c5":"#725a5b","c6":"#ffffff"},"changes":1}
-20:55:02.634 +11.45s INFO  ui.toast Message affiché : Palette appliquée : tout le site suit (Ctrl+Z pour annuler).
-20:55:02.644 +11.46s DEBUG ui.dialog.close Fenêtre fermée : 🎨 Palette depuis le logo {"id":"paletteDialog"}
-20:55:02.747 +11.57s INFO  store.undo Annuler {"left":9,"redo":1}
-20:55:02.761 +11.58s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"history","mode":"contenu","ms":5}
+14:30:33.217 +9.44s INFO  smart.palette.start [smart.palette#1] Palette depuis le logo {"logo":"aucun"}
+14:30:33.217 +9.44s DEBUG ui.dialog.open Fenêtre ouverte : 🎨 Palette depuis le logo {"id":"paletteDialog","class":"audit smart-dialog","modal":true}
+14:30:33.225 +9.44s INFO  smart.palette.no-logo [smart.palette#1 · 8 ms] Pas de logo importé : choisir une image
+14:30:33.257 +9.47s DEBUG smart.palette.file [smart.palette#1 · 40 ms] Image choisie : logo-mab.png {"type":"image/png","kb":0}
+14:30:33.262 +9.48s DEBUG smart.palette.pixels [smart.palette#1 · 45 ms] Logo lu : 120×60 px (analysé en 120×60) {"natural":"120×60","sample":"120×60"}
+14:30:33.263 +9.48s INFO  smart.palette.colors [smart.palette#1 · 46 ms] 2 couleur(s) dominante(s) {"colors":["#ffd400 51 %","#f2353f 49 %"]}
+14:30:33.264 +9.48s INFO  smart.palette.proposal [smart.palette#1 · 47 ms] Proposition : #e00e1a #ffd400 #231516 #fbf7f7 #725a5b #ffffff · 1 correction de contraste {"palette":{"c1":"#e00e1a","c2":"#ffd400","c3":"#231516","c4":"#fbf7f7","c5":"#725a5b","c6":"#ffffff"},"roles":{"c1":"du logo","c2":"du logo","c3":"dérivée","c4":"dérivée","c5":"dérivée","c6":"blanc"},"changes":[{"key":"c1","from":"#f2353f","to":"#e00e1a","why":"assombrie pour le texte blanc des boutons et les liens sur le fond"}],"ok":true,"failing":[]}
+14:30:33.422 +9.64s DEBUG store.commit Modification {"source":"site","past":10,"page":"p_o0t26il1"}
+14:30:33.431 +9.65s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
+14:30:33.443 +9.66s INFO  smart.palette.ok [smart.palette#1 · 226 ms] Palette appliquée (Ctrl+Z pour revenir à l’ancienne) {"palette":{"c1":"#e00e1a","c2":"#ffd400","c3":"#231516","c4":"#fbf7f7","c5":"#725a5b","c6":"#ffffff"},"changes":1}
+14:30:33.444 +9.66s INFO  ui.toast Message affiché : Palette appliquée : tout le site suit (Ctrl+Z pour annuler).
+14:30:33.453 +9.67s DEBUG ui.dialog.close Fenêtre fermée : 🎨 Palette depuis le logo {"id":"paletteDialog"}
+14:30:33.518 +9.74s INFO  store.undo Annuler {"left":9,"redo":1}
+14:30:33.526 +9.74s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"history","mode":"contenu","ms":3}

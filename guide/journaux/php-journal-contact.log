@@ -1,2 +1,2 @@
-2026-10-31T12:34:49.504Z INFO  php.contact.sent [req b67675a6 · 0.5 ms] E-mail remis au serveur d’envoi de l’hébergement {"form":"n_2f0l5h4h18","to":"re…@media-alternatif.be","from":"noreply@xn--mdia-alternatif-bnb.be","fields":3,"reply_to":true}
-2026-10-31T12:34:49.504Z INFO  php.req.end [req b67675a6 · 0.5 ms] Réponse 200 (contact) {"status":200,"route":"contact","mem_kb":365}
+2026-10-31T13:27:00.197Z INFO  php.contact.sent [req f411d8ff · 0.4 ms] E-mail remis au serveur d’envoi de l’hébergement {"form":"n_4n731q0k6y","to":"re…@media-alternatif.be","from":"noreply@xn--mdia-alternatif-bnb.be","fields":3,"reply_to":true}
+2026-10-31T13:27:00.197Z INFO  php.req.end [req f411d8ff · 0.5 ms] Réponse 200 (contact) {"status":200,"route":"contact","mem_kb":365}

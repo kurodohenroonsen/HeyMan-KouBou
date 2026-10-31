@@ -1,31 +1,32 @@
-20:53:06.405 +4.89s DEBUG ai.status IA locale : prêt → prompt, multimodal, translator (1 ms) {"lang":"fr","ms":1,"source":"chrome","writer":"absent","detector":"absent","prompt":"available","multimodal":"available","summarizer":"downloadable","rewriter":"downloadable","proofreader":"unavailable","translator":"available"}
-20:53:06.406 +4.89s DEBUG ai.provider Fournisseur d’IA : API de Chrome {"source":"chrome","lang":"fr","has":{"prompt":true,"multimodal":true,"summarizer":true,"rewriter":true,"writer":false,"proofreader":false,"translator":true}}
-20:53:06.406 +4.89s INFO  ai.rewrite.start [ai.rewrite#4] IA locale : reformuler {"task":"rewrite","inLen":73,"excerpt":"Le MAB réunit les médias alternatifs belges, chacun gardant…","mode":"formal","lang":"fr","gen":"fr","api":"rewriter","source":"chrome"}
-20:53:06.406 +4.89s DEBUG ai.rewrite.call [ai.rewrite#4 · 0 ms] Appel Rewriter (fr) {"api":"rewriter","lang":"fr","tone":"more-formal","length":"as-is","inLen":73}
-20:53:06.412 +4.90s DEBUG ai.progress Téléchargement Rewriter : 50 % {"api":"rewriter","pct":50}
-20:53:06.418 +4.90s DEBUG ai.progress Téléchargement Rewriter : 100 % {"api":"rewriter","pct":100}
-20:53:06.424 +4.91s DEBUG ai.session.create Session Rewriter créée (17 ms) {"api":"rewriter","ms":17,"inputs":"fr","outputs":"fr","length":"as-is","tone":"more-formal","format":"plain-text"}
-20:53:06.424 +4.91s DEBUG ai.rewrite.reply [ai.rewrite#4 · 18 ms] Réponse Rewriter : 25 car. en 18 ms {"api":"rewriter","ms":18,"outLen":25,"excerpt":"Le MAB réunit les médias."}
-20:53:06.424 +4.91s INFO  ai.rewrite.ok [ai.rewrite#4 · 18 ms] Reformuler : proposition prête (Rewriter) {"via":"rewriter","fallback":false,"translated":false,"calls":1,"outLen":25,"excerpt":"Le MAB réunit les médias."}
-20:53:06.429 +4.91s DEBUG ai.status IA locale : prêt → prompt, multimodal, translator (0 ms) {"lang":"fr","ms":0,"source":"chrome","writer":"absent","detector":"absent","prompt":"available","multimodal":"available","summarizer":"downloadable","rewriter":"downloadable","proofreader":"unavailable","translator":"available"}
-20:53:06.429 +4.91s DEBUG ai.provider Fournisseur d’IA : API de Chrome {"source":"chrome","lang":"fr","has":{"prompt":true,"multimodal":true,"summarizer":true,"rewriter":true,"writer":false,"proofreader":false,"translator":true}}
-20:53:06.429 +4.91s INFO  ai.title.start [ai.title#2] IA locale : titre pour Google {"task":"seoTitle","title":"Accueil","inLen":37,"lang":"fr","sourceLang":"fr","gen":"fr","api":"prompt","source":"chrome"}
-20:53:06.430 +4.91s DEBUG ai.title.call [ai.title#2 · 1 ms] Appel Prompt API (Gemini Nano) (fr) {"api":"prompt","lang":"fr","schema":"title","system":"189 car.","inLen":81}
-20:53:06.430 +4.91s DEBUG ai.session.create Session Prompt API (Gemini Nano) créée (0 ms) {"api":"prompt","ms":0,"inputs":"text:fr","outputs":"text:fr","system":"1 message(s), 189 car.","inputQuota":6144}
-20:53:06.431 +4.92s DEBUG ai.session.usage Prompt API : 420 / 6144 jetons d’entrée utilisés {"inputUsage":420,"inputQuota":6144}
-20:53:06.431 +4.92s DEBUG ai.title.reply [ai.title#2 · 2 ms] Réponse Prompt API (Gemini Nano) : 58 car. en 1 ms {"api":"prompt","ms":1,"outLen":58,"excerpt":"{\"title\":\"MAB – fédération des médias alternatifs belges\"}"}
-20:53:06.431 +4.92s INFO  ai.title.ok [ai.title#2 · 2 ms] Titre pour Google : proposition prête (Prompt API) {"via":"prompt","fallback":false,"translated":false,"calls":1,"outLen":46,"excerpt":"MAB – fédération des médias alternatifs belges"}
-20:53:06.435 +4.92s DEBUG ai.status IA locale : prêt → prompt, multimodal, translator (0 ms) {"lang":"fr","ms":0,"source":"chrome","writer":"absent","detector":"absent","prompt":"available","multimodal":"available","summarizer":"downloadable","rewriter":"downloadable","proofreader":"unavailable","translator":"available"}
-20:53:06.435 +4.92s DEBUG ai.provider Fournisseur d’IA : API de Chrome {"source":"chrome","lang":"fr","has":{"prompt":true,"multimodal":true,"summarizer":true,"rewriter":true,"writer":false,"proofreader":false,"translator":true}}
-20:53:06.435 +4.92s INFO  ai.description.start [ai.description#5] IA locale : description pour Google {"task":"seoDescription","title":"Accueil","inLen":37,"lang":"nl","sourceLang":"fr","gen":"fr","api":"summarizer","translateTo":"nl","source":"chrome"}
-20:53:06.435 +4.92s INFO  ai.description.via-translation [ai.description#5 · 0 ms] Gemini Nano ne parle pas nl : rédaction en fr, puis traduction sur l’appareil {"gen":"fr","to":"nl","translator":true}
-20:53:06.436 +4.92s DEBUG ai.description.call [ai.description#5 · 1 ms] Appel Summarizer (fr) {"api":"summarizer","lang":"fr","type":"tldr","length":"short","context":"109 car.","inLen":37}
-20:53:06.441 +4.92s DEBUG ai.progress Téléchargement Summarizer : 50 % {"api":"summarizer","pct":50}
-20:53:06.447 +4.93s DEBUG ai.progress Téléchargement Summarizer : 100 % {"api":"summarizer","pct":100}
-20:53:06.453 +4.94s DEBUG ai.session.create Session Summarizer créée (17 ms) {"api":"summarizer","ms":17,"inputs":"fr","outputs":"fr","type":"tldr","length":"short","format":"plain-text","sharedContext":"109 car."}
-20:53:06.454 +4.94s DEBUG ai.description.reply [ai.description#5 · 19 ms] Réponse Summarizer : 90 car. en 18 ms {"api":"summarizer","ms":18,"outLen":90,"excerpt":"Le MAB fédère les médias alternatifs belges : matériel, tec…"}
-20:53:06.454 +4.94s DEBUG ai.description.call [ai.description#5 · 19 ms] Appel Translator {"api":"translator","from":"fr","to":"nl","inLen":90}
-20:53:06.455 +4.94s INFO  translate.model.start [translate.model#1] Préparation du traducteur fr → nl {"from":"fr","to":"nl"}
-20:53:06.456 +4.94s INFO  translate.model.ok [translate.model#1 · 1 ms] Traducteur fr → nl prêt {"downloaded":false}
-20:53:06.457 +4.94s DEBUG ai.description.reply [ai.description#5 · 22 ms] Réponse Translator : 95 car. en 2 ms {"api":"translator","ms":2,"outLen":95,"excerpt":"[nl] Le MAB fédère les médias alternatifs belges : matériel…"}
-20:53:06.457 +4.94s INFO  ai.description.ok [ai.description#5 · 22 ms] Description pour Google : proposition prête (Summarizer, traduite en nl) {"via":"summarizer","fallback":false,"translated":true,"calls":2,"outLen":95,"excerpt":"[nl] Le MAB fédère les médias alternatifs belges : matériel…"}
+14:28:44.179 +3.75s DEBUG ai.status IA locale : prêt → prompt, multimodal, translator (0 ms) {"lang":"fr","ms":0,"source":"chrome","writer":"absent","detector":"absent","prompt":"available","multimodal":"available","summarizer":"downloadable","rewriter":"downloadable","proofreader":"unavailable","translator":"available"}
+14:28:44.180 +3.75s DEBUG ai.provider Fournisseur d’IA : API de Chrome {"source":"chrome","lang":"fr","has":{"prompt":true,"multimodal":true,"summarizer":true,"rewriter":true,"writer":false,"proofreader":false,"translator":true}}
+14:28:44.180 +3.75s INFO  ai.rewrite.start [ai.rewrite#4] IA locale : reformuler {"task":"rewrite","inLen":73,"excerpt":"Le MAB réunit les médias alternatifs belges, chacun gardant…","mode":"formal","lang":"fr","gen":"fr","api":"rewriter","source":"chrome"}
+14:28:44.180 +3.75s DEBUG ai.rewrite.call [ai.rewrite#4 · 0 ms] Appel Rewriter (fr) {"api":"rewriter","lang":"fr","tone":"more-formal","length":"as-is","inLen":73}
+14:28:44.188 +3.76s DEBUG ai.progress Téléchargement Rewriter : 50 % {"api":"rewriter","pct":50}
+14:28:44.192 +3.76s DEBUG storage.save Projet enregistré sur cet appareil {"ms":3,"kb":12,"newImages":1}
+14:28:44.194 +3.76s DEBUG ai.progress Téléchargement Rewriter : 100 % {"api":"rewriter","pct":100}
+14:28:44.199 +3.77s DEBUG ai.session.create Session Rewriter créée (18 ms) {"api":"rewriter","ms":18,"inputs":"fr","outputs":"fr","length":"as-is","tone":"more-formal","format":"plain-text"}
+14:28:44.199 +3.77s DEBUG ai.rewrite.reply [ai.rewrite#4 · 19 ms] Réponse Rewriter : 25 car. en 19 ms {"api":"rewriter","ms":19,"outLen":25,"excerpt":"Le MAB réunit les médias."}
+14:28:44.199 +3.77s INFO  ai.rewrite.ok [ai.rewrite#4 · 19 ms] Reformuler : proposition prête (Rewriter) {"via":"rewriter","fallback":false,"translated":false,"calls":1,"outLen":25,"excerpt":"Le MAB réunit les médias."}
+14:28:44.221 +3.79s DEBUG ai.status IA locale : prêt → prompt, multimodal, translator (1 ms) {"lang":"fr","ms":1,"source":"chrome","writer":"absent","detector":"absent","prompt":"available","multimodal":"available","summarizer":"downloadable","rewriter":"downloadable","proofreader":"unavailable","translator":"available"}
+14:28:44.221 +3.79s DEBUG ai.provider Fournisseur d’IA : API de Chrome {"source":"chrome","lang":"fr","has":{"prompt":true,"multimodal":true,"summarizer":true,"rewriter":true,"writer":false,"proofreader":false,"translator":true}}
+14:28:44.221 +3.79s INFO  ai.title.start [ai.title#2] IA locale : titre pour Google {"task":"seoTitle","title":"Accueil","inLen":37,"lang":"fr","sourceLang":"fr","gen":"fr","api":"prompt","source":"chrome"}
+14:28:44.222 +3.79s DEBUG ai.title.call [ai.title#2 · 1 ms] Appel Prompt API (Gemini Nano) (fr) {"api":"prompt","lang":"fr","schema":"title","system":"189 car.","inLen":81}
+14:28:44.222 +3.79s DEBUG ai.session.create Session Prompt API (Gemini Nano) créée (0 ms) {"api":"prompt","ms":0,"inputs":"text:fr","outputs":"text:fr","system":"1 message(s), 189 car.","inputQuota":6144}
+14:28:44.222 +3.79s DEBUG ai.session.usage Prompt API : 420 / 6144 jetons d’entrée utilisés {"inputUsage":420,"inputQuota":6144}
+14:28:44.223 +3.79s DEBUG ai.title.reply [ai.title#2 · 2 ms] Réponse Prompt API (Gemini Nano) : 58 car. en 1 ms {"api":"prompt","ms":1,"outLen":58,"excerpt":"{\"title\":\"MAB – fédération des médias alternatifs belges\"}"}
+14:28:44.223 +3.79s INFO  ai.title.ok [ai.title#2 · 2 ms] Titre pour Google : proposition prête (Prompt API) {"via":"prompt","fallback":false,"translated":false,"calls":1,"outLen":46,"excerpt":"MAB – fédération des médias alternatifs belges"}
+14:28:44.228 +3.80s DEBUG ai.status IA locale : prêt → prompt, multimodal, translator (0 ms) {"lang":"fr","ms":0,"source":"chrome","writer":"absent","detector":"absent","prompt":"available","multimodal":"available","summarizer":"downloadable","rewriter":"downloadable","proofreader":"unavailable","translator":"available"}
+14:28:44.228 +3.80s DEBUG ai.provider Fournisseur d’IA : API de Chrome {"source":"chrome","lang":"fr","has":{"prompt":true,"multimodal":true,"summarizer":true,"rewriter":true,"writer":false,"proofreader":false,"translator":true}}
+14:28:44.228 +3.80s INFO  ai.description.start [ai.description#5] IA locale : description pour Google {"task":"seoDescription","title":"Accueil","inLen":37,"lang":"nl","sourceLang":"fr","gen":"fr","api":"summarizer","translateTo":"nl","source":"chrome"}
+14:28:44.229 +3.80s INFO  ai.description.via-translation [ai.description#5 · 1 ms] Gemini Nano ne parle pas nl : rédaction en fr, puis traduction sur l’appareil {"gen":"fr","to":"nl","translator":true}
+14:28:44.229 +3.80s DEBUG ai.description.call [ai.description#5 · 1 ms] Appel Summarizer (fr) {"api":"summarizer","lang":"fr","type":"tldr","length":"short","context":"109 car.","inLen":37}
+14:28:44.234 +3.80s DEBUG ai.progress Téléchargement Summarizer : 50 % {"api":"summarizer","pct":50}
+14:28:44.240 +3.81s DEBUG ai.progress Téléchargement Summarizer : 100 % {"api":"summarizer","pct":100}
+14:28:44.245 +3.81s DEBUG ai.session.create Session Summarizer créée (17 ms) {"api":"summarizer","ms":17,"inputs":"fr","outputs":"fr","type":"tldr","length":"short","format":"plain-text","sharedContext":"109 car."}
+14:28:44.246 +3.82s DEBUG ai.description.reply [ai.description#5 · 18 ms] Réponse Summarizer : 90 car. en 17 ms {"api":"summarizer","ms":17,"outLen":90,"excerpt":"Le MAB fédère les médias alternatifs belges : matériel, tec…"}
+14:28:44.246 +3.82s DEBUG ai.description.call [ai.description#5 · 18 ms] Appel Translator {"api":"translator","from":"fr","to":"nl","inLen":90}
+14:28:44.246 +3.82s INFO  translate.model.start [translate.model#1] Préparation du traducteur fr → nl {"from":"fr","to":"nl"}
+14:28:44.247 +3.82s INFO  translate.model.ok [translate.model#1 · 1 ms] Traducteur fr → nl prêt {"downloaded":false}
+14:28:44.247 +3.82s DEBUG ai.description.reply [ai.description#5 · 19 ms] Réponse Translator : 95 car. en 1 ms {"api":"translator","ms":1,"outLen":95,"excerpt":"[nl] Le MAB fédère les médias alternatifs belges : matériel…"}
+14:28:44.247 +3.82s INFO  ai.description.ok [ai.description#5 · 19 ms] Description pour Google : proposition prête (Summarizer, traduite en nl) {"via":"summarizer","fallback":false,"translated":true,"calls":2,"outLen":95,"excerpt":"[nl] Le MAB fédère les médias alternatifs belges : matériel…"}

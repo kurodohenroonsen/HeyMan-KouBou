@@ -1,0 +1,9 @@
+14:38:25.907 +0.63s DEBUG ui.tab-key Onglet changé au clavier (ArrowRight) {"key":"ArrowRight","tab":"templates"}
+14:38:25.950 +0.67s DEBUG ui.tab-key Onglet changé au clavier (End) {"key":"End","tab":"site"}
+14:38:25.966 +0.69s DEBUG ui.tab-key Onglet changé au clavier (Home) {"key":"Home","tab":"widgets"}
+14:38:26.019 +0.74s DEBUG store.select Sélection : text {"id":"n_004g2v1k6f","type":"text"}
+14:38:26.046 +0.77s DEBUG inspector.tab Onglet de l’inspecteur : Style {"tab":"style","from":"content","type":"text"}
+14:38:26.064 +0.78s DEBUG ui.tab-key Onglet changé au clavier (ArrowRight) {"key":"ArrowRight","tab":"style"}
+14:38:26.071 +0.79s DEBUG store.select Sélection : column {"id":"n_0862480d6h","type":"column"}
+14:38:26.077 +0.80s DEBUG inspector.tab Onglet de l’inspecteur : Contenu {"tab":"content","from":"style","type":"column"}
+14:38:26.082 +0.80s DEBUG ui.tab-key Onglet changé au clavier (ArrowLeft) {"key":"ArrowLeft","tab":"content"}

@@ -1,29 +1,29 @@
-13:33:48.623 +0.89s DEBUG canvas.key Raccourci dans la page : Ctrl+K {"key":"Ctrl+K","in":"page","selected":"n_5x5b0y0w6b"}
-13:33:48.627 +0.89s DEBUG ui.dialog.open Fenêtre ouverte : cmdk {"id":"cmdk","class":"cmdk","modal":true}
-13:33:48.837 +1.10s INFO  cmdk.run Commande : ✨ Demander à Atelier : « ajoute une faq sur l’adhésion » {"id":"ask:query","query":"ajoute une faq sur l’adhésion"}
-13:33:48.837 +1.10s INFO  assist.open Demander à Atelier {"chars":29,"page":"p_mkshecap","selected":"n_5x5b0y0w6b","lang":"fr"}
-13:33:48.838 +1.10s DEBUG ui.dialog.open Fenêtre ouverte : ✨ Demander à Atelier {"id":"askDialog","class":"audit smart-dialog","modal":true}
-13:33:48.844 +1.11s DEBUG ui.dialog.close Fenêtre fermée : cmdk {"id":"cmdk"}
-13:33:48.888 +1.16s DEBUG ai.provider Fournisseur d’IA de test (window.__atelierAI) {"source":"test","lang":"fr","has":{"prompt":true,"multimodal":true,"summarizer":true,"translator":true},"methods":["prompt"]}
-13:33:48.890 +1.16s INFO  ai.plan.start [ai.plan#1] IA locale : préparer une demande (actions de la liste fermée) {"task":"plan","request":"ajoute une faq sur l’adhésion","inLen":29,"page":"p_mkshecap","selected":"n_5x5b0y0w6b","lang":"fr","sourceLang":"fr","gen":"fr","api":"prompt","source":"test"}
-13:33:48.892 +1.16s DEBUG ai.plan.call [ai.plan#1 · 2 ms] Appel Prompt API (Gemini Nano) (fr) {"api":"prompt","lang":"fr","schema":"actions,summary","system":"2696 car.","inLen":310}
-13:33:48.892 +1.16s DEBUG ai.plan.reply [ai.plan#1 · 2 ms] Réponse Prompt API (Gemini Nano) : 357 car. en 1 ms {"api":"prompt","ms":1,"outLen":357,"excerpt":"{\"summary\":\"J’ajoute une section de questions fréquentes su…"}
-13:33:48.893 +1.16s INFO  ai.plan.actions [ai.plan#1 · 3 ms] 1 action valide : add_faq {"steps":["add_faq"],"summary":"J’ajoute une section de questions fréquentes sur l’adhésion."}
-13:33:48.894 +1.16s INFO  ai.plan.ok [ai.plan#1 · 4 ms] Demande à Atelier : proposition prête (Prompt API) {"via":"prompt","fallback":false,"translated":false,"calls":1,"steps":1,"rejected":0,"warnings":0}
-13:33:48.894 +1.16s INFO  assist.plan 1 action(s) prête(s), 0 refusée(s) {"request":"ajoute une faq sur l’adhésion","summary":"J’ajoute une section de questions fréquentes sur l’adhésion.","steps":["add_faq"],"rejected":0,"warnings":0}
-13:33:49.036 +1.30s INFO  assist.apply.start [assist.apply#1] Application de 1 action(s) {"steps":["add_faq"]}
-13:33:49.038 +1.30s INFO  assist.apply.step [assist.apply#1 · 2 ms] Ajouter des questions fréquentes « Adhérer au MAB » (3 questions) après la section « Fédération indépendante »
-13:33:49.039 +1.31s DEBUG store.commit Modification {"source":"assistant","past":1,"page":"p_mkshecap"}
-13:33:49.045 +1.31s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"assistant","mode":"contenu","ms":4}
-13:33:49.050 +1.32s INFO  version.auto Première modification du jour : version automatique de l’état d’avant {"previous":null,"source":"assistant"}
-13:33:49.051 +1.32s INFO  version.save.start [version.save#1] Enregistrement d’une version automatique {"kind":"auto"}
-13:33:49.051 +1.32s DEBUG storage.version-save Version enregistrée {"id":"v_mvwduayj81u3o","kind":"auto"}
-13:33:49.051 +1.32s INFO  assist.apply.ok [assist.apply#1 · 15 ms] 1 action(s) appliquée(s) (Ctrl+Z pour tout annuler) {"done":1,"errors":0,"aiTexts":7,"view":{},"ui":[],"changed":true}
-13:33:49.052 +1.32s INFO  ui.toast Message affiché : 1 action appliquée : Ctrl+Z pour tout annuler.
-13:33:49.061 +1.33s DEBUG ui.dialog.close Fenêtre fermée : ✨ Demander à Atelier {"id":"askDialog"}
-13:33:49.065 +1.33s INFO  storage.persist Stockage persistant refusé par le navigateur : gardez une copie hors du navigateur (dossier, export, hébergement) {"granted":false,"source":"save"}
-13:33:49.067 +1.33s DEBUG version.save.prune [version.save#1 · 16 ms] Aucune ancienne version à supprimer {"total":1}
-13:33:49.068 +1.33s INFO  version.save.ok [version.save#1 · 17 ms] Version automatique enregistrée (2 pages) {"id":"v_mvwduayj81u3o","kind":"auto","at":"2026-10-31T12:33:49.051Z","pages":2,"kb":12}
-13:33:49.069 +1.34s INFO  storage.estimate Stockage : non persistant (le navigateur peut l’effacer) · 14 Ko utilisés sur 443 Mo {"persisted":false,"usage":14356,"quota":464820554}
-13:33:49.175 +1.44s INFO  store.undo Annuler {"left":0,"redo":1}
-13:33:49.183 +1.45s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"history","mode":"contenu","ms":3}
+14:30:35.468 +0.88s DEBUG canvas.key Raccourci dans la page : Ctrl+K {"key":"Ctrl+K","in":"page","selected":"n_1f3o3p5d1k"}
+14:30:35.473 +0.89s DEBUG ui.dialog.open Fenêtre ouverte : cmdk {"id":"cmdk","class":"cmdk","modal":true}
+14:30:35.671 +1.08s INFO  cmdk.run Commande : ✨ Demander à Atelier : « ajoute une faq sur l’adhésion » {"id":"ask:query","query":"ajoute une faq sur l’adhésion"}
+14:30:35.671 +1.08s INFO  assist.open Demander à Atelier {"chars":29,"page":"p_u6umjlue","selected":"n_1f3o3p5d1k","lang":"fr"}
+14:30:35.672 +1.08s DEBUG ui.dialog.open Fenêtre ouverte : ✨ Demander à Atelier {"id":"askDialog","class":"audit smart-dialog","modal":true}
+14:30:35.679 +1.09s DEBUG ui.dialog.close Fenêtre fermée : cmdk {"id":"cmdk"}
+14:30:35.718 +1.13s DEBUG ai.provider Fournisseur d’IA de test (window.__atelierAI) {"source":"test","lang":"fr","has":{"prompt":true,"multimodal":true,"summarizer":true,"translator":true},"methods":["prompt"]}
+14:30:35.719 +1.13s INFO  ai.plan.start [ai.plan#1] IA locale : préparer une demande (actions de la liste fermée) {"task":"plan","request":"ajoute une faq sur l’adhésion","inLen":29,"page":"p_u6umjlue","selected":"n_1f3o3p5d1k","lang":"fr","sourceLang":"fr","gen":"fr","api":"prompt","source":"test"}
+14:30:35.721 +1.13s DEBUG ai.plan.call [ai.plan#1 · 2 ms] Appel Prompt API (Gemini Nano) (fr) {"api":"prompt","lang":"fr","schema":"actions,summary","system":"2696 car.","inLen":310}
+14:30:35.722 +1.14s DEBUG ai.plan.reply [ai.plan#1 · 3 ms] Réponse Prompt API (Gemini Nano) : 357 car. en 1 ms {"api":"prompt","ms":1,"outLen":357,"excerpt":"{\"summary\":\"J’ajoute une section de questions fréquentes su…"}
+14:30:35.723 +1.14s INFO  ai.plan.actions [ai.plan#1 · 4 ms] 1 action valide : add_faq {"steps":["add_faq"],"summary":"J’ajoute une section de questions fréquentes sur l’adhésion."}
+14:30:35.723 +1.14s INFO  ai.plan.ok [ai.plan#1 · 4 ms] Demande à Atelier : proposition prête (Prompt API) {"via":"prompt","fallback":false,"translated":false,"calls":1,"steps":1,"rejected":0,"warnings":0}
+14:30:35.724 +1.14s INFO  assist.plan 1 action(s) prête(s), 0 refusée(s) {"request":"ajoute une faq sur l’adhésion","summary":"J’ajoute une section de questions fréquentes sur l’adhésion.","steps":["add_faq"],"rejected":0,"warnings":0}
+14:30:35.852 +1.26s INFO  assist.apply.start [assist.apply#1] Application de 1 action(s) {"steps":["add_faq"]}
+14:30:35.855 +1.27s INFO  assist.apply.step [assist.apply#1 · 3 ms] Ajouter des questions fréquentes « Adhérer au MAB » (3 questions) après la section « Fédération indépendante »
+14:30:35.856 +1.27s DEBUG store.commit Modification {"source":"assistant","past":1,"page":"p_u6umjlue"}
+14:30:35.865 +1.28s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"assistant","mode":"contenu","ms":7}
+14:30:35.874 +1.29s INFO  version.auto Première modification du jour : version automatique de l’état d’avant {"previous":null,"source":"assistant"}
+14:30:35.874 +1.29s INFO  version.save.start [version.save#1] Enregistrement d’une version automatique {"kind":"auto"}
+14:30:35.875 +1.29s DEBUG storage.version-save Version enregistrée {"id":"v_mvwfvbojkuwfi","kind":"auto"}
+14:30:35.876 +1.29s INFO  assist.apply.ok [assist.apply#1 · 24 ms] 1 action(s) appliquée(s) (Ctrl+Z pour tout annuler) {"done":1,"errors":0,"aiTexts":7,"view":{},"ui":[],"changed":true}
+14:30:35.876 +1.29s INFO  ui.toast Message affiché : 1 action appliquée : Ctrl+Z pour tout annuler.
+14:30:35.890 +1.30s DEBUG ui.dialog.close Fenêtre fermée : ✨ Demander à Atelier {"id":"askDialog"}
+14:30:35.896 +1.31s INFO  storage.persist Stockage persistant refusé par le navigateur : gardez une copie hors du navigateur (dossier, export, hébergement) {"granted":false,"source":"save"}
+14:30:35.898 +1.31s DEBUG version.save.prune [version.save#1 · 24 ms] Aucune ancienne version à supprimer {"total":1}
+14:30:35.898 +1.31s INFO  version.save.ok [version.save#1 · 24 ms] Version automatique enregistrée (2 pages) {"id":"v_mvwfvbojkuwfi","kind":"auto","at":"2026-10-31T13:30:35.875Z","pages":2,"kb":12}
+14:30:35.901 +1.31s INFO  storage.estimate Stockage : non persistant (le navigateur peut l’effacer) · 14 Ko utilisés sur 496 Mo {"persisted":false,"usage":14394,"quota":519928620}
+14:30:35.945 +1.36s INFO  store.undo Annuler {"left":0,"redo":1}
+14:30:35.950 +1.36s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"history","mode":"contenu","ms":4}

@@ -1,7 +1,7 @@
-12:57:38.513 +32.29s DEBUG store.commit Modification {"key":"palette-c1","source":"panel","past":39,"page":"p_fptbpb4e"}
-12:57:38.532 +32.31s INFO  settings.color Couleur « Principale » : #0055aa {"key":"c1","value":"#0055aa"}
-12:57:38.842 +32.62s DEBUG store.commit Modification {"key":null,"source":"panel","past":40,"page":"p_fptbpb4e"}
-12:57:38.843 +32.62s INFO  canvas.load.start [canvas.load#6] Chargement complet du canevas : polices du site {"reason":"polices du site","page":"p_fptbpb4e","lang":"fr","device":"desktop"}
-12:57:38.844 +32.62s DEBUG canvas.load.render [canvas.load#6 · 1 ms] Page rendue {"ms":1,"kb":28}
-12:57:38.854 +32.63s INFO  settings.font Police des titres : Georgia (classique) {"role":"heading","font":"georgia","google":true}
-12:57:38.876 +32.65s INFO  canvas.load.ok [canvas.load#6 · 33 ms] Canevas prêt {"nodes":35,"scale":62,"via":"load"}
+14:27:34.349 +31.83s DEBUG store.commit Modification {"key":"palette-c1","source":"panel","past":39,"page":"p_0juocaxz"}
+14:27:34.377 +31.86s INFO  settings.color Couleur « Principale » : #0055aa {"key":"c1","value":"#0055aa"}
+14:27:34.690 +32.17s DEBUG store.commit Modification {"key":null,"source":"panel","past":40,"page":"p_0juocaxz"}
+14:27:34.691 +32.17s INFO  canvas.load.start [canvas.load#6] Chargement complet du canevas : polices du site {"reason":"polices du site","page":"p_0juocaxz","lang":"fr","device":"desktop"}
+14:27:34.692 +32.17s DEBUG canvas.load.render [canvas.load#6 · 1 ms] Page rendue {"ms":1,"kb":29}
+14:27:34.708 +32.19s INFO  settings.font Police des titres : Georgia (classique) {"role":"heading","font":"georgia"}
+14:27:34.726 +32.21s INFO  canvas.load.ok [canvas.load#6 · 35 ms] Canevas prêt {"nodes":35,"scale":76,"via":"load"}

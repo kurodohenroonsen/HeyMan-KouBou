@@ -1,6 +1,6 @@
-12:58:58.210 +0.77s INFO  selftest.run.start [selftest.run#1] Auto-test : 2 cas d’usage {"cases":["annuler","pages"],"ai":"fake","publish":true}
-12:59:04.655 +7.21s INFO  selftest.run.ok [selftest.run#1 · 6445 ms] Auto-test terminé : 2 / 2 réussis, note 100 / 100 — Retour arrière : ✓ ton projet est revenu exactement comme avant (« MAB – Médias Alternatifs Belges », 3 pages). {"total":2,"ok":2,"fail":0,"error":0,"skipped":0,"score":100,"ms":2438}
-12:59:04.656 +7.21s DEBUG selftest.copy-fail Presse-papiers refusé : utilise copy(await atelierDebug.selftest()) ou atelierDebug.report() {"error":"NotAllowedError"}
-12:59:04.669 +7.22s INFO  selftest.dialog Fenêtre du rapport de l’auto-test {"result":"2 / 2 réussis"}
-12:59:04.766 +7.32s INFO  selftest.copy Rapport de l’auto-test copié {"chars":2089}
-12:59:05.088 +7.64s INFO  selftest.report-download Rapport de l’auto-test téléchargé : atelier-auto-test-2026-10-31-11-59.md {"name":"atelier-auto-test-2026-10-31-11-59.md"}
+14:31:49.708 +0.59s INFO  selftest.run.start [selftest.run#1] Auto-test : 2 cas d’usage {"cases":["annuler","pages"],"ai":"fake","publish":true}
+14:31:56.160 +7.05s INFO  selftest.run.ok [selftest.run#1 · 6452 ms] Auto-test terminé : 2 / 2 réussis, note 100 / 100 — Retour arrière : ✓ ton projet est revenu exactement comme avant (« MAB – Médias Alternatifs Belges », 3 pages). {"total":2,"ok":2,"fail":0,"error":0,"skipped":0,"score":100,"ms":2447}
+14:31:56.162 +7.05s DEBUG selftest.copy-fail Presse-papiers refusé : utilise copy(await atelierDebug.selftest()) ou atelierDebug.report() {"error":"NotAllowedError"}
+14:31:56.173 +7.06s INFO  selftest.dialog Fenêtre du rapport de l’auto-test {"result":"2 / 2 réussis"}
+14:31:56.259 +7.15s INFO  selftest.copy Rapport de l’auto-test copié {"chars":2113}
+14:31:56.582 +7.47s INFO  selftest.report-download Rapport de l’auto-test téléchargé : atelier-auto-test-2026-10-31-13-31.md {"name":"atelier-auto-test-2026-10-31-13-31.md"}

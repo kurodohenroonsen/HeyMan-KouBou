@@ -1,8 +1,8 @@
-12:57:14.259 +8.03s DEBUG structure.open Panneau Structure ouvert {"rows":32}
-12:57:14.361 +8.13s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":12}
-12:57:14.440 +8.21s DEBUG structure.collapse Replié : Section {"id":"n_1v562b1k37","type":"section","collapsed":true,"children":1,"by":"clic"}
-12:57:14.574 +8.35s DEBUG structure.collapse Déplié : Section {"id":"n_1v562b1k37","type":"section","collapsed":false,"children":1,"by":"clic"}
-12:57:14.688 +8.46s DEBUG structure.collapse Replié (←) {"id":"n_1v562b1k37","collapsed":true,"by":"clavier"}
-12:57:14.693 +8.47s DEBUG structure.collapse Déplié (→) {"id":"n_1v562b1k37","collapsed":false,"by":"clavier"}
-12:57:14.698 +8.47s DEBUG structure.key Structure : sélection au clavier {"id":"n_1v562b1k37","key":"Entrée"}
-12:57:14.698 +8.47s DEBUG store.select Sélection : section {"id":"n_1v562b1k37","type":"section"}
+14:27:10.259 +7.74s DEBUG structure.open Panneau Structure ouvert {"rows":32}
+14:27:10.376 +7.86s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":12}
+14:27:10.441 +7.92s DEBUG structure.collapse Replié : Section {"id":"n_5u0i5a1b0j","type":"section","collapsed":true,"children":1,"by":"clic"}
+14:27:10.559 +8.04s DEBUG structure.collapse Déplié : Section {"id":"n_5u0i5a1b0j","type":"section","collapsed":false,"children":1,"by":"clic"}
+14:27:10.672 +8.15s DEBUG structure.collapse Replié (←) {"id":"n_5u0i5a1b0j","collapsed":true,"by":"clavier"}
+14:27:10.676 +8.16s DEBUG structure.collapse Déplié (→) {"id":"n_5u0i5a1b0j","collapsed":false,"by":"clavier"}
+14:27:10.681 +8.16s DEBUG structure.key Structure : sélection au clavier {"id":"n_5u0i5a1b0j","key":"Entrée"}
+14:27:10.681 +8.16s DEBUG store.select Sélection : section {"id":"n_5u0i5a1b0j","type":"section"}
