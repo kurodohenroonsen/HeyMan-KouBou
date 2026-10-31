@@ -9,6 +9,7 @@ import { state, load } from './store.js';
 import { DEMO_STEPS } from '../core/demo-kumakogen.js';
 import { createDemoDriver, DemoStopped } from './demo-driver.js';
 import { beginSafe, endSafe, selftestActive } from './selftest-safe.js';
+import { isExpert, setExpert } from './mode.js';
 import { beforeRisky } from './versions-ui.js';
 import { closeTour } from './tour-ui.js';
 import { inSession } from './collab-ui.js';
@@ -75,8 +76,11 @@ export async function startDemo({ speed = 'normal', auto = null } = {}) {
   let snap = null;
   let status = 'done';
   let error = null;
+  /* La démonstration montre aussi les effets (mode expert, cycle 30) : on rend le mode de la personne à la fin */
+  const wasExpert = isExpert();
   try {
     snap = await beginSafe({ kind: 'demo' });
+    setExpert(true, 'démonstration');
     ui = panel(d, ctl);
     document.body.append(ui.box);
     document.body.classList.add('is-demo');
@@ -94,6 +98,7 @@ export async function startDemo({ speed = 'normal', auto = null } = {}) {
     else { status = 'error'; error = e; log.error('demo.error', __('Démonstration interrompue : {error}', { error: e.message }), { error: e }); }
   }
   d.dispose();
+  if (!wasExpert) setExpert(false, 'démonstration');
   ui?.box.remove();
   document.body.classList.remove('is-demo');
   const built = state.site;

@@ -7,7 +7,7 @@ export default async function (t) {
   page.setDefaultTimeout(10000);
 
   /* Faux publish.php (lecture seule : le test de connexion ne fait qu'un GET) */
-  await page.route(/faux-ovh\/publish\.php/, r => r.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: JSON.stringify({ atelier: true, version: '4', php: '8.2.0', zip: true, req: 'r-test' }) }));
+  await page.route(/faux-ovh\/publish\.php/, r => r.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: JSON.stringify({ atelier: true, version: '5', php: '8.2.0', zip: true, req: 'r-test' }) }));
 
   /* Photographie du projet de la personne : site, historique, vue, versions, images, réglages */
   const photo = () => page.evaluate(async () => {
@@ -141,8 +141,8 @@ export default async function (t) {
   const end = await photo();
   t.ok(end.site === ref.site && end.versions === ref.versions && !end.backup, 'rollback() pendant le test : projet d’origine, rien ne traîne');
 
-  /* ===== 6. Polices Google très lentes (vu chez Kudoro : canevas prêt en 19 s, boot.timeout) ===== */
-  await page.route(/fonts\.(googleapis|gstatic)\.com/, async r => { await new Promise(x => setTimeout(x, 9000)); await r.fulfill({ status: 200, contentType: 'text/css', body: '' }).catch(() => {}); });
+  /* ===== 6. Polices très lentes (depuis le cycle 29 : fichiers locaux ; avant : Google (vu chez Kudoro : canevas prêt en 19 s, boot.timeout) ===== */
+  await page.route(/\/fonts\/.+\.woff2/, async r => { await new Promise(x => setTimeout(x, 9000)); await r.continue().catch(() => {}); });
   const t0 = Date.now();
   await page.goto(`${t.base}?fresh=1`, { waitUntil: 'commit' });
   await page.waitForFunction(() => window.__atelier?.ready === true, null, { timeout: 15000 });
@@ -153,10 +153,10 @@ export default async function (t) {
   es = await since(page, 0);
   t.ok(!es.some(e => e.code === 'boot.timeout'), 'polices lentes : pas de boot.timeout');
   const slow = es.find(e => e.code === 'canvas.resources-slow');
-  t.ok(/fonts\.googleapis\.com/.test(JSON.stringify(slow?.data || {})), `polices lentes : hôte lent nommé (${JSON.stringify(slow?.data)})`);
+  t.ok(slow?.data?.ms > 5000 && (slow.data.hosts || []).length === 0, `polices lentes : attente mesurée, aucun hôte tiers (${JSON.stringify(slow?.data)})`);
   expectCodes(t, es, ['canvas.load.start', 'canvas.load.ok', 'boot.ok', 'canvas.resources-slow'], 'polices lentes');
   capture('canevas-polices-lentes', es.filter(e => /^(boot\.(start|ok)|canvas\.(load|resources))/.test(e.code)));
-  await page.unroute(/fonts\.(googleapis|gstatic)\.com/);
+  await page.unroute(/\/fonts\/.+\.woff2/);
 
   /* ===== 7. Sans coller dans la console : autotest(), adresse ?autotest, fenêtre du rapport ===== */
   await page.goto(t.base, { waitUntil: 'networkidle' });

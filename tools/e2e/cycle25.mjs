@@ -30,7 +30,7 @@ export default async function (t) {
   await page.goto(`${base}?fresh=1`, { waitUntil: 'networkidle' });
   await page.waitForFunction(() => window.__atelier?.ready === true, null, { timeout: 8000 });
   const exportJson = async () => {
-    const [dl] = await Promise.all([page.waitForEvent('download'), page.keyboard.press('Control+s')]);
+    const [dl] = await Promise.all([page.waitForEvent('download'), (async () => { await page.click('#fileMenu > summary'); await page.click('#exportJsonBtn'); })()]);
     return JSON.parse(await (await import('node:fs/promises')).readFile(await dl.path(), 'utf8'));
   };
   const importJson = async (obj, name) => {
