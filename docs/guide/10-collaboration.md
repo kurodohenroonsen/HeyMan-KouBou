@@ -675,9 +675,42 @@ L'hôte relaie aux autres la version nettoyée.
 
 ---
 
+## 10.13 Les photos en collaboration
+
+**But** : travailler à plusieurs sur un site avec des photos sans attendre ni tout renvoyer à chaque modification.
+
+**Étapes** : rien à faire. À l'arrivée d'un invité, l'hôte envoie le projet, puis les photos une par une ; quand quelqu'un importe une photo, ses octets partent une seule fois vers les autres, juste avant la modification qui l'utilise.
+
+**Ce que tu vois** : l'invité voit tout de suite le projet ; les photos s'affichent au fur et à mesure de leur arrivée (10 photos de 600 Ko : environ 2 secondes sur un même réseau). Une photo ajoutée par l'autre personne apparaît chez toi un instant après.
+
+**Journal attendu** (chez l'invitée, l'hôte ajoute une photo ; extrait réel : [`journaux/photos-collaboration-invitee.log`](journaux/photos-collaboration-invitee.log))
+```log
+13:41:29.425 +9.48s DEBUG collab.asset.in Image reçue de Kudoro {"from":"Kudoro","id":"img_dhhtu0c7","kb":614,"variants":2}
+13:41:29.431 +9.48s DEBUG collab.ops.in 2 modifications de Kudoro appliquées {"name":"Kudoro","received":2,"applied":2}
+```
+À vérifier : `collab.asset.in` (poids, nombre de variantes) arrive **avant** `collab.ops.in` ; chez l'hôte, `collab.asset.out` (nombre d'images envoyées) suit `collab.sync.snapshot` à l'arrivée d'un invité, et précède `collab.ops.out` quand il ajoute une photo. Les opérations ne contiennent plus que le nom et les dimensions de l'image.
+
+**Variantes**
+| Situation | Ce qui change à l'écran | Journal |
+|---|---|---|
+| Une photo manque après une reprise (coupure de réseau, delta) | elle s'affiche un instant plus tard | `collab.asset.ask` chez celui à qui elle manque, `collab.asset.req` puis `collab.asset.out` chez l'autre |
+| L'hôte relaie la photo d'une invitée aux autres invités | rien de visible | `collab.asset.in` puis `collab.asset.out` chez l'hôte |
+
+**Erreurs**
+| Situation | Message affiché | Journal | Que faire |
+|---|---|---|---|
+| Photo envoyée par un relecteur, ou fichier qui n'est pas une image (PNG, JPEG, WebP, GIF, AVIF) | aucun : la photo est ignorée | `collab.asset.refused` (WARN) avec l'expéditeur et son rôle | rien : un relecteur ne peut que commenter ; signale-le si l'expéditeur est un éditeur |
+
+---
+
 ## Codes de ce chapitre
 | Code | Niveau | Sens |
 |---|---|---|
+| `collab.asset.ask` | DEBUG | images du projet sans octets ici : demandées à l'autre (cycle 27) |
+| `collab.asset.in` | DEBUG | octets d'une image reçus (poids, variantes) |
+| `collab.asset.out` | DEBUG | octets d'images envoyés (à l'arrivée d'un invité, à l'ajout d'une photo, sur demande) |
+| `collab.asset.refused` | WARN | image reçue refusée (relecteur, ou pas une image) |
+| `collab.asset.req` | DEBUG | l'autre demande des images qui lui manquent |
 | `collab.auth` | INFO | identité de l'autre vérifiée (défi signé) |
 | `collab.auth.early` | TRACE | preuve reçue avant la présentation, gardée |
 | `collab.close-fail` | WARN | fermeture d'un lien impossible |

@@ -1,4 +1,4 @@
-20:52:59.860 +64.84s DEBUG ui.dialog.open Fenêtre ouverte : Versions du projet {"id":"versionsDialog","class":"audit","modal":true}
-20:52:59.866 +64.84s INFO  version.open Fenêtre des versions ouverte
-20:52:59.866 +64.84s ERROR storage.versions-fail Liste des versions illisible : Lecture impossible (simulée) {"error":{"name":"UnknownError","message":"Lecture impossible (simulée)","code":0}}
-20:52:59.867 +64.84s DEBUG version.list Liste des versions : 0 {"count":0,"manual":0,"auto":0,"safety":0}
+13:43:26.837 +56.96s DEBUG ui.dialog.open Fenêtre ouverte : Versions du projet {"id":"versionsDialog","class":"audit","modal":true}
+13:43:26.843 +56.97s INFO  version.open Fenêtre des versions ouverte
+13:43:26.843 +56.97s ERROR storage.versions-fail Liste des versions illisible : Lecture impossible (simulée) {"error":{"name":"UnknownError","message":"Lecture impossible (simulée)","code":0}}
+13:43:26.844 +56.97s DEBUG version.list Liste des versions : 0 {"count":0,"manual":0,"auto":0,"safety":0}

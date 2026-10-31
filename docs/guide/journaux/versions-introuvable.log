@@ -1,4 +1,4 @@
-20:52:58.629 +63.61s INFO  version.restore.start [version.restore#3] Restauration de « Avant les essais » du 30 oct. 2026, 20:52 {"id":"v_mvve33t25tdcp","kind":"manual","at":"2026-10-30T19:52:53.510Z","pages":5}
-20:52:58.639 +63.62s WARN  storage.version-missing Version introuvable {"id":"v_mvve33t25tdcp"}
-20:52:58.645 +63.62s ERROR version.restore.fail [version.restore#3 · 16 ms] Version introuvable : supprimée entre-temps (autre onglet, nettoyage) ou base locale effacée {"id":"v_mvve33t25tdcp","error":{"name":"Error","message":"Version introuvable","stack":"Error: Version introuvable\nat HTMLButtonElement.onclick (http://localhost:8791/editor/versions-ui.js:86:31)"}}
-20:52:58.645 +63.62s ERROR ui.toast Message affiché : Version introuvable. {"type":"error"}
+13:43:25.525 +55.65s INFO  version.restore.start [version.restore#3] Restauration de « Avant les essais » du 31 oct. 2026, 13:43 {"id":"v_mvwe6jzeu5eyt","kind":"manual","at":"2026-10-31T12:43:20.618Z","pages":5}
+13:43:25.541 +55.66s WARN  storage.version-missing Version introuvable {"id":"v_mvwe6jzeu5eyt"}
+13:43:25.542 +55.67s ERROR version.restore.fail [version.restore#3 · 17 ms] Version introuvable : supprimée entre-temps (autre onglet, nettoyage) ou base locale effacée {"id":"v_mvwe6jzeu5eyt","error":{"name":"Error","message":"Version introuvable","stack":"Error: Version introuvable\nat HTMLButtonElement.onclick (http://localhost:8831/editor/versions-ui.js:86:31)"}}
+13:43:25.542 +55.67s ERROR ui.toast Message affiché : Version introuvable. {"type":"error"}

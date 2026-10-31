@@ -1,10 +1,11 @@
-20:52:15.399 +20.38s WARN  page.add-refused Page non créée : titre vide
-20:52:15.400 +20.38s ERROR ui.toast Message affiché : Donnez un titre à la page. {"type":"error"}
-20:52:15.621 +20.60s DEBUG store.commit Modification {"source":"pages","past":30,"page":"p_4pcc7sdw"}
-20:52:15.628 +20.61s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":2}
-20:52:15.629 +20.61s INFO  page.add Page « Notre équipe » créée : /notre-equipe-2/ {"id":"p_qjn1ysr0","slug":"notre-equipe-2","deduplicated":true,"lang":"fr","pages":4,"menu":"automatique"}
-20:52:15.629 +20.61s DEBUG store.view Vue : pageId=p_qjn1ysr0 {"pageId":"p_qjn1ysr0"}
-20:52:15.638 +20.61s INFO  canvas.load.start [canvas.load#6] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_qjn1ysr0","lang":"fr","device":"desktop"}
-20:52:15.639 +20.62s DEBUG canvas.load.render [canvas.load#6 · 1 ms] Page rendue {"ms":0,"kb":18}
-20:52:15.642 +20.62s INFO  ui.toast Message affiché : Page « Notre équipe » créée : /notre-equipe-2/
-20:52:15.668 +20.64s INFO  canvas.load.ok [canvas.load#6 · 30 ms] Canevas prêt {"nodes":0,"scale":62,"via":"load"}
+13:42:47.137 +17.26s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":13}
+13:42:47.151 +17.27s WARN  page.add-refused Page non créée : titre vide
+13:42:47.152 +17.28s ERROR ui.toast Message affiché : Donnez un titre à la page. {"type":"error"}
+13:42:47.325 +17.45s DEBUG store.commit Modification {"source":"pages","past":30,"page":"p_sbnxok5y"}
+13:42:47.331 +17.45s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":2}
+13:42:47.332 +17.46s INFO  page.add Page « Notre équipe » créée : /notre-equipe-2/ {"id":"p_r05n15mr","slug":"notre-equipe-2","deduplicated":true,"lang":"fr","pages":4,"menu":"automatique"}
+13:42:47.332 +17.46s DEBUG store.view Vue : pageId=p_r05n15mr {"pageId":"p_r05n15mr"}
+13:42:47.339 +17.46s INFO  canvas.load.start [canvas.load#6] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_r05n15mr","lang":"fr","device":"desktop"}
+13:42:47.340 +17.46s DEBUG canvas.load.render [canvas.load#6 · 1 ms] Page rendue {"ms":0,"kb":19}
+13:42:47.340 +17.46s INFO  ui.toast Message affiché : Page « Notre équipe » créée : /notre-equipe-2/
+13:42:47.363 +17.49s INFO  canvas.load.ok [canvas.load#6 · 24 ms] Canevas prêt {"nodes":0,"scale":76,"via":"load"}

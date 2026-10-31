@@ -111,6 +111,8 @@ Extrait réel (espace plein simulé puis rétabli : [`journaux/enregistrement-im
 ```
 Les jetons de publication ne sont **jamais** dans ce fichier (ils restent sur l'appareil, voir `storage.secret-*` au chapitre 8).
 
+**Images et numéro de format** (cycle 27) : dans l'éditeur, les photos sont rangées à part (chapitre 4, 4.34) ; le fichier `.json`, lui, reste **autonome** : chaque image y est remise en entier, comme avant, et un ancien Atelier comme un nouveau sait le rouvrir. Le fichier porte aussi `"schema": 3`, le numéro du format du projet : il augmente à chaque changement de format, et Atelier met à jour tout seul, étape par étape, un projet plus ancien à l'ouverture. La ligne du journal donne le nombre d'images : `project.export-json` `{"kb":…,"pages":2,"images":10}`.
+
 ---
 
 ## 1.4 Ouvrir un projet (.json)
@@ -145,6 +147,7 @@ Un projet fait avec Atelier ne contient rien à nettoyer : `project.import.sanit
 | Situation | Message affiché | Journal | Que faire |
 |---|---|---|---|
 | Le fichier n'est pas du JSON (abîmé, coupé, autre format) | « Fichier illisible : ce n’est pas du JSON valide (…) » | `project.import.fail` (ERROR) avec la position de l'erreur | reprends une copie complète du fichier |
+| Projet enregistré par une version **plus récente** d'Atelier (format plus récent que celui que cet Atelier connaît) | « Fichier illisible : Ce projet a été créé par une version plus récente d’Atelier (schéma 4, celle-ci lit jusqu’au schéma 3) : mettez Atelier à jour pour l’ouvrir. » | `project.import.invalid` (WARN) puis `project.import.fail` (ERROR) | ouvre le projet avec l'Atelier qui l'a créé, ou mets ton Atelier à jour : rien n'est modifié |
 | JSON valide mais pas un projet Atelier (ou d'une version inconnue) | « Fichier illisible : Format de projet non reconnu (version 2 attendue). » (ou la première erreur de validation) | `project.import.invalid` (WARN) avec les 5 premières erreurs, puis `project.import.fail` (ERROR) | vérifie que c'est bien un fichier `.atelier.json` ; envoie-nous le journal si c'en est un |
 
 ```log

@@ -1,11 +1,11 @@
-20:52:07.951 +12.93s INFO  inspector.image.start [inspector.image#2] Import d’une image {"field":"logo","type":"image/jpeg","kb":4}
-20:52:07.951 +12.93s INFO  image.import.start [image.import#2] Import de l’image « logo-petit.jpg » {"name":"logo-petit.jpg","type":"image/jpeg","kb":4}
-20:52:07.960 +12.94s DEBUG image.import.decode [image.import#2 · 9 ms] Image lue : 320×120 px {"width":320,"height":120,"ms":9}
-20:52:07.965 +12.94s DEBUG image.import.encode [image.import#2 · 14 ms] Version principale : 320×120 px, 1 Ko (image/webp) {"w":320,"h":120,"mime":"image/webp","kb":1,"ms":5}
-20:52:07.967 +12.94s INFO  image.import.ok [image.import#2 · 16 ms] Image prête : 320×120 px, 1 Ko (−70 %), 0 variante {"name":"logo-petit.webp","mime":"image/webp","width":320,"height":120,"kbIn":4,"kbOut":1,"gain":70,"variants":[]}
-20:52:07.968 +12.95s DEBUG inspector.image.webp [inspector.image#2 · 17 ms] Image convertie en WebP {"mime":"image/webp","width":320,"height":120,"kb":1}
-20:52:07.969 +12.95s DEBUG store.commit Modification {"key":null,"source":"site","past":22,"page":"p_a3je7ile"}
-20:52:07.977 +12.95s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
-20:52:07.998 +12.97s INFO  settings.logo Logo importé {"kind":"asset","asset":"img_11q0jz7g","file":"logo-petit.webp"}
-20:52:07.998 +12.97s INFO  inspector.image.ok [inspector.image#2 · 47 ms] Image ajoutée : 320×120 px {"asset":"img_11q0jz7g","field":"logo"}
-20:52:07.998 +12.97s INFO  ui.toast Message affiché : Image ajoutée en WebP : 320×120 px, 1 Ko.
+13:42:41.181 +11.30s INFO  inspector.image.start [inspector.image#2] Import d’une image {"field":"logo","type":"image/jpeg","kb":4}
+13:42:41.181 +11.30s INFO  image.import.start [image.import#2] Import de l’image « logo-petit.jpg » {"name":"logo-petit.jpg","type":"image/jpeg","kb":4}
+13:42:41.185 +11.31s DEBUG image.import.decode [image.import#2 · 4 ms] Image lue : 320×120 px {"width":320,"height":120,"ms":4}
+13:42:41.190 +11.31s DEBUG image.import.encode [image.import#2 · 9 ms] Version principale : 320×120 px, 1 Ko (image/webp) {"w":320,"h":120,"mime":"image/webp","kb":1,"ms":5}
+13:42:41.192 +11.32s INFO  image.import.ok [image.import#2 · 11 ms] Image prête : 320×120 px, 1 Ko (−70 %), 0 variante {"name":"logo-petit.webp","mime":"image/webp","width":320,"height":120,"kbIn":4,"kbOut":1,"gain":70,"variants":[]}
+13:42:41.192 +11.32s DEBUG inspector.image.webp [inspector.image#2 · 11 ms] Image convertie en WebP {"mime":"image/webp","width":320,"height":120,"kb":1}
+13:42:41.193 +11.32s DEBUG store.commit Modification {"key":null,"source":"site","past":22,"page":"p_y6hkhp5h"}
+13:42:41.201 +11.32s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
+13:42:41.217 +11.34s INFO  settings.logo Logo importé {"kind":"asset","asset":"img_nmgncxyv","file":"logo-petit.webp"}
+13:42:41.217 +11.34s INFO  inspector.image.ok [inspector.image#2 · 36 ms] Image ajoutée : 320×120 px {"asset":"img_nmgncxyv","field":"logo"}
+13:42:41.218 +11.34s INFO  ui.toast Message affiché : Image ajoutée en WebP : 320×120 px, 1 Ko.

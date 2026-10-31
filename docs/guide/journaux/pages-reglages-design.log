@@ -1,31 +1,30 @@
-20:51:58.881 +3.86s DEBUG store.commit Modification {"key":"palette-c1","source":"panel","past":5,"page":"p_a3je7ile"}
-20:51:58.894 +3.87s INFO  settings.color Couleur « Principale » : #a01014 {"key":"c1","value":"#a01014"}
-20:51:59.126 +4.10s DEBUG store.commit Modification {"key":null,"source":"panel","past":6,"page":"p_a3je7ile"}
-20:51:59.134 +4.11s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"panel","mode":"contenu","ms":6}
-20:51:59.136 +4.11s INFO  settings.color-name Couleur c1 renommée : « Rouge MAB » {"key":"c1","name":"Rouge MAB"}
-20:51:59.372 +4.35s DEBUG store.commit Modification {"key":null,"source":"site","past":7,"page":"p_a3je7ile"}
-20:51:59.392 +4.37s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":8}
-20:51:59.394 +4.37s INFO  settings.color-add Couleur ajoutée à la palette (c7) {"key":"c7","value":"#7c3aed","colors":7}
-20:51:59.717 +4.69s DEBUG store.commit Modification {"key":null,"source":"site","past":8,"page":"p_a3je7ile"}
-20:51:59.733 +4.71s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":4}
-20:51:59.734 +4.71s INFO  settings.color-remove Couleur « Couleur 7 » supprimée de la palette {"key":"c7","value":"#7c3aed"}
-20:52:00.024 +5.00s DEBUG store.commit Modification {"key":null,"source":"panel","past":9,"page":"p_a3je7ile"}
-20:52:00.026 +5.00s INFO  canvas.load.start [canvas.load#2] Chargement complet du canevas : polices du site {"reason":"polices du site","page":"p_a3je7ile","lang":"fr","device":"desktop"}
-20:52:00.027 +5.00s DEBUG canvas.load.render [canvas.load#2 · 1 ms] Page rendue {"ms":2,"kb":25}
-20:52:00.030 +5.01s INFO  settings.font Police des titres : Système (aucun téléchargement) {"role":"heading","font":"system","google":false}
-20:52:00.082 +5.06s INFO  canvas.load.ok [canvas.load#2 · 56 ms] Canevas prêt {"nodes":30,"scale":62,"via":"dom"}
-20:52:00.095 +5.07s DEBUG canvas.resources Ressources externes du canevas chargées {"ms":67,"hosts":[]}
-20:52:00.215 +5.19s DEBUG store.commit Modification {"key":null,"source":"panel","past":10,"page":"p_a3je7ile"}
-20:52:00.220 +5.20s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"panel","mode":"contenu","ms":4}
-20:52:00.221 +5.20s INFO  settings.theme Arrondi des angles : 12 px {"key":"radius","value":12,"typed":"12"}
-20:52:00.542 +5.52s DEBUG store.commit Modification {"key":null,"source":"site","past":11,"page":"p_a3je7ile"}
-20:52:00.549 +5.53s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
-20:52:00.551 +5.53s INFO  settings.type-scale Échelle de texte : Texte mobile (px) = 17 {"key":"minSize","from":16,"to":17}
-20:52:01.010 +5.99s DEBUG store.commit Modification {"key":null,"source":"site","past":12,"page":"p_a3je7ile"}
-20:52:01.020 +6.00s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":6}
-20:52:01.021 +6.00s INFO  settings.space-scale Espacements : Base mobile (px) = 14 {"key":"minSize","from":16,"to":14}
-20:52:01.464 +6.44s DEBUG store.commit Modification {"key":null,"source":"panel","past":13,"page":"p_a3je7ile"}
-20:52:01.471 +6.45s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"panel","mode":"contenu","ms":6}
-20:52:01.473 +6.45s INFO  settings.header En-tête par défaut : bouton « Menu » sur mobile non {"key":"burger","value":false}
-20:52:01.670 +6.65s DEBUG store.commit Modification {"key":"footer-fr","source":"panel","past":14,"page":"p_a3je7ile"}
-20:52:01.702 +6.68s INFO  settings.footer-text Texte du pied de page (FR) : 47 caractères {"lang":"fr","length":47}
+13:42:33.347 +3.47s DEBUG store.commit Modification {"key":"palette-c1","source":"panel","past":5,"page":"p_y6hkhp5h"}
+13:42:33.354 +3.48s INFO  settings.color Couleur « Principale » : #a01014 {"key":"c1","value":"#a01014"}
+13:42:33.561 +3.69s DEBUG store.commit Modification {"key":null,"source":"panel","past":6,"page":"p_y6hkhp5h"}
+13:42:33.570 +3.69s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"panel","mode":"contenu","ms":8}
+13:42:33.571 +3.69s INFO  settings.color-name Couleur c1 renommée : « Rouge MAB » {"key":"c1","name":"Rouge MAB"}
+13:42:33.784 +3.91s DEBUG store.commit Modification {"key":null,"source":"site","past":7,"page":"p_y6hkhp5h"}
+13:42:33.798 +3.92s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":8}
+13:42:33.801 +3.92s INFO  settings.color-add Couleur ajoutée à la palette (c7) {"key":"c7","value":"#7c3aed","colors":7}
+13:42:34.149 +4.27s DEBUG store.commit Modification {"key":null,"source":"site","past":8,"page":"p_y6hkhp5h"}
+13:42:34.157 +4.28s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":4}
+13:42:34.158 +4.28s INFO  settings.color-remove Couleur « Couleur 7 » supprimée de la palette {"key":"c7","value":"#7c3aed"}
+13:42:34.445 +4.57s DEBUG store.commit Modification {"key":null,"source":"panel","past":9,"page":"p_y6hkhp5h"}
+13:42:34.446 +4.57s INFO  canvas.load.start [canvas.load#2] Chargement complet du canevas : polices du site {"reason":"polices du site","page":"p_y6hkhp5h","lang":"fr","device":"desktop"}
+13:42:34.447 +4.57s DEBUG canvas.load.render [canvas.load#2 · 1 ms] Page rendue {"ms":1,"kb":26}
+13:42:34.449 +4.57s INFO  settings.font Police des titres : Système (aucun téléchargement) {"role":"heading","font":"system"}
+13:42:34.475 +4.60s INFO  canvas.load.ok [canvas.load#2 · 29 ms] Canevas prêt {"nodes":30,"scale":76,"via":"load"}
+13:42:34.648 +4.77s DEBUG store.commit Modification {"key":null,"source":"panel","past":10,"page":"p_y6hkhp5h"}
+13:42:34.653 +4.78s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"panel","mode":"contenu","ms":4}
+13:42:34.654 +4.78s INFO  settings.theme Arrondi des angles : 12 px {"key":"radius","value":12,"typed":"12"}
+13:42:34.935 +5.06s DEBUG store.commit Modification {"key":null,"source":"site","past":11,"page":"p_y6hkhp5h"}
+13:42:34.943 +5.07s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":5}
+13:42:34.944 +5.07s INFO  settings.type-scale Échelle de texte : Texte mobile (px) = 17 {"key":"minSize","from":16,"to":17}
+13:42:35.396 +5.52s DEBUG store.commit Modification {"key":null,"source":"site","past":12,"page":"p_y6hkhp5h"}
+13:42:35.425 +5.55s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":21}
+13:42:35.425 +5.55s INFO  settings.space-scale Espacements : Base mobile (px) = 14 {"key":"minSize","from":16,"to":14}
+13:42:35.885 +6.01s DEBUG store.commit Modification {"key":null,"source":"panel","past":13,"page":"p_y6hkhp5h"}
+13:42:35.889 +6.01s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"panel","mode":"contenu","ms":3}
+13:42:35.890 +6.01s INFO  settings.header En-tête par défaut : bouton « Menu » sur mobile non {"key":"burger","value":false}
+13:42:36.079 +6.20s DEBUG store.commit Modification {"key":"footer-fr","source":"panel","past":14,"page":"p_y6hkhp5h"}
+13:42:36.097 +6.22s INFO  settings.footer-text Texte du pied de page (FR) : 47 caractères {"lang":"fr","length":47}

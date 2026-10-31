@@ -1,4 +1,5 @@
-20:52:27.385 +32.36s DEBUG page.menu.auto-cancel Retour au menu automatique annulé
-20:52:27.609 +32.59s DEBUG store.commit Modification {"source":"pages","past":50,"page":"p_a3je7ile"}
-20:52:27.629 +32.61s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":9}
-20:52:27.635 +32.61s INFO  page.menu.auto Menu automatique rétabli (toutes les pages, dans l’ordre) {"dropped":4}
+13:42:57.282 +27.41s DEBUG page.menu.auto-cancel Retour au menu automatique annulé
+13:42:57.317 +27.44s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":13}
+13:42:57.448 +27.57s DEBUG store.commit Modification {"source":"pages","past":50,"page":"p_y6hkhp5h"}
+13:42:57.453 +27.58s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":2}
+13:42:57.454 +27.58s INFO  page.menu.auto Menu automatique rétabli (toutes les pages, dans l’ordre) {"dropped":4}
