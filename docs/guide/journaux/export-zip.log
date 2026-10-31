@@ -1,8 +1,8 @@
-20:50:52.322 +7.01s INFO  audit.open Vérification avant export : prêt (1 point(s) à vérifier) {"mode":"export","ok":true,"errors":0,"warnings":1,"info":3,"missing":51,"ms":6,"firstErrors":[],"firstWarnings":["Accueil : image non choisie : rien ne s’affichera à cet endroit."]}
-20:50:52.327 +7.02s DEBUG ui.dialog.open Fenêtre ouverte : Vérification avant export {"id":"auditDialog","class":"audit","modal":true}
-20:50:52.380 +7.07s INFO  audit.export Export malgré des points à vérifier {"warnings":1}
-20:50:52.383 +7.07s INFO  export.zip.start [export.zip#1] Export du site en .zip
-20:50:52.389 +7.08s DEBUG export.zip.render [export.zip#1 · 6 ms] Pages générées {"files":12,"ms":5}
-20:50:52.395 +7.09s INFO  export.zip.ok [export.zip#1 · 12 ms] Site exporté : 12 fichiers {"files":12,"kb":69,"untranslated":51}
-20:50:52.396 +7.09s INFO  ui.toast Message affiché : Site exporté : 12 fichiers. 51 textes non traduits s’affichent dans la langue principale.
-20:50:52.398 +7.09s DEBUG ui.dialog.close Fenêtre fermée : Vérification avant export {"id":"auditDialog"}
+07:29:18.864 +6.39s INFO  audit.open Vérification avant export : prêt (1 point(s) à vérifier) {"mode":"export","ok":true,"errors":0,"warnings":1,"info":3,"missing":51,"ms":4,"firstErrors":[],"firstWarnings":["Accueil : image non choisie : rien ne s’affichera à cet endroit."]}
+07:29:18.866 +6.39s DEBUG ui.dialog.open Fenêtre ouverte : Vérification avant export {"id":"auditDialog","class":"audit","modal":true}
+07:29:18.910 +6.44s INFO  audit.export Export malgré des points à vérifier {"warnings":1}
+07:29:18.912 +6.44s INFO  export.zip.start [export.zip#1] Export du site en .zip
+07:29:18.915 +6.44s DEBUG export.zip.render [export.zip#1 · 3 ms] Pages générées {"files":12,"ms":3}
+07:29:18.920 +6.45s INFO  export.zip.ok [export.zip#1 · 8 ms] Site exporté : 12 fichiers {"files":12,"kb":69,"untranslated":51}
+07:29:18.920 +6.45s INFO  ui.toast Message affiché : Site exporté : 12 fichiers. 51 textes non traduits s’affichent dans la langue principale.
+07:29:18.923 +6.45s DEBUG ui.dialog.close Fenêtre fermée : Vérification avant export {"id":"auditDialog"}

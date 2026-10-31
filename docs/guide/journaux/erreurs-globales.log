@@ -1,5 +1,5 @@
-20:50:49.541 +4.23s ERROR app.uncaught Uncaught Error: erreur-de-test-volontaire {"file":"","line":1,"col":34,"error":{"name":"Error","message":"erreur-de-test-volontaire","stack":"Error: erreur-de-test-volontaire\nat eval (eval at evaluate (:290:30), <anonymous>:1:34)"}}
-20:50:49.542 +4.23s ERROR app.rejection Promesse rejetée sans traitement : erreur-de-test-volontaire (promesse) {"error":{"name":"Error","message":"erreur-de-test-volontaire (promesse)","stack":"Error: erreur-de-test-volontaire (promesse)\nat eval (eval at evaluate (:290:30), <anonymous>:1:93)\nat UtilityScript.evaluate (<anonymous>:292:16)\nat UtilityScript.<anonymous> (<anonymous>:1:44)"}}
-20:50:49.551 +4.24s ERROR app.resource Fichier non chargé : http://localhost:8791/introuvable-erreur-de-test.png {"tag":"img","url":"http://localhost:8791/introuvable-erreur-de-test.png"}
-20:50:50.044 +4.74s WARN  app.offline Connexion perdue : l’éditeur continue hors ligne
-20:50:50.246 +4.94s INFO  app.online Connexion rétablie
+07:29:16.351 +3.88s ERROR app.uncaught Uncaught Error: erreur-de-test-volontaire {"file":"","line":1,"col":34,"error":{"name":"Error","message":"erreur-de-test-volontaire","stack":"Error: erreur-de-test-volontaire\nat eval (eval at evaluate (:290:30), <anonymous>:1:34)"}}
+07:29:16.351 +3.88s ERROR app.rejection Promesse rejetée sans traitement : erreur-de-test-volontaire (promesse) {"error":{"name":"Error","message":"erreur-de-test-volontaire (promesse)","stack":"Error: erreur-de-test-volontaire (promesse)\nat eval (eval at evaluate (:290:30), <anonymous>:1:93)\nat UtilityScript.evaluate (<anonymous>:292:16)\nat UtilityScript.<anonymous> (<anonymous>:1:44)"}}
+07:29:16.360 +3.89s ERROR app.resource Fichier non chargé : http://localhost:8811/introuvable-erreur-de-test.png {"tag":"img","url":"http://localhost:8811/introuvable-erreur-de-test.png"}
+07:29:16.855 +4.38s WARN  app.offline Connexion perdue : l’éditeur continue hors ligne
+07:29:17.058 +4.58s INFO  app.online Connexion rétablie

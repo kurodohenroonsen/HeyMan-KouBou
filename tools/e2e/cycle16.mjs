@@ -281,6 +281,7 @@ export default async function (t) {
     for (const u of [`http://127.0.0.1:${port + 1}/publish.php`, `http://127.0.0.1:${port}/absent/publish.php`, `http://127.0.0.1:${port}/avertissement/publish.php`, `http://127.0.0.1:${port}/vieux/publish.php`]) {
       await page.fill('#publishDialog [data-pub="url"]', u);
       await page.click('#publishDialog [data-pub-test]');
+      if (u.includes(`:${port + 1}/`)) await page.click('#publishConfirmDialog [data-confirm-ok]'); /* cycle 25 : autre origine, jeton présent */
       await page.waitForFunction(() => !/Test en cours/.test(document.querySelector('#publishDialog [data-pub-status]')?.textContent || ''), null, { timeout: 10000 });
     }
     es = await since(page, s);

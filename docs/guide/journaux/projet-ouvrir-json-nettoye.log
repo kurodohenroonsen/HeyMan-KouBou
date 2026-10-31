@@ -1,11 +1,11 @@
-07:23:21.950 +0.91s INFO  project.import.start [project.import#1] Ouverture d’un projet .json {"name":"piege.atelier.json","kb":12}
-07:23:21.953 +0.91s WARN  project.import.sanitized [project.import#1 · 3 ms] 4 textes nettoyés à l’ouverture (balises ou attributs hors liste blanche retirés) {"changed":4}
-07:23:21.954 +0.91s INFO  version.save.start [version.save#1] Enregistrement d’une version de sécurité : « Avant l’ouverture d’un autre projet » {"kind":"safety","name":"Avant l’ouverture d’un autre projet"}
-07:23:21.955 +0.91s DEBUG storage.version-save Version enregistrée {"id":"v_mvw0lwf7q31fw","name":"Avant l’ouverture d’un autre projet","kind":"safety"}
-07:23:21.958 +0.91s DEBUG version.save.prune [version.save#1 · 4 ms] Aucune ancienne version à supprimer {"total":1}
-07:23:21.959 +0.91s INFO  version.save.ok [version.save#1 · 5 ms] Version de sécurité enregistrée (2 pages) {"id":"v_mvw0lwf7q31fw","kind":"safety","at":"2026-10-31T06:23:21.954Z","pages":2,"kb":12}
-07:23:21.959 +0.91s INFO  store.load Projet chargé dans l’éditeur {"name":"MAB – Médias Alternatifs Belges","pages":2,"keepHistory":true}
-07:23:21.963 +0.92s INFO  canvas.load.start [canvas.load#2] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_i2yim4d3","lang":"fr","device":"desktop"}
-07:23:21.965 +0.92s DEBUG canvas.load.render [canvas.load#2 · 2 ms] Page rendue {"ms":1,"kb":25}
-07:23:21.967 +0.92s INFO  project.import.ok [project.import#1 · 17 ms] Projet ouvert {"pages":2,"name":"MAB – Médias Alternatifs Belges","sanitized":4}
-07:23:21.968 +0.92s WARN  ui.toast Message affiché : Projet ouvert. 4 textes ont été nettoyés (voir le journal). {"type":"warn"}
+07:28:51.825 +0.89s INFO  project.import.start [project.import#1] Ouverture d’un projet .json {"name":"piege.atelier.json","kb":12}
+07:28:51.829 +0.89s WARN  project.import.sanitized [project.import#1 · 4 ms] 4 textes nettoyés à l’ouverture (balises ou attributs hors liste blanche retirés) {"changed":4}
+07:28:51.830 +0.89s INFO  version.save.start [version.save#1] Enregistrement d’une version de sécurité : « Avant l’ouverture d’un autre projet » {"kind":"safety","name":"Avant l’ouverture d’un autre projet"}
+07:28:51.831 +0.89s DEBUG storage.version-save Version enregistrée {"id":"v_mvw0syyfhbyjs","name":"Avant l’ouverture d’un autre projet","kind":"safety"}
+07:28:51.835 +0.90s DEBUG version.save.prune [version.save#1 · 5 ms] Aucune ancienne version à supprimer {"total":1}
+07:28:51.835 +0.90s INFO  version.save.ok [version.save#1 · 5 ms] Version de sécurité enregistrée (2 pages) {"id":"v_mvw0syyfhbyjs","kind":"safety","at":"2026-10-31T06:28:51.831Z","pages":2,"kb":12}
+07:28:51.835 +0.90s INFO  store.load Projet chargé dans l’éditeur {"name":"MAB – Médias Alternatifs Belges","pages":2,"keepHistory":true}
+07:28:51.839 +0.90s INFO  canvas.load.start [canvas.load#2] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_s7h5g3pe","lang":"fr","device":"desktop"}
+07:28:51.840 +0.90s DEBUG canvas.load.render [canvas.load#2 · 1 ms] Page rendue {"ms":1,"kb":25}
+07:28:51.844 +0.91s INFO  project.import.ok [project.import#1 · 19 ms] Projet ouvert {"pages":2,"name":"MAB – Médias Alternatifs Belges","sanitized":4}
+07:28:51.844 +0.91s WARN  ui.toast Message affiché : Projet ouvert. 4 textes ont été nettoyés (voir le journal). {"type":"warn"}

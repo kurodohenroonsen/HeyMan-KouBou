@@ -77,6 +77,8 @@ export default async function (t) {
   const portB = portA + 40;
   const originA = `http://127.0.0.1:${portA}`;
   const originB = `http://127.0.0.1:${portB}`;
+  const wwwA = join(dir, 'wwwA');
+  mkdirSync(wwwA, { recursive: true });
   let s = await mark(page);
   await page.click('#publishBtn');
   await page.waitForSelector('#publishDialog[open]');
@@ -84,12 +86,22 @@ export default async function (t) {
   await page.locator('#publishDialog [data-pub="url"]').dispatchEvent('change');
   await page.click('#publishDialog [data-pub="remember"]');
   const [dlA] = await Promise.all([page.waitForEvent('download'), page.click('#publishDialog [data-pub-generate]')]);
-  await dlA.path();
+  await dlA.saveAs(join(wwwA, 'publish.php'));
+  const phpA = spawn('php', ['-S', `127.0.0.1:${portA}`, '-t', wwwA], { stdio: 'ignore' });
+  await t.wait(400);
   const tokenA = await page.locator('#publishDialog [data-pub="token"]').inputValue();
-  await waitCode(page, 'storage.secret-write', s, 4000).catch(() => {});
+  /* Premier envoi du jeton vers A (test de connexion) : confirmation, puis jeton gardé pour cette origine */
+  await page.click('#publishDialog [data-pub-test]');
+  await page.waitForSelector('#publishConfirmDialog[open]', { timeout: 5000 });
+  t.ok(/jeton de publication à 127\.0\.0\.1/.test(await page.textContent('#publishConfirmDialog')), 'test de connexion avec jeton vers une adresse nouvelle : confirmation demandée');
+  await page.click('#publishConfirmDialog [data-confirm-ok]');
+  await page.waitForSelector('#publishDialog [data-pub-status][data-pub-ok]', { timeout: 10000 });
+  phpA.kill();
   es = await since(page, s);
+  expectCodes(t, es, ['publish.php.generate', 'publish.test.start', 'publish.first-origin', 'storage.secret-write', 'publish.test.ok'], 'premier test de connexion');
   t.ok(es.some(e => e.code === 'storage.secret-write' && e.data?.name === `php-token:${originA}`), `jeton gardé sous php-token:${originA}`);
   t.ok(!JSON.stringify(es).includes(tokenA), 'le jeton n’apparaît pas dans le journal');
+  capture('publier-premiere-fois-test', es);
   await page.keyboard.press('Escape');
   s = await mark(page);
   await page.click('#publishBtn');

@@ -19,7 +19,8 @@ let exportZipHandler = null;
 export function setZipHandler(fn) { exportZipHandler = fn; }
 
 let tab = null;
-/* Jetons tapés pendant la séance, avec leur destination : jamais repris pour une autre adresse ou un autre dépôt */
+/* Jetons tapés pendant la séance, avec leur destination : jamais repris pour une autre adresse ou un autre dépôt.
+   Un jeton tout juste créé (publish.php téléchargé) n'a pas encore de destination : il suit la personne jusqu'au premier envoi. */
 const memory = { php: { target: '', token: '', keep: false }, github: { target: '', token: '', keep: false } };
 
 function setStatus(el, text, kind) {
@@ -40,13 +41,10 @@ async function remember(kind, target, token, on) {
   try { await setSecret(key, on ? token : ''); } catch { /* stockage indisponible */ }
 }
 
-/* Jeton à pré-remplir pour la destination affichée : celui tapé en séance (même destination, ou avant toute adresse), sinon celui gardé sur l'appareil pour elle */
+/* Jeton à pré-remplir pour la destination affichée : celui de la séance (même destination, ou pas encore envoyé), sinon celui gardé sur l'appareil pour elle */
 async function tokenFor(kind, target) {
   const m = memory[kind];
-  if (m.token && (m.target === target || !m.target)) {
-    if (!m.target && target) await remember(kind, target, m.token, m.keep);
-    return { token: m.token, keep: m.keep, from: 'séance' };
-  }
+  if (m.token && (m.target === target || !m.target)) return { token: m.token, keep: m.keep, from: 'séance' };
   const key = tokenKey(kind, target);
   const saved = key ? await getSecret(key) : '';
   return saved ? { token: saved, keep: true, from: 'appareil' } : { token: '', keep: false, from: '' };
@@ -114,9 +112,9 @@ function phpTab(d) {
   const generate = async () => {
     const t = newToken();
     token.value = t;
-    await remember('php', origin(), t, keep.checked);
+    memory.php = { target: '', token: t, keep: keep.checked }; /* gardé sur l'appareil au premier envoi, sous l'adresse réellement utilisée */
     download('publish.php', buildPublishPhp({ tokenHash: await sha256Hex(t) }), 'application/x-httpd-php');
-    log.info('publish.php.generate', __('publish.php v{version} téléchargé avec un nouveau jeton (l’ancien publish.php ne l’acceptera pas)', { version: PUBLISH_VERSION }), { version: PUBLISH_VERSION, remember: keep.checked, origin: origin() || undefined });
+    log.info('publish.php.generate', __('publish.php v{version} téléchargé avec un nouveau jeton (l’ancien publish.php ne l’acceptera pas)', { version: PUBLISH_VERSION }), { version: PUBLISH_VERSION, remember: keep.checked });
     apply({ mode: 'php' });
     setStatus(status, __('publish.php téléchargé, avec un nouveau jeton (gardé dans ce champ). Déposez le fichier à la racine du site par FTP, puis « Tester la connexion ».'), 'info');
   };
