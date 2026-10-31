@@ -11,6 +11,7 @@ import { translate } from './render.js';
 import { parseVideo } from './widgets-extra.js';
 import { contrastIssues, headingIssues, formatRatio } from './contrast.js';
 import { REGISTRY as REG } from './widgets.js';
+import { TO_COMPLETE } from './legalpages.js';
 import { __, __n, fmtNumber } from './ui-i18n.js';
 
 const text = v => String(v || '').replace(/<[^>]*>/g, '').trim();
@@ -32,6 +33,8 @@ export function auditSite(site) {
   for (const page of site.pages) {
     const warn = (nodeId, message) => warnings.push({ pageId: page.id, nodeId, message: __('{page} : {message}', { page: pageName(page), message }) });
     if (!text(translate(site, page.title, def))) warn(null, __('la page n’a pas de titre (menu et onglet du navigateur).'));
+    const todo = Object.values(TO_COMPLETE).find(m => JSON.stringify(page.root).includes(m));
+    if (todo) warn(null, __('informations à compléter (« {mark} ») : remplacez-les avant de publier.', { mark: todo }));
 
     walk(page.root, n => {
       const label = REGISTRY[n.type]?.label ? __(REGISTRY[n.type].label) : n.type;

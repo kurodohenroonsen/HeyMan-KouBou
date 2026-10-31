@@ -1,29 +1,29 @@
-20:52:23.075 +28.05s DEBUG store.commit Modification {"source":"pages","past":41,"page":"p_a3je7ile"}
-20:52:23.090 +28.07s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":5}
-20:52:23.094 +28.07s INFO  page.menu.customize Menu personnalisé : 3 entrées reprises des pages {"items":3}
-20:52:23.444 +28.42s WARN  page.menu.link-refused Lien du menu non ajouté : libellé ou adresse vide {"label":false,"url":false}
-20:52:23.444 +28.42s ERROR ui.toast Message affiché : Indiquez un libellé et une adresse. {"type":"error"}
-20:52:23.687 +28.66s DEBUG store.commit Modification {"source":"pages","past":42,"page":"p_a3je7ile"}
-20:52:23.696 +28.67s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":3}
-20:52:23.697 +28.67s INFO  page.menu.link-add Lien « Facebook » ajouté au menu {"url":"https://www.facebook.com/mab","newTab":true,"lang":"fr","items":4}
-20:52:24.143 +29.12s DEBUG store.commit Modification {"source":"pages","past":43,"page":"p_a3je7ile"}
-20:52:24.158 +29.14s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":4}
-20:52:24.160 +29.14s INFO  page.menu.indent Menu : lien « Facebook » mis en sous-menu de l’entrée au-dessus {"item":"m_w6hx9mr","kind":"link","index":3}
-20:52:24.553 +29.53s DEBUG store.commit Modification {"source":"pages","past":44,"page":"p_a3je7ile"}
-20:52:24.562 +29.54s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":3}
-20:52:24.564 +29.54s INFO  page.menu.outdent Menu : lien « Facebook » sorti du sous-menu {"item":"m_w6hx9mr","kind":"link","sub":true,"index":0}
-20:52:24.921 +29.90s DEBUG store.commit Modification {"source":"pages","past":45,"page":"p_a3je7ile"}
-20:52:24.931 +29.91s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":4}
-20:52:24.933 +29.91s INFO  page.menu.move Menu : lien « Facebook » monté {"item":"m_w6hx9mr","kind":"link","index":3,"dir":-1}
-20:52:25.286 +30.26s DEBUG store.commit Modification {"source":"pages","past":46,"page":"p_a3je7ile"}
-20:52:25.294 +30.27s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":3}
-20:52:25.295 +30.27s INFO  page.menu.label Libellé du menu (FR) : « Notre page Facebook » {"item":"m_w6hx9mr","kind":"link","lang":"fr","custom":true}
-20:52:25.707 +30.68s DEBUG store.commit Modification {"source":"pages","past":47,"page":"p_a3je7ile"}
-20:52:25.714 +30.69s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":3}
-20:52:25.714 +30.69s INFO  page.menu.url Adresse d’un lien du menu modifiée {"item":"m_w6hx9mr","url":"https://www.facebook.com/media.alternatif"}
-20:52:26.250 +31.23s DEBUG store.commit Modification {"source":"pages","past":48,"page":"p_a3je7ile"}
-20:52:26.257 +31.23s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":2}
-20:52:26.258 +31.23s INFO  page.menu.remove Menu : « Notre équipe » retiré (la page existe toujours) {"item":"m_2ut58di","kind":"page","index":1}
-20:52:26.603 +31.58s DEBUG store.commit Modification {"source":"pages","past":49,"page":"p_a3je7ile"}
-20:52:26.609 +31.59s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":3}
-20:52:26.610 +31.59s INFO  page.menu.page-add Page « Notre équipe » ajoutée au menu {"page":"p_4pcc7sdw"}
+13:51:32.483 +23.68s DEBUG store.commit Modification {"source":"pages","past":41,"page":"p_1ktrqpn6"}
+13:51:32.489 +23.69s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":3}
+13:51:32.490 +23.69s INFO  page.menu.customize Menu personnalisé : 3 entrées reprises des pages {"items":3}
+13:51:32.830 +24.03s WARN  page.menu.link-refused Lien du menu non ajouté : libellé ou adresse vide {"label":false,"url":false}
+13:51:32.830 +24.03s ERROR ui.toast Message affiché : Indiquez un libellé et une adresse. {"type":"error"}
+13:51:33.048 +24.25s DEBUG store.commit Modification {"source":"pages","past":42,"page":"p_1ktrqpn6"}
+13:51:33.053 +24.25s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":2}
+13:51:33.054 +24.25s INFO  page.menu.link-add Lien « Facebook » ajouté au menu {"url":"https://www.facebook.com/mab","newTab":true,"lang":"fr","items":4}
+13:51:33.448 +24.65s DEBUG store.commit Modification {"source":"pages","past":43,"page":"p_1ktrqpn6"}
+13:51:33.453 +24.65s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":2}
+13:51:33.454 +24.65s INFO  page.menu.indent Menu : lien « Facebook » mis en sous-menu de l’entrée au-dessus {"item":"m_kwync4t","kind":"link","index":3}
+13:51:33.803 +25.00s DEBUG store.commit Modification {"source":"pages","past":44,"page":"p_1ktrqpn6"}
+13:51:33.812 +25.01s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":3}
+13:51:33.813 +25.01s INFO  page.menu.outdent Menu : lien « Facebook » sorti du sous-menu {"item":"m_kwync4t","kind":"link","sub":true,"index":0}
+13:51:34.165 +25.36s DEBUG store.commit Modification {"source":"pages","past":45,"page":"p_1ktrqpn6"}
+13:51:34.172 +25.37s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":3}
+13:51:34.173 +25.37s INFO  page.menu.move Menu : lien « Facebook » monté {"item":"m_kwync4t","kind":"link","index":3,"dir":-1}
+13:51:34.546 +25.75s DEBUG store.commit Modification {"source":"pages","past":46,"page":"p_1ktrqpn6"}
+13:51:34.557 +25.76s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":5}
+13:51:34.561 +25.76s INFO  page.menu.label Libellé du menu (FR) : « Notre page Facebook » {"item":"m_kwync4t","kind":"link","lang":"fr","custom":true}
+13:51:34.899 +26.10s DEBUG store.commit Modification {"source":"pages","past":47,"page":"p_1ktrqpn6"}
+13:51:34.903 +26.10s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":2}
+13:51:34.904 +26.10s INFO  page.menu.url Adresse d’un lien du menu modifiée {"item":"m_kwync4t","url":"https://www.facebook.com/media.alternatif"}
+13:51:35.380 +26.58s DEBUG store.commit Modification {"source":"pages","past":48,"page":"p_1ktrqpn6"}
+13:51:35.385 +26.59s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":2}
+13:51:35.386 +26.59s INFO  page.menu.remove Menu : « Notre équipe » retiré (la page existe toujours) {"item":"m_w99jpwz","kind":"page","index":1}
+13:51:35.713 +26.91s DEBUG store.commit Modification {"source":"pages","past":49,"page":"p_1ktrqpn6"}
+13:51:35.717 +26.92s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":2}
+13:51:35.718 +26.92s INFO  page.menu.page-add Page « Notre équipe » ajoutée au menu {"page":"p_1qv72xb6"}

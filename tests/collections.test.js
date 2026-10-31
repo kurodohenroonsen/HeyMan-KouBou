@@ -14,8 +14,9 @@ import {
   addField, updateField, removeField, setFieldOptions,
   addItem, setItemValue, setItemSlug, setItemStatus, moveItem, duplicateItem, removeItem,
   queryItems, itemDir, formatDate, whenText, bindProps, bindableFields, setBind,
-  buildIcs, buildRss, exportItemsCsv, importItemsCsv, itemTitle
+  buildIcs, buildRss, exportItemsCsv, importItemsCsv, itemTitle, exampleValues, itemJsonLd
 } from '../core/collections.js';
+import { setSiteTimezone, tzOffset, TIMEZONES } from '../core/timezone.js';
 
 const TODAY = '2026-10-29';
 
@@ -321,7 +322,7 @@ test('pages de détail : une par élément publié et par langue, SEO, données 
   const ev = ld.find(x => x['@type'] === 'Event');
   assert.ok(ev, 'Event présent');
   assert.equal(ev.name, 'Fête de la radio');
-  assert.equal(ev.startDate, '2026-11-03T19:00');
+  assert.equal(ev.startDate, '2026-11-03T19:00:00+01:00', 'heure avec décalage (cycle 28)');
   assert.equal(ev.eventStatus, 'https://schema.org/EventCancelled');
   assert.equal(ev.location['@type'], 'Place');
   assert.equal(ev.location.name, 'Salle des fêtes');
@@ -635,4 +636,86 @@ test('normalizeSite : collections vides pour un ancien projet ; suppression d’
   assert.ok(!renderPage(s, s.pages[0], 'fr').includes('cl__item'));
   assert.ok(renderPage(s, s.pages[0], 'fr', { canvas: true }).includes('Choisissez une collection'));
   assert.throws(() => deleteCollection(s, b.id), /introuvable/);
+});
+
+/* ---------- Cycle 28 : fuseau horaire du site (W5) et exemples par domaine et par langue (A8) ---------- */
+function tokyo() {
+  let s = normalizeSite(createSite({ name: '久万高原町', languages: ['ja', 'en'] }));
+  const r = createCollection(s, { kind: 'events', name: 'イベント' });
+  s = addItem(r.site, r.id, { title: { ja: '星空観察会' }, date: '2026-11-03', time: '19:00', endTime: '21:00', place: '天体観測館' }).site;
+  s = addItem(s, r.id, { title: { ja: '紅葉まつり' }, date: '2026-11-08', endDate: '2026-11-09', place: '面河渓' }).site;
+  return { site: s, col: s.collections[r.id] };
+}
+
+test('fuseau : japonais → Asia/Tokyo par défaut, sinon Europe/Brussels ; réglage validé', () => {
+  assert.equal(createSite({ languages: ['ja', 'en'] }).timezone, 'Asia/Tokyo');
+  assert.equal(createSite({ languages: ['fr', 'nl'] }).timezone, 'Europe/Brussels');
+  let s = createSite({ languages: ['fr'] });
+  s = setSiteTimezone(s, 'Europe/Paris');
+  assert.equal(s.timezone, 'Europe/Paris');
+  assert.equal(setSiteTimezone(s, 'America/New_York').timezone, 'America/New_York', 'saisie libre : identifiant IANA');
+  assert.throws(() => setSiteTimezone(s, 'Mars/Olympus'), /Fuseau horaire inconnu/);
+  assert.throws(() => setSiteTimezone(s, '<b>'), /Fuseau horaire inconnu/);
+  assert.ok(TIMEZONES.includes('Europe/Brussels') && TIMEZONES.includes('Asia/Tokyo') && TIMEZONES.includes('UTC'));
+});
+
+test('décalage horaire : heure d’été, d’hiver, Tokyo, UTC', () => {
+  assert.equal(tzOffset('Europe/Brussels', '2026-07-01', '12:00'), '+02:00');
+  assert.equal(tzOffset('Europe/Brussels', '2026-11-03', '19:00'), '+01:00');
+  assert.equal(tzOffset('Asia/Tokyo', '2026-11-03', '19:00'), '+09:00');
+  assert.equal(tzOffset('UTC', '2026-11-03', '19:00'), '+00:00');
+  assert.equal(tzOffset('America/New_York', '2026-11-03', '19:00'), '-05:00');
+  assert.equal(tzOffset('Asia/Kolkata', '2026-11-03', '19:00'), '+05:30');
+});
+
+test('ICS Asia/Tokyo : TZID et VTIMEZONE de Tokyo, plus aucune référence à Bruxelles', () => {
+  const { site, col } = tokyo();
+  const ics = buildIcs(site, col, col.items, 'ja', { now: new Date('2026-10-29T08:00:00Z'), host: 'kuma.example' });
+  assert.ok(ics.includes('BEGIN:VTIMEZONE\r\nTZID:Asia/Tokyo'));
+  assert.ok(ics.includes('TZOFFSETTO:+0900'));
+  assert.ok(ics.includes('DTSTART;TZID=Asia/Tokyo:20261103T190000'));
+  assert.ok(ics.includes('DTEND;TZID=Asia/Tokyo:20261103T210000'));
+  assert.ok(!ics.includes('Brussels'));
+  assert.ok(ics.includes('DTSTART;VALUE=DATE:20261108'), 'journée entière inchangée');
+});
+
+test('ICS : fuseau sans définition connue → DTSTART en UTC calculé', () => {
+  let { site, col } = tokyo();
+  site = setSiteTimezone(site, 'America/New_York');
+  const ics = buildIcs(site, site.collections[col.id], site.collections[col.id].items, 'en', { now: new Date('2026-10-29T08:00:00Z') });
+  assert.ok(!ics.includes('VTIMEZONE'));
+  assert.ok(ics.includes('DTSTART:20261104T000000Z'), '19:00 à New York = 00:00 UTC le lendemain');
+  assert.ok(ics.includes('DTEND:20261104T020000Z'));
+});
+
+test('JSON-LD : startDate et endDate avec le décalage du fuseau (+09:00)', () => {
+  const { site, col } = tokyo();
+  const ev = itemJsonLd(site, col, col.items[0], 'ja');
+  assert.equal(ev.startDate, '2026-11-03T19:00:00+09:00');
+  assert.equal(ev.endDate, '2026-11-03T21:00:00+09:00');
+  assert.equal(itemJsonLd(site, col, col.items[1], 'ja').startDate, '2026-11-08', 'journée entière : date seule');
+});
+
+test('exampleValues : exemples par domaine et dans la langue demandée, jamais le MAB', () => {
+  for (const kind of ['members', 'news', 'events', 'custom', 'shops']) {
+    for (const domain of ['association', 'tourism', 'shop', 'merchants', 'event']) {
+      const list = exampleValues(kind, '2026-11-01', { domain });
+      assert.ok(list.length >= 2 && list.length <= 4, `${kind}/${domain}`);
+      assert.ok(!JSON.stringify(list).includes('MAB'), `${kind}/${domain} sans MAB`);
+      for (const v of list) for (const x of Object.values(v)) if (x && typeof x === 'object') for (const l of ['fr', 'nl', 'de', 'en', 'ja']) assert.ok(typeof x[l] === 'string', `${kind}/${domain} : ${l}`);
+    }
+  }
+  const t = exampleValues('events', '2026-11-01', { domain: 'tourism' });
+  const a = exampleValues('events', '2026-11-01', { domain: 'association' });
+  assert.notEqual(t[0].title.fr, a[0].title.fr, 'le domaine change les exemples');
+  assert.ok(!JSON.stringify(exampleValues('events')).includes('MAB'));
+});
+
+test('createCollectionWithPage dans un site japonais : exemples et titres en japonais', () => {
+  const s = normalizeSite(createSite({ languages: ['ja', 'en'] }));
+  const r = createCollectionWithPage(s, { kind: 'events', name: 'イベント', withPage: true, examples: true, today: '2026-11-01' });
+  const items = r.site.collections[r.id].items;
+  assert.ok(items.length >= 3);
+  assert.ok(items.every(i => /[\u3040-\u30ff\u4e00-\u9fff]/.test(i.values.title.ja)), 'titres japonais');
+  assert.ok(items.every(i => !i.values.title.fr), 'rien sous le français, absent du site');
 });

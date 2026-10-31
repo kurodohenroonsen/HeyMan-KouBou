@@ -20,7 +20,7 @@ const none = action => { log.debug('action.none', __('« {action} » : rien n’
 
 export function insertWidget(type) {
   return safe(() => {
-    const node = createNode(type);
+    const node = createNode(type, { lang: state.site.defaultLanguage });
     const r = insertAuto(root(), state.selected, node);
     commitRoot(r.root, { source: 'library' });
     select(r.id, { scroll: true });

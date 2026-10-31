@@ -12,6 +12,9 @@ import { __ } from './ui-i18n.js';
 
 const L5 = (fr, nl, de, en, ja) => ({ fr, nl, de, en, ja });
 
+/* Marque des champs laissés à compléter par un modèle de site (cycle 28) ; le contrôle avant export la signale */
+export const TO_COMPLETE = L5('[à compléter]', '[in te vullen]', '[auszufüllen]', '[to be completed]', '［要記入］');
+
 export const LEGAL_FORMS = {
   asbl: L5('ASBL (association sans but lucratif)', 'VZW (vereniging zonder winstoogmerk)', 'VoG (Vereinigung ohne Gewinnerzielungsabsicht)', 'Non-profit association (ASBL)', '非営利社団（ASBL）'),
   srl: L5('SRL (société à responsabilité limitée)', 'BV (besloten vennootschap)', 'GmbH (Gesellschaft mit beschränkter Haftung)', 'Private limited company (SRL)', '有限責任会社（SRL）'),

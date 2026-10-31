@@ -36,11 +36,12 @@ Dans les tableaux de textes ci-dessous, chaque texte est donné dans les trois l
 ### Étape 1 — Créer le projet
 
 **Ce que tu fais**
-1. Ouvre l'éditeur. En haut à droite : menu **Fichier** → **Nouveau site vide**.
+1. Ouvre l'éditeur. En haut à droite : menu **Fichier** → **Nouveau site…**.
 2. Dans la fenêtre qui s'ouvre :
    - **Nom du site** : `久万高原町 観光ガイド（非公式デモ）` ;
    - **Langue principale** : **日本語** ;
-   - **Autres langues du site** : coche **English** et **Français**.
+   - **Autres langues du site** : coche **English** et **Français** ;
+   - **Modèle de site** : pour ce tutoriel, garde **Site vide** (on construit tout pour croiser chaque widget). Pour un vrai site, **choisis le modèle Tourisme ou commune** : accueil, à découvrir, agenda et accès, contact sont créés d'un coup, en japonais, anglais et français, avec le fuseau horaire Asia/Tokyo ; ou **pars de zéro** avec Site vide.
 3. Clique sur **Créer le site**.
 
 **Ce que tu vois** : une page vide au centre (le **canevas**), le panneau de gauche (Widgets, Modèles, Structure, Pages, Contenus, Site) et l'**inspecteur** à droite. En haut à droite, « Enregistré » : chaque modification est gardée sur ton ordinateur.

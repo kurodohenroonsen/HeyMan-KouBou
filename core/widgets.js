@@ -10,7 +10,8 @@ import { __, __c, N_ } from './ui-i18n.js';
 
 /* Libellés (widgets, réglages, catégories, choix) en français marqués N_ : traduits à l'affichage par __().
    Deux exceptions déjà traduites ici (__c), car le même mot français a un autre sens ailleurs : le widget « Titre »
-   (Heading, pas Title) et le trait « Plein » du séparateur. Les valeurs par défaut du contenu (fr(…)) restent en français. */
+   (Heading, pas Title) et le trait « Plein » du séparateur. Les valeurs par défaut du contenu sont dans les cinq langues
+   du site (L(fr, nl, de, en, ja)) ; createNode(type, { lang }) ne garde que la langue principale du site (cycle 28). */
 export const STRUCTURE = new Set(['page', 'section', 'row', 'column']);
 export const REGISTRY = {};
 
@@ -22,7 +23,8 @@ export const isWidget = type => !!REGISTRY[type] && !STRUCTURE.has(type);
 export const fieldsOf = type => REGISTRY[type]?.fields || [];
 export const fieldDef = (type, key) => fieldsOf(type).find(f => f.key === key) || null;
 
-const fr = v => ({ fr: v });
+/* Texte d'exemple dans les cinq langues de contenu ; L5('') : vide partout */
+export const L5 = (fr, nl = fr, de = fr, en = fr, ja = fr) => ({ fr, nl, de, en, ja });
 const opt = (value, label) => ({ value, label });
 
 /* ---------- Structure ---------- */
@@ -51,7 +53,7 @@ register('heading', {
     { key: 'level', type: 'select', label: N_('Niveau'), options: [opt('h1', N_('H1 – titre de page')), opt('h2', 'H2'), opt('h3', 'H3'), opt('h4', 'H4'), opt('p', N_('Paragraphe'))] },
     { key: 'link', type: 'url', label: N_('Lien (facultatif)') }
   ],
-  defaults: () => ({ text: fr('Votre titre ici'), level: 'h2', link: '' }),
+  defaults: () => ({ text: L5('Votre titre ici', 'Uw titel hier', 'Ihre Überschrift', 'Your heading here', '見出しを入力'), level: 'h2', link: '' }),
   render(p, c) {
     const tag = ['h1', 'h2', 'h3', 'h4', 'p'].includes(p.level) ? p.level : 'h2';
     const inner = c.inline(c.t(p.text));
@@ -63,7 +65,11 @@ register('heading', {
 register('text', {
   label: N_('Texte'), icon: '¶', category: N_('Texte'),
   fields: [{ key: 'content', type: 'richtext', i18n: true, label: N_('Texte') }],
-  defaults: () => ({ content: fr('<p>Écrivez votre texte ici. Sélectionnez des mots pour les mettre en <strong>gras</strong>, en <em>italique</em> ou ajouter un lien.</p>') }),
+  defaults: () => ({ content: L5('<p>Écrivez votre texte ici. Sélectionnez des mots pour les mettre en <strong>gras</strong>, en <em>italique</em> ou ajouter un lien.</p>',
+    '<p>Schrijf hier uw tekst. Selecteer woorden om ze <strong>vet</strong> of <em>cursief</em> te maken of er een link aan toe te voegen.</p>',
+    '<p>Schreiben Sie hier Ihren Text. Markieren Sie Wörter, um sie <strong>fett</strong> oder <em>kursiv</em> zu setzen oder einen Link hinzuzufügen.</p>',
+    '<p>Write your text here. Select words to make them <strong>bold</strong> or <em>italic</em>, or to add a link.</p>',
+    '<p>ここに本文を入力します。文字を選択すると<strong>太字</strong>や<em>斜体</em>にしたり、リンクを付けたりできます。</p>') }),
   render(p, c) { return `<div class="rich" data-edit="content">${c.rich(c.t(p.content))}</div>`; }
 });
 
@@ -77,7 +83,7 @@ register('button', {
     { key: 'size', type: 'select', label: N_('Taille'), options: [opt('sm', N_('Petit')), opt('md', N_('Moyen')), opt('lg', N_('Grand'))] },
     { key: 'newTab', type: 'toggle', label: N_('Ouvrir dans un nouvel onglet') }
   ],
-  defaults: () => ({ label: fr('En savoir plus'), link: '#', variant: 'primary', size: 'md', newTab: false }),
+  defaults: () => ({ label: L5('En savoir plus', 'Meer weten', 'Mehr erfahren', 'Learn more', '詳しく見る'), link: '#', variant: 'primary', size: 'md', newTab: false }),
   render(p, c) {
     const variant = ['primary', 'secondary', 'outline', 'link'].includes(p.variant) ? p.variant : 'primary';
     const size = ['sm', 'md', 'lg'].includes(p.size) ? p.size : 'md';
@@ -98,7 +104,7 @@ register('image', {
     { key: 'ratio', type: 'select', label: N_('Format'), options: [opt('auto', N_('Original')), opt('16/9', '16:9'), opt('4/3', '4:3'), opt('1/1', N_('Carré')), opt('3/4', N_('Portrait'))] },
     { key: 'link', type: 'url', label: N_('Lien (facultatif)') }
   ],
-  defaults: () => ({ src: '', alt: fr(''), caption: fr(''), ratio: 'auto', link: '' }),
+  defaults: () => ({ src: '', alt: L5(''), caption: L5(''), ratio: 'auto', link: '' }),
   render(p, c) {
     const src = c.img(p.src);
     const ratio = ['16/9', '4/3', '1/1', '3/4'].includes(p.ratio) ? ` style="aspect-ratio:${p.ratio}"` : '';

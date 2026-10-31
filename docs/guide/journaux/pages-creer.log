@@ -1,9 +1,8 @@
-20:52:14.399 +19.38s DEBUG store.commit Modification {"source":"pages","past":29,"page":"p_a3je7ile"}
-20:52:14.411 +19.39s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":4}
-20:52:14.428 +19.41s INFO  page.add Page « Notre équipe » créée : /notre-equipe/ {"id":"p_4pcc7sdw","slug":"notre-equipe","lang":"fr","pages":3,"menu":"automatique"}
-20:52:14.428 +19.41s DEBUG store.view Vue : pageId=p_4pcc7sdw {"pageId":"p_4pcc7sdw"}
-20:52:14.439 +19.42s INFO  canvas.load.start [canvas.load#5] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_4pcc7sdw","lang":"fr","device":"desktop"}
-20:52:14.440 +19.42s DEBUG canvas.load.render [canvas.load#5 · 1 ms] Page rendue {"ms":0,"kb":18}
-20:52:14.442 +19.42s INFO  ui.toast Message affiché : Page « Notre équipe » créée : /notre-equipe/
-20:52:14.478 +19.45s INFO  canvas.load.ok [canvas.load#5 · 39 ms] Canevas prêt {"nodes":0,"scale":62,"via":"load"}
-20:52:15.004 +19.98s DEBUG storage.save Projet enregistré sur cet appareil {"ms":4,"kb":13}
+13:51:25.151 +16.35s DEBUG store.commit Modification {"source":"pages","past":29,"page":"p_1ktrqpn6"}
+13:51:25.157 +16.36s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":3}
+13:51:25.171 +16.37s INFO  page.add Page « Notre équipe » créée : /notre-equipe/ {"id":"p_1qv72xb6","slug":"notre-equipe","lang":"fr","pages":3,"menu":"automatique"}
+13:51:25.172 +16.37s DEBUG store.view Vue : pageId=p_1qv72xb6 {"pageId":"p_1qv72xb6"}
+13:51:25.180 +16.38s INFO  canvas.load.start [canvas.load#5] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_1qv72xb6","lang":"fr","device":"desktop"}
+13:51:25.180 +16.38s DEBUG canvas.load.render [canvas.load#5 · 0 ms] Page rendue {"ms":0,"kb":19}
+13:51:25.182 +16.38s INFO  ui.toast Message affiché : Page « Notre équipe » créée : /notre-equipe/
+13:51:25.219 +16.42s INFO  canvas.load.ok [canvas.load#5 · 39 ms] Canevas prêt {"nodes":0,"scale":76,"via":"load"}

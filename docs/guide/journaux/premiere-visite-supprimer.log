@@ -1,6 +1,6 @@
-13:00:13.344 +3.62s DEBUG canvas.key Raccourci dans la page : Delete {"key":"Delete","in":"page","selected":"n_6k262d5u4s"}
-13:00:13.345 +3.62s DEBUG store.commit Modification {"source":"action","past":4,"page":"p_tlk9wgfz"}
-13:00:13.348 +3.63s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":2}
-13:00:13.349 +3.63s DEBUG store.select Sélection : column {"id":"n_092b3v030a","type":"column"}
-13:00:13.350 +3.63s INFO  action.delete Supprimé : text {"id":"n_6k262d5u4s","type":"text","next":"n_092b3v030a"}
-13:00:13.350 +3.63s INFO  ui.toast Message affiché : Supprimé : Texte — Ctrl+Z pour annuler
+13:52:28.054 +3.88s DEBUG canvas.key Raccourci dans la page : Delete {"key":"Delete","in":"page","selected":"n_354o726503"}
+13:52:28.055 +3.88s DEBUG store.commit Modification {"source":"action","past":4,"page":"p_m90cfxqd"}
+13:52:28.058 +3.88s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":3}
+13:52:28.060 +3.88s DEBUG store.select Sélection : column {"id":"n_4700552t6h","type":"column"}
+13:52:28.061 +3.88s INFO  action.delete Supprimé : text {"id":"n_354o726503","type":"text","next":"n_4700552t6h"}
+13:52:28.062 +3.88s INFO  ui.toast Message affiché : Supprimé : Texte — Ctrl+Z pour annuler

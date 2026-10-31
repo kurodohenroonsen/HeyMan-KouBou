@@ -642,6 +642,17 @@ body.is-resizing #canvas{pointer-events:none}
 .new-site__langs{border:0;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:6px 18px}
 .new-site__langs legend{width:100%;margin-bottom:4px}
 .new-site__langs .hint{width:100%}
+/* Cycle 28 : choix d'un modèle de site (vignette, nom, description) */
+.new-site{width:min(760px,96vw)}
+.site-tpls{border:0;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
+.site-tpls legend{margin-bottom:6px}
+.site-tpls>.hint{grid-column:1/-1}
+.site-tpl{display:grid;gap:6px;padding:8px;border:2px solid var(--line);border-radius:10px;cursor:pointer;position:relative}
+.site-tpl:has(input:checked){border-color:var(--accent);background:color-mix(in srgb,var(--accent) 8%,transparent)}
+.site-tpl:has(input:focus-visible){outline:2px solid var(--accent);outline-offset:2px}
+.site-tpl input{position:absolute;top:12px;left:12px;width:18px;height:18px;accent-color:var(--accent)}
+.site-tpl__thumb{width:100%;height:auto;aspect-ratio:16/10;border-radius:6px;border:1px solid var(--line)}
+.site-tpl__text{display:grid;gap:2px;font-size:13px}
 
 /* Cycle 30 : lisible et simple — icônes SVG, barre du haut sur une ligne, zoom et panneaux, nombre + unité, boîte, mode simple */
 .ico{display:inline-block;width:18px;height:18px;flex:none;vertical-align:-4px}

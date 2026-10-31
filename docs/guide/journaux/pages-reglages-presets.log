@@ -1,10 +1,10 @@
-20:52:05.416 +10.39s DEBUG store.commit Modification {"key":null,"source":"site","past":18,"page":"p_a3je7ile"}
-20:52:05.425 +10.40s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
-20:52:05.447 +10.42s INFO  settings.preset-rename Preset renommé : « Titre MAB » → « Titre principal » {"id":"ps_tukuzi0i","type":"heading"}
-20:52:05.745 +10.72s DEBUG store.commit Modification {"key":null,"source":"site","past":19,"page":"p_a3je7ile"}
-20:52:05.756 +10.73s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":4}
-20:52:05.776 +10.75s INFO  settings.preset-duplicate Preset « Titre principal » dupliqué {"id":"ps_tukuzi0i","type":"heading","presets":2}
-20:52:06.083 +11.06s DEBUG settings.preset-delete-cancel Suppression du preset « Titre principal » annulée {"id":"ps_tukuzi0i"}
-20:52:06.285 +11.26s DEBUG store.commit Modification {"key":null,"source":"site","past":20,"page":"p_a3je7ile"}
-20:52:06.301 +11.28s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":5}
-20:52:06.338 +11.31s INFO  settings.preset-delete Preset « Titre principal » supprimé (1 élément garde son apparence) {"id":"ps_tukuzi0i","type":"heading","used":1}
+13:51:17.933 +9.13s DEBUG store.commit Modification {"key":null,"source":"site","past":18,"page":"p_1ktrqpn6"}
+13:51:17.940 +9.14s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
+13:51:17.959 +9.16s INFO  settings.preset-rename Preset renommé : « Titre MAB » → « Titre principal » {"id":"ps_9z6147ov","type":"heading"}
+13:51:18.249 +9.45s DEBUG store.commit Modification {"key":null,"source":"site","past":19,"page":"p_1ktrqpn6"}
+13:51:18.260 +9.46s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":4}
+13:51:18.287 +9.49s INFO  settings.preset-duplicate Preset « Titre principal » dupliqué {"id":"ps_9z6147ov","type":"heading","presets":2}
+13:51:18.578 +9.78s DEBUG settings.preset-delete-cancel Suppression du preset « Titre principal » annulée {"id":"ps_9z6147ov"}
+13:51:18.748 +9.95s DEBUG store.commit Modification {"key":null,"source":"site","past":20,"page":"p_1ktrqpn6"}
+13:51:18.755 +9.96s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
+13:51:18.771 +9.97s INFO  settings.preset-delete Preset « Titre principal » supprimé (1 élément garde son apparence) {"id":"ps_9z6147ov","type":"heading","used":1}

@@ -34,6 +34,7 @@ import { togglePanels } from './topbar.js';
 import { isExpert, setExpert } from './mode.js';
 import { startTour } from './tour-ui.js';
 import { startDemo } from './demo-ui.js';
+import { openNewSite } from './new-site-ui.js';
 import { showOnboarding } from './onboarding-ui.js';
 
 const RECENT_KEY = 'atelier-cmdk-recent';
@@ -64,7 +65,7 @@ function buildCommands() {
   const add = (id, group, label, run, keywords = '', kbd = '', weight = 1) => list.push({ id, group, label, run, keywords, kbd, weight });
 
   for (const [type, d] of Object.entries(REGISTRY)) if (isWidget(type)) add(`add:${type}`, __('Ajouter'), __('Ajouter : {label}', { label: __(d.label) }), () => insertWidget(type), `${d.label} ${d.category} ${__(d.category)} widget insérer add insert 追加 挿入`);
-  for (const t of TEMPLATES) add(`tpl:${t.id}`, __('Modèle'), __('Modèle : {label}', { label: __(t.label) }), () => insertSection(null, buildTemplate(t.id)), `${t.description} ${__(t.description)} section template テンプレート セクション`);
+  for (const t of TEMPLATES) add(`tpl:${t.id}`, __('Modèle'), __('Modèle : {label}', { label: __(t.label) }), () => insertSection(null, buildTemplate(t.id, { lang: state.site.defaultLanguage })), `${t.description} ${__(t.description)} section template テンプレート セクション`);
   for (const c of Object.values(s.components || {})) add(`cmp:${c.id}`, __('Composant'), __('Composant : {name}', { name: c.name }), () => insertComponent(c.id), 'réutilisable insérer bloc component reusable insert block コンポーネント 再利用 ブロック');
   for (const c of Object.values(s.collections || {})) {
     add(`col:${c.id}`, __('Contenus'), __('Contenus : {name} ({n})', { name: c.name, n: c.items.length }), () => openCollection(c.id), 'collection éléments liste membres agenda actualités items list members events news コレクション 項目 リスト メンバー イベント ニュース');
@@ -83,6 +84,7 @@ function buildCommands() {
   add('act:host-restore', __('Action'), __('Restaurer depuis l’hébergement (copie de secours chiffrée)'), async () => (await import('./backup-ui.js')).openHostRestore({ url: state.site.publish?.url || '', confirmDest: (await import('./publish-ui.js')).destinationOk }), 'restaurer copie secours sauvegarde hébergement restore backup hosting 復元 バックアップ');
   add('act:guide', 'Action', __('📖 Guide d’utilisation'), () => openGuide(), `guide aide help manuel documentation ガイド ヘルプ ${__('Guide d’utilisation')}`, 'F1');
   add('act:tour', __('Aide'), __('🧭 Visite guidée de l’écran (5 étapes)'), () => startTour({ from: 'Ctrl+K' }), 'visite guidée découvrir écran tour onboarding première visite ツアー 画面 案内');
+  add('act:new-site', __('Action'), __('Nouveau site… (modèle ou site vide)'), () => openNewSite(), 'nouveau site modèle template vide association tourisme commerce commerçants festival new site empty 新しいサイト テンプレート');
   add('act:demo', __('Aide'), __('▶ Voir une démonstration : Atelier construit le site de Kumakōgen'), () => startDemo(), 'démonstration démo exemple kumakogen regarder demo watch example デモ 実演 久万高原');
   add('act:onboarding', __('Aide'), __('☑ Pour commencer : la liste des sept premiers pas'), () => showOnboarding(), 'premiers pas liste commencer débuter checklist getting started はじめに チェックリスト');
   add('act:log', __('Action'), __('Journal de débogage : copier, télécharger, journal du serveur'), () => openLog(), 'journal log debug bug erreur console error デバッグログ ログ エラー', 'Ctrl+Alt+J');

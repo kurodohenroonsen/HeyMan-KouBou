@@ -1,17 +1,17 @@
-20:52:02.274 +7.25s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":12}
-20:52:02.284 +7.26s DEBUG store.commit Modification {"key":null,"source":"site","past":15,"page":"p_a3je7ile"}
-20:52:02.293 +7.27s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":4}
-20:52:02.294 +7.27s INFO  settings.layout-customize En-tête converti en blocs modifiables {"zone":"header"}
-20:52:02.294 +7.27s INFO  settings.layout-edit Modification de l’en-tête en blocs {"zone":"header"}
-20:52:02.295 +7.27s INFO  store.edit-target Édition : header {"kind":"header"}
-20:52:02.308 +7.29s INFO  canvas.load.start [canvas.load#3] Chargement complet du canevas : modification de l’en-tête {"reason":"modification de l’en-tête","page":"p_a3je7ile","lang":"fr","device":"desktop","edit":"header"}
-20:52:02.310 +7.29s DEBUG canvas.load.render [canvas.load#3 · 2 ms] Page rendue {"ms":2,"kb":25}
-20:52:02.355 +7.33s INFO  canvas.load.ok [canvas.load#3 · 47 ms] Canevas prêt {"nodes":8,"scale":62,"via":"load"}
-20:52:02.795 +7.77s INFO  store.edit-target Retour à la page
-20:52:02.813 +7.79s INFO  canvas.load.start [canvas.load#4] Chargement complet du canevas : retour à la page {"reason":"retour à la page","page":"p_a3je7ile","lang":"fr","device":"desktop"}
-20:52:02.815 +7.79s DEBUG canvas.load.render [canvas.load#4 · 2 ms] Page rendue {"ms":1,"kb":26}
-20:52:02.851 +7.83s INFO  canvas.load.ok [canvas.load#4 · 38 ms] Canevas prêt {"nodes":30,"scale":62,"via":"load"}
-20:52:02.888 +7.87s DEBUG storage.save Projet enregistré sur cet appareil {"ms":3,"kb":13}
-20:52:03.510 +8.49s DEBUG store.commit Modification {"key":null,"source":"site","past":16,"page":"p_a3je7ile"}
-20:52:03.544 +8.52s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":13}
-20:52:03.548 +8.53s INFO  settings.layout-reset En-tête : retour à la version par défaut (Ctrl+Z pour annuler) {"zone":"header"}
+13:51:15.294 +6.49s DEBUG storage.save Projet enregistré sur cet appareil {"ms":4,"kb":12}
+13:51:15.305 +6.50s DEBUG store.commit Modification {"key":null,"source":"site","past":15,"page":"p_1ktrqpn6"}
+13:51:15.312 +6.51s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
+13:51:15.313 +6.51s INFO  settings.layout-customize En-tête converti en blocs modifiables {"zone":"header"}
+13:51:15.313 +6.51s INFO  settings.layout-edit Modification de l’en-tête en blocs {"zone":"header"}
+13:51:15.314 +6.51s INFO  store.edit-target Édition : header {"kind":"header"}
+13:51:15.324 +6.52s INFO  canvas.load.start [canvas.load#3] Chargement complet du canevas : modification de l’en-tête {"reason":"modification de l’en-tête","page":"p_1ktrqpn6","lang":"fr","device":"desktop","edit":"header"}
+13:51:15.325 +6.53s DEBUG canvas.load.render [canvas.load#3 · 1 ms] Page rendue {"ms":1,"kb":26}
+13:51:15.351 +6.55s INFO  canvas.load.ok [canvas.load#3 · 27 ms] Canevas prêt {"nodes":8,"scale":76,"via":"load"}
+13:51:15.794 +6.99s INFO  store.edit-target Retour à la page
+13:51:15.803 +7.00s INFO  canvas.load.start [canvas.load#4] Chargement complet du canevas : retour à la page {"reason":"retour à la page","page":"p_1ktrqpn6","lang":"fr","device":"desktop"}
+13:51:15.804 +7.00s DEBUG canvas.load.render [canvas.load#4 · 1 ms] Page rendue {"ms":1,"kb":27}
+13:51:15.823 +7.02s INFO  canvas.load.ok [canvas.load#4 · 20 ms] Canevas prêt {"nodes":30,"scale":76,"via":"load"}
+13:51:15.907 +7.11s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":14}
+13:51:16.398 +7.60s DEBUG store.commit Modification {"key":null,"source":"site","past":16,"page":"p_1ktrqpn6"}
+13:51:16.405 +7.61s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
+13:51:16.408 +7.61s INFO  settings.layout-reset En-tête : retour à la version par défaut (Ctrl+Z pour annuler) {"zone":"header"}

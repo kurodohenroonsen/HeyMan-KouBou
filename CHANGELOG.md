@@ -2,6 +2,24 @@
 
 Une entrée par cycle, construite à partir de la section « Livré » de `docs/cycle-NN.md` (cycles 1 à 24), la plus récente en haut. Les numéros de version des livraisons (.zip) ne sont pas écrits dans les comptes rendus : l’entrée porte alors le numéro du cycle (v19 = état livré après le cycle 24, d’après l’audit du 30/10/2026).
 
+## v28 — cycle 28 — 31/10/2026
+
+**Ajouté**
+- « Nouveau site » propose cinq modèles de sites complets, avec vignette dessinée et description, en plus du site vide : association ou média, tourisme ou commune, commerce ou artisan local, association de commerçants / promotion d'une ville, événement ou festival (`core/site-templates.js`). Pages, menu, en-tête et pied en blocs, collections avec exemples du domaine, référencement, palette et polices, pages légales à compléter ; textes dans les cinq langues, posés sous toutes les langues choisies.
+- Type de collection « Commerces » (catégorie, adresse, horaires, téléphone, site web ; données structurées LocalBusiness).
+- Fuseau horaire du site (`site.timezone`, onglet Site ; Europe/Brussels d'office, Asia/Tokyo pour un site japonais) : iCal avec `TZID` et `VTIMEZONE` des fuseaux courants (sinon heures en UTC), JSON-LD `startDate`/`endDate` avec décalage (`core/timezone.js`).
+- Contrôle avant export : rappel des « [à compléter] » des pages légales d'un modèle.
+- Ctrl+K « Nouveau site… » ; journal `project.new-template`, `settings.timezone`.
+
+**Modifié**
+- Textes d'exemple des widgets, des modèles de section et des collections : neutres ou propres au domaine, dans les cinq langues, posés dans la langue principale du site à l'insertion (`createNode(type, { lang })`, `buildTemplate(id, { lang })`) ; plus aucune mention du MAB hors de l'exemple.
+- Exemples des collections par domaine (`core/collection-examples.js`, `exampleValues(kind, today, { domain })`).
+- Fichier → « Nouveau site… » (au lieu de « Nouveau site vide »).
+
+**Corrigé**
+- iCal : un événement à 19 h au Japon n'est plus importé à 19 h heure belge.
+- Démonstration Kumakōgen : passe en mode expert pour les effets (cassée depuis le mode simple du cycle 30).
+
 ## v31 — cycle 31 — 31/10/2026
 
 **Ajouté**

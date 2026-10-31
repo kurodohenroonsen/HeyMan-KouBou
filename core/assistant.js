@@ -304,7 +304,7 @@ function customize(sec, { title, text }, lang, found) {
 }
 
 function faqSection(params, lang, found) {
-  let sec = buildTemplate('faq');
+  let sec = buildTemplate('faq', { lang });
   sec = customize(sec, { title: params.title }, lang, found);
   let acc = null;
   walk(sec, n => { if (!acc && n.type === 'accordion') acc = n; return !acc; });
@@ -338,10 +338,10 @@ export function applyPlan(site, steps, ctx = {}) {
     try {
       const p = st.params;
       switch (st.action) {
-        case 'add_section': insertSection(customize(buildTemplate(p.template), p, lang, found)); break;
+        case 'add_section': insertSection(customize(buildTemplate(p.template, { lang: s.defaultLanguage }), p, lang, found)); break;
         case 'add_faq': insertSection(faqSection(p, lang, found)); break;
         case 'add_widget': {
-          const n = createNode(p.type);
+          const n = createNode(p.type, { lang: s.defaultLanguage });
           let node = n;
           if (p.text && PRIMARY[p.type]) {
             const field = PRIMARY[p.type];
@@ -376,7 +376,7 @@ export function applyPlan(site, steps, ctx = {}) {
           for (let n = 2; s.pages.some(x => x.slug === slug); n++) slug = `${p.slug}-${n}`;
           let root = createNode('page');
           const created = [];
-          for (const sec of p.sections) { const x = customize(buildTemplate(sec.template), sec, s.defaultLanguage, created); root = insertNode(root, root.id, x, root.children.length); }
+          for (const sec of p.sections) { const x = customize(buildTemplate(sec.template, { lang: s.defaultLanguage }), sec, s.defaultLanguage, created); root = insertNode(root, root.id, x, root.children.length); }
           s = addPage(s, { slug, title: { [s.defaultLanguage]: p.title }, root });
           pageId = s.pages[s.pages.length - 1].id;
           view.pageId = pageId;

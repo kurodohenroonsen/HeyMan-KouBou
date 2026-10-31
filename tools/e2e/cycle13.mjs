@@ -29,7 +29,7 @@ export default async function (t) {
   t.ok(col && col.items.length === 3 && agendaPage, 'collection créée avec 3 exemples et la page /agenda/');
   t.ok(await page.locator('#pageSelect').inputValue() === agendaPage.id, 'la page de liste est affichée');
   t.ok(await cards().count() === 3, `la liste montre 3 cartes (${await cards().count()})`);
-  t.ok((await cards().first().textContent()).includes('Assemblée générale du MAB'), 'carte : titre de l’élément');
+  t.ok((await cards().first().textContent()).includes('Assemblée générale'), 'carte : titre de l’élément (exemple neutre, cycle 28)');
   t.ok(await c.locator('.w-collection-list .fld').first().locator('svg').count() === 1, 'carte : date avec icône');
   t.ok(await page.locator('#leftBody [data-collection]').count() === 1, 'panneau Contenus : la collection est listée');
 
@@ -43,7 +43,7 @@ export default async function (t) {
   t.ok((await cards().first().textContent()).includes('Assemblée générale 2026'), 'titre modifié : la carte suit');
   t.ok((await page.locator('#collectionDialog [data-item].is-current').textContent()).includes('Assemblée générale 2026'), 'la liste des éléments suit aussi');
   col = await colOf();
-  t.ok(col.items[0].slug === 'assemblee-generale-du-mab', 'l’adresse ne change pas toute seule (liens stables)');
+  t.ok(col.items[0].slug === 'assemblee-generale', 'l’adresse ne change pas toute seule (liens stables)');
   await page.selectOption('#collectionDialog [data-item-status]', 'draft');
   await t.wait(400);
   t.ok(await cards().count() === 2, 'brouillon : retiré de la liste');
@@ -184,7 +184,7 @@ export default async function (t) {
   t.ok(files.includes('agenda/calendar.ics') && files.includes('agenda/fete-radio/event.ics'), 'agenda .ics complet et par événement');
   const detail = readFileSync(join(dir, 'site', 'agenda', 'fete-radio', 'index.html'), 'utf8');
   const ev = [...detail.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/g)].map(m => JSON.parse(m[1])).find(x => x['@type'] === 'Event');
-  t.ok(ev && ev.startDate === '2099-06-21T18:30' && ev.location?.name === 'Place du Bâti', 'données structurées Event');
+  t.ok(ev && ev.startDate === '2099-06-21T18:30:00+02:00' && ev.location?.name === 'Place du Bâti', 'données structurées Event');
   t.ok(detail.includes('href="event.ics"') && detail.includes('href="https://billets.exemple.be/fete"'), 'boutons « Ajouter à mon agenda » et billetterie');
   t.ok(detail.includes('href="../"'), 'lien retour vers la liste');
   const ics = readFileSync(join(dir, 'site', 'agenda', 'fete-radio', 'event.ics'), 'utf8');

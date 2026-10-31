@@ -20,6 +20,7 @@ import { collectionsPanel } from './collections-ui.js';
 import { log } from './log.js';
 import { openLogoPalette } from './smart-ui.js';
 import { paletteName } from './styletab.js';
+import { TIMEZONES, siteTimezone, setSiteTimezone } from '../core/timezone.js';
 import { __, __n, __c } from '../core/ui-i18n.js';
 
 /* `what` : nom court du réglage, pour le journal en cas de refus */
@@ -176,6 +177,18 @@ function sitePanel() {
     return h('label', { class: 'check' }, cb, code === s.defaultLanguage ? __('{lang} (principale)', { lang: label }) : label);
   });
 
+  /* Fuseau horaire (cycle 28) : liste courte proposée, saisie libre d'un identifiant IANA */
+  const tz = h('input', { class: 'input', type: 'text', list: 'tzList', value: siteTimezone(s), 'data-site': 'timezone', spellcheck: 'false', autocomplete: 'off', 'aria-label': __('Fuseau horaire') });
+  tz.addEventListener('change', () => {
+    const v = tz.value.trim();
+    if (v === siteTimezone(state.site)) return;
+    if (apply(x => setSiteTimezone(x, v), null, 'panel', 'timezone')) log.info('settings.timezone', __('Fuseau horaire du site : {tz}', { tz: v }), { tz: v });
+    else tz.value = siteTimezone(state.site);
+  });
+  const tzField = h('div', { class: 'field' }, h('label', { class: 'field__label' }, __('Fuseau horaire (agenda, calendriers .ics, Google)')), tz,
+    h('datalist', { id: 'tzList' }, TIMEZONES.map(z => h('option', { value: z }))),
+    h('span', { class: 'hint' }, __('Les heures des événements sont celles de ce fuseau. Exemples : Europe/Brussels, Asia/Tokyo.')));
+
   const fontSel = role => {
     const opts = fontOptions(s);
     const sel = h('select', { class: 'control', 'data-font': role }, opts.map(o => h('option', { value: o.key, selected: t.fonts[role] === o.key }, o.custom ? __('{name} (personnalisée)', { name: o.label }) : __(o.label))));
@@ -279,6 +292,7 @@ function sitePanel() {
     h('div', { class: 'field' }, h('label', { class: 'field__label' }, __('Nom du site')), name),
     h('div', { class: 'field' }, h('label', { class: 'field__label' }, __('Adresse du site (pour Google et les liens de langue)')), base),
     h('div', { class: 'field' }, h('span', { class: 'field__label' }, __('Langues')), ...langs),
+    tzField,
     iconField(),
     ...paletteSection(s),
     h('h3', {}, __('Typographie')),

@@ -4,6 +4,8 @@ Atelier te permet de **créer ton site internet toi-même**, en le voyant tel qu
 
 Pas besoin de savoir programmer. Pas besoin de créer de compte. Atelier s'ouvre dans ton navigateur (Chrome, Edge, Firefox ou Safari), sur un ordinateur.
 
+**Pour qui ?** Les **commerces** et les artisans (une boutique, un restaurant, un atelier), les **associations** (de quartier, culturelles, sportives, les médias locaux), les **associations de commerçants** qui font la promotion d'une ville, les **villes, communes et offices du tourisme**, et les **organisateurs d'événements**. Pour chacun, un modèle de site complet est prêt : tu le choisis en créant le site, puis tu remplaces les exemples par tes vrais contenus.
+
 ---
 
 ## Ce que tu peux faire
@@ -12,6 +14,7 @@ Pas besoin de savoir programmer. Pas besoin de créer de compte. Atelier s'ouvre
 - **Écrire directement dans la page** : un double-clic sur un texte, et tu écris, comme dans un traitement de texte.
 - **Choisir l'apparence de tout le site en un endroit** : couleurs, polices, arrondis, tailles de texte.
 - **Vérifier le site sur un téléphone** : un bouton montre la page comme sur un smartphone, et tu peux régler chaque élément pour le mobile.
+- **Partir d'un modèle de site complet** (association ou média, tourisme ou commune, commerce ou artisan local, association de commerçants, événement ou festival) : pages, menu, agenda ou annuaire d'exemple, pages légales à compléter, dans tes langues.
 - **Partir de sections prêtes à l'emploi** : un grand titre d'accueil, des avantages, une FAQ, un contact, une galerie…
 - **Réutiliser un bloc sur plusieurs pages** : tu le modifies une fois, toutes les pages suivent.
 - **Tenir un agenda, des actualités ou un annuaire** : tu remplis une fiche par élément, Atelier crée les listes et une page pour chacun.
