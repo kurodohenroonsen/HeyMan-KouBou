@@ -9,7 +9,7 @@ const BY_DIALOG = {
   aiDialog: '07-ia-locale', benchDialog: '14-banc-essai', askDialog: '13-demander-a-atelier', smartDialog: '12-contenus-intelligents', paletteDialog: '12-contenus-intelligents',
   publishDialog: '08-verifier-exporter-publier', auditDialog: '08-verifier-exporter-publier', seoDialog: '06-seo', i18nDialog: '05-langues-traductions',
   versionsDialog: '04-pages-images-contenus', collectionDialog: '04-pages-images-contenus', collectionNewDialog: '04-pages-images-contenus',
-  collabDialog: '10-collaboration', joinDialog: '10-collaboration', logDialog: '00-journal', selftestDialog: '15-auto-test', shortcutsDialog: '02-edition', newSiteDialog: '01-demarrage-projet'
+  collabDialog: '10-collaboration', joinDialog: '10-collaboration', logDialog: '00-journal', selftestDialog: '15-auto-test', shortcutsDialog: '02-edition', newSiteDialog: '01-demarrage-projet', demoEndDialog: '01-demarrage-projet'
 };
 
 export function guideUrl(chapter = 'index') {

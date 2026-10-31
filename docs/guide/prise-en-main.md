@@ -4,6 +4,8 @@ Dans ce tutoriel, tu construis pas à pas un vrai petit site touristique : celui
 
 Compte deux à trois heures, en plusieurs fois si tu veux : Atelier enregistre tout seul.
 
+> **Tu peux regarder l'atelier le faire** : **Fichier → Voir une démonstration**. Atelier construit lui-même ces deux pages avec ses vrais boutons, étape par étape, en quatre minutes environ (pause, vitesse, étape suivante, arrêt). Ton propre site est mis de côté pendant ce temps et revient intact ; à la fin, tu peux aussi garder le site de Kumakōgen pour continuer ce tutoriel à partir de lui.
+
 ---
 
 ## Avant de commencer
