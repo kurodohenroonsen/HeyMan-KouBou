@@ -5,6 +5,7 @@ import { PALETTE_KEYS, BASE_PALETTE } from './style.js';
 import { defaultTokens } from './tokens.js';
 import { FONTS } from './theme.js';
 import { customFontId } from './fonts.js';
+import { validIcon, ICON_SIZES } from './siteicon.js';
 import { missingFrom } from './i18n.js';
 import { validateCollections } from './collections.js';
 import { __, N_ } from './ui-i18n.js';
@@ -301,6 +302,8 @@ export function setPublishSettings(site, patch) {
   const s = clone(site);
   const p = { mode: 'zip', url: '', gh: { owner: '', repo: '', branch: 'main', dir: '' }, ...(s.publish || {}) };
   if ('mode' in patch) p.mode = ['zip', 'php', 'github'].includes(patch.mode) ? patch.mode : 'zip';
+  /* Serveur visé : Apache (OVH : .htaccess généré) ou GitHub Pages (sans .htaccess) */
+  if ('server' in patch) p.server = patch.server === 'pages' ? 'pages' : 'apache';
   if ('url' in patch) {
     const u = String(patch.url || '').trim();
     if (u && !/^https?:\/\/[^\s\x22\x27<>]+\/publish\.php$/i.test(u)) throw new Error(__('Adresse attendue : https://www.votre-site.be/publish.php'));
@@ -313,6 +316,15 @@ export function setPublishSettings(site, patch) {
     p.gh = g;
   }
   s.publish = p;
+  return s;
+}
+
+/* Icône du site : { svg?, png: { 32, 180, 192, 512 } } préparée par l'éditeur (core/siteicon.js la valide) ; null la retire */
+export function setSiteIcon(site, icon) {
+  const s = clone(site);
+  if (icon === null || icon === undefined) { delete s.icon; return s; }
+  if (!validIcon(icon)) throw new Error(__('Icône invalide : image carrée PNG, JPEG, WebP ou SVG attendue.'));
+  s.icon = { ...(icon.svg ? { svg: icon.svg } : {}), png: Object.fromEntries(ICON_SIZES.map(n => [n, icon.png[n]])) };
   return s;
 }
 

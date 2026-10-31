@@ -32,7 +32,12 @@ export const SITE_TEXT = {
   send: { fr: 'Envoyer', nl: 'Verzenden', de: 'Senden', en: 'Send', ja: '送信' },
   sent: { fr: 'Merci, votre message a été envoyé.', nl: 'Bedankt, uw bericht is verzonden.', de: 'Danke, Ihre Nachricht wurde gesendet.', en: 'Thank you, your message has been sent.', ja: 'ありがとうございます。メッセージを送信しました。' },
   mailOpen: { fr: 'Votre logiciel de courriel s’ouvre.', nl: 'Uw e-mailprogramma wordt geopend.', de: 'Ihr E-Mail-Programm wird geöffnet.', en: 'Your email app is opening.', ja: 'メールアプリが開きます。' },
-  failed: { fr: 'L’envoi a échoué. Réessayez plus tard.', nl: 'Verzenden mislukt. Probeer later opnieuw.', de: 'Senden fehlgeschlagen. Bitte später erneut versuchen.', en: 'Sending failed. Please try again later.', ja: '送信できませんでした。しばらくしてからもう一度お試しください。' }
+  failed: { fr: 'L’envoi a échoué. Réessayez plus tard.', nl: 'Verzenden mislukt. Probeer later opnieuw.', de: 'Senden fehlgeschlagen. Bitte später erneut versuchen.', en: 'Sending failed. Please try again later.', ja: '送信できませんでした。しばらくしてからもう一度お試しください。' },
+  notFound: { fr: 'Page introuvable', nl: 'Pagina niet gevonden', de: 'Seite nicht gefunden', en: 'Page not found', ja: 'ページが見つかりません' },
+  notFoundText: { fr: 'Cette page n’existe pas ou a été déplacée. Vérifiez l’adresse, ou repartez de l’accueil.', nl: 'Deze pagina bestaat niet of is verplaatst. Controleer het adres of ga terug naar de homepagina.', de: 'Diese Seite existiert nicht oder wurde verschoben. Prüfen Sie die Adresse oder beginnen Sie auf der Startseite.', en: 'This page does not exist or has moved. Check the address, or start again from the home page.', ja: 'このページは存在しないか、移動しました。アドレスをご確認いただくか、ホームからやり直してください。' },
+  consent: { fr: 'J’accepte que ces données soient utilisées pour répondre à ma demande (voir {link}).', nl: 'Ik ga ermee akkoord dat deze gegevens worden gebruikt om mijn vraag te beantwoorden (zie {link}).', de: 'Ich bin einverstanden, dass diese Daten zur Beantwortung meiner Anfrage verwendet werden (siehe {link}).', en: 'I agree that this information is used to answer my request (see {link}).', ja: 'この情報が問い合わせへの回答のために使われることに同意します（{link}を参照）。' },
+  privacy: { fr: 'la page Vie privée', nl: 'de privacypagina', de: 'die Datenschutzseite', en: 'the privacy page', ja: 'プライバシーポリシー' },
+  consentMissing: { fr: 'Cochez la case de consentement pour envoyer le message.', nl: 'Vink het toestemmingsvakje aan om het bericht te verzenden.', de: 'Bitte stimmen Sie zu, um die Nachricht zu senden.', en: 'Tick the consent box to send the message.', ja: '送信するには同意のチェックボックスをオンにしてください。' }
 };
 /* Texte publié dans la langue de la page (français pour une langue inconnue) */
 export function siteText(key, lang, params) {

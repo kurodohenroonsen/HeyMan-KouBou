@@ -81,11 +81,12 @@ test('renderSite : pages × langues, CSS, sitemap, robots, ressources utilisées
   const r = addAsset(site, { name: 'Logo MAB.png', mime: 'image/png', dataUrl: png });
   site = r.site;
   const { files } = renderSite(site);
-  assert.deepEqual([...files.keys()].sort(), ['contact/index.html', 'index.html', 'nl/contact/index.html', 'nl/index.html', 'robots.txt', 'site.js', 'sitemap.xml', 'styles.css']);
+  assert.deepEqual([...files.keys()].sort(), ['.htaccess', '404.html', 'contact/index.html', 'index.html', 'nl/404.html', 'nl/contact/index.html', 'nl/index.html', 'robots.txt', 'site.js', 'sitemap.xml', 'styles.css']);
   site.header.logo = 'asset:' + r.id;
   const again = renderSite(site).files;
-  assert.ok(again.has('assets/logo-mab.png'));
-  assert.match(again.get('nl/contact/index.html'), /src="\.\.\/\.\.\/assets\/logo-mab\.png"/);
+  const logo = [...again.keys()].find(k => /^assets\/logo-mab-[0-9a-f]{8}\.png$/.test(k));
+  assert.ok(logo, 'nom suffixé de l’empreinte du contenu (cycle 29)');
+  assert.ok(again.get('nl/contact/index.html').includes(`src="../../${logo}"`));
 });
 
 test('validateSite', () => {

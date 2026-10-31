@@ -8,10 +8,15 @@ import { escapeHtml, escapeAttr, safeUrl } from './escape.js';
 import { sanitizeRich, sanitizeInline, richToText } from './sanitize.js';
 import { compileNodeCss } from './style.js';
 import { walk } from './tree.js';
-import { buildBaseCss, googleFontsHref, FONTS } from './theme.js';
+import { buildBaseCss } from './theme.js';
+import { fontsCss, fontStack, fontFilesFor, preloadFont, usedCustomFonts, customFontExportName } from './fonts.js';
+import { fingerprint, suffixed } from './fingerprint.js';
+import { iconFiles, iconHead } from './siteicon.js';
+import { buildHtaccess, htaccessOptions } from './htaccess.js';
 import { effectivePreset } from './presets.js';
 import { renderMenu } from './menu.js';
 import { LANG_LABELS } from './site.js';
+import { createNode, createSectionWithColumns } from './tree.js';
 import { __ } from './ui-i18n.js';
 import { itemDir, collectionDir, hasDetail, bindProps, itemTitle, itemJsonLd, buildIcs, buildRss, displayValue, localToday, findItem, pick, listPageId } from './collections.js';
 
@@ -49,12 +54,20 @@ export function translate(site, value, lang) {
   return typeof value[site.defaultLanguage] === 'string' ? value[site.defaultLanguage] : '';
 }
 
+/* Nom publié d'une image (ou d'une variante) : suffixé d'une empreinte de son contenu, pour un cache long sans risque */
+const assetNames = new WeakMap();
+export function assetFile(a) {
+  let n = assetNames.get(a);
+  if (!n) { n = suffixed(String(a.file || 'image'), fingerprint(String(a.dataUrl || ''))); assetNames.set(a, n); }
+  return n;
+}
+
 function assetUrl(site, value, { canvas, toRoot }) {
   const v = String(value || '');
   if (v.startsWith('asset:')) {
     const a = site.assets?.[v.slice(6)];
     if (!a) return '';
-    return canvas ? a.dataUrl : `${toRoot}assets/${a.file}`;
+    return canvas ? a.dataUrl : `${toRoot}assets/${assetFile(a)}`;
   }
   const u = safeUrl(v);
   return /^https:\/\//i.test(u) ? u : '';
@@ -98,7 +111,7 @@ function imgTag(site, ctx, value, { alt = '', style = '', cls = '' } = {}) {
   const a = v.startsWith('asset:') ? site.assets?.[v.slice(6)] : null;
   let extra = '';
   if (a && !ctx.canvas && a.variants?.length && a.width) {
-    const set = [...a.variants.map(x => `${ctx.toRoot}assets/${x.file} ${x.w}w`), `${src} ${a.width}w`].join(', ');
+    const set = [...a.variants.map(x => `${ctx.toRoot}assets/${assetFile(x)} ${x.w}w`), `${src} ${a.width}w`].join(', ');
     extra += ` srcset="${escapeAttr(set)}" sizes="${escapeAttr(sizesFor(ctx.box || { w: site.theme?.contentWidth || 1160, d: 1, t: 1, m: 1 }))}"`;
   }
   if (a?.width && a?.height) extra += ` width="${a.width}" height="${a.height}"`;
@@ -236,17 +249,19 @@ export function jaFontStack(stack) {
   const serif = tail.some(t => /serif$/i.test(t) && !/sans/i.test(t));
   return [...parts, serif ? JA_SERIF : JA_SANS, ...tail].join(', ');
 }
-export function jaCss(theme) {
-  const fh = (FONTS[theme?.fonts?.heading] || FONTS.system).stack;
-  const fb = (FONTS[theme?.fonts?.body] || FONTS.system).stack;
+export function jaCss(theme, stacks = {}) {
+  const fh = stacks.heading || fontStack({ theme }, 'heading');
+  const fb = stacks.body || fontStack({ theme }, 'body');
   return `:root:lang(ja){--font-h:${jaFontStack(fh)};--font-b:${jaFontStack(fb)}}
 :lang(ja) body{line-height:1.8;line-break:strict;overflow-wrap:anywhere}
 :lang(ja) h1,:lang(ja) h2,:lang(ja) h3,:lang(ja) h4{letter-spacing:0;line-height:1.35}`;
 }
 
-export function buildCss(site, pages, { canvas = false } = {}) {
-  const parts = [buildBaseCss(site.theme, site.tokens)];
-  if (site.languages?.includes('ja')) parts.push(jaCss(site.theme));
+/* fontBase : adresse du dossier fonts/ de l'éditeur (canevas et aperçu) ; sur le site, les polices sont dans assets/fonts/ */
+export function buildCss(site, pages, { canvas = false, fontBase = 'fonts/' } = {}) {
+  const stacks = { heading: fontStack(site, 'heading'), body: fontStack(site, 'body') };
+  const parts = [fontsCss(site, { canvas, fontBase }), buildBaseCss(site.theme, site.tokens, stacks)].filter(Boolean);
+  if (site.languages?.includes('ja')) parts.push(jaCss(site.theme, stacks));
   for (const type of Object.keys(REGISTRY)) if (REGISTRY[type].css) parts.push(REGISTRY[type].css);
   const ctx = {
     canvas,
@@ -332,8 +347,11 @@ function absoluteAsset(site, value) {
   if (/^https:\/\//i.test(v)) return v;
   const a = v.startsWith('asset:') ? site.assets?.[v.slice(6)] : null;
   const base = String(site.baseUrl || '').replace(/\/+$/, '');
-  return a && base ? `${base}/assets/${a.file}` : '';
+  return a && base ? `${base}/assets/${assetFile(a)}` : '';
 }
+
+/* og:locale avec la région, comme le demande Open Graph (fr_BE, ja_JP…) */
+const OG_LOCALES = { fr: 'fr_BE', nl: 'nl_BE', de: 'de_BE', en: 'en_GB', ja: 'ja_JP' };
 
 /* Titre de la page pour Google et l'onglet : réglé dans le référencement, sinon « Titre – Nom du site » */
 export function docTitleOf(site, page, lang) {
@@ -365,7 +383,11 @@ function sameAsLinks(site) {
 
 const rssCollections = site => (site.baseUrl ? Object.values(site.collections || {}).filter(c => c.settings?.rss && c.dateField) : []);
 
-export function renderPage(site, page, lang, { canvas = false, edit = null, today = null } = {}) {
+/*
+ * fontBase : dossier fonts/ de l'éditeur pour le canevas et l'aperçu ; base : <base href> de la page 404 (servie pour
+ * n'importe quelle adresse, ses liens relatifs doivent partir de son propre dossier).
+ */
+export function renderPage(site, page, lang, { canvas = false, edit = null, today = null, fontBase = 'fonts/', base = '' } = {}) {
   const from = pageDir(site, page, lang);
   const toRoot = '../'.repeat(from.length);
   const popups = new Set();
@@ -378,13 +400,13 @@ export function renderPage(site, page, lang, { canvas = false, edit = null, toda
   const title = translate(site, page.title, lang);
   const docTitle = docTitleOf(site, page, lang);
   const desc = describe(site, page, lang);
-  const canonical = absolute(site, from);
+  const canonical = page.notFound ? null : absolute(site, from);
   const alternates = site.languages.map(l => ({ lang: l, segs: pageDir(site, page, l) }));
-  const fonts = googleFontsHref(site.theme);
+  const preload = canvas ? null : preloadFont(site);
   const itemImage = page.collection && page.collection.imageField ? absoluteAsset(site, page.item.values[page.collection.imageField]) : '';
   const ogImage = absoluteAsset(site, page.seo?.image) || itemImage || absoluteAsset(site, firstImage(site, page, lang));
   const root0 = absolute(site, []);
-  const isHome = page.slug === '' && !page.collection;
+  const isHome = page.slug === '' && !page.collection && !page.notFound;
   const ld = [];
   if (isHome) {
     const logo = absoluteAsset(site, site.header?.logo);
@@ -406,6 +428,7 @@ export function renderPage(site, page, lang, { canvas = false, edit = null, toda
 
   const head = [
     '<meta charset="utf-8">',
+    base ? `<base href="${escapeAttr(base)}">` : '',
     '<meta name="viewport" content="width=device-width, initial-scale=1">',
     `<title>${escapeHtml(docTitle)}</title>`,
     desc ? `<meta name="description" content="${escapeAttr(desc)}">` : '',
@@ -420,10 +443,14 @@ export function renderPage(site, page, lang, { canvas = false, edit = null, toda
     desc ? `<meta property="og:description" content="${escapeAttr(desc)}">` : '',
     ogImage ? `<meta property="og:image" content="${escapeAttr(ogImage)}">` : '',
     `<meta name="twitter:card" content="${ogImage ? 'summary_large_image' : 'summary'}">`,
+    `<meta name="twitter:title" content="${escapeAttr(docTitle)}">`,
+    desc ? `<meta name="twitter:description" content="${escapeAttr(desc)}">` : '',
     ...feeds,
-    `<meta property="og:locale" content="${lang}">`,
-    fonts ? `<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="${escapeAttr(fonts)}">` : '',
-    canvas ? `<style id="atelier-css">${buildCss(site, [page], { canvas: true })}</style>` : `<link rel="stylesheet" href="${toRoot}styles.css">`,
+    `<meta property="og:locale" content="${OG_LOCALES[lang] || lang}">`,
+    `<meta name="theme-color" content="${escapeAttr(site.theme?.palette?.c1 || '#0f766e')}">`,
+    ...(canvas ? [] : iconHead(site, toRoot)),
+    preload ? `<link rel="preload" href="${toRoot}${preload.name}" as="font" type="font/woff2" crossorigin>` : '',
+    canvas ? `<style id="atelier-css">${buildCss(site, [page], { canvas: true, fontBase })}</style>` : `<link rel="stylesheet" href="${toRoot}styles.css">`,
     `<script type="application/ld+json">${JSON.stringify({
       '@context': 'https://schema.org', '@type': 'WebPage', name: docTitle, inLanguage: lang,
       ...(canonical ? { url: canonical } : {}),
@@ -516,10 +543,52 @@ export function itemPage(site, col, item) {
   return { id: `item:${col.id}:${item.id}`, slug: item.slug, title, seo: { description }, root: col.detail, collection: col, item };
 }
 
-export function renderSite(site, { today = null, now = new Date() } = {}) {
+/*
+ * Page « introuvable » (404.html, puis <langue>/404.html) : même en-tête et pied que le site, titre, texte et un bouton
+ * vers l'accueil de chaque langue. Servie par Apache (ErrorDocument) pour n'importe quelle adresse : <base href> fixe
+ * la résolution de ses liens relatifs sur son propre dossier.
+ */
+export function notFoundPage(site, lang = site.defaultLanguage) {
+  const home = site.pages.find(p => p.slug === '') || site.pages[0];
+  const from = lang === site.defaultLanguage ? [] : [lang];
+  const per = fn => Object.fromEntries(site.languages.map(l => [l, fn(l)]));
+  const node = (type, props) => { const n = createNode(type); Object.assign(n.props, props); return n; };
+  const sec = createSectionWithColumns(1);
+  const col = sec.children[0].children[0];
+  col.style.desktop.maxWidth = '60ch';
+  const homes = site.languages.map(l => node('button', { label: per(() => (site.languages.length > 1 ? `${siteText('home', l)} · ${LANG_LABELS[l]}` : siteText('home', l))), link: relative(from, pageDir(site, home, l)), variant: 'outline', size: 'md' }));
+  const links = createNode('row');
+  const lcol = createNode('column');
+  lcol.advanced = { cssClass: 'nf__homes' };
+  lcol.children = homes;
+  links.children = [lcol];
+  col.children = [node('heading', { text: per(l => siteText('notFound', l)), level: 'h1' }), node('text', { content: per(l => `<p>${escapeHtml(siteText('notFoundText', l))}</p>`) })];
+  sec.children.push(links);
+  const root = createNode('page');
+  root.children = [sec];
+  return { id: 'page-404', slug: '', notFound: true, title: per(l => siteText('notFound', l)), seo: { title: per(l => `${siteText('notFound', l)} – ${site.name}`), description: per(l => siteText('notFoundText', l)), noindex: true }, root };
+}
+
+/* Chemin du fichier 404 d'une langue et <base> de la page (adresse absolue si le site en a une, sinon depuis la racine) */
+function notFoundTarget(site, lang) {
+  const dir = lang === site.defaultLanguage ? [] : [lang];
+  const abs = absolute(site, dir);
+  return { path: `${dir.length ? dir.join('/') + '/' : ''}404.html`, base: abs || `/${dir.length ? dir.join('/') + '/' : ''}` };
+}
+
+/*
+ * fontData : contenu des polices embarquées (chemin dans l'éditeur → octets), lues par l'éditeur avec fetch ;
+ * lastmod : date (AAAA-MM-JJ) de dernière modification pour le plan du site. Renvoie aussi les polices manquantes.
+ */
+export function renderSite(site, { today = null, now = new Date(), lastmod = null, fontData = null } = {}) {
   const files = new Map();
   const day = today || localToday(now);
   for (const page of site.pages) for (const lang of site.languages) files.set(pagePath(site, page, lang), renderPage(site, page, lang, { today: day }));
+  const nf = notFoundPage(site);
+  for (const lang of site.languages) {
+    const t = notFoundTarget(site, lang);
+    files.set(t.path, renderPage(site, notFoundPage(site, lang), lang, { today: day, base: t.base }));
+  }
   const itemPages = [];
   const root = absolute(site, []);
   const host = root ? root.replace(/^https?:\/\//, '').replace(/\/.*$/, '') : '';
@@ -541,20 +610,36 @@ export function renderSite(site, { today = null, now = new Date() } = {}) {
     }
   }
   files.set('styles.css', buildCss(site, site.pages));
-  if ([...site.pages, ...itemPages].some(p => pageUsesScript(site, p))) files.set('site.js', siteScript());
+  if ([...site.pages, ...itemPages, nf].some(p => pageUsesScript(site, p))) files.set('site.js', siteScript());
   const used = JSON.stringify({ pages: site.pages, header: site.header, components: site.components, layout: site.layout, collections: site.collections });
   for (const [id, a] of Object.entries(site.assets || {})) {
     if (!used.includes(`asset:${id}`)) continue;
-    files.set(`assets/${a.file}`, decodeDataUrl(a.dataUrl));
-    for (const v of a.variants || []) if (v.dataUrl) files.set(`assets/${v.file}`, decodeDataUrl(v.dataUrl));
+    files.set(`assets/${assetFile(a)}`, decodeDataUrl(a.dataUrl));
+    for (const v of a.variants || []) if (v.dataUrl) files.set(`assets/${assetFile(v)}`, decodeDataUrl(v.dataUrl));
   }
+  const missingFonts = [];
+  for (const f of fontFilesFor(site)) {
+    const bytes = fontData?.get(f.src);
+    if (bytes) files.set(f.name, bytes); else missingFonts.push(f.src);
+  }
+  for (const x of usedCustomFonts(site)) files.set(customFontExportName(x), decodeDataUrl(x.dataUrl));
+  for (const [name, data] of iconFiles(site)) files.set(name, data);
+  const stamp = lastmod || day;
   if (root) {
     const urls = [...site.pages.filter(p => !p.seo?.noindex), ...itemPages].flatMap(page => site.languages.map(l => {
       const alts = site.languages.map(x => `    <xhtml:link rel="alternate" hreflang="${x}" href="${escapeHtml(absolute(site, pageDir(site, page, x)))}"/>`).join('\n');
-      return `  <url>\n    <loc>${escapeHtml(absolute(site, pageDir(site, page, l)))}</loc>\n${alts}\n  </url>`;
+      return `  <url>\n    <loc>${escapeHtml(absolute(site, pageDir(site, page, l)))}</loc>\n    <lastmod>${escapeHtml(stamp)}</lastmod>\n${alts}\n  </url>`;
     })).join('\n');
     files.set('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls}\n</urlset>\n`);
     files.set('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${root}sitemap.xml\n`);
   } else files.set('robots.txt', 'User-agent: *\nAllow: /\n');
-  return { files };
+  if (site.publish?.server !== 'pages') files.set('.htaccess', buildHtaccess(htaccessOptions(site)));
+  return { files, missingFonts };
+}
+
+/* Fichiers envoyés à publish.php : sans le .htaccess (il l'écrit lui-même d'après les options, voir core/publish.js) */
+export function withoutHtaccess(files) {
+  const out = new Map(files);
+  out.delete('.htaccess');
+  return out;
 }

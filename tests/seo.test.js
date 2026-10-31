@@ -78,11 +78,11 @@ test('publication : titre, Open Graph, Twitter, robots noindex, sitemap', () => 
   assert.ok(c.includes('<meta property="og:url" content="https://www.exemple.be/contact/">'));
   assert.ok(c.includes('<meta property="og:site_name" content="MAB">'));
   assert.ok(c.includes('<meta property="og:type" content="website">'));
-  assert.ok(c.includes('<meta property="og:image" content="https://www.exemple.be/assets/equipe-tournage.png">'));
+  assert.match(c, /<meta property="og:image" content="https:\/\/www\.exemple\.be\/assets\/equipe-tournage-[0-9a-f]{8}\.png">/);
   assert.ok(c.includes('<meta name="twitter:card" content="summary_large_image">'));
-  assert.ok(files.has('assets/equipe-tournage.png'), 'image de partage publiée même si elle n’est pas dans la page');
+  assert.ok([...files.keys()].some(k => /^assets\/equipe-tournage-[0-9a-f]{8}\.png$/.test(k)), 'image de partage publiée même si elle n’est pas dans la page');
   const home = files.get('index.html');
-  assert.ok(home.includes('<meta property="og:image" content="https://www.exemple.be/assets/IMG_2041.png">'), 'sinon la première image de la page');
+  assert.match(home, /<meta property="og:image" content="https:\/\/www\.exemple\.be\/assets\/IMG_2041-[0-9a-f]{8}\.png">/, 'sinon la première image de la page');
   assert.ok(!c.includes('name="robots"'));
   site = setSeoField(site, id, 'noindex', true);
   files = renderSite(site).files;
@@ -104,7 +104,7 @@ test('données structurées : Organization et WebSite sur l’accueil, fil d’A
   const org = home.find(x => x['@type'] === 'Organization');
   assert.equal(org.name, 'MAB');
   assert.equal(org.url, 'https://www.exemple.be/');
-  assert.equal(org.logo, 'https://www.exemple.be/assets/equipe-tournage.png');
+  assert.match(org.logo, /^https:\/\/www\.exemple\.be\/assets\/equipe-tournage-[0-9a-f]{8}\.png$/);
   assert.deepEqual(org.sameAs, ['https://www.facebook.com/mab', 'https://mastodon.social/@mab']);
   assert.ok(home.some(x => x['@type'] === 'WebSite' && x.inLanguage === 'fr'));
   const bc = ld(files.get('contact/index.html')).find(x => x['@type'] === 'BreadcrumbList');
