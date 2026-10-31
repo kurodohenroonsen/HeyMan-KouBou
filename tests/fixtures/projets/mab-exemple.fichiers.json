@@ -1,0 +1,19 @@
+[
+ ".htaccess",
+ "404.html",
+ "contact/index.html",
+ "de/404.html",
+ "de/contact/index.html",
+ "de/index.html",
+ "en/404.html",
+ "en/contact/index.html",
+ "en/index.html",
+ "index.html",
+ "nl/404.html",
+ "nl/contact/index.html",
+ "nl/index.html",
+ "robots.txt",
+ "site.js",
+ "sitemap.xml",
+ "styles.css"
+]

@@ -1,0 +1,2058 @@
+{
+  "version": 2,
+  "name": "久万高原テスト",
+  "baseUrl": "",
+  "languages": [
+    "ja",
+    "en"
+  ],
+  "defaultLanguage": "ja",
+  "theme": {
+    "palette": {
+      "c1": "#0f766e",
+      "c2": "#f59e0b",
+      "c3": "#16161a",
+      "c4": "#f7f7f4",
+      "c5": "#5f5f69",
+      "c6": "#ffffff"
+    },
+    "paletteNames": {
+      "c1": "Principale",
+      "c2": "Secondaire",
+      "c3": "Texte",
+      "c4": "Fond",
+      "c5": "Discrète",
+      "c6": "Surface"
+    },
+    "fonts": {
+      "heading": "system",
+      "body": "system"
+    },
+    "baseSize": 17,
+    "radius": 10,
+    "contentWidth": 1160
+  },
+  "tokens": {
+    "type": {
+      "minSize": 16,
+      "maxSize": 18,
+      "minRatio": 1.2,
+      "maxRatio": 1.25,
+      "minVw": 390,
+      "maxVw": 1280
+    },
+    "space": {
+      "minSize": 16,
+      "maxSize": 20
+    }
+  },
+  "presets": {},
+  "defaultPresets": {},
+  "components": {},
+  "collections": {
+    "col_uyago2ag": {
+      "id": "col_uyago2ag",
+      "name": "Agenda",
+      "kind": "events",
+      "slug": "agenda",
+      "slugs": {},
+      "titleField": "title",
+      "dateField": "date",
+      "endField": "endDate",
+      "imageField": "image",
+      "excerptField": "description",
+      "fields": [
+        {
+          "key": "title",
+          "type": "text",
+          "label": "Titre",
+          "i18n": true
+        },
+        {
+          "key": "date",
+          "type": "date",
+          "label": "Date"
+        },
+        {
+          "key": "time",
+          "type": "time",
+          "label": "Heure de début"
+        },
+        {
+          "key": "endDate",
+          "type": "date",
+          "label": "Date de fin (plusieurs jours)"
+        },
+        {
+          "key": "endTime",
+          "type": "time",
+          "label": "Heure de fin"
+        },
+        {
+          "key": "place",
+          "type": "text",
+          "label": "Lieu",
+          "i18n": false
+        },
+        {
+          "key": "address",
+          "type": "text",
+          "label": "Adresse",
+          "i18n": false
+        },
+        {
+          "key": "image",
+          "type": "image",
+          "label": "Image"
+        },
+        {
+          "key": "description",
+          "type": "richtext",
+          "label": "Description",
+          "i18n": true
+        },
+        {
+          "key": "status",
+          "type": "select",
+          "label": "Statut",
+          "options": [
+            {
+              "value": "scheduled",
+              "label": {
+                "fr": "Prévu",
+                "nl": "Gepland",
+                "de": "Geplant",
+                "en": "Scheduled",
+                "ja": "予定どおり"
+              },
+              "quiet": true
+            },
+            {
+              "value": "cancelled",
+              "label": {
+                "fr": "Annulé",
+                "nl": "Geannuleerd",
+                "de": "Abgesagt",
+                "en": "Cancelled",
+                "ja": "中止"
+              }
+            },
+            {
+              "value": "postponed",
+              "label": {
+                "fr": "Reporté",
+                "nl": "Uitgesteld",
+                "de": "Verschoben",
+                "en": "Postponed",
+                "ja": "延期"
+              }
+            },
+            {
+              "value": "rescheduled",
+              "label": {
+                "fr": "Nouvelle date",
+                "nl": "Nieuwe datum",
+                "de": "Neuer Termin",
+                "en": "Rescheduled",
+                "ja": "日程変更"
+              }
+            }
+          ]
+        },
+        {
+          "key": "link",
+          "type": "url",
+          "label": "Inscription ou billetterie"
+        }
+      ],
+      "items": [
+        {
+          "id": "it_hfxaof97",
+          "slug": "assemblee-generale-du-mab",
+          "status": "published",
+          "values": {
+            "title": {
+              "ja": "Assemblée générale du MAB"
+            },
+            "time": "19:00",
+            "place": "Maison des associations",
+            "address": "Rue de l’Exemple 1, 5000 Namur",
+            "description": {
+              "ja": "<p>Ouverte à tous les médias membres (exemple à remplacer).</p>"
+            },
+            "date": "2026-11-13"
+          }
+        },
+        {
+          "id": "it_7oqdfbm2",
+          "slug": "atelier-tourner-avec-un-smartphone",
+          "status": "published",
+          "values": {
+            "title": {
+              "ja": "Atelier : tourner avec un smartphone"
+            },
+            "time": "14:00",
+            "endTime": "17:00",
+            "place": "Studio partagé",
+            "description": {
+              "ja": "<p>Initiation pratique (exemple).</p>"
+            },
+            "date": "2026-11-27"
+          }
+        },
+        {
+          "id": "it_6qcyxzpi",
+          "slug": "festival-des-medias-libres",
+          "status": "published",
+          "values": {
+            "title": {
+              "ja": "Festival des médias libres"
+            },
+            "place": "Centre culturel",
+            "description": {
+              "ja": "<p>Deux jours de rencontres (exemple).</p>"
+            },
+            "date": "2026-12-14",
+            "endDate": "2026-12-15"
+          }
+        }
+      ],
+      "card": {
+        "id": "n_1s6r4k2n26",
+        "type": "column",
+        "props": {},
+        "style": {
+          "desktop": {
+            "background": "palette:c6",
+            "paddingTop": "space:m",
+            "paddingRight": "space:m",
+            "paddingBottom": "space:m",
+            "paddingLeft": "space:m",
+            "borderRadius": "12px",
+            "boxShadow": "md",
+            "gap": "space:xs"
+          },
+          "tablet": {},
+          "mobile": {},
+          "hover": {}
+        },
+        "advanced": {
+          "anchor": "",
+          "cssClass": "",
+          "hideOn": {
+            "desktop": false,
+            "tablet": false,
+            "mobile": false
+          }
+        },
+        "children": [
+          {
+            "id": "n_315t5m2u19",
+            "type": "image",
+            "props": {
+              "src": "",
+              "alt": {
+                "fr": ""
+              },
+              "caption": {
+                "fr": ""
+              },
+              "ratio": "16/9",
+              "link": ""
+            },
+            "style": {
+              "desktop": {},
+              "tablet": {},
+              "mobile": {},
+              "hover": {}
+            },
+            "advanced": {
+              "anchor": "",
+              "cssClass": "",
+              "hideOn": {
+                "desktop": false,
+                "tablet": false,
+                "mobile": false
+              }
+            },
+            "bind": {
+              "src": "image",
+              "alt": "title"
+            }
+          },
+          {
+            "id": "n_69694j5y4r",
+            "type": "item-field",
+            "props": {
+              "field": "@when",
+              "label": {},
+              "icon": "calendar",
+              "format": "long"
+            },
+            "style": {
+              "desktop": {},
+              "tablet": {},
+              "mobile": {},
+              "hover": {}
+            },
+            "advanced": {
+              "anchor": "",
+              "cssClass": "",
+              "hideOn": {
+                "desktop": false,
+                "tablet": false,
+                "mobile": false
+              }
+            }
+          },
+          {
+            "id": "n_6r5z3x332z",
+            "type": "item-field",
+            "props": {
+              "field": "status",
+              "label": {},
+              "icon": "none",
+              "format": "long"
+            },
+            "style": {
+              "desktop": {},
+              "tablet": {},
+              "mobile": {},
+              "hover": {}
+            },
+            "advanced": {
+              "anchor": "",
+              "cssClass": "",
+              "hideOn": {
+                "desktop": false,
+                "tablet": false,
+                "mobile": false
+              }
+            }
+          },
+          {
+            "id": "n_3h5w3q0y5i",
+            "type": "heading",
+            "props": {
+              "text": {
+                "fr": "Votre titre ici"
+              },
+              "level": "h3",
+              "link": ""
+            },
+            "style": {
+              "desktop": {},
+              "tablet": {},
+              "mobile": {},
+              "hover": {}
+            },
+            "advanced": {
+              "anchor": "",
+              "cssClass": "",
+              "hideOn": {
+                "desktop": false,
+                "tablet": false,
+                "mobile": false
+              }
+            },
+            "bind": {
+              "text": "title",
+              "link": "@url"
+            }
+          },
+          {
+            "id": "n_4t2l3t535w",
+            "type": "item-field",
+            "props": {
+              "field": "place",
+              "label": {},
+              "icon": "pin",
+              "format": "long"
+            },
+            "style": {
+              "desktop": {},
+              "tablet": {},
+              "mobile": {},
+              "hover": {}
+            },
+            "advanced": {
+              "anchor": "",
+              "cssClass": "",
+              "hideOn": {
+                "desktop": false,
+                "tablet": false,
+                "mobile": false
+              }
+            }
+          },
+          {
+            "id": "n_2573644h0e",
+            "type": "button",
+            "props": {
+              "label": {
+                "fr": "En savoir plus",
+                "nl": "Meer weten",
+                "de": "Mehr erfahren",
+                "en": "Read more",
+                "ja": "詳しく見る"
+              },
+              "link": "#",
+              "variant": "link",
+              "size": "sm",
+              "newTab": false
+            },
+            "style": {
+              "desktop": {},
+              "tablet": {},
+              "mobile": {},
+              "hover": {}
+            },
+            "advanced": {
+              "anchor": "",
+              "cssClass": "",
+              "hideOn": {
+                "desktop": false,
+                "tablet": false,
+                "mobile": false
+              }
+            },
+            "bind": {
+              "link": "@url"
+            }
+          }
+        ]
+      },
+      "detail": {
+        "id": "n_652m091h4g",
+        "type": "page",
+        "props": {},
+        "style": {
+          "desktop": {},
+          "tablet": {},
+          "mobile": {},
+          "hover": {}
+        },
+        "advanced": {
+          "anchor": "",
+          "cssClass": "",
+          "hideOn": {
+            "desktop": false,
+            "tablet": false,
+            "mobile": false
+          }
+        },
+        "children": [
+          {
+            "id": "n_6y1b0e0c04",
+            "type": "section",
+            "props": {
+              "width": "boxed",
+              "tag": "section"
+            },
+            "style": {
+              "desktop": {},
+              "tablet": {},
+              "mobile": {},
+              "hover": {}
+            },
+            "advanced": {
+              "anchor": "",
+              "cssClass": "",
+              "hideOn": {
+                "desktop": false,
+                "tablet": false,
+                "mobile": false
+              }
+            },
+            "children": [
+              {
+                "id": "n_194z444a30",
+                "type": "row",
+                "props": {
+                  "stack": "mobile"
+                },
+                "style": {
+                  "desktop": {},
+                  "tablet": {},
+                  "mobile": {},
+                  "hover": {}
+                },
+                "advanced": {
+                  "anchor": "",
+                  "cssClass": "",
+                  "hideOn": {
+                    "desktop": false,
+                    "tablet": false,
+                    "mobile": false
+                  }
+                },
+                "children": [
+                  {
+                    "id": "n_0k40115t4o",
+                    "type": "column",
+                    "props": {},
+                    "style": {
+                      "desktop": {
+                        "span": 12
+                      },
+                      "tablet": {},
+                      "mobile": {},
+                      "hover": {}
+                    },
+                    "advanced": {
+                      "anchor": "",
+                      "cssClass": "",
+                      "hideOn": {
+                        "desktop": false,
+                        "tablet": false,
+                        "mobile": false
+                      }
+                    },
+                    "children": [
+                      {
+                        "id": "n_0w171b4758",
+                        "type": "button",
+                        "props": {
+                          "label": {
+                            "fr": "← Tout l’agenda",
+                            "nl": "← Volledige agenda",
+                            "de": "← Alle Termine",
+                            "en": "← Full calendar",
+                            "ja": "← イベント一覧"
+                          },
+                          "link": "#",
+                          "variant": "link",
+                          "size": "sm",
+                          "newTab": false
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        },
+                        "bind": {
+                          "link": "@list"
+                        }
+                      },
+                      {
+                        "id": "n_204u5p3e48",
+                        "type": "heading",
+                        "props": {
+                          "text": {
+                            "fr": "Votre titre ici"
+                          },
+                          "level": "h1",
+                          "link": ""
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        },
+                        "bind": {
+                          "text": "title"
+                        }
+                      },
+                      {
+                        "id": "n_2h512n635q",
+                        "type": "item-field",
+                        "props": {
+                          "field": "@when",
+                          "label": {},
+                          "icon": "calendar",
+                          "format": "long"
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        }
+                      },
+                      {
+                        "id": "n_3f0j4i6j6y",
+                        "type": "item-field",
+                        "props": {
+                          "field": "status",
+                          "label": {},
+                          "icon": "none",
+                          "format": "long"
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        }
+                      },
+                      {
+                        "id": "n_2h56343f5d",
+                        "type": "item-field",
+                        "props": {
+                          "field": "place",
+                          "label": {},
+                          "icon": "pin",
+                          "format": "long"
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        }
+                      },
+                      {
+                        "id": "n_1l3m1b3p3a",
+                        "type": "item-field",
+                        "props": {
+                          "field": "address",
+                          "label": {},
+                          "icon": "none",
+                          "format": "long"
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        }
+                      },
+                      {
+                        "id": "n_184l381p6u",
+                        "type": "image",
+                        "props": {
+                          "src": "",
+                          "alt": {
+                            "fr": ""
+                          },
+                          "caption": {
+                            "fr": ""
+                          },
+                          "ratio": "16/9",
+                          "link": ""
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        },
+                        "bind": {
+                          "src": "image",
+                          "alt": "title"
+                        }
+                      },
+                      {
+                        "id": "n_2z2e180q3i",
+                        "type": "text",
+                        "props": {
+                          "content": {
+                            "fr": "<p>Écrivez votre texte ici. Sélectionnez des mots pour les mettre en <strong>gras</strong>, en <em>italique</em> ou ajouter un lien.</p>"
+                          }
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        },
+                        "bind": {
+                          "content": "description"
+                        }
+                      },
+                      {
+                        "id": "n_690l6x654k",
+                        "type": "button",
+                        "props": {
+                          "label": {
+                            "fr": "Inscription et billets",
+                            "nl": "Inschrijven en tickets",
+                            "de": "Anmeldung und Tickets",
+                            "en": "Tickets and registration",
+                            "ja": "申し込み・チケット"
+                          },
+                          "link": "#",
+                          "variant": "primary",
+                          "size": "md",
+                          "newTab": true
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        },
+                        "bind": {
+                          "link": "link"
+                        }
+                      },
+                      {
+                        "id": "n_36441s3i58",
+                        "type": "button",
+                        "props": {
+                          "label": {
+                            "fr": "Ajouter à mon agenda",
+                            "nl": "Toevoegen aan mijn agenda",
+                            "de": "Zu meinem Kalender hinzufügen",
+                            "en": "Add to my calendar",
+                            "ja": "カレンダーに追加"
+                          },
+                          "link": "#",
+                          "variant": "outline",
+                          "size": "md",
+                          "newTab": false
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        },
+                        "bind": {
+                          "link": "@ics"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "settings": {
+        "detail": true,
+        "sort": {
+          "field": "date",
+          "dir": "asc"
+        },
+        "listPage": "p_koe8t90e",
+        "rss": false
+      }
+    },
+    "col_f2s967t7": {
+      "id": "col_f2s967t7",
+      "name": "Actualités",
+      "kind": "news",
+      "slug": "actualites",
+      "slugs": {},
+      "titleField": "title",
+      "dateField": "date",
+      "endField": "",
+      "imageField": "image",
+      "excerptField": "excerpt",
+      "fields": [
+        {
+          "key": "title",
+          "type": "text",
+          "label": "Titre",
+          "i18n": true
+        },
+        {
+          "key": "date",
+          "type": "date",
+          "label": "Date"
+        },
+        {
+          "key": "image",
+          "type": "image",
+          "label": "Image"
+        },
+        {
+          "key": "excerpt",
+          "type": "text",
+          "label": "Chapô (résumé)",
+          "i18n": true
+        },
+        {
+          "key": "body",
+          "type": "richtext",
+          "label": "Texte",
+          "i18n": true
+        },
+        {
+          "key": "author",
+          "type": "text",
+          "label": "Auteur",
+          "i18n": false
+        }
+      ],
+      "items": [
+        {
+          "id": "it_n8cjdx7f",
+          "slug": "le-mab-ouvre-son-site",
+          "status": "published",
+          "values": {
+            "title": {
+              "ja": "Le MAB ouvre son site"
+            },
+            "excerpt": {
+              "ja": "Une vitrine commune pour les médias membres (exemple à remplacer)."
+            },
+            "body": {
+              "ja": "<p>Texte de l’article.</p>"
+            },
+            "date": "2026-10-27",
+            "image": "asset:img_0q065cma"
+          }
+        },
+        {
+          "id": "it_dusiflg0",
+          "slug": "appel-aux-medias-independants",
+          "status": "published",
+          "values": {
+            "title": {
+              "ja": "Appel aux médias indépendants"
+            },
+            "excerpt": {
+              "ja": "Rejoignez la fédération : matériel, techniciens et diffusion mutualisés (exemple)."
+            },
+            "body": {
+              "ja": "<p>Texte de l’article.</p>"
+            },
+            "date": "2026-10-10"
+          }
+        }
+      ],
+      "card": {
+        "id": "n_0o0f5s0w22",
+        "type": "column",
+        "props": {},
+        "style": {
+          "desktop": {
+            "background": "palette:c6",
+            "paddingTop": "space:m",
+            "paddingRight": "space:m",
+            "paddingBottom": "space:m",
+            "paddingLeft": "space:m",
+            "borderRadius": "12px",
+            "boxShadow": "md",
+            "gap": "space:xs"
+          },
+          "tablet": {},
+          "mobile": {},
+          "hover": {}
+        },
+        "advanced": {
+          "anchor": "",
+          "cssClass": "",
+          "hideOn": {
+            "desktop": false,
+            "tablet": false,
+            "mobile": false
+          }
+        },
+        "children": [
+          {
+            "id": "n_384e6t5h6d",
+            "type": "image",
+            "props": {
+              "src": "",
+              "alt": {
+                "fr": ""
+              },
+              "caption": {
+                "fr": ""
+              },
+              "ratio": "16/9",
+              "link": ""
+            },
+            "style": {
+              "desktop": {},
+              "tablet": {},
+              "mobile": {},
+              "hover": {}
+            },
+            "advanced": {
+              "anchor": "",
+              "cssClass": "",
+              "hideOn": {
+                "desktop": false,
+                "tablet": false,
+                "mobile": false
+              }
+            },
+            "bind": {
+              "src": "image",
+              "alt": "title"
+            }
+          },
+          {
+            "id": "n_35325s236e",
+            "type": "item-field",
+            "props": {
+              "field": "date",
+              "label": {},
+              "icon": "calendar",
+              "format": "short"
+            },
+            "style": {
+              "desktop": {},
+              "tablet": {},
+              "mobile": {},
+              "hover": {}
+            },
+            "advanced": {
+              "anchor": "",
+              "cssClass": "",
+              "hideOn": {
+                "desktop": false,
+                "tablet": false,
+                "mobile": false
+              }
+            }
+          },
+          {
+            "id": "n_1u3n6s5z30",
+            "type": "heading",
+            "props": {
+              "text": {
+                "fr": "Votre titre ici"
+              },
+              "level": "h3",
+              "link": ""
+            },
+            "style": {
+              "desktop": {},
+              "tablet": {},
+              "mobile": {},
+              "hover": {}
+            },
+            "advanced": {
+              "anchor": "",
+              "cssClass": "",
+              "hideOn": {
+                "desktop": false,
+                "tablet": false,
+                "mobile": false
+              }
+            },
+            "bind": {
+              "text": "title",
+              "link": "@url"
+            }
+          },
+          {
+            "id": "n_5u165b6h0e",
+            "type": "text",
+            "props": {
+              "content": {
+                "fr": "<p>Écrivez votre texte ici. Sélectionnez des mots pour les mettre en <strong>gras</strong>, en <em>italique</em> ou ajouter un lien.</p>"
+              }
+            },
+            "style": {
+              "desktop": {},
+              "tablet": {},
+              "mobile": {},
+              "hover": {}
+            },
+            "advanced": {
+              "anchor": "",
+              "cssClass": "",
+              "hideOn": {
+                "desktop": false,
+                "tablet": false,
+                "mobile": false
+              }
+            },
+            "bind": {
+              "content": "excerpt"
+            }
+          },
+          {
+            "id": "n_3b1y5r0k5h",
+            "type": "button",
+            "props": {
+              "label": {
+                "fr": "Lire la suite",
+                "nl": "Lees meer",
+                "de": "Weiterlesen",
+                "en": "Read more",
+                "ja": "続きを読む"
+              },
+              "link": "#",
+              "variant": "link",
+              "size": "sm",
+              "newTab": false
+            },
+            "style": {
+              "desktop": {},
+              "tablet": {},
+              "mobile": {},
+              "hover": {}
+            },
+            "advanced": {
+              "anchor": "",
+              "cssClass": "",
+              "hideOn": {
+                "desktop": false,
+                "tablet": false,
+                "mobile": false
+              }
+            },
+            "bind": {
+              "link": "@url"
+            }
+          }
+        ]
+      },
+      "detail": {
+        "id": "n_1o5l6l3c5n",
+        "type": "page",
+        "props": {},
+        "style": {
+          "desktop": {},
+          "tablet": {},
+          "mobile": {},
+          "hover": {}
+        },
+        "advanced": {
+          "anchor": "",
+          "cssClass": "",
+          "hideOn": {
+            "desktop": false,
+            "tablet": false,
+            "mobile": false
+          }
+        },
+        "children": [
+          {
+            "id": "n_3i58576e3w",
+            "type": "section",
+            "props": {
+              "width": "boxed",
+              "tag": "section"
+            },
+            "style": {
+              "desktop": {},
+              "tablet": {},
+              "mobile": {},
+              "hover": {}
+            },
+            "advanced": {
+              "anchor": "",
+              "cssClass": "",
+              "hideOn": {
+                "desktop": false,
+                "tablet": false,
+                "mobile": false
+              }
+            },
+            "children": [
+              {
+                "id": "n_715f0w4v6e",
+                "type": "row",
+                "props": {
+                  "stack": "mobile"
+                },
+                "style": {
+                  "desktop": {},
+                  "tablet": {},
+                  "mobile": {},
+                  "hover": {}
+                },
+                "advanced": {
+                  "anchor": "",
+                  "cssClass": "",
+                  "hideOn": {
+                    "desktop": false,
+                    "tablet": false,
+                    "mobile": false
+                  }
+                },
+                "children": [
+                  {
+                    "id": "n_4v1m5x0p1a",
+                    "type": "column",
+                    "props": {},
+                    "style": {
+                      "desktop": {
+                        "span": 12
+                      },
+                      "tablet": {},
+                      "mobile": {},
+                      "hover": {}
+                    },
+                    "advanced": {
+                      "anchor": "",
+                      "cssClass": "",
+                      "hideOn": {
+                        "desktop": false,
+                        "tablet": false,
+                        "mobile": false
+                      }
+                    },
+                    "children": [
+                      {
+                        "id": "n_1w654q2e4v",
+                        "type": "button",
+                        "props": {
+                          "label": {
+                            "fr": "← Toutes les actualités",
+                            "nl": "← Alle nieuws",
+                            "de": "← Alle Nachrichten",
+                            "en": "← All news",
+                            "ja": "← ニュース一覧"
+                          },
+                          "link": "#",
+                          "variant": "link",
+                          "size": "sm",
+                          "newTab": false
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        },
+                        "bind": {
+                          "link": "@list"
+                        }
+                      },
+                      {
+                        "id": "n_144a2s6g5o",
+                        "type": "item-field",
+                        "props": {
+                          "field": "date",
+                          "label": {},
+                          "icon": "calendar",
+                          "format": "long"
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        }
+                      },
+                      {
+                        "id": "n_176c2o6b6x",
+                        "type": "heading",
+                        "props": {
+                          "text": {
+                            "fr": "Votre titre ici"
+                          },
+                          "level": "h1",
+                          "link": ""
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        },
+                        "bind": {
+                          "text": "title"
+                        }
+                      },
+                      {
+                        "id": "n_222z4a130j",
+                        "type": "text",
+                        "props": {
+                          "content": {
+                            "fr": "<p>Écrivez votre texte ici. Sélectionnez des mots pour les mettre en <strong>gras</strong>, en <em>italique</em> ou ajouter un lien.</p>"
+                          }
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        },
+                        "bind": {
+                          "content": "excerpt"
+                        }
+                      },
+                      {
+                        "id": "n_3a0n1v4s6d",
+                        "type": "image",
+                        "props": {
+                          "src": "",
+                          "alt": {
+                            "fr": ""
+                          },
+                          "caption": {
+                            "fr": ""
+                          },
+                          "ratio": "16/9",
+                          "link": ""
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        },
+                        "bind": {
+                          "src": "image",
+                          "alt": "title"
+                        }
+                      },
+                      {
+                        "id": "n_6n0f4d3s56",
+                        "type": "text",
+                        "props": {
+                          "content": {
+                            "fr": "<p>Écrivez votre texte ici. Sélectionnez des mots pour les mettre en <strong>gras</strong>, en <em>italique</em> ou ajouter un lien.</p>"
+                          }
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        },
+                        "bind": {
+                          "content": "body"
+                        }
+                      },
+                      {
+                        "id": "n_6d4x5q1y38",
+                        "type": "item-field",
+                        "props": {
+                          "field": "author",
+                          "label": {
+                            "fr": "Par",
+                            "nl": "Door",
+                            "de": "Von",
+                            "en": "By",
+                            "ja": "文："
+                          },
+                          "icon": "users",
+                          "format": "long"
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "settings": {
+        "detail": true,
+        "sort": {
+          "field": "date",
+          "dir": "desc"
+        },
+        "listPage": "p_wrsndlat",
+        "rss": true
+      }
+    }
+  },
+  "layout": {
+    "header": null,
+    "footer": null
+  },
+  "menu": null,
+  "fonts": {},
+  "header": {
+    "logo": "asset:img_qlvdtlff",
+    "showLangs": true,
+    "sticky": true
+  },
+  "footer": {
+    "text": {
+      "ja": "© 久万高原テスト"
+    }
+  },
+  "pages": [
+    {
+      "id": "p_wdwvolyk",
+      "slug": "",
+      "title": {
+        "ja": "ホーム"
+      },
+      "seo": {
+        "description": {}
+      },
+      "root": {
+        "id": "n_0e5818505k",
+        "type": "page",
+        "props": {},
+        "style": {
+          "desktop": {},
+          "tablet": {},
+          "mobile": {},
+          "hover": {}
+        },
+        "advanced": {
+          "anchor": "",
+          "cssClass": "",
+          "hideOn": {
+            "desktop": false,
+            "tablet": false,
+            "mobile": false
+          }
+        },
+        "children": [
+          {
+            "id": "n_5x0a2h5d5i",
+            "type": "section",
+            "props": {
+              "width": "boxed",
+              "tag": "section"
+            },
+            "style": {
+              "desktop": {},
+              "tablet": {},
+              "mobile": {},
+              "hover": {}
+            },
+            "advanced": {
+              "anchor": "",
+              "cssClass": "",
+              "hideOn": {
+                "desktop": false,
+                "tablet": false,
+                "mobile": false
+              }
+            },
+            "children": [
+              {
+                "id": "n_572830081q",
+                "type": "row",
+                "props": {
+                  "stack": "mobile"
+                },
+                "style": {
+                  "desktop": {},
+                  "tablet": {},
+                  "mobile": {},
+                  "hover": {}
+                },
+                "advanced": {
+                  "anchor": "",
+                  "cssClass": "",
+                  "hideOn": {
+                    "desktop": false,
+                    "tablet": false,
+                    "mobile": false
+                  }
+                },
+                "children": [
+                  {
+                    "id": "n_5s0i44382a",
+                    "type": "column",
+                    "props": {},
+                    "style": {
+                      "desktop": {
+                        "span": 12
+                      },
+                      "tablet": {},
+                      "mobile": {},
+                      "hover": {}
+                    },
+                    "advanced": {
+                      "anchor": "",
+                      "cssClass": "",
+                      "hideOn": {
+                        "desktop": false,
+                        "tablet": false,
+                        "mobile": false
+                      }
+                    },
+                    "children": [
+                      {
+                        "id": "n_276d2l3a2e",
+                        "type": "heading",
+                        "props": {
+                          "text": {
+                            "ja": "久万高原町へようこそ",
+                            "en": "Welcome to Kumakōgen"
+                          },
+                          "level": "h1",
+                          "link": ""
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        }
+                      },
+                      {
+                        "id": "n_3x1n116s6l",
+                        "type": "image",
+                        "props": {
+                          "src": "asset:img_0q065cma",
+                          "alt": {
+                            "ja": "四国カルスト"
+                          },
+                          "caption": {
+                            "fr": ""
+                          },
+                          "ratio": "auto",
+                          "link": ""
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        }
+                      },
+                      {
+                        "id": "n_3z13241h1k",
+                        "type": "text",
+                        "props": {
+                          "content": {
+                            "ja": "<p>四国の屋根。</p>"
+                          }
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        }
+                      },
+                      {
+                        "id": "n_5o100r3m0y",
+                        "type": "gallery",
+                        "props": {
+                          "columns": "3",
+                          "ratio": "4/3",
+                          "zoom": true,
+                          "items": [
+                            {
+                              "src": "asset:img_0q065cma",
+                              "alt": {
+                                "ja": "カルスト"
+                              },
+                              "caption": {}
+                            },
+                            {
+                              "src": "asset:img_qlvdtlff",
+                              "alt": {
+                                "ja": "四国"
+                              },
+                              "caption": {}
+                            }
+                          ]
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        }
+                      },
+                      {
+                        "id": "n_1r014f0l0h",
+                        "type": "card",
+                        "props": {
+                          "image": "asset:img_qlvdtlff",
+                          "alt": {
+                            "fr": ""
+                          },
+                          "title": {
+                            "ja": "面河渓"
+                          },
+                          "text": {
+                            "fr": "<p>Un court texte de présentation.</p>"
+                          },
+                          "button": {
+                            "fr": "Lire la suite"
+                          },
+                          "link": "#"
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "p_koe8t90e",
+      "slug": "agenda",
+      "title": {
+        "ja": "Agenda"
+      },
+      "seo": {
+        "description": {}
+      },
+      "root": {
+        "id": "n_206p2p532j",
+        "type": "page",
+        "props": {},
+        "style": {
+          "desktop": {},
+          "tablet": {},
+          "mobile": {},
+          "hover": {}
+        },
+        "advanced": {
+          "anchor": "",
+          "cssClass": "",
+          "hideOn": {
+            "desktop": false,
+            "tablet": false,
+            "mobile": false
+          }
+        },
+        "children": [
+          {
+            "id": "n_12222v3r60",
+            "type": "section",
+            "props": {
+              "width": "boxed",
+              "tag": "section"
+            },
+            "style": {
+              "desktop": {},
+              "tablet": {},
+              "mobile": {},
+              "hover": {}
+            },
+            "advanced": {
+              "anchor": "",
+              "cssClass": "",
+              "hideOn": {
+                "desktop": false,
+                "tablet": false,
+                "mobile": false
+              }
+            },
+            "children": [
+              {
+                "id": "n_6i1y636u66",
+                "type": "row",
+                "props": {
+                  "stack": "mobile"
+                },
+                "style": {
+                  "desktop": {},
+                  "tablet": {},
+                  "mobile": {},
+                  "hover": {}
+                },
+                "advanced": {
+                  "anchor": "",
+                  "cssClass": "",
+                  "hideOn": {
+                    "desktop": false,
+                    "tablet": false,
+                    "mobile": false
+                  }
+                },
+                "children": [
+                  {
+                    "id": "n_1f660a555p",
+                    "type": "column",
+                    "props": {},
+                    "style": {
+                      "desktop": {
+                        "span": 12
+                      },
+                      "tablet": {},
+                      "mobile": {},
+                      "hover": {}
+                    },
+                    "advanced": {
+                      "anchor": "",
+                      "cssClass": "",
+                      "hideOn": {
+                        "desktop": false,
+                        "tablet": false,
+                        "mobile": false
+                      }
+                    },
+                    "children": [
+                      {
+                        "id": "n_0p1b1n6f03",
+                        "type": "heading",
+                        "props": {
+                          "text": {
+                            "ja": "Agenda"
+                          },
+                          "level": "h1",
+                          "link": ""
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        }
+                      },
+                      {
+                        "id": "n_3h6c381f42",
+                        "type": "collection-list",
+                        "props": {
+                          "collection": "col_uyago2ag",
+                          "layout": "grid",
+                          "columns": "3",
+                          "when": "upcoming",
+                          "sortField": "",
+                          "sortDir": "",
+                          "limit": 0,
+                          "filter": "",
+                          "empty": {
+                            "fr": "Rien à afficher pour l’instant.",
+                            "nl": "Nog niets te tonen.",
+                            "de": "Noch nichts zu zeigen.",
+                            "en": "Nothing to show yet.",
+                            "ja": "まだ表示する項目はありません。"
+                          },
+                          "moreLabel": {
+                            "fr": ""
+                          },
+                          "moreLink": ""
+                        },
+                        "style": {
+                          "desktop": {
+                            "marginTop": "space:s"
+                          },
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "p_wrsndlat",
+      "slug": "actualites",
+      "title": {
+        "ja": "Actualités"
+      },
+      "seo": {
+        "description": {}
+      },
+      "root": {
+        "id": "n_4u3h2x0w1j",
+        "type": "page",
+        "props": {},
+        "style": {
+          "desktop": {},
+          "tablet": {},
+          "mobile": {},
+          "hover": {}
+        },
+        "advanced": {
+          "anchor": "",
+          "cssClass": "",
+          "hideOn": {
+            "desktop": false,
+            "tablet": false,
+            "mobile": false
+          }
+        },
+        "children": [
+          {
+            "id": "n_70442q1237",
+            "type": "section",
+            "props": {
+              "width": "boxed",
+              "tag": "section"
+            },
+            "style": {
+              "desktop": {},
+              "tablet": {},
+              "mobile": {},
+              "hover": {}
+            },
+            "advanced": {
+              "anchor": "",
+              "cssClass": "",
+              "hideOn": {
+                "desktop": false,
+                "tablet": false,
+                "mobile": false
+              }
+            },
+            "children": [
+              {
+                "id": "n_360j5c2i46",
+                "type": "row",
+                "props": {
+                  "stack": "mobile"
+                },
+                "style": {
+                  "desktop": {},
+                  "tablet": {},
+                  "mobile": {},
+                  "hover": {}
+                },
+                "advanced": {
+                  "anchor": "",
+                  "cssClass": "",
+                  "hideOn": {
+                    "desktop": false,
+                    "tablet": false,
+                    "mobile": false
+                  }
+                },
+                "children": [
+                  {
+                    "id": "n_0w291j515j",
+                    "type": "column",
+                    "props": {},
+                    "style": {
+                      "desktop": {
+                        "span": 12
+                      },
+                      "tablet": {},
+                      "mobile": {},
+                      "hover": {}
+                    },
+                    "advanced": {
+                      "anchor": "",
+                      "cssClass": "",
+                      "hideOn": {
+                        "desktop": false,
+                        "tablet": false,
+                        "mobile": false
+                      }
+                    },
+                    "children": [
+                      {
+                        "id": "n_3e4u316f44",
+                        "type": "heading",
+                        "props": {
+                          "text": {
+                            "ja": "Actualités"
+                          },
+                          "level": "h1",
+                          "link": ""
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        }
+                      },
+                      {
+                        "id": "n_691f3f0k3x",
+                        "type": "collection-list",
+                        "props": {
+                          "collection": "col_f2s967t7",
+                          "layout": "grid",
+                          "columns": "3",
+                          "when": "all",
+                          "sortField": "",
+                          "sortDir": "",
+                          "limit": 0,
+                          "filter": "",
+                          "empty": {
+                            "fr": "Rien à afficher pour l’instant.",
+                            "nl": "Nog niets te tonen.",
+                            "de": "Noch nichts zu zeigen.",
+                            "en": "Nothing to show yet.",
+                            "ja": "まだ表示する項目はありません。"
+                          },
+                          "moreLabel": {
+                            "fr": ""
+                          },
+                          "moreLink": ""
+                        },
+                        "style": {
+                          "desktop": {
+                            "marginTop": "space:s"
+                          },
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "assets": {
+    "img_0q065cma": {
+      "file": "karusuto.png",
+      "mime": "image/png",
+      "dataUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==",
+      "width": 1600,
+      "height": 900,
+      "variants": [
+        {
+          "w": 480,
+          "file": "karusuto-480.png",
+          "dataUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
+        },
+        {
+          "w": 960,
+          "file": "karusuto-960.png",
+          "dataUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
+        }
+      ]
+    },
+    "img_qlvdtlff": {
+      "file": "shikoku.png",
+      "mime": "image/png",
+      "dataUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==",
+      "width": 800,
+      "height": 600
+    }
+  }
+}

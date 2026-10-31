@@ -1,0 +1,1083 @@
+{
+  "version": 2,
+  "name": "MAB – Médias Alternatifs Belges",
+  "baseUrl": "https://www.xn--mdia-alternatif-bnb.be",
+  "languages": [
+    "fr",
+    "nl",
+    "de",
+    "en"
+  ],
+  "defaultLanguage": "fr",
+  "theme": {
+    "palette": {
+      "c1": "#c8181d",
+      "c2": "#f6d200",
+      "c3": "#121216",
+      "c4": "#f5f5f2",
+      "c5": "#5f5f69",
+      "c6": "#ffffff"
+    },
+    "paletteNames": {
+      "c1": "Principale",
+      "c2": "Secondaire",
+      "c3": "Texte",
+      "c4": "Fond",
+      "c5": "Discrète",
+      "c6": "Surface"
+    },
+    "fonts": {
+      "heading": "archivo",
+      "body": "system"
+    },
+    "baseSize": 17,
+    "radius": 8,
+    "contentWidth": 1160
+  },
+  "tokens": {
+    "type": {
+      "minSize": 16,
+      "maxSize": 18,
+      "minRatio": 1.2,
+      "maxRatio": 1.25,
+      "minVw": 390,
+      "maxVw": 1280
+    },
+    "space": {
+      "minSize": 16,
+      "maxSize": 20
+    }
+  },
+  "presets": {},
+  "defaultPresets": {},
+  "components": {},
+  "collections": {},
+  "layout": {
+    "header": null,
+    "footer": null
+  },
+  "menu": null,
+  "fonts": {},
+  "header": {
+    "logo": "",
+    "showLangs": true,
+    "sticky": true
+  },
+  "footer": {
+    "text": {
+      "fr": "© 2026 MAB – Médias Alternatifs Belges"
+    }
+  },
+  "pages": [
+    {
+      "id": "p_iz3j8p6y",
+      "slug": "",
+      "title": {
+        "fr": "Accueil",
+        "nl": "Home",
+        "de": "Startseite",
+        "en": "Home"
+      },
+      "seo": {
+        "description": {}
+      },
+      "root": {
+        "id": "n_1n015l2d0m",
+        "type": "page",
+        "props": {},
+        "style": {
+          "desktop": {},
+          "tablet": {},
+          "mobile": {},
+          "hover": {}
+        },
+        "advanced": {
+          "anchor": "",
+          "cssClass": "",
+          "hideOn": {
+            "desktop": false,
+            "tablet": false,
+            "mobile": false
+          }
+        },
+        "children": [
+          {
+            "id": "n_2k526x4p61",
+            "type": "section",
+            "props": {
+              "width": "boxed",
+              "tag": "section"
+            },
+            "style": {
+              "desktop": {},
+              "tablet": {},
+              "mobile": {},
+              "hover": {}
+            },
+            "advanced": {
+              "anchor": "",
+              "cssClass": "",
+              "hideOn": {
+                "desktop": false,
+                "tablet": false,
+                "mobile": false
+              }
+            },
+            "children": [
+              {
+                "id": "n_1148294t6d",
+                "type": "row",
+                "props": {
+                  "stack": "mobile"
+                },
+                "style": {
+                  "desktop": {
+                    "alignItems": "center"
+                  },
+                  "tablet": {},
+                  "mobile": {},
+                  "hover": {}
+                },
+                "advanced": {
+                  "anchor": "",
+                  "cssClass": "",
+                  "hideOn": {
+                    "desktop": false,
+                    "tablet": false,
+                    "mobile": false
+                  }
+                },
+                "children": [
+                  {
+                    "id": "n_632d6q4n0m",
+                    "type": "column",
+                    "props": {},
+                    "style": {
+                      "desktop": {
+                        "span": 7
+                      },
+                      "tablet": {},
+                      "mobile": {},
+                      "hover": {}
+                    },
+                    "advanced": {
+                      "anchor": "",
+                      "cssClass": "",
+                      "hideOn": {
+                        "desktop": false,
+                        "tablet": false,
+                        "mobile": false
+                      }
+                    },
+                    "children": [
+                      {
+                        "id": "n_1x6n030m2i",
+                        "type": "heading",
+                        "props": {
+                          "text": {
+                            "fr": "Fédération indépendante",
+                            "nl": "Onafhankelijke federatie"
+                          },
+                          "level": "p",
+                          "link": ""
+                        },
+                        "style": {
+                          "desktop": {
+                            "color": "palette:c1",
+                            "fontWeight": "800",
+                            "textTransform": "uppercase",
+                            "letterSpacing": "0.1em",
+                            "fontSize": "0.85rem"
+                          },
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        }
+                      },
+                      {
+                        "id": "n_525o0z3h33",
+                        "type": "heading",
+                        "props": {
+                          "text": {
+                            "fr": "L’information citoyenne libre, <strong>sans compromis</strong> ni censure",
+                            "nl": "Vrije burgerinformatie, <strong>zonder compromissen</strong> of censuur"
+                          },
+                          "level": "h1",
+                          "link": ""
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {
+                            "fontSize": "2.2rem"
+                          },
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        }
+                      },
+                      {
+                        "id": "n_5y460h0n5t",
+                        "type": "text",
+                        "props": {
+                          "content": {
+                            "fr": "<p>Le MAB réunit les médias alternatifs belges. Nous partageons le matériel, les techniciens et les outils de diffusion. Chaque rédaction garde sa ligne éditoriale.</p>"
+                          }
+                        },
+                        "style": {
+                          "desktop": {
+                            "fontSize": "1.15rem",
+                            "color": "palette:c5",
+                            "maxWidth": "58ch"
+                          },
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        }
+                      },
+                      {
+                        "id": "n_6e5n1g0d40",
+                        "type": "button",
+                        "props": {
+                          "label": {
+                            "fr": "Rejoindre la coopérative",
+                            "nl": "Word lid van de coöperatie"
+                          },
+                          "link": "#contact",
+                          "variant": "primary",
+                          "size": "lg",
+                          "newTab": false
+                        },
+                        "style": {
+                          "desktop": {
+                            "transitionDuration": 200
+                          },
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {
+                            "transform": "lift"
+                          }
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "n_294p1s6w5d",
+                    "type": "column",
+                    "props": {},
+                    "style": {
+                      "desktop": {
+                        "span": 5
+                      },
+                      "tablet": {},
+                      "mobile": {},
+                      "hover": {}
+                    },
+                    "advanced": {
+                      "anchor": "",
+                      "cssClass": "",
+                      "hideOn": {
+                        "desktop": false,
+                        "tablet": false,
+                        "mobile": false
+                      }
+                    },
+                    "children": [
+                      {
+                        "id": "n_2r1q3w632l",
+                        "type": "image",
+                        "props": {
+                          "src": "",
+                          "alt": {
+                            "fr": "Régie de production partagée"
+                          },
+                          "caption": {
+                            "fr": ""
+                          },
+                          "ratio": "4/3",
+                          "link": ""
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "n_6f5d121z4x",
+            "type": "section",
+            "props": {
+              "width": "boxed",
+              "tag": "section"
+            },
+            "style": {
+              "desktop": {
+                "background": "palette:c6"
+              },
+              "tablet": {},
+              "mobile": {},
+              "hover": {}
+            },
+            "advanced": {
+              "anchor": "",
+              "cssClass": "",
+              "hideOn": {
+                "desktop": false,
+                "tablet": false,
+                "mobile": false
+              }
+            },
+            "children": [
+              {
+                "id": "n_3l3h260s5d",
+                "type": "row",
+                "props": {
+                  "stack": "mobile"
+                },
+                "style": {
+                  "desktop": {},
+                  "tablet": {},
+                  "mobile": {},
+                  "hover": {}
+                },
+                "advanced": {
+                  "anchor": "",
+                  "cssClass": "",
+                  "hideOn": {
+                    "desktop": false,
+                    "tablet": false,
+                    "mobile": false
+                  }
+                },
+                "children": [
+                  {
+                    "id": "n_6d682i186c",
+                    "type": "column",
+                    "props": {},
+                    "style": {
+                      "desktop": {
+                        "span": 12
+                      },
+                      "tablet": {},
+                      "mobile": {},
+                      "hover": {}
+                    },
+                    "advanced": {
+                      "anchor": "",
+                      "cssClass": "",
+                      "hideOn": {
+                        "desktop": false,
+                        "tablet": false,
+                        "mobile": false
+                      }
+                    },
+                    "children": [
+                      {
+                        "id": "n_6106082e6u",
+                        "type": "heading",
+                        "props": {
+                          "text": {
+                            "fr": "Ce que nous mettons en commun"
+                          },
+                          "level": "h2",
+                          "link": ""
+                        },
+                        "style": {
+                          "desktop": {
+                            "textAlign": "center",
+                            "marginBottom": "8px"
+                          },
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "n_276f0b3k0m",
+                "type": "row",
+                "props": {
+                  "stack": "mobile"
+                },
+                "style": {
+                  "desktop": {},
+                  "tablet": {},
+                  "mobile": {},
+                  "hover": {}
+                },
+                "advanced": {
+                  "anchor": "",
+                  "cssClass": "",
+                  "hideOn": {
+                    "desktop": false,
+                    "tablet": false,
+                    "mobile": false
+                  }
+                },
+                "children": [
+                  {
+                    "id": "n_6f3a703f2x",
+                    "type": "column",
+                    "props": {},
+                    "style": {
+                      "desktop": {
+                        "span": 4,
+                        "background": "palette:c4",
+                        "paddingTop": "24px",
+                        "paddingRight": "24px",
+                        "paddingBottom": "24px",
+                        "paddingLeft": "24px",
+                        "borderRadius": "12px"
+                      },
+                      "tablet": {},
+                      "mobile": {},
+                      "hover": {
+                        "boxShadow": "md"
+                      }
+                    },
+                    "advanced": {
+                      "anchor": "",
+                      "cssClass": "",
+                      "hideOn": {
+                        "desktop": false,
+                        "tablet": false,
+                        "mobile": false
+                      }
+                    },
+                    "children": [
+                      {
+                        "id": "n_0h2m6v2h2d",
+                        "type": "heading",
+                        "props": {
+                          "text": {
+                            "fr": "Le matériel"
+                          },
+                          "level": "h3",
+                          "link": ""
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        }
+                      },
+                      {
+                        "id": "n_483w6f0d3h",
+                        "type": "text",
+                        "props": {
+                          "content": {
+                            "fr": "<p>Caméras, micros et valises de transmission, prêtés aux médias membres.</p>"
+                          }
+                        },
+                        "style": {
+                          "desktop": {
+                            "color": "palette:c5"
+                          },
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "n_1l5h09733s",
+                    "type": "column",
+                    "props": {},
+                    "style": {
+                      "desktop": {
+                        "span": 4,
+                        "background": "palette:c4",
+                        "paddingTop": "24px",
+                        "paddingRight": "24px",
+                        "paddingBottom": "24px",
+                        "paddingLeft": "24px",
+                        "borderRadius": "12px"
+                      },
+                      "tablet": {},
+                      "mobile": {},
+                      "hover": {
+                        "boxShadow": "md"
+                      }
+                    },
+                    "advanced": {
+                      "anchor": "",
+                      "cssClass": "",
+                      "hideOn": {
+                        "desktop": false,
+                        "tablet": false,
+                        "mobile": false
+                      }
+                    },
+                    "children": [
+                      {
+                        "id": "n_3038345b18",
+                        "type": "heading",
+                        "props": {
+                          "text": {
+                            "fr": "Des techniciens neutres"
+                          },
+                          "level": "h3",
+                          "link": ""
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        }
+                      },
+                      {
+                        "id": "n_3r2w6h4e5t",
+                        "type": "text",
+                        "props": {
+                          "content": {
+                            "fr": "<p>Ils font la technique pour tout le monde, sans rôle éditorial.</p>"
+                          }
+                        },
+                        "style": {
+                          "desktop": {
+                            "color": "palette:c5"
+                          },
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "n_45300k1b2d",
+                    "type": "column",
+                    "props": {},
+                    "style": {
+                      "desktop": {
+                        "span": 4,
+                        "background": "palette:c4",
+                        "paddingTop": "24px",
+                        "paddingRight": "24px",
+                        "paddingBottom": "24px",
+                        "paddingLeft": "24px",
+                        "borderRadius": "12px"
+                      },
+                      "tablet": {},
+                      "mobile": {},
+                      "hover": {
+                        "boxShadow": "md"
+                      }
+                    },
+                    "advanced": {
+                      "anchor": "",
+                      "cssClass": "",
+                      "hideOn": {
+                        "desktop": false,
+                        "tablet": false,
+                        "mobile": false
+                      }
+                    },
+                    "children": [
+                      {
+                        "id": "n_4i2x3d4n5t",
+                        "type": "heading",
+                        "props": {
+                          "text": {
+                            "fr": "Les abonnements"
+                          },
+                          "level": "h3",
+                          "link": ""
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        }
+                      },
+                      {
+                        "id": "n_213v6j285l",
+                        "type": "text",
+                        "props": {
+                          "content": {
+                            "fr": "<p>Un seul abonnement de diffusion, payé une fois pour tous.</p>"
+                          }
+                        },
+                        "style": {
+                          "desktop": {
+                            "color": "palette:c5"
+                          },
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "n_6f6h6y4i2r",
+            "type": "section",
+            "props": {
+              "width": "boxed",
+              "tag": "section"
+            },
+            "style": {
+              "desktop": {
+                "background": "palette:c3",
+                "color": "palette:c4"
+              },
+              "tablet": {},
+              "mobile": {},
+              "hover": {}
+            },
+            "advanced": {
+              "anchor": "contact",
+              "cssClass": "",
+              "hideOn": {
+                "desktop": false,
+                "tablet": false,
+                "mobile": false
+              }
+            },
+            "children": [
+              {
+                "id": "n_4i5o29621q",
+                "type": "row",
+                "props": {
+                  "stack": "mobile"
+                },
+                "style": {
+                  "desktop": {
+                    "alignItems": "center"
+                  },
+                  "tablet": {},
+                  "mobile": {},
+                  "hover": {}
+                },
+                "advanced": {
+                  "anchor": "",
+                  "cssClass": "",
+                  "hideOn": {
+                    "desktop": false,
+                    "tablet": false,
+                    "mobile": false
+                  }
+                },
+                "children": [
+                  {
+                    "id": "n_2v6k4s236q",
+                    "type": "column",
+                    "props": {},
+                    "style": {
+                      "desktop": {
+                        "span": 8
+                      },
+                      "tablet": {},
+                      "mobile": {},
+                      "hover": {}
+                    },
+                    "advanced": {
+                      "anchor": "",
+                      "cssClass": "",
+                      "hideOn": {
+                        "desktop": false,
+                        "tablet": false,
+                        "mobile": false
+                      }
+                    },
+                    "children": [
+                      {
+                        "id": "n_6n4d282o37",
+                        "type": "heading",
+                        "props": {
+                          "text": {
+                            "fr": "Votre média veut nous rejoindre ?"
+                          },
+                          "level": "h2",
+                          "link": ""
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        }
+                      },
+                      {
+                        "id": "n_6g2o5n700o",
+                        "type": "text",
+                        "props": {
+                          "content": {
+                            "fr": "<p>Écrivez-nous : nous vous présentons le projet et répondons à vos questions.</p>"
+                          }
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "n_665n32303e",
+                    "type": "column",
+                    "props": {},
+                    "style": {
+                      "desktop": {
+                        "span": 4
+                      },
+                      "tablet": {},
+                      "mobile": {},
+                      "hover": {}
+                    },
+                    "advanced": {
+                      "anchor": "",
+                      "cssClass": "",
+                      "hideOn": {
+                        "desktop": false,
+                        "tablet": false,
+                        "mobile": false
+                      }
+                    },
+                    "children": [
+                      {
+                        "id": "n_3b3q5w3c38",
+                        "type": "button",
+                        "props": {
+                          "label": {
+                            "fr": "Écrire à l’équipe"
+                          },
+                          "link": "mailto:contact@media-alternatif.be",
+                          "variant": "secondary",
+                          "size": "lg",
+                          "newTab": false
+                        },
+                        "style": {
+                          "desktop": {
+                            "textAlign": "right"
+                          },
+                          "tablet": {},
+                          "mobile": {
+                            "textAlign": "left"
+                          },
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "p_aqrdst4r",
+      "slug": "contact",
+      "title": {
+        "fr": "Contact",
+        "nl": "Contact",
+        "de": "Kontakt",
+        "en": "Contact"
+      },
+      "seo": {
+        "description": {}
+      },
+      "root": {
+        "id": "n_3p0j0d134j",
+        "type": "page",
+        "props": {},
+        "style": {
+          "desktop": {},
+          "tablet": {},
+          "mobile": {},
+          "hover": {}
+        },
+        "advanced": {
+          "anchor": "",
+          "cssClass": "",
+          "hideOn": {
+            "desktop": false,
+            "tablet": false,
+            "mobile": false
+          }
+        },
+        "children": [
+          {
+            "id": "n_5s66112d14",
+            "type": "section",
+            "props": {
+              "width": "boxed",
+              "tag": "section"
+            },
+            "style": {
+              "desktop": {},
+              "tablet": {},
+              "mobile": {},
+              "hover": {}
+            },
+            "advanced": {
+              "anchor": "",
+              "cssClass": "",
+              "hideOn": {
+                "desktop": false,
+                "tablet": false,
+                "mobile": false
+              }
+            },
+            "children": [
+              {
+                "id": "n_42346u2z6w",
+                "type": "row",
+                "props": {
+                  "stack": "mobile"
+                },
+                "style": {
+                  "desktop": {},
+                  "tablet": {},
+                  "mobile": {},
+                  "hover": {}
+                },
+                "advanced": {
+                  "anchor": "",
+                  "cssClass": "",
+                  "hideOn": {
+                    "desktop": false,
+                    "tablet": false,
+                    "mobile": false
+                  }
+                },
+                "children": [
+                  {
+                    "id": "n_162q396t49",
+                    "type": "column",
+                    "props": {},
+                    "style": {
+                      "desktop": {
+                        "span": 12
+                      },
+                      "tablet": {},
+                      "mobile": {},
+                      "hover": {}
+                    },
+                    "advanced": {
+                      "anchor": "",
+                      "cssClass": "",
+                      "hideOn": {
+                        "desktop": false,
+                        "tablet": false,
+                        "mobile": false
+                      }
+                    },
+                    "children": [
+                      {
+                        "id": "n_53673x6v6t",
+                        "type": "heading",
+                        "props": {
+                          "text": {
+                            "fr": "Écrire à l’équipe"
+                          },
+                          "level": "h1",
+                          "link": ""
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        }
+                      },
+                      {
+                        "id": "n_0c1z5t2o4g",
+                        "type": "text",
+                        "props": {
+                          "content": {
+                            "fr": "<p>Une question ou une proposition de sujet ? Écrivez à <a href=\"mailto:contact@media-alternatif.be\">contact@media-alternatif.be</a>.</p>"
+                          }
+                        },
+                        "style": {
+                          "desktop": {},
+                          "tablet": {},
+                          "mobile": {},
+                          "hover": {}
+                        },
+                        "advanced": {
+                          "anchor": "",
+                          "cssClass": "",
+                          "hideOn": {
+                            "desktop": false,
+                            "tablet": false,
+                            "mobile": false
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "assets": {}
+}
