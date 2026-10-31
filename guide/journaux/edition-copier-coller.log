@@ -1,34 +1,35 @@
-22:27:45.318 +12.06s DEBUG canvas.key Raccourci dans la page : Ctrl+C {"key":"Ctrl+C","in":"page","selected":"n_543a343z5o"}
-22:27:45.319 +12.06s INFO  action.copy Copié : Bouton {"id":"n_543a343z5o","type":"button","nodes":1}
-22:27:45.319 +12.06s INFO  ui.toast Message affiché : « Bouton » copié. Sélectionnez un emplacement puis Ctrl+V.
-22:27:45.325 +12.06s DEBUG canvas.key Raccourci dans la page : Ctrl+V {"key":"Ctrl+V","in":"page","selected":"n_543a343z5o"}
-22:27:45.327 +12.06s DEBUG store.commit Modification {"source":"action","past":7,"page":"p_s2tq5e0u"}
-22:27:45.331 +12.07s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":3}
-22:27:45.338 +12.08s DEBUG store.select Sélection : button {"id":"n_3n331d1m2b","type":"button"}
-22:27:45.348 +12.09s INFO  action.paste Collé : button {"id":"n_3n331d1m2b","type":"button","parentType":"column","after":"n_543a343z5o"}
-22:27:45.511 +12.25s DEBUG canvas.key Raccourci dans la page : Ctrl+D {"key":"Ctrl+D","in":"page","selected":"n_3n331d1m2b"}
-22:27:45.512 +12.25s DEBUG store.commit Modification {"source":"action","past":8,"page":"p_s2tq5e0u"}
-22:27:45.515 +12.25s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":2}
-22:27:45.520 +12.26s DEBUG store.select Sélection : button {"id":"n_6w213v3b71","type":"button"}
-22:27:45.527 +12.27s INFO  action.duplicate Dupliqué : button {"id":"n_3n331d1m2b","newId":"n_6w213v3b71","type":"button"}
-22:27:45.686 +12.42s DEBUG canvas.key Raccourci dans la page : Delete {"key":"Delete","in":"page","selected":"n_6w213v3b71"}
-22:27:45.687 +12.43s DEBUG store.commit Modification {"source":"action","past":9,"page":"p_s2tq5e0u"}
-22:27:45.691 +12.43s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":2}
-22:27:45.693 +12.43s DEBUG store.select Sélection : heading {"id":"n_243n0f102t","type":"heading"}
-22:27:45.698 +12.44s INFO  action.delete Supprimé : button {"id":"n_6w213v3b71","type":"button","next":"n_243n0f102t"}
-22:27:45.854 +12.59s DEBUG canvas.key Raccourci dans la page : Ctrl+X {"key":"Ctrl+X","in":"page","selected":"n_243n0f102t"}
-22:27:45.854 +12.59s INFO  action.cut Coupé : Titre (dans le presse-papiers d’Atelier) {"id":"n_243n0f102t","type":"heading"}
-22:27:45.855 +12.59s DEBUG store.commit Modification {"source":"action","past":10,"page":"p_s2tq5e0u"}
-22:27:45.859 +12.60s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":3}
-22:27:45.861 +12.60s DEBUG store.select Sélection : text {"id":"n_486t2r292u","type":"text"}
-22:27:45.866 +12.60s INFO  action.delete Supprimé : heading {"id":"n_243n0f102t","type":"heading","next":"n_486t2r292u"}
-22:27:45.866 +12.60s INFO  ui.toast Message affiché : « Titre » coupé. Sélectionnez la destination puis Ctrl+V.
-22:27:46.028 +12.77s DEBUG canvas.key Raccourci dans la page : Ctrl+V {"key":"Ctrl+V","in":"page","selected":"n_486t2r292u"}
-22:27:46.029 +12.77s DEBUG store.commit Modification {"source":"action","past":11,"page":"p_s2tq5e0u"}
-22:27:46.032 +12.77s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":3}
-22:27:46.037 +12.78s DEBUG store.select Sélection : heading {"id":"n_3f0m6r6g0u","type":"heading"}
-22:27:46.044 +12.78s INFO  action.paste Collé : heading {"id":"n_3f0m6r6g0u","type":"heading","parentType":"column","after":"n_486t2r292u"}
-22:27:46.220 +12.96s DEBUG canvas.key Raccourci dans la page : Alt+ArrowUp {"key":"Alt+ArrowUp","in":"page","selected":"n_3f0m6r6g0u"}
-22:27:46.222 +12.96s DEBUG store.commit Modification {"source":"action","past":12,"page":"p_s2tq5e0u"}
-22:27:46.227 +12.96s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":4}
-22:27:46.240 +12.98s INFO  action.move Monté : heading {"id":"n_3f0m6r6g0u","type":"heading","delta":-1,"index":3}
+12:57:18.387 +12.16s DEBUG canvas.key Raccourci dans la page : Ctrl+C {"key":"Ctrl+C","in":"page","selected":"n_2i4g1j1c35"}
+12:57:18.387 +12.16s INFO  action.copy Copié : Bouton {"id":"n_2i4g1j1c35","type":"button","nodes":1}
+12:57:18.387 +12.16s INFO  ui.toast Message affiché : « Bouton » copié. Sélectionnez un emplacement puis Ctrl+V.
+12:57:18.393 +12.17s DEBUG canvas.key Raccourci dans la page : Ctrl+V {"key":"Ctrl+V","in":"page","selected":"n_2i4g1j1c35"}
+12:57:18.395 +12.17s DEBUG store.commit Modification {"source":"action","past":7,"page":"p_fptbpb4e"}
+12:57:18.399 +12.17s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":2}
+12:57:18.406 +12.18s DEBUG store.select Sélection : button {"id":"n_6z2n4n3i4y","type":"button"}
+12:57:18.412 +12.19s INFO  action.paste Collé : button {"id":"n_6z2n4n3i4y","type":"button","parentType":"column","after":"n_2i4g1j1c35"}
+12:57:18.572 +12.35s DEBUG canvas.key Raccourci dans la page : Ctrl+D {"key":"Ctrl+D","in":"page","selected":"n_6z2n4n3i4y"}
+12:57:18.574 +12.35s DEBUG store.commit Modification {"source":"action","past":8,"page":"p_fptbpb4e"}
+12:57:18.578 +12.35s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":3}
+12:57:18.584 +12.36s DEBUG store.select Sélection : button {"id":"n_5y6m45173j","type":"button"}
+12:57:18.593 +12.37s INFO  action.duplicate Dupliqué : button {"id":"n_6z2n4n3i4y","newId":"n_5y6m45173j","type":"button"}
+12:57:18.752 +12.53s DEBUG canvas.key Raccourci dans la page : Delete {"key":"Delete","in":"page","selected":"n_5y6m45173j"}
+12:57:18.754 +12.53s DEBUG store.commit Modification {"source":"action","past":9,"page":"p_fptbpb4e"}
+12:57:18.758 +12.53s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":3}
+12:57:18.761 +12.54s DEBUG store.select Sélection : heading {"id":"n_093w3i2j1p","type":"heading"}
+12:57:18.767 +12.54s INFO  action.delete Supprimé : button {"id":"n_5y6m45173j","type":"button","next":"n_093w3i2j1p"}
+12:57:18.767 +12.54s INFO  ui.toast Message affiché : Supprimé : Bouton — Ctrl+Z pour annuler
+12:57:18.924 +12.70s DEBUG canvas.key Raccourci dans la page : Ctrl+X {"key":"Ctrl+X","in":"page","selected":"n_093w3i2j1p"}
+12:57:18.924 +12.70s INFO  action.cut Coupé : Titre (dans le presse-papiers d’Atelier) {"id":"n_093w3i2j1p","type":"heading"}
+12:57:18.925 +12.70s DEBUG store.commit Modification {"source":"action","past":10,"page":"p_fptbpb4e"}
+12:57:18.929 +12.70s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":3}
+12:57:18.931 +12.71s DEBUG store.select Sélection : text {"id":"n_1w4k1c3v43","type":"text"}
+12:57:18.935 +12.71s INFO  action.delete Supprimé : heading {"id":"n_093w3i2j1p","type":"heading","next":"n_1w4k1c3v43"}
+12:57:18.936 +12.71s INFO  ui.toast Message affiché : « Titre » coupé. Sélectionnez la destination puis Ctrl+V.
+12:57:19.098 +12.87s DEBUG canvas.key Raccourci dans la page : Ctrl+V {"key":"Ctrl+V","in":"page","selected":"n_1w4k1c3v43"}
+12:57:19.099 +12.87s DEBUG store.commit Modification {"source":"action","past":11,"page":"p_fptbpb4e"}
+12:57:19.103 +12.88s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":3}
+12:57:19.107 +12.88s DEBUG store.select Sélection : heading {"id":"n_0w3l1v4j22","type":"heading"}
+12:57:19.114 +12.89s INFO  action.paste Collé : heading {"id":"n_0w3l1v4j22","type":"heading","parentType":"column","after":"n_1w4k1c3v43"}
+12:57:19.274 +13.05s DEBUG canvas.key Raccourci dans la page : Alt+ArrowUp {"key":"Alt+ArrowUp","in":"page","selected":"n_0w3l1v4j22"}
+12:57:19.275 +13.05s DEBUG store.commit Modification {"source":"action","past":12,"page":"p_fptbpb4e"}
+12:57:19.279 +13.05s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":2}
+12:57:19.289 +13.06s INFO  action.move Monté : heading {"id":"n_0w3l1v4j22","type":"heading","delta":-1,"index":3}

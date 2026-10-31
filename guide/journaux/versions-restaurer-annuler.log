@@ -1,2 +1,2 @@
-22:29:08.288 +54.27s INFO  version.restore.start [version.restore#1] Restauration de « Avant les essais » du 29 oct. 2026, 22:29 {"id":"v_mvu22yi79u2i7","kind":"manual","at":"2026-10-29T21:29:05.071Z","pages":5}
-22:29:08.288 +54.27s INFO  version.restore.cancel [version.restore#1 · 0 ms] Restauration annulée
+20:52:56.912 +61.89s INFO  version.restore.start [version.restore#1] Restauration de « Avant les essais » du 30 oct. 2026, 20:52 {"id":"v_mvve33t25tdcp","kind":"manual","at":"2026-10-30T19:52:53.510Z","pages":5}
+20:52:56.913 +61.89s INFO  version.restore.cancel [version.restore#1 · 1 ms] Restauration annulée

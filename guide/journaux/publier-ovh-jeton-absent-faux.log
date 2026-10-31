@@ -1,15 +1,12 @@
-22:37:55.017 +9.68s DEBUG store.commit Modification {"source":"site","past":13,"page":"p_87jw10m5"}
-22:37:55.021 +9.68s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
-22:37:55.029 +9.69s INFO  publish.php.start [publish.php#3] Publication sur OVH (publish.php) {"url":"http://127.0.0.1:9599/publish.php"}
-22:37:55.030 +9.69s ERROR publish.php.fail [publish.php#3 · 1 ms] jeton absent {"error":{"name":"Error","message":"jeton absent","stack":"Error: jeton absent\nat HTMLButtonElement.run (http://localhost:8791/editor/publish-ui.js:88:32)"}}
-22:37:55.283 +9.94s DEBUG store.commit Modification {"source":"site","past":14,"page":"p_87jw10m5"}
-22:37:55.286 +9.94s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
-22:37:55.293 +9.95s INFO  publish.test.start [publish.test#2] Test de connexion à publish.php {"url":"http://127.0.0.1:9599/publish.php","token":true}
-22:37:55.293 +9.95s DEBUG net.request GET 127.0.0.1:9599/publish.php {"id":6,"method":"GET","url":"http://127.0.0.1:9599/publish.php?atelier_debug=1"}
-22:37:55.303 +9.96s DEBUG net.response 200 GET 127.0.0.1:9599/publish.php (10 ms) {"id":6,"status":200,"ms":10,"type":"application/json","req":"6ad98d27"}
-22:37:55.304 +9.96s DEBUG php.req.start GET reçu {"method":"GET","who":"9906cc70e1","bytes":0,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8791","req":"6ad98d27","srvMs":0}
-22:37:55.304 +9.96s WARN  php.diag.denied Diagnostic refusé : jeton faux {"req":"6ad98d27","srvMs":0}
-22:37:55.304 +9.96s DEBUG php.status Statut demandé (test de connexion) {"version":"4","zip":true,"diag":false,"req":"6ad98d27","srvMs":0.1}
-22:37:55.305 +9.96s DEBUG php.req.end Réponse 200 (status) {"status":200,"route":"status","mem_kb":353,"req":"6ad98d27","srvMs":0.1}
-22:37:55.305 +9.96s WARN  publish.test.token-refused [publish.test#2 · 12 ms] Le jeton saisi ne correspond pas à ce publish.php (diagnostic refusé) : la publication sera refusée
-22:37:55.305 +9.96s INFO  publish.test.ok [publish.test#2 · 12 ms] publish.php répond {"version":"4","php":"8.3.6","zip":true,"req":"6ad98d27"}
+13:34:43.420 +11.26s DEBUG store.commit Modification {"source":"site","past":13,"page":"p_xqmluyje"}
+13:34:43.423 +11.26s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
+13:34:43.431 +11.27s INFO  publish.php.start [publish.php#3] Publication sur OVH (publish.php) {"url":"http://127.0.0.1:9505/publish.php"}
+13:34:43.431 +11.27s ERROR publish.php.fail [publish.php#3 · 0 ms] jeton absent {"error":{"name":"Error","message":"jeton absent","stack":"Error: jeton absent\nat HTMLButtonElement.run (http://localhost:8833/editor/publish-ui.js:170:32)"}}
+13:34:43.702 +11.54s DEBUG store.commit Modification {"source":"site","past":14,"page":"p_xqmluyje"}
+13:34:43.706 +11.55s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
+13:34:43.716 +11.56s INFO  publish.test.start [publish.test#2] Test de connexion à publish.php {"url":"http://127.0.0.1:9505/publish.php","token":true}
+13:34:43.717 +11.56s INFO  storage.secret-write Secret oublié sur cet appareil {"name":"php-token:http://127.0.0.1:9505"}
+13:34:43.725 +11.56s DEBUG net.request GET 127.0.0.1:9505/publish.php {"id":14,"method":"GET","url":"http://127.0.0.1:9505/publish.php?atelier_debug=1"}
+13:34:43.738 +11.58s DEBUG net.response 200 GET 127.0.0.1:9505/publish.php (13 ms) {"id":14,"status":200,"ms":13,"type":"application/json","req":"03636cd9"}
+13:34:43.741 +11.58s WARN  publish.test.token-refused [publish.test#2 · 25 ms] Le jeton saisi ne correspond pas à ce publish.php (diagnostic refusé) : la publication sera refusée
+13:34:43.741 +11.58s INFO  publish.test.ok [publish.test#2 · 25 ms] publish.php répond {"version":"6","zip":true,"req":"03636cd9"}

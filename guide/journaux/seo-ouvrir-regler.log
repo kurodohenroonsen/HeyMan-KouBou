@@ -1,18 +1,18 @@
-22:29:17.005 +4.68s DEBUG seo.analysis Analyse : page 88/100, site 85/100 {"pageId":"p_thzb3i6h","lang":"fr","page":88,"site":85,"points":{"good":2,"warn":2,"info":1},"sitePoints":{"warn":1,"info":1},"words":86,"imagesNoAlt":0}
-22:29:17.008 +4.69s DEBUG ui.dialog.open Fenêtre ouverte : 🔎 Référencement {"id":"seoDialog","class":"audit col-dialog seo-dialog","modal":true}
-22:29:17.016 +4.70s INFO  seo.open Fenêtre Référencement : note du site 85/100 {"lang":"fr","pageId":"p_thzb3i6h","pages":2,"site":85,"page":88,"sitePoints":{"warn":1,"info":1},"pagePoints":{"good":2,"warn":2,"info":1},"missingDesc":2,"baseUrl":true}
-22:29:17.090 +4.77s DEBUG seo.page Page choisie : /contact/ (88/100) {"pageId":"p_do6s1l5t","score":88,"lang":"fr"}
-22:29:17.093 +4.77s DEBUG seo.analysis Analyse : page 88/100, site 85/100 {"pageId":"p_do6s1l5t","lang":"fr","page":88,"site":85,"points":{"good":2,"warn":2,"info":1},"sitePoints":{"warn":1,"info":1},"words":13,"imagesNoAlt":0}
-22:29:17.119 +4.80s DEBUG store.commit Modification {"key":"seo-p_do6s1l5t-title-fr","source":"seo","past":4,"page":"p_thzb3i6h"}
-22:29:17.156 +4.83s DEBUG seo.field Champ « title » modifié (fr) {"pageId":"p_do6s1l5t","field":"title","lang":"fr","len":13}
-22:29:17.157 +4.84s DEBUG seo.analysis Analyse : page 82/100, site 82/100 {"pageId":"p_do6s1l5t","lang":"fr","page":82,"site":82,"points":{"warn":3,"good":1,"info":1},"sitePoints":{"warn":1,"info":1},"words":13,"imagesNoAlt":0}
-22:29:17.161 +4.84s DEBUG seo.field Champ « title » modifié (fr) {"pageId":"p_do6s1l5t","field":"title","lang":"fr","len":13}
-22:29:17.167 +4.85s DEBUG seo.analysis Analyse : page 82/100, site 82/100 {"pageId":"p_do6s1l5t","lang":"fr","page":82,"site":82,"points":{"warn":3,"good":1,"info":1},"sitePoints":{"warn":1,"info":1},"words":13,"imagesNoAlt":0}
-22:29:17.353 +5.03s DEBUG seo.field noindex activé {"pageId":"p_do6s1l5t","field":"noindex","value":true}
-22:29:17.353 +5.03s DEBUG store.commit Modification {"source":"seo","past":5,"page":"p_thzb3i6h"}
-22:29:17.357 +5.04s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"seo","mode":"contenu","ms":3}
-22:29:17.360 +5.04s DEBUG seo.analysis Analyse : page 82/100, site 82/100 {"pageId":"p_do6s1l5t","lang":"fr","page":82,"site":82,"points":{"info":2,"warn":3,"good":1},"sitePoints":{"warn":1,"info":1},"words":13,"imagesNoAlt":0}
-22:29:17.589 +5.27s DEBUG seo.lang Langue analysée : de {"from":"fr","to":"de"}
-22:29:17.590 +5.27s DEBUG seo.analysis Analyse : page 82/100, site 82/100 {"pageId":"p_do6s1l5t","lang":"de","page":82,"site":82,"points":{"info":2,"warn":3,"good":1},"sitePoints":{"warn":1,"info":1},"words":13,"imagesNoAlt":0}
-22:29:17.758 +5.44s DEBUG seo.lang Langue analysée : fr {"from":"de","to":"fr"}
-22:29:17.759 +5.44s DEBUG seo.analysis Analyse : page 82/100, site 82/100 {"pageId":"p_do6s1l5t","lang":"fr","page":82,"site":82,"points":{"info":2,"warn":3,"good":1},"sitePoints":{"warn":1,"info":1},"words":13,"imagesNoAlt":0}
+20:53:06.594 +5.08s DEBUG seo.analysis Analyse : page 88/100, site 85/100 {"pageId":"p_94oom426","lang":"fr","page":88,"site":85,"points":{"good":2,"warn":2,"info":1},"sitePoints":{"warn":1,"info":1},"words":86,"imagesNoAlt":0}
+20:53:06.596 +5.08s DEBUG ui.dialog.open Fenêtre ouverte : 🔎 Référencement {"id":"seoDialog","class":"audit col-dialog seo-dialog","modal":true}
+20:53:06.605 +5.09s INFO  seo.open Fenêtre Référencement : note du site 85/100 {"lang":"fr","pageId":"p_94oom426","pages":2,"site":85,"page":88,"sitePoints":{"warn":1,"info":1},"pagePoints":{"good":2,"warn":2,"info":1},"missingDesc":2,"baseUrl":true}
+20:53:06.712 +5.20s DEBUG seo.page Page choisie : /contact/ (88/100) {"pageId":"p_uw8y8icj","score":88,"lang":"fr"}
+20:53:06.713 +5.20s DEBUG seo.analysis Analyse : page 88/100, site 85/100 {"pageId":"p_uw8y8icj","lang":"fr","page":88,"site":85,"points":{"good":2,"warn":2,"info":1},"sitePoints":{"warn":1,"info":1},"words":13,"imagesNoAlt":0}
+20:53:06.751 +5.24s DEBUG store.commit Modification {"key":"seo-p_uw8y8icj-title-fr","source":"seo","past":4,"page":"p_94oom426"}
+20:53:06.792 +5.28s DEBUG seo.field Champ « title » modifié (fr) {"pageId":"p_uw8y8icj","field":"title","lang":"fr","len":13}
+20:53:06.794 +5.28s DEBUG seo.analysis Analyse : page 82/100, site 82/100 {"pageId":"p_uw8y8icj","lang":"fr","page":82,"site":82,"points":{"warn":3,"good":1,"info":1},"sitePoints":{"warn":1,"info":1},"words":13,"imagesNoAlt":0}
+20:53:06.797 +5.28s DEBUG seo.field Champ « title » modifié (fr) {"pageId":"p_uw8y8icj","field":"title","lang":"fr","len":13}
+20:53:06.811 +5.29s DEBUG seo.analysis Analyse : page 82/100, site 82/100 {"pageId":"p_uw8y8icj","lang":"fr","page":82,"site":82,"points":{"warn":3,"good":1,"info":1},"sitePoints":{"warn":1,"info":1},"words":13,"imagesNoAlt":0}
+20:53:07.009 +5.49s DEBUG seo.field noindex activé {"pageId":"p_uw8y8icj","field":"noindex","value":true}
+20:53:07.010 +5.49s DEBUG store.commit Modification {"source":"seo","past":5,"page":"p_94oom426"}
+20:53:07.013 +5.50s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"seo","mode":"contenu","ms":3}
+20:53:07.017 +5.50s DEBUG seo.analysis Analyse : page 82/100, site 82/100 {"pageId":"p_uw8y8icj","lang":"fr","page":82,"site":82,"points":{"info":2,"warn":3,"good":1},"sitePoints":{"warn":1,"info":1},"words":13,"imagesNoAlt":0}
+20:53:07.224 +5.71s DEBUG seo.lang Langue analysée : de {"from":"fr","to":"de"}
+20:53:07.225 +5.71s DEBUG seo.analysis Analyse : page 82/100, site 82/100 {"pageId":"p_uw8y8icj","lang":"de","page":82,"site":82,"points":{"info":2,"warn":3,"good":1},"sitePoints":{"warn":1,"info":1},"words":13,"imagesNoAlt":0}
+20:53:07.394 +5.88s DEBUG seo.lang Langue analysée : fr {"from":"de","to":"fr"}
+20:53:07.395 +5.88s DEBUG seo.analysis Analyse : page 82/100, site 82/100 {"pageId":"p_uw8y8icj","lang":"fr","page":82,"site":82,"points":{"info":2,"warn":3,"good":1},"sitePoints":{"warn":1,"info":1},"words":13,"imagesNoAlt":0}

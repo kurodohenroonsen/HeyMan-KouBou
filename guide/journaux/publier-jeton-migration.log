@@ -1,0 +1,10 @@
+12:42:05.560 +3.00s INFO  publish.open Fenêtre Publier {"mode":"php","tab":"php","ok":true,"errors":0,"warnings":1}
+12:42:05.561 +3.00s DEBUG ui.dialog.open Fenêtre ouverte : Publier le site {"id":"publishDialog","class":"audit","modal":true}
+12:42:05.577 +3.02s DEBUG storage.secret-read Secret retrouvé sur cet appareil {"name":"php-token"}
+12:42:05.597 +3.04s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:http://127.0.0.1:8745"}
+12:42:05.598 +3.04s INFO  storage.secret-write Secret gardé sur cet appareil (jamais dans le projet) {"name":"php-token:http://127.0.0.1:8745"}
+12:42:05.601 +3.04s INFO  storage.secret-write Secret oublié sur cet appareil {"name":"php-token"}
+12:42:05.602 +3.05s INFO  storage.secret-migrated Ancien jeton rattaché à l’adresse de publication du projet {"from":"php-token","to":"php-token:http://127.0.0.1:8745"}
+12:42:05.603 +3.05s DEBUG publish.token-for Dépôt GitHub incomplet : aucun jeton pré-rempli
+12:42:05.603 +3.05s DEBUG storage.secret-read Secret retrouvé sur cet appareil {"name":"php-token:http://127.0.0.1:8745"}
+12:42:05.603 +3.05s DEBUG publish.token-for Jeton pré-rempli pour 127.0.0.1:8745 (appareil) {"origin":"http://127.0.0.1:8745","from":"appareil","known":false}

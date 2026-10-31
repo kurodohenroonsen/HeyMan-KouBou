@@ -1,12 +1,12 @@
-22:30:05.580 +0.90s DEBUG storage.secret-read Aucun secret gardé {"name":"identity"}
-22:30:05.581 +0.90s DEBUG storage.secret-read Aucun secret gardé {"name":"identity"}
-22:30:05.583 +0.91s INFO  collab.identity.new Clé personnelle créée pour Misako {"fp":"j1wL165-W78CG2YQ","did":"did:key:zDnaehBfvKZW6mLr"}
-22:30:05.584 +0.91s INFO  storage.secret-write Secret gardé sur cet appareil (jamais dans le projet) {"name":"identity"}
-22:30:05.587 +0.91s DEBUG store.commit Modification {"source":"review","past":1,"page":"p_3dyde0io"}
-22:30:05.591 +0.91s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"review","mode":"contenu","ms":3}
-22:30:05.609 +0.93s INFO  version.auto Première modification du jour : version automatique de l’état d’avant {"previous":null,"source":"review"}
-22:30:05.609 +0.93s INFO  version.save.start [version.save#1] Enregistrement d’une version automatique {"kind":"auto"}
-22:30:05.610 +0.93s DEBUG storage.version-save Version enregistrée {"id":"v_mvu2497tjrje6","kind":"auto"}
-22:30:05.610 +0.93s INFO  review.add Commentaire ajouté et signé par Misako sur « Titre » {"id":"cm_-gW_M8iBKF2h","page":"p_3dyde0io","node":"n_136h0l2m1h","type":"heading","chars":22,"role":"seul"}
-22:30:05.612 +0.93s INFO  ui.toast Message affiché : Commentaire ajouté et signé.
-22:30:05.614 +0.94s DEBUG review.sig.ok Signature vérifiée : Misako {"id":"cm_-gW_M8iBKF2h","fp":"j1wL165-W78CG2YQ","reply":false}
+12:41:05.442 +0.69s DEBUG storage.secret-read Aucun secret gardé {"name":"identity"}
+12:41:05.447 +0.69s DEBUG storage.secret-read Aucun secret gardé {"name":"identity"}
+12:41:05.449 +0.69s INFO  collab.identity.new Clé personnelle créée pour Misako {"fp":"RRJWDgk1z7uH8kul","did":"did:key:zDnaei8Ghjf75P7o"}
+12:41:05.450 +0.69s INFO  storage.secret-write Secret gardé sur cet appareil (jamais dans le projet) {"name":"identity"}
+12:41:05.455 +0.70s DEBUG store.commit Modification {"source":"review","past":1,"page":"p_knuhgmm3"}
+12:41:05.461 +0.71s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"review","mode":"contenu","ms":4}
+12:41:05.486 +0.73s INFO  version.auto Première modification du jour : version automatique de l’état d’avant {"previous":null,"source":"review"}
+12:41:05.487 +0.73s INFO  version.save.start [version.save#1] Enregistrement d’une version automatique {"kind":"auto"}
+12:41:05.488 +0.73s DEBUG storage.version-save Version enregistrée {"id":"v_mvwbyhxrbq0fl","kind":"auto"}
+12:41:05.488 +0.73s INFO  review.add Commentaire ajouté et signé par Misako sur « Titre » {"id":"cm_XN12BWqxjU6U","page":"p_knuhgmm3","node":"n_3l2g0t2u26","type":"heading","chars":22,"role":"seul"}
+12:41:05.492 +0.74s INFO  ui.toast Message affiché : Commentaire ajouté et signé.
+12:41:05.495 +0.74s DEBUG review.sig.ok Signature vérifiée : Misako {"id":"cm_XN12BWqxjU6U","fp":"RRJWDgk1z7uH8kul","reply":false}

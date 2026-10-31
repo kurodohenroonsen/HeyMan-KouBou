@@ -1,13 +1,13 @@
-22:29:15.052 +2.73s DEBUG canvas.key Raccourci dans la page : Ctrl+A {"key":"Ctrl+A","in":"texte","selected":"n_24312f2y23"}
-22:29:15.089 +2.77s DEBUG edit.ai-menu [edit#1 · 1684 ms] Menu ✨ ouvert {"open":true,"modes":["shorter","simpler","formal","friendly","longer"]}
-22:29:15.145 +2.82s DEBUG edit.ai-ask [edit#1 · 1740 ms] Demande à l’IA locale : corriger {"mode":"proofread","chars":66,"selection":true}
-22:29:15.146 +2.83s DEBUG ai.provider Fournisseur d’IA de test (window.__atelierAI) {"source":"test","lang":"fr","has":{"prompt":true,"multimodal":true,"summarizer":true,"rewriter":true,"proofreader":true,"translator":true},"methods":["prompt","summarize","rewrite","proofread","translate"]}
-22:29:15.147 +2.83s INFO  ai.proofread.start [ai.proofread#1] IA locale : corriger les fautes {"task":"proofread","inLen":66,"excerpt":"Le MAB réunit les médias alternatifs belges. Nous partageon…","lang":"fr","gen":"fr","api":"proofreader","source":"test"}
-22:29:15.147 +2.83s DEBUG ai.proofread.call [ai.proofread#1 · 0 ms] Appel Proofreader (fr) {"api":"proofreader","lang":"fr","inLen":66}
-22:29:15.148 +2.83s DEBUG ai.proofread.reply [ai.proofread#1 · 1 ms] Réponse Proofreader : 165 car. en 1 ms {"api":"proofreader","ms":1,"outLen":165,"excerpt":"{\"correctedInput\":\"Le MAB réunit les médias alternatifs bel…"}
-22:29:15.149 +2.83s INFO  ai.proofread.ok [ai.proofread#1 · 2 ms] Corriger : proposition prête (Proofreader) {"via":"proofreader","fallback":false,"translated":false,"calls":1,"corrections":1,"outLen":76}
-22:29:15.149 +2.83s DEBUG edit.ai-proposal [edit#1 · 1744 ms] Correction : 1 proposition affichée {"corrections":1}
-22:29:15.228 +2.91s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_24312f2y23-content-1","source":"canvas","merged":true,"past":1,"page":"p_thzb3i6h"}
-22:29:15.235 +2.91s DEBUG ai.mark Texte de l’IA appliqué et marqué « à relire » {"nodeId":"n_24312f2y23","field":"content","lang":"fr"}
-22:29:15.236 +2.92s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_24312f2y23-content-1","source":"canvas","merged":true,"past":1,"page":"p_thzb3i6h"}
-22:29:15.242 +2.92s INFO  edit.ai-apply [edit#1 · 1837 ms] 1 correction de l’IA appliquée (texte marqué « à relire ») {"id":"n_24312f2y23","key":"content","corrections":1}
+20:53:04.480 +2.96s DEBUG canvas.key Raccourci dans la page : Ctrl+A {"key":"Ctrl+A","in":"texte","selected":"n_4b5a28285w"}
+20:53:04.537 +3.02s DEBUG edit.ai-menu [edit#1 · 1886 ms] Menu ✨ ouvert {"open":true,"modes":["shorter","simpler","formal","friendly","longer"]}
+20:53:04.598 +3.08s DEBUG edit.ai-ask [edit#1 · 1947 ms] Demande à l’IA locale : corriger {"mode":"proofread","chars":66,"selection":true}
+20:53:04.598 +3.08s DEBUG ai.provider Fournisseur d’IA de test (window.__atelierAI) {"source":"test","lang":"fr","has":{"prompt":true,"multimodal":true,"summarizer":true,"rewriter":true,"proofreader":true,"translator":true},"methods":["prompt","summarize","rewrite","proofread","translate"]}
+20:53:04.598 +3.08s INFO  ai.proofread.start [ai.proofread#1] IA locale : corriger les fautes {"task":"proofread","inLen":66,"excerpt":"Le MAB réunit les médias alternatifs belges. Nous partageon…","lang":"fr","gen":"fr","api":"proofreader","source":"test"}
+20:53:04.599 +3.08s DEBUG ai.proofread.call [ai.proofread#1 · 1 ms] Appel Proofreader (fr) {"api":"proofreader","lang":"fr","inLen":66}
+20:53:04.599 +3.08s DEBUG ai.proofread.reply [ai.proofread#1 · 1 ms] Réponse Proofreader : 165 car. en 0 ms {"api":"proofreader","ms":0,"outLen":165,"excerpt":"{\"correctedInput\":\"Le MAB réunit les médias alternatifs bel…"}
+20:53:04.600 +3.08s INFO  ai.proofread.ok [ai.proofread#1 · 2 ms] Corriger : proposition prête (Proofreader) {"via":"proofreader","fallback":false,"translated":false,"calls":1,"corrections":1,"outLen":76}
+20:53:04.600 +3.08s DEBUG edit.ai-proposal [edit#1 · 1949 ms] Correction : 1 proposition affichée {"corrections":1}
+20:53:04.670 +3.15s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_4b5a28285w-content-1","source":"canvas","merged":true,"past":1,"page":"p_94oom426"}
+20:53:04.680 +3.16s DEBUG ai.mark Texte de l’IA appliqué et marqué « à relire » {"nodeId":"n_4b5a28285w","field":"content","lang":"fr"}
+20:53:04.680 +3.16s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_4b5a28285w-content-1","source":"canvas","merged":true,"past":1,"page":"p_94oom426"}
+20:53:04.686 +3.17s INFO  edit.ai-apply [edit#1 · 2035 ms] 1 correction de l’IA appliquée (texte marqué « à relire ») {"id":"n_4b5a28285w","key":"content","corrections":1}

@@ -1,0 +1,35 @@
+12:42:04.383 +1.83s INFO  publish.open Fenêtre Publier {"mode":"zip","tab":"php","ok":true,"errors":0,"warnings":1}
+12:42:04.386 +1.83s DEBUG ui.dialog.open Fenêtre ouverte : Publier le site {"id":"publishDialog","class":"audit","modal":true}
+12:42:04.394 +1.84s DEBUG publish.token-for Dépôt GitHub incomplet : aucun jeton pré-rempli
+12:42:04.398 +1.84s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:https://www.xn--mdia-alternatif-bnb.be"}
+12:42:04.399 +1.84s DEBUG publish.token-for Aucun jeton gardé pour www.xn--mdia-alternatif-bnb.be {"origin":"https://www.xn--mdia-alternatif-bnb.be","known":false}
+12:42:04.440 +1.88s DEBUG store.commit Modification {"source":"site","past":2,"page":"p_oouce8qb"}
+12:42:04.444 +1.89s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
+12:42:04.447 +1.89s INFO  version.auto Première modification du jour : version automatique de l’état d’avant {"previous":null,"source":"site"}
+12:42:04.448 +1.89s INFO  version.save.start [version.save#2] Enregistrement d’une version automatique {"kind":"auto"}
+12:42:04.448 +1.89s DEBUG storage.version-save Version enregistrée {"id":"v_mvwbzrfkyd88g","kind":"auto"}
+12:42:04.455 +1.90s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:http://127.0.0.1:8705"}
+12:42:04.456 +1.90s DEBUG publish.token-for Aucun jeton gardé pour 127.0.0.1:8705 {"origin":"http://127.0.0.1:8705","known":false}
+12:42:04.470 +1.91s DEBUG version.save.prune [version.save#2 · 22 ms] Aucune ancienne version à supprimer {"total":2}
+12:42:04.471 +1.92s INFO  version.save.ok [version.save#2 · 23 ms] Version automatique enregistrée (2 pages) {"id":"v_mvwbzrfkyd88g","kind":"auto","at":"2026-10-31T11:42:04.448Z","pages":2,"kb":11}
+12:42:04.526 +1.97s DEBUG store.commit Modification {"source":"site","past":3,"page":"p_oouce8qb"}
+12:42:04.529 +1.97s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
+12:42:04.542 +1.99s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:http://127.0.0.1:8705"}
+12:42:04.598 +2.04s INFO  publish.php.generate publish.php v5 téléchargé avec un nouveau jeton (l’ancien publish.php ne l’acceptera pas) {"version":"5","remember":true}
+12:42:04.598 +2.04s DEBUG store.commit Modification {"source":"site","past":4,"page":"p_oouce8qb"}
+12:42:04.605 +2.05s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":6}
+12:42:05.064 +2.51s DEBUG store.commit Modification {"source":"site","past":5,"page":"p_oouce8qb"}
+12:42:05.071 +2.52s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
+12:42:05.074 +2.52s INFO  publish.test.start [publish.test#1] Test de connexion à publish.php {"url":"http://127.0.0.1:8705/publish.php","token":true}
+12:42:05.075 +2.52s INFO  publish.first-origin Premier envoi du jeton à 127.0.0.1:8705 depuis cet appareil (test de connexion) : confirmation demandée {"kind":"php","target":"http://127.0.0.1:8705","action":"test"}
+12:42:05.076 +2.52s DEBUG ui.dialog.open Fenêtre ouverte : Première publication vers 127.0.0.1:8705 {"id":"publishConfirmDialog","class":"audit","modal":true}
+12:42:05.132 +2.58s INFO  storage.secret-write Secret gardé sur cet appareil (jamais dans le projet) {"name":"php-token:http://127.0.0.1:8705"}
+12:42:05.140 +2.58s DEBUG ui.dialog.close Fenêtre fermée : Première publication vers 127.0.0.1:8705 {"id":"publishConfirmDialog"}
+12:42:05.143 +2.59s DEBUG net.request GET 127.0.0.1:8705/publish.php {"id":1,"method":"GET","url":"http://127.0.0.1:8705/publish.php?atelier_debug=1"}
+12:42:05.164 +2.61s DEBUG net.response 200 GET 127.0.0.1:8705/publish.php (21 ms) {"id":1,"status":200,"ms":21,"type":"application/json","req":"4c8adf76"}
+12:42:05.165 +2.61s DEBUG php.req.start GET reçu {"method":"GET","who":"e86c685333","bytes":0,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8800","req":"4c8adf76","srvMs":0}
+12:42:05.165 +2.61s WARN  php.diag Diagnostic de l’hébergement demandé : limite d’envoi basse (2 Mo) {"upload_max":"2M","post_max":"8M","data_writable":true,"zip":true,"mail":true,"req":"4c8adf76","srvMs":0.2}
+12:42:05.165 +2.61s DEBUG php.status Statut demandé (test de connexion) {"version":"5","zip":true,"diag":true,"req":"4c8adf76","srvMs":0.4}
+12:42:05.165 +2.61s DEBUG php.req.end Réponse 200 (status) {"status":200,"route":"status","mem_kb":826,"req":"4c8adf76","srvMs":0.4}
+12:42:05.166 +2.61s INFO  publish.test.diag [publish.test#1 · 92 ms] Diagnostic de l’hébergement {"upload_max_filesize":"2M","post_max_size":"8M","memory_limit":"-1","max_execution_time":30,"mail":true,"mail_domain":"xn--mdia-alternatif-bnb.be","data_writable":true,"root_writable":true,"log_level":"info","log_files":[],"sapi":"cli-server","time":"2026-10-31T11:42:05+00:00","timezone":"UTC","disk_free_mb":29577,"extensions":{"mbstring":true,"json":true,"zip":true}}
+12:42:05.166 +2.61s INFO  publish.test.ok [publish.test#1 · 92 ms] publish.php répond {"version":"5","php":"8.3.6","zip":true,"req":"4c8adf76"}

@@ -1,16 +1,16 @@
-22:29:16.115 +3.79s DEBUG seo.analysis Analyse : page 73/100, site 78/100 {"pageId":"p_thzb3i6h","lang":"fr","page":73,"site":78,"points":{"good":2,"warn":2,"bad":1,"info":1},"sitePoints":{"warn":1,"info":1},"words":86,"imagesNoAlt":1}
-22:29:16.120 +3.80s DEBUG ui.dialog.open Fenêtre ouverte : 🔎 Référencement {"id":"seoDialog","class":"audit col-dialog seo-dialog","modal":true}
-22:29:16.135 +3.81s INFO  seo.open Fenêtre Référencement : note du site 78/100 {"lang":"fr","pageId":"p_thzb3i6h","pages":2,"site":78,"page":73,"sitePoints":{"warn":1,"info":1},"pagePoints":{"good":2,"warn":2,"bad":1,"info":1},"missingDesc":2,"baseUrl":true}
-22:29:16.189 +3.87s INFO  seo.alts.start [seo.alts#1] Textes alternatifs manquants : 1 image(s) {"pageId":"p_thzb3i6h","lang":"fr","images":1}
-22:29:16.200 +3.88s DEBUG ai.provider Fournisseur d’IA de test (window.__atelierAI) {"source":"test","lang":"fr","has":{"prompt":true,"multimodal":true,"summarizer":true,"rewriter":false,"proofreader":true,"translator":true},"methods":["prompt","summarize","proofread","translate"]}
-22:29:16.200 +3.88s INFO  ai.alt.start [ai.alt#1] IA locale : texte alternatif d’une image {"task":"altText","image":"image/png (0 Ko)","context":310,"lang":"fr","sourceLang":"fr","gen":"fr","api":"prompt","source":"test"}
-22:29:16.201 +3.88s DEBUG ai.alt.call [ai.alt#1 · 1 ms] Appel Prompt API (Gemini Nano) (fr) {"api":"prompt","lang":"fr","schema":"alt,decorative","images":1,"system":"306 car.","inLen":351}
-22:29:16.205 +3.88s DEBUG ai.alt.reply [ai.alt#1 · 5 ms] Réponse Prompt API (Gemini Nano) : 76 car. en 4 ms {"api":"prompt","ms":4,"outLen":76,"excerpt":"{\"alt\":\"Image de une équipe de tournage avec une caméra\",\"d…"}
-22:29:16.205 +3.88s DEBUG ai.alt.cleaned [ai.alt#1 · 5 ms] Proposition nettoyée (guillemets, balises, préfixe « Image de »…) {"before":"Image de une équipe de tournage avec une caméra","after":"Une équipe de tournage avec une caméra"}
-22:29:16.205 +3.88s INFO  ai.alt.ok [ai.alt#1 · 5 ms] Texte alternatif : proposition prête (Prompt API) {"via":"prompt","fallback":false,"translated":false,"calls":1,"outLen":38,"excerpt":"Une équipe de tournage avec une caméra"}
-22:29:16.207 +3.89s DEBUG store.commit Modification {"source":"seo","past":3,"page":"p_thzb3i6h"}
-22:29:16.213 +3.89s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"seo","mode":"contenu","ms":2}
-22:29:16.218 +3.90s DEBUG seo.alts.image [seo.alts#1 · 29 ms] Texte alternatif appliqué {"nodeId":"n_4r0a4g4h0c","len":38}
-22:29:16.220 +3.90s INFO  seo.alts.ok [seo.alts#1 · 31 ms] 1 texte(s) alternatif(s) proposé(s) sur 1 {"done":1,"images":1,"skipped":0}
-22:29:16.220 +3.90s INFO  ui.toast Message affiché : 1 texte alternatif proposé (à relire).
-22:29:16.223 +3.90s DEBUG seo.analysis Analyse : page 88/100, site 85/100 {"pageId":"p_thzb3i6h","lang":"fr","page":88,"site":85,"points":{"good":2,"warn":2,"info":1},"sitePoints":{"warn":1,"info":1},"words":86,"imagesNoAlt":0}
+20:53:05.503 +3.99s DEBUG seo.analysis Analyse : page 73/100, site 78/100 {"pageId":"p_94oom426","lang":"fr","page":73,"site":78,"points":{"good":2,"warn":2,"bad":1,"info":1},"sitePoints":{"warn":1,"info":1},"words":86,"imagesNoAlt":1}
+20:53:05.511 +4.00s DEBUG ui.dialog.open Fenêtre ouverte : 🔎 Référencement {"id":"seoDialog","class":"audit col-dialog seo-dialog","modal":true}
+20:53:05.533 +4.02s INFO  seo.open Fenêtre Référencement : note du site 78/100 {"lang":"fr","pageId":"p_94oom426","pages":2,"site":78,"page":73,"sitePoints":{"warn":1,"info":1},"pagePoints":{"good":2,"warn":2,"bad":1,"info":1},"missingDesc":2,"baseUrl":true}
+20:53:05.646 +4.13s INFO  seo.alts.start [seo.alts#1] Textes alternatifs manquants : 1 image(s) {"pageId":"p_94oom426","lang":"fr","images":1}
+20:53:05.665 +4.15s DEBUG ai.provider Fournisseur d’IA de test (window.__atelierAI) {"source":"test","lang":"fr","has":{"prompt":true,"multimodal":true,"summarizer":true,"rewriter":false,"proofreader":true,"translator":true},"methods":["prompt","summarize","proofread","translate"]}
+20:53:05.666 +4.15s INFO  ai.alt.start [ai.alt#1] IA locale : texte alternatif d’une image {"task":"altText","image":"image/png (0 Ko)","context":310,"lang":"fr","sourceLang":"fr","gen":"fr","api":"prompt","source":"test"}
+20:53:05.666 +4.15s DEBUG ai.alt.call [ai.alt#1 · 0 ms] Appel Prompt API (Gemini Nano) (fr) {"api":"prompt","lang":"fr","schema":"alt,decorative","images":1,"system":"306 car.","inLen":351}
+20:53:05.667 +4.15s DEBUG ai.alt.reply [ai.alt#1 · 1 ms] Réponse Prompt API (Gemini Nano) : 76 car. en 1 ms {"api":"prompt","ms":1,"outLen":76,"excerpt":"{\"alt\":\"Image de une équipe de tournage avec une caméra\",\"d…"}
+20:53:05.671 +4.16s DEBUG ai.alt.cleaned [ai.alt#1 · 5 ms] Proposition nettoyée (guillemets, balises, préfixe « Image de »…) {"before":"Image de une équipe de tournage avec une caméra","after":"Une équipe de tournage avec une caméra"}
+20:53:05.671 +4.16s INFO  ai.alt.ok [ai.alt#1 · 5 ms] Texte alternatif : proposition prête (Prompt API) {"via":"prompt","fallback":false,"translated":false,"calls":1,"outLen":38,"excerpt":"Une équipe de tournage avec une caméra"}
+20:53:05.672 +4.16s DEBUG store.commit Modification {"source":"seo","past":3,"page":"p_94oom426"}
+20:53:05.676 +4.16s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"seo","mode":"contenu","ms":3}
+20:53:05.680 +4.16s DEBUG seo.alts.image [seo.alts#1 · 34 ms] Texte alternatif appliqué {"nodeId":"n_5l133d0w3s","len":38}
+20:53:05.680 +4.16s INFO  seo.alts.ok [seo.alts#1 · 34 ms] 1 texte(s) alternatif(s) proposé(s) sur 1 {"done":1,"images":1,"skipped":0}
+20:53:05.681 +4.17s INFO  ui.toast Message affiché : 1 texte alternatif proposé (à relire).
+20:53:05.682 +4.17s DEBUG seo.analysis Analyse : page 88/100, site 85/100 {"pageId":"p_94oom426","lang":"fr","page":88,"site":85,"points":{"good":2,"warn":2,"info":1},"sitePoints":{"warn":1,"info":1},"words":86,"imagesNoAlt":0}

@@ -1,18 +1,18 @@
-22:31:04.133 +5.36s INFO  smart.paste.start [smart.paste#1] Texte collé → éléments de « Médias membres » {"collection":"col_y3bsa86h","kind":"members"}
-22:31:04.134 +5.36s DEBUG ui.dialog.open Fenêtre ouverte : ✨ Texte collé → Médias membres {"id":"smartDialog","class":"audit smart-dialog","modal":true}
-22:31:04.185 +5.41s WARN  smart.paste.empty [smart.paste#1 · 52 ms] Lecture demandée sans texte
-22:31:04.236 +5.46s INFO  smart.paste.read [smart.paste#1 · 103 ms] Lecture du texte par l’IA locale (145 car.) {"chars":145}
-22:31:04.236 +5.46s DEBUG ai.provider Fournisseur d’IA de test (window.__atelierAI) {"source":"test","lang":"fr","has":{"prompt":true,"multimodal":true,"summarizer":true,"translator":true},"methods":["prompt","summarize","translate"]}
-22:31:04.237 +5.46s INFO  ai.extract.start [ai.extract#3] IA locale : lecture d’un texte collé {"task":"extractItems","collection":"col_y3bsa86h","kind":"members","fields":6,"inLen":145,"today":"2026-10-29","lang":"fr","sourceLang":"fr","gen":"fr","api":"prompt","source":"test"}
-22:31:04.237 +5.46s DEBUG ai.extract.call [ai.extract#3 · 0 ms] Appel Prompt API (Gemini Nano) (fr) {"api":"prompt","lang":"fr","schema":"items","system":"644 car.","inLen":153}
-22:31:04.238 +5.46s DEBUG ai.extract.reply [ai.extract#3 · 1 ms] Réponse Prompt API (Gemini Nano) : 377 car. en 0 ms {"api":"prompt","ms":0,"outLen":377,"excerpt":"{\"items\":[{\"name\":\"Zin TV\",\"logo\":\"\",\"intro\":\"Télévision pa…"}
-22:31:04.239 +5.47s INFO  ai.extract.duplicates [ai.extract#3 · 2 ms] 1 doublon d’un élément existant ou d’une autre proposition {"items":[3]}
-22:31:04.239 +5.47s INFO  ai.extract.ok [ai.extract#3 · 2 ms] Lecture d’une affiche ou d’un texte : proposition prête (Prompt API) {"via":"prompt","fallback":false,"translated":false,"calls":1,"items":3,"found":[5,5,4],"dropped":0,"duplicates":1}
-22:31:04.240 +5.47s INFO  smart.paste.preview [smart.paste#1 · 107 ms] Aperçu : 3 éléments, 2 coché(s) {"items":3,"checked":2,"duplicates":1,"dropped":0}
-22:31:04.318 +5.54s DEBUG store.commit Modification {"source":"collections","past":5,"page":"p_50jh155b"}
-22:31:04.323 +5.55s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":3}
-22:31:04.324 +5.55s INFO  smart.paste.ok [smart.paste#1 · 191 ms] 2 brouillons créés dans « Médias membres » {"items":["it_4z4z0hqw","it_m6pwht3y"],"skipped":1}
-22:31:04.324 +5.55s INFO  ui.toast Message affiché : 2 brouillons créés : relisez-les puis publiez-les.
-22:31:04.329 +5.56s INFO  collection.open Collection « Médias membres » ouverte : 5 éléments, 6 champs {"id":"col_y3bsa86h","kind":"members","items":5,"drafts":2,"fields":6,"tab":"items","item":"it_4z4z0hqw"}
-22:31:04.332 +5.56s DEBUG ui.dialog.open Fenêtre ouverte : 📻 Médias membres /medias-membres/ {"id":"collectionDialog","class":"audit col-dialog","modal":true}
-22:31:04.340 +5.57s DEBUG ui.dialog.close Fenêtre fermée : ✨ Texte collé → Médias membres {"id":"smartDialog"}
+20:54:57.288 +6.11s INFO  smart.paste.start [smart.paste#1] Texte collé → éléments de « Médias membres » {"collection":"col_gkkh5ef8","kind":"members"}
+20:54:57.288 +6.11s DEBUG ui.dialog.open Fenêtre ouverte : ✨ Texte collé → Médias membres {"id":"smartDialog","class":"audit smart-dialog","modal":true}
+20:54:57.339 +6.16s WARN  smart.paste.empty [smart.paste#1 · 51 ms] Lecture demandée sans texte
+20:54:57.394 +6.21s INFO  smart.paste.read [smart.paste#1 · 106 ms] Lecture du texte par l’IA locale (145 car.) {"chars":145}
+20:54:57.394 +6.21s DEBUG ai.provider Fournisseur d’IA de test (window.__atelierAI) {"source":"test","lang":"fr","has":{"prompt":true,"multimodal":true,"summarizer":true,"translator":true},"methods":["prompt","summarize","translate"]}
+20:54:57.394 +6.21s INFO  ai.extract.start [ai.extract#3] IA locale : lecture d’un texte collé {"task":"extractItems","collection":"col_gkkh5ef8","kind":"members","fields":6,"inLen":145,"today":"2026-10-30","lang":"fr","sourceLang":"fr","gen":"fr","api":"prompt","source":"test"}
+20:54:57.395 +6.21s DEBUG ai.extract.call [ai.extract#3 · 1 ms] Appel Prompt API (Gemini Nano) (fr) {"api":"prompt","lang":"fr","schema":"items","system":"644 car.","inLen":153}
+20:54:57.396 +6.21s DEBUG ai.extract.reply [ai.extract#3 · 2 ms] Réponse Prompt API (Gemini Nano) : 377 car. en 0 ms {"api":"prompt","ms":0,"outLen":377,"excerpt":"{\"items\":[{\"name\":\"Zin TV\",\"logo\":\"\",\"intro\":\"Télévision pa…"}
+20:54:57.397 +6.22s INFO  ai.extract.duplicates [ai.extract#3 · 3 ms] 1 doublon d’un élément existant ou d’une autre proposition {"items":[3]}
+20:54:57.398 +6.22s INFO  ai.extract.ok [ai.extract#3 · 4 ms] Lecture d’une affiche ou d’un texte : proposition prête (Prompt API) {"via":"prompt","fallback":false,"translated":false,"calls":1,"items":3,"found":[5,5,4],"dropped":0,"duplicates":1}
+20:54:57.399 +6.22s INFO  smart.paste.preview [smart.paste#1 · 111 ms] Aperçu : 3 éléments, 2 coché(s) {"items":3,"checked":2,"duplicates":1,"dropped":0}
+20:54:57.456 +6.28s DEBUG store.commit Modification {"source":"collections","past":5,"page":"p_i20aogl1"}
+20:54:57.460 +6.28s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":3}
+20:54:57.461 +6.28s INFO  smart.paste.ok [smart.paste#1 · 173 ms] 2 brouillons créés dans « Médias membres » {"items":["it_6rwphtd7","it_zeitf5c3"],"skipped":1}
+20:54:57.461 +6.28s INFO  ui.toast Message affiché : 2 brouillons créés : relisez-les puis publiez-les.
+20:54:57.467 +6.29s INFO  collection.open Collection « Médias membres » ouverte : 5 éléments, 6 champs {"id":"col_gkkh5ef8","kind":"members","items":5,"drafts":2,"fields":6,"tab":"items","item":"it_6rwphtd7"}
+20:54:57.471 +6.29s DEBUG ui.dialog.open Fenêtre ouverte : 📻 Médias membres /medias-membres/ {"id":"collectionDialog","class":"audit col-dialog","modal":true}
+20:54:57.481 +6.30s DEBUG ui.dialog.close Fenêtre fermée : ✨ Texte collé → Médias membres {"id":"smartDialog"}

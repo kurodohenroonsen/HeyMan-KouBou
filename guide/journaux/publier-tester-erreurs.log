@@ -1,34 +1,45 @@
-22:37:55.382 +10.04s DEBUG store.commit Modification {"source":"site","past":15,"page":"p_87jw10m5"}
-22:37:55.384 +10.04s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
-22:37:55.397 +10.05s DEBUG store.commit Modification {"source":"site","past":16,"page":"p_87jw10m5"}
-22:37:55.400 +10.06s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
-22:37:55.407 +10.06s INFO  publish.test.start [publish.test#3] Test de connexion à publish.php {"url":"http://127.0.0.1:9600/publish.php","token":true}
-22:37:55.407 +10.06s DEBUG net.request GET 127.0.0.1:9600/publish.php {"id":7,"method":"GET","url":"http://127.0.0.1:9600/publish.php?atelier_debug=1"}
-22:37:55.417 +10.07s ERROR net.fail GET 127.0.0.1:9600/publish.php : Failed to fetch (réseau, CORS ou adresse injoignable) {"id":7,"url":"http://127.0.0.1:9600/publish.php?atelier_debug=1","ms":9,"online":true,"error":{"name":"TypeError","message":"Failed to fetch","stack":"TypeError: Failed to fetch\nat atelierFetch (http://localhost:8791/editor/log.js:185:21)\nat HTMLButtonElement.testConn (http://localhost:8791/editor/publish-ui.js:61:23)"}}
-22:37:55.417 +10.07s ERROR publish.test.fail [publish.test#3 · 10 ms] Failed to fetch {"url":"http://127.0.0.1:9600/publish.php","hint":"Le navigateur n’a reçu aucune réponse utilisable : serveur injoignable, adresse fausse, ou réponse sans autorisation CORS (fichier absent → page d’erreur de l’hébergement, ou PHP non exécuté).","error":{"name":"TypeError","message":"Failed to fetch","stack":"TypeError: Failed to fetch\nat atelierFetch (http://localhost:8791/editor/log.js:185:21)\nat HTMLButtonElement.testConn (http://localhost:8791/editor/publish-ui.js:61:23)"}}
-22:37:55.466 +10.12s DEBUG store.commit Modification {"source":"site","past":17,"page":"p_87jw10m5"}
-22:37:55.468 +10.13s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
-22:37:55.481 +10.14s DEBUG store.commit Modification {"source":"site","past":18,"page":"p_87jw10m5"}
-22:37:55.485 +10.14s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":4}
-22:37:55.501 +10.16s INFO  publish.test.start [publish.test#4] Test de connexion à publish.php {"url":"http://127.0.0.1:9599/absent/publish.php","token":true}
-22:37:55.501 +10.16s DEBUG net.request GET 127.0.0.1:9599/absent/publish.php {"id":8,"method":"GET","url":"http://127.0.0.1:9599/absent/publish.php?atelier_debug=1"}
-22:37:55.509 +10.17s ERROR net.fail GET 127.0.0.1:9599/absent/publish.php : Failed to fetch (réseau, CORS ou adresse injoignable) {"id":8,"url":"http://127.0.0.1:9599/absent/publish.php?atelier_debug=1","ms":8,"online":true,"error":{"name":"TypeError","message":"Failed to fetch","stack":"TypeError: Failed to fetch\nat atelierFetch (http://localhost:8791/editor/log.js:185:21)\nat HTMLButtonElement.testConn (http://localhost:8791/editor/publish-ui.js:61:23)"}}
-22:37:55.509 +10.17s ERROR publish.test.fail [publish.test#4 · 8 ms] Failed to fetch {"url":"http://127.0.0.1:9599/absent/publish.php","hint":"Le navigateur n’a reçu aucune réponse utilisable : serveur injoignable, adresse fausse, ou réponse sans autorisation CORS (fichier absent → page d’erreur de l’hébergement, ou PHP non exécuté).","error":{"name":"TypeError","message":"Failed to fetch","stack":"TypeError: Failed to fetch\nat atelierFetch (http://localhost:8791/editor/log.js:185:21)\nat HTMLButtonElement.testConn (http://localhost:8791/editor/publish-ui.js:61:23)"}}
-22:37:55.581 +10.24s DEBUG store.commit Modification {"source":"site","past":19,"page":"p_87jw10m5"}
-22:37:55.585 +10.24s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
-22:37:55.602 +10.26s DEBUG store.commit Modification {"source":"site","past":20,"page":"p_87jw10m5"}
-22:37:55.605 +10.26s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
-22:37:55.612 +10.27s INFO  publish.test.start [publish.test#5] Test de connexion à publish.php {"url":"http://127.0.0.1:9599/avertissement/publish.php","token":true}
-22:37:55.612 +10.27s DEBUG net.request GET 127.0.0.1:9599/avertissement/publish.php {"id":9,"method":"GET","url":"http://127.0.0.1:9599/avertissement/publish.php?atelier_debug=1"}
-22:37:55.620 +10.28s DEBUG net.response 200 GET 127.0.0.1:9599/avertissement/publish.php (8 ms) {"id":9,"status":200,"ms":8,"type":"text/html"}
-22:37:55.621 +10.28s WARN  publish.test.not-json [publish.test#5 · 9 ms] La réponse n’est pas du JSON : PHP n’est peut-être pas exécuté, ou une page d’erreur de l’hébergement répond {"status":200,"start":"<br />\n<b>Warning</b>:  session_start(): Session cannot be started after headers have already been sent in <b>/home/www/"}
-22:37:55.621 +10.28s ERROR publish.test.fail [publish.test#5 · 9 ms] réponse 200 qui n’est pas celle de publish.php {"url":"http://127.0.0.1:9599/avertissement/publish.php","error":{"name":"Error","message":"réponse 200 qui n’est pas celle de publish.php","stack":"Error: réponse 200 qui n’est pas celle de publish.php\nat HTMLButtonElement.testConn (http://localhost:8791/editor/publish-ui.js:64:244)"}}
-22:37:55.700 +10.36s DEBUG store.commit Modification {"source":"site","past":21,"page":"p_87jw10m5"}
-22:37:55.703 +10.36s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
-22:37:55.714 +10.37s DEBUG store.commit Modification {"source":"site","past":22,"page":"p_87jw10m5"}
-22:37:55.717 +10.38s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
-22:37:55.728 +10.39s INFO  publish.test.start [publish.test#6] Test de connexion à publish.php {"url":"http://127.0.0.1:9599/vieux/publish.php","token":true}
-22:37:55.728 +10.39s DEBUG net.request GET 127.0.0.1:9599/vieux/publish.php {"id":10,"method":"GET","url":"http://127.0.0.1:9599/vieux/publish.php?atelier_debug=1"}
-22:37:55.745 +10.40s DEBUG net.response 200 GET 127.0.0.1:9599/vieux/publish.php (16 ms) {"id":10,"status":200,"ms":16,"type":"application/json"}
-22:37:55.746 +10.40s WARN  publish.test.old-version [publish.test#6 · 18 ms] publish.php installé en version 3 : la version 4 ajoute le journal du serveur et le diagnostic {"installed":"3","expected":"4"}
-22:37:55.746 +10.40s INFO  publish.test.ok [publish.test#6 · 18 ms] publish.php répond {"version":"3","php":"8.3.6","zip":true}
+13:34:43.826 +11.67s DEBUG store.commit Modification {"source":"site","past":15,"page":"p_xqmluyje"}
+13:34:43.831 +11.67s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
+13:34:43.855 +11.70s DEBUG store.commit Modification {"source":"site","past":16,"page":"p_xqmluyje"}
+13:34:43.859 +11.70s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
+13:34:43.874 +11.71s INFO  publish.test.start [publish.test#3] Test de connexion à publish.php {"url":"http://127.0.0.1:9506/publish.php","token":true}
+13:34:43.875 +11.71s INFO  publish.first-origin Premier envoi du jeton à 127.0.0.1:9506 depuis cet appareil (test de connexion) : confirmation demandée {"kind":"php","target":"http://127.0.0.1:9506","action":"test"}
+13:34:43.875 +11.71s DEBUG ui.dialog.open Fenêtre ouverte : Première publication vers 127.0.0.1:9506 {"id":"publishConfirmDialog","class":"audit","modal":true}
+13:34:43.888 +11.73s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:http://127.0.0.1:9506"}
+13:34:43.888 +11.73s DEBUG publish.token-for Aucun jeton gardé pour 127.0.0.1:9506 {"origin":"http://127.0.0.1:9506","known":false}
+13:34:43.980 +11.82s DEBUG net.request GET 127.0.0.1:9506/publish.php {"id":15,"method":"GET","url":"http://127.0.0.1:9506/publish.php"}
+13:34:43.982 +11.82s DEBUG ui.dialog.close Fenêtre fermée : Première publication vers 127.0.0.1:9506 {"id":"publishConfirmDialog"}
+13:34:43.986 +11.83s ERROR net.fail GET 127.0.0.1:9506/publish.php : Failed to fetch (réseau, CORS ou adresse injoignable) {"id":15,"url":"http://127.0.0.1:9506/publish.php","ms":7,"online":true,"error":{"name":"TypeError","message":"Failed to fetch","stack":"TypeError: Failed to fetch\nat atelierFetch (http://localhost:8833/editor/log.js:187:21)\nat HTMLButtonElement.testConn (http://localhost:8833/editor/publish-ui.js:143:23)"}}
+13:34:43.987 +11.83s ERROR publish.test.fail [publish.test#3 · 113 ms] Failed to fetch {"url":"http://127.0.0.1:9506/publish.php","hint":"Le navigateur n’a reçu aucune réponse utilisable : serveur injoignable, adresse fausse, ou réponse sans autorisation CORS (fichier absent → page d’erreur de l’hébergement, ou PHP non exécuté).","error":{"name":"TypeError","message":"Failed to fetch","stack":"TypeError: Failed to fetch\nat atelierFetch (http://localhost:8833/editor/log.js:187:21)\nat HTMLButtonElement.testConn (http://localhost:8833/editor/publish-ui.js:143:23)"}}
+13:34:44.086 +11.93s DEBUG store.commit Modification {"source":"site","past":17,"page":"p_xqmluyje"}
+13:34:44.090 +11.93s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
+13:34:44.105 +11.95s DEBUG publish.token-for Jeton pré-rempli pour 127.0.0.1:9505 (séance) {"origin":"http://127.0.0.1:9505","from":"séance","known":true}
+13:34:44.112 +11.95s DEBUG store.commit Modification {"source":"site","past":18,"page":"p_xqmluyje"}
+13:34:44.116 +11.96s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
+13:34:44.131 +11.97s INFO  publish.test.start [publish.test#4] Test de connexion à publish.php {"url":"http://127.0.0.1:9505/absent/publish.php","token":true}
+13:34:44.132 +11.97s INFO  storage.secret-write Secret oublié sur cet appareil {"name":"php-token:http://127.0.0.1:9505"}
+13:34:44.148 +11.99s DEBUG net.request GET 127.0.0.1:9505/absent/publish.php {"id":16,"method":"GET","url":"http://127.0.0.1:9505/absent/publish.php?atelier_debug=1"}
+13:34:44.159 +12.00s ERROR net.fail GET 127.0.0.1:9505/absent/publish.php : Failed to fetch (réseau, CORS ou adresse injoignable) {"id":16,"url":"http://127.0.0.1:9505/absent/publish.php?atelier_debug=1","ms":11,"online":true,"error":{"name":"TypeError","message":"Failed to fetch","stack":"TypeError: Failed to fetch\nat atelierFetch (http://localhost:8833/editor/log.js:187:21)\nat HTMLButtonElement.testConn (http://localhost:8833/editor/publish-ui.js:143:23)"}}
+13:34:44.159 +12.00s ERROR publish.test.fail [publish.test#4 · 28 ms] Failed to fetch {"url":"http://127.0.0.1:9505/absent/publish.php","hint":"Le navigateur n’a reçu aucune réponse utilisable : serveur injoignable, adresse fausse, ou réponse sans autorisation CORS (fichier absent → page d’erreur de l’hébergement, ou PHP non exécuté).","error":{"name":"TypeError","message":"Failed to fetch","stack":"TypeError: Failed to fetch\nat atelierFetch (http://localhost:8833/editor/log.js:187:21)\nat HTMLButtonElement.testConn (http://localhost:8833/editor/publish-ui.js:143:23)"}}
+13:34:44.233 +12.07s DEBUG store.commit Modification {"source":"site","past":19,"page":"p_xqmluyje"}
+13:34:44.237 +12.08s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
+13:34:44.253 +12.09s DEBUG publish.token-for Jeton pré-rempli pour 127.0.0.1:9505 (séance) {"origin":"http://127.0.0.1:9505","from":"séance","known":true}
+13:34:44.261 +12.10s DEBUG store.commit Modification {"source":"site","past":20,"page":"p_xqmluyje"}
+13:34:44.266 +12.11s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
+13:34:44.281 +12.12s INFO  publish.test.start [publish.test#5] Test de connexion à publish.php {"url":"http://127.0.0.1:9505/avertissement/publish.php","token":true}
+13:34:44.282 +12.12s INFO  storage.secret-write Secret oublié sur cet appareil {"name":"php-token:http://127.0.0.1:9505"}
+13:34:44.296 +12.14s DEBUG net.request GET 127.0.0.1:9505/avertissement/publish.php {"id":17,"method":"GET","url":"http://127.0.0.1:9505/avertissement/publish.php?atelier_debug=1"}
+13:34:44.309 +12.15s DEBUG net.response 200 GET 127.0.0.1:9505/avertissement/publish.php (13 ms) {"id":17,"status":200,"ms":13,"type":"text/html"}
+13:34:44.313 +12.15s WARN  publish.test.not-json [publish.test#5 · 32 ms] La réponse n’est pas du JSON : PHP n’est peut-être pas exécuté, ou une page d’erreur de l’hébergement répond {"status":200,"start":"<br />\n<b>Warning</b>:  session_start(): Session cannot be started after headers have already been sent in <b>/home/www/"}
+13:34:44.313 +12.15s ERROR publish.test.fail [publish.test#5 · 32 ms] réponse 200 qui n’est pas celle de publish.php {"url":"http://127.0.0.1:9505/avertissement/publish.php","error":{"name":"Error","message":"réponse 200 qui n’est pas celle de publish.php","stack":"Error: réponse 200 qui n’est pas celle de publish.php\nat HTMLButtonElement.testConn (http://localhost:8833/editor/publish-ui.js:146:244)"}}
+13:34:44.370 +12.21s DEBUG store.commit Modification {"source":"site","past":21,"page":"p_xqmluyje"}
+13:34:44.374 +12.21s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":4}
+13:34:44.390 +12.23s DEBUG publish.token-for Jeton pré-rempli pour 127.0.0.1:9505 (séance) {"origin":"http://127.0.0.1:9505","from":"séance","known":true}
+13:34:44.400 +12.24s DEBUG store.commit Modification {"source":"site","past":22,"page":"p_xqmluyje"}
+13:34:44.406 +12.25s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":5}
+13:34:44.417 +12.26s INFO  publish.test.start [publish.test#6] Test de connexion à publish.php {"url":"http://127.0.0.1:9505/vieux/publish.php","token":true}
+13:34:44.418 +12.26s INFO  storage.secret-write Secret oublié sur cet appareil {"name":"php-token:http://127.0.0.1:9505"}
+13:34:44.446 +12.29s DEBUG net.request GET 127.0.0.1:9505/vieux/publish.php {"id":18,"method":"GET","url":"http://127.0.0.1:9505/vieux/publish.php?atelier_debug=1"}
+13:34:44.516 +12.36s DEBUG net.response 200 GET 127.0.0.1:9505/vieux/publish.php (70 ms) {"id":18,"status":200,"ms":70,"type":"application/json"}
+13:34:44.523 +12.36s WARN  publish.test.old-version [publish.test#6 · 106 ms] publish.php installé en version 3 : la version 6 ajoute le .htaccess, les polices, la page 404 et protège mieux la collaboration {"installed":"3","expected":"6"}
+13:34:44.524 +12.36s INFO  publish.test.ok [publish.test#6 · 107 ms] publish.php répond {"version":"3","php":"8.3.6","zip":true}

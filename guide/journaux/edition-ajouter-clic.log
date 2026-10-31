@@ -1,10 +1,10 @@
-22:27:35.106 +1.84s DEBUG library.insert Bibliothèque : clic sur « Bouton » {"type":"button","how":"clic"}
-22:27:35.107 +1.84s DEBUG store.commit Modification {"source":"library","past":1,"page":"p_s2tq5e0u"}
-22:27:35.112 +1.85s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"library","mode":"contenu","ms":3}
-22:27:35.116 +1.85s INFO  version.auto Première modification du jour : version automatique de l’état d’avant {"previous":null,"source":"library"}
-22:27:35.117 +1.85s INFO  version.save.start [version.save#1] Enregistrement d’une version automatique {"kind":"auto"}
-22:27:35.118 +1.86s DEBUG storage.version-save Version enregistrée {"id":"v_mvu2113ia26ve","kind":"auto"}
-22:27:35.119 +1.86s DEBUG store.select Sélection : button {"id":"n_543a343z5o","type":"button"}
-22:27:35.121 +1.86s INFO  action.add Widget ajouté : Bouton {"type":"button","id":"n_543a343z5o","parentType":"column"}
-22:27:35.131 +1.87s DEBUG version.save.prune [version.save#1 · 14 ms] Aucune ancienne version à supprimer {"total":1}
-22:27:35.131 +1.87s INFO  version.save.ok [version.save#1 · 14 ms] Version automatique enregistrée (2 pages) {"id":"v_mvu2113ia26ve","kind":"auto","at":"2026-10-29T21:27:35.118Z","pages":2,"kb":12}
+12:57:08.128 +1.90s DEBUG library.insert Bibliothèque : clic sur « Bouton » {"type":"button","how":"clic"}
+12:57:08.129 +1.90s DEBUG store.commit Modification {"source":"library","past":1,"page":"p_fptbpb4e"}
+12:57:08.141 +1.92s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"library","mode":"contenu","ms":9}
+12:57:08.146 +1.92s INFO  version.auto Première modification du jour : version automatique de l’état d’avant {"previous":null,"source":"library"}
+12:57:08.146 +1.92s INFO  version.save.start [version.save#1] Enregistrement d’une version automatique {"kind":"auto"}
+12:57:08.147 +1.92s DEBUG storage.version-save Version enregistrée {"id":"v_mvwcj4qaazqk2","kind":"auto"}
+12:57:08.147 +1.92s DEBUG store.select Sélection : button {"id":"n_2i4g1j1c35","type":"button"}
+12:57:08.149 +1.92s INFO  action.add Widget ajouté : Bouton {"type":"button","id":"n_2i4g1j1c35","parentType":"column"}
+12:57:08.160 +1.93s DEBUG version.save.prune [version.save#1 · 14 ms] Aucune ancienne version à supprimer {"total":1}
+12:57:08.161 +1.94s INFO  version.save.ok [version.save#1 · 15 ms] Version automatique enregistrée (2 pages) {"id":"v_mvwcj4qaazqk2","kind":"auto","at":"2026-10-31T11:57:08.146Z","pages":2,"kb":12}

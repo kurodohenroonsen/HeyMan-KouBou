@@ -1,49 +1,46 @@
-22:29:49.662 +0.01s DEBUG widgets.extra Widgets supplémentaires chargés : 15 {"widgets":23,"extra":15}
-22:29:49.664 +0.01s DEBUG ui.lang-ready Interface en Français {"lang":"fr","static":0,"catalog":false}
-22:29:49.679 +0.02s DEBUG canvas.scale Canevas ordinateur : 1280 px, réduit à 62 % {"device":"desktop","width":1280,"scale":62,"available":792}
-22:29:49.680 +0.02s INFO  canvas.load.start [canvas.load#1] Chargement complet du canevas : premier chargement {"reason":"premier chargement","page":"p_yt30zxo8","lang":"fr","device":"desktop"}
-22:29:49.690 +0.03s DEBUG canvas.load.render [canvas.load#1 · 10 ms] Page rendue {"ms":10,"kb":25}
-22:29:49.767 +0.11s DEBUG version.init 2 version(s) dans ce navigateur {"count":2,"manual":0,"lastAuto":"2026-10-29T21:29:32.989Z","autoToday":true}
-22:29:49.774 +0.12s INFO  canvas.load.ok [canvas.load#1 · 94 ms] Canevas prêt {"nodes":30,"scale":62,"via":"dom"}
-22:29:49.776 +0.12s DEBUG collab.identity.load Clé personnelle chargée : Ana {"fp":"017Z8ZzJpbgcIS8b"}
-22:29:49.779 +0.12s INFO  collab.restore Session interrompue retrouvée (éditeur) : rouvre le lien d’invitation pour te reconnecter {"role":"editor","docId":"doc_3ced71f5a9ee7548","host":"Kudoro","via":"boîte aux lettres"}
-22:29:49.984 +0.33s DEBUG canvas.resources Ressources externes du canevas chargées {"ms":293,"hosts":["fonts.googleapis.com"]}
-22:29:50.143 +0.49s DEBUG store.select Sélection : button {"id":"n_65593k3q4f","type":"button"}
-22:29:50.186 +0.53s DEBUG inspector.tab Onglet de l’inspecteur : Contenu {"tab":"content","from":"content","type":"button"}
-22:29:50.217 +0.56s DEBUG store.commit Modification {"key":"n_65593k3q4f:label:fr","source":"inspector","past":1,"page":"p_yt30zxo8"}
-22:29:50.224 +0.57s DEBUG collab.ops.out 1 modification(s) envoyée(s) à 0 participant(s) {"n":1,"to":0}
-22:29:51.134 +1.48s INFO  collab.join.link Lien d’invitation ouvert
-22:29:51.142 +1.49s INFO  collab.invite.open Invitation de Kudoro : éditeur {"role":"editor","owner":"Kudoro","ownerFp":"wI35o39KwaMFRFwy","via":"boîte aux lettres","signal":"http://127.0.0.1:8850/publish.php","hours":168}
-22:29:51.143 +1.49s DEBUG ui.dialog.open Fenêtre ouverte : 👥 Rejoindre une session {"id":"joinDialog","class":"audit collab","modal":true}
-22:29:51.153 +1.50s DEBUG inspector.field Champ modifié : Texte du bouton {"key":"label","type":"text","lang":"fr","how":"saisie","chars":16}
-22:29:51.196 +1.54s INFO  collab.join.start [collab.join#1] Rejoindre une session {"name":"Ana","fp":"017Z8ZzJpbgcIS8b","via":"boîte aux lettres"}
-22:29:51.198 +1.54s DEBUG collab.join.invite [collab.join#1 · 2 ms] Invitation valable : Kudoro invite comme éditeur {"role":"editor","owner":"Kudoro","host":"f17f656d6c69c690","signal":"http://127.0.0.1:8850/publish.php","hours":168}
-22:29:51.198 +1.54s INFO  collab.join.rejoin [collab.join#1 · 2 ms] Même session qu’avant : reconnexion, les modifications faites entre-temps seront fusionnées {"docId":"doc_3ced71f5a9ee7548"}
-22:29:51.199 +1.54s INFO  rtc.join.start [rtc.join#1] Connexion à l’hôte f17f656d6c69c690 par la boîte aux lettres {"host":"f17f656d6c69c690","url":"http://127.0.0.1:8850/publish.php","room":"a09f407a"}
-22:29:51.206 +1.55s DEBUG rtc.join.offer [rtc.join#1 · 7 ms] Demande de connexion créée : collecte des adresses réseau
-22:29:55.209 +5.55s DEBUG signal.post Dépôt d’un message chiffré « offer » pour f17f656d6c69c690 {"room":"a09f407a","from":"f695b7f3584a25ad","to":"f17f656d6c69c690","t":"offer","bytes":920}
-22:29:55.210 +5.55s DEBUG net.request POST 127.0.0.1:8850/publish.php {"id":1,"method":"POST","url":"http://127.0.0.1:8850/publish.php?atelier_debug=1","body":{"json":["signal","from","to","data"],"size":1057}}
-22:29:55.215 +5.56s INFO  net.response 200 POST 127.0.0.1:8850/publish.php (6 ms) {"id":1,"status":200,"ms":6,"type":"application/json","req":"41294d1d"}
-22:29:55.217 +5.56s DEBUG php.req.start POST reçu {"method":"POST","who":"e5802654fc","bytes":1057,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8791","req":"41294d1d","srvMs":0.1}
-22:29:55.217 +5.56s DEBUG php.signal.post Message chiffré déposé {"room":"a09f407a","from":"f695b7f3584a25ad","to":"f17f656d6c69c690","bytes":920,"id":5,"new_room":false,"req":"41294d1d","srvMs":0.8}
-22:29:55.217 +5.56s DEBUG php.req.end Réponse 200 (signal) {"status":200,"route":"signal","mem_kb":383,"req":"41294d1d","srvMs":0.8}
-22:29:55.217 +5.56s INFO  rtc.join.sent [rtc.join#1 · 4018 ms] Demande déposée dans la boîte aux lettres : en attente de la réponse de l’hôte {"local":{"host":1,"srflx":0,"relay":0,"prflx":0}}
-22:29:55.218 +5.56s DEBUG signal.start Relève de la boîte aux lettres toutes les 1 s {"room":"a09f407a","peer":"f695b7f3584a25ad","every":1000}
-22:29:55.222 +5.57s DEBUG signal.receive 1 message relevé dans la boîte aux lettres {"room":"a09f407a","count":1,"from":["f17f656d6c69c690"]}
-22:29:55.223 +5.57s DEBUG signal.ignored Message « answer » ignoré (pas la réponse attendue) {"from":"f17f656d6c69c690","t":"answer"}
-22:29:56.229 +6.57s DEBUG signal.receive 1 message relevé dans la boîte aux lettres {"room":"a09f407a","count":1,"from":["f17f656d6c69c690"]}
-22:29:56.230 +6.57s DEBUG signal.stop Relève de la boîte aux lettres arrêtée {"room":"a09f407a","polls":2,"received":2}
-22:29:56.233 +6.58s INFO  rtc.join.answer [rtc.join#1 · 5034 ms] Réponse de l’hôte reçue : ouverture du canal… {"remote":{"host":1,"srflx":0,"relay":0,"prflx":0}}
-22:29:56.238 +6.58s INFO  rtc.pair Chemin réseau utilisé : host ↔ host (udp) {"label":"f17f656d6c69c690","local":"host","remote":"host","protocol":"udp","rttMs":0,"ms":5035}
-22:29:56.239 +6.58s INFO  rtc.channel.open Canal de données ouvert avec f17f656d6c69c690 {"label":"f17f656d6c69c690","ms":5036}
-22:29:56.239 +6.58s INFO  rtc.join.ok [rtc.join#1 · 5040 ms] Liaison directe prête avec l’hôte {"ms":5036}
-22:29:56.240 +6.58s DEBUG collab.link.new Nouveau lien : présentation (invité) {"label":"f17f656d6c69c690","links":1}
-22:29:56.240 +6.58s INFO  collab.join.ok [collab.join#1 · 5044 ms] Reconnecté·e : vérification des identités puis reprise {"role":"editor"}
-22:29:56.243 +6.59s DEBUG collab.hello Présentation de l’hôte Kudoro : c’est bien la personne qui a signé l’invitation {"name":"Kudoro","fp":"wI35o39KwaMFRFwy","role":"owner"}
-22:29:56.244 +6.59s INFO  collab.auth Identité vérifiée : Kudoro (hôte) {"name":"Kudoro","fp":"wI35o39KwaMFRFwy","role":"owner","peers":1}
-22:29:56.245 +6.59s DEBUG collab.sync.ask Demande des modifications manquées (reprise) {"docId":"doc_3ced71f5a9ee7548","known":2}
-22:29:56.277 +6.62s DEBUG collab.ops.in 4 modifications de Kudoro appliquées {"name":"Kudoro","received":4,"applied":4,"review":4}
-22:29:56.278 +6.62s DEBUG store.remote Modifications d’un autre participant appliquées {"ops":4,"history":1}
-22:29:56.283 +6.63s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"remote","mode":"contenu","ms":3}
-22:29:56.288 +6.63s INFO  review.remote Commentaire reçu de Laurent {"id":"cm_PQND0EZu9ayP","fp":"uIMG81RKXsbsiQ3-","page":"p_yt30zxo8","node":"n_5j6q372k2f"}
-22:29:56.291 +6.63s INFO  collab.sync.merged Reprise : 4 modification(s) reçue(s), 1 envoyée(s) à l’hôte {"in":4,"out":1}
+12:40:49.557 +0.01s DEBUG widgets.extra Widgets supplémentaires chargés : 15 {"widgets":23,"extra":15}
+12:40:49.559 +0.01s DEBUG ui.lang-ready Interface en Français {"lang":"fr","static":0,"catalog":false}
+12:40:49.571 +0.02s DEBUG canvas.scale Canevas ordinateur : 1280 px, réduit à 62 % {"device":"desktop","width":1280,"scale":62,"available":792}
+12:40:49.571 +0.02s INFO  canvas.load.start [canvas.load#1] Chargement complet du canevas : premier chargement {"reason":"premier chargement","page":"p_gvomubtq","lang":"fr","device":"desktop"}
+12:40:49.579 +0.03s DEBUG canvas.load.render [canvas.load#1 · 8 ms] Page rendue {"ms":7,"kb":29}
+12:40:49.627 +0.08s DEBUG version.init 2 version(s) dans ce navigateur {"count":2,"manual":0,"lastAuto":"2026-10-31T11:40:32.635Z","autoToday":true}
+12:40:49.634 +0.08s DEBUG collab.identity.load Clé personnelle chargée : Ana {"fp":"fXJc6D3cE5MgY45S"}
+12:40:49.637 +0.09s INFO  canvas.load.ok [canvas.load#1 · 66 ms] Canevas prêt {"nodes":30,"scale":62,"via":"dom"}
+12:40:49.638 +0.09s DEBUG canvas.resources Ressources externes du canevas chargées {"ms":59,"hosts":[]}
+12:40:49.650 +0.10s INFO  collab.restore Session interrompue retrouvée (éditeur) : rouvre le lien d’invitation pour te reconnecter {"role":"editor","docId":"doc_c1f50ecb711bf07d","host":"Kudoro","via":"boîte aux lettres"}
+12:40:50.021 +0.47s DEBUG store.select Sélection : button {"id":"n_3w003s3d39","type":"button"}
+12:40:50.064 +0.51s DEBUG inspector.tab Onglet de l’inspecteur : Contenu {"tab":"content","from":"content","type":"button"}
+12:40:50.085 +0.53s DEBUG store.commit Modification {"key":"n_3w003s3d39:label:fr","source":"inspector","past":1,"page":"p_gvomubtq"}
+12:40:50.093 +0.54s DEBUG collab.ops.out 1 modification(s) envoyée(s) à 0 participant(s) {"n":1,"to":0}
+12:40:51.002 +1.45s INFO  collab.join.link Lien d’invitation ouvert
+12:40:51.007 +1.46s INFO  collab.invite.open Invitation de Kudoro : éditeur {"role":"editor","owner":"Kudoro","ownerFp":"LuDEOMAfBUzHnPZb","via":"boîte aux lettres","signal":"http://127.0.0.1:8852/publish.php","hours":168}
+12:40:51.008 +1.46s DEBUG ui.dialog.open Fenêtre ouverte : 👥 Rejoindre une session {"id":"joinDialog","class":"audit collab","modal":true}
+12:40:51.016 +1.47s DEBUG inspector.field Champ modifié : Texte du bouton {"key":"label","type":"text","lang":"fr","how":"saisie","chars":16}
+12:40:51.079 +1.53s INFO  collab.join.start [collab.join#1] Rejoindre une session {"name":"Ana","fp":"fXJc6D3cE5MgY45S","via":"boîte aux lettres"}
+12:40:51.081 +1.53s DEBUG collab.join.invite [collab.join#1 · 2 ms] Invitation valable : Kudoro invite comme éditeur {"role":"editor","owner":"Kudoro","host":"863c9ffed095d177","signal":"http://127.0.0.1:8852/publish.php","hours":168}
+12:40:51.081 +1.53s INFO  collab.join.rejoin [collab.join#1 · 2 ms] Même session qu’avant : reconnexion, les modifications faites entre-temps seront fusionnées {"docId":"doc_c1f50ecb711bf07d"}
+12:40:51.082 +1.53s INFO  rtc.join.start [rtc.join#1] Connexion à l’hôte 863c9ffed095d177 par la boîte aux lettres {"host":"863c9ffed095d177","url":"http://127.0.0.1:8852/publish.php","room":"7400cb20"}
+12:40:51.108 +1.56s DEBUG rtc.join.offer [rtc.join#1 · 26 ms] Demande de connexion créée : collecte des adresses réseau
+12:40:55.111 +5.56s DEBUG signal.post Dépôt d’un message chiffré « offer » pour 863c9ffed095d177 {"room":"7400cb20","from":"393c1813bcf60717","to":"863c9ffed095d177","t":"offer","bytes":922}
+12:40:55.112 +5.56s DEBUG net.request POST 127.0.0.1:8852/publish.php {"id":1,"method":"POST","url":"http://127.0.0.1:8852/publish.php","body":{"json":["signal","proof","from","to","data"],"size":1134}}
+12:40:55.118 +5.57s INFO  net.response 200 POST 127.0.0.1:8852/publish.php (7 ms) {"id":1,"status":200,"ms":7,"type":"application/json","req":"11bff303"}
+12:40:55.120 +5.57s INFO  rtc.join.sent [rtc.join#1 · 4038 ms] Demande déposée dans la boîte aux lettres : en attente de la réponse de l’hôte {"local":{"host":1,"srflx":0,"relay":0,"prflx":0}}
+12:40:55.121 +5.57s DEBUG signal.start Relève de la boîte aux lettres toutes les 1 s {"room":"7400cb20","peer":"393c1813bcf60717","every":1000}
+12:40:55.128 +5.58s DEBUG signal.receive 1 message relevé dans la boîte aux lettres {"room":"7400cb20","count":1,"from":["863c9ffed095d177"]}
+12:40:55.129 +5.58s DEBUG signal.ignored Message « answer » ignoré (pas la réponse attendue) {"from":"863c9ffed095d177","t":"answer"}
+12:40:56.136 +6.58s DEBUG signal.receive 1 message relevé dans la boîte aux lettres {"room":"7400cb20","count":1,"from":["863c9ffed095d177"]}
+12:40:56.137 +6.59s DEBUG signal.stop Relève de la boîte aux lettres arrêtée {"room":"7400cb20","polls":2,"received":2}
+12:40:56.142 +6.59s INFO  rtc.join.answer [rtc.join#1 · 5060 ms] Réponse de l’hôte reçue : ouverture du canal… {"remote":{"host":1,"srflx":0,"relay":0,"prflx":0}}
+12:40:56.157 +6.61s INFO  rtc.pair Chemin réseau utilisé : host ↔ host (udp) {"label":"863c9ffed095d177","local":"host","remote":"host","protocol":"udp","rttMs":1,"ms":5059}
+12:40:56.158 +6.61s INFO  rtc.channel.open Canal de données ouvert avec 863c9ffed095d177 {"label":"863c9ffed095d177","ms":5059}
+12:40:56.158 +6.61s INFO  rtc.join.ok [rtc.join#1 · 5076 ms] Liaison directe prête avec l’hôte {"ms":5059}
+12:40:56.158 +6.61s DEBUG collab.link.new Nouveau lien : présentation (invité) {"label":"863c9ffed095d177","links":1}
+12:40:56.162 +6.61s INFO  collab.join.ok [collab.join#1 · 5083 ms] Reconnecté·e : vérification des identités puis reprise {"role":"editor"}
+12:40:56.170 +6.62s DEBUG collab.hello Présentation de l’hôte Kudoro : c’est bien la personne qui a signé l’invitation {"name":"Kudoro","fp":"LuDEOMAfBUzHnPZb","role":"owner"}
+12:40:56.176 +6.63s INFO  collab.auth Identité vérifiée : Kudoro (hôte) {"name":"Kudoro","fp":"LuDEOMAfBUzHnPZb","role":"owner","peers":1}
+12:40:56.178 +6.63s DEBUG collab.sync.ask Demande des modifications manquées (reprise) {"docId":"doc_c1f50ecb711bf07d","known":2}
+12:40:56.194 +6.64s DEBUG collab.ops.in 4 modifications de Kudoro appliquées {"name":"Kudoro","received":4,"applied":4,"review":4}
+12:40:56.195 +6.64s DEBUG store.remote Modifications d’un autre participant appliquées {"ops":4,"history":1}
+12:40:56.199 +6.65s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"remote","mode":"contenu","ms":3}
+12:40:56.204 +6.65s INFO  review.remote Commentaire reçu de Laurent {"id":"cm_pP1zXhNrEH6r","fp":"gRRPu1w4iuwe-3J0","page":"p_gvomubtq","node":"n_5y42365y34"}
+12:40:56.205 +6.65s INFO  collab.sync.merged Reprise : 4 modification(s) reçue(s), 1 envoyée(s) à l’hôte {"in":4,"out":1}

@@ -1,0 +1,4 @@
+12:42:40.632 +9.22s DEBUG edit.dblclick Double-clic sur un texte de la page {"key":"content","id":"n_2i381o3s3a"}
+12:42:40.633 +9.22s INFO  edit.start [edit#4] Édition dans la page : text · content {"id":"n_2i381o3s3a","type":"text","key":"content","field":"richtext","lang":"fr","chars":20}
+12:42:40.727 +9.32s DEBUG edit.paste-rich Collage avec mise en forme : 23 caractères (assaini) {"chars":23,"tags":["ul","li","strong","a"],"items":2,"inline":false,"where":"page"}
+12:42:40.758 +9.35s INFO  edit.ok [edit#4 · 125 ms] Édition terminée : texte enregistré (une seule étape d’annulation) {"id":"n_2i381o3s3a","key":"content","changed":true,"chars":45,"before":20,"inputs":2}

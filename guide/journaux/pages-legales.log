@@ -1,0 +1,5 @@
+13:33:57.570 +2.02s INFO  page.legal.open Assistant des pages légales ouvert {"exists":[]}
+13:33:57.623 +2.07s WARN  page.legal.refused Pages légales non créées : Indiquez l’adresse du siège. {"error":{"name":"Error","message":"Indiquez l’adresse du siège.","stack":"Error: Indiquez l’adresse du siège.\nat need (http://localhost:8833/core/legalpages.js:101:52)\nat buildLegalPage (http://localhost:8833/core/legalpages.js:107:3)\nat addLegalPages (http://localhost:8833/core/legalpages.js:147:40)\nat HTMLButtonElement.onclick (http://localhost:8833/editor/pages.js:266:21)"},"filled":["name","form"]}
+13:33:57.623 +2.07s ERROR ui.toast Message affiché : Indiquez l’adresse du siège. {"type":"error"}
+13:33:57.724 +2.17s INFO  page.legal.create Pages « Mentions légales » et « Vie privée » créées en 4 langues {"legal":"p_x8cbikl3","privacy":"p_icbl2i49","form":"asbl","langs":["fr","nl","de","en"],"vat":false,"footerLink":true}
+13:33:57.735 +2.18s INFO  ui.toast Message affiché : Pages légales créées et liées dans le pied de page. Faites-les relire.

@@ -1,7 +1,7 @@
-22:28:03.705 +30.44s DEBUG store.commit Modification {"key":"palette-c1","source":"panel","past":39,"page":"p_s2tq5e0u"}
-22:28:03.721 +30.46s INFO  settings.color Couleur « Principale » : #0055aa {"key":"c1","value":"#0055aa"}
-22:28:04.032 +30.77s DEBUG store.commit Modification {"key":null,"source":"panel","past":40,"page":"p_s2tq5e0u"}
-22:28:04.033 +30.77s INFO  canvas.load.start [canvas.load#6] Chargement complet du canevas : polices du site {"reason":"polices du site","page":"p_s2tq5e0u","lang":"fr","device":"desktop"}
-22:28:04.033 +30.77s DEBUG canvas.load.render [canvas.load#6 · 0 ms] Page rendue {"ms":1,"kb":28}
-22:28:04.051 +30.79s INFO  settings.font Police des titres : Georgia (classique) {"role":"heading","font":"georgia","google":true}
-22:28:04.074 +30.81s INFO  canvas.load.ok [canvas.load#6 · 41 ms] Canevas prêt {"nodes":35,"scale":62,"via":"load"}
+12:57:38.513 +32.29s DEBUG store.commit Modification {"key":"palette-c1","source":"panel","past":39,"page":"p_fptbpb4e"}
+12:57:38.532 +32.31s INFO  settings.color Couleur « Principale » : #0055aa {"key":"c1","value":"#0055aa"}
+12:57:38.842 +32.62s DEBUG store.commit Modification {"key":null,"source":"panel","past":40,"page":"p_fptbpb4e"}
+12:57:38.843 +32.62s INFO  canvas.load.start [canvas.load#6] Chargement complet du canevas : polices du site {"reason":"polices du site","page":"p_fptbpb4e","lang":"fr","device":"desktop"}
+12:57:38.844 +32.62s DEBUG canvas.load.render [canvas.load#6 · 1 ms] Page rendue {"ms":1,"kb":28}
+12:57:38.854 +32.63s INFO  settings.font Police des titres : Georgia (classique) {"role":"heading","font":"georgia","google":true}
+12:57:38.876 +32.65s INFO  canvas.load.ok [canvas.load#6 · 33 ms] Canevas prêt {"nodes":35,"scale":62,"via":"load"}

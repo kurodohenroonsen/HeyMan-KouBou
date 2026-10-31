@@ -1,5 +1,9 @@
-22:37:46.157 +0.81s DEBUG store.commit Modification {"key":"site-name","source":"topbar","past":1,"page":"p_2xxqt0es"}
-22:37:46.758 +1.42s ERROR storage.save-fail Projet NON enregistré sur cet appareil : Quota dépassé (simulé) (espace plein, navigation privée ou IndexedDB bloqué) {"error":{"name":"QuotaExceededError","message":"Quota dépassé (simulé)","code":22},"name":"QuotaExceededError"}
-22:37:47.079 +1.74s DEBUG store.commit Modification (même étape d’annulation) {"key":"site-name","source":"topbar","merged":true,"past":1,"page":"p_2xxqt0es"}
-22:37:47.681 +2.34s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":12}
-22:37:47.681 +2.34s INFO  storage.save-recovered Enregistrement rétabli
+13:34:32.996 +0.84s DEBUG store.commit Modification {"key":"site-name","source":"topbar","past":1,"page":"p_l13lvmr9"}
+13:34:33.007 +0.85s INFO  storage.persist Stockage persistant refusé par le navigateur : gardez une copie hors du navigateur (dossier, export, hébergement) {"granted":false,"source":"save"}
+13:34:33.009 +0.85s INFO  storage.estimate Stockage : non persistant (le navigateur peut l’effacer) · 25 Ko utilisés sur 516 Mo {"persisted":false,"usage":25485,"quota":541349503}
+13:34:33.601 +1.44s ERROR storage.save-fail Projet NON enregistré sur cet appareil : Quota dépassé (simulé) (espace plein, navigation privée ou IndexedDB bloqué) {"error":{"name":"QuotaExceededError","message":"Quota dépassé (simulé)","code":22},"name":"QuotaExceededError"}
+13:34:33.604 +1.44s ERROR storage.quota Base locale pleine : la dernière modification n’est pas enregistrée {"name":"QuotaExceededError"}
+13:34:33.604 +1.44s ERROR ui.toast Message affiché : L’espace de stockage du navigateur est plein : votre dernière modification n’est pas enregistrée. Exportez une copie (Fichier → Enregistrer le projet .json), puis supprimez d’anciennes versions (Fichier → Versions…) et nettoyez les images inutilisées. {"type":"error"}
+13:34:33.935 +1.77s DEBUG store.commit Modification (même étape d’annulation) {"key":"site-name","source":"topbar","merged":true,"past":1,"page":"p_l13lvmr9"}
+13:34:34.536 +2.38s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":12}
+13:34:34.537 +2.38s INFO  storage.save-recovered Enregistrement rétabli

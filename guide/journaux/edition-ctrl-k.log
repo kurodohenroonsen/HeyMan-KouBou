@@ -1,9 +1,9 @@
-22:27:49.710 +16.45s DEBUG canvas.key Raccourci dans la page : Ctrl+K {"key":"Ctrl+K","in":"page","selected":"n_486t2r292u"}
-22:27:49.714 +16.45s DEBUG ui.dialog.open Fenêtre ouverte : cmdk {"id":"cmdk","class":"cmdk","modal":true}
-22:27:50.043 +16.78s INFO  cmdk.run Commande : Ajouter : Séparateur {"id":"add:divider","query":"ajouter séparateur"}
-22:27:50.044 +16.78s DEBUG store.commit Modification {"source":"library","past":13,"page":"p_s2tq5e0u"}
-22:27:50.048 +16.79s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"library","mode":"contenu","ms":3}
-22:27:50.054 +16.79s DEBUG store.select Sélection : divider {"id":"n_1r0130626o","type":"divider"}
-22:27:50.060 +16.80s INFO  action.add Widget ajouté : Séparateur {"type":"divider","id":"n_1r0130626o","parentType":"column"}
-22:27:50.063 +16.80s DEBUG ui.dialog.close Fenêtre fermée : cmdk {"id":"cmdk"}
-22:27:50.077 +16.82s DEBUG ui.change Champ modifié : cmdkInput {"el":"input","id":"cmdkInput","dialog":"cmdk","value":"ajouter séparateur"}
+12:57:22.685 +16.46s DEBUG canvas.key Raccourci dans la page : Ctrl+K {"key":"Ctrl+K","in":"page","selected":"n_1w4k1c3v43"}
+12:57:22.691 +16.46s DEBUG ui.dialog.open Fenêtre ouverte : cmdk {"id":"cmdk","class":"cmdk","modal":true}
+12:57:23.021 +16.80s INFO  cmdk.run Commande : Ajouter : Séparateur {"id":"add:divider","query":"ajouter séparateur"}
+12:57:23.023 +16.80s DEBUG store.commit Modification {"source":"library","past":13,"page":"p_fptbpb4e"}
+12:57:23.026 +16.80s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"library","mode":"contenu","ms":3}
+12:57:23.033 +16.81s DEBUG store.select Sélection : divider {"id":"n_1l6m183118","type":"divider"}
+12:57:23.040 +16.81s INFO  action.add Widget ajouté : Séparateur {"type":"divider","id":"n_1l6m183118","parentType":"column"}
+12:57:23.044 +16.82s DEBUG ui.dialog.close Fenêtre fermée : cmdk {"id":"cmdk"}
+12:57:23.056 +16.83s DEBUG ui.change Champ modifié : cmdkInput {"el":"input","id":"cmdkInput","dialog":"cmdk","value":"ajouter séparateur"}

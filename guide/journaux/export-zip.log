@@ -1,8 +1,26 @@
-22:37:51.920 +6.58s INFO  audit.open Vérification avant export : prêt (1 point(s) à vérifier) {"mode":"export","ok":true,"errors":0,"warnings":1,"info":3,"missing":51,"ms":4,"firstErrors":[],"firstWarnings":["Accueil : image non choisie : rien ne s’affichera à cet endroit."]}
-22:37:51.923 +6.58s DEBUG ui.dialog.open Fenêtre ouverte : Vérification avant export {"id":"auditDialog","class":"audit","modal":true}
-22:37:51.999 +6.66s INFO  audit.export Export malgré des points à vérifier {"warnings":1}
-22:37:52.001 +6.66s INFO  export.zip.start [export.zip#1] Export du site en .zip
-22:37:52.006 +6.66s DEBUG export.zip.render [export.zip#1 · 5 ms] Pages générées {"files":12,"ms":4}
-22:37:52.012 +6.67s INFO  export.zip.ok [export.zip#1 · 11 ms] Site exporté : 12 fichiers {"files":12,"kb":69,"untranslated":51}
-22:37:52.012 +6.67s INFO  ui.toast Message affiché : Site exporté : 12 fichiers. 51 textes non traduits s’affichent dans la langue principale.
-22:37:52.014 +6.67s DEBUG ui.dialog.close Fenêtre fermée : Vérification avant export {"id":"auditDialog"}
+13:34:39.876 +7.72s DEBUG ui.dialog.close Fenêtre fermée : 🐞 Journal de débogage {"id":"logDialog"}
+13:34:39.904 +7.74s INFO  audit.open Vérification avant export : prêt (1 point(s) à vérifier) {"mode":"export","ok":true,"errors":0,"warnings":1,"info":3,"missing":51,"ms":4,"firstErrors":[],"firstWarnings":["Accueil : image non choisie : rien ne s’affichera à cet endroit."]}
+13:34:39.907 +7.75s DEBUG ui.dialog.open Fenêtre ouverte : Vérification avant export {"id":"auditDialog","class":"audit","modal":true}
+13:34:39.956 +7.80s INFO  audit.export Export malgré des points à vérifier {"warnings":1}
+13:34:39.959 +7.80s INFO  export.zip.start [export.zip#1] Export du site en .zip
+13:34:39.960 +7.80s DEBUG net.request GET fonts/archivo/archivo-latin-400-italic.woff2 {"id":1,"method":"GET","url":"fonts/archivo/archivo-latin-400-italic.woff2"}
+13:34:39.962 +7.80s DEBUG ui.dialog.close Fenêtre fermée : Vérification avant export {"id":"auditDialog"}
+13:34:39.977 +7.82s DEBUG net.response 200 GET fonts/archivo/archivo-latin-400-italic.woff2 (18 ms) {"id":1,"status":200,"ms":18,"type":"font/woff2","size":15820}
+13:34:39.981 +7.82s DEBUG net.request GET fonts/archivo/archivo-latin-400-normal.woff2 {"id":2,"method":"GET","url":"fonts/archivo/archivo-latin-400-normal.woff2"}
+13:34:39.986 +7.83s DEBUG net.response 200 GET fonts/archivo/archivo-latin-400-normal.woff2 (5 ms) {"id":2,"status":200,"ms":5,"type":"font/woff2","size":14700}
+13:34:39.987 +7.83s DEBUG net.request GET fonts/archivo/archivo-latin-700-italic.woff2 {"id":3,"method":"GET","url":"fonts/archivo/archivo-latin-700-italic.woff2"}
+13:34:39.990 +7.83s DEBUG net.response 200 GET fonts/archivo/archivo-latin-700-italic.woff2 (4 ms) {"id":3,"status":200,"ms":4,"type":"font/woff2","size":16004}
+13:34:39.992 +7.83s DEBUG net.request GET fonts/archivo/archivo-latin-700-normal.woff2 {"id":4,"method":"GET","url":"fonts/archivo/archivo-latin-700-normal.woff2"}
+13:34:39.993 +7.83s DEBUG net.response 200 GET fonts/archivo/archivo-latin-700-normal.woff2 (2 ms) {"id":4,"status":200,"ms":2,"type":"font/woff2","size":14508}
+13:34:39.995 +7.83s DEBUG net.request GET fonts/archivo/archivo-latin-ext-400-italic.woff2 {"id":5,"method":"GET","url":"fonts/archivo/archivo-latin-ext-400-italic.woff2"}
+13:34:39.999 +7.84s DEBUG net.response 200 GET fonts/archivo/archivo-latin-ext-400-italic.woff2 (4 ms) {"id":5,"status":200,"ms":4,"type":"font/woff2","size":13568}
+13:34:40.001 +7.84s DEBUG net.request GET fonts/archivo/archivo-latin-ext-400-normal.woff2 {"id":6,"method":"GET","url":"fonts/archivo/archivo-latin-ext-400-normal.woff2"}
+13:34:40.003 +7.84s DEBUG net.response 200 GET fonts/archivo/archivo-latin-ext-400-normal.woff2 (2 ms) {"id":6,"status":200,"ms":2,"type":"font/woff2","size":12928}
+13:34:40.004 +7.84s DEBUG net.request GET fonts/archivo/archivo-latin-ext-700-italic.woff2 {"id":7,"method":"GET","url":"fonts/archivo/archivo-latin-ext-700-italic.woff2"}
+13:34:40.007 +7.85s DEBUG net.response 200 GET fonts/archivo/archivo-latin-ext-700-italic.woff2 (3 ms) {"id":7,"status":200,"ms":3,"type":"font/woff2","size":14112}
+13:34:40.008 +7.85s DEBUG net.request GET fonts/archivo/archivo-latin-ext-700-normal.woff2 {"id":8,"method":"GET","url":"fonts/archivo/archivo-latin-ext-700-normal.woff2"}
+13:34:40.011 +7.85s DEBUG net.response 200 GET fonts/archivo/archivo-latin-ext-700-normal.woff2 (2 ms) {"id":8,"status":200,"ms":2,"type":"font/woff2","size":13272}
+13:34:40.014 +7.85s DEBUG fonts.load 8 fichiers de polices prêts pour le site {"files":8,"kb":112}
+13:34:40.021 +7.86s DEBUG export.zip.render [export.zip#1 · 62 ms] Pages générées {"files":25,"fonts":8,"ms":62}
+13:34:40.030 +7.87s INFO  export.zip.ok [export.zip#1 · 71 ms] Site exporté : 25 fichiers {"files":25,"kb":206,"untranslated":51}
+13:34:40.030 +7.87s INFO  ui.toast Message affiché : Site exporté : 25 fichiers. 51 textes non traduits s’affichent dans la langue principale.

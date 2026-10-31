@@ -1,3 +1,3 @@
-22:27:34.694 +1.43s DEBUG store.select Sélection : section {"id":"n_2b5s5n6e5s","type":"section"}
-22:27:34.699 +1.44s DEBUG canvas.key Raccourci dans la page : Escape {"key":"Escape","in":"page","selected":"n_2b5s5n6e5s"}
-22:27:34.700 +1.44s DEBUG action.parent-none Déjà au niveau le plus haut (une section n’a pas de parent sélectionnable) {"id":"n_2b5s5n6e5s","type":"section"}
+12:57:07.684 +1.46s DEBUG store.select Sélection : section {"id":"n_1v562b1k37","type":"section"}
+12:57:07.696 +1.47s DEBUG canvas.key Raccourci dans la page : Escape {"key":"Escape","in":"page","selected":"n_1v562b1k37"}
+12:57:07.697 +1.47s DEBUG action.parent-none Déjà au niveau le plus haut (une section n’a pas de parent sélectionnable) {"id":"n_1v562b1k37","type":"section"}

@@ -1,16 +1,16 @@
-22:27:46.765 +13.50s DEBUG canvas.key Raccourci dans la page : Ctrl+D {"key":"Ctrl+D","in":"page","selected":"n_5k5f440h54"}
-22:27:46.767 +13.51s DEBUG store.commit Modification {"source":"action","past":13,"page":"p_s2tq5e0u"}
-22:27:46.772 +13.51s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":4}
-22:27:46.780 +13.52s DEBUG store.select Sélection : heading {"id":"n_183s356f1h","type":"heading"}
-22:27:46.789 +13.53s INFO  action.duplicate Dupliqué : heading {"id":"n_5k5f440h54","newId":"n_183s356f1h","type":"heading"}
-22:27:46.953 +13.69s DEBUG canvas.key Raccourci dans la page : Ctrl+Z {"key":"Ctrl+Z","in":"page","selected":"n_183s356f1h"}
-22:27:46.953 +13.69s INFO  store.undo Annuler {"left":12,"redo":1}
-22:27:46.956 +13.69s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"history","mode":"contenu","ms":2}
-22:27:47.128 +13.87s DEBUG canvas.key Raccourci dans la page : Ctrl+Y {"key":"Ctrl+Y","in":"page","selected":"n_5k5f440h54"}
-22:27:47.129 +13.87s INFO  store.redo Rétablir {"left":0}
-22:27:47.132 +13.87s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"history","mode":"contenu","ms":2}
-22:27:47.308 +14.05s DEBUG canvas.key Raccourci dans la page : Ctrl+Maj+Z {"key":"Ctrl+Maj+Z","in":"page","selected":"n_183s356f1h"}
-22:27:47.308 +14.05s DEBUG store.redo-none Rétablir : rien à rétablir
-22:27:47.489 +14.23s DEBUG ui.click Clic : ↶ {"el":"button","id":"undoBtn","text":"↶"}
-22:27:47.489 +14.23s INFO  store.undo Annuler {"left":12,"redo":1}
-22:27:47.493 +14.23s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"history","mode":"contenu","ms":3}
+12:57:19.790 +13.56s DEBUG canvas.key Raccourci dans la page : Ctrl+D {"key":"Ctrl+D","in":"page","selected":"n_21454v0620"}
+12:57:19.791 +13.56s DEBUG store.commit Modification {"source":"action","past":13,"page":"p_fptbpb4e"}
+12:57:19.794 +13.57s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":3}
+12:57:19.798 +13.57s DEBUG store.select Sélection : heading {"id":"n_2t34591u6w","type":"heading"}
+12:57:19.804 +13.58s INFO  action.duplicate Dupliqué : heading {"id":"n_21454v0620","newId":"n_2t34591u6w","type":"heading"}
+12:57:19.964 +13.74s DEBUG canvas.key Raccourci dans la page : Ctrl+Z {"key":"Ctrl+Z","in":"page","selected":"n_2t34591u6w"}
+12:57:19.965 +13.74s INFO  store.undo Annuler {"left":12,"redo":1}
+12:57:19.967 +13.74s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"history","mode":"contenu","ms":2}
+12:57:20.139 +13.91s DEBUG canvas.key Raccourci dans la page : Ctrl+Y {"key":"Ctrl+Y","in":"page","selected":"n_21454v0620"}
+12:57:20.139 +13.91s INFO  store.redo Rétablir {"left":0}
+12:57:20.145 +13.92s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"history","mode":"contenu","ms":5}
+12:57:20.333 +14.11s DEBUG canvas.key Raccourci dans la page : Ctrl+Maj+Z {"key":"Ctrl+Maj+Z","in":"page","selected":"n_2t34591u6w"}
+12:57:20.333 +14.11s DEBUG store.redo-none Rétablir : rien à rétablir
+12:57:20.506 +14.28s DEBUG ui.click Clic : ↶ {"el":"button","id":"undoBtn","text":"↶"}
+12:57:20.506 +14.28s INFO  store.undo Annuler {"left":12,"redo":1}
+12:57:20.509 +14.28s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"history","mode":"contenu","ms":2}

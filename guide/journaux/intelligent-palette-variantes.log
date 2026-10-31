@@ -1,17 +1,17 @@
-22:31:09.796 +11.02s INFO  smart.palette.start [smart.palette#2] Palette depuis le logo {"logo":"aucun"}
-22:31:09.796 +11.02s DEBUG ui.dialog.open Fenêtre ouverte : 🎨 Palette depuis le logo {"id":"paletteDialog","class":"audit smart-dialog","modal":true}
-22:31:09.802 +11.03s INFO  smart.palette.no-logo [smart.palette#2 · 6 ms] Pas de logo importé : choisir une image
-22:31:09.843 +11.07s DEBUG smart.palette.file [smart.palette#2 · 47 ms] Image choisie : logo-gris.png {"type":"image/png","kb":0}
-22:31:09.854 +11.08s DEBUG smart.palette.pixels [smart.palette#2 · 58 ms] Logo lu : 40×40 px (analysé en 40×40) {"natural":"40×40","sample":"40×40"}
-22:31:09.854 +11.08s INFO  smart.palette.colors [smart.palette#2 · 58 ms] 1 couleur(s) dominante(s) {"colors":["#222222 100 %"]}
-22:31:09.855 +11.08s WARN  smart.palette.no-vivid [smart.palette#2 · 59 ms] Le logo n’a pas de couleur vive : la couleur principale du site est gardée, le reste en découle. {"colors":["#222222"]}
-22:31:09.855 +11.08s INFO  smart.palette.proposal [smart.palette#2 · 59 ms] Proposition : #c8181d #f0be7f #231515 #fbf7f7 #725a5a #ffffff {"palette":{"c1":"#c8181d","c2":"#f0be7f","c3":"#231515","c4":"#fbf7f7","c5":"#725a5a","c6":"#ffffff"},"roles":{"c1":"gardée","c2":"dérivée de la principale","c3":"dérivée","c4":"dérivée","c5":"dérivée","c6":"blanc"},"changes":[],"ok":true,"failing":[]}
-22:31:09.888 +11.12s DEBUG ui.dialog.close Fenêtre fermée : 🎨 Palette depuis le logo {"id":"paletteDialog"}
-22:31:09.888 +11.12s INFO  smart.palette.cancel [smart.palette#2 · 92 ms] Fermé sans appliquer
-22:31:09.936 +11.16s INFO  smart.palette.start [smart.palette#3] Palette depuis le logo {"logo":"aucun"}
-22:31:09.937 +11.16s DEBUG ui.dialog.open Fenêtre ouverte : 🎨 Palette depuis le logo {"id":"paletteDialog","class":"audit smart-dialog","modal":true}
-22:31:09.946 +11.17s INFO  smart.palette.no-logo [smart.palette#3 · 10 ms] Pas de logo importé : choisir une image
-22:31:09.972 +11.20s DEBUG smart.palette.file [smart.palette#3 · 36 ms] Image choisie : vide.png {"type":"image/png","kb":0}
-22:31:09.985 +11.21s DEBUG smart.palette.pixels [smart.palette#3 · 49 ms] Logo lu : 20×20 px (analysé en 20×20) {"natural":"20×20","sample":"20×20"}
-22:31:09.986 +11.21s INFO  smart.palette.colors [smart.palette#3 · 50 ms] 0 couleur(s) dominante(s) {"colors":[]}
-22:31:09.986 +11.21s ERROR smart.palette.fail [smart.palette#3 · 50 ms] Logo illisible : Logo entièrement transparent : aucune couleur à lire. {"error":{"name":"Error","message":"Logo entièrement transparent : aucune couleur à lire.","stack":"Error: Logo entièrement transparent : aucune couleur à lire.\nat run (http://localhost:8791/editor/smart-ui.js:292:33)\nat async HTMLInputElement.<anonymous> (http://localhost:8791/editor/smart-ui.js:329:5)"}}
+20:55:03.086 +11.90s INFO  smart.palette.start [smart.palette#2] Palette depuis le logo {"logo":"aucun"}
+20:55:03.087 +11.91s DEBUG ui.dialog.open Fenêtre ouverte : 🎨 Palette depuis le logo {"id":"paletteDialog","class":"audit smart-dialog","modal":true}
+20:55:03.094 +11.91s INFO  smart.palette.no-logo [smart.palette#2 · 8 ms] Pas de logo importé : choisir une image
+20:55:03.133 +11.95s DEBUG smart.palette.file [smart.palette#2 · 47 ms] Image choisie : logo-gris.png {"type":"image/png","kb":0}
+20:55:03.146 +11.96s DEBUG smart.palette.pixels [smart.palette#2 · 60 ms] Logo lu : 40×40 px (analysé en 40×40) {"natural":"40×40","sample":"40×40"}
+20:55:03.147 +11.97s INFO  smart.palette.colors [smart.palette#2 · 61 ms] 1 couleur(s) dominante(s) {"colors":["#222222 100 %"]}
+20:55:03.147 +11.97s WARN  smart.palette.no-vivid [smart.palette#2 · 61 ms] Le logo n’a pas de couleur vive : la couleur principale du site est gardée, le reste en découle. {"colors":["#222222"]}
+20:55:03.148 +11.97s INFO  smart.palette.proposal [smart.palette#2 · 62 ms] Proposition : #c8181d #f0be7f #231515 #fbf7f7 #725a5a #ffffff {"palette":{"c1":"#c8181d","c2":"#f0be7f","c3":"#231515","c4":"#fbf7f7","c5":"#725a5a","c6":"#ffffff"},"roles":{"c1":"gardée","c2":"dérivée de la principale","c3":"dérivée","c4":"dérivée","c5":"dérivée","c6":"blanc"},"changes":[],"ok":true,"failing":[]}
+20:55:03.183 +12.00s DEBUG ui.dialog.close Fenêtre fermée : 🎨 Palette depuis le logo {"id":"paletteDialog"}
+20:55:03.183 +12.00s INFO  smart.palette.cancel [smart.palette#2 · 97 ms] Fermé sans appliquer
+20:55:03.220 +12.04s INFO  smart.palette.start [smart.palette#3] Palette depuis le logo {"logo":"aucun"}
+20:55:03.220 +12.04s DEBUG ui.dialog.open Fenêtre ouverte : 🎨 Palette depuis le logo {"id":"paletteDialog","class":"audit smart-dialog","modal":true}
+20:55:03.228 +12.05s INFO  smart.palette.no-logo [smart.palette#3 · 8 ms] Pas de logo importé : choisir une image
+20:55:03.243 +12.06s DEBUG smart.palette.file [smart.palette#3 · 23 ms] Image choisie : vide.png {"type":"image/png","kb":0}
+20:55:03.251 +12.07s DEBUG smart.palette.pixels [smart.palette#3 · 31 ms] Logo lu : 20×20 px (analysé en 20×20) {"natural":"20×20","sample":"20×20"}
+20:55:03.251 +12.07s INFO  smart.palette.colors [smart.palette#3 · 31 ms] 0 couleur(s) dominante(s) {"colors":[]}
+20:55:03.251 +12.07s ERROR smart.palette.fail [smart.palette#3 · 31 ms] Logo illisible : Logo entièrement transparent : aucune couleur à lire. {"error":{"name":"Error","message":"Logo entièrement transparent : aucune couleur à lire.","stack":"Error: Logo entièrement transparent : aucune couleur à lire.\nat run (http://localhost:8791/editor/smart-ui.js:292:33)\nat async HTMLInputElement.<anonymous> (http://localhost:8791/editor/smart-ui.js:329:5)"}}
