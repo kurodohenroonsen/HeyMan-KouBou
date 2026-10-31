@@ -530,7 +530,7 @@ export const DEMO_STEPS = [
         await texts(d, 'period', it.period);
         await texts(d, 'features', it.features);
         for (const l of LANGS) await d.setField('button', it.button ? it.button[l] : '', { lang: l });
-        if (it.link) await d.setField('link', it.link);
+        await d.setField('link', it.link || '');
         if (it.badge) await texts(d, 'badge', it.badge);
       }
     }),
