@@ -1,8 +1,8 @@
-13:32:54.879 +16.59s DEBUG store.commit Modification {"source":"pages","past":29,"page":"p_n23urgu0"}
-13:32:54.885 +16.59s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":3}
-13:32:54.896 +16.61s INFO  page.add Page « Notre équipe » créée : /notre-equipe/ {"id":"p_wplgorc1","slug":"notre-equipe","lang":"fr","pages":3,"menu":"automatique"}
-13:32:54.897 +16.61s DEBUG store.view Vue : pageId=p_wplgorc1 {"pageId":"p_wplgorc1"}
-13:32:54.904 +16.61s INFO  canvas.load.start [canvas.load#5] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_wplgorc1","lang":"fr","device":"desktop"}
-13:32:54.905 +16.61s DEBUG canvas.load.render [canvas.load#5 · 1 ms] Page rendue {"ms":0,"kb":19}
-13:32:54.906 +16.62s INFO  ui.toast Message affiché : Page « Notre équipe » créée : /notre-equipe/
-13:32:54.935 +16.64s INFO  canvas.load.ok [canvas.load#5 · 31 ms] Canevas prêt {"nodes":0,"scale":76,"via":"load"}
+13:51:25.151 +16.35s DEBUG store.commit Modification {"source":"pages","past":29,"page":"p_1ktrqpn6"}
+13:51:25.157 +16.36s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":3}
+13:51:25.171 +16.37s INFO  page.add Page « Notre équipe » créée : /notre-equipe/ {"id":"p_1qv72xb6","slug":"notre-equipe","lang":"fr","pages":3,"menu":"automatique"}
+13:51:25.172 +16.37s DEBUG store.view Vue : pageId=p_1qv72xb6 {"pageId":"p_1qv72xb6"}
+13:51:25.180 +16.38s INFO  canvas.load.start [canvas.load#5] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_1qv72xb6","lang":"fr","device":"desktop"}
+13:51:25.180 +16.38s DEBUG canvas.load.render [canvas.load#5 · 0 ms] Page rendue {"ms":0,"kb":19}
+13:51:25.182 +16.38s INFO  ui.toast Message affiché : Page « Notre équipe » créée : /notre-equipe/
+13:51:25.219 +16.42s INFO  canvas.load.ok [canvas.load#5 · 39 ms] Canevas prêt {"nodes":0,"scale":76,"via":"load"}

@@ -1,18 +1,17 @@
-13:46:41.372 +0.82s DEBUG store.view Vue : device=mobile {"device":"mobile"}
-13:46:41.372 +0.82s INFO  onboarding.step-done Pour commencer : « Regarder sur mobile » fait (14 %) {"step":"mobile","done":1,"total":7,"percent":14,"by":"store.view"}
-13:46:41.375 +0.83s DEBUG canvas.scale Canevas mobile : 390 px {"device":"mobile","width":390,"scale":100,"available":792,"zoom":"fit"}
-13:46:41.379 +0.83s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":4}
-13:46:41.623 +1.08s DEBUG store.view Vue : device=desktop {"device":"desktop"}
-13:46:41.625 +1.08s DEBUG canvas.scale Canevas ordinateur : 1040 px, réduit à 76 % {"device":"desktop","width":1040,"scale":76,"available":792,"zoom":"fit"}
-13:46:41.632 +1.08s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":6}
-13:46:41.741 +1.19s DEBUG store.commit Modification {"source":"library","past":1,"page":"p_5xposq42"}
-13:46:41.747 +1.20s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"library","mode":"contenu","ms":4}
-13:46:41.748 +1.20s DEBUG store.select Sélection : section {"id":"n_2z4u31605c","type":"section"}
-13:46:41.749 +1.20s INFO  action.add-section Section ajoutée depuis un modèle (2 rangées) {"id":"n_2z4u31605c","template":true,"index":2}
-13:46:41.750 +1.20s INFO  onboarding.step-done Pour commencer : « Ajouter une section » fait (29 %) {"step":"section","done":2,"total":7,"percent":29,"by":"action.add-section"}
-13:46:41.750 +1.20s INFO  template.insert Modèle de section inséré : Avantages {"template":"features","id":"n_2z4u31605c","rows":2}
-13:46:42.343 +1.80s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":6}
-13:46:42.361 +1.81s DEBUG store.commit Modification {"key":"site-name","source":"panel","past":2,"page":"p_5xposq42"}
-13:46:42.361 +1.81s INFO  onboarding.step-done Pour commencer : « Nommer le site » fait (43 %) {"step":"name","done":3,"total":7,"percent":43,"by":"store.commit"}
-13:46:42.387 +1.84s INFO  settings.name Nom du site : « Mon site à moi » {"length":14}
-13:46:42.422 +1.88s INFO  settings.name Nom du site : « Mon site à moi » {"length":14}
+13:52:35.490 +0.76s DEBUG store.view Vue : device=mobile {"device":"mobile"}
+13:52:35.490 +0.76s INFO  onboarding.step-done Pour commencer : « Regarder sur mobile » fait (14 %) {"step":"mobile","done":1,"total":7,"percent":14,"by":"store.view"}
+13:52:35.493 +0.76s DEBUG canvas.scale Canevas mobile : 390 px {"device":"mobile","width":390,"scale":100,"available":792,"zoom":"fit"}
+13:52:35.495 +0.76s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":2}
+13:52:35.733 +1.00s DEBUG store.view Vue : device=desktop {"device":"desktop"}
+13:52:35.734 +1.00s DEBUG canvas.scale Canevas ordinateur : 1040 px, réduit à 76 % {"device":"desktop","width":1040,"scale":76,"available":792,"zoom":"fit"}
+13:52:35.737 +1.00s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":2}
+13:52:35.843 +1.11s DEBUG store.commit Modification {"source":"library","past":1,"page":"p_m90cfxqd"}
+13:52:35.848 +1.11s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"library","mode":"contenu","ms":5}
+13:52:35.849 +1.11s DEBUG store.select Sélection : section {"id":"n_6l543t4h64","type":"section"}
+13:52:35.849 +1.11s INFO  action.add-section Section ajoutée depuis un modèle (2 rangées) {"id":"n_6l543t4h64","template":true,"index":2}
+13:52:35.850 +1.11s INFO  onboarding.step-done Pour commencer : « Ajouter une section » fait (29 %) {"step":"section","done":2,"total":7,"percent":29,"by":"action.add-section"}
+13:52:35.850 +1.11s INFO  template.insert Modèle de section inséré : Avantages {"template":"features","id":"n_6l543t4h64","rows":2}
+13:52:36.413 +1.68s DEBUG store.commit Modification {"key":"site-name","source":"panel","past":2,"page":"p_m90cfxqd"}
+13:52:36.413 +1.68s INFO  onboarding.step-done Pour commencer : « Nommer le site » fait (43 %) {"step":"name","done":3,"total":7,"percent":43,"by":"store.commit"}
+13:52:36.426 +1.69s INFO  settings.name Nom du site : « Mon site à moi » {"length":14}
+13:52:36.457 +1.72s INFO  settings.name Nom du site : « Mon site à moi » {"length":14}

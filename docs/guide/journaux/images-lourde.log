@@ -1,16 +1,16 @@
-13:32:51.145 +12.86s INFO  inspector.image.start [inspector.image#6] Import d’une image {"field":"logo","type":"image/png","kb":10752}
-13:32:51.145 +12.86s INFO  image.import.start [image.import#5] Import de l’image « photo-lourde.png » {"name":"photo-lourde.png","type":"image/png","kb":10752}
-13:32:51.145 +12.86s WARN  image.import.heavy [image.import#5 · 0 ms] Fichier très lourd (11 Mo) : la conversion peut prendre plusieurs secondes {"kb":10752,"limit":8192}
-13:32:51.222 +12.93s DEBUG image.import.decode [image.import#5 · 77 ms] Image lue : 2000×1600 px {"width":2000,"height":1600,"ms":77}
-13:32:51.223 +12.93s DEBUG image.import.resize [image.import#5 · 78 ms] Réduite à 1600×1280 px (largeur maximale 1600 px) {"from":"2000×1600","to":"1600×1280"}
-13:32:51.660 +13.37s DEBUG image.import.encode [image.import#5 · 515 ms] Version principale : 1600×1280 px, 1194 Ko (image/webp) {"w":1600,"h":1280,"mime":"image/webp","kb":1194,"ms":438}
-13:32:51.706 +13.42s DEBUG image.import.variant [image.import#5 · 561 ms] Variante 480 px : 60 Ko {"w":480,"kb":60,"ms":44}
-13:32:51.858 +13.57s DEBUG image.import.variant [image.import#5 · 713 ms] Variante 960 px : 352 Ko {"w":960,"kb":352,"ms":149}
-13:32:51.859 +13.57s WARN  image.import.big-output [image.import#5 · 714 ms] Image encore lourde après conversion (1194 Ko) : le site sera plus lent à charger {"kb":1194,"limit":400}
-13:32:51.866 +13.58s INFO  image.import.ok [image.import#5 · 721 ms] Image prête : 1600×1280 px, 1194 Ko (−89 %), 2 variantes {"name":"photo-lourde.webp","mime":"image/webp","width":1600,"height":1280,"kbIn":10752,"kbOut":1194,"gain":89,"variants":[480,960]}
-13:32:51.866 +13.58s DEBUG inspector.image.webp [inspector.image#6 · 721 ms] Image convertie en WebP {"mime":"image/webp","width":1600,"height":1280,"kb":1194,"variants":2}
-13:32:51.875 +13.59s DEBUG store.commit Modification {"key":null,"source":"site","past":24,"page":"p_n23urgu0"}
-13:32:51.909 +13.62s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":23}
-13:32:51.936 +13.65s INFO  settings.logo Logo importé {"kind":"asset","asset":"img_ip6g7y91","file":"photo-lourde.webp"}
-13:32:51.936 +13.65s INFO  inspector.image.ok [inspector.image#6 · 791 ms] Image ajoutée : 1600×1280 px {"asset":"img_ip6g7y91","field":"logo"}
-13:32:51.937 +13.65s INFO  ui.toast Message affiché : Image ajoutée en WebP : 1600×1280 px, 1194 Ko.
+13:51:21.481 +12.68s INFO  inspector.image.start [inspector.image#6] Import d’une image {"field":"logo","type":"image/png","kb":10752}
+13:51:21.482 +12.68s INFO  image.import.start [image.import#5] Import de l’image « photo-lourde.png » {"name":"photo-lourde.png","type":"image/png","kb":10752}
+13:51:21.482 +12.68s WARN  image.import.heavy [image.import#5 · 0 ms] Fichier très lourd (11 Mo) : la conversion peut prendre plusieurs secondes {"kb":10752,"limit":8192}
+13:51:21.553 +12.75s DEBUG image.import.decode [image.import#5 · 71 ms] Image lue : 2000×1600 px {"width":2000,"height":1600,"ms":71}
+13:51:21.553 +12.75s DEBUG image.import.resize [image.import#5 · 71 ms] Réduite à 1600×1280 px (largeur maximale 1600 px) {"from":"2000×1600","to":"1600×1280"}
+13:51:22.010 +13.21s DEBUG image.import.encode [image.import#5 · 528 ms] Version principale : 1600×1280 px, 1195 Ko (image/webp) {"w":1600,"h":1280,"mime":"image/webp","kb":1195,"ms":457}
+13:51:22.051 +13.25s DEBUG image.import.variant [image.import#5 · 569 ms] Variante 480 px : 61 Ko {"w":480,"kb":61,"ms":40}
+13:51:22.202 +13.40s DEBUG image.import.variant [image.import#5 · 720 ms] Variante 960 px : 353 Ko {"w":960,"kb":353,"ms":148}
+13:51:22.203 +13.40s WARN  image.import.big-output [image.import#5 · 721 ms] Image encore lourde après conversion (1195 Ko) : le site sera plus lent à charger {"kb":1195,"limit":400}
+13:51:22.214 +13.41s INFO  image.import.ok [image.import#5 · 732 ms] Image prête : 1600×1280 px, 1195 Ko (−89 %), 2 variantes {"name":"photo-lourde.webp","mime":"image/webp","width":1600,"height":1280,"kbIn":10752,"kbOut":1195,"gain":89,"variants":[480,960]}
+13:51:22.214 +13.41s DEBUG inspector.image.webp [inspector.image#6 · 733 ms] Image convertie en WebP {"mime":"image/webp","width":1600,"height":1280,"kb":1195,"variants":2}
+13:51:22.224 +13.42s DEBUG store.commit Modification {"key":null,"source":"site","past":24,"page":"p_1ktrqpn6"}
+13:51:22.254 +13.45s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":19}
+13:51:22.283 +13.48s INFO  settings.logo Logo importé {"kind":"asset","asset":"img_a1a6pihx","file":"photo-lourde.webp"}
+13:51:22.283 +13.48s INFO  inspector.image.ok [inspector.image#6 · 802 ms] Image ajoutée : 1600×1280 px {"asset":"img_a1a6pihx","field":"logo"}
+13:51:22.283 +13.48s INFO  ui.toast Message affiché : Image ajoutée en WebP : 1600×1280 px, 1195 Ko.

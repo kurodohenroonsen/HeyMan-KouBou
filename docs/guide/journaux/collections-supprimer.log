@@ -1,9 +1,9 @@
-13:33:29.641 +51.35s INFO  collection.open Collection « Médias membres » ouverte : 0 élément, 6 champs {"id":"col_11ryxtf9","kind":"members","items":0,"drafts":0,"fields":6,"tab":"items","item":null}
-13:33:29.642 +51.35s DEBUG ui.dialog.open Fenêtre ouverte : 📻 Médias membres /medias-membres/ {"id":"collectionDialog","class":"audit col-dialog","modal":true}
-13:33:29.688 +51.40s DEBUG collection.tab Onglet « Réglages » {"collection":"col_11ryxtf9","tab":"settings"}
-13:33:29.871 +51.58s DEBUG collection.delete-cancel Suppression de la collection annulée {"collection":"col_11ryxtf9"}
-13:33:30.055 +51.77s DEBUG store.commit Modification {"source":"collections","past":81,"page":"p_c3m3b4fj"}
-13:33:30.060 +51.77s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":4}
-13:33:30.061 +51.77s INFO  collection.delete Collection « Médias membres » supprimée avec ses 0 éléments (Ctrl+Z pour annuler) {"collection":"col_11ryxtf9","kind":"members","items":0}
-13:33:30.062 +51.77s INFO  ui.toast Message affiché : Collection « Médias membres » supprimée.
-13:33:30.068 +51.78s DEBUG ui.dialog.close Fenêtre fermée : 📻 Médias membres /medias-membres/ {"id":"collectionDialog"}
+13:51:59.211 +50.41s INFO  collection.open Collection « Médias membres » ouverte : 0 élément, 6 champs {"id":"col_qfxw4fth","kind":"members","items":0,"drafts":0,"fields":6,"tab":"items","item":null}
+13:51:59.212 +50.41s DEBUG ui.dialog.open Fenêtre ouverte : 📻 Médias membres /medias-membres/ {"id":"collectionDialog","class":"audit col-dialog","modal":true}
+13:51:59.261 +50.46s DEBUG collection.tab Onglet « Réglages » {"collection":"col_qfxw4fth","tab":"settings"}
+13:51:59.444 +50.64s DEBUG collection.delete-cancel Suppression de la collection annulée {"collection":"col_qfxw4fth"}
+13:51:59.663 +50.86s DEBUG store.commit Modification {"source":"collections","past":81,"page":"p_llgk0bb6"}
+13:51:59.669 +50.87s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":4}
+13:51:59.670 +50.87s INFO  collection.delete Collection « Médias membres » supprimée avec ses 0 éléments (Ctrl+Z pour annuler) {"collection":"col_qfxw4fth","kind":"members","items":0}
+13:51:59.671 +50.87s INFO  ui.toast Message affiché : Collection « Médias membres » supprimée.
+13:51:59.677 +50.88s DEBUG ui.dialog.close Fenêtre fermée : 📻 Médias membres /medias-membres/ {"id":"collectionDialog"}
