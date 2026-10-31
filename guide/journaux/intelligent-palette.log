@@ -1,0 +1,14 @@
+22:31:09.064 +10.29s INFO  smart.palette.start [smart.palette#1] Palette depuis le logo {"logo":"aucun"}
+22:31:09.065 +10.29s DEBUG ui.dialog.open Fenêtre ouverte : 🎨 Palette depuis le logo {"id":"paletteDialog","class":"audit smart-dialog","modal":true}
+22:31:09.072 +10.30s INFO  smart.palette.no-logo [smart.palette#1 · 8 ms] Pas de logo importé : choisir une image
+22:31:09.104 +10.33s DEBUG smart.palette.file [smart.palette#1 · 40 ms] Image choisie : logo-mab.png {"type":"image/png","kb":0}
+22:31:09.108 +10.34s DEBUG smart.palette.pixels [smart.palette#1 · 44 ms] Logo lu : 120×60 px (analysé en 120×60) {"natural":"120×60","sample":"120×60"}
+22:31:09.112 +10.34s INFO  smart.palette.colors [smart.palette#1 · 48 ms] 2 couleur(s) dominante(s) {"colors":["#ffd400 51 %","#f2353f 49 %"]}
+22:31:09.115 +10.34s INFO  smart.palette.proposal [smart.palette#1 · 51 ms] Proposition : #e00e1a #ffd400 #231516 #fbf7f7 #725a5b #ffffff · 1 correction de contraste {"palette":{"c1":"#e00e1a","c2":"#ffd400","c3":"#231516","c4":"#fbf7f7","c5":"#725a5b","c6":"#ffffff"},"roles":{"c1":"du logo","c2":"du logo","c3":"dérivée","c4":"dérivée","c5":"dérivée","c6":"blanc"},"changes":[{"key":"c1","from":"#f2353f","to":"#e00e1a","why":"assombrie pour le texte blanc des boutons et les liens sur le fond"}],"ok":true,"failing":[]}
+22:31:09.341 +10.57s DEBUG store.commit Modification {"source":"site","past":10,"page":"p_slv7uphv"}
+22:31:09.349 +10.58s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
+22:31:09.363 +10.59s INFO  smart.palette.ok [smart.palette#1 · 299 ms] Palette appliquée (Ctrl+Z pour revenir à l’ancienne) {"palette":{"c1":"#e00e1a","c2":"#ffd400","c3":"#231516","c4":"#fbf7f7","c5":"#725a5b","c6":"#ffffff"},"changes":1}
+22:31:09.364 +10.59s INFO  ui.toast Message affiché : Palette appliquée : tout le site suit (Ctrl+Z pour annuler).
+22:31:09.373 +10.60s DEBUG ui.dialog.close Fenêtre fermée : 🎨 Palette depuis le logo {"id":"paletteDialog"}
+22:31:09.489 +10.72s INFO  store.undo Annuler {"left":9,"redo":1}
+22:31:09.500 +10.73s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"history","mode":"contenu","ms":5}

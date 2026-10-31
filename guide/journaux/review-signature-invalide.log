@@ -1,0 +1,3 @@
+22:30:05.636 +0.96s DEBUG store.commit Modification {"source":"review","past":2,"page":"p_3dyde0io"}
+22:30:05.641 +0.96s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"review","mode":"contenu","ms":3}
+22:30:05.647 +0.97s WARN  review.sig.bad Signature invalide : le texte ou l’auteur de ce commentaire ne correspondent pas à la signature (modifié après coup ?) {"id":"cm_-gW_M8iBKF2h","author":"Misako","fp":"j1wL165-W78CG2YQ","reply":false}

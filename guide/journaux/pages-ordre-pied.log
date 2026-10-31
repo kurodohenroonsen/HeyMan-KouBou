@@ -1,0 +1,15 @@
+22:28:36.458 +22.44s DEBUG store.commit Modification {"source":"pages","past":38,"page":"p_6mot4fio"}
+22:28:36.464 +22.45s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":2}
+22:28:36.465 +22.45s INFO  page.move Page « Notre équipe » montée dans le menu (position 2) {"id":"p_6mot4fio","dir":-1,"from":2,"to":1}
+22:28:36.812 +22.80s DEBUG store.commit Modification {"source":"pages","past":39,"page":"p_6mot4fio"}
+22:28:36.829 +22.81s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":3}
+22:28:36.830 +22.82s INFO  page.footer-link « Notre équipe » : lien dans le pied de page (retirée du menu) {"id":"p_6mot4fio","footer":true}
+22:28:37.210 +23.20s DEBUG store.commit Modification {"source":"pages","past":40,"page":"p_6mot4fio"}
+22:28:37.217 +23.20s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":3}
+22:28:37.218 +23.20s INFO  page.footer-link « Notre équipe » : de retour dans le menu {"id":"p_6mot4fio","footer":false}
+22:28:37.705 +23.69s INFO  page.open Page ouverte : Accueil {"id":"p_sebc0enn","slug":""}
+22:28:37.705 +23.69s DEBUG store.view Vue : pageId=p_sebc0enn {"pageId":"p_sebc0enn"}
+22:28:37.713 +23.70s INFO  canvas.load.start [canvas.load#10] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_sebc0enn","lang":"fr","device":"desktop"}
+22:28:37.715 +23.70s DEBUG canvas.load.render [canvas.load#10 · 2 ms] Page rendue {"ms":1,"kb":25}
+22:28:37.746 +23.73s INFO  canvas.load.ok [canvas.load#10 · 33 ms] Canevas prêt {"nodes":30,"scale":62,"via":"load"}
+22:28:37.812 +23.80s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":13}

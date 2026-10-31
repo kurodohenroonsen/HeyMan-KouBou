@@ -1,0 +1,23 @@
+22:30:12.221 +6.01s INFO  rtc.manual-answer.start [rtc.manual-answer#2] Code de connexion reçu : création du code de réponse {"chars":931}
+22:30:12.227 +6.01s DEBUG rtc.pc.create Connexion WebRTC créée (côté réponse) {"side":"answer","label":"f5bf033d31f7887d","stun":"aucun (réseau local seulement)"}
+22:30:12.228 +6.02s INFO  rtc.accept.start [rtc.accept#1] Demande de connexion par code de f5bf033d31f7887d {"from":"f5bf033d31f7887d","via":"codes"}
+22:30:12.234 +6.02s DEBUG rtc.ice.remote Adresses reçues de l’autre navigateur : 1 host {"label":"f5bf033d31f7887d","type":"offer","remote":{"host":1,"srflx":0,"relay":0,"prflx":0}}
+22:30:12.239 +6.03s DEBUG rtc.ice.gathering Collecte des candidats : gathering {"label":"f5bf033d31f7887d","state":"gathering","local":{"host":0,"srflx":0,"relay":0,"prflx":0}}
+22:30:12.244 +6.03s DEBUG rtc.ice.state ICE : essai des chemins réseau entre les deux navigateurs {"label":"f5bf033d31f7887d","state":"checking","ms":17}
+22:30:12.246 +6.03s DEBUG rtc.pc.state Connexion : établissement (ICE puis chiffrement DTLS) {"label":"f5bf033d31f7887d","state":"connecting","ms":19}
+22:30:12.247 +6.04s INFO  rtc.ice.state ICE : un chemin réseau fonctionne {"label":"f5bf033d31f7887d","state":"connected","ms":21}
+22:30:12.248 +6.04s DEBUG rtc.ice.gathering Collecte des candidats : complete {"label":"f5bf033d31f7887d","state":"complete","local":{"host":1,"srflx":0,"relay":0,"prflx":0}}
+22:30:12.248 +6.04s DEBUG rtc.ice.gathered Candidats trouvés : 1 host, 0 srflx, 0 relay {"label":"f5bf033d31f7887d","ms":10,"local":{"host":1,"srflx":0,"relay":0,"prflx":0},"stun":"aucun"}
+22:30:12.249 +6.04s INFO  rtc.ice.no-stun Aucun serveur STUN : seules les adresses locales sont proposées (même réseau seulement) {"label":"f5bf033d31f7887d"}
+22:30:12.250 +6.04s INFO  rtc.manual-answer.ok [rtc.manual-answer#2 · 29 ms] Code de réponse prêt : à renvoyer à l’invité {"chars":895,"local":{"host":1,"srflx":0,"relay":0,"prflx":0}}
+22:30:12.373 +6.16s INFO  rtc.pc.state Connexion : établie et chiffrée {"label":"f5bf033d31f7887d","state":"connected","ms":147}
+22:30:12.387 +6.17s INFO  rtc.pair Chemin réseau utilisé : host ↔ host (udp) {"label":"f5bf033d31f7887d","local":"host","remote":"host","protocol":"udp","rttMs":0,"ms":160}
+22:30:12.389 +6.18s INFO  rtc.channel.open Canal de données ouvert avec f5bf033d31f7887d {"label":"f5bf033d31f7887d","ms":162}
+22:30:12.389 +6.18s INFO  rtc.accept.ok [rtc.accept#1 · 161 ms] Liaison directe prête avec f5bf033d31f7887d {"ms":163}
+22:30:12.390 +6.18s DEBUG collab.link.new Nouveau lien : présentation (hôte) {"label":"f5bf033d31f7887d","links":1}
+22:30:12.394 +6.18s DEBUG collab.hello Présentation de Relecteur manuel : invitation valable (relecteur, expire dans 168 h) {"name":"Relecteur manuel","fp":"35y0wzZNvxhDHKTs","role":"reviewer"}
+22:30:12.397 +6.18s INFO  collab.auth Identité vérifiée : Relecteur manuel (relecteur) {"name":"Relecteur manuel","fp":"35y0wzZNvxhDHKTs","role":"reviewer","peers":1}
+22:30:12.407 +6.20s INFO  collab.sync.snapshot Envoi du projet complet à Relecteur manuel {"name":"Relecteur manuel","why":"nouveau participant","pages":2,"kb":12}
+22:30:12.408 +6.20s DEBUG collab.presence Présence de Relecteur manuel {"fp":"35y0wzZNvxhDHKTs","page":"p_0bew2j7l","selected":null}
+22:30:12.422 +6.21s DEBUG collab.presence Présence de Relecteur manuel {"fp":"35y0wzZNvxhDHKTs","page":"p_yaq4dj1v","selected":null}
+22:30:12.438 +6.23s DEBUG collab.presence Présence de Relecteur manuel {"fp":"35y0wzZNvxhDHKTs","page":"p_yaq4dj1v","selected":null}

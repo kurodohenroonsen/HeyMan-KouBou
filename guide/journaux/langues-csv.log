@@ -1,0 +1,13 @@
+22:29:21.937 +9.62s DEBUG ui.dialog.open Fenêtre ouverte : Traductions {"id":"i18nDialog","class":"audit i18n","modal":true}
+22:29:21.951 +9.63s INFO  i18n.open Tableau des traductions : 21 textes, 0 traduction(s) manquante(s), 60 à relire {"languages":["fr","nl","de","en"],"main":"fr","filter":"review","visible":21,"shown":21,"missing":0,"review":60,"mtLang":"nl"}
+22:29:21.952 +9.63s WARN  translate.absent Pas d’API Translator dans ce navigateur (Chrome 138+ sur ordinateur) : export CSV proposé {"from":"fr","to":"nl","ua":"HeadlessChrome 141, Not?A_Brand 8, Chromium 141"}
+22:29:22.004 +9.68s INFO  i18n.csv-export Tableau exporté en CSV : 22 ligne(s) {"rows":22,"languages":["fr","nl","de","en"],"size":5285}
+22:29:22.005 +9.68s INFO  ui.toast Message affiché : Tableau exporté en CSV (s’ouvre dans un tableur). Réimportez-le une fois traduit.
+22:29:22.041 +9.72s INFO  i18n.csv-import.start [i18n.csv-import#1] Import CSV : traductions.csv {"name":"traductions.csv","size":5726,"type":"text/csv"}
+22:29:22.050 +9.73s DEBUG i18n.csv-import.parsed [i18n.csv-import#1 · 9 ms] 23 ligne(s) lues {"rows":23,"columns":["key","type","fr","nl","de","en","ja"]}
+22:29:22.054 +9.73s WARN  i18n.csv-import.unknown-rows [i18n.csv-import#1 · 13 ms] 1 ligne(s) ignorée(s) : clé inconnue (texte supprimé depuis l’export ?) {"unknown":1,"keys":["n:inconnue:zz:text"]}
+22:29:22.055 +9.73s WARN  i18n.csv-import.unknown-columns [i18n.csv-import#1 · 14 ms] Colonne(s) ignorée(s) : ja (langue absente du site) {"columns":["ja"]}
+22:29:22.055 +9.73s DEBUG store.commit Modification {"source":"i18n","past":19,"page":"p_thzb3i6h"}
+22:29:22.058 +9.74s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"i18n","mode":"contenu","ms":2}
+22:29:22.064 +9.74s INFO  i18n.csv-import.ok [i18n.csv-import#1 · 23 ms] Import terminé : 1 texte(s) mis à jour, 1 ligne(s) ignorée(s) {"changed":1,"unknown":1}
+22:29:22.064 +9.74s INFO  ui.toast Message affiché : Import terminé : 1 texte mis à jour, 1 ligne ignorée (texte supprimé ou inconnu).

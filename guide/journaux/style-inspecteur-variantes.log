@@ -1,0 +1,24 @@
+22:27:53.710 +20.45s DEBUG inspector.link-pick Lien choisi dans la liste : page {"kind":"page","value":"page:p_fmb2r6ef"}
+22:27:53.711 +20.45s DEBUG store.commit Modification {"past":20,"page":"p_s2tq5e0u"}
+22:27:53.714 +20.45s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":3}
+22:27:53.831 +20.57s DEBUG store.commit Modification {"key":"n_543a343z5o:link:","source":"inspector","past":21,"page":"p_s2tq5e0u"}
+22:27:53.851 +20.59s DEBUG inspector.field Lien modifié : Lien {"key":"link","type":"url","how":"saisie","kind":"http (non sécurisé)"}
+22:27:53.890 +20.63s DEBUG inspector.field Champ modifié : Ouvrir dans un nouvel onglet {"key":"newTab","type":"toggle","how":"case","value":true}
+22:27:53.891 +20.63s DEBUG store.commit Modification {"past":22,"page":"p_s2tq5e0u"}
+22:27:53.895 +20.63s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":3}
+22:27:54.104 +20.84s DEBUG library.insert Bibliothèque : clic sur « Liste à icônes » {"type":"icon-list","how":"clic"}
+22:27:54.105 +20.84s DEBUG store.commit Modification {"source":"library","past":23,"page":"p_s2tq5e0u"}
+22:27:54.109 +20.85s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"library","mode":"contenu","ms":3}
+22:27:54.113 +20.85s DEBUG store.select Sélection : icon-list {"id":"n_1i6t05652m","type":"icon-list"}
+22:27:54.117 +20.86s INFO  action.add Widget ajouté : Liste à icônes {"type":"icon-list","id":"n_1i6t05652m","parentType":"column"}
+22:27:54.353 +21.09s DEBUG inspector.tab Onglet de l’inspecteur : Contenu {"tab":"content","from":"content","type":"icon-list"}
+22:27:54.442 +21.18s DEBUG store.commit Modification {"past":24,"page":"p_s2tq5e0u"}
+22:27:54.445 +21.18s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":3}
+22:27:54.450 +21.19s DEBUG inspector.list Élément : ajouté {"key":"items","id":"n_1i6t05652m","action":"ajouté","count":4}
+22:27:54.648 +21.39s DEBUG store.select Sélection : image {"id":"n_2d3t1d470s","type":"image"}
+22:27:54.689 +21.43s DEBUG inspector.tab Onglet de l’inspecteur : Contenu {"tab":"content","from":"content","type":"image"}
+22:27:54.725 +21.46s WARN  inspector.image-url Adresse d’image sans https:// : elle risque d’être refusée ou bloquée {"field":"src","https":false,"chars":26}
+22:27:54.726 +21.46s DEBUG store.commit Modification {"past":25,"page":"p_s2tq5e0u"}
+22:27:54.730 +21.47s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":3}
+22:27:54.890 +21.63s INFO  store.undo Annuler {"left":24,"redo":1}
+22:27:54.895 +21.63s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"history","mode":"contenu","ms":4}

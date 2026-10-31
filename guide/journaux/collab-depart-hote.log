@@ -1,0 +1,7 @@
+22:29:43.021 +18.87s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":13}
+22:29:43.226 +19.08s INFO  storage.secret-write Secret gardé sur cet appareil (jamais dans le projet) {"name":"collab-session"}
+22:29:49.342 +25.19s WARN  rtc.ice.state ICE : chemin réseau perdu (coupure, veille, changement de réseau) ; WebRTC réessaie {"label":"f695b7f3584a25ad","state":"disconnected","ms":17972}
+22:29:49.342 +25.19s WARN  rtc.pc.state Connexion : interrompue, tentative de reprise {"label":"f695b7f3584a25ad","state":"disconnected","ms":17973}
+22:29:49.343 +25.19s INFO  rtc.channel.close Canal de données fermé avec f695b7f3584a25ad {"label":"f695b7f3584a25ad","pc":"disconnected","ice":"disconnected","sent":14,"received":7}
+22:29:49.343 +25.19s INFO  collab.link.closed Lien fermé avec Ana {"name":"Ana","fp":"017Z8ZzJpbgcIS8b","role":"editor","authed":true,"left":1}
+22:29:49.344 +25.20s INFO  collab.peer.leave Ana a quitté la session {"fp":"017Z8ZzJpbgcIS8b","role":"editor"}

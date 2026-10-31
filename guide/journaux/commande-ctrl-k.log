@@ -1,0 +1,10 @@
+22:37:51.618 +6.28s DEBUG ui.key Raccourci : Ctrl+K {"key":"Ctrl+K","in":"body"}
+22:37:51.624 +6.28s DEBUG ui.dialog.open Fenêtre ouverte : cmdk {"id":"cmdk","class":"cmdk","modal":true}
+22:37:51.662 +6.32s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":12}
+22:37:51.805 +6.46s INFO  cmdk.run Commande : Journal de débogage : copier, télécharger, journal du serveur {"id":"act:log","query":"journal de débogage"}
+22:37:51.812 +6.47s DEBUG ui.dialog.open Fenêtre ouverte : 🐞 Journal de débogage {"id":"logDialog","class":"audit log-dialog","modal":true}
+22:37:51.821 +6.48s DEBUG ui.change Champ modifié : cmdkInput {"el":"input","id":"cmdkInput","dialog":"cmdk","value":"journal de débogage"}
+22:37:51.824 +6.48s DEBUG ui.dialog.close Fenêtre fermée : cmdk {"id":"cmdk"}
+22:37:51.836 +6.49s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token"}
+22:37:51.859 +6.52s DEBUG ui.key Raccourci : Escape {"key":"Escape","in":"button"}
+22:37:51.871 +6.53s DEBUG ui.dialog.close Fenêtre fermée : 🐞 Journal de débogage {"id":"logDialog"}

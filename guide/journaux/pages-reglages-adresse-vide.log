@@ -1,0 +1,3 @@
+22:28:30.149 +16.13s DEBUG store.commit Modification {"key":null,"source":"panel","past":28,"page":"p_sebc0enn"}
+22:28:30.153 +16.14s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"panel","mode":"contenu","ms":2}
+22:28:30.161 +16.15s INFO  settings.base-url Adresse du site effacée (plan du site, RSS et liens de langue absolus désactivés) {"url":null}

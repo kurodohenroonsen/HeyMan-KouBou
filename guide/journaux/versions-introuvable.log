@@ -1,0 +1,4 @@
+22:29:09.794 +55.78s INFO  version.restore.start [version.restore#3] Restauration de « Avant les essais » du 29 oct. 2026, 22:29 {"id":"v_mvu22yi79u2i7","kind":"manual","at":"2026-10-29T21:29:05.071Z","pages":5}
+22:29:09.800 +55.78s WARN  storage.version-missing Version introuvable {"id":"v_mvu22yi79u2i7"}
+22:29:09.801 +55.79s ERROR version.restore.fail [version.restore#3 · 7 ms] Version introuvable : supprimée entre-temps (autre onglet, nettoyage) ou base locale effacée {"id":"v_mvu22yi79u2i7","error":{"name":"Error","message":"Version introuvable","stack":"Error: Version introuvable\nat HTMLButtonElement.onclick (http://localhost:8791/editor/versions-ui.js:86:31)"}}
+22:29:09.803 +55.79s ERROR ui.toast Message affiché : Version introuvable. {"type":"error"}

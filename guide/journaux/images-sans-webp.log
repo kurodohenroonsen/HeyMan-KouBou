@@ -1,0 +1,12 @@
+22:28:25.707 +11.69s INFO  inspector.image.start [inspector.image#3] Import d’une image {"field":"logo","type":"image/png","kb":93}
+22:28:25.707 +11.69s INFO  image.import.start [image.import#3] Import de l’image « logo-jpeg.png » {"name":"logo-jpeg.png","type":"image/png","kb":93}
+22:28:25.717 +11.70s DEBUG image.import.decode [image.import#3 · 10 ms] Image lue : 400×200 px {"width":400,"height":200,"ms":9}
+22:28:25.737 +11.72s WARN  image.import.webp-unsupported [image.import#3 · 30 ms] Ce navigateur ne sait pas produire du WebP : image enregistrée en JPEG {"w":400,"h":200,"got":"image/png"}
+22:28:25.751 +11.74s DEBUG image.import.encode [image.import#3 · 44 ms] Version principale : 400×200 px, 3 Ko (image/jpeg) {"w":400,"h":200,"mime":"image/jpeg","kb":3,"ms":34}
+22:28:25.752 +11.74s INFO  image.import.ok [image.import#3 · 45 ms] Image prête : 400×200 px, 3 Ko (−97 %), 0 variante {"name":"logo-jpeg.jpg","mime":"image/jpeg","width":400,"height":200,"kbIn":93,"kbOut":3,"gain":97,"variants":[]}
+22:28:25.752 +11.74s DEBUG inspector.image.webp [inspector.image#3 · 45 ms] Image convertie en JPEG {"mime":"image/jpeg","width":400,"height":200,"kb":3}
+22:28:25.753 +11.74s DEBUG store.commit Modification {"key":null,"source":"site","past":23,"page":"p_sebc0enn"}
+22:28:25.758 +11.74s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
+22:28:25.772 +11.76s INFO  settings.logo Logo importé {"kind":"asset","asset":"img_bei93pk9","file":"logo-jpeg.jpg"}
+22:28:25.772 +11.76s INFO  inspector.image.ok [inspector.image#3 · 65 ms] Image ajoutée : 400×200 px {"asset":"img_bei93pk9","field":"logo"}
+22:28:25.772 +11.76s INFO  ui.toast Message affiché : Image ajoutée en JPEG : 400×200 px, 3 Ko.

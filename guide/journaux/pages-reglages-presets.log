@@ -1,0 +1,10 @@
+22:28:23.295 +9.28s DEBUG store.commit Modification {"key":null,"source":"site","past":18,"page":"p_sebc0enn"}
+22:28:23.302 +9.29s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":4}
+22:28:23.320 +9.30s INFO  settings.preset-rename Preset renommé : « Titre MAB » → « Titre principal » {"id":"ps_m2srderj","type":"heading"}
+22:28:23.626 +9.61s DEBUG store.commit Modification {"key":null,"source":"site","past":19,"page":"p_sebc0enn"}
+22:28:23.633 +9.62s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
+22:28:23.652 +9.64s INFO  settings.preset-duplicate Preset « Titre principal » dupliqué {"id":"ps_m2srderj","type":"heading","presets":2}
+22:28:23.937 +9.92s DEBUG settings.preset-delete-cancel Suppression du preset « Titre principal » annulée {"id":"ps_m2srderj"}
+22:28:24.125 +10.11s DEBUG store.commit Modification {"key":null,"source":"site","past":20,"page":"p_sebc0enn"}
+22:28:24.133 +10.12s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
+22:28:24.146 +10.13s INFO  settings.preset-delete Preset « Titre principal » supprimé (1 élément garde son apparence) {"id":"ps_m2srderj","type":"heading","used":1}

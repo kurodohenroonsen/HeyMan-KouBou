@@ -1,0 +1,8 @@
+22:37:51.920 +6.58s INFO  audit.open Vérification avant export : prêt (1 point(s) à vérifier) {"mode":"export","ok":true,"errors":0,"warnings":1,"info":3,"missing":51,"ms":4,"firstErrors":[],"firstWarnings":["Accueil : image non choisie : rien ne s’affichera à cet endroit."]}
+22:37:51.923 +6.58s DEBUG ui.dialog.open Fenêtre ouverte : Vérification avant export {"id":"auditDialog","class":"audit","modal":true}
+22:37:51.999 +6.66s INFO  audit.export Export malgré des points à vérifier {"warnings":1}
+22:37:52.001 +6.66s INFO  export.zip.start [export.zip#1] Export du site en .zip
+22:37:52.006 +6.66s DEBUG export.zip.render [export.zip#1 · 5 ms] Pages générées {"files":12,"ms":4}
+22:37:52.012 +6.67s INFO  export.zip.ok [export.zip#1 · 11 ms] Site exporté : 12 fichiers {"files":12,"kb":69,"untranslated":51}
+22:37:52.012 +6.67s INFO  ui.toast Message affiché : Site exporté : 12 fichiers. 51 textes non traduits s’affichent dans la langue principale.
+22:37:52.014 +6.67s DEBUG ui.dialog.close Fenêtre fermée : Vérification avant export {"id":"auditDialog"}

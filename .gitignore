@@ -2,7 +2,6 @@ node_modules/
 tools/node_modules
 pkg-atelier/
 shots/
-/guide/
-i18n/en.js
-i18n/ja.js
+*.log.tmp
 .DS_Store
+.claude/worktrees/

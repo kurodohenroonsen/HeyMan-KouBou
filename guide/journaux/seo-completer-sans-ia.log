@@ -1,0 +1,10 @@
+22:29:18.687 +6.37s INFO  seo.complete-all.start [seo.complete-all#2] Compléter les descriptions en de : 2 page(s) {"lang":"de","pages":2,"ids":["p_thzb3i6h","p_do6s1l5t"]}
+22:29:18.688 +6.37s DEBUG ai.provider Fournisseur d’IA de test (window.__atelierAI) {"source":"test","lang":"fr","has":{},"methods":[]}
+22:29:18.689 +6.37s INFO  ai.description.start [ai.description#9] IA locale : description pour Google {"task":"seoDescription","title":"Startseite","inLen":584,"keyword":"médias alternatifs","lang":"de","sourceLang":"de","gen":"de","api":"prompt","source":"test"}
+22:29:18.689 +6.37s WARN  ai.description.absent [ai.description#9 · 0 ms] IA absente : IA locale indisponible : ouvrez ✨ IA locale pour l’activer (Chrome 148 ou plus récent, sur ordinateur). {"has":{},"need":"prompt"}
+22:29:18.690 +6.37s INFO  ai.description.cancel [ai.description#9 · 1 ms] Tâche non lancée (aucun appel au modèle) {"task":"seoDescription"}
+22:29:18.690 +6.37s ERROR ui.toast Message affiché : IA locale indisponible : ouvrez ✨ IA locale pour l’activer (Chrome 148 ou plus récent, sur ordinateur). {"type":"error"}
+22:29:18.690 +6.37s WARN  seo.complete-all.stopped [seo.complete-all#2 · 3 ms] Arrêt après 0 page(s) : l’IA a échoué (voir ai.description ci-dessus) {"pageId":"p_thzb3i6h","done":0}
+22:29:18.690 +6.37s INFO  seo.complete-all.ok [seo.complete-all#2 · 3 ms] 0 description(s) proposée(s) sur 2 {"done":0,"pages":2,"lang":"de"}
+22:29:18.691 +6.37s INFO  ui.toast Message affiché : 0 description proposée en DE (à relire dans le tableau des traductions, filtre « à relire »).
+22:29:18.692 +6.37s DEBUG seo.analysis Analyse : page 85/100, site 81/100 {"pageId":"p_thzb3i6h","lang":"de","page":85,"site":81,"points":{"good":6,"warn":2,"tip":1},"sitePoints":{"warn":1,"info":1},"words":86,"imagesNoAlt":0}

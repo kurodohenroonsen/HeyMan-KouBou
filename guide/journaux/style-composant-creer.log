@@ -1,0 +1,17 @@
+22:28:06.321 +33.06s DEBUG store.select Sélection : section {"id":"n_5j3f580s0a","type":"section"}
+22:28:06.334 +33.07s DEBUG ctxmenu.open Menu contextuel : Section (structure) {"id":"n_5j3f580s0a","type":"section","from":"structure","items":10,"disabled":["parent"]}
+22:28:06.389 +33.13s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":19}
+22:28:06.539 +33.28s DEBUG ctxmenu.action Menu contextuel : Créer un composant… {"action":"component","id":"n_5j3f580s0a","type":"section"}
+22:28:06.542 +33.28s DEBUG store.commit Modification {"source":"pages","past":43,"page":"p_s2tq5e0u"}
+22:28:06.546 +33.28s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":4}
+22:28:06.549 +33.29s DEBUG store.select Sélection : section {"id":"n_6j6a5t291u","type":"section"}
+22:28:06.562 +33.30s INFO  action.component-create Composant « Équipe » créé : l’élément devient une instance {"component":"cp_hqxv32k5","type":"section","instance":"n_6j6a5t291u"}
+22:28:06.562 +33.30s INFO  ui.toast Message affiché : Composant « Équipe » créé. Retrouvez-le dans le panneau Modèles.
+22:28:07.122 +33.86s DEBUG store.select Sélection : heading {"id":"n_5k5f440h54","type":"heading"}
+22:28:07.147 +33.88s DEBUG storage.save Projet enregistré sur cet appareil {"ms":4,"kb":19}
+22:28:07.172 +33.91s DEBUG template.component Panneau Modèles : clic sur le composant « Équipe » {"component":"cp_hqxv32k5","uses":1}
+22:28:07.174 +33.91s DEBUG store.commit Modification {"source":"library","past":44,"page":"p_s2tq5e0u"}
+22:28:07.179 +33.92s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"library","mode":"contenu","ms":4}
+22:28:07.192 +33.93s DEBUG store.select Sélection : section {"id":"n_5463662831","type":"section"}
+22:28:07.196 +33.93s INFO  action.component-insert Composant « Équipe » inséré {"component":"cp_hqxv32k5","type":"section","id":"n_5463662831","parentType":"page"}
+22:28:07.223 +33.96s DEBUG canvas.scroll Défilement vers l’élément sélectionné {"id":"n_5463662831","from":0,"to":485}

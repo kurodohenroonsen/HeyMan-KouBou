@@ -1,0 +1,5 @@
+22:27:59.138 +25.88s DEBUG style.state Onglet Style : état survol (réglages communs à tous les appareils) {"state":"hover"}
+22:27:59.325 +26.06s DEBUG store.commit Modification {"source":"inspector-style","past":30,"page":"p_s2tq5e0u"}
+22:27:59.331 +26.07s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"inspector-style","mode":"contenu","ms":5}
+22:27:59.347 +26.09s DEBUG style.set Couleur de fond = palette:c3 (survol) {"key":"background","state":"survol","device":"tous","target":"node","id":"n_543a343z5o","value":"palette:c3","palette":true}
+22:27:59.589 +26.33s DEBUG style.state Onglet Style : état normal {"state":"normal"}

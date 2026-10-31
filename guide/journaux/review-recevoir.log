@@ -1,0 +1,8 @@
+22:29:42.145 +18.00s DEBUG collab.ops.in 1 modification de Laurent appliquée {"name":"Laurent","received":1,"applied":1,"review":1}
+22:29:42.145 +18.00s DEBUG store.remote Modifications d’un autre participant appliquées {"ops":1,"history":3}
+22:29:42.149 +18.00s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"remote","mode":"contenu","ms":3}
+22:29:42.150 +18.00s DEBUG inspector.remote-deferred Modification d’un autre participant : inspecteur redessiné à la sortie du champ {"field":"text"}
+22:29:42.151 +18.00s INFO  review.remote Commentaire reçu de Laurent {"id":"cm_PQND0EZu9ayP","fp":"uIMG81RKXsbsiQ3-","page":"p_yt30zxo8","node":"n_5j6q372k2f"}
+22:29:42.233 +18.08s DEBUG inspector.field Champ modifié : Texte {"key":"text","type":"inline","lang":"fr","how":"saisie","chars":23}
+22:29:42.235 +18.09s INFO  review.panel Panneau des commentaires ouvert {"open":true,"comments":1,"openCount":1,"readOnly":false}
+22:29:42.241 +18.09s DEBUG review.sig.ok Signature vérifiée : Laurent {"id":"cm_PQND0EZu9ayP","fp":"uIMG81RKXsbsiQ3-","reply":false}

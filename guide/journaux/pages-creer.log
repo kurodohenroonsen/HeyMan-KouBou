@@ -1,0 +1,8 @@
+22:28:30.912 +16.90s DEBUG store.commit Modification {"source":"pages","past":29,"page":"p_sebc0enn"}
+22:28:30.918 +16.90s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":2}
+22:28:30.928 +16.91s INFO  page.add Page « Notre équipe » créée : /notre-equipe/ {"id":"p_6mot4fio","slug":"notre-equipe","lang":"fr","pages":3,"menu":"automatique"}
+22:28:30.928 +16.91s DEBUG store.view Vue : pageId=p_6mot4fio {"pageId":"p_6mot4fio"}
+22:28:30.935 +16.92s INFO  canvas.load.start [canvas.load#5] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_6mot4fio","lang":"fr","device":"desktop"}
+22:28:30.936 +16.92s DEBUG canvas.load.render [canvas.load#5 · 1 ms] Page rendue {"ms":0,"kb":18}
+22:28:30.937 +16.92s INFO  ui.toast Message affiché : Page « Notre équipe » créée : /notre-equipe/
+22:28:30.959 +16.94s INFO  canvas.load.ok [canvas.load#5 · 24 ms] Canevas prêt {"nodes":0,"scale":62,"via":"load"}

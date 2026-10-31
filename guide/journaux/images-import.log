@@ -1,0 +1,15 @@
+22:28:24.752 +10.74s INFO  inspector.image.start [inspector.image#1] Import d’une image {"field":"logo","type":"image/png","kb":2538}
+22:28:24.753 +10.74s INFO  image.import.start [image.import#1] Import de l’image « logo-mab.png » {"name":"logo-mab.png","type":"image/png","kb":2538}
+22:28:24.759 +10.74s DEBUG storage.save Projet enregistré sur cet appareil {"ms":34,"kb":12}
+22:28:24.866 +10.85s DEBUG image.import.decode [image.import#1 · 113 ms] Image lue : 2000×1200 px {"width":2000,"height":1200,"ms":112}
+22:28:24.866 +10.85s DEBUG image.import.resize [image.import#1 · 113 ms] Réduite à 1600×960 px (largeur maximale 1600 px) {"from":"2000×1200","to":"1600×960"}
+22:28:25.050 +11.04s DEBUG image.import.encode [image.import#1 · 297 ms] Version principale : 1600×960 px, 10 Ko (image/webp) {"w":1600,"h":960,"mime":"image/webp","kb":10,"ms":184}
+22:28:25.077 +11.06s DEBUG image.import.variant [image.import#1 · 324 ms] Variante 480 px : 2 Ko {"w":480,"kb":2,"ms":25}
+22:28:25.142 +11.13s DEBUG image.import.variant [image.import#1 · 389 ms] Variante 960 px : 5 Ko {"w":960,"kb":5,"ms":63}
+22:28:25.144 +11.13s INFO  image.import.ok [image.import#1 · 391 ms] Image prête : 1600×960 px, 10 Ko (−99 %), 2 variantes {"name":"logo-mab.webp","mime":"image/webp","width":1600,"height":960,"kbIn":2538,"kbOut":10,"gain":99,"variants":[480,960]}
+22:28:25.145 +11.13s DEBUG inspector.image.webp [inspector.image#1 · 393 ms] Image convertie en WebP {"mime":"image/webp","width":1600,"height":960,"kb":10,"variants":2}
+22:28:25.147 +11.13s DEBUG store.commit Modification {"key":null,"source":"site","past":21,"page":"p_sebc0enn"}
+22:28:25.155 +11.14s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
+22:28:25.174 +11.16s INFO  settings.logo Logo importé {"kind":"asset","asset":"img_d3r21bj8","file":"logo-mab.webp"}
+22:28:25.176 +11.16s INFO  inspector.image.ok [inspector.image#1 · 424 ms] Image ajoutée : 1600×960 px {"asset":"img_d3r21bj8","field":"logo"}
+22:28:25.176 +11.16s INFO  ui.toast Message affiché : Image ajoutée en WebP : 1600×960 px, 10 Ko.

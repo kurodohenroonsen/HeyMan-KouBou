@@ -1,0 +1,8 @@
+22:29:19.407 +7.09s DEBUG ui.dialog.open Fenêtre ouverte : Traductions {"id":"i18nDialog","class":"audit i18n","modal":true}
+22:29:19.422 +7.10s INFO  i18n.open Tableau des traductions : 23 textes, 56 traduction(s) manquante(s), 6 à relire {"languages":["fr","nl","de","en"],"main":"fr","filter":"all","visible":23,"shown":23,"missing":56,"review":6,"mtLang":"nl"}
+22:29:19.423 +7.10s WARN  translate.absent Pas d’API Translator dans ce navigateur (Chrome 138+ sur ordinateur) : export CSV proposé {"from":"fr","to":"nl","ua":"HeadlessChrome 141, Not?A_Brand 8, Chromium 141"}
+22:29:19.455 +7.13s DEBUG i18n.filter Filtre : missing (20 textes) {"filter":"missing","visible":20,"shown":20,"missing":56,"review":6}
+22:29:19.493 +7.17s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":12}
+22:29:19.620 +7.30s DEBUG i18n.filter Filtre : all (23 textes) {"filter":"all","visible":23,"shown":23,"missing":56,"review":6}
+22:29:19.854 +7.53s DEBUG store.commit Modification {"key":"i18n-n:p_thzb3i6h:n_3n4w2k492o:text-de","source":"i18n","past":12,"page":"p_thzb3i6h"}
+22:29:19.865 +7.54s DEBUG i18n.edit Traduction saisie (de) {"key":"n:p_thzb3i6h:n_3n4w2k492o:text","lang":"de","len":23}

@@ -1,0 +1,3 @@
+22:27:53.222 +19.96s DEBUG store.commit Modification {"past":20,"page":"p_s2tq5e0u"}
+22:27:53.228 +19.97s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":5}
+22:27:53.233 +19.97s INFO  inspector.layout Disposition des colonnes : 3 colonnes {"id":"n_660h6d1v4n","spans":[4,4,4],"before":"7-5"}

@@ -1,0 +1,15 @@
+22:28:51.932 +37.92s DEBUG storage.save Projet enregistré sur cet appareil {"ms":3,"kb":39}
+22:28:51.969 +37.95s DEBUG collection.item.select Élément « Fête de la radio à Couvin » affiché {"collection":"col_q2cqo5ej","item":"it_moocqaee","status":"published"}
+22:28:52.218 +38.20s INFO  inspector.image.start [inspector.image#7] Import d’une image {"field":"image","type":"image/png","kb":1065}
+22:28:52.218 +38.20s INFO  image.import.start [image.import#6] Import de l’image « fete-radio.png » {"name":"fete-radio.png","type":"image/png","kb":1065}
+22:28:52.243 +38.23s DEBUG image.import.decode [image.import#6 · 25 ms] Image lue : 1200×800 px {"width":1200,"height":800,"ms":25}
+22:28:52.315 +38.30s DEBUG image.import.encode [image.import#6 · 97 ms] Version principale : 1200×800 px, 7 Ko (image/webp) {"w":1200,"h":800,"mime":"image/webp","kb":7,"ms":71}
+22:28:52.333 +38.32s DEBUG image.import.variant [image.import#6 · 115 ms] Variante 480 px : 2 Ko {"w":480,"kb":2,"ms":17}
+22:28:52.387 +38.37s DEBUG image.import.variant [image.import#6 · 169 ms] Variante 960 px : 5 Ko {"w":960,"kb":5,"ms":52}
+22:28:52.389 +38.37s INFO  image.import.ok [image.import#6 · 171 ms] Image prête : 1200×800 px, 7 Ko (−99 %), 2 variantes {"name":"fete-radio.webp","mime":"image/webp","width":1200,"height":800,"kbIn":1065,"kbOut":7,"gain":99,"variants":[480,960]}
+22:28:52.389 +38.37s DEBUG inspector.image.webp [inspector.image#7 · 171 ms] Image convertie en WebP {"mime":"image/webp","width":1200,"height":800,"kb":7,"variants":2}
+22:28:52.397 +38.38s DEBUG store.commit Modification {"source":"collections","past":65,"page":"p_3zgxsio6"}
+22:28:52.401 +38.39s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":3}
+22:28:52.402 +38.39s DEBUG collection.item.value Champ « Image » modifié {"collection":"col_q2cqo5ej","item":"it_moocqaee","field":"image","type":"image"}
+22:28:52.410 +38.40s INFO  inspector.image.ok [inspector.image#7 · 192 ms] Image ajoutée : 1200×800 px {"asset":"img_jczm8t0t","field":"image"}
+22:28:52.410 +38.40s INFO  ui.toast Message affiché : Image ajoutée en WebP : 1200×800 px, 7 Ko.

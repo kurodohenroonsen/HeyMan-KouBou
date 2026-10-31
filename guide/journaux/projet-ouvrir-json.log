@@ -1,0 +1,10 @@
+22:37:50.242 +4.90s INFO  project.import.start [project.import#1] Ouverture d’un projet .json {"name":"mab.atelier.json","kb":34}
+22:37:50.250 +4.91s INFO  version.save.start [version.save#1] Enregistrement d’une version de sécurité : « Avant l’ouverture d’un autre projet » {"kind":"safety","name":"Avant l’ouverture d’un autre projet"}
+22:37:50.250 +4.91s DEBUG storage.version-save Version enregistrée {"id":"v_mvu2e7qiits8f","name":"Avant l’ouverture d’un autre projet","kind":"safety"}
+22:37:50.253 +4.91s DEBUG version.save.prune [version.save#1 · 3 ms] Aucune ancienne version à supprimer {"total":2}
+22:37:50.253 +4.91s INFO  version.save.ok [version.save#1 · 3 ms] Version de sécurité enregistrée (2 pages) {"id":"v_mvu2e7qiits8f","kind":"safety","at":"2026-10-29T21:37:50.250Z","pages":2,"kb":12}
+22:37:50.253 +4.91s INFO  store.load Projet chargé dans l’éditeur {"name":"MAB – Médias Alternatifs Belges","pages":2,"keepHistory":true}
+22:37:50.255 +4.91s INFO  canvas.load.start [canvas.load#2] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_2xxqt0es","lang":"fr","device":"desktop"}
+22:37:50.256 +4.91s DEBUG canvas.load.render [canvas.load#2 · 1 ms] Page rendue {"ms":1,"kb":25}
+22:37:50.257 +4.92s INFO  project.import.ok [project.import#1 · 15 ms] Projet ouvert {"pages":2,"name":"MAB – Médias Alternatifs Belges"}
+22:37:50.257 +4.92s INFO  ui.toast Message affiché : Projet ouvert.

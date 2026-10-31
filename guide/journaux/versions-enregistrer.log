@@ -1,0 +1,15 @@
+22:29:04.381 +50.37s DEBUG storage.save Projet enregistré sur cet appareil {"ms":5,"kb":33}
+22:29:04.488 +50.47s DEBUG ui.dialog.open Fenêtre ouverte : Versions du projet {"id":"versionsDialog","class":"audit","modal":true}
+22:29:04.492 +50.48s INFO  version.open Fenêtre des versions ouverte
+22:29:04.500 +50.48s DEBUG version.list Liste des versions : 1 {"count":1,"manual":0,"auto":1,"safety":0,"newest":"2026-10-29T21:28:15.222Z"}
+22:29:05.070 +51.05s INFO  version.save.start [version.save#2] Enregistrement d’une version manuelle : « Avant les essais » {"kind":"manual","name":"Avant les essais"}
+22:29:05.076 +51.06s DEBUG storage.version-save Version enregistrée {"id":"v_mvu22yi79u2i7","name":"Avant les essais","kind":"manual"}
+22:29:05.087 +51.07s INFO  version.save.ok [version.save#2 · 17 ms] Version manuelle enregistrée (5 pages) {"id":"v_mvu22yi79u2i7","kind":"manual","at":"2026-10-29T21:29:05.071Z","pages":5,"kb":2224}
+22:29:05.088 +51.07s INFO  ui.toast Message affiché : Version enregistrée.
+22:29:05.090 +51.08s DEBUG version.list Liste des versions : 2 {"count":2,"manual":1,"auto":1,"safety":0,"newest":"2026-10-29T21:29:05.071Z"}
+22:29:05.520 +51.51s DEBUG version.unnamed Version enregistrée sans nom : « Version sans nom »
+22:29:05.520 +51.51s INFO  version.save.start [version.save#3] Enregistrement d’une version manuelle : « Version sans nom » {"kind":"manual","name":"Version sans nom"}
+22:29:05.526 +51.51s DEBUG storage.version-save Version enregistrée {"id":"v_mvu22yup6hypz","name":"Version sans nom","kind":"manual"}
+22:29:05.541 +51.53s INFO  version.save.ok [version.save#3 · 21 ms] Version manuelle enregistrée (5 pages) {"id":"v_mvu22yup6hypz","kind":"manual","at":"2026-10-29T21:29:05.521Z","pages":5,"kb":2224}
+22:29:05.542 +51.53s INFO  ui.toast Message affiché : Version enregistrée.
+22:29:05.545 +51.53s DEBUG version.list Liste des versions : 3 {"count":3,"manual":2,"auto":1,"safety":0,"newest":"2026-10-29T21:29:05.521Z"}

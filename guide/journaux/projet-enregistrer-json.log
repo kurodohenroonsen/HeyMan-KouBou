@@ -1,0 +1,2 @@
+22:37:50.219 +4.88s INFO  project.export-json Projet enregistré en fichier .json {"kb":34,"pages":2}
+22:37:50.220 +4.88s INFO  ui.toast Message affiché : Projet enregistré en fichier .json.

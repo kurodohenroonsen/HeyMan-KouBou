@@ -1,0 +1,11 @@
+22:28:32.352 +18.34s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":13}
+22:28:32.391 +18.38s DEBUG page.delete-cancel Suppression de « Notre équipe » annulée {"id":"p_vsmth1pw"}
+22:28:32.571 +18.56s DEBUG store.view Vue : pageId=p_sebc0enn {"pageId":"p_sebc0enn"}
+22:28:32.581 +18.57s INFO  canvas.load.start [canvas.load#7] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_sebc0enn","lang":"fr","device":"desktop"}
+22:28:32.582 +18.57s DEBUG canvas.load.render [canvas.load#7 · 1 ms] Page rendue {"ms":1,"kb":25}
+22:28:32.587 +18.57s DEBUG store.commit Modification {"source":"pages","past":31,"page":"p_sebc0enn"}
+22:28:32.589 +18.57s INFO  canvas.load.cancel [canvas.load#7 · 8 ms] Chargement remplacé par un nouveau {"reason":"chargement précédent non terminé"}
+22:28:32.590 +18.57s INFO  canvas.load.start [canvas.load#8] Chargement complet du canevas : chargement précédent non terminé {"reason":"chargement précédent non terminé","page":"p_sebc0enn","lang":"fr","device":"desktop"}
+22:28:32.590 +18.57s DEBUG canvas.load.render [canvas.load#8 · 0 ms] Page rendue {"ms":1,"kb":25}
+22:28:32.591 +18.58s INFO  page.delete Page « Notre équipe » supprimée (Ctrl+Z pour la retrouver) {"id":"p_vsmth1pw","slug":"notre-equipe-2","pages":3,"wasOpen":true}
+22:28:32.616 +18.60s INFO  canvas.load.ok [canvas.load#8 · 26 ms] Canevas prêt {"nodes":30,"scale":62,"via":"load"}

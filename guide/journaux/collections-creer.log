@@ -1,0 +1,12 @@
+22:28:44.303 +30.29s DEBUG ui.dialog.open Fenêtre ouverte : Nouvelle collection {"id":"collectionNewDialog","class":"audit col-new","modal":true}
+22:28:44.353 +30.34s DEBUG collection.new.kind Type choisi : Agenda {"kind":"events","name":"Agenda"}
+22:28:44.411 +30.40s DEBUG store.commit Modification {"source":"collections","past":52,"page":"p_qywdg7hd"}
+22:28:44.416 +30.40s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":3}
+22:28:44.417 +30.40s INFO  collection.create Collection « Agenda » créée (Agenda) : 3 exemples, page /agenda/ {"id":"col_q2cqo5ej","kind":"events","slug":"agenda","fields":11,"items":3,"page":"p_3zgxsio6","examples":true,"withPage":true}
+22:28:44.417 +30.40s DEBUG store.view Vue : pageId=p_3zgxsio6 {"pageId":"p_3zgxsio6"}
+22:28:44.422 +30.41s INFO  canvas.load.start [canvas.load#12] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_3zgxsio6","lang":"fr","device":"desktop"}
+22:28:44.426 +30.41s DEBUG canvas.load.render [canvas.load#12 · 4 ms] Page rendue {"ms":3,"kb":23}
+22:28:44.427 +30.41s INFO  ui.toast Message affiché : Collection « Agenda » créée avec 3 exemples à remplacer et la page /agenda/.
+22:28:44.432 +30.42s DEBUG ui.dialog.close Fenêtre fermée : Nouvelle collection {"id":"collectionNewDialog"}
+22:28:44.459 +30.44s INFO  canvas.load.ok [canvas.load#12 · 37 ms] Canevas prêt {"nodes":5,"scale":62,"via":"load"}
+22:28:45.014 +31.00s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":32}

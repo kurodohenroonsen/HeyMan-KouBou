@@ -1,0 +1,2 @@
+22:32:04.572 +46.61s WARN  selftest.refused Auto-test refusé en mode relecture {"reason":"readonly"}
+22:32:04.575 +46.61s WARN  selftest.refused Aucun cas ne correspond à la sélection {"only":["inconnu"]}

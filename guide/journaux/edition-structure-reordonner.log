@@ -1,0 +1,5 @@
+22:27:40.367 +7.11s INFO  dnd.start [dnd#6] Glisser : Titre {"kind":"move","type":"heading","id":"n_5k5f440h54","from":"page ou structure"}
+22:27:40.759 +7.50s DEBUG store.commit Modification {"source":"dnd","past":4,"page":"p_s2tq5e0u"}
+22:27:40.764 +7.50s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"dnd","mode":"contenu","ms":3}
+22:27:40.770 +7.51s DEBUG store.select Sélection : heading {"id":"n_5k5f440h54","type":"heading"}
+22:27:40.776 +7.51s INFO  dnd.ok [dnd#6 · 409 ms] Déplacé dans Colonne, position 1 {"id":"n_5k5f440h54","type":"heading","kind":"move","parentId":"n_4q2m0p0501","parentType":"column","index":0,"where":"structure"}

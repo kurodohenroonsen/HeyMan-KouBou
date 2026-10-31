@@ -1,0 +1,9 @@
+22:28:28.451 +14.44s DEBUG inspector.image-remove Image retirée du champ (le fichier reste dans le projet) {"field":"logo"}
+22:28:28.460 +14.45s DEBUG store.commit Modification {"key":null,"source":"site","past":25,"page":"p_sebc0enn"}
+22:28:28.466 +14.45s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
+22:28:28.484 +14.47s INFO  settings.logo Logo retiré : le nom du site s’affiche à sa place {"kind":"none"}
+22:28:28.837 +14.82s DEBUG inspector.image-url Image en ligne choisie (adresse https) {"field":"logo","https":true,"chars":40}
+22:28:28.842 +14.83s DEBUG store.commit Modification {"key":null,"source":"site","past":26,"page":"p_sebc0enn"}
+22:28:28.849 +14.83s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
+22:28:28.864 +14.85s INFO  settings.logo Logo en ligne : https://www.media-alternatif.be/logo.png {"kind":"url","url":"https://www.media-alternatif.be/logo.png"}
+22:28:29.450 +15.44s DEBUG storage.save Projet enregistré sur cet appareil {"ms":7,"kb":12,"newImages":1}

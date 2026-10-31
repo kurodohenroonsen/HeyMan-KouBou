@@ -1,0 +1,19 @@
+22:29:59.343 +35.19s INFO  rtc.lost Connexion perdue après avoir fonctionné : l’autre navigateur a été fermé, mis en veille ou a changé de réseau {"label":"f695b7f3584a25ad","ms":27974,"pair":{"local":"host","remote":"host","protocol":"udp","rttMs":1}}
+22:30:03.690 +39.54s DEBUG signal.receive 1 message relevé dans la boîte aux lettres {"room":"a09f407a","count":1,"from":["d9abd0a6b73cda6e"]}
+22:30:03.692 +39.54s INFO  rtc.accept.start [rtc.accept#4] Demande de connexion reçue de d9abd0a6b73cda6e {"from":"d9abd0a6b73cda6e","via":"boîte aux lettres"}
+22:30:03.700 +39.55s DEBUG rtc.accept.answer [rtc.accept#4 · 8 ms] Réponse créée : collecte des adresses réseau
+22:30:03.707 +39.56s DEBUG signal.post Dépôt d’un message chiffré « answer » pour d9abd0a6b73cda6e {"room":"a09f407a","from":"f17f656d6c69c690","to":"d9abd0a6b73cda6e","t":"answer","bytes":922}
+22:30:03.707 +39.56s DEBUG net.request POST 127.0.0.1:8850/publish.php {"id":25,"method":"POST","url":"http://127.0.0.1:8850/publish.php?atelier_debug=1","body":{"json":["signal","from","to","data"],"size":1059}}
+22:30:03.713 +39.56s INFO  net.response 200 POST 127.0.0.1:8850/publish.php (6 ms) {"id":25,"status":200,"ms":6,"type":"application/json","req":"4f76d75e"}
+22:30:03.714 +39.56s DEBUG php.req.start POST reçu {"method":"POST","who":"e5802654fc","bytes":1059,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8791","req":"4f76d75e","srvMs":0}
+22:30:03.714 +39.56s DEBUG php.signal.post Message chiffré déposé {"room":"a09f407a","from":"f17f656d6c69c690","to":"d9abd0a6b73cda6e","bytes":922,"id":8,"new_room":false,"req":"4f76d75e","srvMs":1.2}
+22:30:03.715 +39.57s DEBUG php.req.end Réponse 200 (signal) {"status":200,"route":"signal","mem_kb":388,"req":"4f76d75e","srvMs":1.2}
+22:30:03.715 +39.57s INFO  rtc.accept.sent [rtc.accept#4 · 23 ms] Réponse déposée dans la boîte aux lettres : ouverture du canal… {"local":{"host":1,"srflx":0,"relay":0,"prflx":0}}
+22:30:04.252 +40.10s INFO  rtc.pair Chemin réseau utilisé : host ↔ host (udp) {"label":"d9abd0a6b73cda6e","local":"host","remote":"host","protocol":"udp","rttMs":2,"ms":558}
+22:30:04.255 +40.11s INFO  rtc.channel.open Canal de données ouvert avec d9abd0a6b73cda6e {"label":"d9abd0a6b73cda6e","ms":561}
+22:30:04.255 +40.11s INFO  rtc.accept.ok [rtc.accept#4 · 563 ms] Liaison directe prête avec d9abd0a6b73cda6e {"ms":562}
+22:30:04.255 +40.11s DEBUG collab.link.new Nouveau lien : présentation (hôte) {"label":"d9abd0a6b73cda6e","links":2}
+22:30:04.259 +40.11s WARN  collab.refused.owner Invitation de Faussaire refusée : signée par une autre clé que celle de l’hôte (lien falsifié ou d’une autre session) {"name":"Faussaire","fp":"NzMn6a_Tk0duux00","signer":"MW8kVdP7MU30dEVQ","signerName":"Faussaire"}
+22:30:04.260 +40.11s ERROR ui.toast Message affiché : Invitation refusée : elle n’a pas été créée par cette session. {"type":"error"}
+22:30:04.264 +40.12s WARN  collab.remote-error L’autre côté signale : Hôte inconnu : ce n’est pas la personne qui a envoyé l’invitation. {"from":"d9abd0a6b73cda6e","message":"Hôte inconnu : ce n’est pas la personne qui a envoyé l’invitation."}
+22:30:04.264 +40.12s ERROR ui.toast Message affiché : Hôte inconnu : ce n’est pas la personne qui a envoyé l’invitation. {"type":"error"}

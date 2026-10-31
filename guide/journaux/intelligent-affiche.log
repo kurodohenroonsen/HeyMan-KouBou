@@ -1,0 +1,22 @@
+22:31:02.870 +4.10s INFO  smart.poster.start [smart.poster#1] Affiche → élément de « Agenda » {"collection":"col_ho0hf99a","kind":"events","imageField":"image"}
+22:31:02.871 +4.10s DEBUG ui.dialog.open Fenêtre ouverte : ✨ Affiche → Agenda {"id":"smartDialog","class":"audit smart-dialog","modal":true}
+22:31:02.919 +4.15s INFO  image.import.start [image.import#1] Import de l’image « affiche-festival.png » {"name":"affiche-festival.png","type":"image/png","kb":1}
+22:31:02.925 +4.15s DEBUG image.import.decode [image.import#1 · 6 ms] Image lue : 240×320 px {"width":240,"height":320,"ms":6}
+22:31:02.935 +4.16s DEBUG image.import.encode [image.import#1 · 16 ms] Version principale : 240×320 px, 1 Ko (image/webp) {"w":240,"h":320,"mime":"image/webp","kb":1,"ms":9}
+22:31:02.939 +4.17s INFO  image.import.ok [image.import#1 · 20 ms] Image prête : 240×320 px, 1 Ko (−25 %), 0 variante {"name":"affiche-festival.webp","mime":"image/webp","width":240,"height":320,"kbIn":1,"kbOut":1,"gain":25,"variants":[]}
+22:31:02.942 +4.17s INFO  smart.poster.image [smart.poster#1 · 72 ms] Photo prête : 240×320 px, 1 Ko {"name":"affiche-festival.png","width":240,"height":320,"kb":1,"mime":"image/webp"}
+22:31:02.986 +4.21s INFO  smart.poster.read [smart.poster#1 · 116 ms] Lecture de l’affiche par l’IA locale
+22:31:02.986 +4.21s DEBUG ai.provider Fournisseur d’IA de test (window.__atelierAI) {"source":"test","lang":"fr","has":{"prompt":true,"multimodal":true,"summarizer":true,"translator":true},"methods":["prompt","summarize","translate"]}
+22:31:02.988 +4.21s INFO  ai.extract.start [ai.extract#1] IA locale : lecture d’une affiche {"task":"extractItems","collection":"col_ho0hf99a","kind":"events","fields":11,"image":"image/webp (1 Ko)","today":"2026-10-29","lang":"fr","sourceLang":"fr","gen":"fr","api":"prompt","source":"test"}
+22:31:02.989 +4.22s DEBUG ai.extract.call [ai.extract#1 · 1 ms] Appel Prompt API (Gemini Nano) (fr) {"api":"prompt","lang":"fr","schema":"title,date,date_year_shown,time,endDate,endDate_year_shown,endTime,place,address,description,status,link","images":1,"system":"864 car.","inLen":38}
+22:31:02.990 +4.22s DEBUG ai.extract.reply [ai.extract#1 · 2 ms] Réponse Prompt API (Gemini Nano) : 353 car. en 1 ms {"api":"prompt","ms":1,"outLen":353,"excerpt":"{\"title\":\"Nuit des radios libres\",\"date\":\"samedi 14 décembr…"}
+22:31:02.992 +4.22s WARN  ai.extract.dropped [ai.extract#1 · 4 ms] Élément 1 : « Date de fin (plusieurs jours) » écarté — Date impossible (jour et mois). {"item":1,"field":"endDate","raw":"31 février","reason":"Date impossible (jour et mois)."}
+22:31:02.992 +4.22s INFO  ai.extract.ok [ai.extract#1 · 4 ms] Lecture d’une affiche ou d’un texte : proposition prête (Prompt API) {"via":"prompt","fallback":false,"translated":false,"calls":1,"items":1,"found":[9],"dropped":1,"duplicates":0}
+22:31:02.993 +4.22s INFO  smart.poster.preview [smart.poster#1 · 123 ms] Aperçu : 1 élément, 1 coché(s) {"items":1,"checked":1,"duplicates":0,"dropped":1}
+22:31:03.053 +4.28s DEBUG store.commit Modification {"source":"collections","past":4,"page":"p_50jh155b"}
+22:31:03.060 +4.29s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":4}
+22:31:03.061 +4.29s INFO  smart.poster.ok [smart.poster#1 · 191 ms] 1 brouillon créé dans « Agenda » {"items":["it_c1yzwt02"],"image":"img_q1q363dq","skipped":0}
+22:31:03.061 +4.29s INFO  ui.toast Message affiché : 1 brouillon créé : relisez-le puis publiez-le.
+22:31:03.066 +4.29s INFO  collection.open Collection « Agenda » ouverte : 4 éléments, 11 champs {"id":"col_ho0hf99a","kind":"events","items":4,"drafts":1,"fields":11,"tab":"items","item":"it_c1yzwt02"}
+22:31:03.071 +4.30s DEBUG ui.dialog.open Fenêtre ouverte : 📅 Agenda /agenda/ {"id":"collectionDialog","class":"audit col-dialog","modal":true}
+22:31:03.083 +4.31s DEBUG ui.dialog.close Fenêtre fermée : ✨ Affiche → Agenda {"id":"smartDialog"}

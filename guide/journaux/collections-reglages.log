@@ -1,0 +1,26 @@
+22:28:55.803 +41.79s DEBUG collection.tab Onglet « Réglages » {"collection":"col_q2cqo5ej","tab":"settings"}
+22:28:55.843 +41.83s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":39,"newImages":1}
+22:28:56.033 +42.02s DEBUG store.commit Modification {"source":"collections","past":73,"page":"p_3zgxsio6"}
+22:28:56.041 +42.03s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":5}
+22:28:56.042 +42.03s INFO  collection.rename Collection renommée : « Agenda » → « Agenda du MAB » {"collection":"col_q2cqo5ej"}
+22:28:56.324 +42.31s WARN  collection.refused Modification refusée : L’adresse ne peut pas être vide. {"action":"slug","collection":"col_q2cqo5ej","lang":"fr","value":"","error":{"name":"Error","message":"L’adresse ne peut pas être vide.","stack":"Error: L’adresse ne peut pas être vide.\nat http://localhost:8791/core/collections.js:235:28\nat withCollection (http://localhost:8791/core/collections.js:187:13)\nat setCollectionMeta (http://localhost:8791/core/collections.js:225:10)\nat apply.action (http://localhost:8791/editor/collections-ui.js:411:22)"}}
+22:28:56.324 +42.31s ERROR ui.toast Message affiché : L’adresse ne peut pas être vide. {"type":"error"}
+22:28:56.607 +42.59s DEBUG store.commit Modification {"source":"collections","past":74,"page":"p_3zgxsio6"}
+22:28:56.613 +42.60s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":4}
+22:28:56.614 +42.60s INFO  collection.slug Adresse de la collection (NL) : /kalender/ {"collection":"col_q2cqo5ej","lang":"nl","from":"","to":"kalender"}
+22:28:56.906 +42.89s DEBUG store.commit Modification {"source":"collections","past":75,"page":"p_3zgxsio6"}
+22:28:56.915 +42.90s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":6}
+22:28:56.916 +42.90s INFO  collection.setting Une page par élément : non {"collection":"col_q2cqo5ej","detail":false}
+22:28:57.176 +43.16s DEBUG store.commit Modification {"source":"collections","past":76,"page":"p_3zgxsio6"}
+22:28:57.183 +43.17s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":6}
+22:28:57.184 +43.17s INFO  collection.setting Une page par élément : oui {"collection":"col_q2cqo5ej","detail":true}
+22:28:57.423 +43.41s DEBUG store.commit Modification {"source":"collections","past":77,"page":"p_3zgxsio6"}
+22:28:57.428 +43.41s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":3}
+22:28:57.429 +43.41s INFO  collection.setting Flux RSS : oui {"collection":"col_q2cqo5ej","rss":true}
+22:28:57.429 +43.41s WARN  collection.rss-no-url Flux RSS activé sans adresse du site : il ne sera pas créé à l’export (Site → Adresse du site) {"collection":"col_q2cqo5ej"}
+22:28:57.655 +43.64s DEBUG store.commit Modification {"source":"collections","past":78,"page":"p_3zgxsio6"}
+22:28:57.661 +43.65s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":5}
+22:28:57.662 +43.65s INFO  collection.setting Ordre des listes : par date {"collection":"col_q2cqo5ej","sortField":"date"}
+22:28:57.825 +43.81s DEBUG store.commit Modification {"source":"collections","past":79,"page":"p_3zgxsio6"}
+22:28:57.829 +43.81s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":3}
+22:28:57.831 +43.82s INFO  collection.setting Sens de l’ordre : décroissant {"collection":"col_q2cqo5ej","sortDir":"desc"}

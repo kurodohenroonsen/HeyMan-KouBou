@@ -1,0 +1,17 @@
+22:31:08.036 +9.26s INFO  smart.review.open Résumé de la relecture : 2 commentaires ouverts (0 résolu) ; par page : 2 sur « Accueil » ; par auteur : Laurent : 2 ; le plus ancien en attente : Laurent, 2026-10-29, « Le titre est trop long. ». {"total":2,"open":2,"resolved":0,"pages":1,"authors":1}
+22:31:08.037 +9.26s DEBUG ui.dialog.open Fenêtre ouverte : 📋 Résumé de la relecture {"id":"reviewSummaryDialog","class":"audit smart-dialog","modal":true}
+22:31:08.098 +9.32s DEBUG ai.provider Fournisseur d’IA de test (window.__atelierAI) {"source":"test","lang":"fr","has":{"prompt":true,"multimodal":true,"summarizer":true,"translator":true},"methods":["prompt","summarize","translate"]}
+22:31:08.099 +9.33s INFO  ai.review-summary.start [ai.review-summary#1] IA locale : résumé de la relecture {"task":"reviewSummary","comments":2,"open":2,"lang":"fr","sourceLang":"fr","gen":"fr","api":"summarizer","source":"test"}
+22:31:08.100 +9.33s DEBUG ai.review-summary.call [ai.review-summary#1 · 1 ms] Appel Summarizer (fr) {"api":"summarizer","lang":"fr","type":"key-points","length":"short","context":"68 car.","inLen":187}
+22:31:08.100 +9.33s DEBUG ai.review-summary.reply [ai.review-summary#1 · 1 ms] Réponse Summarizer : 65 car. en 0 ms {"api":"summarizer","ms":0,"outLen":65,"excerpt":"- Raccourcir le titre principal. - Vérifier l’adresse de co…"}
+22:31:08.101 +9.33s DEBUG ai.review-summary.call [ai.review-summary#1 · 2 ms] Appel Prompt API (Gemini Nano) (fr) {"api":"prompt","lang":"fr","schema":"tasks","system":"130 car.","inLen":90}
+22:31:08.101 +9.33s DEBUG ai.review-summary.reply [ai.review-summary#1 · 2 ms] Réponse Prompt API (Gemini Nano) : 76 car. en 1 ms {"api":"prompt","ms":1,"outLen":76,"excerpt":"{\"tasks\":[{\"id\":\"cm_N2KnbHs1vE02\",\"task\":\"Raccourcir le tit…"}
+22:31:08.101 +9.33s INFO  ai.review-summary.ok [ai.review-summary#1 · 2 ms] Résumé de la relecture : proposition prête (Summarizer) {"via":"summarizer","fallback":false,"translated":false,"calls":2,"points":2,"tasks":2,"aiTasks":1,"open":2}
+22:31:08.102 +9.33s INFO  smart.review.points 2 points clés, 2 tâches {"points":2,"tasks":2,"via":"summarizer"}
+22:31:08.159 +9.39s WARN  smart.review.copy-fail Copie refusée par le navigateur {"error":{"name":"NotAllowedError","message":"Failed to execute 'writeText' on 'Clipboard': Write permission denied.","code":0,"stack":"NotAllowedError: Failed to execute 'writeText' on 'Clipboard': Write permission denied."}}
+22:31:08.160 +9.39s ERROR ui.toast Message affiché : Copie refusée par le navigateur. {"type":"error"}
+22:31:08.185 +9.41s INFO  smart.review.go Aller au commentaire {"id":"cm_N2KnbHs1vE02","page":"p_slv7uphv"}
+22:31:08.188 +9.41s DEBUG review.goto Aller à l’élément commenté {"id":"cm_N2KnbHs1vE02","page":"p_slv7uphv","node":"n_461k5j5i2j","found":true}
+22:31:08.192 +9.42s DEBUG ui.dialog.close Fenêtre fermée : 📋 Résumé de la relecture {"id":"reviewSummaryDialog"}
+22:31:08.220 +9.45s DEBUG storage.save Projet enregistré sur cet appareil {"ms":4,"kb":41}
+22:31:08.439 +9.67s DEBUG store.select Sélection : heading {"id":"n_461k5j5i2j","type":"heading"}

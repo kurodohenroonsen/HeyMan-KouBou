@@ -1,0 +1,18 @@
+22:27:42.630 +9.37s DEBUG store.select Sélection : text {"id":"n_486t2r292u","type":"text"}
+22:27:42.646 +9.38s DEBUG edit.dblclick Double-clic sur un texte de la page {"key":"content","id":"n_486t2r292u"}
+22:27:42.646 +9.38s INFO  edit.start [edit#2] Édition dans la page : text · content {"id":"n_486t2r292u","type":"text","key":"content","field":"richtext","lang":"fr","chars":161}
+22:27:42.861 +9.60s DEBUG edit.format Mise en forme : bold (appliquée) {"cmd":"bold","action":"add","chars":6,"where":"page"}
+22:27:42.863 +9.60s DEBUG store.commit Modification {"key":"edit-n_486t2r292u-content-2","source":"canvas","past":6,"page":"p_s2tq5e0u"}
+22:27:42.992 +9.73s DEBUG edit.format Mise en forme : italic (appliquée) {"cmd":"italic","action":"add","chars":6,"where":"page"}
+22:27:42.993 +9.73s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_486t2r292u-content-2","source":"canvas","merged":true,"past":6,"page":"p_s2tq5e0u"}
+22:27:43.003 +9.74s DEBUG canvas.key Raccourci dans la page : Ctrl+I {"key":"Ctrl+I","in":"texte","selected":"n_486t2r292u"}
+22:27:43.143 +9.88s DEBUG edit.link-open Champ d’adresse du lien ouvert {"chars":6}
+22:27:43.193 +9.93s WARN  edit.link-invalid Lien refusé : adresse non autorisée (javascript:alert(1)). Utilise https://, mailto:, tel: ou #ancre {"url":"javascript:alert(1)","where":"page"}
+22:27:43.343 +10.08s DEBUG edit.link-open Champ d’adresse du lien ouvert {"chars":6}
+22:27:43.364 +10.10s DEBUG edit.format Mise en forme : link (appliquée) {"cmd":"link","action":"add","chars":6,"where":"page","url":"https://exemple.be"}
+22:27:43.365 +10.10s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_486t2r292u-content-2","source":"canvas","merged":true,"past":6,"page":"p_s2tq5e0u"}
+22:27:43.375 +10.11s DEBUG canvas.key Raccourci dans la page : Enter {"key":"Enter","in":"champ","selected":"n_486t2r292u"}
+22:27:43.494 +10.23s DEBUG edit.paste Collage en texte brut : 26 caractères, mise en forme et balises retirées {"chars":26,"lines":2,"rich":true,"inline":false,"where":"page"}
+22:27:43.496 +10.23s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_486t2r292u-content-2","source":"canvas","merged":true,"past":6,"page":"p_s2tq5e0u"}
+22:27:43.615 +10.35s INFO  edit.ok [edit#2 · 969 ms] Édition terminée : texte enregistré (une seule étape d’annulation) {"id":"n_486t2r292u","key":"content","changed":true,"chars":188,"before":161,"inputs":4}
+22:27:43.621 +10.36s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"edit-done","mode":"contenu","ms":4}

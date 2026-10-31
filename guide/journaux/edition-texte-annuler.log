@@ -1,0 +1,13 @@
+22:27:43.939 +10.68s DEBUG edit.dblclick Double-clic sur un texte de la page {"key":"content","id":"n_486t2r292u"}
+22:27:43.939 +10.68s INFO  edit.start [edit#3] Édition dans la page : text · content {"id":"n_486t2r292u","type":"text","key":"content","field":"richtext","lang":"fr","chars":188}
+22:27:44.059 +10.80s DEBUG store.commit Modification {"key":"edit-n_486t2r292u-content-3","source":"canvas","past":7,"page":"p_s2tq5e0u"}
+22:27:44.090 +10.83s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_486t2r292u-content-3","source":"canvas","merged":true,"past":7,"page":"p_s2tq5e0u"}
+22:27:44.109 +10.85s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_486t2r292u-content-3","source":"canvas","merged":true,"past":7,"page":"p_s2tq5e0u"}
+22:27:44.134 +10.87s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_486t2r292u-content-3","source":"canvas","merged":true,"past":7,"page":"p_s2tq5e0u"}
+22:27:44.161 +10.90s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_486t2r292u-content-3","source":"canvas","merged":true,"past":7,"page":"p_s2tq5e0u"}
+22:27:44.176 +10.91s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_486t2r292u-content-3","source":"canvas","merged":true,"past":7,"page":"p_s2tq5e0u"}
+22:27:44.195 +10.93s INFO  edit.ok [edit#3 · 256 ms] Édition terminée : texte enregistré (une seule étape d’annulation) {"id":"n_486t2r292u","key":"content","changed":true,"chars":193,"before":188,"inputs":6}
+22:27:44.199 +10.94s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"edit-done","mode":"contenu","ms":3}
+22:27:44.207 +10.95s DEBUG canvas.key Raccourci dans la page : Ctrl+Z {"key":"Ctrl+Z","in":"page","selected":"n_486t2r292u"}
+22:27:44.207 +10.95s INFO  store.undo Annuler {"left":6,"redo":1}
+22:27:44.211 +10.95s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"history","mode":"contenu","ms":3}

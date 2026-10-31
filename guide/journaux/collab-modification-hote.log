@@ -1,0 +1,4 @@
+22:29:32.860 +8.71s DEBUG store.select Sélection : heading {"id":"n_0910304w3y","type":"heading"}
+22:29:32.935 +8.79s DEBUG inspector.tab Onglet de l’inspecteur : Contenu {"tab":"content","from":"content","type":"heading"}
+22:29:32.955 +8.81s DEBUG store.commit Modification {"key":"n_0910304w3y:text:fr","source":"inspector","past":3,"page":"p_yt30zxo8"}
+22:29:32.961 +8.81s DEBUG collab.ops.out 1 modification(s) envoyée(s) à 1 participant(s) {"n":1,"to":1}

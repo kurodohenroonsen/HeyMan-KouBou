@@ -1,0 +1,13 @@
+22:37:48.015 +2.67s DEBUG ui.change Champ modifié : Nom du site {"el":"input","id":"siteName","name":"Nom du site","value":"MAB – Médias Alternatifs Belges"}
+22:37:48.017 +2.67s DEBUG ui.click Clic : 🐞1 {"el":"button","id":"logBtn","text":"🐞1"}
+22:37:48.021 +2.68s DEBUG ui.dialog.open Fenêtre ouverte : 🐞 Journal de débogage {"id":"logDialog","class":"audit log-dialog","modal":true}
+22:37:48.043 +2.70s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token"}
+22:37:48.275 +2.93s DEBUG ui.key Raccourci : Delete {"key":"Delete","in":"input"}
+22:37:48.502 +3.16s DEBUG ui.click Clic : 📋 Copier le journal {"el":"button","text":"📋 Copier le journal","data":{"logCopy":""},"dialog":"logDialog"}
+22:37:48.539 +3.20s WARN  log.copy-fail Copie refusée par le navigateur : utilisez « Télécharger » {"error":"Failed to execute 'writeText' on 'Clipboard': Write permission denied."}
+22:37:48.933 +3.59s DEBUG ui.click Clic : ⇩ Télécharger (.log) {"el":"button","text":"⇩ Télécharger (.log)","data":{"logDownload":""},"dialog":"logDialog"}
+22:37:48.951 +3.61s DEBUG ui.click Clic : a {"el":"a"}
+22:37:48.952 +3.61s INFO  log.download Journal téléchargé {"chars":5019}
+22:37:49.051 +3.71s INFO  log.clear Journal vidé
+22:37:49.227 +3.88s INFO  log.settings Réglages du journal modifiés {"console":"debug","keep":"debug","server":true}
+22:37:49.230 +3.89s DEBUG ui.key Raccourci : Escape {"key":"Escape","in":"button"}

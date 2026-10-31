@@ -1,0 +1,11 @@
+22:37:53.398 +8.06s DEBUG inspector.field Champ modifié : Adresse qui reçoit les messages {"key":"email","type":"text","how":"saisie","chars":29}
+22:37:53.404 +8.06s INFO  publish.open Fenêtre Publier {"mode":"zip","tab":"php","ok":true,"errors":0,"warnings":1}
+22:37:53.407 +8.06s DEBUG ui.dialog.open Fenêtre ouverte : Publier le site {"id":"publishDialog","class":"audit","modal":true}
+22:37:53.421 +8.08s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token"}
+22:37:53.422 +8.08s DEBUG storage.secret-read Aucun secret gardé {"name":"github-token"}
+22:37:53.514 +8.17s INFO  storage.secret-write Secret oublié sur cet appareil {"name":"php-token"}
+22:37:53.531 +8.19s INFO  publish.php.generate publish.php v4 téléchargé avec un nouveau jeton (l’ancien publish.php ne l’acceptera pas) {"version":"4","remember":false}
+22:37:53.531 +8.19s DEBUG store.commit Modification {"source":"site","past":7,"page":"p_87jw10m5"}
+22:37:53.534 +8.19s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
+22:37:53.565 +8.22s DEBUG store.commit Modification {"source":"site","past":8,"page":"p_87jw10m5"}
+22:37:53.567 +8.22s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}

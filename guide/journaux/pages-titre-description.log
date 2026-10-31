@@ -1,0 +1,6 @@
+22:28:35.348 +21.33s DEBUG store.commit Modification {"key":"ptitle-p_6mot4fio-de","source":"panel","past":35,"page":"p_6mot4fio"}
+22:28:35.379 +21.36s INFO  page.title Titre de la page (DE) : « Unser Team » {"id":"p_6mot4fio","lang":"de","length":10}
+22:28:35.654 +21.64s DEBUG store.commit Modification {"key":"pseo-p_6mot4fio-fr","source":"panel","past":36,"page":"p_6mot4fio"}
+22:28:35.673 +21.66s INFO  page.seo Description pour Google (FR) : 44 caractères {"id":"p_6mot4fio","lang":"fr","length":44}
+22:28:35.959 +21.94s DEBUG store.commit Modification {"key":"pseo-p_6mot4fio-nl","source":"panel","past":37,"page":"p_6mot4fio"}
+22:28:35.974 +21.96s WARN  page.seo Description pour Google trop longue (175/160) : Google la coupera {"id":"p_6mot4fio","lang":"nl","length":175}

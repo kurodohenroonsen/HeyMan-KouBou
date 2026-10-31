@@ -1,0 +1,18 @@
+22:31:03.351 +4.58s INFO  smart.poster.start [smart.poster#2] Affiche → élément de « Agenda » {"collection":"col_ho0hf99a","kind":"events","imageField":"image"}
+22:31:03.351 +4.58s DEBUG ui.dialog.open Fenêtre ouverte : ✨ Affiche → Agenda {"id":"smartDialog","class":"audit smart-dialog","modal":true}
+22:31:03.383 +4.61s DEBUG ui.dialog.close Fenêtre fermée : ✨ Affiche → Agenda {"id":"smartDialog"}
+22:31:03.383 +4.61s INFO  smart.poster.cancel [smart.poster#2 · 32 ms] Fermé sans lecture {"read":false}
+22:31:03.414 +4.64s INFO  smart.poster.start [smart.poster#3] Affiche → élément de « Agenda » {"collection":"col_ho0hf99a","kind":"events","imageField":"image"}
+22:31:03.415 +4.64s DEBUG ui.dialog.open Fenêtre ouverte : ✨ Affiche → Agenda {"id":"smartDialog","class":"audit smart-dialog","modal":true}
+22:31:03.440 +4.67s INFO  image.import.start [image.import#2] Import de l’image « affiche.png » {"name":"affiche.png","type":"image/png","kb":1}
+22:31:03.443 +4.67s DEBUG image.import.decode [image.import#2 · 3 ms] Image lue : 240×320 px {"width":240,"height":320,"ms":3}
+22:31:03.452 +4.68s DEBUG image.import.encode [image.import#2 · 12 ms] Version principale : 240×320 px, 1 Ko (image/webp) {"w":240,"h":320,"mime":"image/webp","kb":1,"ms":9}
+22:31:03.454 +4.68s INFO  image.import.ok [image.import#2 · 14 ms] Image prête : 240×320 px, 1 Ko (−25 %), 0 variante {"name":"affiche.webp","mime":"image/webp","width":240,"height":320,"kbIn":1,"kbOut":1,"gain":25,"variants":[]}
+22:31:03.466 +4.69s INFO  smart.poster.image [smart.poster#3 · 52 ms] Photo prête : 240×320 px, 1 Ko {"name":"affiche.png","width":240,"height":320,"kb":1,"mime":"image/webp"}
+22:31:03.521 +4.75s INFO  smart.poster.read [smart.poster#3 · 107 ms] Lecture de l’affiche par l’IA locale
+22:31:03.521 +4.75s DEBUG ai.provider Fournisseur d’IA de test (window.__atelierAI) {"source":"test","lang":"fr","has":{"prompt":true,"multimodal":false,"summarizer":true,"translator":true},"methods":["prompt","summarize","translate"]}
+22:31:03.522 +4.75s INFO  ai.extract.start [ai.extract#2] IA locale : lecture d’une affiche {"task":"extractItems","collection":"col_ho0hf99a","kind":"events","fields":11,"image":"image/webp (1 Ko)","today":"2026-10-29","lang":"fr","sourceLang":"fr","gen":"fr","api":"prompt","source":"test"}
+22:31:03.522 +4.75s WARN  ai.extract.absent [ai.extract#2 · 0 ms] IA absente : L’IA locale de ce navigateur ne lit pas encore les images (Prompt API multimodale). {"has":{"prompt":true,"multimodal":false,"summarizer":true,"translator":true},"need":"multimodal"}
+22:31:03.522 +4.75s INFO  ai.extract.cancel [ai.extract#2 · 0 ms] Tâche non lancée (aucun appel au modèle) {"task":"extractItems"}
+22:31:03.522 +4.75s ERROR ui.toast Message affiché : L’IA locale de ce navigateur ne lit pas encore les images (Prompt API multimodale). {"type":"error"}
+22:31:03.523 +4.75s WARN  smart.poster.read-fail [smart.poster#3 · 109 ms] Lecture impossible : voir ai.extract

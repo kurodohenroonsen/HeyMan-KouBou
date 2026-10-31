@@ -1,0 +1,2 @@
+22:29:56.405 +32.26s WARN  review.ops.rejected 1 opération de relecture de Ana refusée : signature du commentaire invalide {"name":"Ana","role":"editor","count":1,"reason":"signature du commentaire invalide","path":["review","comments","cm_TvQ4FBSVa5RC"]}
+22:29:56.407 +6.75s WARN  collab.remote-error L’autre côté signale : Modification refusée : signature du commentaire invalide {"from":"Kudoro","message":"Modification refusée : signature du commentaire invalide"}

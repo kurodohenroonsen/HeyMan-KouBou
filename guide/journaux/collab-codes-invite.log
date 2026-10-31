@@ -1,0 +1,52 @@
+22:30:07.309 +0.01s DEBUG widgets.extra Widgets supplémentaires chargés : 15 {"widgets":23,"extra":15}
+22:30:07.312 +0.01s DEBUG ui.lang-ready Interface en Français {"lang":"fr","static":0,"catalog":false}
+22:30:07.347 +0.04s DEBUG canvas.scale Canevas ordinateur : 1280 px, réduit à 62 % {"device":"desktop","width":1280,"scale":62,"available":792}
+22:30:07.347 +0.04s INFO  canvas.load.start [canvas.load#1] Chargement complet du canevas : premier chargement {"reason":"premier chargement","page":"p_0bew2j7l","lang":"fr","device":"desktop"}
+22:30:07.357 +0.05s DEBUG canvas.load.render [canvas.load#1 · 10 ms] Page rendue {"ms":9,"kb":25}
+22:30:07.359 +0.06s INFO  collab.join.link Lien d’invitation ouvert
+22:30:07.390 +0.09s DEBUG version.init 0 version(s) dans ce navigateur {"count":0,"manual":0,"lastAuto":null,"autoToday":false}
+22:30:07.411 +0.11s INFO  canvas.load.ok [canvas.load#1 · 64 ms] Canevas prêt {"nodes":30,"scale":62,"via":"dom"}
+22:30:07.594 +0.29s INFO  collab.invite.open Invitation de Hôte manuel : relecteur {"role":"reviewer","owner":"Hôte manuel","ownerFp":"HW0dcfU9UVLzll2K","via":"codes","hours":168}
+22:30:07.595 +0.29s DEBUG ui.dialog.open Fenêtre ouverte : 👥 Rejoindre une session {"id":"joinDialog","class":"audit collab","modal":true}
+22:30:07.657 +0.35s DEBUG canvas.resources Ressources externes du canevas chargées {"ms":300,"hosts":["fonts.googleapis.com"]}
+22:30:07.762 +0.46s INFO  collab.identity.new Clé personnelle créée pour Relecteur manuel {"fp":"35y0wzZNvxhDHKTs","did":"did:key:zDnaevdtTqjTjdis"}
+22:30:07.765 +0.46s INFO  collab.join.start [collab.join#1] Rejoindre une session {"name":"Relecteur manuel","fp":"35y0wzZNvxhDHKTs","via":"codes"}
+22:30:07.767 +0.46s DEBUG collab.join.invite [collab.join#1 · 2 ms] Invitation valable : Hôte manuel invite comme relecteur {"role":"reviewer","owner":"Hôte manuel","host":"6d888dcaf64adc28","signal":"aucune (codes)","hours":168}
+22:30:07.769 +0.47s INFO  version.save.start [version.save#1] Enregistrement d’une version de sécurité : « Avant de rejoindre une session de collaboration » {"kind":"safety","name":"Avant de rejoindre une session de collaboration"}
+22:30:07.772 +0.47s DEBUG version.save.prune [version.save#1 · 3 ms] Aucune ancienne version à supprimer {"total":1}
+22:30:07.773 +0.47s INFO  version.save.ok [version.save#1 · 4 ms] Version de sécurité enregistrée (2 pages) {"id":"v_mvu24avuwz3hr","kind":"safety","at":"2026-10-29T21:30:07.770Z","pages":2,"kb":12}
+22:30:07.773 +0.47s DEBUG collab.join.backup [collab.join#1 · 8 ms] Projet actuel enregistré dans les versions avant de recevoir celui de l’hôte
+22:30:07.773 +0.47s INFO  collab.readonly Mode relecture : parcourir et commenter seulement {"role":"reviewer"}
+22:30:07.773 +0.47s INFO  collab.join.ok [collab.join#1 · 8 ms] Session prête : échange de codes à faire {"role":"reviewer","room":"7ce4fca1"}
+22:30:07.774 +0.47s INFO  rtc.manual-offer.start [rtc.manual-offer#1] Création du code de connexion (sans serveur) {"peer":"f5bf033d31f7887d"}
+22:30:07.778 +0.47s DEBUG rtc.pc.create Connexion WebRTC créée (côté demande) {"side":"offer","label":"manuel","stun":"aucun (réseau local seulement)"}
+22:30:07.787 +0.48s DEBUG rtc.ice.gathering Collecte des candidats : gathering {"label":"manuel","state":"gathering","local":{"host":0,"srflx":0,"relay":0,"prflx":0}}
+22:30:11.787 +4.48s DEBUG rtc.ice.gather-timeout Collecte des adresses non terminée après 4 s : envoi de 1 adresse trouvée {"label":"manuel","ms":4001,"local":{"host":1,"srflx":0,"relay":0,"prflx":0},"stun":"aucun"}
+22:30:11.788 +4.48s INFO  rtc.ice.no-stun Aucun serveur STUN : seules les adresses locales sont proposées (même réseau seulement) {"label":"manuel"}
+22:30:11.789 +4.49s INFO  rtc.manual-offer.ok [rtc.manual-offer#1 · 4015 ms] Code de connexion prêt : à envoyer à l’hôte {"chars":931,"local":{"host":1,"srflx":0,"relay":0,"prflx":0}}
+22:30:12.246 +4.94s DEBUG rtc.ice.state ICE : essai des chemins réseau entre les deux navigateurs {"label":"manuel","state":"checking","ms":4469}
+22:30:12.250 +4.95s DEBUG rtc.pc.state Connexion : établissement (ICE puis chiffrement DTLS) {"label":"manuel","state":"connecting","ms":4472}
+22:30:12.318 +5.01s INFO  rtc.manual-finish.start [rtc.manual-finish#1] Connexion avec le code de réponse reçu {"chars":931}
+22:30:12.319 +5.01s WARN  signal.code-wrong Ce code n’est pas celui attendu (« offer » au lieu de « answer ») {"got":"offer","expected":"answer"}
+22:30:12.320 +5.02s ERROR rtc.manual-finish.fail [rtc.manual-finish#1 · 2 ms] Ce code n’est pas une réponse de cette session. {"label":"manuel","ice":"checking","pc":"connecting","gathering":"gathering","local":{"host":1,"srflx":0,"relay":0,"prflx":0},"remote":null,"stun":[],"ms":4542,"error":{"name":"Error","message":"Ce code n’est pas une réponse de cette session.","stack":"Error: Ce code n’est pas une réponse de cette session.\nat readCode (http://localhost:8791/editor/collab-net.js:440:11)\nat async Object.finish (http://localhost:8791/editor/collab-net.js:465:21)\nat async HTMLButtonElement.onclick (http://localhost:8791/editor/collab-ui.js:367:32)"}}
+22:30:12.368 +5.06s INFO  rtc.manual-finish.start [rtc.manual-finish#2] Connexion avec le code de réponse reçu {"chars":895}
+22:30:12.381 +5.08s DEBUG rtc.ice.remote Adresses reçues de l’autre navigateur : 1 host {"label":"manuel","type":"answer","remote":{"host":1,"srflx":0,"relay":0,"prflx":0}}
+22:30:12.381 +5.08s INFO  rtc.manual-finish.remote [rtc.manual-finish#2 · 13 ms] Code de réponse accepté : ouverture du canal… {"remote":{"host":1,"srflx":0,"relay":0,"prflx":0}}
+22:30:12.382 +5.08s INFO  rtc.ice.state ICE : un chemin réseau fonctionne {"label":"manuel","state":"connected","ms":4604}
+22:30:12.382 +5.08s DEBUG rtc.ice.gathering Collecte des candidats : complete {"label":"manuel","state":"complete","local":{"host":1,"srflx":0,"relay":0,"prflx":0}}
+22:30:12.382 +5.08s INFO  rtc.pc.state Connexion : établie et chiffrée {"label":"manuel","state":"connected","ms":4605}
+22:30:12.383 +5.08s INFO  rtc.pair Chemin réseau utilisé : host ↔ host (udp) {"label":"manuel","local":"host","remote":"host","protocol":"udp","rttMs":1,"ms":4606}
+22:30:12.387 +5.08s INFO  rtc.channel.open Canal de données ouvert avec manuel {"label":"manuel","ms":4609}
+22:30:12.387 +5.08s INFO  rtc.manual-finish.ok [rtc.manual-finish#2 · 19 ms] Liaison directe prête avec l’hôte {"ms":4609}
+22:30:12.387 +5.08s DEBUG collab.link.new Nouveau lien : présentation (invité) {"label":"manuel","links":1}
+22:30:12.392 +5.09s DEBUG collab.hello Présentation de l’hôte Hôte manuel : c’est bien la personne qui a signé l’invitation {"name":"Hôte manuel","fp":"HW0dcfU9UVLzll2K","role":"owner"}
+22:30:12.397 +5.09s INFO  collab.auth Identité vérifiée : Hôte manuel (hôte) {"name":"Hôte manuel","fp":"HW0dcfU9UVLzll2K","role":"owner","peers":1}
+22:30:12.405 +5.10s DEBUG collab.sync.ask Demande du projet à l’hôte {"docId":null,"known":0}
+22:30:12.406 +5.10s DEBUG collab.presence Présence de Hôte manuel {"fp":"HW0dcfU9UVLzll2K","page":"p_yaq4dj1v","selected":null}
+22:30:12.409 +5.11s INFO  collab.snapshot Projet reçu de Hôte manuel {"docId":"doc_43120488adc4f8ad","pages":2,"comments":0}
+22:30:12.415 +5.11s INFO  canvas.load.start [canvas.load#2] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_yaq4dj1v","lang":"fr","device":"desktop"}
+22:30:12.419 +5.12s DEBUG canvas.load.render [canvas.load#2 · 4 ms] Page rendue {"ms":4,"kb":25}
+22:30:12.424 +5.12s INFO  canvas.load.cancel [canvas.load#2 · 9 ms] Chargement remplacé par un nouveau {"reason":"rechargement demandé"}
+22:30:12.425 +5.12s INFO  canvas.load.start [canvas.load#3] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_yaq4dj1v","lang":"fr","device":"desktop"}
+22:30:12.429 +5.13s DEBUG canvas.load.render [canvas.load#3 · 4 ms] Page rendue {"ms":4,"kb":25}
+22:30:12.439 +5.13s INFO  ui.toast Message affiché : Projet reçu de Hôte manuel — mode relecture : commentez avec 💬.

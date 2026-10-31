@@ -1,0 +1,4 @@
+22:28:58.320 +44.30s DEBUG collection.tab Onglet « Éléments » {"collection":"col_q2cqo5ej","tab":"items"}
+22:28:58.428 +44.41s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":39}
+22:28:58.553 +44.54s INFO  collection.csv-export 4 éléments exportés en CSV : agenda.csv {"collection":"col_q2cqo5ej","file":"agenda.csv","items":4,"columns":20,"kb":1}
+22:28:58.553 +44.54s INFO  ui.toast Message affiché : Éléments exportés en CSV (ouvrable dans un tableur).

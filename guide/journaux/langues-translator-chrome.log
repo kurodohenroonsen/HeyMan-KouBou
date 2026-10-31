@@ -1,0 +1,31 @@
+22:29:21.421 +9.10s DEBUG ui.dialog.open Fenêtre ouverte : Traductions {"id":"i18nDialog","class":"audit i18n","modal":true}
+22:29:21.432 +9.11s INFO  i18n.open Tableau des traductions : 21 textes, 15 traduction(s) manquante(s), 45 à relire {"languages":["fr","nl","de","en"],"main":"fr","filter":"review","visible":21,"shown":21,"missing":15,"review":45,"mtLang":"nl"}
+22:29:21.433 +9.11s INFO  translate.status Traducteur fr → nl : downloadable (modèle à télécharger au premier clic) {"from":"fr","to":"nl","state":"downloadable","ms":1,"source":"chrome"}
+22:29:21.452 +9.13s INFO  translate.status Traducteur fr → de : downloadable (modèle à télécharger au premier clic) {"from":"fr","to":"de","state":"downloadable","ms":0,"source":"chrome"}
+22:29:21.524 +9.20s INFO  translate.batch.start [translate.batch#4] Traduction automatique fr → de {"from":"fr","to":"de"}
+22:29:21.525 +9.20s INFO  translate.model.start [translate.model#2] Préparation du traducteur fr → de {"from":"fr","to":"de"}
+22:29:21.534 +9.21s DEBUG translate.model.download [translate.model#2 · 9 ms] Téléchargement du modèle fr → de : 30 % {"pct":30}
+22:29:21.540 +9.22s DEBUG translate.model.download [translate.model#2 · 15 ms] Téléchargement du modèle fr → de : 60 % {"pct":60}
+22:29:21.545 +9.22s DEBUG translate.model.download [translate.model#2 · 20 ms] Téléchargement du modèle fr → de : 100 % {"pct":100}
+22:29:21.554 +9.23s INFO  translate.model.ok [translate.model#2 · 29 ms] Traducteur fr → de prêt {"downloaded":true}
+22:29:21.556 +9.23s DEBUG translate.batch.ready [translate.batch#4 · 32 ms] Traducteur prêt : traduction des textes manquants
+22:29:21.557 +9.24s DEBUG translate.batch.progress [translate.batch#4 · 33 ms] 1 / 5 textes {"done":1,"total":5,"count":1,"errors":0}
+22:29:21.558 +9.24s DEBUG translate.batch.progress [translate.batch#4 · 34 ms] 2 / 5 textes {"done":2,"total":5,"count":2,"errors":0}
+22:29:21.559 +9.24s DEBUG translate.batch.progress [translate.batch#4 · 35 ms] 3 / 5 textes {"done":3,"total":5,"count":3,"errors":0}
+22:29:21.560 +9.24s DEBUG translate.batch.progress [translate.batch#4 · 36 ms] 4 / 5 textes {"done":4,"total":5,"count":4,"errors":0}
+22:29:21.561 +9.24s DEBUG translate.batch.progress [translate.batch#4 · 37 ms] 5 / 5 textes {"done":5,"total":5,"count":5,"errors":0}
+22:29:21.561 +9.24s DEBUG store.commit Modification {"source":"i18n","past":17,"page":"p_thzb3i6h"}
+22:29:21.565 +9.24s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"i18n","mode":"contenu","ms":3}
+22:29:21.574 +9.25s INFO  translate.batch.ok [translate.batch#4 · 50 ms] 5 texte(s) traduit(s) fr → de, marqués « à relire » {"count":5,"errors":0,"total":5}
+22:29:21.661 +9.34s INFO  translate.status Traducteur fr → nl : downloadable (modèle à télécharger au premier clic) {"from":"fr","to":"nl","state":"downloadable","ms":0,"source":"chrome"}
+22:29:21.701 +9.38s INFO  translate.batch.start [translate.batch#5] Traduction automatique fr → nl {"from":"fr","to":"nl"}
+22:29:21.702 +9.38s DEBUG translate.reuse Traducteur fr → nl déjà prêt {"from":"fr","to":"nl"}
+22:29:21.702 +9.38s DEBUG translate.batch.ready [translate.batch#5 · 1 ms] Traducteur prêt : traduction des textes manquants
+22:29:21.703 +9.38s DEBUG translate.batch.progress [translate.batch#5 · 2 ms] 1 / 10 textes {"done":1,"total":10,"count":1,"errors":0}
+22:29:21.704 +9.38s DEBUG translate.batch.progress [translate.batch#5 · 3 ms] 3 / 10 textes {"done":3,"total":10,"count":3,"errors":0}
+22:29:21.705 +9.38s DEBUG translate.batch.progress [translate.batch#5 · 4 ms] 5 / 10 textes {"done":5,"total":10,"count":5,"errors":0}
+22:29:21.707 +9.39s DEBUG translate.batch.progress [translate.batch#5 · 6 ms] 8 / 10 textes {"done":8,"total":10,"count":8,"errors":0}
+22:29:21.709 +9.39s DEBUG translate.batch.progress [translate.batch#5 · 8 ms] 10 / 10 textes {"done":10,"total":10,"count":10,"errors":0}
+22:29:21.709 +9.39s DEBUG store.commit Modification {"source":"i18n","past":18,"page":"p_thzb3i6h"}
+22:29:21.713 +9.39s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"i18n","mode":"contenu","ms":3}
+22:29:21.719 +9.40s INFO  translate.batch.ok [translate.batch#5 · 18 ms] 10 texte(s) traduit(s) fr → nl, marqués « à relire » {"count":10,"errors":0,"total":10}

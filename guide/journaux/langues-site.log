@@ -1,0 +1,21 @@
+22:29:22.336 +10.02s DEBUG store.commit Modification {"key":null,"source":"panel","past":20,"page":"p_thzb3i6h"}
+22:29:22.339 +10.02s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"panel","mode":"contenu","ms":3}
+22:29:22.345 +10.02s INFO  settings.lang-remove Langue retirée : English (ses traductions restent dans le projet) {"lang":"en","languages":["fr","nl","de"],"main":"fr"}
+22:29:22.346 +10.03s DEBUG store.view Vue : 
+22:29:22.358 +10.04s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":2}
+22:29:22.687 +10.37s DEBUG store.view Vue : lang=nl {"lang":"nl"}
+22:29:22.700 +10.38s INFO  canvas.load.start [canvas.load#2] Chargement complet du canevas : autre langue {"reason":"autre langue","page":"p_thzb3i6h","lang":"nl","device":"desktop"}
+22:29:22.701 +10.38s DEBUG canvas.load.render [canvas.load#2 · 1 ms] Page rendue {"ms":1,"kb":25}
+22:29:22.743 +10.42s INFO  canvas.load.ok [canvas.load#2 · 43 ms] Canevas prêt {"nodes":30,"scale":62,"via":"dom"}
+22:29:22.938 +10.62s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":18}
+22:29:22.946 +10.63s DEBUG canvas.resources Ressources externes du canevas chargées {"ms":245,"hosts":["fonts.googleapis.com"]}
+22:29:23.015 +10.69s DEBUG store.view Vue : lang=fr {"lang":"fr"}
+22:29:23.027 +10.71s INFO  canvas.load.start [canvas.load#3] Chargement complet du canevas : autre langue {"reason":"autre langue","page":"p_thzb3i6h","lang":"fr","device":"desktop"}
+22:29:23.028 +10.71s DEBUG canvas.load.render [canvas.load#3 · 1 ms] Page rendue {"ms":1,"kb":25}
+22:29:23.068 +10.75s INFO  canvas.load.ok [canvas.load#3 · 41 ms] Canevas prêt {"nodes":30,"scale":62,"via":"dom"}
+22:29:23.251 +10.93s DEBUG store.commit Modification {"key":null,"source":"panel","past":21,"page":"p_thzb3i6h"}
+22:29:23.253 +10.93s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"panel","mode":"contenu","ms":2}
+22:29:23.261 +10.94s INFO  settings.lang-add Langue ajoutée : English (textes à traduire) {"lang":"en","languages":["fr","nl","de","en"],"main":"fr"}
+22:29:23.262 +10.94s DEBUG store.view Vue : 
+22:29:23.276 +10.96s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":3}
+22:29:23.288 +10.97s DEBUG canvas.resources Ressources externes du canevas chargées {"ms":260,"hosts":["fonts.googleapis.com"]}

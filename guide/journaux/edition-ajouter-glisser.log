@@ -1,0 +1,5 @@
+22:27:35.934 +2.67s INFO  dnd.start [dnd#1] Glisser : Bouton {"kind":"widget","type":"button","from":"bibliothèque"}
+22:27:36.339 +3.08s DEBUG store.commit Modification {"source":"dnd","past":2,"page":"p_s2tq5e0u"}
+22:27:36.344 +3.08s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"dnd","mode":"contenu","ms":3}
+22:27:36.350 +3.09s DEBUG store.select Sélection : button {"id":"n_6s335r591d","type":"button"}
+22:27:36.352 +3.09s INFO  dnd.ok [dnd#1 · 418 ms] Ajouté dans Colonne, position 1 {"id":"n_6s335r591d","type":"button","kind":"new","parentId":"n_4p3970314b","parentType":"column","index":0,"where":"canevas"}

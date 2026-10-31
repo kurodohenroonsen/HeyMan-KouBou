@@ -1,0 +1,14 @@
+22:27:44.508 +11.25s DEBUG store.select Sélection : heading {"id":"n_5k5f440h54","type":"heading"}
+22:27:44.519 +11.26s DEBUG edit.dblclick Double-clic sur un texte de la page {"key":"text","id":"n_5k5f440h54"}
+22:27:44.519 +11.26s WARN  edit.readonly Édition refusée : mode relecture {"id":"n_5k5f440h54","key":"text"}
+22:27:44.520 +11.26s INFO  ui.toast Message affiché : Mode relecture : vous pouvez commenter (💬), pas modifier.
+22:27:44.707 +11.45s DEBUG store.select Sélection : image {"id":"n_2d3t1d470s","type":"image"}
+22:27:44.719 +11.46s DEBUG canvas.key Raccourci dans la page : Enter {"key":"Enter","in":"page","selected":"n_2d3t1d470s"}
+22:27:44.722 +11.46s DEBUG edit.no-text Rien à écrire dans l’élément sélectionné (pas de texte modifiable) {"id":"n_2d3t1d470s"}
+22:27:44.809 +11.55s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":12}
+22:27:44.843 +11.58s DEBUG store.select Sélection : button {"id":"n_543a343z5o","type":"button"}
+22:27:44.856 +11.59s DEBUG canvas.key Raccourci dans la page : Enter {"key":"Enter","in":"page","selected":"n_543a343z5o"}
+22:27:44.856 +11.59s DEBUG edit.keyboard Édition demandée au clavier ou par le menu {"id":"n_543a343z5o"}
+22:27:44.857 +11.60s INFO  edit.start [edit#4] Édition dans la page : button · label {"id":"n_543a343z5o","type":"button","key":"label","field":"text","lang":"fr","chars":14}
+22:27:45.013 +11.75s INFO  edit.ok [edit#4 · 156 ms] Édition terminée sans changement {"id":"n_543a343z5o","key":"label","changed":false,"chars":14,"before":14,"inputs":0}
+22:27:45.016 +11.75s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"edit-done","mode":"contenu","ms":3}

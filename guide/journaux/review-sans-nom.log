@@ -1,0 +1,5 @@
+22:30:05.107 +0.43s DEBUG store.select Sélection : heading {"id":"n_136h0l2m1h","type":"heading"}
+22:30:05.151 +0.47s INFO  review.panel Panneau des commentaires ouvert {"open":true,"comments":0,"openCount":0,"readOnly":false}
+22:30:05.229 +0.55s DEBUG storage.secret-read Aucun secret gardé {"name":"identity"}
+22:30:05.229 +0.55s WARN  review.no-identity Commentaire non signé : nom manquant
+22:30:05.230 +0.55s ERROR ui.toast Message affiché : Indiquez votre nom pour signer vos commentaires. {"type":"error"}

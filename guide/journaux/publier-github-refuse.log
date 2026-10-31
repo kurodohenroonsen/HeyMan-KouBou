@@ -1,0 +1,8 @@
+22:38:01.918 +16.58s DEBUG store.commit Modification {"source":"site","past":30,"page":"p_87jw10m5"}
+22:38:01.922 +16.58s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
+22:38:01.932 +16.59s INFO  publish.github.start [publish.github#2] Publication sur GitHub {"owner":"aktina","repo":"site-mab","branch":"main","dir":"(racine)","token":true}
+22:38:01.933 +16.59s INFO  storage.secret-write Secret oublié sur cet appareil {"name":"github-token"}
+22:38:01.953 +16.61s INFO  publish.github.package [publish.github#2 · 21 ms] 12 fichiers générés {"files":12}
+22:38:01.953 +16.61s DEBUG net.request GET api.github.com/repos/aktina/site-mab/git/ref/heads/main {"id":33,"method":"GET","url":"https://api.github.com/repos/aktina/site-mab/git/ref/heads/main"}
+22:38:01.984 +16.64s WARN  net.response 401 GET api.github.com/repos/aktina/site-mab/git/ref/heads/main (31 ms) {"id":33,"status":401,"ms":31,"type":"application/json","size":29}
+22:38:01.986 +16.64s ERROR publish.github.fail [publish.github#2 · 54 ms] GitHub refuse le jeton : vérifiez qu’il donne accès en écriture au contenu de ce dépôt. {"error":{"name":"Error","message":"GitHub refuse le jeton : vérifiez qu’il donne accès en écriture au contenu de ce dépôt.","stack":"Error: GitHub refuse le jeton : vérifiez qu’il donne accès en écriture au contenu de ce dépôt.\nat call (http://localhost:8791/core/publish.js:515:55)\nat async publishGitHub (http://localhost:8791/core/publish.js:523:15)\nat async HTMLButtonElement.run (http://localhost:8791/editor/publish-ui.js:155:17)"}}

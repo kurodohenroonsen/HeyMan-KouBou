@@ -1,0 +1,11 @@
+Atelier — éditeur de sites web
+© 2026 ASBL Aktina (Belgique). Tous droits réservés.
+
+Projet de licence (à confirmer par Aktina avant toute diffusion commerciale ; voir docs/audit-2026-10-30.md § 7).
+
+1. Le logiciel Atelier (code source, documentation, guide, modèles) est la propriété de l'ASBL Aktina.
+2. Chaque client reçoit une licence d'utilisation non exclusive, non transférable, pour créer, modifier et publier ses propres sites web avec Atelier, sur le nombre d'installations convenu dans son contrat.
+3. Le client est propriétaire des sites qu'il produit (contenus, images, fichiers exportés) et peut les héberger où il veut, sans dépendance envers Aktina.
+4. Le client ne peut pas revendre, sous-licencier, louer ni redistribuer le logiciel Atelier lui-même, ni retirer les mentions de propriété.
+5. Les composants tiers embarqués gardent leur licence propre (polices sous SIL Open Font License, le cas échéant) ; elles sont listées dans docs/tiers.md quand il y en a.
+6. Le logiciel est fourni « en l'état » dans les limites permises par la loi belge ; les obligations de maintenance et de support sont celles du contrat de service du client.

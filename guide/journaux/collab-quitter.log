@@ -1,0 +1,11 @@
+22:29:56.850 +7.19s DEBUG ui.dialog.close Fenêtre fermée : 👥 Rejoindre une session {"id":"joinDialog"}
+22:29:56.881 +7.22s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":13}
+22:29:57.090 +7.43s INFO  storage.secret-write Secret gardé sur cet appareil (jamais dans le projet) {"name":"collab-session"}
+22:29:57.268 +7.61s INFO  storage.secret-write Secret gardé sur cet appareil (jamais dans le projet) {"name":"identity"}
+22:29:57.279 +7.62s INFO  collab.open Fenêtre « Travailler à plusieurs » {"state":"editor","peers":1,"identity":true,"publish":"oui"}
+22:29:57.280 +7.62s DEBUG ui.dialog.open Fenêtre ouverte : 👥 Travailler à plusieurs {"id":"collabDialog","class":"audit collab","modal":true}
+22:29:57.337 +7.68s INFO  collab.leave Session quittée {"role":"editor","peers":1,"room":"a09f407a"}
+22:29:57.337 +7.68s DEBUG collab.node.close Fermeture de 1 lien {"links":1}
+22:29:57.341 +7.68s INFO  storage.secret-write Secret oublié sur cet appareil {"name":"collab-session"}
+22:29:57.353 +7.70s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"history","mode":"contenu","ms":3}
+22:29:57.366 +7.71s INFO  rtc.channel.close Canal de données fermé avec f17f656d6c69c690 {"label":"f17f656d6c69c690","pc":"closed","ice":"closed","sent":6,"received":6}

@@ -1,0 +1,18 @@
+22:27:55.087 +21.82s DEBUG store.view Vue : pageId=p_fmb2r6ef {"pageId":"p_fmb2r6ef"}
+22:27:55.089 +21.83s INFO  canvas.load.start [canvas.load#2] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_fmb2r6ef","lang":"fr","device":"desktop"}
+22:27:55.089 +21.83s DEBUG canvas.load.render [canvas.load#2 · 0 ms] Page rendue {"ms":1,"kb":20}
+22:27:55.091 +21.83s DEBUG store.view Vue : lang=nl {"lang":"nl"}
+22:27:55.093 +21.83s INFO  canvas.load.cancel [canvas.load#2 · 4 ms] Chargement remplacé par un nouveau {"reason":"autre langue"}
+22:27:55.093 +21.83s INFO  canvas.load.start [canvas.load#3] Chargement complet du canevas : autre langue {"reason":"autre langue","page":"p_fmb2r6ef","lang":"nl","device":"desktop"}
+22:27:55.093 +21.83s DEBUG canvas.load.render [canvas.load#3 · 0 ms] Page rendue {"ms":0,"kb":20}
+22:27:55.126 +21.86s INFO  canvas.load.ok [canvas.load#3 · 33 ms] Canevas prêt {"nodes":5,"scale":62,"via":"dom"}
+22:27:55.139 +21.88s DEBUG store.view Vue : lang=fr {"lang":"fr"}
+22:27:55.140 +21.88s INFO  canvas.load.start [canvas.load#4] Chargement complet du canevas : autre langue {"reason":"autre langue","page":"p_fmb2r6ef","lang":"fr","device":"desktop"}
+22:27:55.141 +21.88s DEBUG canvas.load.render [canvas.load#4 · 1 ms] Page rendue {"ms":0,"kb":20}
+22:27:55.142 +21.88s DEBUG store.view Vue : pageId=p_s2tq5e0u {"pageId":"p_s2tq5e0u"}
+22:27:55.144 +21.88s INFO  canvas.load.cancel [canvas.load#4 · 4 ms] Chargement remplacé par un nouveau {"reason":"autre page"}
+22:27:55.144 +21.88s INFO  canvas.load.start [canvas.load#5] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_s2tq5e0u","lang":"fr","device":"desktop"}
+22:27:55.145 +21.88s DEBUG canvas.load.render [canvas.load#5 · 1 ms] Page rendue {"ms":1,"kb":27}
+22:27:55.174 +21.91s INFO  canvas.load.ok [canvas.load#5 · 30 ms] Canevas prêt {"nodes":35,"scale":62,"via":"dom"}
+22:27:55.359 +22.10s DEBUG canvas.resources Ressources externes du canevas chargées {"ms":214,"hosts":["fonts.googleapis.com"]}
+22:27:55.492 +22.23s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":13}

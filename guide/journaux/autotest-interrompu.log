@@ -1,0 +1,8 @@
+22:32:10.619 +0.01s INFO  storage.load Projet rechargé depuis cet appareil {"slot":"selftest-backup","name":"MAB – Médias Alternatifs Belges","pages":3,"images":1,"ms":7}
+22:32:10.619 +0.01s WARN  selftest.recovered Auto-test interrompu : le projet d’avant le test est repris {"at":"2026-10-29T21:32:04.605Z","name":"MAB – Médias Alternatifs Belges","pages":3}
+22:32:10.620 +0.01s INFO  selftest.rollback.start [selftest.rollback#1] Nettoyage après un auto-test interrompu {"at":"2026-10-29T21:32:04.605Z"}
+22:32:10.672 +0.07s DEBUG storage.version-delete 1 version supprimée {"ids":["v_mvu26t18f26r9"]}
+22:32:10.677 +0.07s DEBUG storage.project-delete Emplacement de projet effacé {"slot":"selftest-backup"}
+22:32:10.678 +0.07s INFO  selftest.rollback.ok [selftest.rollback#1 · 58 ms] Projet d’avant l’auto-test remis {"versions":0,"assets":0}
+22:32:11.424 +0.82s INFO  storage.load Projet rechargé depuis cet appareil {"slot":"current","name":"MAB – Médias Alternatifs Belges","pages":3,"images":1,"ms":1}
+22:32:11.429 +0.82s INFO  storage.load-empty Aucun projet enregistré sur cet appareil {"slot":"selftest-backup"}

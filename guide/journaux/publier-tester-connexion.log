@@ -1,0 +1,13 @@
+22:37:53.616 +8.27s DEBUG store.commit Modification {"source":"site","past":9,"page":"p_87jw10m5"}
+22:37:53.619 +8.28s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
+22:37:53.632 +8.29s DEBUG store.commit Modification {"source":"site","past":10,"page":"p_87jw10m5"}
+22:37:53.635 +8.29s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
+22:37:53.647 +8.30s INFO  publish.test.start [publish.test#1] Test de connexion à publish.php {"url":"http://127.0.0.1:9599/publish.php","token":true}
+22:37:53.648 +8.31s DEBUG net.request GET 127.0.0.1:9599/publish.php {"id":1,"method":"GET","url":"http://127.0.0.1:9599/publish.php?atelier_debug=1"}
+22:37:53.671 +8.33s DEBUG net.response 200 GET 127.0.0.1:9599/publish.php (23 ms) {"id":1,"status":200,"ms":23,"type":"application/json","req":"b3db0832"}
+22:37:53.673 +8.33s DEBUG php.req.start GET reçu {"method":"GET","who":"9906cc70e1","bytes":0,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8791","req":"b3db0832","srvMs":0}
+22:37:53.674 +8.33s WARN  php.diag Diagnostic de l’hébergement demandé : limite d’envoi basse (2 Mo) {"upload_max":"2M","post_max":"8M","data_writable":true,"zip":true,"mail":true,"req":"b3db0832","srvMs":0.2}
+22:37:53.674 +8.33s DEBUG php.status Statut demandé (test de connexion) {"version":"4","zip":true,"diag":true,"req":"b3db0832","srvMs":0.4}
+22:37:53.674 +8.33s DEBUG php.req.end Réponse 200 (status) {"status":200,"route":"status","mem_kb":741,"req":"b3db0832","srvMs":0.4}
+22:37:53.675 +8.33s INFO  publish.test.diag [publish.test#1 · 28 ms] Diagnostic de l’hébergement {"upload_max_filesize":"2M","post_max_size":"8M","memory_limit":"-1","max_execution_time":30,"mail":true,"data_writable":true,"root_writable":true,"log_level":"info","log_files":[],"sapi":"cli-server","time":"2026-10-29T21:37:53+00:00","timezone":"UTC","disk_free_mb":29993,"extensions":{"mbstring":true,"json":true,"zip":true}}
+22:37:53.676 +8.33s INFO  publish.test.ok [publish.test#1 · 29 ms] publish.php répond {"version":"4","php":"8.3.6","zip":true,"req":"b3db0832"}

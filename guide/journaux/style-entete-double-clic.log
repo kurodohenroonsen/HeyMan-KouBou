@@ -1,0 +1,9 @@
+22:28:11.928 +38.67s DEBUG canvas.dblclick Double-clic sur l’en-tête : modification en blocs {"target":"header"}
+22:28:11.928 +38.67s INFO  store.edit-target Édition : header {"kind":"header"}
+22:28:11.937 +38.67s INFO  canvas.load.start [canvas.load#11] Chargement complet du canevas : modification de l’en-tête {"reason":"modification de l’en-tête","page":"p_s2tq5e0u","lang":"fr","device":"desktop","edit":"header"}
+22:28:11.939 +38.68s DEBUG canvas.load.render [canvas.load#11 · 1 ms] Page rendue {"ms":1,"kb":35}
+22:28:11.962 +38.70s INFO  canvas.load.ok [canvas.load#11 · 25 ms] Canevas prêt {"nodes":8,"scale":62,"via":"load"}
+22:28:12.371 +39.11s INFO  store.edit-target Retour à la page
+22:28:12.386 +39.12s INFO  canvas.load.start [canvas.load#12] Chargement complet du canevas : retour à la page {"reason":"retour à la page","page":"p_s2tq5e0u","lang":"fr","device":"desktop"}
+22:28:12.388 +39.13s DEBUG canvas.load.render [canvas.load#12 · 2 ms] Page rendue {"ms":2,"kb":37}
+22:28:12.426 +39.16s INFO  canvas.load.ok [canvas.load#12 · 40 ms] Canevas prêt {"nodes":68,"scale":62,"via":"load"}
