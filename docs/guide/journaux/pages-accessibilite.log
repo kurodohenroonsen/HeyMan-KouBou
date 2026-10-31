@@ -1,15 +1,15 @@
-13:42:58.040 +28.16s INFO  page.a11y.open Assistant de déclaration d’accessibilité ouvert (1 limite pré-remplie) {"limits":1}
-13:42:58.041 +28.16s DEBUG ui.dialog.open Fenêtre ouverte : Déclaration d’accessibilité {"id":"a11yDialog","class":"audit","modal":true}
-13:42:58.072 +28.20s DEBUG storage.save Projet enregistré sur cet appareil {"ms":7,"kb":13}
-13:42:58.150 +28.27s WARN  page.a11y.refused Déclaration non créée : Indiquez une adresse e-mail valide pour le contact accessibilité. {"email":false,"status":"partial","error":{"name":"Error","message":"Indiquez une adresse e-mail valide pour le contact accessibilité.","stack":"Error: Indiquez une adresse e-mail valide pour le contact accessibilité.\nat buildAccessibilityPage (http://localhost:8831/core/a11ypage.js:86:17)\nat addAccessibilityPage (http://localhost:8831/core/a11ypage.js:115:16)\nat HTMLButtonElement.onclick (http://localhost:8831/editor/pages.js:229:21)"}}
-13:42:58.150 +28.27s ERROR ui.toast Message affiché : Indiquez une adresse e-mail valide pour le contact accessibilité. {"type":"error"}
-13:42:58.406 +28.53s DEBUG store.commit Modification {"source":"pages","past":51,"page":"p_y6hkhp5h"}
-13:42:58.412 +28.54s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":3}
-13:42:58.413 +28.54s INFO  page.a11y.create Page « Accessibilité » créée en 4 langues : /accessibilite/ {"id":"p_j4zfjc44","slug":"accessibilite","status":"partial","limits":1,"langs":["fr","nl","de","en"],"footerLink":true}
-13:42:58.414 +28.54s DEBUG store.view Vue : pageId=p_j4zfjc44 {"pageId":"p_j4zfjc44"}
-13:42:58.425 +28.55s INFO  canvas.load.start [canvas.load#11] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_j4zfjc44","lang":"fr","device":"desktop"}
-13:42:58.427 +28.55s DEBUG canvas.load.render [canvas.load#11 · 2 ms] Page rendue {"ms":2,"kb":22}
-13:42:58.430 +28.55s INFO  ui.toast Message affiché : Page « Accessibilité » créée en 4 langues, avec un lien dans le pied de page.
-13:42:58.436 +28.56s DEBUG ui.dialog.close Fenêtre fermée : Déclaration d’accessibilité {"id":"a11yDialog"}
-13:42:58.461 +28.59s INFO  canvas.load.ok [canvas.load#11 · 36 ms] Canevas prêt {"nodes":15,"scale":76,"via":"load"}
-13:42:59.013 +29.14s DEBUG storage.save Projet enregistré sur cet appareil {"ms":7,"kb":22}
+14:28:12.029 +27.52s INFO  page.a11y.open Assistant de déclaration d’accessibilité ouvert (1 limite pré-remplie) {"limits":1}
+14:28:12.031 +27.52s DEBUG ui.dialog.open Fenêtre ouverte : Déclaration d’accessibilité {"id":"a11yDialog","class":"audit","modal":true}
+14:28:12.046 +27.53s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":13}
+14:28:12.092 +27.58s WARN  page.a11y.refused Déclaration non créée : Indiquez une adresse e-mail valide pour le contact accessibilité. {"email":false,"status":"partial","error":{"name":"Error","message":"Indiquez une adresse e-mail valide pour le contact accessibilité.","stack":"Error: Indiquez une adresse e-mail valide pour le contact accessibilité.\nat buildAccessibilityPage (http://localhost:8851/core/a11ypage.js:92:17)\nat addAccessibilityPage (http://localhost:8851/core/a11ypage.js:124:16)\nat HTMLButtonElement.onclick (http://localhost:8851/editor/pages.js:230:21)"}}
+14:28:12.092 +27.58s ERROR ui.toast Message affiché : Indiquez une adresse e-mail valide pour le contact accessibilité. {"type":"error"}
+14:28:12.348 +27.84s DEBUG store.commit Modification {"source":"pages","past":51,"page":"p_e5t0kx20"}
+14:28:12.353 +27.84s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":2}
+14:28:12.354 +27.84s INFO  page.a11y.create Page « Accessibilité » créée en 4 langues : /accessibilite/ {"id":"p_t5tkog4q","slug":"accessibilite","status":"partial","limits":1,"langs":["fr","nl","de","en"],"footerLink":true}
+14:28:12.354 +27.84s DEBUG store.view Vue : pageId=p_t5tkog4q {"pageId":"p_t5tkog4q"}
+14:28:12.363 +27.85s INFO  canvas.load.start [canvas.load#11] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_t5tkog4q","lang":"fr","device":"desktop"}
+14:28:12.365 +27.85s DEBUG canvas.load.render [canvas.load#11 · 2 ms] Page rendue {"ms":1,"kb":23}
+14:28:12.366 +27.85s INFO  ui.toast Message affiché : Page « Accessibilité » créée dans les langues du site, avec un lien dans le pied de page.
+14:28:12.374 +27.86s DEBUG ui.dialog.close Fenêtre fermée : Déclaration d’accessibilité {"id":"a11yDialog"}
+14:28:12.391 +27.88s INFO  canvas.load.ok [canvas.load#11 · 28 ms] Canevas prêt {"nodes":15,"scale":76,"via":"load"}
+14:28:12.951 +28.44s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":22}

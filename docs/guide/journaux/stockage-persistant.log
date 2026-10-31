@@ -1,11 +1,11 @@
-13:34:02.611 +0.62s DEBUG store.commit Modification {"key":"site-name","source":"topbar","past":1,"page":"p_3z8k3flw"}
-13:34:02.613 +0.62s INFO  onboarding.step-done Pour commencer : « Nommer le site » fait (14 %) {"step":"name","done":1,"total":7,"percent":14,"by":"store.commit"}
-13:34:02.621 +0.63s INFO  version.auto Première modification du jour : version automatique de l’état d’avant {"previous":null,"source":"topbar"}
-13:34:02.622 +0.63s INFO  version.save.start [version.save#1] Enregistrement d’une version automatique {"kind":"auto"}
-13:34:02.623 +0.63s DEBUG storage.version-save Version enregistrée {"id":"v_mvwdulfimgd9n","kind":"auto"}
-13:34:02.624 +0.64s INFO  storage.persist Stockage persistant accordé : le navigateur ne l’effacera pas de lui-même {"granted":true,"source":"save"}
-13:34:02.638 +0.65s INFO  storage.estimate Stockage : persistant · 3 Ko utilisés sur 410 Mo {"persisted":true,"usage":2969,"quota":429626403}
-13:34:02.644 +0.66s DEBUG version.save.prune [version.save#1 · 22 ms] Aucune ancienne version à supprimer {"total":1}
-13:34:02.644 +0.66s INFO  version.save.ok [version.save#1 · 22 ms] Version automatique enregistrée (2 pages) {"id":"v_mvwdulfimgd9n","kind":"auto","at":"2026-10-31T12:34:02.622Z","pages":2,"kb":12}
-13:34:02.647 +0.66s DEBUG store.commit Modification (même étape d’annulation) {"key":"site-name","source":"topbar","merged":true,"past":1,"page":"p_3z8k3flw"}
-13:34:02.666 +0.68s DEBUG store.commit Modification (même étape d’annulation) {"key":"site-name","source":"topbar","merged":true,"past":1,"page":"p_3z8k3flw"}
+14:38:55.487 +0.64s DEBUG store.commit Modification {"key":"site-name","source":"topbar","past":1,"page":"p_rh2q01mq"}
+14:38:55.492 +0.64s INFO  onboarding.step-done Pour commencer : « Nommer le site » fait (14 %) {"step":"name","done":1,"total":7,"percent":14,"by":"store.commit"}
+14:38:55.498 +0.65s INFO  version.auto Première modification du jour : version automatique de l’état d’avant {"previous":null,"source":"topbar"}
+14:38:55.499 +0.65s INFO  version.save.start [version.save#1] Enregistrement d’une version automatique {"kind":"auto"}
+14:38:55.501 +0.65s DEBUG storage.version-save Version enregistrée {"id":"v_mvwg616za5e4o","kind":"auto"}
+14:38:55.502 +0.65s INFO  storage.persist Stockage persistant accordé : le navigateur ne l’effacera pas de lui-même {"granted":true,"source":"save"}
+14:38:55.516 +0.67s INFO  storage.estimate Stockage : persistant · 14 Ko utilisés sur 480 Mo {"persisted":true,"usage":14184,"quota":503791881}
+14:38:55.519 +0.67s DEBUG version.save.prune [version.save#1 · 20 ms] Aucune ancienne version à supprimer {"total":1}
+14:38:55.519 +0.67s INFO  version.save.ok [version.save#1 · 20 ms] Version automatique enregistrée (2 pages) {"id":"v_mvwg616za5e4o","kind":"auto","at":"2026-10-31T13:38:55.499Z","pages":2,"kb":12}
+14:38:55.524 +0.68s DEBUG store.commit Modification (même étape d’annulation) {"key":"site-name","source":"topbar","merged":true,"past":1,"page":"p_rh2q01mq"}
+14:38:55.533 +0.68s DEBUG store.commit Modification (même étape d’annulation) {"key":"site-name","source":"topbar","merged":true,"past":1,"page":"p_rh2q01mq"}

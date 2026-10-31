@@ -1,7 +1,7 @@
-13:34:07.769 +3.00s INFO  backup.folder.open Fenêtre de la copie dans un dossier {"supported":true,"active":false}
-13:34:07.769 +3.00s DEBUG ui.dialog.open Fenêtre ouverte : Copie dans un dossier de mon ordinateur {"id":"folderBackupDialog","class":"audit","modal":true}
-13:34:07.836 +3.07s INFO  backup.folder.choose Dossier de copie choisi : « copie-atelier » {"name":"copie-atelier"}
-13:34:07.836 +3.07s INFO  backup.folder.permission Écriture autorisée dans le dossier « copie-atelier » {"state":"granted","how":"choose"}
-13:34:07.851 +3.09s INFO  backup.folder.write Copie écrite dans le dossier, avec la version du jour (versions/2026-10-31.json) {"file":"radio-copie-31.atelier.json","daily":"versions/2026-10-31.json","kb":34,"reason":"choose"}
-13:34:07.852 +3.09s INFO  ui.toast Message affiché : Copie enregistrée dans le dossier « copie-atelier ». Elle sera mise à jour à chaque modification.
-13:34:07.869 +3.10s DEBUG ui.dialog.close Fenêtre fermée : Copie dans un dossier de mon ordinateur {"id":"folderBackupDialog"}
+14:39:00.231 +2.73s INFO  backup.folder.open Fenêtre de la copie dans un dossier {"supported":true,"active":false}
+14:39:00.232 +2.73s DEBUG ui.dialog.open Fenêtre ouverte : Copie dans un dossier de mon ordinateur {"id":"folderBackupDialog","class":"audit","modal":true}
+14:39:00.295 +2.80s INFO  backup.folder.choose Dossier de copie choisi : « copie-atelier » {"name":"copie-atelier"}
+14:39:00.295 +2.80s INFO  backup.folder.permission Écriture autorisée dans le dossier « copie-atelier » {"state":"granted","how":"choose"}
+14:39:00.303 +2.81s INFO  backup.folder.write Copie écrite dans le dossier, avec la version du jour (versions/2026-10-31.json) {"file":"radio-copie-31.atelier.json","daily":"versions/2026-10-31.json","kb":34,"reason":"choose"}
+14:39:00.303 +2.81s INFO  ui.toast Message affiché : Copie enregistrée dans le dossier « copie-atelier ». Elle sera mise à jour à chaque modification.
+14:39:00.309 +2.81s DEBUG ui.dialog.close Fenêtre fermée : Copie dans un dossier de mon ordinateur {"id":"folderBackupDialog"}

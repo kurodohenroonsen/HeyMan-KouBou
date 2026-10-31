@@ -784,3 +784,5 @@ body.panels-collapsed .panel,body.panels-collapsed .resizer{display:none}
 .audit--sm{width:min(460px,calc(100vw - 32px))}
 .hint.is-error{color:#b91c1c}
 .hint.is-error:empty{display:none}
+/* Intégration cycle 33 : case « Se souvenir du code » (cycle 31) à 24 px (WCAG 2.2, 2.5.8) */
+.check input[data-backup-remember]{width:24px;height:24px}

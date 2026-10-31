@@ -1,8 +1,8 @@
-13:42:28.949 +8.37s DEBUG ui.dialog.open Fenêtre ouverte : Traductions {"id":"i18nDialog","class":"audit i18n","modal":true}
-13:42:28.962 +8.38s INFO  i18n.open Tableau des traductions : 23 textes, 56 traduction(s) manquante(s), 6 à relire {"languages":["fr","nl","de","en"],"main":"fr","filter":"all","visible":23,"shown":23,"missing":56,"review":6,"mtLang":"nl"}
-13:42:28.963 +8.38s WARN  translate.absent Pas d’API Translator dans ce navigateur (Chrome 138+ sur ordinateur) : export CSV proposé {"from":"fr","to":"nl","ua":"HeadlessChrome 141, Not?A_Brand 8, Chromium 141"}
-13:42:28.979 +8.40s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":12}
-13:42:28.993 +8.41s DEBUG i18n.filter Filtre : missing (20 textes) {"filter":"missing","visible":20,"shown":20,"missing":56,"review":6}
-13:42:29.156 +8.58s DEBUG i18n.filter Filtre : all (23 textes) {"filter":"all","visible":23,"shown":23,"missing":56,"review":6}
-13:42:29.415 +8.84s DEBUG store.commit Modification {"key":"i18n-n:p_og6cjhj0:n_2b6f4l4t5t:text-de","source":"i18n","past":12,"page":"p_og6cjhj0"}
-13:42:29.425 +8.85s DEBUG i18n.edit Traduction saisie (de) {"key":"n:p_og6cjhj0:n_2b6f4l4t5t:text","lang":"de","len":23}
+14:28:46.505 +6.08s DEBUG ui.dialog.open Fenêtre ouverte : Traductions {"id":"i18nDialog","class":"audit i18n","modal":true}
+14:28:46.514 +6.08s INFO  i18n.open Tableau des traductions : 23 textes, 56 traduction(s) manquante(s), 6 à relire {"languages":["fr","nl","de","en"],"main":"fr","filter":"all","visible":23,"shown":23,"missing":56,"review":6,"mtLang":"nl"}
+14:28:46.515 +6.08s WARN  translate.absent Pas d’API Translator dans ce navigateur (Chrome 138+ sur ordinateur) : export CSV proposé {"from":"fr","to":"nl","ua":"HeadlessChrome 141, Not?A_Brand 8, Chromium 141"}
+14:28:46.541 +6.11s DEBUG i18n.filter Filtre : missing (20 textes) {"filter":"missing","visible":20,"shown":20,"missing":56,"review":6}
+14:28:46.600 +6.17s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":12}
+14:28:46.702 +6.27s DEBUG i18n.filter Filtre : all (23 textes) {"filter":"all","visible":23,"shown":23,"missing":56,"review":6}
+14:28:46.887 +6.46s DEBUG store.commit Modification {"key":"i18n-n:p_qfa485rg:n_622b14476u:text-de","source":"i18n","past":12,"page":"p_qfa485rg"}
+14:28:46.895 +6.46s DEBUG i18n.edit Traduction saisie (de) {"key":"n:p_qfa485rg:n_622b14476u:text","lang":"de","len":23}

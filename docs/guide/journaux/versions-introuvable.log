@@ -1,4 +1,7 @@
-13:43:25.525 +55.65s INFO  version.restore.start [version.restore#3] Restauration de « Avant les essais » du 31 oct. 2026, 13:43 {"id":"v_mvwe6jzeu5eyt","kind":"manual","at":"2026-10-31T12:43:20.618Z","pages":5}
-13:43:25.541 +55.66s WARN  storage.version-missing Version introuvable {"id":"v_mvwe6jzeu5eyt"}
-13:43:25.542 +55.67s ERROR version.restore.fail [version.restore#3 · 17 ms] Version introuvable : supprimée entre-temps (autre onglet, nettoyage) ou base locale effacée {"id":"v_mvwe6jzeu5eyt","error":{"name":"Error","message":"Version introuvable","stack":"Error: Version introuvable\nat HTMLButtonElement.onclick (http://localhost:8831/editor/versions-ui.js:86:31)"}}
-13:43:25.542 +55.67s ERROR ui.toast Message affiché : Version introuvable. {"type":"error"}
+14:28:37.854 +53.34s INFO  version.restore.start [version.restore#3] Restauration de « Avant les essais » du 31 oct. 2026, 14:28 {"id":"v_mvwfsp3uc3nda","kind":"manual","at":"2026-10-31T13:28:33.306Z","pages":5}
+14:28:37.855 +53.34s DEBUG ui.dialog.open Fenêtre ouverte : Restaurer une version {"id":"versionRestoreDialog","class":"audit audit--sm","modal":true}
+14:28:37.916 +53.40s DEBUG ui.dialog.close Fenêtre fermée : Restaurer une version {"id":"versionRestoreDialog"}
+14:28:37.917 +53.41s DEBUG ui.confirm Confirmation acceptée : Restaurer une version {"id":"versionRestoreDialog","ok":true}
+14:28:37.919 +53.41s WARN  storage.version-missing Version introuvable {"id":"v_mvwfsp3uc3nda"}
+14:28:37.920 +53.41s ERROR version.restore.fail [version.restore#3 · 66 ms] Version introuvable : supprimée entre-temps (autre onglet, nettoyage) ou base locale effacée {"id":"v_mvwfsp3uc3nda","error":{"name":"Error","message":"Version introuvable","stack":"Error: Version introuvable\nat HTMLButtonElement.onclick (http://localhost:8851/editor/versions-ui.js:91:31)"}}
+14:28:37.920 +53.41s ERROR ui.toast Message affiché : Version introuvable. {"type":"error"}

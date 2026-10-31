@@ -1,8 +1,8 @@
-13:43:37.246 +6.76s DEBUG collab.ops.in 1 modification de Kudoro appliquée {"name":"Kudoro","received":1,"applied":1}
-13:43:37.246 +6.76s DEBUG store.remote Modifications d’un autre participant appliquées {"ops":1,"history":0}
-13:43:37.256 +6.77s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"remote","mode":"contenu","ms":8}
-13:43:37.261 +6.78s INFO  version.auto Première modification du jour : version automatique de l’état d’avant {"previous":null,"source":"remote"}
-13:43:37.262 +6.78s INFO  version.save.start [version.save#2] Enregistrement d’une version automatique {"kind":"auto"}
-13:43:37.262 +6.78s DEBUG storage.version-save Version enregistrée {"id":"v_mvwe6wtq92kxo","kind":"auto"}
-13:43:37.281 +6.80s DEBUG version.save.prune [version.save#2 · 19 ms] Aucune ancienne version à supprimer {"total":2}
-13:43:37.282 +6.80s INFO  version.save.ok [version.save#2 · 20 ms] Version automatique enregistrée (2 pages) {"id":"v_mvwe6wtq92kxo","kind":"auto","at":"2026-10-31T12:43:37.262Z","pages":2,"kb":12}
+14:28:59.301 +6.75s DEBUG collab.ops.in 1 modification de Kudoro appliquée {"name":"Kudoro","received":1,"applied":1}
+14:28:59.302 +6.75s DEBUG store.remote Modifications d’un autre participant appliquées {"ops":1,"history":0}
+14:28:59.308 +6.75s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"remote","mode":"contenu","ms":3}
+14:28:59.322 +6.77s INFO  version.auto Première modification du jour : version automatique de l’état d’avant {"previous":null,"source":"remote"}
+14:28:59.323 +6.77s INFO  version.save.start [version.save#2] Enregistrement d’une version automatique {"kind":"auto"}
+14:28:59.324 +6.77s DEBUG storage.version-save Version enregistrée {"id":"v_mvwft96ja226o","kind":"auto"}
+14:28:59.334 +6.78s INFO  storage.persist Stockage persistant refusé par le navigateur : gardez une copie hors du navigateur (dossier, export, hébergement) {"granted":false,"source":"save"}
+14:28:59.341 +6.79s INFO  storage.estimate Stockage : non persistant (le navigateur peut l’effacer) · 40 Ko utilisés sur 435 Mo {"persisted":false,"usage":41457,"quota":455865875}

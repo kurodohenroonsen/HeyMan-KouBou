@@ -1,4 +1,3 @@
-13:40:30.726 +2.20s DEBUG library.search-empty Aucun widget ne correspond à « zzzz » {"q":"zzzz"}
-13:40:30.737 +2.21s DEBUG library.search Recherche de widget : « zzzz » {"q":"zzzz","shown":0}
-13:40:30.862 +2.34s DEBUG library.search Recherche de widget : « vid » {"q":"vid","shown":1}
-13:40:30.963 +2.44s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":12}
+14:27:04.546 +2.03s DEBUG library.search-empty Aucun widget ne correspond à « zzzz » {"q":"zzzz"}
+14:27:04.552 +2.03s DEBUG library.search Recherche de widget : « zzzz » {"q":"zzzz","shown":0}
+14:27:04.674 +2.15s DEBUG library.search Recherche de widget : « vid » {"q":"vid","shown":1}

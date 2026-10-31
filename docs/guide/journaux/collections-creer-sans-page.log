@@ -1,8 +1,8 @@
-13:43:00.366 +30.49s DEBUG ui.dialog.open Fenêtre ouverte : Nouvelle collection {"id":"collectionNewDialog","class":"audit col-new","modal":true}
-13:43:00.414 +30.54s DEBUG collection.new.kind Type choisi : Médias membres {"kind":"members","name":"Médias membres"}
-13:43:00.533 +30.66s DEBUG store.commit Modification {"source":"collections","past":53,"page":"p_zyy3g9lh"}
-13:43:00.538 +30.66s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":4}
-13:43:00.539 +30.66s INFO  collection.create Collection « Médias membres » créée (Médias membres) : 0 exemple, sans page de liste {"id":"col_zedhkffu","kind":"members","slug":"medias-membres","fields":6,"items":0,"page":null,"examples":false,"withPage":false}
-13:43:00.540 +30.66s INFO  ui.toast Message affiché : Collection « Médias membres » créée.
-13:43:00.546 +30.67s DEBUG ui.dialog.close Fenêtre fermée : Nouvelle collection {"id":"collectionNewDialog"}
-13:43:01.137 +31.26s DEBUG storage.save Projet enregistré sur cet appareil {"ms":3,"kb":39}
+14:28:14.158 +29.65s DEBUG ui.dialog.open Fenêtre ouverte : Nouvelle collection {"id":"collectionNewDialog","class":"audit col-new","modal":true}
+14:28:14.207 +29.70s DEBUG collection.new.kind Type choisi : Médias membres {"kind":"members","name":"Médias membres"}
+14:28:14.307 +29.80s DEBUG store.commit Modification {"source":"collections","past":53,"page":"p_br1slt6y"}
+14:28:14.312 +29.80s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":4}
+14:28:14.314 +29.80s INFO  collection.create Collection « Médias membres » créée (Médias membres) : 0 exemple, sans page de liste {"id":"col_taeluqsm","kind":"members","slug":"medias-membres","fields":6,"items":0,"page":null,"examples":false,"withPage":false}
+14:28:14.315 +29.80s INFO  ui.toast Message affiché : Collection « Médias membres » créée.
+14:28:14.321 +29.81s DEBUG ui.dialog.close Fenêtre fermée : Nouvelle collection {"id":"collectionNewDialog"}
+14:28:14.910 +30.40s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":39}

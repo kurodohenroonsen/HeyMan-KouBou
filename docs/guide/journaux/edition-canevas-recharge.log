@@ -1,17 +1,17 @@
-13:40:53.041 +24.52s DEBUG store.view Vue : pageId=p_nzofc1cw {"pageId":"p_nzofc1cw"}
-13:40:53.044 +24.52s INFO  canvas.load.start [canvas.load#2] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_nzofc1cw","lang":"fr","device":"desktop"}
-13:40:53.045 +24.52s DEBUG canvas.load.render [canvas.load#2 · 1 ms] Page rendue {"ms":1,"kb":24}
-13:40:53.048 +24.52s DEBUG store.view Vue : lang=nl {"lang":"nl"}
-13:40:53.050 +24.52s INFO  canvas.load.cancel [canvas.load#2 · 6 ms] Chargement remplacé par un nouveau {"reason":"autre langue"}
-13:40:53.050 +24.52s INFO  canvas.load.start [canvas.load#3] Chargement complet du canevas : autre langue {"reason":"autre langue","page":"p_nzofc1cw","lang":"nl","device":"desktop"}
-13:40:53.051 +24.53s DEBUG canvas.load.render [canvas.load#3 · 1 ms] Page rendue {"ms":0,"kb":24}
-13:40:53.072 +24.55s INFO  canvas.load.ok [canvas.load#3 · 22 ms] Canevas prêt {"nodes":5,"scale":76,"via":"load"}
-13:40:53.088 +24.56s DEBUG store.view Vue : lang=fr {"lang":"fr"}
-13:40:53.088 +24.56s INFO  canvas.load.start [canvas.load#4] Chargement complet du canevas : autre langue {"reason":"autre langue","page":"p_nzofc1cw","lang":"fr","device":"desktop"}
-13:40:53.089 +24.56s DEBUG canvas.load.render [canvas.load#4 · 1 ms] Page rendue {"ms":0,"kb":24}
-13:40:53.089 +24.56s DEBUG store.view Vue : pageId=p_0x1ftvm1 {"pageId":"p_0x1ftvm1"}
-13:40:53.090 +24.57s INFO  canvas.load.cancel [canvas.load#4 · 2 ms] Chargement remplacé par un nouveau {"reason":"autre page"}
-13:40:53.091 +24.57s INFO  canvas.load.start [canvas.load#5] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_0x1ftvm1","lang":"fr","device":"desktop"}
-13:40:53.091 +24.57s DEBUG canvas.load.render [canvas.load#5 · 0 ms] Page rendue {"ms":1,"kb":31}
-13:40:53.127 +24.60s INFO  canvas.load.ok [canvas.load#5 · 36 ms] Canevas prêt {"nodes":35,"scale":76,"via":"load"}
-13:40:53.401 +24.88s DEBUG storage.save Projet enregistré sur cet appareil {"ms":5,"kb":13}
+14:27:25.896 +23.38s DEBUG store.view Vue : pageId=p_l9dgeqht {"pageId":"p_l9dgeqht"}
+14:27:25.898 +23.38s INFO  canvas.load.start [canvas.load#2] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_l9dgeqht","lang":"fr","device":"desktop"}
+14:27:25.899 +23.38s DEBUG canvas.load.render [canvas.load#2 · 1 ms] Page rendue {"ms":1,"kb":24}
+14:27:25.901 +23.38s DEBUG store.view Vue : lang=nl {"lang":"nl"}
+14:27:25.902 +23.38s INFO  canvas.load.cancel [canvas.load#2 · 4 ms] Chargement remplacé par un nouveau {"reason":"autre langue"}
+14:27:25.903 +23.38s INFO  canvas.load.start [canvas.load#3] Chargement complet du canevas : autre langue {"reason":"autre langue","page":"p_l9dgeqht","lang":"nl","device":"desktop"}
+14:27:25.903 +23.38s DEBUG canvas.load.render [canvas.load#3 · 0 ms] Page rendue {"ms":0,"kb":24}
+14:27:25.930 +23.41s INFO  canvas.load.ok [canvas.load#3 · 27 ms] Canevas prêt {"nodes":5,"scale":76,"via":"load"}
+14:27:25.941 +23.42s DEBUG store.view Vue : lang=fr {"lang":"fr"}
+14:27:25.942 +23.42s INFO  canvas.load.start [canvas.load#4] Chargement complet du canevas : autre langue {"reason":"autre langue","page":"p_l9dgeqht","lang":"fr","device":"desktop"}
+14:27:25.943 +23.42s DEBUG canvas.load.render [canvas.load#4 · 1 ms] Page rendue {"ms":0,"kb":24}
+14:27:25.944 +23.42s DEBUG store.view Vue : pageId=p_0juocaxz {"pageId":"p_0juocaxz"}
+14:27:25.946 +23.43s INFO  canvas.load.cancel [canvas.load#4 · 4 ms] Chargement remplacé par un nouveau {"reason":"autre page"}
+14:27:25.946 +23.43s INFO  canvas.load.start [canvas.load#5] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_0juocaxz","lang":"fr","device":"desktop"}
+14:27:25.947 +23.43s DEBUG canvas.load.render [canvas.load#5 · 1 ms] Page rendue {"ms":1,"kb":31}
+14:27:25.964 +23.44s INFO  canvas.load.ok [canvas.load#5 · 18 ms] Canevas prêt {"nodes":35,"scale":76,"via":"load"}
+14:27:26.297 +23.78s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":13}

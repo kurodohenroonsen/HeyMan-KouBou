@@ -1,8 +1,8 @@
-14:01:12.507 +0.02s INFO  storage.load Projet rechargé depuis cet appareil {"slot":"selftest-backup","name":"MAB – Médias Alternatifs Belges","pages":3,"images":1,"ms":9}
-14:01:12.508 +0.02s WARN  selftest.recovered Auto-test interrompu : le projet d’avant le test est repris {"at":"2026-10-31T13:01:06.098Z","name":"MAB – Médias Alternatifs Belges","pages":3}
-14:01:12.512 +0.02s INFO  selftest.rollback.start [selftest.rollback#1] Nettoyage après un auto-test interrompu {"at":"2026-10-31T13:01:06.098Z"}
-14:01:12.555 +0.07s DEBUG storage.version-delete 1 version supprimée {"ids":["v_mvwete41y53tb"]}
-14:01:12.584 +0.10s DEBUG storage.project-delete Emplacement de projet effacé {"slot":"selftest-backup"}
-14:01:12.584 +0.10s INFO  selftest.rollback.ok [selftest.rollback#1 · 72 ms] Projet d’avant l’auto-test remis {"versions":0,"assets":0}
-14:01:13.124 +0.64s INFO  storage.load Projet rechargé depuis cet appareil {"slot":"current","name":"MAB – Médias Alternatifs Belges","pages":3,"images":1,"ms":1}
-14:01:13.127 +0.64s INFO  storage.load-empty Aucun projet enregistré sur cet appareil {"slot":"selftest-backup"}
+14:31:32.915 +0.02s INFO  storage.load Projet rechargé depuis cet appareil {"slot":"selftest-backup","name":"MAB – Médias Alternatifs Belges","pages":3,"images":1,"ms":10}
+14:31:32.916 +0.02s WARN  selftest.recovered Auto-test interrompu : le projet d’avant le test est repris {"at":"2026-10-31T13:31:26.986Z","name":"MAB – Médias Alternatifs Belges","pages":3}
+14:31:32.921 +0.03s INFO  selftest.rollback.start [selftest.rollback#1] Nettoyage après un auto-test interrompu {"at":"2026-10-31T13:31:26.986Z"}
+14:31:32.970 +0.07s DEBUG storage.version-delete 1 version supprimée {"ids":["v_mvwfwf48tr6ou"]}
+14:31:32.971 +0.07s DEBUG storage.project-delete Emplacement de projet effacé {"slot":"selftest-backup"}
+14:31:32.972 +0.08s INFO  selftest.rollback.ok [selftest.rollback#1 · 51 ms] Projet d’avant l’auto-test remis {"versions":0,"assets":0}
+14:31:33.493 +0.60s INFO  storage.load Projet rechargé depuis cet appareil {"slot":"current","name":"MAB – Médias Alternatifs Belges","pages":3,"images":1,"ms":1}
+14:31:33.497 +0.60s INFO  storage.load-empty Aucun projet enregistré sur cet appareil {"slot":"selftest-backup"}

@@ -1,35 +1,38 @@
-13:43:29.202 +0.79s INFO  publish.open Fenêtre Publier {"mode":"zip","tab":"php","ok":true,"errors":0,"warnings":1}
-13:43:29.205 +0.79s DEBUG ui.dialog.open Fenêtre ouverte : Publier le site {"id":"publishDialog","class":"audit","modal":true}
-13:43:29.242 +0.82s DEBUG publish.token-for Dépôt GitHub incomplet : aucun jeton pré-rempli
-13:43:29.246 +0.83s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:https://www.xn--mdia-alternatif-bnb.be"}
-13:43:29.246 +0.83s DEBUG publish.token-for Aucun jeton gardé pour www.xn--mdia-alternatif-bnb.be {"origin":"https://www.xn--mdia-alternatif-bnb.be","known":false}
-13:43:29.411 +0.99s DEBUG store.commit Modification {"source":"site","past":1,"page":"p_zpn6ppgu"}
-13:43:29.417 +1.00s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":4}
-13:43:29.418 +1.00s INFO  version.auto Première modification du jour : version automatique de l’état d’avant {"previous":null,"source":"site"}
-13:43:29.418 +1.00s INFO  version.save.start [version.save#1] Enregistrement d’une version automatique {"kind":"auto"}
-13:43:29.419 +1.00s DEBUG storage.version-save Version enregistrée {"id":"v_mvwe6qrumiqeu","kind":"auto"}
-13:43:29.434 +1.02s DEBUG store.commit Modification {"source":"site","past":2,"page":"p_zpn6ppgu"}
-13:43:29.440 +1.02s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":5}
-13:43:29.449 +1.03s DEBUG ui.dialog.close Fenêtre fermée : Publier le site {"id":"publishDialog"}
-13:43:29.452 +1.03s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:http://127.0.0.1:8852"}
-13:43:29.452 +1.03s DEBUG publish.token-for Aucun jeton gardé pour 127.0.0.1:8852 {"origin":"http://127.0.0.1:8852","known":false}
-13:43:29.454 +1.04s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:http://127.0.0.1:8852"}
-13:43:29.454 +1.04s DEBUG publish.token-for Aucun jeton gardé pour 127.0.0.1:8852 {"origin":"http://127.0.0.1:8852","known":false}
-13:43:29.455 +1.04s DEBUG version.save.prune [version.save#1 · 37 ms] Aucune ancienne version à supprimer {"total":1}
-13:43:29.455 +1.04s INFO  version.save.ok [version.save#1 · 37 ms] Version automatique enregistrée (2 pages) {"id":"v_mvwe6qrumiqeu","kind":"auto","at":"2026-10-31T12:43:29.418Z","pages":2,"kb":12}
-13:43:29.525 +1.11s DEBUG storage.secret-read Aucun secret gardé {"name":"identity"}
-13:43:29.526 +1.11s INFO  collab.open Fenêtre « Travailler à plusieurs » {"state":"aucune session","peers":0,"identity":false,"publish":"oui"}
-13:43:29.528 +1.11s DEBUG ui.dialog.open Fenêtre ouverte : 👥 Travailler à plusieurs {"id":"collabDialog","class":"audit collab","modal":true}
-13:43:29.581 +1.16s DEBUG storage.secret-read Aucun secret gardé {"name":"identity"}
-13:43:29.582 +1.17s INFO  collab.identity.new Clé personnelle créée pour Kudoro {"fp":"99gs_8lVGN-jd7g_","did":"did:key:zDnaery8esfiDjws"}
-13:43:29.582 +1.17s INFO  storage.secret-write Secret gardé sur cet appareil (jamais dans le projet) {"name":"identity"}
-13:43:29.584 +1.17s INFO  storage.secret-write Secret gardé sur cet appareil (jamais dans le projet) {"name":"identity"}
-13:43:29.630 +1.21s INFO  collab.host.start [collab.host#1] Ouverture d’une session de collaboration {"name":"Kudoro","fp":"99gs_8lVGN-jd7g_","resume":false}
-13:43:29.632 +1.22s DEBUG net.request GET 127.0.0.1:8852/publish.php {"id":1,"method":"GET","url":"http://127.0.0.1:8852/publish.php"}
-13:43:29.647 +1.23s DEBUG net.response 200 GET 127.0.0.1:8852/publish.php (16 ms) {"id":1,"status":200,"ms":16,"type":"application/json","req":"e976e1d4"}
-13:43:29.649 +1.23s DEBUG signal.check Boîte aux lettres disponible (publish.php version 5) {"url":"http://127.0.0.1:8852/publish.php","version":"5","req":"e976e1d4"}
-13:43:29.649 +1.23s INFO  collab.host.signal [collab.host#1 · 19 ms] Mise en relation par la boîte aux lettres de publish.php {"via":"boîte aux lettres","url":"http://127.0.0.1:8852/publish.php"}
-13:43:29.649 +1.23s INFO  signal.host En attente des invités dans la boîte aux lettres de publish.php {"room":"364ce665","peer":"8afbb2c061dcba21","url":"http://127.0.0.1:8852/publish.php"}
-13:43:29.650 +1.23s DEBUG signal.start Relève de la boîte aux lettres toutes les 2 s {"room":"364ce665","peer":"8afbb2c061dcba21","every":2000}
-13:43:29.652 +1.24s DEBUG collab.invite.create Liens d’invitation créés (éditeur et relecteur, valables 7 jours) {"roles":["editor","reviewer"],"days":7,"via":"boîte aux lettres","chars":661}
-13:43:29.652 +1.24s INFO  collab.host.ok [collab.host#1 · 22 ms] Session ouverte : envoie un lien d’invitation {"room":"364ce665","peer":"8afbb2c061dcba21","docId":"doc_697dc1c1440be2d5","via":"boîte aux lettres","stun":"aucun"}
+14:28:51.581 +0.68s INFO  publish.open Fenêtre Publier {"mode":"zip","tab":"php","ok":true,"errors":0,"warnings":1}
+14:28:51.584 +0.68s DEBUG ui.dialog.open Fenêtre ouverte : Publier le site {"id":"publishDialog","class":"audit","modal":true}
+14:28:51.594 +0.69s DEBUG publish.token-for Dépôt GitHub incomplet : aucun jeton pré-rempli
+14:28:51.597 +0.69s DEBUG storage.secret-read Aucun secret gardé {"name":"backup-code:https://www.xn--mdia-alternatif-bnb.be"}
+14:28:51.598 +0.69s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:https://www.xn--mdia-alternatif-bnb.be"}
+14:28:51.598 +0.69s DEBUG publish.token-for Aucun jeton gardé pour www.xn--mdia-alternatif-bnb.be {"origin":"https://www.xn--mdia-alternatif-bnb.be","known":false}
+14:28:51.618 +0.71s DEBUG store.commit Modification {"source":"site","past":1,"page":"p_mf3x4le3"}
+14:28:51.627 +0.72s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
+14:28:51.629 +0.73s INFO  version.auto Première modification du jour : version automatique de l’état d’avant {"previous":null,"source":"site"}
+14:28:51.630 +0.73s INFO  version.save.start [version.save#1] Enregistrement d’une version automatique {"kind":"auto"}
+14:28:51.631 +0.73s DEBUG storage.version-save Version enregistrée {"id":"v_mvwft38ulem42","kind":"auto"}
+14:28:51.638 +0.73s DEBUG store.commit Modification {"source":"site","past":2,"page":"p_mf3x4le3"}
+14:28:51.641 +0.74s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
+14:28:51.648 +0.74s DEBUG ui.dialog.close Fenêtre fermée : Publier le site {"id":"publishDialog"}
+14:28:51.651 +0.75s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:http://127.0.0.1:8854"}
+14:28:51.651 +0.75s DEBUG publish.token-for Aucun jeton gardé pour 127.0.0.1:8854 {"origin":"http://127.0.0.1:8854","known":false}
+14:28:51.652 +0.75s INFO  storage.persist Stockage persistant refusé par le navigateur : gardez une copie hors du navigateur (dossier, export, hébergement) {"granted":false,"source":"save"}
+14:28:51.652 +0.75s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:http://127.0.0.1:8854"}
+14:28:51.652 +0.75s DEBUG publish.token-for Aucun jeton gardé pour 127.0.0.1:8854 {"origin":"http://127.0.0.1:8854","known":false}
+14:28:51.654 +0.75s INFO  storage.estimate Stockage : non persistant (le navigateur peut l’effacer) · 14 Ko utilisés sur 419 Mo {"persisted":false,"usage":14184,"quota":439091174}
+14:28:51.655 +0.75s DEBUG version.save.prune [version.save#1 · 25 ms] Aucune ancienne version à supprimer {"total":1}
+14:28:51.655 +0.75s INFO  version.save.ok [version.save#1 · 25 ms] Version automatique enregistrée (2 pages) {"id":"v_mvwft38ulem42","kind":"auto","at":"2026-10-31T13:28:51.630Z","pages":2,"kb":12}
+14:28:51.700 +0.80s DEBUG storage.secret-read Aucun secret gardé {"name":"identity"}
+14:28:51.700 +0.80s INFO  collab.open Fenêtre « Travailler à plusieurs » {"state":"aucune session","peers":0,"identity":false,"publish":"oui"}
+14:28:51.700 +0.80s DEBUG ui.dialog.open Fenêtre ouverte : 👥 Travailler à plusieurs {"id":"collabDialog","class":"audit collab","modal":true}
+14:28:51.746 +0.84s DEBUG storage.secret-read Aucun secret gardé {"name":"identity"}
+14:28:51.747 +0.84s INFO  collab.identity.new Clé personnelle créée pour Kudoro {"fp":"DVG0HxBSu-JpVf3m","did":"did:key:zDnaeRUSLXPZ1tjW"}
+14:28:51.748 +0.84s INFO  storage.secret-write Secret gardé sur cet appareil (jamais dans le projet) {"name":"identity"}
+14:28:51.751 +0.85s INFO  storage.secret-write Secret gardé sur cet appareil (jamais dans le projet) {"name":"identity"}
+14:28:51.788 +0.89s INFO  collab.host.start [collab.host#1] Ouverture d’une session de collaboration {"name":"Kudoro","fp":"DVG0HxBSu-JpVf3m","resume":false}
+14:28:51.790 +0.89s DEBUG net.request GET 127.0.0.1:8854/publish.php {"id":1,"method":"GET","url":"http://127.0.0.1:8854/publish.php"}
+14:28:51.800 +0.90s DEBUG net.response 200 GET 127.0.0.1:8854/publish.php (10 ms) {"id":1,"status":200,"ms":10,"type":"application/json","req":"5084066b"}
+14:28:51.802 +0.90s DEBUG signal.check Boîte aux lettres disponible (publish.php version 7) {"url":"http://127.0.0.1:8854/publish.php","version":"7","req":"5084066b"}
+14:28:51.802 +0.90s INFO  collab.host.signal [collab.host#1 · 14 ms] Mise en relation par la boîte aux lettres de publish.php {"via":"boîte aux lettres","url":"http://127.0.0.1:8854/publish.php"}
+14:28:51.802 +0.90s INFO  signal.host En attente des invités dans la boîte aux lettres de publish.php {"room":"525230ab","peer":"a839a570140b6207","url":"http://127.0.0.1:8854/publish.php"}
+14:28:51.803 +0.90s DEBUG signal.start Relève de la boîte aux lettres toutes les 2 s {"room":"525230ab","peer":"a839a570140b6207","every":2000}
+14:28:51.805 +0.90s DEBUG collab.invite.create Liens d’invitation créés (éditeur et relecteur, valables 7 jours) {"roles":["editor","reviewer"],"days":7,"via":"boîte aux lettres","chars":661}
+14:28:51.808 +0.91s INFO  collab.host.ok [collab.host#1 · 20 ms] Session ouverte : envoie un lien d’invitation {"room":"525230ab","peer":"a839a570140b6207","docId":"doc_fd70f228de51cdfa","via":"boîte aux lettres","stun":"aucun"}

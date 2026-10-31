@@ -29,8 +29,8 @@ Plan de l'audit du 30/10/2026, § 6.3 « Cycle 33 » : A1 (éditeur WCAG 2.2 AA)
 - Tests : 511 unitaires ; `cycle33` 43 vérifications, `a11y-editor` 15.
 
 ## Limites
-- Les octets des documents restent dans `site.assets[id].dataUrl`, comme ceux des images avant le cycle 27 : l'intégration avec le cycle 27 devra déplacer aussi `addDocument` vers le magasin séparé (`kind: 'document'`, export `assets/docs/`).
-- La collaboration (`core/collab.js`) ne transmet pas encore les documents ni les SVG (sa liste blanche d'images est inchangée) : un pair les voit après « Recharger » du projet.
-- publish.php garde le numéro de version 5 : un publish.php v5 généré avant ce cycle refuse les `.docx`, `.odt`, `.xlsx`, `.pptx`, `.zip` (code `rejected`) ; le régénérer suffit.
+- ~~Octets des documents dans `site.assets[id].dataUrl`~~ — réglé à l'intégration : `addDocument(site, doc, store)` range les octets dans le magasin du cycle 27 (métadonnées `kind: 'document'`, `name`, `size`) ; export `assets/docs/`, `.json` autonome, versions et ramasse-miettes du cycle 31 les connaissent.
+- ~~Collaboration sans documents ni SVG~~ — réglé à l'intégration : `validAssetBytes` accepte images, SVG et documents ; tout SVG est assaini à l'entrée du magasin (`core/asset-store.js`), un SVG illisible est refusé.
+- ~~publish.php v5~~ — à l'intégration, la liste élargie est reportée dans le gabarit v6 du cycle 31 : **publish.php version 7** ; `filesForServer` écarte docx, odt, xlsx, pptx, zip pour un serveur plus ancien.
 - Le canevas (iframe) n'est pas soumis à axe dans `a11y-editor.mjs` ; ses éléments sont atteignables par Tab mais sans rôle propre.
 - `core/siteicon.js` garde son propre assainisseur SVG (plus strict, pour l'icône du site) ; les deux pourraient être réunis.

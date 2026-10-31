@@ -1,5 +1,5 @@
-13:40:32.382 +3.86s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":12}
-13:40:32.699 +4.17s INFO  dnd.start [dnd#2] Glisser : Bouton {"kind":"move","type":"button","id":"n_18445d4j59","from":"page ou structure"}
-13:40:33.128 +4.60s DEBUG store.commit Modification {"source":"dnd","past":3,"page":"p_0x1ftvm1"}
-13:40:33.132 +4.61s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"dnd","mode":"contenu","ms":3}
-13:40:33.154 +4.63s INFO  dnd.ok [dnd#2 · 455 ms] Déplacé dans Colonne, position 1 {"id":"n_18445d4j59","type":"button","kind":"move","parentId":"n_6f4p4x0q6y","parentType":"column","index":0,"where":"canevas"}
+14:27:05.996 +3.48s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":12}
+14:27:06.253 +3.73s INFO  dnd.start [dnd#2] Glisser : Bouton {"kind":"move","type":"button","id":"n_2f28155226","from":"page ou structure"}
+14:27:06.641 +4.12s DEBUG store.commit Modification {"source":"dnd","past":3,"page":"p_0juocaxz"}
+14:27:06.644 +4.12s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"dnd","mode":"contenu","ms":3}
+14:27:06.654 +4.13s INFO  dnd.ok [dnd#2 · 401 ms] Déplacé dans Colonne, position 1 {"id":"n_2f28155226","type":"button","kind":"move","parentId":"n_402q4g5n08","parentType":"column","index":0,"where":"canevas"}

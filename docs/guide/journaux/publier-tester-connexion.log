@@ -1,18 +1,18 @@
-13:34:41.819 +9.66s DEBUG store.commit Modification {"source":"site","past":9,"page":"p_xqmluyje"}
-13:34:41.823 +9.66s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
-13:34:41.834 +9.67s DEBUG publish.token-for Jeton pré-rempli pour 127.0.0.1:9505 (séance) {"origin":"http://127.0.0.1:9505","from":"séance","known":false}
-13:34:41.841 +9.68s DEBUG store.commit Modification {"source":"site","past":10,"page":"p_xqmluyje"}
-13:34:41.844 +9.68s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
-13:34:41.856 +9.70s INFO  publish.test.start [publish.test#1] Test de connexion à publish.php {"url":"http://127.0.0.1:9505/publish.php","token":true}
-13:34:41.857 +9.70s INFO  publish.first-origin Premier envoi du jeton à 127.0.0.1:9505 depuis cet appareil (test de connexion) : confirmation demandée {"kind":"php","target":"http://127.0.0.1:9505","action":"test"}
-13:34:41.857 +9.70s DEBUG ui.dialog.open Fenêtre ouverte : Première publication vers 127.0.0.1:9505 {"id":"publishConfirmDialog","class":"audit","modal":true}
-13:34:41.920 +9.76s INFO  storage.secret-write Secret oublié sur cet appareil {"name":"php-token:http://127.0.0.1:9505"}
-13:34:41.929 +9.77s DEBUG ui.dialog.close Fenêtre fermée : Première publication vers 127.0.0.1:9505 {"id":"publishConfirmDialog"}
-13:34:41.937 +9.78s DEBUG net.request GET 127.0.0.1:9505/publish.php {"id":9,"method":"GET","url":"http://127.0.0.1:9505/publish.php?atelier_debug=1"}
-13:34:41.977 +9.82s DEBUG net.response 200 GET 127.0.0.1:9505/publish.php (40 ms) {"id":9,"status":200,"ms":40,"type":"application/json","req":"c3d98214"}
-13:34:41.982 +9.82s DEBUG php.req.start GET reçu {"method":"GET","who":"1f3ae5e634","bytes":0,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8833","req":"c3d98214","srvMs":0.1}
-13:34:41.983 +9.82s WARN  php.diag Diagnostic de l’hébergement demandé : limite d’envoi basse (2 Mo) {"upload_max":"2M","post_max":"8M","data_writable":true,"zip":true,"mail":true,"req":"c3d98214","srvMs":0.2}
-13:34:41.983 +9.82s DEBUG php.status Statut demandé (test de connexion) {"version":"6","zip":true,"diag":true,"req":"c3d98214","srvMs":0.5}
-13:34:41.983 +9.82s DEBUG php.req.end Réponse 200 (status) {"status":200,"route":"status","mem_kb":917,"req":"c3d98214","srvMs":0.5}
-13:34:41.983 +9.82s INFO  publish.test.diag [publish.test#1 · 127 ms] Diagnostic de l’hébergement {"upload_max_filesize":"2M","post_max_size":"8M","memory_limit":"-1","max_execution_time":30,"mail":true,"mail_domain":"xn--mdia-alternatif-bnb.be","data_writable":true,"root_writable":true,"log_level":"info","log_files":[],"sapi":"cli-server","time":"2026-10-31T12:34:41+00:00","timezone":"UTC","disk_free_mb":29164,"extensions":{"mbstring":true,"json":true,"zip":true}}
-13:34:41.983 +9.82s INFO  publish.test.ok [publish.test#1 · 127 ms] publish.php répond {"version":"6","php":"8.3.6","zip":true,"req":"c3d98214"}
+14:26:54.126 +8.04s DEBUG store.commit Modification {"source":"site","past":9,"page":"p_3b8u2mrb"}
+14:26:54.130 +8.05s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
+14:26:54.138 +8.05s DEBUG publish.token-for Jeton pré-rempli pour 127.0.0.1:9596 (séance) {"origin":"http://127.0.0.1:9596","from":"séance","known":false}
+14:26:54.144 +8.06s DEBUG store.commit Modification {"source":"site","past":10,"page":"p_3b8u2mrb"}
+14:26:54.146 +8.06s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
+14:26:54.153 +8.07s INFO  publish.test.start [publish.test#1] Test de connexion à publish.php {"url":"http://127.0.0.1:9596/publish.php","token":true}
+14:26:54.154 +8.07s INFO  publish.first-origin Premier envoi du jeton à 127.0.0.1:9596 depuis cet appareil (test de connexion) : confirmation demandée {"kind":"php","target":"http://127.0.0.1:9596","action":"test"}
+14:26:54.154 +8.07s DEBUG ui.dialog.open Fenêtre ouverte : Première publication vers 127.0.0.1:9596 {"id":"publishConfirmDialog","class":"audit","modal":true}
+14:26:54.214 +8.13s INFO  storage.secret-write Secret oublié sur cet appareil {"name":"php-token:http://127.0.0.1:9596"}
+14:26:54.220 +8.14s DEBUG ui.dialog.close Fenêtre fermée : Première publication vers 127.0.0.1:9596 {"id":"publishConfirmDialog"}
+14:26:54.223 +8.14s DEBUG net.request GET 127.0.0.1:9596/publish.php {"id":9,"method":"GET","url":"http://127.0.0.1:9596/publish.php?atelier_debug=1"}
+14:26:54.235 +8.15s DEBUG net.response 200 GET 127.0.0.1:9596/publish.php (12 ms) {"id":9,"status":200,"ms":12,"type":"application/json","req":"131eca92"}
+14:26:54.240 +8.16s DEBUG php.req.start GET reçu {"method":"GET","who":"abd9b91e93","bytes":0,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8851","req":"131eca92","srvMs":0}
+14:26:54.241 +8.16s WARN  php.diag Diagnostic de l’hébergement demandé : limite d’envoi basse (2 Mo) {"upload_max":"2M","post_max":"8M","data_writable":true,"zip":true,"mail":true,"req":"131eca92","srvMs":0.2}
+14:26:54.241 +8.16s DEBUG php.status Statut demandé (test de connexion) {"version":"7","zip":true,"diag":true,"req":"131eca92","srvMs":0.4}
+14:26:54.241 +8.16s DEBUG php.req.end Réponse 200 (status) {"status":200,"route":"status","mem_kb":917,"req":"131eca92","srvMs":0.4}
+14:26:54.241 +8.16s INFO  publish.test.diag [publish.test#1 · 88 ms] Diagnostic de l’hébergement {"upload_max_filesize":"2M","post_max_size":"8M","memory_limit":"-1","max_execution_time":30,"mail":true,"mail_domain":"xn--mdia-alternatif-bnb.be","data_writable":true,"root_writable":true,"log_level":"info","log_files":[],"sapi":"cli-server","time":"2026-10-31T13:26:54+00:00","timezone":"UTC","disk_free_mb":29199,"extensions":{"mbstring":true,"json":true,"zip":true}}
+14:26:54.242 +8.16s INFO  publish.test.ok [publish.test#1 · 89 ms] publish.php répond {"version":"7","php":"8.3.6","zip":true,"req":"131eca92"}

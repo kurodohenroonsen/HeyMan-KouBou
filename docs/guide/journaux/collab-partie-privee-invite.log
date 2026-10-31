@@ -1,2 +1,2 @@
-12:42:14.751 +7.62s WARN  collab.remote-error L’autre côté signale : Modification refusée : partie privée {"from":"Kudoro","message":"Modification refusée : partie privée"}
-12:42:14.751 +7.62s ERROR ui.toast Message affiché : Modification refusée : partie privée {"type":"error"}
+14:34:29.926 +7.71s WARN  collab.remote-error L’autre côté signale : Modification refusée : partie privée {"from":"Kudoro","message":"Modification refusée : partie privée"}
+14:34:29.927 +7.71s ERROR ui.toast Message affiché : Modification refusée : partie privée {"type":"error"}

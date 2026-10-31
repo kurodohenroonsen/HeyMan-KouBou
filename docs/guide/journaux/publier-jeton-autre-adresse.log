@@ -1,6 +1,7 @@
-12:42:05.460 +2.90s INFO  publish.open Fenêtre Publier {"mode":"php","tab":"php","ok":true,"errors":0,"warnings":1}
-12:42:05.461 +2.90s DEBUG ui.dialog.open Fenêtre ouverte : Publier le site {"id":"publishDialog","class":"audit","modal":true}
-12:42:05.476 +2.92s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token"}
-12:42:05.476 +2.92s DEBUG publish.token-for Dépôt GitHub incomplet : aucun jeton pré-rempli
-12:42:05.479 +2.92s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:http://127.0.0.1:8745"}
-12:42:05.480 +2.92s DEBUG publish.token-for Aucun jeton gardé pour 127.0.0.1:8745 {"origin":"http://127.0.0.1:8745","known":false}
+14:34:20.625 +2.75s INFO  publish.open Fenêtre Publier {"mode":"php","tab":"php","ok":true,"errors":0,"warnings":1}
+14:34:20.626 +2.75s DEBUG ui.dialog.open Fenêtre ouverte : Publier le site {"id":"publishDialog","class":"audit","modal":true}
+14:34:20.638 +2.76s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token"}
+14:34:20.640 +2.76s DEBUG publish.token-for Dépôt GitHub incomplet : aucun jeton pré-rempli
+14:34:20.640 +2.76s DEBUG storage.secret-read Aucun secret gardé {"name":"backup-code:http://127.0.0.1:8771"}
+14:34:20.641 +2.76s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:http://127.0.0.1:8771"}
+14:34:20.641 +2.76s DEBUG publish.token-for Aucun jeton gardé pour 127.0.0.1:8771 {"origin":"http://127.0.0.1:8771","known":false}

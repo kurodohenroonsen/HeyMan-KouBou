@@ -1,5 +1,5 @@
-13:42:25.719 +5.14s DEBUG ai.provider Fournisseur d’IA de test (window.__atelierAI) {"source":"test","lang":"fr","has":{},"methods":[]}
-13:42:25.720 +5.14s INFO  ai.link.start [ai.link#1] IA locale : texte de lien {"task":"linkText","excerpt":"cliquez ici","target":"Contact","lang":"fr","gen":"fr","api":"prompt","source":"test"}
-13:42:25.721 +5.14s WARN  ai.link.absent [ai.link#1 · 1 ms] IA absente : IA locale indisponible : ouvrez ✨ IA locale pour l’activer (Chrome 148 ou plus récent, sur ordinateur). {"has":{},"need":"prompt"}
-13:42:25.721 +5.14s INFO  ai.link.cancel [ai.link#1 · 1 ms] Tâche non lancée (aucun appel au modèle) {"task":"linkText"}
-13:42:25.721 +5.14s ERROR ui.toast Message affiché : IA locale indisponible : ouvrez ✨ IA locale pour l’activer (Chrome 148 ou plus récent, sur ordinateur). {"type":"error"}
+14:28:43.715 +3.29s DEBUG ai.provider Fournisseur d’IA de test (window.__atelierAI) {"source":"test","lang":"fr","has":{},"methods":[]}
+14:28:43.716 +3.29s INFO  ai.link.start [ai.link#1] IA locale : texte de lien {"task":"linkText","excerpt":"cliquez ici","target":"Contact","lang":"fr","gen":"fr","api":"prompt","source":"test"}
+14:28:43.716 +3.29s WARN  ai.link.absent [ai.link#1 · 0 ms] IA absente : IA locale indisponible : ouvrez ✨ IA locale pour l’activer (Chrome 148 ou plus récent, sur ordinateur). {"has":{},"need":"prompt"}
+14:28:43.716 +3.29s INFO  ai.link.cancel [ai.link#1 · 0 ms] Tâche non lancée (aucun appel au modèle) {"task":"linkText"}
+14:28:43.716 +3.29s ERROR ui.toast Message affiché : IA locale indisponible : ouvrez ✨ IA locale pour l’activer (Chrome 148 ou plus récent, sur ordinateur). {"type":"error"}

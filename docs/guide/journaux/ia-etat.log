@@ -1,16 +1,16 @@
-13:42:21.477 +0.90s DEBUG ui.dialog.open Fenêtre ouverte : ✨ IA locale (Gemini Nano dans Chrome) {"id":"aiDialog","class":"audit ai-dialog","modal":true}
-13:42:21.491 +0.91s INFO  ai.dialog Fenêtre ✨ IA locale {"lang":"fr","siteLang":"fr","source":"test"}
-13:42:21.493 +0.91s DEBUG ai.availability Prompt API (Gemini Nano) : available (fournisseur de test) {"api":"prompt","lang":"fr","state":"available","source":"test"}
-13:42:21.495 +0.92s DEBUG ai.availability Prompt API – images : available (fournisseur de test) {"api":"multimodal","lang":"fr","state":"available","source":"test"}
-13:42:21.495 +0.92s DEBUG ai.availability Summarizer : available (fournisseur de test) {"api":"summarizer","lang":"fr","state":"available","source":"test"}
-13:42:21.495 +0.92s DEBUG ai.availability Rewriter : downloadable (fournisseur de test) {"api":"rewriter","lang":"fr","state":"downloadable","source":"test"}
-13:42:21.496 +0.92s DEBUG ai.availability Writer : unavailable (fournisseur de test) {"api":"writer","lang":"fr","state":"unavailable","source":"test"}
-13:42:21.496 +0.92s DEBUG ai.availability Proofreader : available (fournisseur de test) {"api":"proofreader","lang":"fr","state":"available","source":"test"}
-13:42:21.496 +0.92s DEBUG ai.availability Translator : available (fournisseur de test) {"api":"translator","lang":"fr","state":"available","source":"test"}
-13:42:21.496 +0.92s DEBUG ai.availability Language Detector : available (fournisseur de test) {"api":"detector","lang":"fr","state":"available","source":"test"}
-13:42:21.497 +0.92s INFO  ai.status IA locale : prêt → prompt, multimodal, summarizer, proofreader, translator, detector (5 ms) {"lang":"fr","ms":5,"source":"test","prompt":"available","multimodal":"available","summarizer":"available","rewriter":"downloadable","writer":"unavailable","proofreader":"available","translator":"available","detector":"available"}
-13:42:21.604 +1.02s INFO  ai.download.start [ai.download#1] Téléchargement du modèle Rewriter {"api":"rewriter","lang":"fr","source":"test"}
-13:42:21.605 +1.03s INFO  ai.download.ok [ai.download#1 · 1 ms] Rewriter prêt (fournisseur de test)
-13:42:21.605 +1.03s DEBUG ai.availability Rewriter : available (fournisseur de test) {"api":"rewriter","lang":"fr","state":"available","source":"test"}
-13:42:21.605 +1.03s INFO  ai.status IA locale : prêt → prompt, multimodal, summarizer, rewriter, proofreader, translator, detector (0 ms) {"lang":"fr","ms":0,"source":"test","prompt":"available","multimodal":"available","summarizer":"available","rewriter":"available","writer":"unavailable","proofreader":"available","translator":"available","detector":"available"}
-13:42:21.649 +1.07s DEBUG ui.dialog.close Fenêtre fermée : ✨ IA locale (Gemini Nano dans Chrome) {"id":"aiDialog"}
+14:28:41.109 +0.68s DEBUG ui.dialog.open Fenêtre ouverte : ✨ IA locale (Gemini Nano dans Chrome) {"id":"aiDialog","class":"audit ai-dialog","modal":true}
+14:28:41.118 +0.69s INFO  ai.dialog Fenêtre ✨ IA locale {"lang":"fr","siteLang":"fr","source":"test"}
+14:28:41.120 +0.69s DEBUG ai.availability Prompt API (Gemini Nano) : available (fournisseur de test) {"api":"prompt","lang":"fr","state":"available","source":"test"}
+14:28:41.120 +0.69s DEBUG ai.availability Prompt API – images : available (fournisseur de test) {"api":"multimodal","lang":"fr","state":"available","source":"test"}
+14:28:41.121 +0.69s DEBUG ai.availability Summarizer : available (fournisseur de test) {"api":"summarizer","lang":"fr","state":"available","source":"test"}
+14:28:41.121 +0.69s DEBUG ai.availability Rewriter : downloadable (fournisseur de test) {"api":"rewriter","lang":"fr","state":"downloadable","source":"test"}
+14:28:41.122 +0.69s DEBUG ai.availability Writer : unavailable (fournisseur de test) {"api":"writer","lang":"fr","state":"unavailable","source":"test"}
+14:28:41.123 +0.69s DEBUG ai.availability Proofreader : available (fournisseur de test) {"api":"proofreader","lang":"fr","state":"available","source":"test"}
+14:28:41.123 +0.69s DEBUG ai.availability Translator : available (fournisseur de test) {"api":"translator","lang":"fr","state":"available","source":"test"}
+14:28:41.123 +0.69s DEBUG ai.availability Language Detector : available (fournisseur de test) {"api":"detector","lang":"fr","state":"available","source":"test"}
+14:28:41.124 +0.69s INFO  ai.status IA locale : prêt → prompt, multimodal, summarizer, proofreader, translator, detector (4 ms) {"lang":"fr","ms":4,"source":"test","prompt":"available","multimodal":"available","summarizer":"available","rewriter":"downloadable","writer":"unavailable","proofreader":"available","translator":"available","detector":"available"}
+14:28:41.189 +0.76s INFO  ai.download.start [ai.download#1] Téléchargement du modèle Rewriter {"api":"rewriter","lang":"fr","source":"test"}
+14:28:41.190 +0.76s INFO  ai.download.ok [ai.download#1 · 1 ms] Rewriter prêt (fournisseur de test)
+14:28:41.191 +0.76s DEBUG ai.availability Rewriter : available (fournisseur de test) {"api":"rewriter","lang":"fr","state":"available","source":"test"}
+14:28:41.191 +0.76s INFO  ai.status IA locale : prêt → prompt, multimodal, summarizer, rewriter, proofreader, translator, detector (1 ms) {"lang":"fr","ms":1,"source":"test","prompt":"available","multimodal":"available","summarizer":"available","rewriter":"available","writer":"unavailable","proofreader":"available","translator":"available","detector":"available"}
+14:28:41.203 +0.77s DEBUG ui.dialog.close Fenêtre fermée : ✨ IA locale (Gemini Nano dans Chrome) {"id":"aiDialog"}

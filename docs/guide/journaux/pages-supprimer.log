@@ -1,11 +1,17 @@
-13:42:47.915 +18.04s DEBUG page.delete-cancel Suppression de « Notre équipe » annulée {"id":"p_r05n15mr"}
-13:42:47.933 +18.06s DEBUG storage.save Projet enregistré sur cet appareil {"ms":5,"kb":13}
-13:42:48.082 +18.21s DEBUG store.view Vue : pageId=p_y6hkhp5h {"pageId":"p_y6hkhp5h"}
-13:42:48.090 +18.21s INFO  canvas.load.start [canvas.load#7] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_y6hkhp5h","lang":"fr","device":"desktop"}
-13:42:48.091 +18.21s DEBUG canvas.load.render [canvas.load#7 · 1 ms] Page rendue {"ms":1,"kb":25}
-13:42:48.094 +18.22s DEBUG store.commit Modification {"source":"pages","past":31,"page":"p_y6hkhp5h"}
-13:42:48.096 +18.22s INFO  canvas.load.cancel [canvas.load#7 · 6 ms] Chargement remplacé par un nouveau {"reason":"chargement précédent non terminé"}
-13:42:48.096 +18.22s INFO  canvas.load.start [canvas.load#8] Chargement complet du canevas : chargement précédent non terminé {"reason":"chargement précédent non terminé","page":"p_y6hkhp5h","lang":"fr","device":"desktop"}
-13:42:48.105 +18.23s DEBUG canvas.load.render [canvas.load#8 · 9 ms] Page rendue {"ms":1,"kb":25}
-13:42:48.106 +18.23s INFO  page.delete Page « Notre équipe » supprimée (Ctrl+Z pour la retrouver) {"id":"p_r05n15mr","slug":"notre-equipe-2","pages":3,"wasOpen":true}
-13:42:48.123 +18.25s INFO  canvas.load.ok [canvas.load#8 · 27 ms] Canevas prêt {"nodes":30,"scale":76,"via":"load"}
+14:28:01.824 +17.31s DEBUG ui.dialog.open Fenêtre ouverte : Supprimer la page « Notre équipe » {"id":"pageDeleteDialog","class":"audit audit--sm","modal":true}
+14:28:01.841 +17.33s DEBUG storage.save Projet enregistré sur cet appareil {"ms":4,"kb":13}
+14:28:01.885 +17.37s DEBUG ui.dialog.close Fenêtre fermée : Supprimer la page « Notre équipe » {"id":"pageDeleteDialog"}
+14:28:01.885 +17.37s DEBUG ui.confirm Confirmation refusée : Supprimer la page « Notre équipe » {"id":"pageDeleteDialog","ok":false}
+14:28:01.885 +17.37s DEBUG page.delete-cancel Suppression de « Notre équipe » annulée {"id":"p_90dqhqnj"}
+14:28:02.056 +17.54s DEBUG ui.dialog.open Fenêtre ouverte : Supprimer la page « Notre équipe » {"id":"pageDeleteDialog","class":"audit audit--sm","modal":true}
+14:28:02.118 +17.61s DEBUG ui.dialog.close Fenêtre fermée : Supprimer la page « Notre équipe » {"id":"pageDeleteDialog"}
+14:28:02.118 +17.61s DEBUG ui.confirm Confirmation acceptée : Supprimer la page « Notre équipe » {"id":"pageDeleteDialog","ok":true}
+14:28:02.119 +17.61s DEBUG store.view Vue : pageId=p_e5t0kx20 {"pageId":"p_e5t0kx20"}
+14:28:02.126 +17.61s INFO  canvas.load.start [canvas.load#7] Chargement complet du canevas : autre page {"reason":"autre page","page":"p_e5t0kx20","lang":"fr","device":"desktop"}
+14:28:02.128 +17.62s DEBUG canvas.load.render [canvas.load#7 · 2 ms] Page rendue {"ms":1,"kb":26}
+14:28:02.129 +17.62s DEBUG store.commit Modification {"source":"pages","past":31,"page":"p_e5t0kx20"}
+14:28:02.131 +17.62s INFO  canvas.load.cancel [canvas.load#7 · 5 ms] Chargement remplacé par un nouveau {"reason":"chargement précédent non terminé"}
+14:28:02.132 +17.62s INFO  canvas.load.start [canvas.load#8] Chargement complet du canevas : chargement précédent non terminé {"reason":"chargement précédent non terminé","page":"p_e5t0kx20","lang":"fr","device":"desktop"}
+14:28:02.133 +17.62s DEBUG canvas.load.render [canvas.load#8 · 1 ms] Page rendue {"ms":1,"kb":26}
+14:28:02.135 +17.62s INFO  page.delete Page « Notre équipe » supprimée (Ctrl+Z pour la retrouver) {"id":"p_90dqhqnj","slug":"notre-equipe-2","pages":3,"wasOpen":true}
+14:28:02.153 +17.64s INFO  canvas.load.ok [canvas.load#8 · 21 ms] Canevas prêt {"nodes":30,"scale":76,"via":"load"}

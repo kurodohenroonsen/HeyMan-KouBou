@@ -1,5 +1,5 @@
-13:40:29.278 +0.75s DEBUG store.select Sélection : heading {"id":"n_005y294b07","type":"heading"}
-13:40:29.449 +0.92s DEBUG store.select Sélection : text {"id":"n_1i3n241n3s","type":"text"}
-13:40:29.619 +1.09s DEBUG canvas.key Raccourci dans la page : Escape {"key":"Escape","in":"page","selected":"n_1i3n241n3s"}
-13:40:29.620 +1.09s DEBUG action.parent Parent sélectionné : column {"from":"text","to":"column","id":"n_6f4p4x0q6y"}
-13:40:29.620 +1.09s DEBUG store.select Sélection : column {"id":"n_6f4p4x0q6y","type":"column"}
+14:27:03.233 +0.71s DEBUG store.select Sélection : heading {"id":"n_6k3253575d","type":"heading"}
+14:27:03.400 +0.88s DEBUG store.select Sélection : text {"id":"n_4u0i3c645z","type":"text"}
+14:27:03.563 +1.04s DEBUG canvas.key Raccourci dans la page : Escape {"key":"Escape","in":"page","selected":"n_4u0i3c645z"}
+14:27:03.563 +1.04s DEBUG action.parent Parent sélectionné : column {"from":"text","to":"column","id":"n_402q4g5n08"}
+14:27:03.563 +1.04s DEBUG store.select Sélection : column {"id":"n_402q4g5n08","type":"column"}

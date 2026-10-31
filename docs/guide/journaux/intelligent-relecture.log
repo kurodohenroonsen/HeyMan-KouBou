@@ -1,17 +1,17 @@
-13:43:48.083 +9.49s INFO  smart.review.open Résumé de la relecture : 2 commentaires ouverts (0 résolu) ; par page : 2 sur « Accueil » ; par auteur : Laurent : 2 ; le plus ancien en attente : Laurent, 2026-10-31, « Le titre est trop long. ». {"total":2,"open":2,"resolved":0,"pages":1,"authors":1}
-13:43:48.084 +9.49s DEBUG ui.dialog.open Fenêtre ouverte : 📋 Résumé de la relecture {"id":"reviewSummaryDialog","class":"audit smart-dialog","modal":true}
-13:43:48.133 +9.54s DEBUG ai.provider Fournisseur d’IA de test (window.__atelierAI) {"source":"test","lang":"fr","has":{"prompt":true,"multimodal":true,"summarizer":true,"translator":true},"methods":["prompt","summarize","translate"]}
-13:43:48.134 +9.54s INFO  ai.review-summary.start [ai.review-summary#1] IA locale : résumé de la relecture {"task":"reviewSummary","comments":2,"open":2,"lang":"fr","sourceLang":"fr","gen":"fr","api":"summarizer","source":"test"}
-13:43:48.134 +9.54s DEBUG ai.review-summary.call [ai.review-summary#1 · 0 ms] Appel Summarizer (fr) {"api":"summarizer","lang":"fr","type":"key-points","length":"short","context":"68 car.","inLen":187}
-13:43:48.134 +9.54s DEBUG ai.review-summary.reply [ai.review-summary#1 · 0 ms] Réponse Summarizer : 65 car. en 0 ms {"api":"summarizer","ms":0,"outLen":65,"excerpt":"- Raccourcir le titre principal. - Vérifier l’adresse de co…"}
-13:43:48.135 +9.54s DEBUG ai.review-summary.call [ai.review-summary#1 · 1 ms] Appel Prompt API (Gemini Nano) (fr) {"api":"prompt","lang":"fr","schema":"tasks","system":"130 car.","inLen":90}
-13:43:48.135 +9.54s DEBUG ai.review-summary.reply [ai.review-summary#1 · 1 ms] Réponse Prompt API (Gemini Nano) : 76 car. en 0 ms {"api":"prompt","ms":0,"outLen":76,"excerpt":"{\"tasks\":[{\"id\":\"cm_zT7LRLJRHEXp\",\"task\":\"Raccourcir le tit…"}
-13:43:48.136 +9.54s INFO  ai.review-summary.ok [ai.review-summary#1 · 2 ms] Résumé de la relecture : proposition prête (Summarizer) {"via":"summarizer","fallback":false,"translated":false,"calls":2,"points":2,"tasks":2,"aiTasks":1,"open":2}
-13:43:48.136 +9.54s INFO  smart.review.points 2 points clés, 2 tâches {"points":2,"tasks":2,"via":"summarizer"}
-13:43:48.208 +9.61s WARN  smart.review.copy-fail Copie refusée par le navigateur {"error":{"name":"NotAllowedError","message":"Failed to execute 'writeText' on 'Clipboard': Write permission denied.","code":0,"stack":"NotAllowedError: Failed to execute 'writeText' on 'Clipboard': Write permission denied."}}
-13:43:48.210 +9.61s ERROR ui.toast Message affiché : Copie refusée par le navigateur. {"type":"error"}
-13:43:48.234 +9.64s INFO  smart.review.go Aller au commentaire {"id":"cm_zT7LRLJRHEXp","page":"p_y94bis0g"}
-13:43:48.237 +9.64s DEBUG review.goto Aller à l’élément commenté {"id":"cm_zT7LRLJRHEXp","page":"p_y94bis0g","node":"n_2v512i143c","found":true}
-13:43:48.241 +9.64s DEBUG ui.dialog.close Fenêtre fermée : 📋 Résumé de la relecture {"id":"reviewSummaryDialog"}
-13:43:48.265 +9.67s DEBUG storage.save Projet enregistré sur cet appareil {"ms":3,"kb":41}
-13:43:48.488 +9.89s DEBUG store.select Sélection : heading {"id":"n_2v512i143c","type":"heading"}
+14:30:32.253 +8.47s INFO  smart.review.open Résumé de la relecture : 2 commentaires ouverts (0 résolu) ; par page : 2 sur « Accueil » ; par auteur : Laurent : 2 ; le plus ancien en attente : Laurent, 2026-10-31, « Le titre est trop long. ». {"total":2,"open":2,"resolved":0,"pages":1,"authors":1}
+14:30:32.255 +8.47s DEBUG ui.dialog.open Fenêtre ouverte : 📋 Résumé de la relecture {"id":"reviewSummaryDialog","class":"audit smart-dialog","modal":true}
+14:30:32.300 +8.52s DEBUG ai.provider Fournisseur d’IA de test (window.__atelierAI) {"source":"test","lang":"fr","has":{"prompt":true,"multimodal":true,"summarizer":true,"translator":true},"methods":["prompt","summarize","translate"]}
+14:30:32.301 +8.52s INFO  ai.review-summary.start [ai.review-summary#1] IA locale : résumé de la relecture {"task":"reviewSummary","comments":2,"open":2,"lang":"fr","sourceLang":"fr","gen":"fr","api":"summarizer","source":"test"}
+14:30:32.301 +8.52s DEBUG ai.review-summary.call [ai.review-summary#1 · 0 ms] Appel Summarizer (fr) {"api":"summarizer","lang":"fr","type":"key-points","length":"short","context":"68 car.","inLen":187}
+14:30:32.302 +8.52s DEBUG ai.review-summary.reply [ai.review-summary#1 · 1 ms] Réponse Summarizer : 65 car. en 0 ms {"api":"summarizer","ms":0,"outLen":65,"excerpt":"- Raccourcir le titre principal. - Vérifier l’adresse de co…"}
+14:30:32.302 +8.52s DEBUG ai.review-summary.call [ai.review-summary#1 · 1 ms] Appel Prompt API (Gemini Nano) (fr) {"api":"prompt","lang":"fr","schema":"tasks","system":"130 car.","inLen":90}
+14:30:32.302 +8.52s DEBUG ai.review-summary.reply [ai.review-summary#1 · 1 ms] Réponse Prompt API (Gemini Nano) : 76 car. en 0 ms {"api":"prompt","ms":0,"outLen":76,"excerpt":"{\"tasks\":[{\"id\":\"cm_dIY7w1EHMf1K\",\"task\":\"Raccourcir le tit…"}
+14:30:32.302 +8.52s INFO  ai.review-summary.ok [ai.review-summary#1 · 1 ms] Résumé de la relecture : proposition prête (Summarizer) {"via":"summarizer","fallback":false,"translated":false,"calls":2,"points":2,"tasks":2,"aiTasks":1,"open":2}
+14:30:32.302 +8.52s INFO  smart.review.points 2 points clés, 2 tâches {"points":2,"tasks":2,"via":"summarizer"}
+14:30:32.362 +8.58s WARN  smart.review.copy-fail Copie refusée par le navigateur {"error":{"name":"NotAllowedError","message":"Failed to execute 'writeText' on 'Clipboard': Write permission denied.","code":0,"stack":"NotAllowedError: Failed to execute 'writeText' on 'Clipboard': Write permission denied."}}
+14:30:32.363 +8.58s ERROR ui.toast Message affiché : Copie refusée par le navigateur. {"type":"error"}
+14:30:32.383 +8.60s INFO  smart.review.go Aller au commentaire {"id":"cm_dIY7w1EHMf1K","page":"p_o0t26il1"}
+14:30:32.386 +8.60s DEBUG review.goto Aller à l’élément commenté {"id":"cm_dIY7w1EHMf1K","page":"p_o0t26il1","node":"n_3y5n0u5n6o","found":true}
+14:30:32.395 +8.61s DEBUG ui.dialog.close Fenêtre fermée : 📋 Résumé de la relecture {"id":"reviewSummaryDialog"}
+14:30:32.456 +8.67s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":42}
+14:30:32.637 +8.86s DEBUG store.select Sélection : heading {"id":"n_3y5n0u5n6o","type":"heading"}

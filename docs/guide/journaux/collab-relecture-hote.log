@@ -1,2 +1,2 @@
-13:43:46.105 +17.69s WARN  collab.ops.rejected 1 modification de Laurent refusée (relecteur) : relecteur : seuls les commentaires sont autorisés {"name":"Laurent","role":"reviewer","count":1,"reason":"relecteur : seuls les commentaires sont autorisés","path":["name"]}
-13:43:46.106 +17.69s ERROR ui.toast Message affiché : Modification refusée (Laurent, relecteur) : relecteur : seuls les commentaires sont autorisés {"type":"error"}
+14:29:07.835 +16.93s WARN  collab.ops.rejected 1 modification de Laurent refusée (relecteur) : relecteur : seuls les commentaires sont autorisés {"name":"Laurent","role":"reviewer","count":1,"reason":"relecteur : seuls les commentaires sont autorisés","path":["name"]}
+14:29:07.836 +16.93s ERROR ui.toast Message affiché : Modification refusée (Laurent, relecteur) : relecteur : seuls les commentaires sont autorisés {"type":"error"}

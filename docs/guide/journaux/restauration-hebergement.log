@@ -1,33 +1,39 @@
-13:34:16.019 +0.89s INFO  publish.first-origin Premier envoi du jeton à 127.0.0.1:8965 depuis cet appareil (test de connexion) : confirmation demandée {"kind":"php","target":"http://127.0.0.1:8965","action":"test"}
-13:34:16.020 +0.89s DEBUG ui.dialog.open Fenêtre ouverte : Première publication vers 127.0.0.1:8965 {"id":"publishConfirmDialog","class":"audit","modal":true}
-13:34:16.058 +0.93s DEBUG net.request GET 127.0.0.1:8965/publish.php {"id":1,"method":"GET","url":"http://127.0.0.1:8965/publish.php?backups&atelier_debug=1"}
-13:34:16.064 +0.94s DEBUG ui.dialog.close Fenêtre fermée : Première publication vers 127.0.0.1:8965 {"id":"publishConfirmDialog"}
-13:34:16.092 +0.96s DEBUG net.response 200 GET 127.0.0.1:8965/publish.php (34 ms) {"id":1,"status":200,"ms":34,"type":"application/json","req":"6f040ab4"}
-13:34:16.094 +0.97s DEBUG php.req.start GET reçu {"method":"GET","who":"2598436d2a","bytes":0,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8833","req":"6f040ab4","srvMs":0}
-13:34:16.094 +0.97s INFO  php.backup.list 2 copie(s) de secours listée(s) {"count":2,"req":"6f040ab4","srvMs":0.1}
-13:34:16.094 +0.97s DEBUG php.req.end Réponse 200 (backups) {"status":200,"route":"backups","mem_kb":355,"req":"6f040ab4","srvMs":0.2}
-13:34:16.095 +0.97s INFO  backup.host.list 2 copie(s) de secours sur l’hébergement {"count":2}
-13:34:16.184 +1.06s INFO  backup.host.restore.start [backup.host.restore#1] Restauration de la copie backup-20261031-1234-2.json.enc depuis l’hébergement {"name":"backup-20261031-1234-2.json.enc","host":"127.0.0.1:8965"}
-13:34:16.185 +1.06s DEBUG net.request GET 127.0.0.1:8965/publish.php {"id":2,"method":"GET","url":"http://127.0.0.1:8965/publish.php?backup=backup-20261031-1234-2.json.enc&atelier_debug=1"}
-13:34:16.197 +1.07s DEBUG net.response 200 GET 127.0.0.1:8965/publish.php (12 ms) {"id":2,"status":200,"ms":12,"type":"application/octet-stream","size":2593,"req":"8ced09f2"}
-13:34:16.198 +1.07s DEBUG backup.host.restore.downloaded [backup.host.restore#1 · 14 ms] Copie téléchargée (3 Ko) {"bytes":2593}
-13:34:16.282 +1.16s ERROR backup.host.restore.fail [backup.host.restore#1 · 98 ms] Code de secours incorrect (ou copie modifiée) : rien n’a été chargé. {"code":"bad_code","error":{"name":"Error","message":"Code de secours incorrect (ou copie modifiée) : rien n’a été chargé.","code":"bad_code","stack":"Error: Code de secours incorrect (ou copie modifiée) : rien n’a été chargé.\nat fail (http://localhost:8833/core/backup.js:21:47)\nat decryptBackup (http://localhost:8833/core/backup.js:83:19)\nat async restoreBackup (http://localhost:8833/editor/backup-ui.js:275:31)\nat async restore (http://localhost:8833/editor/backup-ui.js:320:17)"}}
-13:34:16.466 +1.34s INFO  backup.host.restore.start [backup.host.restore#2] Restauration de la copie backup-20261031-1234-2.json.enc depuis l’hébergement {"name":"backup-20261031-1234-2.json.enc","host":"127.0.0.1:8965"}
-13:34:16.466 +1.34s DEBUG net.request GET 127.0.0.1:8965/publish.php {"id":3,"method":"GET","url":"http://127.0.0.1:8965/publish.php?backup=backup-20261031-1234-2.json.enc&atelier_debug=1"}
-13:34:16.490 +1.36s DEBUG net.response 200 GET 127.0.0.1:8965/publish.php (24 ms) {"id":3,"status":200,"ms":24,"type":"application/octet-stream","size":2593,"req":"82443c13"}
-13:34:16.491 +1.36s DEBUG backup.host.restore.downloaded [backup.host.restore#2 · 25 ms] Copie téléchargée (3 Ko) {"bytes":2593}
-13:34:16.587 +1.46s DEBUG backup.host.restore.decrypted [backup.host.restore#2 · 121 ms] Copie déchiffrée (enregistrée le 31 oct. 2026, 13:34) {"at":"2026-10-31T12:34:14.589Z"}
-13:34:16.588 +1.46s INFO  version.save.start [version.save#1] Enregistrement d’une version de sécurité : « Avant la restauration depuis l’hébergement » {"kind":"safety","name":"Avant la restauration depuis l’hébergement"}
-13:34:16.589 +1.46s DEBUG storage.version-save Version enregistrée {"id":"v_mvwduw7h5obx1","name":"Avant la restauration depuis l’hébergement","kind":"safety"}
-13:34:16.598 +1.47s DEBUG version.save.prune [version.save#1 · 10 ms] Aucune ancienne version à supprimer {"total":1}
-13:34:16.598 +1.47s INFO  version.save.ok [version.save#1 · 10 ms] Version de sécurité enregistrée (2 pages) {"id":"v_mvwduw7h5obx1","kind":"safety","at":"2026-10-31T12:34:16.589Z","pages":2,"kb":12}
-13:34:16.598 +1.47s INFO  store.load Projet chargé dans l’éditeur {"name":"Radio Hébergement 31","pages":2,"keepHistory":true}
-13:34:16.602 +1.48s INFO  canvas.load.start [canvas.load#2] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_zi23gg85","lang":"fr","device":"desktop"}
-13:34:16.603 +1.48s DEBUG canvas.load.render [canvas.load#2 · 1 ms] Page rendue {"ms":1,"kb":29}
-13:34:16.605 +1.48s INFO  backup.host.restore.ok [backup.host.restore#2 · 139 ms] Projet restauré depuis l’hébergement (Ctrl+Z pour annuler) {"name":"backup-20261031-1234-2.json.enc","pages":2,"at":"2026-10-31T12:34:14.589Z"}
-13:34:16.609 +1.48s INFO  ui.toast Message affiché : Projet restauré depuis l’hébergement (2 pages). Ctrl+Z pour annuler.
-13:34:16.612 +1.49s DEBUG ui.dialog.close Fenêtre fermée : Restaurer depuis l’hébergement {"id":"hostRestoreDialog"}
-13:34:16.613 +1.49s DEBUG ui.dialog.close Fenêtre fermée : Publier le site {"id":"publishDialog"}
-13:34:16.621 +1.49s INFO  storage.persist Stockage persistant refusé par le navigateur : gardez une copie hors du navigateur (dossier, export, hébergement) {"granted":false,"source":"save"}
-13:34:16.626 +1.50s INFO  canvas.load.ok [canvas.load#2 · 24 ms] Canevas prêt {"nodes":30,"scale":76,"via":"load"}
-13:34:16.631 +1.50s INFO  storage.estimate Stockage : non persistant (le navigateur peut l’effacer) · 14 Ko utilisés sur 527 Mo {"persisted":false,"usage":14442,"quota":552492371}
+14:39:08.246 +0.82s INFO  publish.first-origin Premier envoi du jeton à 127.0.0.1:8988 depuis cet appareil (test de connexion) : confirmation demandée {"kind":"php","target":"http://127.0.0.1:8988","action":"test"}
+14:39:08.247 +0.82s DEBUG ui.dialog.open Fenêtre ouverte : Première publication vers 127.0.0.1:8988 {"id":"publishConfirmDialog","class":"audit","modal":true}
+14:39:08.296 +0.87s DEBUG net.request GET 127.0.0.1:8988/publish.php {"id":1,"method":"GET","url":"http://127.0.0.1:8988/publish.php?backups&atelier_debug=1"}
+14:39:08.307 +0.88s DEBUG ui.dialog.close Fenêtre fermée : Première publication vers 127.0.0.1:8988 {"id":"publishConfirmDialog"}
+14:39:08.309 +0.88s DEBUG net.response 200 GET 127.0.0.1:8988/publish.php (12 ms) {"id":1,"status":200,"ms":12,"type":"application/json","req":"6320a36f"}
+14:39:08.310 +0.88s DEBUG php.req.start GET reçu {"method":"GET","who":"6e48122d8e","bytes":0,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8851","req":"6320a36f","srvMs":0}
+14:39:08.310 +0.88s INFO  php.backup.list 2 copie(s) de secours listée(s) {"count":2,"req":"6320a36f","srvMs":0.2}
+14:39:08.310 +0.88s DEBUG php.req.end Réponse 200 (backups) {"status":200,"route":"backups","mem_kb":355,"req":"6320a36f","srvMs":0.2}
+14:39:08.310 +0.88s INFO  backup.host.list 2 copie(s) de secours sur l’hébergement {"count":2}
+14:39:08.380 +0.95s DEBUG ui.dialog.open Fenêtre ouverte : Restaurer depuis l’hébergement {"id":"hostRestoreConfirmDialog","class":"audit audit--sm","modal":true}
+14:39:08.424 +1.00s DEBUG ui.dialog.close Fenêtre fermée : Restaurer depuis l’hébergement {"id":"hostRestoreConfirmDialog"}
+14:39:08.424 +1.00s DEBUG ui.confirm Confirmation acceptée : Restaurer depuis l’hébergement {"id":"hostRestoreConfirmDialog","ok":true}
+14:39:08.425 +1.00s INFO  backup.host.restore.start [backup.host.restore#1] Restauration de la copie backup-20261031-1339-2.json.enc depuis l’hébergement {"name":"backup-20261031-1339-2.json.enc","host":"127.0.0.1:8988"}
+14:39:08.425 +1.00s DEBUG net.request GET 127.0.0.1:8988/publish.php {"id":2,"method":"GET","url":"http://127.0.0.1:8988/publish.php?backup=backup-20261031-1339-2.json.enc&atelier_debug=1"}
+14:39:08.432 +1.00s DEBUG net.response 200 GET 127.0.0.1:8988/publish.php (7 ms) {"id":2,"status":200,"ms":7,"type":"application/octet-stream","size":2618,"req":"071fb055"}
+14:39:08.437 +1.01s DEBUG backup.host.restore.downloaded [backup.host.restore#1 · 12 ms] Copie téléchargée (3 Ko) {"bytes":2618}
+14:39:08.490 +1.06s ERROR backup.host.restore.fail [backup.host.restore#1 · 65 ms] Code de secours incorrect (ou copie modifiée) : rien n’a été chargé. {"code":"bad_code","error":{"name":"Error","message":"Code de secours incorrect (ou copie modifiée) : rien n’a été chargé.","code":"bad_code","stack":"Error: Code de secours incorrect (ou copie modifiée) : rien n’a été chargé.\nat fail (http://localhost:8851/core/backup.js:21:47)\nat decryptBackup (http://localhost:8851/core/backup.js:83:19)\nat async restoreBackup (http://localhost:8851/editor/backup-ui.js:272:31)\nat async restore (http://localhost:8851/editor/backup-ui.js:319:17)"}}
+14:39:08.547 +1.12s DEBUG ui.dialog.open Fenêtre ouverte : Restaurer depuis l’hébergement {"id":"hostRestoreConfirmDialog","class":"audit audit--sm","modal":true}
+14:39:08.608 +1.18s DEBUG ui.dialog.close Fenêtre fermée : Restaurer depuis l’hébergement {"id":"hostRestoreConfirmDialog"}
+14:39:08.608 +1.18s DEBUG ui.confirm Confirmation acceptée : Restaurer depuis l’hébergement {"id":"hostRestoreConfirmDialog","ok":true}
+14:39:08.608 +1.18s INFO  backup.host.restore.start [backup.host.restore#2] Restauration de la copie backup-20261031-1339-2.json.enc depuis l’hébergement {"name":"backup-20261031-1339-2.json.enc","host":"127.0.0.1:8988"}
+14:39:08.608 +1.18s DEBUG net.request GET 127.0.0.1:8988/publish.php {"id":3,"method":"GET","url":"http://127.0.0.1:8988/publish.php?backup=backup-20261031-1339-2.json.enc&atelier_debug=1"}
+14:39:08.617 +1.19s DEBUG net.response 200 GET 127.0.0.1:8988/publish.php (9 ms) {"id":3,"status":200,"ms":9,"type":"application/octet-stream","size":2618,"req":"9690d8f6"}
+14:39:08.618 +1.19s DEBUG backup.host.restore.downloaded [backup.host.restore#2 · 10 ms] Copie téléchargée (3 Ko) {"bytes":2618}
+14:39:08.675 +1.25s DEBUG backup.host.restore.decrypted [backup.host.restore#2 · 67 ms] Copie déchiffrée (enregistrée le 31 oct. 2026, 14:39) {"at":"2026-10-31T13:39:06.932Z"}
+14:39:08.677 +1.25s INFO  version.save.start [version.save#1] Enregistrement d’une version de sécurité : « Avant la restauration depuis l’hébergement » {"kind":"safety","name":"Avant la restauration depuis l’hébergement"}
+14:39:08.678 +1.25s DEBUG storage.version-save Version enregistrée {"id":"v_mvwg6bd2g52ae","name":"Avant la restauration depuis l’hébergement","kind":"safety"}
+14:39:08.681 +1.25s DEBUG version.save.prune [version.save#1 · 4 ms] Aucune ancienne version à supprimer {"total":1}
+14:39:08.681 +1.25s INFO  version.save.ok [version.save#1 · 4 ms] Version de sécurité enregistrée (2 pages) {"id":"v_mvwg6bd2g52ae","kind":"safety","at":"2026-10-31T13:39:08.678Z","pages":2,"kb":12}
+14:39:08.681 +1.25s INFO  store.load Projet chargé dans l’éditeur {"name":"Radio Hébergement 31","pages":2,"keepHistory":true}
+14:39:08.685 +1.26s INFO  canvas.load.start [canvas.load#2] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_jjlfxe0x","lang":"fr","device":"desktop"}
+14:39:08.689 +1.26s DEBUG canvas.load.render [canvas.load#2 · 4 ms] Page rendue {"ms":3,"kb":29}
+14:39:08.692 +1.26s INFO  backup.host.restore.ok [backup.host.restore#2 · 84 ms] Projet restauré depuis l’hébergement (Ctrl+Z pour annuler) {"name":"backup-20261031-1339-2.json.enc","pages":2,"at":"2026-10-31T13:39:06.932Z"}
+14:39:08.696 +1.27s INFO  ui.toast Message affiché : Projet restauré depuis l’hébergement (2 pages). Ctrl+Z pour annuler.
+14:39:08.698 +1.27s DEBUG ui.dialog.close Fenêtre fermée : Restaurer depuis l’hébergement {"id":"hostRestoreDialog"}
+14:39:08.698 +1.27s DEBUG ui.dialog.close Fenêtre fermée : Publier le site {"id":"publishDialog"}
+14:39:08.707 +1.28s INFO  storage.persist Stockage persistant refusé par le navigateur : gardez une copie hors du navigateur (dossier, export, hébergement) {"granted":false,"source":"save"}
+14:39:08.712 +1.28s INFO  canvas.load.ok [canvas.load#2 · 27 ms] Canevas prêt {"nodes":30,"scale":76,"via":"load"}
+14:39:08.717 +1.29s INFO  storage.estimate Stockage : non persistant (le navigateur peut l’effacer) · 14 Ko utilisés sur 458 Mo {"persisted":false,"usage":14480,"quota":480596087}

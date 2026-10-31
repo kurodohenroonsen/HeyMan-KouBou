@@ -1,44 +1,44 @@
-13:43:37.797 +0.01s DEBUG widgets.extra Widgets supplémentaires chargés : 15 {"widgets":23,"extra":15}
-13:43:37.805 +0.01s DEBUG ui.lang-ready Interface en Français {"lang":"fr","static":0,"catalog":false}
-13:43:37.809 +0.02s DEBUG ui.icons Icônes de l’interface montées : 14 {"n":14}
-13:43:37.889 +0.10s DEBUG canvas.scale Canevas ordinateur : 1040 px, réduit à 76 % {"device":"desktop","width":1040,"scale":76,"available":792,"zoom":"fit"}
-13:43:37.889 +0.10s INFO  canvas.load.start [canvas.load#1] Chargement complet du canevas : premier chargement {"reason":"premier chargement","page":"p_6m71urd3","lang":"fr","device":"desktop"}
-13:43:37.898 +0.11s DEBUG canvas.load.render [canvas.load#1 · 9 ms] Page rendue {"ms":8,"kb":29}
-13:43:37.901 +0.11s INFO  collab.join.link Lien d’invitation ouvert
-13:43:37.933 +0.14s DEBUG version.init 0 version(s) dans ce navigateur {"count":0,"manual":0,"lastAuto":null,"autoToday":false}
-13:43:37.943 +0.15s INFO  canvas.load.ok [canvas.load#1 · 54 ms] Canevas prêt {"nodes":30,"scale":76,"via":"load"}
-13:43:38.140 +0.35s INFO  collab.invite.open Invitation de Kudoro : relecteur {"role":"reviewer","owner":"Kudoro","ownerFp":"99gs_8lVGN-jd7g_","via":"boîte aux lettres","signal":"http://127.0.0.1:8852/publish.php","hours":168}
-13:43:38.141 +0.35s DEBUG ui.dialog.open Fenêtre ouverte : 👥 Rejoindre une session {"id":"joinDialog","class":"audit collab","modal":true}
-13:43:38.326 +0.54s INFO  collab.identity.new Clé personnelle créée pour Laurent {"fp":"rxjYEAJBD06VSOSX","did":"did:key:zDnaeuucEufFTVfm"}
-13:43:38.328 +0.54s INFO  collab.join.start [collab.join#1] Rejoindre une session {"name":"Laurent","fp":"rxjYEAJBD06VSOSX","via":"boîte aux lettres"}
-13:43:38.329 +0.54s DEBUG collab.join.invite [collab.join#1 · 1 ms] Invitation valable : Kudoro invite comme relecteur {"role":"reviewer","owner":"Kudoro","host":"8afbb2c061dcba21","signal":"http://127.0.0.1:8852/publish.php","hours":168}
-13:43:38.330 +0.54s INFO  version.save.start [version.save#1] Enregistrement d’une version de sécurité : « Avant de rejoindre une session de collaboration » {"kind":"safety","name":"Avant de rejoindre une session de collaboration"}
-13:43:38.334 +0.54s DEBUG version.save.prune [version.save#1 · 4 ms] Aucune ancienne version à supprimer {"total":1}
-13:43:38.335 +0.55s INFO  version.save.ok [version.save#1 · 5 ms] Version de sécurité enregistrée (2 pages) {"id":"v_mvwe6xnfx6gg4","kind":"safety","at":"2026-10-31T12:43:38.331Z","pages":2,"kb":12}
-13:43:38.335 +0.55s DEBUG collab.join.backup [collab.join#1 · 7 ms] Projet actuel enregistré dans les versions avant de recevoir celui de l’hôte
-13:43:38.336 +0.55s INFO  collab.readonly Mode relecture : parcourir et commenter seulement {"role":"reviewer"}
-13:43:42.354 +4.56s DEBUG net.request POST 127.0.0.1:8852/publish.php {"id":1,"method":"POST","url":"http://127.0.0.1:8852/publish.php","body":{"json":["signal","proof","from","to","data"],"size":1134}}
-13:43:42.365 +4.58s INFO  net.response 200 POST 127.0.0.1:8852/publish.php (11 ms) {"id":1,"status":200,"ms":11,"type":"application/json","req":"372ab0c3"}
-13:43:44.396 +6.61s DEBUG collab.link.new Nouveau lien : présentation (invité) {"label":"8afbb2c061dcba21","links":1}
-13:43:44.398 +6.61s INFO  collab.join.ok [collab.join#1 · 6070 ms] Connecté·e à l’hôte : vérification des identités puis réception du projet {"role":"reviewer","room":"364ce665"}
-13:43:44.401 +6.61s DEBUG collab.hello Présentation de l’hôte Kudoro : c’est bien la personne qui a signé l’invitation {"name":"Kudoro","fp":"99gs_8lVGN-jd7g_","role":"owner"}
-13:43:44.403 +6.61s INFO  collab.auth Identité vérifiée : Kudoro (hôte) {"name":"Kudoro","fp":"99gs_8lVGN-jd7g_","role":"owner","peers":1}
-13:43:44.405 +6.62s DEBUG collab.sync.ask Demande du projet à l’hôte {"docId":null,"known":0}
-13:43:44.421 +6.63s INFO  collab.snapshot Projet reçu de Kudoro {"docId":"doc_697dc1c1440be2d5","pages":2,"comments":0}
-13:43:44.423 +6.63s INFO  store.load Projet chargé dans l’éditeur {"name":"MAB – Médias Alternatifs Belges","pages":2,"keepHistory":false}
-13:43:44.427 +6.64s INFO  canvas.load.start [canvas.load#2] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_zpn6ppgu","lang":"fr","device":"desktop"}
-13:43:44.432 +6.64s DEBUG canvas.load.render [canvas.load#2 · 5 ms] Page rendue {"ms":4,"kb":29}
-13:43:44.438 +6.65s INFO  canvas.load.cancel [canvas.load#2 · 11 ms] Chargement remplacé par un nouveau {"reason":"rechargement demandé"}
-13:43:44.438 +6.65s INFO  canvas.load.start [canvas.load#3] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_zpn6ppgu","lang":"fr","device":"desktop"}
-13:43:44.441 +6.65s DEBUG canvas.load.render [canvas.load#3 · 3 ms] Page rendue {"ms":3,"kb":29}
-13:43:44.444 +6.65s INFO  ui.toast Message affiché : Projet reçu de Kudoro — mode relecture : commentez avec 💬.
-13:43:44.494 +6.70s INFO  canvas.load.ok [canvas.load#3 · 56 ms] Canevas prêt {"nodes":30,"scale":76,"via":"load"}
-13:43:45.017 +7.23s DEBUG ui.dialog.close Fenêtre fermée : 👥 Rejoindre une session {"id":"joinDialog"}
-13:43:45.593 +7.80s DEBUG store.select Sélection : heading {"id":"n_342m3e2e2o","type":"heading"}
-13:43:45.623 +7.83s DEBUG canvas.key Raccourci dans la page : Delete {"key":"Delete","in":"page","selected":"n_342m3e2e2o"}
-13:43:45.625 +7.83s WARN  store.readonly Modification refusée : mode relecture {"source":"action"}
-13:43:45.626 +7.84s INFO  ui.toast Message affiché : Mode relecture : vous pouvez parcourir et commenter (💬), pas modifier.
-13:43:45.632 +7.84s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"history","mode":"contenu","ms":4}
-13:43:45.637 +7.85s DEBUG store.select Sélection : heading {"id":"n_2l431f3u2a","type":"heading"}
-13:43:46.111 +8.32s WARN  collab.remote-error L’autre côté signale : Modification refusée : relecteur : seuls les commentaires sont autorisés {"from":"Kudoro","message":"Modification refusée : relecteur : seuls les commentaires sont autorisés"}
-13:43:46.112 +8.32s ERROR ui.toast Message affiché : Modification refusée : relecteur : seuls les commentaires sont autorisés {"type":"error"}
+14:28:59.691 +0.01s DEBUG widgets.extra Widgets supplémentaires chargés : 15 {"widgets":23,"extra":15}
+14:28:59.693 +0.01s DEBUG ui.lang-ready Interface en Français {"lang":"fr","static":0,"catalog":false}
+14:28:59.696 +0.01s DEBUG ui.icons Icônes de l’interface montées : 14 {"n":14}
+14:28:59.735 +0.05s DEBUG canvas.scale Canevas ordinateur : 1040 px, réduit à 76 % {"device":"desktop","width":1040,"scale":76,"available":792,"zoom":"fit"}
+14:28:59.736 +0.05s INFO  canvas.load.start [canvas.load#1] Chargement complet du canevas : premier chargement {"reason":"premier chargement","page":"p_bkbxstza","lang":"fr","device":"desktop"}
+14:28:59.742 +0.06s DEBUG canvas.load.render [canvas.load#1 · 6 ms] Page rendue {"ms":5,"kb":29}
+14:28:59.744 +0.06s INFO  collab.join.link Lien d’invitation ouvert
+14:28:59.772 +0.09s DEBUG version.init 0 version(s) dans ce navigateur {"count":0,"manual":0,"lastAuto":null,"autoToday":false}
+14:28:59.799 +0.12s INFO  canvas.load.ok [canvas.load#1 · 63 ms] Canevas prêt {"nodes":30,"scale":76,"via":"load"}
+14:28:59.978 +0.29s INFO  collab.invite.open Invitation de Kudoro : relecteur {"role":"reviewer","owner":"Kudoro","ownerFp":"DVG0HxBSu-JpVf3m","via":"boîte aux lettres","signal":"http://127.0.0.1:8854/publish.php","hours":168}
+14:28:59.980 +0.30s DEBUG ui.dialog.open Fenêtre ouverte : 👥 Rejoindre une session {"id":"joinDialog","class":"audit collab","modal":true}
+14:29:00.134 +0.45s INFO  collab.identity.new Clé personnelle créée pour Laurent {"fp":"g1VxaIMVrL_25dpO","did":"did:key:zDnaeS2yq3ZPEzJz"}
+14:29:00.140 +0.46s INFO  collab.join.start [collab.join#1] Rejoindre une session {"name":"Laurent","fp":"g1VxaIMVrL_25dpO","via":"boîte aux lettres"}
+14:29:00.141 +0.46s DEBUG collab.join.invite [collab.join#1 · 1 ms] Invitation valable : Kudoro invite comme relecteur {"role":"reviewer","owner":"Kudoro","host":"a839a570140b6207","signal":"http://127.0.0.1:8854/publish.php","hours":168}
+14:29:00.143 +0.46s INFO  version.save.start [version.save#1] Enregistrement d’une version de sécurité : « Avant de rejoindre une session de collaboration » {"kind":"safety","name":"Avant de rejoindre une session de collaboration"}
+14:29:00.146 +0.46s DEBUG version.save.prune [version.save#1 · 3 ms] Aucune ancienne version à supprimer {"total":1}
+14:29:00.147 +0.46s INFO  version.save.ok [version.save#1 · 4 ms] Version de sécurité enregistrée (2 pages) {"id":"v_mvwft9tbfc4w7","kind":"safety","at":"2026-10-31T13:29:00.143Z","pages":2,"kb":12}
+14:29:00.147 +0.46s DEBUG collab.join.backup [collab.join#1 · 7 ms] Projet actuel enregistré dans les versions avant de recevoir celui de l’hôte
+14:29:00.148 +0.46s INFO  collab.readonly Mode relecture : parcourir et commenter seulement {"role":"reviewer"}
+14:29:04.165 +4.48s DEBUG net.request POST 127.0.0.1:8854/publish.php {"id":1,"method":"POST","url":"http://127.0.0.1:8854/publish.php","body":{"json":["signal","proof","from","to","data"],"size":1134}}
+14:29:04.171 +4.49s INFO  net.response 200 POST 127.0.0.1:8854/publish.php (6 ms) {"id":1,"status":200,"ms":6,"type":"application/json","req":"97dbaa73"}
+14:29:06.200 +6.52s DEBUG collab.link.new Nouveau lien : présentation (invité) {"label":"a839a570140b6207","links":1}
+14:29:06.201 +6.52s INFO  collab.join.ok [collab.join#1 · 6061 ms] Connecté·e à l’hôte : vérification des identités puis réception du projet {"role":"reviewer","room":"525230ab"}
+14:29:06.206 +6.52s DEBUG collab.hello Présentation de l’hôte Kudoro : c’est bien la personne qui a signé l’invitation {"name":"Kudoro","fp":"DVG0HxBSu-JpVf3m","role":"owner"}
+14:29:06.207 +6.52s INFO  collab.auth Identité vérifiée : Kudoro (hôte) {"name":"Kudoro","fp":"DVG0HxBSu-JpVf3m","role":"owner","peers":1}
+14:29:06.210 +6.53s DEBUG collab.sync.ask Demande du projet à l’hôte {"docId":null,"known":0}
+14:29:06.219 +6.54s INFO  collab.snapshot Projet reçu de Kudoro {"docId":"doc_fd70f228de51cdfa","pages":2,"comments":0}
+14:29:06.220 +6.54s INFO  store.load Projet chargé dans l’éditeur {"name":"MAB – Médias Alternatifs Belges","pages":2,"keepHistory":false}
+14:29:06.228 +6.54s INFO  canvas.load.start [canvas.load#2] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_mf3x4le3","lang":"fr","device":"desktop"}
+14:29:06.230 +6.55s DEBUG canvas.load.render [canvas.load#2 · 2 ms] Page rendue {"ms":2,"kb":29}
+14:29:06.235 +6.55s INFO  canvas.load.cancel [canvas.load#2 · 7 ms] Chargement remplacé par un nouveau {"reason":"rechargement demandé"}
+14:29:06.235 +6.55s INFO  canvas.load.start [canvas.load#3] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_mf3x4le3","lang":"fr","device":"desktop"}
+14:29:06.239 +6.55s DEBUG canvas.load.render [canvas.load#3 · 4 ms] Page rendue {"ms":3,"kb":29}
+14:29:06.244 +6.56s INFO  ui.toast Message affiché : Projet reçu de Kudoro — mode relecture : commentez avec 💬.
+14:29:06.276 +6.59s INFO  canvas.load.ok [canvas.load#3 · 41 ms] Canevas prêt {"nodes":30,"scale":76,"via":"load"}
+14:29:06.820 +7.14s DEBUG ui.dialog.close Fenêtre fermée : 👥 Rejoindre une session {"id":"joinDialog"}
+14:29:07.375 +7.69s DEBUG store.select Sélection : heading {"id":"n_0y1a5w1o4h","type":"heading"}
+14:29:07.406 +7.72s DEBUG canvas.key Raccourci dans la page : Delete {"key":"Delete","in":"page","selected":"n_0y1a5w1o4h"}
+14:29:07.408 +7.72s WARN  store.readonly Modification refusée : mode relecture {"source":"action"}
+14:29:07.409 +7.72s INFO  ui.toast Message affiché : Mode relecture : vous pouvez parcourir et commenter (💬), pas modifier.
+14:29:07.413 +7.73s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"history","mode":"contenu","ms":4}
+14:29:07.420 +7.74s DEBUG store.select Sélection : heading {"id":"n_345x5u2i3z","type":"heading"}
+14:29:07.837 +8.15s WARN  collab.remote-error L’autre côté signale : Modification refusée : relecteur : seuls les commentaires sont autorisés {"from":"Kudoro","message":"Modification refusée : relecteur : seuls les commentaires sont autorisés"}
+14:29:07.837 +8.15s ERROR ui.toast Message affiché : Modification refusée : relecteur : seuls les commentaires sont autorisés {"type":"error"}

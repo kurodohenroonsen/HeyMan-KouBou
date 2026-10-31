@@ -1,18 +1,17 @@
-13:40:44.647 +16.12s DEBUG store.multi Sélection multiple : 2 {"ids":["n_005y294b07","n_2s2y3y702p"]}
-13:40:44.763 +16.24s DEBUG store.multi Sélection multiple : 3 {"ids":["n_005y294b07","n_2s2y3y702p","n_6c3g5y5w1w"]}
-13:40:44.994 +16.47s DEBUG storage.save Projet enregistré sur cet appareil {"ms":30,"kb":12}
-13:40:45.011 +16.49s DEBUG canvas.key Raccourci dans la page : Ctrl+X {"key":"Ctrl+X","in":"page","selected":"n_6c3g5y5w1w"}
-13:40:45.011 +16.49s WARN  action.refused Action « couper » refusée : un seul élément à la fois {"action":"couper","multi":3}
-13:40:45.011 +16.49s ERROR ui.toast Message affiché : Couper fonctionne sur un seul élément à la fois. {"type":"error"}
-13:40:45.023 +16.50s DEBUG canvas.key Raccourci dans la page : Ctrl+D {"key":"Ctrl+D","in":"page","selected":"n_6c3g5y5w1w"}
-13:40:45.026 +16.50s DEBUG store.commit Modification {"source":"action","past":13,"page":"p_0x1ftvm1"}
-13:40:45.030 +16.50s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":3}
-13:40:45.065 +16.54s INFO  action.duplicate 3 éléments dupliqués {"count":3,"ids":["n_5n081x464d","n_725z584h25","n_4l4r5y5l09"]}
-13:40:45.065 +16.54s INFO  ui.toast Message affiché : 3 éléments dupliqués.
-13:40:45.284 +16.76s DEBUG canvas.key Raccourci dans la page : Ctrl+Z {"key":"Ctrl+Z","in":"page","selected":"n_4l4r5y5l09"}
-13:40:45.284 +16.76s INFO  store.undo Annuler {"left":12,"redo":1}
-13:40:45.288 +16.76s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"history","mode":"contenu","ms":3}
-13:40:45.490 +16.96s DEBUG store.select Sélection : heading {"id":"n_005y294b07","type":"heading"}
-13:40:45.556 +17.03s DEBUG store.multi Sélection multiple : 2 {"ids":["n_005y294b07","n_2s2y3y702p"]}
-13:40:45.582 +17.06s DEBUG canvas.key Raccourci dans la page : Escape {"key":"Escape","in":"page","selected":"n_2s2y3y702p"}
-13:40:45.583 +17.06s DEBUG store.multi Sélection multiple vidée (Échap) {"ids":[]}
+14:27:16.611 +14.09s DEBUG store.multi Sélection multiple : 2 {"ids":["n_6k3253575d","n_18013e1t4z"]}
+14:27:16.695 +14.18s DEBUG store.multi Sélection multiple : 3 {"ids":["n_6k3253575d","n_18013e1t4z","n_642t47156i"]}
+14:27:16.885 +14.37s DEBUG canvas.key Raccourci dans la page : Ctrl+X {"key":"Ctrl+X","in":"page","selected":"n_642t47156i"}
+14:27:16.886 +14.37s WARN  action.refused Action « couper » refusée : un seul élément à la fois {"action":"couper","multi":3}
+14:27:16.886 +14.37s ERROR ui.toast Message affiché : Couper fonctionne sur un seul élément à la fois. {"type":"error"}
+14:27:16.892 +14.37s DEBUG canvas.key Raccourci dans la page : Ctrl+D {"key":"Ctrl+D","in":"page","selected":"n_642t47156i"}
+14:27:16.894 +14.37s DEBUG store.commit Modification {"source":"action","past":13,"page":"p_0juocaxz"}
+14:27:16.899 +14.38s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":3}
+14:27:16.930 +14.41s INFO  action.duplicate 3 éléments dupliqués {"count":3,"ids":["n_5r4h133p64","n_2j1q4w6j2s","n_1i5b5a6z31"]}
+14:27:16.931 +14.41s INFO  ui.toast Message affiché : 3 éléments dupliqués.
+14:27:17.092 +14.57s DEBUG canvas.key Raccourci dans la page : Ctrl+Z {"key":"Ctrl+Z","in":"page","selected":"n_1i5b5a6z31"}
+14:27:17.092 +14.57s INFO  store.undo Annuler {"left":12,"redo":1}
+14:27:17.095 +14.57s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"history","mode":"contenu","ms":2}
+14:27:17.293 +14.77s DEBUG store.select Sélection : heading {"id":"n_6k3253575d","type":"heading"}
+14:27:17.344 +14.82s DEBUG store.multi Sélection multiple : 2 {"ids":["n_6k3253575d","n_18013e1t4z"]}
+14:27:17.364 +14.84s DEBUG canvas.key Raccourci dans la page : Escape {"key":"Escape","in":"page","selected":"n_18013e1t4z"}
+14:27:17.365 +14.85s DEBUG store.multi Sélection multiple vidée (Échap) {"ids":[]}

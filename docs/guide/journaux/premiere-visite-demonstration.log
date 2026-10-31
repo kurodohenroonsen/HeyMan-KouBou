@@ -1,44 +1,44 @@
-13:52:40.661 +1.48s INFO  demo.start [demo#1] Démonstration Kumakōgen {"steps":31,"speed":"normal"}
-13:52:40.663 +1.49s INFO  selftest.backup.start [selftest.backup#1] Mise de côté du projet avant la démonstration {"name":"MAB – Médias Alternatifs Belges","pages":2,"past":0,"kind":"demo"}
-13:52:40.680 +1.50s DEBUG selftest.backup.slot [selftest.backup#1 · 17 ms] Copie de secours écrite dans la base locale {"slot":"selftest-backup"}
-13:52:40.689 +1.51s INFO  selftest.backup.ok [selftest.backup#1 · 26 ms] Projet mis de côté (mémoire, copie de secours, version de sécurité) {"safety":"v_mvweik4qe8ve3","versions":2,"images":0}
-13:52:40.690 +1.51s INFO  demo.step Démonstration : étape 1 sur 31 (intro) {"index":0,"id":"intro","widgets":[]}
-13:52:40.726 +1.55s DEBUG demo.speed Vitesse de la démonstration : fast {"speed":"fast"}
-13:52:40.812 +1.63s INFO  demo.pause Démonstration en pause
-13:52:41.870 +2.69s INFO  demo.resume Démonstration reprise
-13:52:45.112 +5.93s INFO  demo.step Démonstration : étape 2 sur 31 (new-site) {"index":1,"id":"new-site","widgets":[]}
-13:52:45.425 +6.25s INFO  demo.step Démonstration : étape 3 sur 31 (pages) {"index":2,"id":"pages","widgets":[]}
-13:52:46.642 +7.46s INFO  demo.step Démonstration : étape 4 sur 31 (site-style) {"index":3,"id":"site-style","widgets":[]}
-13:52:47.230 +8.05s INFO  demo.step Démonstration : étape 5 sur 31 (header) {"index":4,"id":"header","widgets":["site-logo","nav-menu","lang-switch"]}
-13:52:47.761 +8.58s INFO  demo.step Démonstration : étape 6 sur 31 (footer) {"index":5,"id":"footer","widgets":["text","social","site-logo","nav-menu"]}
-13:52:48.585 +9.41s INFO  demo.step Démonstration : étape 7 sur 31 (hero) {"index":6,"id":"hero","widgets":["heading","text","button","image"]}
-13:52:51.228 +12.05s INFO  demo.step Démonstration : étape 8 sur 31 (stats) {"index":7,"id":"stats","widgets":["stats"]}
-13:52:53.178 +14.00s INFO  demo.step Démonstration : étape 9 sur 31 (features) {"index":8,"id":"features","widgets":["icon-box"]}
-13:52:56.066 +16.89s INFO  demo.step Démonstration : étape 10 sur 31 (cards) {"index":9,"id":"cards","widgets":["card"]}
-13:53:00.779 +21.60s INFO  demo.step Démonstration : étape 11 sur 31 (pilgrimage) {"index":10,"id":"pilgrimage","widgets":["icon-list","image"]}
-13:53:03.294 +24.12s INFO  demo.step Démonstration : étape 12 sur 31 (quote) {"index":11,"id":"quote","widgets":["quote"]}
-13:53:04.085 +24.91s INFO  demo.step Démonstration : étape 13 sur 31 (gallery) {"index":12,"id":"gallery","widgets":["gallery","spacer"]}
-13:53:09.012 +29.83s INFO  demo.step Démonstration : étape 14 sur 31 (video) {"index":13,"id":"video","widgets":["video"]}
-13:53:10.369 +31.19s INFO  demo.step Démonstration : étape 15 sur 31 (page2-intro) {"index":14,"id":"page2-intro","widgets":["heading","text"]}
-13:53:11.203 +32.02s INFO  demo.step Démonstration : étape 16 sur 31 (collection) {"index":15,"id":"collection","widgets":[]}
-13:53:16.224 +37.05s INFO  demo.step Démonstration : étape 17 sur 31 (agenda-lists) {"index":16,"id":"agenda-lists","widgets":["collection-list","divider","heading"]}
-13:53:18.105 +38.93s INFO  demo.step Démonstration : étape 18 sur 31 (card) {"index":17,"id":"card","widgets":["item-field"]}
-13:53:19.207 +40.03s INFO  demo.step Démonstration : étape 19 sur 31 (contact) {"index":18,"id":"contact","widgets":["icon-list","map","social","form","text"]}
-13:53:25.674 +46.50s INFO  demo.step Démonstration : étape 20 sur 31 (faq) {"index":19,"id":"faq","widgets":["accordion"]}
-13:53:28.435 +49.26s INFO  demo.step Démonstration : étape 21 sur 31 (pricing) {"index":20,"id":"pricing","widgets":["pricing"]}
-13:53:33.095 +53.92s INFO  demo.step Démonstration : étape 22 sur 31 (home-events) {"index":21,"id":"home-events","widgets":["collection-list","heading"]}
-13:53:34.633 +55.45s INFO  demo.step Démonstration : étape 23 sur 31 (component) {"index":22,"id":"component","widgets":["button","icon-list"]}
-13:53:35.327 +56.15s INFO  demo.step Démonstration : étape 24 sur 31 (mobile) {"index":23,"id":"mobile","widgets":[]}
-13:53:35.720 +56.54s INFO  demo.step Démonstration : étape 25 sur 31 (preset) {"index":24,"id":"preset","widgets":["button","card"]}
-13:53:36.891 +57.71s INFO  demo.step Démonstration : étape 26 sur 31 (translations) {"index":25,"id":"translations","widgets":[]}
-13:53:36.994 +57.82s INFO  demo.step Démonstration : étape 27 sur 31 (seo) {"index":26,"id":"seo","widgets":[]}
-13:53:37.113 +57.94s INFO  demo.step Démonstration : étape 28 sur 31 (versions) {"index":27,"id":"versions","widgets":[]}
-13:53:37.405 +58.23s INFO  demo.step Démonstration : étape 29 sur 31 (check) {"index":28,"id":"check","widgets":[]}
-13:53:37.502 +58.32s INFO  demo.step Démonstration : étape 30 sur 31 (publish) {"index":29,"id":"publish","widgets":[]}
-13:53:37.585 +58.41s INFO  demo.step Démonstration : étape 31 sur 31 (end) {"index":30,"id":"end","widgets":[]}
-13:53:38.192 +59.01s INFO  selftest.rollback.start [selftest.rollback#1] Retour arrière : le projet d’avant l’auto-test est remis {"name":"MAB – Médias Alternatifs Belges"}
-13:53:38.200 +59.02s DEBUG selftest.rollback.memory [selftest.rollback#1 · 7 ms] Projet et historique remis en mémoire {"same":true,"past":0,"future":0}
-13:53:38.236 +59.06s DEBUG selftest.rollback.saved [selftest.rollback#1 · 44 ms] Projet réenregistré et relu à l’identique {"stored":true}
-13:53:38.261 +59.08s INFO  selftest.rollback.ok [selftest.rollback#1 · 69 ms] Retour arrière terminé : projet identique à l’original {"ok":true,"same":true,"name":"MAB – Médias Alternatifs Belges","pages":2,"versions":2,"assets":11,"problems":[]}
-13:53:38.261 +59.08s INFO  demo.ok [demo#1 · 57600 ms] Démonstration terminée en 58 s {"ms":57599,"choice":"back","restored":true}
-13:53:38.261 +59.08s INFO  demo.done Démonstration : retour au site d’origine {"choice":"back"}
+14:34:47.273 +1.43s INFO  demo.start [demo#1] Démonstration Kumakōgen {"steps":31,"speed":"normal"}
+14:34:47.274 +1.43s INFO  selftest.backup.start [selftest.backup#1] Mise de côté du projet avant la démonstration {"name":"MAB – Médias Alternatifs Belges","pages":2,"past":0,"kind":"demo"}
+14:34:47.291 +1.44s DEBUG selftest.backup.slot [selftest.backup#1 · 17 ms] Copie de secours écrite dans la base locale {"slot":"selftest-backup"}
+14:34:47.294 +1.45s INFO  selftest.backup.ok [selftest.backup#1 · 20 ms] Projet mis de côté (mémoire, copie de secours, version de sécurité) {"safety":"v_mvwg0pocpcha3","versions":2,"images":0}
+14:34:47.295 +1.45s INFO  demo.step Démonstration : étape 1 sur 31 (intro) {"index":0,"id":"intro","widgets":[]}
+14:34:47.317 +1.47s DEBUG demo.speed Vitesse de la démonstration : fast {"speed":"fast"}
+14:34:47.388 +1.54s INFO  demo.pause Démonstration en pause
+14:34:48.405 +2.56s INFO  demo.resume Démonstration reprise
+14:34:51.669 +5.82s INFO  demo.step Démonstration : étape 2 sur 31 (new-site) {"index":1,"id":"new-site","widgets":[]}
+14:34:51.960 +6.11s INFO  demo.step Démonstration : étape 3 sur 31 (pages) {"index":2,"id":"pages","widgets":[]}
+14:34:53.130 +7.28s INFO  demo.step Démonstration : étape 4 sur 31 (site-style) {"index":3,"id":"site-style","widgets":[]}
+14:34:53.685 +7.84s INFO  demo.step Démonstration : étape 5 sur 31 (header) {"index":4,"id":"header","widgets":["site-logo","nav-menu","lang-switch"]}
+14:34:54.090 +8.24s INFO  demo.step Démonstration : étape 6 sur 31 (footer) {"index":5,"id":"footer","widgets":["text","social","site-logo","nav-menu"]}
+14:34:54.815 +8.97s INFO  demo.step Démonstration : étape 7 sur 31 (hero) {"index":6,"id":"hero","widgets":["heading","text","button","image"]}
+14:34:56.952 +11.11s INFO  demo.step Démonstration : étape 8 sur 31 (stats) {"index":7,"id":"stats","widgets":["stats"]}
+14:34:58.679 +12.83s INFO  demo.step Démonstration : étape 9 sur 31 (features) {"index":8,"id":"features","widgets":["icon-box"]}
+14:35:00.429 +14.58s INFO  demo.step Démonstration : étape 10 sur 31 (cards) {"index":9,"id":"cards","widgets":["card"]}
+14:35:04.089 +18.24s INFO  demo.step Démonstration : étape 11 sur 31 (pilgrimage) {"index":10,"id":"pilgrimage","widgets":["icon-list","image"]}
+14:35:06.210 +20.36s INFO  demo.step Démonstration : étape 12 sur 31 (quote) {"index":11,"id":"quote","widgets":["quote"]}
+14:35:06.829 +20.98s INFO  demo.step Démonstration : étape 13 sur 31 (gallery) {"index":12,"id":"gallery","widgets":["gallery","spacer"]}
+14:35:10.674 +24.83s INFO  demo.step Démonstration : étape 14 sur 31 (video) {"index":13,"id":"video","widgets":["video"]}
+14:35:11.707 +25.86s INFO  demo.step Démonstration : étape 15 sur 31 (page2-intro) {"index":14,"id":"page2-intro","widgets":["heading","text"]}
+14:35:12.447 +26.60s INFO  demo.step Démonstration : étape 16 sur 31 (collection) {"index":15,"id":"collection","widgets":[]}
+14:35:16.590 +30.74s INFO  demo.step Démonstration : étape 17 sur 31 (agenda-lists) {"index":16,"id":"agenda-lists","widgets":["collection-list","divider","heading"]}
+14:35:18.138 +32.29s INFO  demo.step Démonstration : étape 18 sur 31 (card) {"index":17,"id":"card","widgets":["item-field"]}
+14:35:18.960 +33.11s INFO  demo.step Démonstration : étape 19 sur 31 (contact) {"index":18,"id":"contact","widgets":["icon-list","map","social","form","text"]}
+14:35:23.563 +37.72s INFO  demo.step Démonstration : étape 20 sur 31 (faq) {"index":19,"id":"faq","widgets":["accordion"]}
+14:35:25.530 +39.68s INFO  demo.step Démonstration : étape 21 sur 31 (pricing) {"index":20,"id":"pricing","widgets":["pricing"]}
+14:35:29.415 +43.57s INFO  demo.step Démonstration : étape 22 sur 31 (home-events) {"index":21,"id":"home-events","widgets":["collection-list","heading"]}
+14:35:30.680 +44.83s INFO  demo.step Démonstration : étape 23 sur 31 (component) {"index":22,"id":"component","widgets":["button","icon-list"]}
+14:35:31.229 +45.38s INFO  demo.step Démonstration : étape 24 sur 31 (mobile) {"index":23,"id":"mobile","widgets":[]}
+14:35:31.644 +45.80s INFO  demo.step Démonstration : étape 25 sur 31 (preset) {"index":24,"id":"preset","widgets":["button","card"]}
+14:35:32.965 +47.12s INFO  demo.step Démonstration : étape 26 sur 31 (translations) {"index":25,"id":"translations","widgets":[]}
+14:35:33.051 +47.20s INFO  demo.step Démonstration : étape 27 sur 31 (seo) {"index":26,"id":"seo","widgets":[]}
+14:35:33.168 +47.32s INFO  demo.step Démonstration : étape 28 sur 31 (versions) {"index":27,"id":"versions","widgets":[]}
+14:35:33.448 +47.60s INFO  demo.step Démonstration : étape 29 sur 31 (check) {"index":28,"id":"check","widgets":[]}
+14:35:33.528 +47.68s INFO  demo.step Démonstration : étape 30 sur 31 (publish) {"index":29,"id":"publish","widgets":[]}
+14:35:33.610 +47.76s INFO  demo.step Démonstration : étape 31 sur 31 (end) {"index":30,"id":"end","widgets":[]}
+14:35:34.067 +48.22s INFO  selftest.rollback.start [selftest.rollback#1] Retour arrière : le projet d’avant l’auto-test est remis {"name":"MAB – Médias Alternatifs Belges"}
+14:35:34.073 +48.23s DEBUG selftest.rollback.memory [selftest.rollback#1 · 6 ms] Projet et historique remis en mémoire {"same":true,"past":0,"future":0}
+14:35:34.097 +48.25s DEBUG selftest.rollback.saved [selftest.rollback#1 · 30 ms] Projet réenregistré et relu à l’identique {"stored":true}
+14:35:34.142 +48.30s INFO  selftest.rollback.ok [selftest.rollback#1 · 75 ms] Retour arrière terminé : projet identique à l’original {"ok":true,"same":true,"name":"MAB – Médias Alternatifs Belges","pages":2,"versions":2,"assets":11,"problems":[]}
+14:35:34.143 +48.30s INFO  demo.ok [demo#1 · 46870 ms] Démonstration terminée en 47 s {"ms":46869,"choice":"back","restored":true}
+14:35:34.143 +48.30s INFO  demo.done Démonstration : retour au site d’origine {"choice":"back"}

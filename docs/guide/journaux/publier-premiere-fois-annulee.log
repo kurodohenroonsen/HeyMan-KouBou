@@ -1,6 +1,6 @@
-12:42:06.101 +3.54s DEBUG store.commit Modification {"source":"site","past":8,"page":"p_oouce8qb"}
-12:42:06.105 +3.55s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
-12:42:06.106 +3.55s INFO  publish.php.start [publish.php#1] Publication sur OVH (publish.php) {"url":"http://127.0.0.1:8745/publish.php"}
-12:42:06.106 +3.55s INFO  publish.first-origin Première publication vers 127.0.0.1:8745 depuis cet appareil : confirmation demandée {"kind":"php","target":"http://127.0.0.1:8745","action":"publish"}
-12:42:06.107 +3.55s DEBUG ui.dialog.open Fenêtre ouverte : Première publication vers 127.0.0.1:8745 {"id":"publishConfirmDialog","class":"audit","modal":true}
-12:42:06.177 +3.62s INFO  publish.php.cancel [publish.php#1 · 71 ms] Publication annulée : première publication vers 127.0.0.1:8745 non confirmée {"origin":"http://127.0.0.1:8745"}
+14:34:21.226 +3.35s DEBUG store.commit Modification {"source":"site","past":8,"page":"p_9zhmnm0i"}
+14:34:21.232 +3.35s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":4}
+14:34:21.233 +3.35s INFO  publish.php.start [publish.php#1] Publication sur OVH (publish.php) {"url":"http://127.0.0.1:8771/publish.php"}
+14:34:21.234 +3.36s INFO  publish.first-origin Première publication vers 127.0.0.1:8771 depuis cet appareil : confirmation demandée {"kind":"php","target":"http://127.0.0.1:8771","action":"publish"}
+14:34:21.234 +3.36s DEBUG ui.dialog.open Fenêtre ouverte : Première publication vers 127.0.0.1:8771 {"id":"publishConfirmDialog","class":"audit","modal":true}
+14:34:21.295 +3.42s INFO  publish.php.cancel [publish.php#1 · 62 ms] Publication annulée : première publication vers 127.0.0.1:8771 non confirmée {"origin":"http://127.0.0.1:8771"}

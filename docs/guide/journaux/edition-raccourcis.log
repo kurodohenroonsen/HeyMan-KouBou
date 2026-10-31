@@ -1,27 +1,27 @@
-13:40:47.531 +19.01s DEBUG canvas.key Raccourci dans la page : Alt+ArrowDown {"key":"Alt+ArrowDown","in":"page","selected":"n_005y294b07"}
-13:40:47.532 +19.01s DEBUG store.commit Modification {"source":"action","past":14,"page":"p_0x1ftvm1"}
-13:40:47.535 +19.01s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":3}
-13:40:47.551 +19.03s INFO  action.move Descendu : heading {"id":"n_005y294b07","type":"heading","delta":1,"index":1}
-13:40:47.666 +19.14s DEBUG canvas.key Raccourci dans la page : Alt+ArrowUp {"key":"Alt+ArrowUp","in":"page","selected":"n_005y294b07"}
-13:40:47.667 +19.14s DEBUG store.commit Modification {"source":"action","past":15,"page":"p_0x1ftvm1"}
-13:40:47.671 +19.15s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":2}
-13:40:47.687 +19.16s INFO  action.move Monté : heading {"id":"n_005y294b07","type":"heading","delta":-1,"index":0}
-13:40:47.842 +19.32s DEBUG ui.dialog.open Fenêtre ouverte : Raccourcis clavier {"id":"shortcutsDialog","class":"audit keys","modal":true}
-13:40:48.023 +19.50s DEBUG ui.key Raccourci : Escape {"key":"Escape","in":"button"}
-13:40:48.027 +19.50s DEBUG ui.dialog.close Fenêtre fermée : Raccourcis clavier {"id":"shortcutsDialog"}
-13:40:48.136 +19.61s DEBUG ui.key Raccourci : Ctrl+S {"key":"Ctrl+S","in":"body"}
-13:40:48.137 +19.61s INFO  project.already-saved Ctrl+S : le projet est déjà enregistré sur cet appareil (fichier .json : menu Fichier) {"status":"Modifié"}
-13:40:48.138 +19.61s INFO  ui.toast Message affiché : Déjà enregistré : chaque modification est gardée sur cet appareil. Pour un fichier : Fichier → Enregistrer le projet (.json).
-13:40:48.270 +19.75s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":13}
-13:40:48.437 +19.91s DEBUG ui.click Clic : Fichier {"el":"summary","text":"Fichier"}
-13:40:48.448 +19.92s DEBUG ui.menu Menu ouvert : fileMenu {"id":"fileMenu","open":true}
-13:40:48.485 +19.96s DEBUG ui.click Clic : Enregistrer le projet (.json) {"el":"button","id":"exportJsonBtn","text":"Enregistrer le projet (.json)"}
-13:40:48.485 +19.96s INFO  project.export-json Projet enregistré en fichier .json {"kb":38,"pages":2}
-13:40:48.488 +19.96s DEBUG ui.click Clic : a {"el":"a"}
-13:40:48.488 +19.96s INFO  ui.toast Message affiché : Projet enregistré en fichier .json.
-13:40:48.499 +19.97s DEBUG ui.menu Menu fermé : fileMenu {"id":"fileMenu","open":false}
-13:40:48.595 +20.07s DEBUG ui.key Raccourci : Ctrl+Alt+J {"key":"Ctrl+Alt+J","in":"body"}
-13:40:48.597 +20.07s DEBUG ui.dialog.open Fenêtre ouverte : 🐞 Journal de débogage {"id":"logDialog","class":"audit log-dialog","modal":true}
-13:40:48.689 +20.16s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:https://www.xn--mdia-alternatif-bnb.be"}
-13:40:48.986 +20.46s DEBUG ui.key Raccourci : Escape {"key":"Escape","in":"input"}
-13:40:48.993 +20.47s DEBUG ui.dialog.close Fenêtre fermée : 🐞 Journal de débogage {"id":"logDialog"}
+14:27:19.206 +16.69s DEBUG canvas.key Raccourci dans la page : Alt+ArrowDown {"key":"Alt+ArrowDown","in":"page","selected":"n_6k3253575d"}
+14:27:19.207 +16.69s DEBUG store.commit Modification {"source":"action","past":14,"page":"p_0juocaxz"}
+14:27:19.212 +16.69s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":5}
+14:27:19.223 +16.70s INFO  action.move Descendu : heading {"id":"n_6k3253575d","type":"heading","delta":1,"index":1}
+14:27:19.333 +16.81s DEBUG canvas.key Raccourci dans la page : Alt+ArrowUp {"key":"Alt+ArrowUp","in":"page","selected":"n_6k3253575d"}
+14:27:19.334 +16.81s DEBUG store.commit Modification {"source":"action","past":15,"page":"p_0juocaxz"}
+14:27:19.337 +16.82s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":3}
+14:27:19.348 +16.83s INFO  action.move Monté : heading {"id":"n_6k3253575d","type":"heading","delta":-1,"index":0}
+14:27:19.476 +16.96s DEBUG ui.dialog.open Fenêtre ouverte : Raccourcis clavier {"id":"shortcutsDialog","class":"audit keys","modal":true}
+14:27:19.641 +17.12s DEBUG ui.key Raccourci : Escape {"key":"Escape","in":"button"}
+14:27:19.649 +17.13s DEBUG ui.dialog.close Fenêtre fermée : Raccourcis clavier {"id":"shortcutsDialog"}
+14:27:19.756 +17.24s DEBUG ui.key Raccourci : Ctrl+S {"key":"Ctrl+S","in":"body"}
+14:27:19.757 +17.24s INFO  project.already-saved Ctrl+S : le projet est déjà enregistré sur cet appareil (fichier .json : menu Fichier) {"status":"Modifié"}
+14:27:19.757 +17.24s INFO  ui.toast Message affiché : Déjà enregistré : chaque modification est gardée sur cet appareil. Pour un fichier : Fichier → Enregistrer le projet (.json).
+14:27:19.935 +17.41s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":13}
+14:27:20.040 +17.52s DEBUG ui.click Clic : Fichier {"el":"summary","text":"Fichier"}
+14:27:20.057 +17.54s DEBUG ui.menu Menu ouvert : fileMenu {"id":"fileMenu","open":true}
+14:27:20.073 +17.55s DEBUG ui.click Clic : Enregistrer le projet (.json) {"el":"button","id":"exportJsonBtn","text":"Enregistrer le projet (.json)"}
+14:27:20.074 +17.55s INFO  project.export-json Projet enregistré en fichier .json {"kb":38,"pages":2,"images":0}
+14:27:20.076 +17.56s DEBUG ui.click Clic : a {"el":"a"}
+14:27:20.077 +17.56s INFO  ui.toast Message affiché : Projet enregistré en fichier .json.
+14:27:20.087 +17.57s DEBUG ui.menu Menu fermé : fileMenu {"id":"fileMenu","open":false}
+14:27:20.185 +17.66s DEBUG ui.key Raccourci : Ctrl+Alt+J {"key":"Ctrl+Alt+J","in":"body"}
+14:27:20.187 +17.67s DEBUG ui.dialog.open Fenêtre ouverte : 🐞 Journal de débogage {"id":"logDialog","class":"audit log-dialog","modal":true}
+14:27:20.227 +17.71s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:https://www.xn--mdia-alternatif-bnb.be"}
+14:27:20.436 +17.92s DEBUG ui.key Raccourci : Escape {"key":"Escape","in":"input"}
+14:27:20.444 +17.92s DEBUG ui.dialog.close Fenêtre fermée : 🐞 Journal de débogage {"id":"logDialog"}

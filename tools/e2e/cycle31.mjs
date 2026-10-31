@@ -167,6 +167,7 @@ export default async function (t) {
   s = await mark(page);
   await page.click('#fileMenu summary');
   await page.click('#loadDemoBtn');
+  await t.confirm(); /* cycle 33 : fenêtre d'Atelier à la place de confirm() */
   await waitCode(page, 'storage.gc', s);
   es = await since(page, s);
   const gc2 = es.find(e => e.code === 'storage.gc');
@@ -279,10 +280,12 @@ export default async function (t) {
     t.ok(await p2.locator('#hostRestoreDialog [data-restore-name]').count() === 2, 'deux copies listées avec le jeton');
     await p2.fill('#hostRestoreDialog [data-restore="code"]', 'mauvais-code-123');
     await p2.click('#hostRestoreDialog [data-restore-name] >> nth=0');
+    await t.confirm(true, p2); /* cycle 33 : confirmation dans une fenêtre d'Atelier (#hostRestoreConfirmDialog) */
     await p2.waitForSelector('#hostRestoreDialog [data-restore-status].is-error:has-text("incorrect")', { timeout: 20000 });
     t.ok((await p2.evaluate(() => window.__atelier.site.name)) !== 'Radio Hébergement 31', 'mauvais code : échec propre, projet inchangé');
     await p2.fill('#hostRestoreDialog [data-restore="code"]', CODE);
     await p2.click('#hostRestoreDialog [data-restore-name] >> nth=0');
+    await t.confirm(true, p2);
     await p2.waitForFunction(() => window.__atelier.site.name === 'Radio Hébergement 31' || /impossible/.test(document.querySelector('[data-restore-status]')?.textContent || ''), null, { timeout: 20000 });
     t.ok((await p2.evaluate(() => window.__atelier.site.name)) === 'Radio Hébergement 31', `bon code : projet restauré ${await p2.evaluate(() => document.querySelector('[data-restore-status]')?.textContent || '')}`);
     const restored = await p2.evaluate(() => window.__atelier.site);

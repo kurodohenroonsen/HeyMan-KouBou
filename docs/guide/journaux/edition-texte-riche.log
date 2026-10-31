@@ -1,18 +1,18 @@
-13:40:38.924 +10.40s DEBUG store.select Sélection : text {"id":"n_1i3n241n3s","type":"text"}
-13:40:38.944 +10.42s DEBUG edit.dblclick Double-clic sur un texte de la page {"key":"content","id":"n_1i3n241n3s"}
-13:40:38.944 +10.42s INFO  edit.start [edit#2] Édition dans la page : text · content {"id":"n_1i3n241n3s","type":"text","key":"content","field":"richtext","lang":"fr","chars":161}
-13:40:39.159 +10.63s DEBUG edit.format Mise en forme : bold (appliquée) {"cmd":"bold","action":"add","chars":6,"where":"page"}
-13:40:39.161 +10.64s DEBUG store.commit Modification {"key":"edit-n_1i3n241n3s-content-2","source":"canvas","past":6,"page":"p_0x1ftvm1"}
-13:40:39.290 +10.77s DEBUG edit.format Mise en forme : italic (appliquée) {"cmd":"italic","action":"add","chars":6,"where":"page"}
-13:40:39.291 +10.77s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_1i3n241n3s-content-2","source":"canvas","merged":true,"past":6,"page":"p_0x1ftvm1"}
-13:40:39.306 +10.78s DEBUG canvas.key Raccourci dans la page : Ctrl+I {"key":"Ctrl+I","in":"texte","selected":"n_1i3n241n3s"}
-13:40:39.456 +10.93s DEBUG edit.link-open Champ d’adresse du lien ouvert {"chars":6}
-13:40:39.526 +11.00s WARN  edit.link-invalid Lien refusé : adresse non autorisée (javascript:alert(1)). Utilise https://, mailto:, tel: ou #ancre {"url":"javascript:alert(1)","where":"page"}
-13:40:39.677 +11.15s DEBUG edit.link-open Champ d’adresse du lien ouvert {"chars":6}
-13:40:39.711 +11.19s DEBUG edit.format Mise en forme : link (appliquée) {"cmd":"link","action":"add","chars":6,"where":"page","url":"https://exemple.be"}
-13:40:39.713 +11.19s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_1i3n241n3s-content-2","source":"canvas","merged":true,"past":6,"page":"p_0x1ftvm1"}
-13:40:39.733 +11.21s DEBUG canvas.key Raccourci dans la page : Enter {"key":"Enter","in":"champ","selected":"n_1i3n241n3s"}
-13:40:39.856 +11.33s DEBUG edit.paste Collage en texte brut : 26 caractères, mise en forme et balises retirées {"chars":26,"lines":2,"rich":true,"inline":false,"where":"page"}
-13:40:39.858 +11.33s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_1i3n241n3s-content-2","source":"canvas","merged":true,"past":6,"page":"p_0x1ftvm1"}
-13:40:39.993 +11.47s INFO  edit.ok [edit#2 · 1049 ms] Édition terminée : texte enregistré (une seule étape d’annulation) {"id":"n_1i3n241n3s","key":"content","changed":true,"chars":188,"before":161,"inputs":4}
-13:40:39.996 +11.47s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"edit-done","mode":"contenu","ms":3}
+14:27:11.494 +8.97s DEBUG store.select Sélection : text {"id":"n_4u0i3c645z","type":"text"}
+14:27:11.511 +8.99s DEBUG edit.dblclick Double-clic sur un texte de la page {"key":"content","id":"n_4u0i3c645z"}
+14:27:11.511 +8.99s INFO  edit.start [edit#2] Édition dans la page : text · content {"id":"n_4u0i3c645z","type":"text","key":"content","field":"richtext","lang":"fr","chars":161}
+14:27:11.731 +9.21s DEBUG edit.format Mise en forme : bold (appliquée) {"cmd":"bold","action":"add","chars":6,"where":"page"}
+14:27:11.733 +9.21s DEBUG store.commit Modification {"key":"edit-n_4u0i3c645z-content-2","source":"canvas","past":6,"page":"p_0juocaxz"}
+14:27:11.855 +9.34s DEBUG edit.format Mise en forme : italic (appliquée) {"cmd":"italic","action":"add","chars":6,"where":"page"}
+14:27:11.857 +9.34s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_4u0i3c645z-content-2","source":"canvas","merged":true,"past":6,"page":"p_0juocaxz"}
+14:27:11.863 +9.34s DEBUG canvas.key Raccourci dans la page : Ctrl+I {"key":"Ctrl+I","in":"texte","selected":"n_4u0i3c645z"}
+14:27:11.995 +9.47s DEBUG edit.link-open Champ d’adresse du lien ouvert {"chars":6}
+14:27:12.045 +9.53s WARN  edit.link-invalid Lien refusé : adresse non autorisée (javascript:alert(1)). Utilise https://, mailto:, tel: ou #ancre {"url":"javascript:alert(1)","where":"page"}
+14:27:12.196 +9.68s DEBUG edit.link-open Champ d’adresse du lien ouvert {"chars":6}
+14:27:12.218 +9.70s DEBUG edit.format Mise en forme : link (appliquée) {"cmd":"link","action":"add","chars":6,"where":"page","url":"https://exemple.be"}
+14:27:12.220 +9.70s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_4u0i3c645z-content-2","source":"canvas","merged":true,"past":6,"page":"p_0juocaxz"}
+14:27:12.225 +9.71s DEBUG canvas.key Raccourci dans la page : Enter {"key":"Enter","in":"champ","selected":"n_4u0i3c645z"}
+14:27:12.347 +9.83s DEBUG edit.paste Collage en texte brut : 26 caractères, mise en forme et balises retirées {"chars":26,"lines":2,"rich":true,"inline":false,"where":"page"}
+14:27:12.350 +9.83s DEBUG store.commit Modification (même étape d’annulation) {"key":"edit-n_4u0i3c645z-content-2","source":"canvas","merged":true,"past":6,"page":"p_0juocaxz"}
+14:27:12.460 +9.94s INFO  edit.ok [edit#2 · 949 ms] Édition terminée : texte enregistré (une seule étape d’annulation) {"id":"n_4u0i3c645z","key":"content","changed":true,"chars":188,"before":161,"inputs":4}
+14:27:12.464 +9.94s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"edit-done","mode":"contenu","ms":3}

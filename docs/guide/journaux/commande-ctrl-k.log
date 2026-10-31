@@ -1,9 +1,10 @@
-13:34:39.612 +7.45s DEBUG ui.key Raccourci : Ctrl+K {"key":"Ctrl+K","in":"body"}
-13:34:39.615 +7.46s DEBUG ui.dialog.open Fenêtre ouverte : cmdk {"id":"cmdk","class":"cmdk","modal":true}
-13:34:39.649 +7.49s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":12}
-13:34:39.815 +7.66s INFO  cmdk.run Commande : Journal de débogage : copier, télécharger, journal du serveur {"id":"act:log","query":"journal de débogage"}
-13:34:39.822 +7.66s DEBUG ui.dialog.open Fenêtre ouverte : 🐞 Journal de débogage {"id":"logDialog","class":"audit log-dialog","modal":true}
-13:34:39.837 +7.68s DEBUG ui.change Champ modifié : cmdkInput {"el":"input","id":"cmdkInput","dialog":"cmdk","value":"journal de débogage"}
-13:34:39.839 +7.68s DEBUG ui.dialog.close Fenêtre fermée : cmdk {"id":"cmdk"}
-13:34:39.852 +7.69s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:https://www.xn--mdia-alternatif-bnb.be"}
-13:34:39.860 +7.70s DEBUG ui.key Raccourci : Escape {"key":"Escape","in":"button"}
+14:26:52.218 +6.13s DEBUG ui.key Raccourci : Ctrl+K {"key":"Ctrl+K","in":"body"}
+14:26:52.221 +6.14s DEBUG ui.dialog.open Fenêtre ouverte : cmdk {"id":"cmdk","class":"cmdk","modal":true}
+14:26:52.314 +6.23s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":12}
+14:26:52.394 +6.31s INFO  cmdk.run Commande : Journal de débogage : copier, télécharger, journal du serveur {"id":"act:log","query":"journal de débogage"}
+14:26:52.396 +6.31s DEBUG ui.dialog.open Fenêtre ouverte : 🐞 Journal de débogage {"id":"logDialog","class":"audit log-dialog","modal":true}
+14:26:52.398 +6.31s DEBUG ui.change Champ modifié : cmdkInput {"el":"input","id":"cmdkInput","dialog":"cmdk","value":"journal de débogage"}
+14:26:52.406 +6.32s DEBUG ui.dialog.close Fenêtre fermée : cmdk {"id":"cmdk"}
+14:26:52.415 +6.33s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:https://www.xn--mdia-alternatif-bnb.be"}
+14:26:52.420 +6.34s DEBUG ui.key Raccourci : Escape {"key":"Escape","in":"input"}
+14:26:52.425 +6.34s DEBUG ui.dialog.close Fenêtre fermée : 🐞 Journal de débogage {"id":"logDialog"}

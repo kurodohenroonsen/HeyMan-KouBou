@@ -1,10 +1,12 @@
-12:42:15.262 +8.13s WARN  collab.snapshot.sanitized 1 texte du projet reçu de Kudoro nettoyé (balise ou attribut hors liste blanche) {"from":"Kudoro","changed":1}
-12:42:15.262 +8.13s INFO  collab.snapshot Projet reçu de Kudoro {"docId":"doc_piege","pages":2,"comments":0}
-12:42:15.262 +8.13s INFO  store.load Projet chargé dans l’éditeur {"name":"MAB – Médias Alternatifs Belges","pages":2,"keepHistory":false}
-12:42:15.269 +8.13s INFO  canvas.load.start [canvas.load#4] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_oouce8qb","lang":"fr","device":"desktop"}
-12:42:15.273 +8.14s DEBUG canvas.load.render [canvas.load#4 · 4 ms] Page rendue {"ms":1,"kb":28}
-12:42:15.280 +8.14s INFO  canvas.load.cancel [canvas.load#4 · 11 ms] Chargement remplacé par un nouveau {"reason":"rechargement demandé"}
-12:42:15.281 +8.14s INFO  canvas.load.start [canvas.load#5] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_oouce8qb","lang":"fr","device":"desktop"}
-12:42:15.282 +8.15s DEBUG canvas.load.render [canvas.load#5 · 1 ms] Page rendue {"ms":1,"kb":28}
-12:42:15.287 +8.15s INFO  ui.toast Message affiché : Projet reçu de Kudoro.
-12:42:15.315 +8.18s INFO  canvas.load.ok [canvas.load#5 · 34 ms] Canevas prêt {"nodes":30,"scale":62,"via":"load"}
+14:34:30.437 +8.22s WARN  collab.snapshot.sanitized 1 texte du projet reçu de Kudoro nettoyé (balise ou attribut hors liste blanche) {"from":"Kudoro","changed":1}
+14:34:30.437 +8.22s INFO  collab.snapshot Projet reçu de Kudoro {"docId":"doc_piege","pages":2,"comments":0}
+14:34:30.437 +8.22s INFO  store.load Projet chargé dans l’éditeur {"name":"MAB – Médias Alternatifs Belges","pages":2,"keepHistory":false}
+14:34:30.440 +8.22s INFO  canvas.load.start [canvas.load#4] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_9zhmnm0i","lang":"fr","device":"desktop"}
+14:34:30.441 +8.23s DEBUG canvas.load.render [canvas.load#4 · 1 ms] Page rendue {"ms":1,"kb":29}
+14:34:30.444 +8.23s INFO  canvas.load.cancel [canvas.load#4 · 4 ms] Chargement remplacé par un nouveau {"reason":"rechargement demandé"}
+14:34:30.445 +8.23s INFO  canvas.load.start [canvas.load#5] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_9zhmnm0i","lang":"fr","device":"desktop"}
+14:34:30.445 +8.23s DEBUG canvas.load.render [canvas.load#5 · 0 ms] Page rendue {"ms":1,"kb":29}
+14:34:30.447 +8.23s INFO  ui.toast Message affiché : Projet reçu de Kudoro.
+14:34:30.453 +8.24s INFO  storage.persist Stockage persistant refusé par le navigateur : gardez une copie hors du navigateur (dossier, export, hébergement) {"granted":false,"source":"save"}
+14:34:30.461 +8.25s INFO  canvas.load.ok [canvas.load#5 · 16 ms] Canevas prêt {"nodes":30,"scale":76,"via":"load"}
+14:34:30.467 +8.25s INFO  storage.estimate Stockage : non persistant (le navigateur peut l’effacer) · 29 Ko utilisés sur 505 Mo {"persisted":false,"usage":29795,"quota":529403857}

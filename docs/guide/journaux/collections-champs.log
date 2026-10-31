@@ -1,27 +1,33 @@
-13:43:07.915 +38.04s DEBUG collection.tab Onglet « Champs » {"collection":"col_8sc0w7es","tab":"fields"}
-13:43:08.167 +38.29s DEBUG store.commit Modification {"source":"collections","past":66,"page":"p_zyy3g9lh"}
-13:43:08.179 +38.30s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":10}
-13:43:08.180 +38.30s INFO  collection.field.add Champ « Tarif » ajouté (Texte) {"collection":"col_8sc0w7es","field":"tarif","type":"text","i18n":true,"fields":12}
-13:43:08.180 +38.30s INFO  ui.toast Message affiché : Champ « Tarif » ajouté. Pour l’afficher : ✎ Carte ou ✎ Page de détail, puis widget « Champ » ou « Relier à un champ ».
-13:43:08.497 +38.62s WARN  collection.refused Champ non ajouté : Donnez un nom au champ. {"action":"field-add","collection":"col_8sc0w7es","type":"text","error":{"name":"Error","message":"Donnez un nom au champ.","stack":"Error: Donnez un nom au champ.\nat addField (http://localhost:8831/core/collections.js:267:19)\nat HTMLButtonElement.add (http://localhost:8831/editor/collections-ui.js:387:17)"}}
-13:43:08.497 +38.62s ERROR ui.toast Message affiché : Donnez un nom au champ. {"type":"error"}
-13:43:08.720 +38.84s DEBUG store.commit Modification {"source":"collections","past":67,"page":"p_zyy3g9lh"}
-13:43:08.725 +38.85s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":3}
-13:43:08.726 +38.85s INFO  collection.field.rename Champ renommé : « Tarif » → « Prix » {"collection":"col_8sc0w7es","field":"tarif","type":"text"}
-13:43:09.000 +39.12s DEBUG store.commit Modification {"source":"collections","past":68,"page":"p_zyy3g9lh"}
-13:43:09.005 +39.13s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":3}
-13:43:09.006 +39.13s INFO  collection.field.i18n Champ « Prix » commun à toutes les langues {"collection":"col_8sc0w7es","field":"tarif","i18n":false}
-13:43:09.303 +39.43s DEBUG store.commit Modification {"source":"collections","past":69,"page":"p_zyy3g9lh"}
-13:43:09.307 +39.43s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":3}
-13:43:09.308 +39.43s INFO  collection.field.move Champ « Prix » monté {"collection":"col_8sc0w7es","field":"tarif","from":11,"to":10}
-13:43:09.636 +39.76s DEBUG store.commit Modification {"source":"collections","past":70,"page":"p_zyy3g9lh"}
-13:43:09.640 +39.76s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":3}
-13:43:09.642 +39.77s INFO  collection.field.add Champ « Public » ajouté (Choix dans une liste) {"collection":"col_8sc0w7es","field":"public","type":"select","i18n":false,"fields":13}
-13:43:09.643 +39.77s INFO  ui.toast Message affiché : Champ « Public » ajouté. Pour l’afficher : ✎ Carte ou ✎ Page de détail, puis widget « Champ » ou « Relier à un champ ».
-13:43:09.938 +40.06s DEBUG store.commit Modification {"source":"collections","past":71,"page":"p_zyy3g9lh"}
-13:43:09.943 +40.07s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":4}
-13:43:09.944 +40.07s INFO  collection.field.options Choix du champ « Public » : 3 {"collection":"col_8sc0w7es","field":"public","before":0,"after":3,"values":["Tout public","Enfants","Adultes"]}
-13:43:10.231 +40.35s DEBUG collection.field.delete-cancel Suppression du champ annulée {"collection":"col_8sc0w7es","field":"public"}
-13:43:10.399 +40.52s DEBUG store.commit Modification {"source":"collections","past":72,"page":"p_zyy3g9lh"}
-13:43:10.403 +40.53s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":3}
-13:43:10.404 +40.53s INFO  collection.field.delete Champ « Public » supprimé avec ses valeurs (0 élément concerné) {"collection":"col_8sc0w7es","field":"public","type":"select","items":0}
+14:28:21.306 +36.79s DEBUG collection.tab Onglet « Champs » {"collection":"col_atur7ak1","tab":"fields"}
+14:28:21.561 +37.05s DEBUG store.commit Modification {"source":"collections","past":66,"page":"p_br1slt6y"}
+14:28:21.569 +37.06s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":7}
+14:28:21.570 +37.06s INFO  collection.field.add Champ « Tarif » ajouté (Texte) {"collection":"col_atur7ak1","field":"tarif","type":"text","i18n":true,"fields":12}
+14:28:21.570 +37.06s INFO  ui.toast Message affiché : Champ « Tarif » ajouté. Pour l’afficher : ✎ Carte ou ✎ Page de détail, puis widget « Champ » ou « Relier à un champ ».
+14:28:21.889 +37.38s WARN  collection.refused Champ non ajouté : Donnez un nom au champ. {"action":"field-add","collection":"col_atur7ak1","type":"text","error":{"name":"Error","message":"Donnez un nom au champ.","stack":"Error: Donnez un nom au champ.\nat addField (http://localhost:8851/core/collections.js:297:19)\nat HTMLButtonElement.add (http://localhost:8851/editor/collections-ui.js:383:17)"}}
+14:28:21.889 +37.38s ERROR ui.toast Message affiché : Donnez un nom au champ. {"type":"error"}
+14:28:22.114 +37.60s DEBUG store.commit Modification {"source":"collections","past":67,"page":"p_br1slt6y"}
+14:28:22.119 +37.61s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":4}
+14:28:22.121 +37.61s INFO  collection.field.rename Champ renommé : « Tarif » → « Prix » {"collection":"col_atur7ak1","field":"tarif","type":"text"}
+14:28:22.407 +37.90s DEBUG store.commit Modification {"source":"collections","past":68,"page":"p_br1slt6y"}
+14:28:22.411 +37.90s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":3}
+14:28:22.412 +37.90s INFO  collection.field.i18n Champ « Prix » commun à toutes les langues {"collection":"col_atur7ak1","field":"tarif","i18n":false}
+14:28:22.709 +38.20s DEBUG store.commit Modification {"source":"collections","past":69,"page":"p_br1slt6y"}
+14:28:22.714 +38.20s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":4}
+14:28:22.716 +38.20s INFO  collection.field.move Champ « Prix » monté {"collection":"col_atur7ak1","field":"tarif","from":11,"to":10}
+14:28:23.058 +38.55s DEBUG store.commit Modification {"source":"collections","past":70,"page":"p_br1slt6y"}
+14:28:23.064 +38.55s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":4}
+14:28:23.064 +38.55s INFO  collection.field.add Champ « Public » ajouté (Choix dans une liste) {"collection":"col_atur7ak1","field":"public","type":"select","i18n":false,"fields":13}
+14:28:23.065 +38.55s INFO  ui.toast Message affiché : Champ « Public » ajouté. Pour l’afficher : ✎ Carte ou ✎ Page de détail, puis widget « Champ » ou « Relier à un champ ».
+14:28:23.363 +38.85s DEBUG store.commit Modification {"source":"collections","past":71,"page":"p_br1slt6y"}
+14:28:23.369 +38.86s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":5}
+14:28:23.373 +38.86s INFO  collection.field.options Choix du champ « Public » : 3 {"collection":"col_atur7ak1","field":"public","before":0,"after":3,"values":["Tout public","Enfants","Adultes"]}
+14:28:23.657 +39.15s DEBUG ui.dialog.open Fenêtre ouverte : Supprimer le champ {"id":"fieldDeleteDialog","class":"audit audit--sm","modal":true}
+14:28:23.717 +39.20s DEBUG ui.dialog.close Fenêtre fermée : Supprimer le champ {"id":"fieldDeleteDialog"}
+14:28:23.717 +39.20s DEBUG ui.confirm Confirmation refusée : Supprimer le champ {"id":"fieldDeleteDialog","ok":false}
+14:28:23.717 +39.20s DEBUG collection.field.delete-cancel Suppression du champ annulée {"collection":"col_atur7ak1","field":"public"}
+14:28:23.888 +39.38s DEBUG ui.dialog.open Fenêtre ouverte : Supprimer le champ {"id":"fieldDeleteDialog","class":"audit audit--sm","modal":true}
+14:28:23.950 +39.44s DEBUG ui.dialog.close Fenêtre fermée : Supprimer le champ {"id":"fieldDeleteDialog"}
+14:28:23.950 +39.44s DEBUG ui.confirm Confirmation acceptée : Supprimer le champ {"id":"fieldDeleteDialog","ok":true}
+14:28:23.952 +39.44s DEBUG store.commit Modification {"source":"collections","past":72,"page":"p_br1slt6y"}
+14:28:23.956 +39.44s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":3}
+14:28:23.957 +39.45s INFO  collection.field.delete Champ « Public » supprimé avec ses valeurs (0 élément concerné) {"collection":"col_atur7ak1","field":"public","type":"select","items":0}

@@ -1,35 +1,35 @@
-13:40:41.967 +13.44s DEBUG canvas.key Raccourci dans la page : Ctrl+C {"key":"Ctrl+C","in":"page","selected":"n_18445d4j59"}
-13:40:41.968 +13.44s INFO  action.copy Copié : Bouton {"id":"n_18445d4j59","type":"button","nodes":1}
-13:40:41.968 +13.44s INFO  ui.toast Message affiché : « Bouton » copié. Sélectionnez un emplacement puis Ctrl+V.
-13:40:41.983 +13.46s DEBUG canvas.key Raccourci dans la page : Ctrl+V {"key":"Ctrl+V","in":"page","selected":"n_18445d4j59"}
-13:40:41.985 +13.46s DEBUG store.commit Modification {"source":"action","past":7,"page":"p_0x1ftvm1"}
-13:40:41.992 +13.47s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":6}
-13:40:42.003 +13.48s DEBUG store.select Sélection : button {"id":"n_3c2y4w4j3p","type":"button"}
-13:40:42.018 +13.49s INFO  action.paste Collé : button {"id":"n_3c2y4w4j3p","type":"button","parentType":"column","after":"n_18445d4j59"}
-13:40:42.215 +13.69s DEBUG canvas.key Raccourci dans la page : Ctrl+D {"key":"Ctrl+D","in":"page","selected":"n_3c2y4w4j3p"}
-13:40:42.216 +13.69s DEBUG store.commit Modification {"source":"action","past":8,"page":"p_0x1ftvm1"}
-13:40:42.221 +13.70s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":3}
-13:40:42.226 +13.70s DEBUG store.select Sélection : button {"id":"n_0p3z6o2u06","type":"button"}
-13:40:42.233 +13.71s INFO  action.duplicate Dupliqué : button {"id":"n_3c2y4w4j3p","newId":"n_0p3z6o2u06","type":"button"}
-13:40:42.411 +13.89s DEBUG canvas.key Raccourci dans la page : Delete {"key":"Delete","in":"page","selected":"n_0p3z6o2u06"}
-13:40:42.413 +13.89s DEBUG store.commit Modification {"source":"action","past":9,"page":"p_0x1ftvm1"}
-13:40:42.424 +13.90s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":9}
-13:40:42.427 +13.90s DEBUG store.select Sélection : heading {"id":"n_1z0l4o441t","type":"heading"}
-13:40:42.432 +13.91s INFO  action.delete Supprimé : button {"id":"n_0p3z6o2u06","type":"button","next":"n_1z0l4o441t"}
-13:40:42.433 +13.91s INFO  ui.toast Message affiché : Supprimé : Bouton — Ctrl+Z pour annuler
-13:40:42.631 +14.11s DEBUG canvas.key Raccourci dans la page : Ctrl+X {"key":"Ctrl+X","in":"page","selected":"n_1z0l4o441t"}
-13:40:42.632 +14.11s INFO  action.cut Coupé : Titre (dans le presse-papiers d’Atelier) {"id":"n_1z0l4o441t","type":"heading"}
-13:40:42.634 +14.11s DEBUG store.commit Modification {"source":"action","past":10,"page":"p_0x1ftvm1"}
-13:40:42.639 +14.11s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":4}
-13:40:42.642 +14.12s DEBUG store.select Sélection : text {"id":"n_1i3n241n3s","type":"text"}
-13:40:42.649 +14.12s INFO  action.delete Supprimé : heading {"id":"n_1z0l4o441t","type":"heading","next":"n_1i3n241n3s"}
-13:40:42.650 +14.13s INFO  ui.toast Message affiché : « Titre » coupé. Sélectionnez la destination puis Ctrl+V.
-13:40:42.814 +14.29s DEBUG canvas.key Raccourci dans la page : Ctrl+V {"key":"Ctrl+V","in":"page","selected":"n_1i3n241n3s"}
-13:40:42.815 +14.29s DEBUG store.commit Modification {"source":"action","past":11,"page":"p_0x1ftvm1"}
-13:40:42.819 +14.29s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":3}
-13:40:42.825 +14.30s DEBUG store.select Sélection : heading {"id":"n_2s2y3y702p","type":"heading"}
-13:40:42.832 +14.31s INFO  action.paste Collé : heading {"id":"n_2s2y3y702p","type":"heading","parentType":"column","after":"n_1i3n241n3s"}
-13:40:42.993 +14.47s DEBUG canvas.key Raccourci dans la page : Alt+ArrowUp {"key":"Alt+ArrowUp","in":"page","selected":"n_2s2y3y702p"}
-13:40:42.994 +14.47s DEBUG store.commit Modification {"source":"action","past":12,"page":"p_0x1ftvm1"}
-13:40:42.999 +14.47s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":4}
-13:40:43.016 +14.49s INFO  action.move Monté : heading {"id":"n_2s2y3y702p","type":"heading","delta":-1,"index":3}
+14:27:14.206 +11.69s DEBUG canvas.key Raccourci dans la page : Ctrl+C {"key":"Ctrl+C","in":"page","selected":"n_2f28155226"}
+14:27:14.206 +11.69s INFO  action.copy Copié : Bouton {"id":"n_2f28155226","type":"button","nodes":1}
+14:27:14.206 +11.69s INFO  ui.toast Message affiché : « Bouton » copié. Sélectionnez un emplacement puis Ctrl+V.
+14:27:14.211 +11.69s DEBUG canvas.key Raccourci dans la page : Ctrl+V {"key":"Ctrl+V","in":"page","selected":"n_2f28155226"}
+14:27:14.213 +11.69s DEBUG store.commit Modification {"source":"action","past":7,"page":"p_0juocaxz"}
+14:27:14.217 +11.70s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":3}
+14:27:14.224 +11.70s DEBUG store.select Sélection : button {"id":"n_442a64515a","type":"button"}
+14:27:14.231 +11.71s INFO  action.paste Collé : button {"id":"n_442a64515a","type":"button","parentType":"column","after":"n_2f28155226"}
+14:27:14.402 +11.88s DEBUG canvas.key Raccourci dans la page : Ctrl+D {"key":"Ctrl+D","in":"page","selected":"n_442a64515a"}
+14:27:14.403 +11.88s DEBUG store.commit Modification {"source":"action","past":8,"page":"p_0juocaxz"}
+14:27:14.407 +11.89s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":2}
+14:27:14.412 +11.89s DEBUG store.select Sélection : button {"id":"n_0m3i3n603k","type":"button"}
+14:27:14.418 +11.90s INFO  action.duplicate Dupliqué : button {"id":"n_442a64515a","newId":"n_0m3i3n603k","type":"button"}
+14:27:14.578 +12.06s DEBUG canvas.key Raccourci dans la page : Delete {"key":"Delete","in":"page","selected":"n_0m3i3n603k"}
+14:27:14.579 +12.06s DEBUG store.commit Modification {"source":"action","past":9,"page":"p_0juocaxz"}
+14:27:14.583 +12.06s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":2}
+14:27:14.587 +12.07s DEBUG store.select Sélection : heading {"id":"n_314q0j5f4m","type":"heading"}
+14:27:14.594 +12.07s INFO  action.delete Supprimé : button {"id":"n_0m3i3n603k","type":"button","next":"n_314q0j5f4m"}
+14:27:14.594 +12.07s INFO  ui.toast Message affiché : Supprimé : Bouton — Ctrl+Z pour annuler
+14:27:14.752 +12.23s DEBUG canvas.key Raccourci dans la page : Ctrl+X {"key":"Ctrl+X","in":"page","selected":"n_314q0j5f4m"}
+14:27:14.753 +12.23s INFO  action.cut Coupé : Titre (dans le presse-papiers d’Atelier) {"id":"n_314q0j5f4m","type":"heading"}
+14:27:14.753 +12.23s DEBUG store.commit Modification {"source":"action","past":10,"page":"p_0juocaxz"}
+14:27:14.757 +12.24s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":3}
+14:27:14.760 +12.24s DEBUG store.select Sélection : text {"id":"n_4u0i3c645z","type":"text"}
+14:27:14.766 +12.25s INFO  action.delete Supprimé : heading {"id":"n_314q0j5f4m","type":"heading","next":"n_4u0i3c645z"}
+14:27:14.766 +12.25s INFO  ui.toast Message affiché : « Titre » coupé. Sélectionnez la destination puis Ctrl+V.
+14:27:14.927 +12.41s DEBUG canvas.key Raccourci dans la page : Ctrl+V {"key":"Ctrl+V","in":"page","selected":"n_4u0i3c645z"}
+14:27:14.928 +12.41s DEBUG store.commit Modification {"source":"action","past":11,"page":"p_0juocaxz"}
+14:27:14.932 +12.41s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":3}
+14:27:14.938 +12.42s DEBUG store.select Sélection : heading {"id":"n_18013e1t4z","type":"heading"}
+14:27:14.945 +12.43s INFO  action.paste Collé : heading {"id":"n_18013e1t4z","type":"heading","parentType":"column","after":"n_4u0i3c645z"}
+14:27:15.111 +12.59s DEBUG canvas.key Raccourci dans la page : Alt+ArrowUp {"key":"Alt+ArrowUp","in":"page","selected":"n_18013e1t4z"}
+14:27:15.112 +12.59s DEBUG store.commit Modification {"source":"action","past":12,"page":"p_0juocaxz"}
+14:27:15.116 +12.60s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":3}
+14:27:15.129 +12.61s INFO  action.move Monté : heading {"id":"n_18013e1t4z","type":"heading","delta":-1,"index":3}

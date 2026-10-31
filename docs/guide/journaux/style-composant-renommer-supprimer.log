@@ -1,16 +1,16 @@
-13:41:08.039 +39.51s DEBUG store.commit Modification {"source":"site","past":46,"page":"p_0x1ftvm1"}
-13:41:08.057 +39.53s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":12}
-13:41:08.061 +39.54s INFO  action.component-rename Composant renommé {"component":"cp_8zu4cb39","chars":16}
-13:41:08.270 +39.74s DEBUG structure.open Panneau Structure ouvert {"rows":42}
-13:41:08.406 +39.88s DEBUG store.select Sélection : heading {"id":"n_005y294b07","type":"heading"}
-13:41:08.437 +39.91s DEBUG canvas.scroll Défilement vers l’élément sélectionné {"id":"n_005y294b07","from":457,"to":0}
-13:41:08.471 +39.95s DEBUG inspector.tab Onglet de l’inspecteur : Avancé {"tab":"advanced","from":"style","type":"heading"}
-13:41:08.521 +40.00s WARN  action.refused Action « créer un composant » refusée : une autre modification (composant, en-tête…) est en cours {"action":"créer un composant","reason":"edit-target","edit":"header"}
-13:41:08.522 +40.00s ERROR ui.toast Message affiché : Terminez d’abord la modification en cours. {"type":"error"}
-13:41:08.643 +40.12s DEBUG storage.save Projet enregistré sur cet appareil {"ms":3,"kb":20}
-13:41:08.774 +40.25s DEBUG ui.dialog.open Fenêtre ouverte : Supprimer le composant {"id":"componentDeleteDialog","class":"audit audit--sm","modal":true}
-13:41:08.864 +40.34s DEBUG ui.dialog.close Fenêtre fermée : Supprimer le composant {"id":"componentDeleteDialog"}
-13:41:08.864 +40.34s DEBUG ui.confirm Confirmation acceptée : Supprimer le composant {"id":"componentDeleteDialog","ok":true}
-13:41:08.865 +40.34s DEBUG store.commit Modification {"source":"site","past":47,"page":"p_0x1ftvm1"}
-13:41:08.872 +40.35s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":4}
-13:41:08.878 +40.35s INFO  action.component-delete Composant « Appel à l’action » supprimé : 2 instances deviennent des copies {"component":"cp_8zu4cb39","uses":2}
+14:27:39.795 +37.27s DEBUG store.commit Modification {"source":"site","past":46,"page":"p_0juocaxz"}
+14:27:39.802 +37.28s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
+14:27:39.803 +37.28s INFO  action.component-rename Composant renommé {"component":"cp_e9mzdbns","chars":16}
+14:27:39.994 +37.47s DEBUG structure.open Panneau Structure ouvert {"rows":42}
+14:27:40.132 +37.61s DEBUG store.select Sélection : heading {"id":"n_6k3253575d","type":"heading"}
+14:27:40.162 +37.64s DEBUG canvas.scroll Défilement vers l’élément sélectionné {"id":"n_6k3253575d","from":500,"to":0}
+14:27:40.192 +37.67s DEBUG inspector.tab Onglet de l’inspecteur : Avancé {"tab":"advanced","from":"style","type":"heading"}
+14:27:40.241 +37.72s WARN  action.refused Action « créer un composant » refusée : une autre modification (composant, en-tête…) est en cours {"action":"créer un composant","reason":"edit-target","edit":"header"}
+14:27:40.241 +37.72s ERROR ui.toast Message affiché : Terminez d’abord la modification en cours. {"type":"error"}
+14:27:40.398 +37.88s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":20}
+14:27:40.477 +37.96s DEBUG ui.dialog.open Fenêtre ouverte : Supprimer le composant {"id":"componentDeleteDialog","class":"audit audit--sm","modal":true}
+14:27:40.552 +38.03s DEBUG ui.dialog.close Fenêtre fermée : Supprimer le composant {"id":"componentDeleteDialog"}
+14:27:40.553 +38.03s DEBUG ui.confirm Confirmation acceptée : Supprimer le composant {"id":"componentDeleteDialog","ok":true}
+14:27:40.554 +38.03s DEBUG store.commit Modification {"source":"site","past":47,"page":"p_0juocaxz"}
+14:27:40.561 +38.04s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":4}
+14:27:40.566 +38.05s INFO  action.component-delete Composant « Appel à l’action » supprimé : 2 instances deviennent des copies {"component":"cp_e9mzdbns","uses":2}

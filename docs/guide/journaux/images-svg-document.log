@@ -1,24 +1,22 @@
-13:52:04.346 +3.65s DEBUG library.insert Bibliothèque : clic sur « Galerie » {"type":"gallery","how":"clic"}
-13:52:04.348 +3.65s DEBUG store.commit Modification {"source":"library","past":4,"page":"p_flrn81mp"}
-13:52:04.353 +3.65s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"library","mode":"contenu","ms":4}
-13:52:04.361 +3.66s DEBUG store.select Sélection : gallery {"id":"n_2v495f4p1t","type":"gallery"}
-13:52:04.364 +3.66s INFO  action.add Widget ajouté : Galerie {"type":"gallery","id":"n_2v495f4p1t","parentType":"column"}
-13:52:04.701 +4.00s INFO  inspector.image.start [inspector.image#1] Import d’une image {"field":"src","type":"image/svg+xml","kb":0}
-13:52:04.701 +4.00s INFO  image.svg.start [image.svg#1] Import du SVG « logo-c33.svg » {"name":"logo-c33.svg","type":"image/svg+xml","kb":1}
-13:52:04.727 +4.03s INFO  image.svg.ok [image.svg#1 · 26 ms] SVG prêt : 1 Ko, gardé vectoriel {"width":120,"height":40,"kb":1,"removed":0}
-13:52:04.727 +4.03s DEBUG inspector.image.webp [inspector.image#1 · 26 ms] Image convertie en SVG {"mime":"image/svg+xml","width":120,"height":40,"kb":1}
-13:52:04.729 +4.03s DEBUG store.commit Modification {"past":5,"page":"p_flrn81mp"}
-13:52:04.735 +4.04s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":5}
-13:52:04.742 +4.04s INFO  inspector.image.ok [inspector.image#1 · 41 ms] Image ajoutée : 120×40 px {"asset":"img_lkruauo8","field":"src"}
-13:52:04.742 +4.04s INFO  onboarding.step-done Pour commencer : « Mettre une image » fait (14 %) {"step":"image","done":1,"total":7,"percent":14,"by":"inspector.image.ok"}
-13:52:04.743 +4.04s INFO  ui.toast Message affiché : Image ajoutée en SVG : 120×40 px, 1 Ko.
-13:52:05.108 +4.41s DEBUG library.insert Bibliothèque : clic sur « Bouton » {"type":"button","how":"clic"}
-13:52:05.109 +4.41s DEBUG store.commit Modification {"source":"library","past":6,"page":"p_flrn81mp"}
-13:52:05.113 +4.41s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"library","mode":"contenu","ms":3}
-13:52:05.120 +4.42s DEBUG store.select Sélection : button {"id":"n_2f463a5a0q","type":"button"}
-13:52:05.122 +4.42s INFO  action.add Widget ajouté : Bouton {"type":"button","id":"n_2f463a5a0q","parentType":"column"}
-13:52:05.456 +4.76s INFO  inspector.document.start [inspector.document#1] Import du fichier « statuts-c33.pdf » {"field":"file","name":"statuts-c33.pdf","kb":3}
-13:52:05.461 +4.76s DEBUG store.commit Modification {"past":7,"page":"p_flrn81mp"}
-13:52:05.464 +4.76s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":3}
-13:52:05.469 +4.77s INFO  inspector.document.ok [inspector.document#1 · 13 ms] Fichier ajouté : statuts-c33.pdf (PDF, 3 Ko) {"asset":"doc_8y953zd6","file":"statuts-c33.pdf","mime":"application/pdf","kb":3}
-13:52:05.469 +4.77s INFO  ui.toast Message affiché : Fichier ajouté : statuts-c33.pdf (PDF, 3 Ko).
+14:38:28.180 +2.90s DEBUG library.insert Bibliothèque : clic sur « Galerie » {"type":"gallery","how":"clic"}
+14:38:28.181 +2.90s DEBUG store.commit Modification {"source":"library","past":4,"page":"p_4pf79qyw"}
+14:38:28.184 +2.90s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"library","mode":"contenu","ms":3}
+14:38:28.189 +2.91s DEBUG store.select Sélection : gallery {"id":"n_094x0n3s15","type":"gallery"}
+14:38:28.190 +2.91s INFO  action.add Widget ajouté : Galerie {"type":"gallery","id":"n_094x0n3s15","parentType":"column"}
+14:38:28.515 +3.23s INFO  inspector.image.start [inspector.image#1] Import d’une image {"field":"src","type":"image/svg+xml","kb":0}
+14:38:28.516 +3.24s INFO  image.svg.start [image.svg#1] Import du SVG « logo-c33.svg » {"name":"logo-c33.svg","type":"image/svg+xml","kb":1}
+14:38:28.525 +3.25s INFO  image.svg.ok [image.svg#1 · 9 ms] SVG prêt : 1 Ko, gardé vectoriel {"width":120,"height":40,"kb":1,"removed":0}
+14:38:28.525 +3.25s DEBUG inspector.image.webp [inspector.image#1 · 10 ms] Image convertie en SVG {"mime":"image/svg+xml","width":120,"height":40,"kb":1}
+14:38:28.527 +3.25s DEBUG store.commit Modification {"past":5,"page":"p_4pf79qyw"}
+14:38:28.536 +3.26s INFO  inspector.image.ok [inspector.image#1 · 21 ms] Image ajoutée : 120×40 px {"asset":"img_ctnal3up","field":"src"}
+14:38:28.536 +3.26s INFO  onboarding.step-done Pour commencer : « Mettre une image » fait (14 %) {"step":"image","done":1,"total":7,"percent":14,"by":"inspector.image.ok"}
+14:38:28.537 +3.26s INFO  ui.toast Message affiché : Image ajoutée en SVG : 120×40 px, 1 Ko.
+14:38:28.881 +3.60s DEBUG library.insert Bibliothèque : clic sur « Bouton » {"type":"button","how":"clic"}
+14:38:28.882 +3.60s DEBUG store.commit Modification {"source":"library","past":6,"page":"p_4pf79qyw"}
+14:38:28.885 +3.60s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"library","mode":"contenu","ms":3}
+14:38:28.893 +3.61s DEBUG store.select Sélection : button {"id":"n_02194q5c25","type":"button"}
+14:38:28.895 +3.62s INFO  action.add Widget ajouté : Bouton {"type":"button","id":"n_02194q5c25","parentType":"column"}
+14:38:29.222 +3.94s INFO  inspector.document.start [inspector.document#1] Import du fichier « statuts-c33.pdf » {"field":"file","name":"statuts-c33.pdf","kb":3}
+14:38:29.227 +3.95s DEBUG store.commit Modification {"past":7,"page":"p_4pf79qyw"}
+14:38:29.233 +3.95s INFO  inspector.document.ok [inspector.document#1 · 11 ms] Fichier ajouté : statuts-c33.pdf (PDF, 3 Ko) {"asset":"doc_z260easr","file":"statuts-c33.pdf","mime":"application/pdf","kb":3}
+14:38:29.233 +3.95s INFO  ui.toast Message affiché : Fichier ajouté : statuts-c33.pdf (PDF, 3 Ko).

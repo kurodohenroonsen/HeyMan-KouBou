@@ -1,5 +1,11 @@
-13:42:57.282 +27.41s DEBUG page.menu.auto-cancel Retour au menu automatique annulé
-13:42:57.317 +27.44s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":13}
-13:42:57.448 +27.57s DEBUG store.commit Modification {"source":"pages","past":50,"page":"p_y6hkhp5h"}
-13:42:57.453 +27.58s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":2}
-13:42:57.454 +27.58s INFO  page.menu.auto Menu automatique rétabli (toutes les pages, dans l’ordre) {"dropped":4}
+14:28:11.144 +26.63s DEBUG ui.dialog.open Fenêtre ouverte : Revenir au menu automatique {"id":"menuAutoDialog","class":"audit audit--sm","modal":true}
+14:28:11.201 +26.69s DEBUG ui.dialog.close Fenêtre fermée : Revenir au menu automatique {"id":"menuAutoDialog"}
+14:28:11.201 +26.69s DEBUG ui.confirm Confirmation refusée : Revenir au menu automatique {"id":"menuAutoDialog","ok":false}
+14:28:11.201 +26.69s DEBUG page.menu.auto-cancel Retour au menu automatique annulé
+14:28:11.210 +26.70s DEBUG storage.save Projet enregistré sur cet appareil {"ms":5,"kb":13}
+14:28:11.371 +26.86s DEBUG ui.dialog.open Fenêtre ouverte : Revenir au menu automatique {"id":"menuAutoDialog","class":"audit audit--sm","modal":true}
+14:28:11.434 +26.92s DEBUG ui.dialog.close Fenêtre fermée : Revenir au menu automatique {"id":"menuAutoDialog"}
+14:28:11.435 +26.92s DEBUG ui.confirm Confirmation acceptée : Revenir au menu automatique {"id":"menuAutoDialog","ok":true}
+14:28:11.435 +26.92s DEBUG store.commit Modification {"source":"pages","past":50,"page":"p_e5t0kx20"}
+14:28:11.442 +26.93s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":3}
+14:28:11.443 +26.93s INFO  page.menu.auto Menu automatique rétabli (toutes les pages, dans l’ordre) {"dropped":4}

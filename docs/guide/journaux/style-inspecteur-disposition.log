@@ -1,3 +1,3 @@
-13:40:51.003 +22.48s DEBUG store.commit Modification {"past":20,"page":"p_0x1ftvm1"}
-13:40:51.007 +22.48s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":3}
-13:40:51.013 +22.49s INFO  inspector.layout Disposition des colonnes : 3 colonnes {"id":"n_5i6j6y091p","spans":[4,4,4],"before":"7-5"}
+14:27:22.209 +19.69s DEBUG store.commit Modification {"past":20,"page":"p_0juocaxz"}
+14:27:22.214 +19.69s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":4}
+14:27:22.219 +19.70s INFO  inspector.layout Disposition des colonnes : 3 colonnes {"id":"n_1c213e4050","spans":[4,4,4],"before":"7-5"}

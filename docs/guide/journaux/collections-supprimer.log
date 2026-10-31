@@ -1,9 +1,15 @@
-13:43:18.947 +49.07s INFO  collection.open Collection « Médias membres » ouverte : 0 élément, 6 champs {"id":"col_zedhkffu","kind":"members","items":0,"drafts":0,"fields":6,"tab":"items","item":null}
-13:43:18.947 +49.07s DEBUG ui.dialog.open Fenêtre ouverte : 📻 Médias membres /medias-membres/ {"id":"collectionDialog","class":"audit col-dialog","modal":true}
-13:43:19.014 +49.14s DEBUG collection.tab Onglet « Réglages » {"collection":"col_zedhkffu","tab":"settings"}
-13:43:19.205 +49.33s DEBUG collection.delete-cancel Suppression de la collection annulée {"collection":"col_zedhkffu"}
-13:43:19.389 +49.51s DEBUG store.commit Modification {"source":"collections","past":81,"page":"p_zyy3g9lh"}
-13:43:19.399 +49.52s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":7}
-13:43:19.400 +49.52s INFO  collection.delete Collection « Médias membres » supprimée avec ses 0 éléments (Ctrl+Z pour annuler) {"collection":"col_zedhkffu","kind":"members","items":0}
-13:43:19.401 +49.52s INFO  ui.toast Message affiché : Collection « Médias membres » supprimée.
-13:43:19.413 +49.54s DEBUG ui.dialog.close Fenêtre fermée : 📻 Médias membres /medias-membres/ {"id":"collectionDialog"}
+14:28:31.671 +47.16s INFO  collection.open Collection « Médias membres » ouverte : 0 élément, 6 champs {"id":"col_taeluqsm","kind":"members","items":0,"drafts":0,"fields":6,"tab":"items","item":null}
+14:28:31.671 +47.16s DEBUG ui.dialog.open Fenêtre ouverte : Médias membres {"id":"collectionDialog","class":"audit col-dialog","modal":true}
+14:28:31.721 +47.21s DEBUG collection.tab Onglet « Réglages » {"collection":"col_taeluqsm","tab":"settings"}
+14:28:31.906 +47.39s DEBUG ui.dialog.open Fenêtre ouverte : Supprimer la collection {"id":"collectionDeleteDialog","class":"audit audit--sm","modal":true}
+14:28:31.966 +47.45s DEBUG ui.dialog.close Fenêtre fermée : Supprimer la collection {"id":"collectionDeleteDialog"}
+14:28:31.967 +47.45s DEBUG ui.confirm Confirmation refusée : Supprimer la collection {"id":"collectionDeleteDialog","ok":false}
+14:28:31.967 +47.45s DEBUG collection.delete-cancel Suppression de la collection annulée {"collection":"col_taeluqsm"}
+14:28:32.121 +47.61s DEBUG ui.dialog.open Fenêtre ouverte : Supprimer la collection {"id":"collectionDeleteDialog","class":"audit audit--sm","modal":true}
+14:28:32.183 +47.67s DEBUG ui.dialog.close Fenêtre fermée : Supprimer la collection {"id":"collectionDeleteDialog"}
+14:28:32.183 +47.67s DEBUG ui.confirm Confirmation acceptée : Supprimer la collection {"id":"collectionDeleteDialog","ok":true}
+14:28:32.185 +47.67s DEBUG store.commit Modification {"source":"collections","past":81,"page":"p_br1slt6y"}
+14:28:32.193 +47.68s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"collections","mode":"contenu","ms":7}
+14:28:32.195 +47.68s INFO  collection.delete Collection « Médias membres » supprimée avec ses 0 éléments (Ctrl+Z pour annuler) {"collection":"col_taeluqsm","kind":"members","items":0}
+14:28:32.195 +47.68s INFO  ui.toast Message affiché : Collection « Médias membres » supprimée.
+14:28:32.208 +47.70s DEBUG ui.dialog.close Fenêtre fermée : 📻 Médias membres /medias-membres/ {"id":"collectionDialog"}

@@ -1,18 +1,18 @@
-13:41:09.454 +40.93s DEBUG store.commit Modification {"key":null,"source":"site","past":48,"page":"p_0x1ftvm1"}
-13:41:09.462 +40.94s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":4}
-13:41:09.470 +40.95s INFO  settings.layout-customize En-tête converti en blocs modifiables {"zone":"header"}
-13:41:09.470 +40.95s INFO  settings.layout-edit Modification de l’en-tête en blocs {"zone":"header"}
-13:41:09.471 +40.95s INFO  store.edit-target Édition : header {"kind":"header"}
-13:41:09.480 +40.95s INFO  canvas.load.start [canvas.load#9] Chargement complet du canevas : modification de l’en-tête {"reason":"modification de l’en-tête","page":"p_0x1ftvm1","lang":"fr","device":"desktop","edit":"header"}
-13:41:09.481 +40.96s DEBUG canvas.load.render [canvas.load#9 · 1 ms] Page rendue {"ms":1,"kb":36}
-13:41:09.519 +40.99s INFO  canvas.load.ok [canvas.load#9 · 39 ms] Canevas prêt {"nodes":8,"scale":76,"via":"load"}
-13:41:09.959 +41.43s DEBUG store.select Sélection : nav-menu {"id":"n_1z6564592k","type":"nav-menu"}
-13:41:10.003 +41.48s DEBUG inspector.tab Onglet de l’inspecteur : Contenu {"tab":"content","from":"advanced","type":"nav-menu"}
-13:41:10.012 +41.49s DEBUG inspector.field Champ modifié : Alignement {"key":"align","type":"select","how":"liste","option":"start"}
-13:41:10.014 +41.49s DEBUG store.commit Modification {"past":49,"page":"p_0x1ftvm1","edit":"header"}
-13:41:10.018 +41.49s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":3}
-13:41:10.253 +41.73s INFO  store.edit-target Retour à la page
-13:41:10.262 +41.74s INFO  canvas.load.start [canvas.load#10] Chargement complet du canevas : retour à la page {"reason":"retour à la page","page":"p_0x1ftvm1","lang":"fr","device":"desktop"}
-13:41:10.264 +41.74s DEBUG canvas.load.render [canvas.load#10 · 2 ms] Page rendue {"ms":1,"kb":39}
-13:41:10.286 +41.76s INFO  canvas.load.ok [canvas.load#10 · 24 ms] Canevas prêt {"nodes":68,"scale":76,"via":"load"}
-13:41:10.617 +42.09s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":25}
+14:27:41.111 +38.59s DEBUG store.commit Modification {"key":null,"source":"site","past":48,"page":"p_0juocaxz"}
+14:27:41.123 +38.60s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":5}
+14:27:41.136 +38.62s INFO  settings.layout-customize En-tête converti en blocs modifiables {"zone":"header"}
+14:27:41.136 +38.62s INFO  settings.layout-edit Modification de l’en-tête en blocs {"zone":"header"}
+14:27:41.136 +38.62s INFO  store.edit-target Édition : header {"kind":"header"}
+14:27:41.150 +38.63s INFO  canvas.load.start [canvas.load#9] Chargement complet du canevas : modification de l’en-tête {"reason":"modification de l’en-tête","page":"p_0juocaxz","lang":"fr","device":"desktop","edit":"header"}
+14:27:41.152 +38.63s DEBUG canvas.load.render [canvas.load#9 · 2 ms] Page rendue {"ms":1,"kb":36}
+14:27:41.204 +38.68s INFO  canvas.load.ok [canvas.load#9 · 54 ms] Canevas prêt {"nodes":8,"scale":76,"via":"load"}
+14:27:41.628 +39.11s DEBUG store.select Sélection : nav-menu {"id":"n_406g226l19","type":"nav-menu"}
+14:27:41.673 +39.15s DEBUG inspector.tab Onglet de l’inspecteur : Contenu {"tab":"content","from":"advanced","type":"nav-menu"}
+14:27:41.685 +39.16s DEBUG inspector.field Champ modifié : Alignement {"key":"align","type":"select","how":"liste","option":"start"}
+14:27:41.686 +39.17s DEBUG store.commit Modification {"past":49,"page":"p_0juocaxz","edit":"header"}
+14:27:41.690 +39.17s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":4}
+14:27:41.923 +39.40s INFO  store.edit-target Retour à la page
+14:27:41.934 +39.41s INFO  canvas.load.start [canvas.load#10] Chargement complet du canevas : retour à la page {"reason":"retour à la page","page":"p_0juocaxz","lang":"fr","device":"desktop"}
+14:27:41.935 +39.41s DEBUG canvas.load.render [canvas.load#10 · 1 ms] Page rendue {"ms":1,"kb":39}
+14:27:41.965 +39.45s INFO  canvas.load.ok [canvas.load#10 · 31 ms] Canevas prêt {"nodes":68,"scale":76,"via":"load"}
+14:27:42.288 +39.77s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":25}

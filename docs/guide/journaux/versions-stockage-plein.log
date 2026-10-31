@@ -1,4 +1,4 @@
-13:43:25.849 +55.97s INFO  version.save.start [version.save#5] Enregistrement d’une version manuelle : « Essai stockage plein » {"kind":"manual","name":"Essai stockage plein"}
-13:43:25.850 +55.97s DEBUG storage.version-save Version enregistrée {"id":"v_mvwe6o0qs29oz","name":"Essai stockage plein","kind":"manual"}
-13:43:25.852 +55.98s ERROR version.save.fail [version.save#5 · 3 ms] Version non enregistrée : Quota dépassé (simulé) {"kind":"manual","hint":"Espace de stockage du navigateur plein : supprimez d’anciennes versions ou enregistrez le projet en .json","error":{"name":"QuotaExceededError","message":"Quota dépassé (simulé)","code":22}}
-13:43:25.852 +55.98s ERROR ui.toast Message affiché : Version non enregistrée : Quota dépassé (simulé) {"type":"error"}
+14:28:38.207 +53.70s INFO  version.save.start [version.save#5] Enregistrement d’une version manuelle : « Essai stockage plein » {"kind":"manual","name":"Essai stockage plein"}
+14:28:38.208 +53.70s DEBUG storage.version-save Version enregistrée {"id":"v_mvwfssvz059co","name":"Essai stockage plein","kind":"manual"}
+14:28:38.208 +53.70s ERROR version.save.fail [version.save#5 · 1 ms] Version non enregistrée : Quota dépassé (simulé) {"kind":"manual","hint":"Espace de stockage du navigateur plein : supprimez d’anciennes versions ou enregistrez le projet en .json","error":{"name":"QuotaExceededError","message":"Quota dépassé (simulé)","code":22}}
+14:28:38.209 +53.70s ERROR ui.toast Message affiché : Version non enregistrée : Quota dépassé (simulé) {"type":"error"}

@@ -1,25 +1,30 @@
-13:34:38.125 +5.96s INFO  project.cancel Remplacement annulé {"action":"demo"}
-13:34:38.221 +6.06s DEBUG ui.dialog.open Fenêtre ouverte : Nouveau site vide {"id":"newSiteDialog","class":"audit new-site","modal":true}
-13:34:38.422 +6.26s DEBUG storage.save Projet enregistré sur cet appareil {"ms":14,"kb":12}
-13:34:38.459 +6.30s INFO  version.save.start [version.save#2] Enregistrement d’une version de sécurité : « Avant un nouveau site vide » {"kind":"safety","name":"Avant un nouveau site vide"}
-13:34:38.460 +6.30s DEBUG storage.version-save Version enregistrée {"id":"v_mvwdvd30jbs2h","name":"Avant un nouveau site vide","kind":"safety"}
-13:34:38.465 +6.30s DEBUG ui.dialog.close Fenêtre fermée : Nouveau site vide {"id":"newSiteDialog"}
-13:34:38.491 +6.33s DEBUG version.save.prune [version.save#2 · 32 ms] Aucune ancienne version à supprimer {"total":3}
-13:34:38.492 +6.33s INFO  version.save.ok [version.save#2 · 33 ms] Version de sécurité enregistrée (2 pages) {"id":"v_mvwdvd30jbs2h","kind":"safety","at":"2026-10-31T12:34:38.460Z","pages":2,"kb":12}
-13:34:38.492 +6.33s INFO  store.load Projet chargé dans l’éditeur {"name":"Nouveau site","pages":1,"keepHistory":true}
-13:34:38.494 +6.33s INFO  canvas.load.start [canvas.load#3] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_0j5p507s","lang":"fr","device":"desktop"}
-13:34:38.495 +6.33s DEBUG canvas.load.render [canvas.load#3 · 1 ms] Page rendue {"ms":0,"kb":19}
-13:34:38.496 +6.34s INFO  project.new Nouveau site vide : « Nouveau site », langue principale Français {"lang":"fr","languages":["fr","nl","de","en"]}
-13:34:38.497 +6.34s INFO  onboarding.step-done Pour commencer : « Choisir les langues » fait (29 %) {"step":"languages","done":2,"total":7,"percent":29,"by":"project.new"}
-13:34:38.513 +6.35s INFO  canvas.load.ok [canvas.load#3 · 19 ms] Canevas prêt {"nodes":0,"scale":76,"via":"load"}
-13:34:39.021 +6.86s INFO  version.save.start [version.save#3] Enregistrement d’une version de sécurité : « Avant de recharger l’exemple » {"kind":"safety","name":"Avant de recharger l’exemple"}
-13:34:39.021 +6.86s DEBUG storage.version-save Version enregistrée {"id":"v_mvwdvdilqk0jo","name":"Avant de recharger l’exemple","kind":"safety"}
-13:34:39.034 +6.87s DEBUG version.save.prune [version.save#3 · 12 ms] Aucune ancienne version à supprimer {"total":4}
-13:34:39.034 +6.87s INFO  version.save.ok [version.save#3 · 13 ms] Version de sécurité enregistrée (1 page) {"id":"v_mvwdvdilqk0jo","kind":"safety","at":"2026-10-31T12:34:39.021Z","pages":1,"kb":1}
-13:34:39.038 +6.88s INFO  store.load Projet chargé dans l’éditeur {"name":"MAB – Médias Alternatifs Belges","pages":2,"keepHistory":true}
-13:34:39.041 +6.88s INFO  canvas.load.start [canvas.load#4] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_cd5yhqza","lang":"fr","device":"desktop"}
-13:34:39.043 +6.88s DEBUG canvas.load.render [canvas.load#4 · 2 ms] Page rendue {"ms":1,"kb":29}
-13:34:39.045 +6.88s INFO  project.demo Exemple rechargé
-13:34:39.066 +6.91s INFO  canvas.load.ok [canvas.load#4 · 25 ms] Canevas prêt {"nodes":30,"scale":76,"via":"load"}
-13:34:39.486 +7.33s INFO  project.preview Aperçu dans un nouvel onglet {"page":"p_cd5yhqza","lang":"fr"}
-13:34:39.486 +7.33s INFO  onboarding.step-done Pour commencer : « Prévisualiser puis publier » fait (43 %) {"step":"publish","done":3,"total":7,"percent":43,"by":"project.preview"}
+14:26:50.960 +4.88s DEBUG ui.dialog.open Fenêtre ouverte : Recharger l’exemple {"id":"demoConfirmDialog","class":"audit audit--sm","modal":true}
+14:26:51.042 +4.96s DEBUG ui.dialog.close Fenêtre fermée : Recharger l’exemple {"id":"demoConfirmDialog"}
+14:26:51.043 +4.96s DEBUG ui.confirm Confirmation refusée : Recharger l’exemple {"id":"demoConfirmDialog","ok":false}
+14:26:51.044 +4.96s INFO  project.cancel Remplacement annulé {"action":"demo"}
+14:26:51.095 +5.01s DEBUG ui.dialog.open Fenêtre ouverte : Nouveau site {"id":"newSiteDialog","class":"audit new-site","modal":true}
+14:26:51.180 +5.10s INFO  version.save.start [version.save#2] Enregistrement d’une version de sécurité : « Avant un nouveau site » {"kind":"safety","name":"Avant un nouveau site"}
+14:26:51.180 +5.10s DEBUG storage.version-save Version enregistrée {"id":"v_mvwfqib0s7u3l","name":"Avant un nouveau site","kind":"safety"}
+14:26:51.187 +5.10s DEBUG ui.dialog.close Fenêtre fermée : Nouveau site {"id":"newSiteDialog"}
+14:26:51.192 +5.11s DEBUG version.save.prune [version.save#2 · 12 ms] Aucune ancienne version à supprimer {"total":3}
+14:26:51.192 +5.11s INFO  version.save.ok [version.save#2 · 12 ms] Version de sécurité enregistrée (2 pages) {"id":"v_mvwfqib0s7u3l","kind":"safety","at":"2026-10-31T13:26:51.180Z","pages":2,"kb":12}
+14:26:51.193 +5.11s INFO  store.load Projet chargé dans l’éditeur {"name":"Nouveau site","pages":1,"keepHistory":true}
+14:26:51.194 +5.11s INFO  canvas.load.start [canvas.load#3] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_fffh0z2w","lang":"fr","device":"desktop"}
+14:26:51.195 +5.11s DEBUG canvas.load.render [canvas.load#3 · 1 ms] Page rendue {"ms":0,"kb":19}
+14:26:51.196 +5.11s INFO  project.new Nouveau site vide : « Nouveau site », langue principale Français {"lang":"fr","languages":["fr","nl","de","en"],"template":"blank","pages":1,"timezone":"Europe/Brussels"}
+14:26:51.197 +5.11s INFO  onboarding.step-done Pour commencer : « Choisir les langues » fait (29 %) {"step":"languages","done":2,"total":7,"percent":29,"by":"project.new"}
+14:26:51.211 +5.13s INFO  canvas.load.ok [canvas.load#3 · 17 ms] Canevas prêt {"nodes":0,"scale":76,"via":"load"}
+14:26:51.643 +5.56s DEBUG ui.dialog.open Fenêtre ouverte : Recharger l’exemple {"id":"demoConfirmDialog","class":"audit audit--sm","modal":true}
+14:26:51.704 +5.62s DEBUG ui.dialog.close Fenêtre fermée : Recharger l’exemple {"id":"demoConfirmDialog"}
+14:26:51.704 +5.62s DEBUG ui.confirm Confirmation acceptée : Recharger l’exemple {"id":"demoConfirmDialog","ok":true}
+14:26:51.705 +5.62s INFO  version.save.start [version.save#3] Enregistrement d’une version de sécurité : « Avant de recharger l’exemple » {"kind":"safety","name":"Avant de recharger l’exemple"}
+14:26:51.705 +5.62s DEBUG storage.version-save Version enregistrée {"id":"v_mvwfqipltjck0","name":"Avant de recharger l’exemple","kind":"safety"}
+14:26:51.709 +5.63s DEBUG version.save.prune [version.save#3 · 4 ms] Aucune ancienne version à supprimer {"total":4}
+14:26:51.709 +5.63s INFO  version.save.ok [version.save#3 · 4 ms] Version de sécurité enregistrée (1 page) {"id":"v_mvwfqipltjck0","kind":"safety","at":"2026-10-31T13:26:51.705Z","pages":1,"kb":1}
+14:26:51.711 +5.63s INFO  store.load Projet chargé dans l’éditeur {"name":"MAB – Médias Alternatifs Belges","pages":2,"keepHistory":true}
+14:26:51.714 +5.63s INFO  canvas.load.start [canvas.load#4] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_2l8e0ma5","lang":"fr","device":"desktop"}
+14:26:51.715 +5.63s DEBUG canvas.load.render [canvas.load#4 · 1 ms] Page rendue {"ms":1,"kb":29}
+14:26:51.717 +5.63s INFO  project.demo Exemple rechargé
+14:26:51.730 +5.65s INFO  canvas.load.ok [canvas.load#4 · 16 ms] Canevas prêt {"nodes":30,"scale":76,"via":"load"}
+14:26:52.159 +6.08s INFO  project.preview Aperçu dans un nouvel onglet {"page":"p_2l8e0ma5","lang":"fr"}
+14:26:52.159 +6.08s INFO  onboarding.step-done Pour commencer : « Prévisualiser puis publier » fait (43 %) {"step":"publish","done":3,"total":7,"percent":43,"by":"project.preview"}

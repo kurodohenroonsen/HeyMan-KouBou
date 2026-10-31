@@ -1,8 +1,6 @@
-13:40:58.181 +29.66s DEBUG store.commit Modification {"source":"inspector-style","past":31,"page":"p_0x1ftvm1"}
-13:40:58.185 +29.66s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"inspector-style","mode":"contenu","ms":3}
-13:40:58.187 +29.66s WARN  style.contrast-low Contraste insuffisant : 1,8:1 pour 4,5:1 requis {"id":"n_1i3n241n3s","type":"text","ratio":1.76,"required":4.5,"fg":"#bbbbbb","bg":"#f5f5f2"}
-13:40:58.202 +29.68s DEBUG style.set Couleur du texte = #bbbbbb (Ordinateur) {"key":"color","state":"normal","device":"desktop","target":"node","id":"n_1i3n241n3s","value":"#bbbbbb"}
-13:40:58.625 +30.10s DEBUG store.commit Modification {"source":"inspector-style","past":32,"page":"p_0x1ftvm1"}
-13:40:58.629 +30.10s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"inspector-style","mode":"contenu","ms":3}
-13:40:58.632 +30.11s DEBUG style.contrast-ok Contraste suffisant : 17,1:1 {"id":"n_1i3n241n3s","ratio":17.11,"required":4.5}
-13:40:58.642 +30.12s DEBUG style.set Couleur du texte = palette:c3 (Ordinateur) {"key":"color","state":"normal","device":"desktop","target":"node","id":"n_1i3n241n3s","value":"palette:c3","palette":true}
+14:27:30.639 +28.12s DEBUG store.commit Modification {"source":"inspector-style","past":31,"page":"p_0juocaxz"}
+14:27:30.645 +28.13s WARN  style.contrast-low Contraste insuffisant : 1,8:1 pour 4,5:1 requis {"id":"n_4u0i3c645z","type":"text","ratio":1.76,"required":4.5,"fg":"#bbbbbb","bg":"#f5f5f2"}
+14:27:30.657 +28.14s DEBUG style.set Couleur du texte = #bbbbbb (Ordinateur) {"key":"color","state":"normal","device":"desktop","target":"node","id":"n_4u0i3c645z","value":"#bbbbbb"}
+14:27:31.009 +28.49s DEBUG store.commit Modification {"source":"inspector-style","past":32,"page":"p_0juocaxz"}
+14:27:31.020 +28.50s DEBUG style.contrast-ok Contraste suffisant : 17,1:1 {"id":"n_4u0i3c645z","ratio":17.11,"required":4.5}
+14:27:31.031 +28.51s DEBUG style.set Couleur du texte = palette:c3 (Ordinateur) {"key":"color","state":"normal","device":"desktop","target":"node","id":"n_4u0i3c645z","value":"palette:c3","palette":true}

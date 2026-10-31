@@ -1,20 +1,20 @@
-13:42:31.833 +11.25s DEBUG store.commit Modification {"key":null,"source":"panel","past":20,"page":"p_og6cjhj0"}
-13:42:31.838 +11.26s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"panel","mode":"contenu","ms":3}
-13:42:31.842 +11.26s INFO  settings.lang-remove Langue retirée : English (ses traductions restent dans le projet) {"lang":"en","languages":["fr","nl","de"],"main":"fr"}
-13:42:31.842 +11.26s INFO  onboarding.step-done Pour commencer : « Choisir les langues » fait (14 %) {"step":"languages","done":1,"total":7,"percent":14,"by":"settings.lang-remove"}
-13:42:31.842 +11.26s DEBUG store.view Vue : 
-13:42:31.860 +11.28s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":3}
-13:42:32.196 +11.62s DEBUG store.view Vue : lang=nl {"lang":"nl"}
-13:42:32.207 +11.63s INFO  canvas.load.start [canvas.load#2] Chargement complet du canevas : autre langue {"reason":"autre langue","page":"p_og6cjhj0","lang":"nl","device":"desktop"}
-13:42:32.208 +11.63s DEBUG canvas.load.render [canvas.load#2 · 1 ms] Page rendue {"ms":1,"kb":29}
-13:42:32.239 +11.66s INFO  canvas.load.ok [canvas.load#2 · 32 ms] Canevas prêt {"nodes":30,"scale":76,"via":"load"}
-13:42:32.436 +11.86s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":18}
-13:42:32.524 +11.95s DEBUG store.view Vue : lang=fr {"lang":"fr"}
-13:42:32.533 +11.95s INFO  canvas.load.start [canvas.load#3] Chargement complet du canevas : autre langue {"reason":"autre langue","page":"p_og6cjhj0","lang":"fr","device":"desktop"}
-13:42:32.534 +11.96s DEBUG canvas.load.render [canvas.load#3 · 1 ms] Page rendue {"ms":1,"kb":29}
-13:42:32.568 +11.99s INFO  canvas.load.ok [canvas.load#3 · 35 ms] Canevas prêt {"nodes":30,"scale":76,"via":"load"}
-13:42:32.783 +12.20s DEBUG store.commit Modification {"key":null,"source":"panel","past":21,"page":"p_og6cjhj0"}
-13:42:32.787 +12.21s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"panel","mode":"contenu","ms":3}
-13:42:32.794 +12.21s INFO  settings.lang-add Langue ajoutée : English (textes à traduire) {"lang":"en","languages":["fr","nl","de","en"],"main":"fr"}
-13:42:32.794 +12.21s DEBUG store.view Vue : 
-13:42:32.811 +12.23s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":3}
+14:28:49.139 +8.71s DEBUG store.commit Modification {"key":null,"source":"panel","past":20,"page":"p_qfa485rg"}
+14:28:49.143 +8.71s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"panel","mode":"contenu","ms":3}
+14:28:49.148 +8.72s INFO  settings.lang-remove Langue retirée : English (ses traductions restent dans le projet) {"lang":"en","languages":["fr","nl","de"],"main":"fr"}
+14:28:49.148 +8.72s INFO  onboarding.step-done Pour commencer : « Choisir les langues » fait (14 %) {"step":"languages","done":1,"total":7,"percent":14,"by":"settings.lang-remove"}
+14:28:49.148 +8.72s DEBUG store.view Vue : 
+14:28:49.162 +8.73s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":2}
+14:28:49.496 +9.07s DEBUG store.view Vue : lang=nl {"lang":"nl"}
+14:28:49.513 +9.08s INFO  canvas.load.start [canvas.load#2] Chargement complet du canevas : autre langue {"reason":"autre langue","page":"p_qfa485rg","lang":"nl","device":"desktop"}
+14:28:49.514 +9.08s DEBUG canvas.load.render [canvas.load#2 · 1 ms] Page rendue {"ms":1,"kb":29}
+14:28:49.560 +9.13s INFO  canvas.load.ok [canvas.load#2 · 47 ms] Canevas prêt {"nodes":30,"scale":76,"via":"load"}
+14:28:49.742 +9.31s DEBUG storage.save Projet enregistré sur cet appareil {"ms":2,"kb":18}
+14:28:49.830 +9.40s DEBUG store.view Vue : lang=fr {"lang":"fr"}
+14:28:49.845 +9.41s INFO  canvas.load.start [canvas.load#3] Chargement complet du canevas : autre langue {"reason":"autre langue","page":"p_qfa485rg","lang":"fr","device":"desktop"}
+14:28:49.846 +9.42s DEBUG canvas.load.render [canvas.load#3 · 1 ms] Page rendue {"ms":1,"kb":29}
+14:28:49.875 +9.45s INFO  canvas.load.ok [canvas.load#3 · 30 ms] Canevas prêt {"nodes":30,"scale":76,"via":"load"}
+14:28:50.072 +9.64s DEBUG store.commit Modification {"key":null,"source":"panel","past":21,"page":"p_qfa485rg"}
+14:28:50.077 +9.65s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"panel","mode":"contenu","ms":3}
+14:28:50.084 +9.65s INFO  settings.lang-add Langue ajoutée : English (textes à traduire) {"lang":"en","languages":["fr","nl","de","en"],"main":"fr"}
+14:28:50.084 +9.65s DEBUG store.view Vue : 
+14:28:50.102 +9.67s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":3}

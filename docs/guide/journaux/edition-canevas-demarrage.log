@@ -1,7 +1,6 @@
-13:40:28.531 +0.01s DEBUG widgets.extra Widgets supplémentaires chargés : 15 {"widgets":23,"extra":15}
-13:40:28.558 +0.03s DEBUG canvas.scale Canevas ordinateur : 1040 px, réduit à 76 % {"device":"desktop","width":1040,"scale":76,"available":792,"zoom":"fit"}
-13:40:28.560 +0.04s INFO  canvas.load.start [canvas.load#1] Chargement complet du canevas : premier chargement {"reason":"premier chargement","page":"p_0x1ftvm1","lang":"fr","device":"desktop"}
-13:40:28.572 +0.05s DEBUG canvas.load.render [canvas.load#1 · 12 ms] Page rendue {"ms":11,"kb":29}
-13:40:28.634 +0.11s INFO  boot.ok [boot#1 · 95 ms] Éditeur prêt {"page":"p_0x1ftvm1","lang":"fr"}
-13:40:28.636 +0.11s INFO  canvas.load.ok [canvas.load#1 · 76 ms] Canevas prêt {"nodes":30,"scale":76,"via":"dom"}
-13:40:28.653 +0.13s DEBUG canvas.resources Ressources externes du canevas chargées {"ms":81,"hosts":[]}
+14:27:02.526 +0.01s DEBUG widgets.extra Widgets supplémentaires chargés : 15 {"widgets":23,"extra":15}
+14:27:02.544 +0.02s DEBUG canvas.scale Canevas ordinateur : 1040 px, réduit à 76 % {"device":"desktop","width":1040,"scale":76,"available":792,"zoom":"fit"}
+14:27:02.545 +0.03s INFO  canvas.load.start [canvas.load#1] Chargement complet du canevas : premier chargement {"reason":"premier chargement","page":"p_0juocaxz","lang":"fr","device":"desktop"}
+14:27:02.552 +0.03s DEBUG canvas.load.render [canvas.load#1 · 7 ms] Page rendue {"ms":6,"kb":29}
+14:27:02.617 +0.10s INFO  boot.ok [boot#1 · 89 ms] Éditeur prêt {"page":"p_0juocaxz","lang":"fr"}
+14:27:02.619 +0.10s INFO  canvas.load.ok [canvas.load#1 · 74 ms] Canevas prêt {"nodes":30,"scale":76,"via":"load"}

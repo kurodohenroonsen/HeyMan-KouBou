@@ -1,2 +1,5 @@
-13:43:23.885 +54.01s INFO  version.restore.start [version.restore#1] Restauration de « Avant les essais » du 31 oct. 2026, 13:43 {"id":"v_mvwe6jzeu5eyt","kind":"manual","at":"2026-10-31T12:43:20.618Z","pages":5}
-13:43:23.885 +54.01s INFO  version.restore.cancel [version.restore#1 · 0 ms] Restauration annulée
+14:28:36.338 +51.83s INFO  version.restore.start [version.restore#1] Restauration de « Avant les essais » du 31 oct. 2026, 14:28 {"id":"v_mvwfsp3uc3nda","kind":"manual","at":"2026-10-31T13:28:33.306Z","pages":5}
+14:28:36.339 +51.83s DEBUG ui.dialog.open Fenêtre ouverte : Restaurer une version {"id":"versionRestoreDialog","class":"audit audit--sm","modal":true}
+14:28:36.399 +51.89s DEBUG ui.dialog.close Fenêtre fermée : Restaurer une version {"id":"versionRestoreDialog"}
+14:28:36.400 +51.89s DEBUG ui.confirm Confirmation refusée : Restaurer une version {"id":"versionRestoreDialog","ok":false}
+14:28:36.400 +51.89s INFO  version.restore.cancel [version.restore#1 · 62 ms] Restauration annulée
