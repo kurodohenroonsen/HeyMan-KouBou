@@ -2,6 +2,20 @@
 
 Une entrée par cycle, construite à partir de la section « Livré » de `docs/cycle-NN.md` (cycles 1 à 24), la plus récente en haut. Les numéros de version des livraisons (.zip) ne sont pas écrits dans les comptes rendus : l’entrée porte alors le numéro du cycle (v19 = état livré après le cycle 24, d’après l’audit du 30/10/2026).
 
+## v31 — cycle 31 — 31/10/2026
+
+**Ajouté**
+- Stockage persistant demandé au premier enregistrement qui suit un geste ; état et place utilisée dans l'onglet Site (« Stockage : persistant · 42 Mo utilisés sur 2 Go ») ; journal `storage.persist`, `storage.estimate`.
+- Confirmation avant de fermer l'onglet quand l'état est « Modifié » ou « Non enregistré » (`storage.unload-warn`) ; message clair avec conseil quand la base est pleine (`storage.quota`).
+- Nettoyage des images inutilisées : après l'élagage des versions et sur demande (Versions → « Nettoyer les images inutilisées ») ; `core/storage-gc.js` (`orphanAssets`) ; journal `storage.gc`.
+- Copie dans un dossier de l'ordinateur (Chrome, Edge) : `nom-du-site.atelier.json` à chaque modification (5 s au plus souvent) et `versions/AAAA-MM-JJ.json` par jour ; dossier retenu, autorisation revérifiée au démarrage ; état « Copie : il y a 2 min » dans la barre. Ailleurs : export proposé et rappel hebdomadaire avec la date du dernier export. Journal `backup.folder.*`, `backup.remind`.
+- Copie de secours chiffrée sur l'hébergement (`core/backup.js` : AES-GCM 256, PBKDF2-SHA-256 310 000 tours, code de secours) à chaque publication et sur demande ; restauration depuis un autre ordinateur (jeton + code, version de sécurité). Journal `backup.host.*`.
+- publish.php version 6 : `POST ?backup`, `GET ?backups`, `GET ?backup=<nom>` avec le jeton, 100 Mo au plus, 5 copies gardées ; codes `bad_backup`, `backup_missing` ; journal serveur `php.backup.*`.
+
+**Modifié**
+- Import `.json` refusé au-delà de 200 Mo avant lecture (`project.import-too-big`).
+- `PUBLISH_VERSION` passe à 6 (« Tester la connexion » propose la mise à jour).
+
 ## cycle 26 — cycle 26 — 31/10/2026
 
 **Ajouté**
