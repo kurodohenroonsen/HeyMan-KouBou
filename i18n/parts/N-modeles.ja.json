@@ -29,5 +29,6 @@
  "Accueil, programme, infos pratiques, contact : pour un festival, une fête locale ou une journée thématique.": "ホーム、プログラム、ご来場案内、お問い合わせ。フェスティバル、地域のお祭り、テーマのある催し向けです。",
  "Site vide": "空のサイト",
  "Une page d’accueil vide : vous construisez tout vous-même.": "空のホームページだけ。すべてご自身で作ります。",
- "Modèle de site inconnu : {id}": "不明なサイトテンプレートです：{id}"
+ "Modèle de site inconnu : {id}": "不明なサイトテンプレートです：{id}",
+ "Nouveau site… (modèle ou site vide)": "新しいサイト…（テンプレートまたは空のサイト）"
 }

@@ -29,5 +29,6 @@
  "Accueil, programme, infos pratiques, contact : pour un festival, une fête locale ou une journée thématique.": "Home, programme, practical information, contact: for a festival, a local fête or a themed day.",
  "Site vide": "Empty site",
  "Une page d’accueil vide : vous construisez tout vous-même.": "An empty home page: you build everything yourself.",
- "Modèle de site inconnu : {id}": "Unknown site template: {id}"
+ "Modèle de site inconnu : {id}": "Unknown site template: {id}",
+ "Nouveau site… (modèle ou site vide)": "New site… (template or empty site)"
 }
