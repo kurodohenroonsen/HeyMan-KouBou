@@ -1,11 +1,11 @@
-20:53:31.926 +7.36s INFO  review.panel Panneau des commentaires ouvert {"open":true,"comments":0,"openCount":0,"readOnly":true}
-20:53:31.994 +7.42s INFO  storage.secret-write Secret gardé sur cet appareil (jamais dans le projet) {"name":"identity"}
-20:53:32.005 +7.43s DEBUG store.commit Modification {"source":"review","past":1,"page":"p_l1i0iszj"}
-20:53:32.016 +7.45s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"review","mode":"contenu","ms":8}
-20:53:32.021 +7.45s DEBUG collab.ops.out 1 modification(s) envoyée(s) à 1 participant(s) {"n":1,"to":1,"review":1}
-20:53:32.064 +7.49s INFO  version.auto Première modification du jour : version automatique de l’état d’avant {"previous":null,"source":"review"}
-20:53:32.066 +7.50s INFO  version.save.start [version.save#2] Enregistrement d’une version automatique {"kind":"auto"}
-20:53:32.068 +7.50s DEBUG storage.version-save Version enregistrée {"id":"v_mvve3xk3850p2","kind":"auto"}
-20:53:32.068 +7.50s INFO  review.add Commentaire ajouté et signé par Laurent sur « Titre » {"id":"cm_PhAFQ9g9pZsy","page":"p_l1i0iszj","node":"n_1m3z4b292e","type":"heading","chars":34,"role":"reviewer"}
-20:53:32.071 +7.50s INFO  ui.toast Message affiché : Commentaire ajouté et signé.
-20:53:32.079 +7.51s DEBUG review.sig.ok Signature vérifiée : Laurent {"id":"cm_PhAFQ9g9pZsy","fp":"u5XEBSYyUs4QuSO5","reply":false}
+12:30:14.690 +8.33s INFO  review.panel Panneau des commentaires ouvert {"open":true,"comments":0,"openCount":0,"readOnly":true}
+12:30:14.758 +8.40s INFO  storage.secret-write Secret gardé sur cet appareil (jamais dans le projet) {"name":"identity"}
+12:30:14.771 +8.41s DEBUG store.commit Modification {"source":"review","past":1,"page":"p_mse87q7p"}
+12:30:14.774 +8.41s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"review","mode":"contenu","ms":2}
+12:30:14.776 +8.42s DEBUG collab.ops.out 1 modification(s) envoyée(s) à 1 participant(s) {"n":1,"to":1,"review":1}
+12:30:14.794 +8.44s INFO  version.auto Première modification du jour : version automatique de l’état d’avant {"previous":null,"source":"review"}
+12:30:14.794 +8.44s INFO  version.save.start [version.save#2] Enregistrement d’une version automatique {"kind":"auto"}
+12:30:14.795 +8.44s DEBUG storage.version-save Version enregistrée {"id":"v_mvwbkjuy6trp1","kind":"auto"}
+12:30:14.795 +8.44s INFO  review.add Commentaire ajouté et signé par Laurent sur « Titre » {"id":"cm_qtjn-j_WlhM6","page":"p_mse87q7p","node":"n_6o094e286q","type":"heading","chars":34,"role":"reviewer"}
+12:30:14.797 +8.44s INFO  ui.toast Message affiché : Commentaire ajouté et signé.
+12:30:14.798 +8.44s DEBUG review.sig.ok Signature vérifiée : Laurent {"id":"cm_qtjn-j_WlhM6","fp":"i4OZCGVJkyD-URHQ","reply":false}

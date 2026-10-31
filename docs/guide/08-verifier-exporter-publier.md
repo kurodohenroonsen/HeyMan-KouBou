@@ -243,6 +243,47 @@ Avant de mettre le site en ligne, Atelier le **vérifie** (erreurs bloquantes, p
 
 ---
 
+## 8.7 Jeton lié à l'adresse, première publication
+
+**But** : qu'un projet reçu ou un participant ne puisse pas envoyer ton jeton de publication ailleurs que sur ton site.
+
+**Comment ça marche**
+- Le jeton est gardé **pour une adresse** (l'origine de `publish.php`, par exemple `https://www.media-alternatif.be`) ou **pour un dépôt** GitHub (`aktina/site-mab`). La fenêtre Publier ne le pré-remplit **que** si l'adresse affichée est celle-là.
+- Une adresse jamais utilisée sur cet appareil : le champ « Jeton » reste vide, avec le message « Adresse jamais utilisée sur cet appareil (…) : aucun jeton n’est repris ; une confirmation sera demandée au premier envoi. »
+- **Premier envoi** du jeton vers une adresse (publication, ou test de connexion avec un jeton) : une fenêtre demande « Vous allez publier sur www.x.be pour la première fois depuis cet appareil. » — **Continuer vers www.x.be** ou **Annuler**. Annuler n'envoie rien. Ensuite, plus de question pour cette adresse sur cet appareil.
+- L'adresse de publication n'est **jamais partagée** en collaboration (chapitre 10) : un invité ne peut pas la changer chez toi.
+- Les jetons gardés avant cette version (une seule clé pour toutes les adresses) sont rattachés automatiquement à l'adresse du projet ouvert, à la première ouverture de la fenêtre.
+
+**Étapes** : 🚀 Publier → « 🚀 Publier le site » ; si la fenêtre « Première publication vers … » s'ouvre, vérifie que c'est bien **ton** site, puis « Continuer vers … ».
+
+**Journal attendu** ([`journaux/publier-premiere-fois.log`](journaux/publier-premiere-fois.log))
+```log
+12:21:07.115 +3.78s INFO  publish.php.start [publish.php#2] Publication sur OVH (publish.php) {"url":"http://127.0.0.1:8779/publish.php"}
+12:21:07.116 +3.78s INFO  publish.first-origin Première publication vers 127.0.0.1:8779 depuis cet appareil : confirmation demandée {"kind":"php","target":"http://127.0.0.1:8779","action":"publish"}
+…
+12:21:07.181 +3.84s INFO  storage.secret-write Secret gardé sur cet appareil (jamais dans le projet) {"name":"php-token:http://127.0.0.1:8779"}
+…
+12:21:07.234 +3.90s INFO  publish.php.ok [publish.php#2 · 119 ms] Site publié : 12 fichiers {"written":12,"removed":0,"ref":"75834dd1"}
+```
+À vérifier : `publish.first-origin` avant tout envoi, puis le secret gardé sous `php-token:<origine>` (jamais la valeur du jeton).
+
+**Variantes**
+| Situation | Ce qui change | Journal |
+|---|---|---|
+| Test de connexion avec jeton vers une adresse nouvelle | même confirmation, « … envoyer votre jeton de publication à … (test de connexion) » | `publish.first-origin` `{"action":"test"}` ([`journaux/publier-premiere-fois-test.log`](journaux/publier-premiere-fois-test.log)) |
+| Projet ouvert avec une autre adresse | champ « Jeton » vide et message | `publish.token-for` (DEBUG) « Aucun jeton gardé pour … » ([`journaux/publier-jeton-autre-adresse.log`](journaux/publier-jeton-autre-adresse.log)) |
+| Même adresse qu'avant | jeton pré-rempli, pas de question | `publish.token-for` « Jeton pré-rempli pour … (appareil) » |
+| Ancien jeton (avant cette version) | rattaché à l'adresse du projet | `storage.secret-migrated` (INFO) ([`journaux/publier-jeton-migration.log`](journaux/publier-jeton-migration.log)) |
+| GitHub, dépôt nouveau | « Vous allez publier dans le dépôt GitHub … pour la première fois » | `publish.first-origin` `{"kind":"github"}` |
+
+**Erreurs**
+| Situation | Message affiché | Journal | Que faire |
+|---|---|---|---|
+| Tu cliques « Annuler » dans la confirmation | « Publication annulée : vérifiez l’adresse de publish.php avant de publier. » | `publish.php.cancel` (ou `publish.test.cancel`, `publish.github.cancel`) ([`journaux/publier-premiere-fois-annulee.log`](journaux/publier-premiere-fois-annulee.log)) | contrôle l'adresse ; si elle vient d'un projet reçu, remets la tienne |
+| Dépôt GitHub incomplet | « Indiquez le propriétaire et le nom du dépôt. » | `publish.github.fail` « dépôt incomplet » | remplis les deux champs |
+
+---
+
 ## Codes de ce chapitre
 | Code | Niveau | Sens |
 |---|---|---|
@@ -277,7 +318,11 @@ Avant de mettre le site en ligne, Atelier le **vérifie** (erreurs bloquantes, p
 | `php.warning` | WARN | (serveur) avertissement PHP |
 | `php.write-fail` | ERROR | (serveur) écriture d'un fichier privé impossible |
 | `publish.github.start`, `publish.github.package`, `publish.github.upload`, `publish.github.ok`, `publish.github.fail` | INFO / INFO / DEBUG / INFO / ERROR | publication sur GitHub |
+| `publish.first-origin` | INFO | première publication (ou premier envoi du jeton) vers une adresse ou un dépôt : confirmation demandée |
+| `publish.github.cancel`, `publish.php.cancel`, `publish.test.cancel` | INFO | envoi annulé à la confirmation de première publication |
 | `publish.open` | INFO | fenêtre Publier ouverte |
+| `publish.token-for` | DEBUG | jeton pré-rempli (ou non) pour l'adresse ou le dépôt affiché |
+| `storage.secret-migrated` | INFO | ancien jeton rattaché à l'adresse de publication du projet |
 | `publish.php.generate` | INFO | publish.php téléchargé avec un nouveau jeton |
 | `publish.php.start`, `publish.php.warnings`, `publish.php.version`, `publish.php.version-unknown`, `publish.php.package`, `publish.php.rejected`, `publish.php.ok`, `publish.php.fail` | INFO / INFO / DEBUG / WARN / INFO / WARN / INFO / ERROR | publication sur OVH |
 | `publish.settings-invalid` | WARN | réglage de publication refusé |

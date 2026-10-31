@@ -3,6 +3,7 @@
  * le projet (léger) est réenregistré à chaque modification sans recopier les images.
  */
 import { log } from './log.js';
+import { publishOrigin, githubTarget, tokenKey } from '../core/publish.js';
 import { __, __n } from '../core/ui-i18n.js';
 
 const DB = 'atelier-v2';
@@ -185,4 +186,40 @@ export async function setSecret(key, value) {
     tx.oncomplete = resolve;
     tx.onerror = () => reject(tx.error);
   });
+}
+
+/*
+ * Cycle 25 (S2) : les jetons de publication sont gardés par origine (php-token:<origine>) ou par dépôt
+ * (github-token:<owner/repo>). Les clés historiques « php-token » / « github-token » (avant le cycle 25) sont rattachées
+ * à l'adresse du projet courant quand elle existe, puis effacées : elles ne sont plus jamais pré-remplies telles quelles.
+ * `store` ({ get, set }) remplace IndexedDB dans les tests. Renvoie les déplacements faits ({ from, to }, to = null si écartée).
+ */
+export async function migrateLegacyTokens(site, store = { get: getSecret, set: setSecret }) {
+  const moves = [];
+  const targets = [['php-token', tokenKey('php', publishOrigin(site?.publish?.url))], ['github-token', tokenKey('github', githubTarget(site?.publish?.gh))]];
+  for (const [from, to] of targets) {
+    if (!to) continue;
+    const old = await store.get(from);
+    if (!old) continue;
+    const current = await store.get(to);
+    if (!current) await store.set(to, old);
+    await store.set(from, '');
+    moves.push({ from, to: current ? null : to });
+    log.info('storage.secret-migrated', current ? __('Ancien jeton écarté : un jeton est déjà gardé pour cette adresse') : __('Ancien jeton rattaché à l’adresse de publication du projet'), { from, to: current ? null : to });
+  }
+  return moves;
+}
+
+/* Destinations déjà confirmées pour une publication (php:<origine>, github:<owner/repo>), sur cet appareil */
+export const KNOWN_DESTINATIONS_KEY = 'atelier-publish-known';
+function knownDestinations() {
+  try {
+    const v = JSON.parse(localStorage.getItem(KNOWN_DESTINATIONS_KEY) || '[]');
+    return Array.isArray(v) ? v.filter(x => typeof x === 'string') : [];
+  } catch { return []; }
+}
+export const isKnownDestination = key => !!key && knownDestinations().includes(key);
+export function addKnownDestination(key) {
+  if (!key || isKnownDestination(key)) return;
+  try { localStorage.setItem(KNOWN_DESTINATIONS_KEY, JSON.stringify([...knownDestinations(), key])); } catch { /* stockage indisponible : confirmation redemandée la prochaine fois */ }
 }

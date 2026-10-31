@@ -1,4 +1,4 @@
-20:53:23.966 +9.38s DEBUG store.select Sélection : heading {"id":"n_0k1i1p4m4g","type":"heading"}
-20:53:24.042 +9.46s DEBUG inspector.tab Onglet de l’inspecteur : Contenu {"tab":"content","from":"content","type":"heading"}
-20:53:24.064 +9.48s DEBUG store.commit Modification {"key":"n_0k1i1p4m4g:text:fr","source":"inspector","past":3,"page":"p_l1i0iszj"}
-20:53:24.073 +9.49s DEBUG collab.ops.out 1 modification(s) envoyée(s) à 1 participant(s) {"n":1,"to":1}
+12:30:05.726 +8.55s DEBUG store.select Sélection : heading {"id":"n_4n0a5d6c6g","type":"heading"}
+12:30:05.772 +8.60s DEBUG inspector.tab Onglet de l’inspecteur : Contenu {"tab":"content","from":"content","type":"heading"}
+12:30:05.788 +8.61s DEBUG store.commit Modification {"key":"n_4n0a5d6c6g:text:fr","source":"inspector","past":3,"page":"p_mse87q7p"}
+12:30:05.795 +8.62s DEBUG collab.ops.out 1 modification(s) envoyée(s) à 1 participant(s) {"n":1,"to":1}

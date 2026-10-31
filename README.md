@@ -220,10 +220,11 @@ npx --prefix tools playwright install chromium
 python3 -m http.server 8791 &
 node tools/e2e/run.mjs http://localhost:8791/ /tmp/captures
 ```
-385 tests unitaires (dont l’intégration du vrai publish.php avec PHP et la vérification que chaque code du journal est documenté) et 1687 vérifications de bout en bout (Playwright + Chromium, axe-core pour l’accessibilité, navigateurs reliés en WebRTC pour la collaboration, faux Gemini Nano pour l’IA locale, journaux attendus de chaque cas d’usage) couvrent les cycles 1 à 24.
+413 tests unitaires (dont l’intégration du vrai publish.php avec PHP et la vérification que chaque code du journal est documenté) et 1687 vérifications de bout en bout (Playwright + Chromium, axe-core pour l’accessibilité, navigateurs reliés en WebRTC pour la collaboration, faux Gemini Nano pour l’IA locale, journaux attendus de chaque cas d’usage) couvrent les cycles 1 à 24.
 
 ### Sécurité
-- Tout texte saisi est assaini à chaque frappe (liste blanche de balises, liens filtrés : pas de `javascript:`).
+- Tout texte saisi est assaini à chaque frappe (liste blanche de balises, liens filtrés : pas de `javascript:`) ; tout texte qui **entre** (projet `.json` ouvert, projet ou modification reçus en collaboration) est assaini selon son type de champ (`core/sanitize-site.js`), et un test interdit `innerHTML` sans assainisseur dans `editor/`.
+- Jeton de publication lié à l'adresse (`publish.php`) ou au dépôt GitHub, jamais repris pour une autre ; première publication vers une nouvelle adresse confirmée explicitement ; réglages de publication jamais partagés en collaboration.
 - Les valeurs de style sont typées et validées avant d'être écrites dans la CSS.
 - Les adresses vidéo sont analysées strictement (identifiant alphanumérique uniquement).
 - Les identifiants d'éléments et ancres sont nettoyés ; les données structurées JSON-LD sont échappées.

@@ -641,6 +641,40 @@ Pour voir les lignes TRACE : 🐞 → niveau « trace », ou `?trace` dans l'adr
 
 ---
 
+## 10.12 Sécurité : parties privées, textes nettoyés, projet refusé
+
+**But** : qu'un participant (ou un hôte) ne puisse ni rediriger ta publication, ni faire exécuter un programme dans ton éditeur, ni casser ton projet.
+
+**Ce qui est protégé**
+- **Parties privées** : les réglages de publication (adresse de `publish.php`, dépôt GitHub) restent sur chaque appareil. Ils ne sont **jamais envoyés** aux invités (le projet reçu n'en contient pas) et une modification d'un invité sur ces réglages est **refusée** par l'hôte : « Modification refusée (Ana, éditeur) : partie privée ». Voir aussi 8.7 (jeton lié à l'adresse).
+- **Textes nettoyés** : tout texte reçu (projet complet ou modification) passe par le même nettoyage qu'à l'ouverture d'un fichier (chapitre 1, 1.4) : seules les balises de mise en forme connues restent.
+- **Projet refusé** : un projet complet reçu de l'hôte est vérifié avant d'être chargé ; s'il est invalide (abîmé, autre version d'Atelier, document fabriqué), il est **refusé** et ton projet reste intact : « Projet reçu de Kudoro refusé (document invalide) : … ».
+
+**Journal attendu chez l'hôte quand un invité touche aux réglages de publication** ([`journaux/collab-partie-privee-hote.log`](journaux/collab-partie-privee-hote.log))
+```log
+12:26:28.529 +12.22s WARN  collab.ops.rejected 1 modification de Ana refusée (éditeur) : partie privée {"name":"Ana","role":"editor","count":1,"reason":"partie privée","path":["publish","url"]}
+```
+Chez l'invité : `collab.remote-error` « L’autre côté signale : Modification refusée : partie privée » ([`journaux/collab-partie-privee-invite.log`](journaux/collab-partie-privee-invite.log)).
+
+**Texte reçu nettoyé** ([`journaux/collab-operation-nettoyee.log`](journaux/collab-operation-nettoyee.log), [`journaux/collab-snapshot-nettoye.log`](journaux/collab-snapshot-nettoye.log))
+```log
+12:26:28.569 +12.26s WARN  collab.ops.sanitized 1 texte reçu de Ana nettoyé (balise ou attribut hors liste blanche) {"name":"Ana","changed":1}
+12:26:29.118 +8.27s WARN  collab.snapshot.sanitized 1 texte du projet reçu de Kudoro nettoyé (balise ou attribut hors liste blanche) {"from":"Kudoro","changed":1}
+```
+L'hôte relaie aux autres la version nettoyée.
+
+**Erreurs** ([`journaux/collab-snapshot-invalide.log`](journaux/collab-snapshot-invalide.log))
+| Situation | Message affiché | Journal | Que faire |
+|---|---|---|---|
+| Projet complet invalide reçu de l'hôte | « Projet reçu de Kudoro refusé (document invalide) : Aucune page. » | `collab.snapshot.invalid` (WARN) avec les 5 premières erreurs ; pas de `collab.snapshot` | demande à l'hôte de vérifier son projet (même version d'Atelier des deux côtés) ; ton projet n'a pas changé |
+| Un invité modifie les réglages de publication | hôte : « Modification refusée (…) : partie privée » | `collab.ops.rejected` `{"reason":"partie privée"}` | normal : chacun règle sa publication chez soi |
+
+```log
+12:26:29.050 +8.20s WARN  collab.snapshot.invalid Projet reçu de Kudoro refusé (document invalide) : Aucune page. {"from":"Kudoro","docId":"doc_casse","errors":["Aucune page."]}
+```
+
+---
+
 ## Codes de ce chapitre
 | Code | Niveau | Sens |
 |---|---|---|
@@ -700,7 +734,10 @@ Pour voir les lignes TRACE : 🐞 → niveau « trace », ou `?trace` dans l'adr
 | `collab.save` | TRACE | état de session enregistré |
 | `collab.save-fail` | WARN | état de session non enregistré |
 | `collab.send-fail` | WARN | refus non transmis (lien fermé) |
+| `collab.ops.sanitized` | WARN | textes d'une modification reçue nettoyés |
 | `collab.snapshot` | INFO | projet complet reçu de l'hôte |
+| `collab.snapshot.invalid` | WARN | projet complet reçu invalide : refusé, projet local intact |
+| `collab.snapshot.sanitized` | WARN | textes du projet complet reçu nettoyés |
 | `collab.snapshot-refused` | WARN | projet complet reçu d'un non-hôte, ignoré |
 | `collab.sync.ask` | DEBUG | demande du projet ou des modifications manquées |
 | `collab.sync.delta` | INFO | hôte : modifications manquées envoyées (reprise) |

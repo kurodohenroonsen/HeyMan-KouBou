@@ -232,6 +232,7 @@ export default async function (t) {
     /* 10b. tester la connexion (avec le jeton : diagnostic) */
     s = await mark(page);
     await page.click('#publishDialog [data-pub-test]');
+    await page.click('#publishConfirmDialog [data-confirm-ok]'); /* cycle 25 : premier envoi du jeton vers cette adresse */
     await page.waitForSelector('#publishDialog [data-pub-ok]');
     await waitCode(page, 'php.diag', s);
     es = await since(page, s);
@@ -280,6 +281,7 @@ export default async function (t) {
     for (const u of [`http://127.0.0.1:${port + 1}/publish.php`, `http://127.0.0.1:${port}/absent/publish.php`, `http://127.0.0.1:${port}/avertissement/publish.php`, `http://127.0.0.1:${port}/vieux/publish.php`]) {
       await page.fill('#publishDialog [data-pub="url"]', u);
       await page.click('#publishDialog [data-pub-test]');
+      if (u.includes(`:${port + 1}/`)) await page.click('#publishConfirmDialog [data-confirm-ok]'); /* cycle 25 : autre origine, jeton présent */
       await page.waitForFunction(() => !/Test en cours/.test(document.querySelector('#publishDialog [data-pub-status]')?.textContent || ''), null, { timeout: 10000 });
     }
     es = await since(page, s);
@@ -287,6 +289,8 @@ export default async function (t) {
     capture('publier-tester-erreurs', es);
     await page.fill('#publishDialog [data-pub="url"]', URL_);
     await page.dispatchEvent('#publishDialog [data-pub="url"]', 'change');
+    await t.wait(300);
+    await page.fill('#publishDialog [data-pub="token"]', goodToken); /* cycle 25 : le jeton suit l'adresse, on reprend le bon */
 
     /* 10g. journal du serveur */
     await page.click('#publishDialog [data-pub="remember"]');
@@ -388,6 +392,7 @@ export default async function (t) {
     await page.dispatchEvent('#publishDialog [data-gh="repo"]', 'change');
     await page.fill('#publishDialog [data-gh="token"]', 'github_pat_test');
     await page.click('#publishDialog [data-gh-run]');
+    await page.click('#publishConfirmDialog [data-confirm-ok]'); /* cycle 25 : première publication vers ce dépôt */
     await waitCode(page, 'publish.github.ok', s, 15000);
     let es = await since(page, s);
     expectCodes(t, es, ['publish.github.start', 'publish.github.package', 'publish.github.upload', 'publish.github.ok'], 'GitHub');

@@ -5,7 +5,7 @@ import { translatableItems, setTranslation, autoTranslate, exportCsv, importCsv,
 import { LANG_LABELS, findPage, slugify } from '../core/site.js';
 import { translate } from '../core/render.js';
 import { REGISTRY } from '../core/widgets.js';
-import { richToText } from '../core/sanitize.js';
+import { richToText, sanitizeRich, sanitizeInline } from '../core/sanitize.js';
 import { makeEditable } from './richedit.js';
 import { translatorStatus, getTranslator } from './translator.js';
 import { goToCollection } from './collections-ui.js';
@@ -61,8 +61,10 @@ function cellEditor(it, lang, rowEl) {
     return el;
   }
   const el = h('div', { class: 'input i18n-cell i18n-cell--rich' + (it.kind === 'inline' ? ' is-inline' : ''), 'data-i18n-cell': '', lang, role: 'textbox', 'aria-multiline': String(it.kind === 'richtext'), 'aria-label': `${__(it.label)} (${LANG_LABELS[lang]})`, 'data-placeholder': placeholder });
-  el.innerHTML = v;
-  let start = v;
+  /* Jamais le texte brut du projet dans innerHTML (cycle 25) : assaini selon son type */
+  const clean = it.kind === 'inline' ? sanitizeInline(v) : sanitizeRich(v);
+  el.innerHTML = clean;
+  let start = clean;
   makeEditable(el, {
     inline: it.kind === 'inline',
     onDone: html => { if (html !== start) { start = html; if (write(it.key, lang, html)) refreshRow(rowEl, it.key); } }

@@ -9,8 +9,17 @@
 
 import { N_ } from './ui-i18n.js';
 
-const IGNORED_TOP = new Set(['collab']);
+/* Parties privées, propres à chaque appareil : jamais synchronisées ni envoyées (publish : adresse du serveur, dépôt GitHub) */
+const IGNORED_TOP = new Set(['collab', 'publish']);
 const FORBIDDEN = new Set(['__proto__', 'prototype', 'constructor']);
+
+/* Document sans ses parties privées (le même objet s'il n'en a pas) */
+export function stripPrivate(doc) {
+  if (!doc || typeof doc !== 'object' || Array.isArray(doc) || !Object.keys(doc).some(k => IGNORED_TOP.has(k))) return doc;
+  const out = { ...doc };
+  for (const k of IGNORED_TOP) delete out[k];
+  return out;
+}
 const DATA_IMG = /^data:image\/(png|jpeg|webp|gif|avif);base64,[a-z0-9+/=]+$/i;
 
 /* ---------- Horloge logique hybride : « 0001730000000000.0003.replica » ---------- */
@@ -250,7 +259,7 @@ export function createReplica({ replica, doc, docId = null, table = {}, now } = 
       return out.sort((a, b) => a.p.length - b.p.length);
     },
     table() { return Object.fromEntries(tbl); },
-    snapshot() { return { docId: r.docId, doc: r.doc, table: Object.fromEntries(tbl) }; }
+    snapshot() { return { docId: r.docId, doc: stripPrivate(r.doc), table: Object.fromEntries(tbl) }; }
   };
   return r;
 }

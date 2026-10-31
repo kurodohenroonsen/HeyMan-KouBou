@@ -3,9 +3,11 @@ import assert from 'node:assert/strict';
 import { createNode, insertNode, createSectionWithColumns, setProp, removeNode, moveNode, findNode } from '../core/tree.js';
 import { createSite, updatePageRoot, normalizeSite, addPage } from '../core/site.js';
 import '../core/render.js';
-import { createClock, diffDocs, applyOps, createReplica, validateOps, pathKey } from '../core/collab.js';
+import { createClock, diffDocs, applyOps, createReplica, validateOps, pathKey, stripPrivate } from '../core/collab.js';
 import { CollabNode, splitMessage, Reassembler } from '../core/collab-protocol.js';
 import { createIdentity, createRoom, roomIdOf, createInvite, makeComment, addComment, setResolved } from '../core/review.js';
+import { validateSite } from '../core/site.js';
+import { sanitizeSiteTexts } from '../core/sanitize-site.js';
 
 const clone = v => structuredClone(v);
 
@@ -370,4 +372,103 @@ test('protocole : le premier message perdu (canal tout juste ouvert) est renvoy�
   assert.ok(dropped, 'le premier hello de l’hôte a bien été perdu');
   assert.ok(same(guest.replica.doc, host.replica.doc), 'projet reçu malgré tout');
   host.close(); guest.close();
+});
+
+/* ---------- Cycle 25 : parties privées, snapshot vérifié, textes assainis ---------- */
+test('publish est une partie privée : jamais dans les différences, refusé dans une opération reçue, absent du snapshot', () => {
+  const { site } = site0();
+  const withPub = { ...site, publish: { mode: 'php', url: 'https://www.mab.be/publish.php', gh: { owner: 'aktina', repo: 'mab', branch: 'main', dir: '' } } };
+  assert.deepEqual(diffDocs(site, withPub), [], 'adresse de publication jamais synchronisée');
+  assert.deepEqual(diffDocs(withPub, { ...withPub, publish: { ...withPub.publish, url: 'https://attaquant.example/publish.php' } }), []);
+  for (const bad of [
+    { p: ['publish', 'url'], v: 'https://attaquant.example/publish.php', ts: '1' },
+    { p: ['publish'], v: { mode: 'php', url: 'https://attaquant.example/publish.php' }, ts: '1' },
+    { p: ['publish', 'gh', 'owner'], v: 'attaquant', ts: '1' }
+  ]) {
+    const r = validateOps([bad], { role: 'editor' });
+    assert.equal(r.rejected.length, 1, JSON.stringify(bad.p));
+    assert.equal(r.rejected[0].reason, 'partie privée');
+  }
+  assert.equal(stripPrivate(withPub).publish, undefined);
+  assert.equal(stripPrivate(site), site, 'rien de privé : même objet');
+  const rep = createReplica({ replica: 'h', doc: withPub, docId: 'd' });
+  assert.equal(rep.snapshot().doc.publish, undefined, 'le snapshot envoyé aux invités ne contient pas publish');
+  assert.equal(rep.doc.publish.url, 'https://www.mab.be/publish.php', 'le document local garde ses réglages');
+});
+
+test('protocole : une opération d’un éditeur sur publish est refusée par l’hôte et signalée', async () => {
+  const s = await session();
+  const before = JSON.stringify(s.host.replica.doc.publish ?? null);
+  const st = [...s.guestEd.links.values()].find(x => x.authed);
+  st.link.send({ t: 'ops', ops: [{ p: ['publish', 'url'], v: 'https://attaquant.example/publish.php', ts: `${String(Date.now() + 5000).padStart(16, '0')}.0000.force` }] });
+  await settle();
+  assert.equal(JSON.stringify(s.host.replica.doc.publish ?? null), before, 'adresse de publication de l’hôte intacte');
+  assert.ok(s.events.host.some(e => /partie privée/.test(e.error || '')), 'hôte : « Modification refusée … partie privée »');
+  assert.ok(s.events.ed.some(e => /partie privée/.test(e.error || '')), 'éditeur : refus reçu');
+});
+
+/* Journal factice : garde les codes écrits */
+function fakeLog() {
+  const codes = [];
+  const add = (level, code) => codes.push(`${level}:${code}`);
+  const api = { codes, add: (l, c) => add(l, c), flow: () => ({ step() {}, info() {}, warn() {}, ok() {}, fail() {}, cancel() {} }) };
+  for (const l of ['trace', 'debug', 'info', 'warn', 'error']) api[l] = c => add(l, c);
+  return api;
+}
+const sanitizeHook = doc => { const r = sanitizeSiteTexts(doc); return { doc: r.site, changed: r.changed }; };
+const validateHook = doc => validateSite(normalizeSite(doc));
+
+async function hookedPair({ sanitize = true, validate = true, hostDoc } = {}) {
+  const room = createRoom();
+  const roomId = await roomIdOf(room.secret);
+  const owner = await createIdentity('Kudoro');
+  const guestId = await createIdentity('Ana');
+  const inv = await createInvite(owner, { secret: room.secret, role: 'editor', hostPeer: 'h' });
+  const logs = { host: fakeLog(), guest: fakeLog() };
+  const errors = { host: [], guest: [] };
+  const hooks = { ...(sanitize ? { sanitizeDoc: sanitizeHook } : {}), ...(validate ? { validateDoc: validateHook } : {}) };
+  const host = new CollabNode({ identity: owner, role: 'owner', secret: room.secret, roomId, replica: createReplica({ replica: 'h', doc: hostDoc, docId: 'd' }), log: logs.host, onError: e => errors.host.push(e), ...hooks });
+  const guest = new CollabNode({ identity: guestId, role: 'editor', secret: room.secret, roomId, invite: inv, replica: createReplica({ replica: 'g', doc: null, docId: null }), log: logs.guest, onError: e => errors.guest.push(e), ...hooks });
+  const [a, b] = linkPair(); host.connect(a); guest.connect(b);
+  await settle();
+  return { host, guest, logs, errors, links: { a, b } };
+}
+const XSS = '<img src=x onerror="window.__xss=1">';
+
+test('protocole : le snapshot reçu est assaini (textes piégés) et signalé dans le journal', async () => {
+  const { site, h } = site0();
+  const doc = clone(site);
+  nodeIn(doc, h.id).props.text.fr = `Titre ${XSS}`; /* injecté tel quel (setProp assainirait) */
+  const { guest, logs } = await hookedPair({ hostDoc: doc });
+  assert.equal(nodeIn(guest.replica.doc, h.id).props.text.fr, 'Titre ', 'invité : texte nettoyé');
+  assert.ok(logs.guest.codes.includes('warn:collab.snapshot.sanitized'), logs.guest.codes.join(' '));
+  assert.ok(logs.guest.codes.includes('info:collab.snapshot'));
+});
+
+test('protocole : un snapshot invalide est refusé proprement (projet local intact, message, journal collab.snapshot.invalid)', async () => {
+  const { guest, logs, errors } = await hookedPair({ hostDoc: { version: 2, pages: 'pas une liste' } });
+  assert.equal(guest.replica.doc, null, 'rien chargé');
+  assert.ok(logs.guest.codes.includes('warn:collab.snapshot.invalid'), logs.guest.codes.join(' '));
+  assert.ok(!logs.guest.codes.includes('info:collab.snapshot'));
+  assert.ok(errors.guest.some(e => /refusé/i.test(e)), errors.guest.join(' / '));
+});
+
+test('protocole : une opération piégée d’un éditeur arrive assainie chez l’hôte, qui la relaie assainie', async () => {
+  const { site, h } = site0();
+  const { host, guest, logs } = await hookedPair({ hostDoc: clone(site) });
+  const next = clone(guest.replica.doc);
+  nodeIn(next, h.id).props.text.fr = `Piège ${XSS}`;
+  await guest.local(next);
+  await settle();
+  assert.equal(nodeIn(host.replica.doc, h.id).props.text.fr, 'Piège ', 'hôte : nettoyé');
+  assert.ok(logs.host.codes.includes('warn:collab.ops.sanitized'), logs.host.codes.join(' '));
+  assert.ok(!JSON.stringify(host.replica.delta({})).includes('onerror'), 'la reprise envoie la version nettoyée');
+});
+
+test('protocole : sans crochet, le document passe tel quel (le cœur reste générique)', async () => {
+  const { site, h } = site0();
+  const doc = clone(site);
+  nodeIn(doc, h.id).props.text.fr = `Titre ${XSS}`;
+  const { guest } = await hookedPair({ hostDoc: doc, sanitize: false, validate: false });
+  assert.equal(nodeIn(guest.replica.doc, h.id).props.text.fr, `Titre ${XSS}`);
 });

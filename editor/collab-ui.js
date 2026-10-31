@@ -3,6 +3,8 @@ import { h, $, toast } from './dom.js';
 import { state, subscribe, emit, load, applyRemote, setView, select } from './store.js';
 import { createReplica } from '../core/collab.js';
 import { CollabNode, colorFor } from '../core/collab-protocol.js';
+import { validateSite, normalizeSite } from '../core/site.js';
+import { sanitizeSiteTexts } from '../core/sanitize-site.js';
 import { createIdentity, exportIdentity, importIdentity, renameIdentity, createRoom, roomIdOf, createInvite, verifyInvite, joinFragment, parseJoin } from '../core/review.js';
 import { getSecret, setSecret } from './storage.js';
 import { hostViaMailbox, joinViaMailbox, manualOffer, manualAnswer, signalSupported, newPeerId, stunSetting, setStunSetting, DEFAULT_STUN, rtcStatus } from './collab-net.js';
@@ -64,9 +66,13 @@ function presenceNow() {
   return { pageId: state.pageId, selected: state.selected, edit: t ? `${t.kind}:${t.id || ''}` : '' };
 }
 
+/* Cycle 25 : tout projet ou texte reçu d'un pair est assaini ; un projet complet invalide est refusé avant d'être chargé */
+const sanitizeDoc = doc => { const r = sanitizeSiteTexts(doc); return { doc: r.site, changed: r.changed }; };
+const validateDoc = doc => validateSite(normalizeSite(doc));
+
 function makeNode({ role, secret, roomId, invite, replica }) {
   return new CollabNode({
-    identity, role, secret, roomId, invite, replica, log,
+    identity, role, secret, roomId, invite, replica, log, sanitizeDoc, validateDoc,
     onRemote: (doc, ops, info) => {
       if (info?.snapshot) {
         load(doc);

@@ -1,2 +1,1 @@
-20:53:15.936 +1.35s INFO  collab.invite.copy Lien d’invitation copié {"what":"data-copy-editor"}
-20:53:16.172 +1.59s DEBUG storage.save Projet enregistré sur cet appareil {"ms":5,"kb":12}
+12:29:58.469 +1.29s INFO  collab.invite.copy Lien d’invitation copié {"what":"data-copy-editor"}

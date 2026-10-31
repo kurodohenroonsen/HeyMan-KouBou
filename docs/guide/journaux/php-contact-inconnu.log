@@ -1,3 +1,3 @@
-2026-10-30T19:51:02.731Z DEBUG php.req.start [req 0a0c0c18 · 0 ms] POST reçu {"method":"POST","who":"73535e39f8","bytes":23,"ua":"node","origin":""}
-2026-10-30T19:51:02.731Z WARN  php.contact.unknown [req 0a0c0c18 · 0.1 ms] Formulaire inconnu (republiez le site depuis l’éditeur) {"form":"inconnu","known":1}
-2026-10-30T19:51:02.731Z WARN  php.req.end [req 0a0c0c18 · 0.3 ms] Réponse 404 (contact) {"status":404,"route":"contact","mem_kb":365}
+2026-10-31T11:29:55.925Z DEBUG php.req.start [req 4b3ace5b · 0 ms] POST reçu {"method":"POST","who":"376ecff7b3","bytes":23,"ua":"node","origin":""}
+2026-10-31T11:29:55.925Z WARN  php.contact.unknown [req 4b3ace5b · 0.2 ms] Formulaire inconnu (republiez le site depuis l’éditeur) {"form":"inconnu","known":1}
+2026-10-31T11:29:55.925Z WARN  php.req.end [req 4b3ace5b · 0.2 ms] Réponse 404 (contact) {"status":404,"route":"contact","mem_kb":365}

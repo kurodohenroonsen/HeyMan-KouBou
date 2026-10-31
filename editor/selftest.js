@@ -14,6 +14,8 @@ import { LEVELS } from '../core/log.js';
 import { SELFTEST_CASES, pickCases, caseResult, selftestSummary, selftestReport, rollbackText } from '../core/selftest.js';
 import { __, __n, __c } from '../core/ui-i18n.js';
 import { beginSafe, endSafe, selftestActive } from './selftest-safe.js';
+import { addKnownDestination } from './storage.js';
+import { publishOrigin } from '../core/publish.js';
 
 let running = false;
 let current = null;
@@ -395,6 +397,8 @@ const RUNS = {
     const d = await waitFor(() => opened('publishDialog'), { what: __('fenêtre de publication') });
     await click('#publishDialog [data-pub-tab="php"]');
     await fill('#publishDialog [data-pub="url"]', x.publishUrl);
+    /* Adresse donnée explicitement en option : pas de fenêtre de première publication pendant l'auto-test (cycle 25) */
+    addKnownDestination(`php:${publishOrigin(x.publishUrl)}`);
     const s = seq();
     await click(d.querySelector('[data-pub-test]'));
     const code = await waitCode('publish.test.ok|publish.test.fail', s, 15000);

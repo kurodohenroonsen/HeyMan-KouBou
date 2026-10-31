@@ -1,31 +1,31 @@
-20:53:16.622 +2.04s INFO  storage.secret-write Secret gardé sur cet appareil (jamais dans le projet) {"name":"collab-session"}
-20:53:21.877 +7.30s DEBUG signal.receive 1 message relevé dans la boîte aux lettres {"room":"3dc99b85","count":1,"from":["34c4df64c70c8153"]}
-20:53:21.880 +7.30s INFO  rtc.accept.start [rtc.accept#1] Demande de connexion reçue de 34c4df64c70c8153 {"from":"34c4df64c70c8153","via":"boîte aux lettres"}
-20:53:21.887 +7.31s DEBUG rtc.pc.create Connexion WebRTC créée (côté réponse) {"side":"answer","label":"34c4df64c70c8153","stun":"aucun (réseau local seulement)"}
-20:53:21.891 +7.31s DEBUG rtc.ice.remote Adresses reçues de l’autre navigateur : 1 host {"label":"34c4df64c70c8153","type":"offer","remote":{"host":1,"srflx":0,"relay":0,"prflx":0}}
-20:53:21.896 +7.32s DEBUG rtc.accept.answer [rtc.accept#1 · 16 ms] Réponse créée : collecte des adresses réseau
-20:53:21.898 +7.32s DEBUG rtc.ice.gathering Collecte des candidats : gathering {"label":"34c4df64c70c8153","state":"gathering","local":{"host":0,"srflx":0,"relay":0,"prflx":0}}
-20:53:21.901 +7.32s DEBUG rtc.ice.state ICE : essai des chemins réseau entre les deux navigateurs {"label":"34c4df64c70c8153","state":"checking","ms":13}
-20:53:21.903 +7.32s DEBUG rtc.pc.state Connexion : établissement (ICE puis chiffrement DTLS) {"label":"34c4df64c70c8153","state":"connecting","ms":16}
-20:53:21.905 +7.32s INFO  rtc.ice.state ICE : un chemin réseau fonctionne {"label":"34c4df64c70c8153","state":"connected","ms":17}
-20:53:21.905 +7.32s DEBUG rtc.ice.gathering Collecte des candidats : complete {"label":"34c4df64c70c8153","state":"complete","local":{"host":1,"srflx":0,"relay":0,"prflx":0}}
-20:53:21.906 +7.33s DEBUG rtc.ice.gathered Candidats trouvés : 1 host, 0 srflx, 0 relay {"label":"34c4df64c70c8153","ms":8,"local":{"host":1,"srflx":0,"relay":0,"prflx":0},"stun":"aucun"}
-20:53:21.906 +7.33s INFO  rtc.ice.no-stun Aucun serveur STUN : seules les adresses locales sont proposées (même réseau seulement) {"label":"34c4df64c70c8153"}
-20:53:21.907 +7.33s DEBUG signal.post Dépôt d’un message chiffré « answer » pour 34c4df64c70c8153 {"room":"3dc99b85","from":"da232fd5714b8461","to":"34c4df64c70c8153","t":"answer","bytes":919}
-20:53:21.908 +7.33s DEBUG net.request POST 127.0.0.1:8866/publish.php {"id":6,"method":"POST","url":"http://127.0.0.1:8866/publish.php?atelier_debug=1","body":{"json":["signal","from","to","data"],"size":1056}}
-20:53:21.916 +7.33s INFO  net.response 200 POST 127.0.0.1:8866/publish.php (8 ms) {"id":6,"status":200,"ms":8,"type":"application/json","req":"6ffc8d56"}
-20:53:21.920 +7.34s DEBUG php.req.start POST reçu {"method":"POST","who":"e5802654fc","bytes":1056,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8791","req":"6ffc8d56","srvMs":0}
-20:53:21.922 +7.34s DEBUG php.signal.post Message chiffré déposé {"room":"3dc99b85","from":"da232fd5714b8461","to":"34c4df64c70c8153","bytes":919,"id":2,"new_room":false,"req":"6ffc8d56","srvMs":0.5}
-20:53:21.922 +7.34s DEBUG php.req.end Réponse 200 (signal) {"status":200,"route":"signal","mem_kb":375,"req":"6ffc8d56","srvMs":0.5}
-20:53:21.922 +7.34s INFO  rtc.accept.sent [rtc.accept#1 · 42 ms] Réponse déposée dans la boîte aux lettres : ouverture du canal… {"local":{"host":1,"srflx":0,"relay":0,"prflx":0}}
-20:53:22.774 +8.19s INFO  rtc.pc.state Connexion : établie et chiffrée {"label":"34c4df64c70c8153","state":"connected","ms":887}
-20:53:22.777 +8.20s INFO  rtc.pair Chemin réseau utilisé : host ↔ host (udp) {"label":"34c4df64c70c8153","local":"host","remote":"host","protocol":"udp","rttMs":1,"ms":889}
-20:53:22.780 +8.20s INFO  rtc.channel.open Canal de données ouvert avec 34c4df64c70c8153 {"label":"34c4df64c70c8153","ms":892}
-20:53:22.781 +8.20s INFO  rtc.accept.ok [rtc.accept#1 · 901 ms] Liaison directe prête avec 34c4df64c70c8153 {"ms":894}
-20:53:22.782 +8.20s DEBUG collab.link.new Nouveau lien : présentation (hôte) {"label":"34c4df64c70c8153","links":1}
-20:53:22.789 +8.21s DEBUG collab.hello Présentation de Ana : invitation valable (éditeur, expire dans 168 h) {"name":"Ana","fp":"nTNgEEC7izfuErUB","role":"editor"}
-20:53:22.793 +8.21s INFO  collab.auth Identité vérifiée : Ana (éditeur) {"name":"Ana","fp":"nTNgEEC7izfuErUB","role":"editor","peers":1}
-20:53:22.802 +8.22s INFO  collab.sync.snapshot Envoi du projet complet à Ana {"name":"Ana","why":"nouveau participant","pages":2,"kb":12}
-20:53:22.802 +8.22s DEBUG collab.presence Présence de Ana {"fp":"nTNgEEC7izfuErUB","page":"p_in8zh21u","selected":null}
-20:53:22.846 +8.27s DEBUG collab.presence Présence de Ana {"fp":"nTNgEEC7izfuErUB","page":"p_l1i0iszj","selected":null}
-20:53:22.858 +8.28s DEBUG collab.presence Présence de Ana {"fp":"nTNgEEC7izfuErUB","page":"p_l1i0iszj","selected":null}
+12:29:59.178 +2.00s INFO  storage.secret-write Secret gardé sur cet appareil (jamais dans le projet) {"name":"collab-session"}
+12:30:04.416 +7.24s DEBUG signal.receive 1 message relevé dans la boîte aux lettres {"room":"49b2e980","count":1,"from":["40f3aae4c2c6bad7"]}
+12:30:04.419 +7.24s INFO  rtc.accept.start [rtc.accept#1] Demande de connexion reçue de 40f3aae4c2c6bad7 {"from":"40f3aae4c2c6bad7","via":"boîte aux lettres"}
+12:30:04.423 +7.25s DEBUG rtc.pc.create Connexion WebRTC créée (côté réponse) {"side":"answer","label":"40f3aae4c2c6bad7","stun":"aucun (réseau local seulement)"}
+12:30:04.426 +7.25s DEBUG rtc.ice.remote Adresses reçues de l’autre navigateur : 1 host {"label":"40f3aae4c2c6bad7","type":"offer","remote":{"host":1,"srflx":0,"relay":0,"prflx":0}}
+12:30:04.428 +7.25s DEBUG rtc.accept.answer [rtc.accept#1 · 9 ms] Réponse créée : collecte des adresses réseau
+12:30:04.429 +7.25s DEBUG rtc.ice.gathering Collecte des candidats : gathering {"label":"40f3aae4c2c6bad7","state":"gathering","local":{"host":0,"srflx":0,"relay":0,"prflx":0}}
+12:30:04.431 +7.25s DEBUG rtc.ice.state ICE : essai des chemins réseau entre les deux navigateurs {"label":"40f3aae4c2c6bad7","state":"checking","ms":8}
+12:30:04.431 +7.25s DEBUG rtc.pc.state Connexion : établissement (ICE puis chiffrement DTLS) {"label":"40f3aae4c2c6bad7","state":"connecting","ms":9}
+12:30:04.435 +7.26s INFO  rtc.ice.state ICE : un chemin réseau fonctionne {"label":"40f3aae4c2c6bad7","state":"connected","ms":12}
+12:30:04.436 +7.26s DEBUG rtc.ice.gathering Collecte des candidats : complete {"label":"40f3aae4c2c6bad7","state":"complete","local":{"host":1,"srflx":0,"relay":0,"prflx":0}}
+12:30:04.436 +7.26s DEBUG rtc.ice.gathered Candidats trouvés : 1 host, 0 srflx, 0 relay {"label":"40f3aae4c2c6bad7","ms":8,"local":{"host":1,"srflx":0,"relay":0,"prflx":0},"stun":"aucun"}
+12:30:04.437 +7.26s INFO  rtc.ice.no-stun Aucun serveur STUN : seules les adresses locales sont proposées (même réseau seulement) {"label":"40f3aae4c2c6bad7"}
+12:30:04.437 +7.26s DEBUG signal.post Dépôt d’un message chiffré « answer » pour 40f3aae4c2c6bad7 {"room":"49b2e980","from":"e8a9337d9ac3ac0d","to":"40f3aae4c2c6bad7","t":"answer","bytes":922}
+12:30:04.438 +7.26s DEBUG net.request POST 127.0.0.1:8881/publish.php {"id":6,"method":"POST","url":"http://127.0.0.1:8881/publish.php?atelier_debug=1","body":{"json":["signal","from","to","data"],"size":1059}}
+12:30:04.443 +7.27s INFO  net.response 200 POST 127.0.0.1:8881/publish.php (6 ms) {"id":6,"status":200,"ms":6,"type":"application/json","req":"40dccd03"}
+12:30:04.445 +7.27s DEBUG php.req.start POST reçu {"method":"POST","who":"e5802654fc","bytes":1059,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8811","req":"40dccd03","srvMs":0.1}
+12:30:04.445 +7.27s DEBUG php.signal.post Message chiffré déposé {"room":"49b2e980","from":"e8a9337d9ac3ac0d","to":"40f3aae4c2c6bad7","bytes":922,"id":2,"new_room":false,"req":"40dccd03","srvMs":0.4}
+12:30:04.445 +7.27s DEBUG php.req.end Réponse 200 (signal) {"status":200,"route":"signal","mem_kb":375,"req":"40dccd03","srvMs":0.4}
+12:30:04.446 +7.27s INFO  rtc.accept.sent [rtc.accept#1 · 27 ms] Réponse déposée dans la boîte aux lettres : ouverture du canal… {"local":{"host":1,"srflx":0,"relay":0,"prflx":0}}
+12:30:04.586 +7.41s INFO  rtc.pc.state Connexion : établie et chiffrée {"label":"40f3aae4c2c6bad7","state":"connected","ms":163}
+12:30:04.589 +7.41s INFO  rtc.pair Chemin réseau utilisé : host ↔ host (udp) {"label":"40f3aae4c2c6bad7","local":"host","remote":"host","protocol":"udp","rttMs":1,"ms":166}
+12:30:04.591 +7.41s INFO  rtc.channel.open Canal de données ouvert avec 40f3aae4c2c6bad7 {"label":"40f3aae4c2c6bad7","ms":169}
+12:30:04.592 +7.42s INFO  rtc.accept.ok [rtc.accept#1 · 173 ms] Liaison directe prête avec 40f3aae4c2c6bad7 {"ms":170}
+12:30:04.593 +7.42s DEBUG collab.link.new Nouveau lien : présentation (hôte) {"label":"40f3aae4c2c6bad7","links":1}
+12:30:04.595 +7.42s DEBUG collab.hello Présentation de Ana : invitation valable (éditeur, expire dans 168 h) {"name":"Ana","fp":"7eZyvNpYcHCpcU9i","role":"editor"}
+12:30:04.597 +7.42s INFO  collab.auth Identité vérifiée : Ana (éditeur) {"name":"Ana","fp":"7eZyvNpYcHCpcU9i","role":"editor","peers":1}
+12:30:04.599 +7.42s INFO  collab.sync.snapshot Envoi du projet complet à Ana {"name":"Ana","why":"nouveau participant","pages":2,"kb":12}
+12:30:04.601 +7.42s DEBUG collab.presence Présence de Ana {"fp":"7eZyvNpYcHCpcU9i","page":"p_mxceyph7","selected":null}
+12:30:04.620 +7.44s DEBUG collab.presence Présence de Ana {"fp":"7eZyvNpYcHCpcU9i","page":"p_mse87q7p","selected":null}
+12:30:04.625 +7.45s DEBUG collab.presence Présence de Ana {"fp":"7eZyvNpYcHCpcU9i","page":"p_mse87q7p","selected":null}

@@ -20,6 +20,29 @@ export function newToken() {
   return hex(b);
 }
 
+/* ---------- Jeton lié à l'adresse (cycle 25, S2) : un secret par origine de publish.php ou par dépôt GitHub ---------- */
+/* Origine (schéma, hôte, port) d'une adresse publish.php ; '' si l'adresse est vide ou illisible */
+export function publishOrigin(url) {
+  try { return url ? new URL(String(url)).origin : ''; } catch { return ''; }
+}
+
+/* Dépôt GitHub « owner/repo » normalisé (GitHub ignore la casse) ; '' si incomplet */
+export function githubTarget(gh) {
+  const owner = String(gh?.owner || '').trim().toLowerCase();
+  const repo = String(gh?.repo || '').trim().toLowerCase();
+  return owner && repo ? `${owner}/${repo}` : '';
+}
+
+/* Clé du secret gardé sur l'appareil : php-token:<origine> ou github-token:<owner/repo> ; '' sans cible (rien n'est lu ni gardé) */
+export function tokenKey(kind, target) {
+  return target ? `${kind}-token:${target}` : '';
+}
+
+/* Hôte lisible d'une origine, pour la confirmation « Vous allez publier sur www.x.be pour la première fois » */
+export function hostLabel(origin) {
+  return String(origin || '').replace(/^[a-z]+:\/\//i, '');
+}
+
 /* \x22 et \x27 : guillemets écrits en code pour que l'extraction des textes (tools/i18n.mjs) ne les prenne pas pour des chaînes */
 const EMAIL = /^[^@\s<>\x22\x27,;]+@[^@\s<>\x22\x27,;]+\.[a-z]{2,}$/i;
 

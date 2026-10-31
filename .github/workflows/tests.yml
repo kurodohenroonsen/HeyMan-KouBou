@@ -1,0 +1,50 @@
+# Tests d'Atelier : unitaires à chaque push et pull request ; bout en bout chaque nuit (image Playwright officielle).
+name: tests
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '17 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  unit:
+    name: Tests unitaires (Node 22)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: PHP (tests d'intégration de publish.php, ignorés sinon)
+        run: sudo apt-get update && sudo apt-get install -y php-cli php-zip
+      - run: npm test
+
+  e2e:
+    name: Bout en bout (nuit)
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    container:
+      image: mcr.microsoft.com/playwright:v1.56.1-noble
+    steps:
+      - uses: actions/checkout@v4
+      - name: Outillage (Playwright et axe-core, versions figées)
+        run: npm install --prefix tools playwright@1.56.1 axe-core@4.10.3
+      - name: PHP (publish.php réel dans les scénarios)
+        run: apt-get update && apt-get install -y php-cli php-zip python3
+      - name: Serveur statique
+        run: |
+          python3 -m http.server 8791 > /tmp/http.log 2>&1 &
+          sleep 2
+      - name: Scénarios
+        run: node tools/e2e/run.mjs http://localhost:8791/ /tmp/captures
+      - name: Captures en cas d'échec
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: captures-e2e
+          path: /tmp/captures
+          retention-days: 7

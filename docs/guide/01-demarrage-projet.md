@@ -128,6 +128,17 @@ Les jetons de publication ne sont **jamais** dans ce fichier (ils restent sur l'
 04:38:04.418 +4.85s INFO  ui.toast Message affiché : Projet ouvert.
 ```
 
+**Textes nettoyés à l'ouverture** (sécurité, cycle 25) : avant d'entrer dans l'éditeur, **chaque texte** du fichier est nettoyé selon son type (texte mis en forme, titre, texte simple) : seules les balises de mise en forme connues (gras, italique, souligné, listes, liens sûrs) sont gardées ; tout le reste (`<script>`, `<img onerror=…>`, liens `javascript:`…) est retiré. Un fichier « corrigé » par quelqu'un d'autre ne peut donc pas faire exécuter de programme dans ton éditeur (qui garde tes jetons de publication). Si quelque chose a été retiré, le message devient « Projet ouvert. 4 textes ont été nettoyés (voir le journal). » ([`journaux/projet-ouvrir-json-nettoye.log`](journaux/projet-ouvrir-json-nettoye.log)) :
+```log
+12:21:04.252 +0.91s INFO  project.import.start [project.import#1] Ouverture d’un projet .json {"name":"piege.atelier.json","kb":12}
+12:21:04.267 +0.93s WARN  project.import.sanitized [project.import#1 · 15 ms] 4 textes nettoyés à l’ouverture (balises ou attributs hors liste blanche retirés) {"changed":4}
+…
+12:21:04.285 +0.94s INFO  project.import.ok [project.import#1 · 33 ms] Projet ouvert {"pages":2,"name":"MAB – Médias Alternatifs Belges","sanitized":4}
+```
+Un projet fait avec Atelier ne contient rien à nettoyer : `project.import.sanitized` n'apparaît que pour un fichier modifié à la main ou par un autre programme. Relis les textes cités si la mise en page a changé.
+
+**Adresse de publication du fichier** : si le projet ouvert publie ailleurs que le projet actuel (autre `publish.php` ou autre dépôt GitHub), le journal le note (`project.import.publish-url`, INFO, [`journaux/projet-ouvrir-json-autre-adresse.log`](journaux/projet-ouvrir-json-autre-adresse.log)) : ton jeton n'est **pas** repris pour cette adresse, et la première publication demandera une confirmation (chapitre 8, 8.7).
+
 **Erreurs** ([`journaux/projet-ouvrir-json-erreurs.log`](journaux/projet-ouvrir-json-erreurs.log))
 | Situation | Message affiché | Journal | Que faire |
 |---|---|---|---|
@@ -226,6 +237,8 @@ Tout suit la langue choisie : boutons, panneaux, fenêtres, messages, infobulles
 | `project.export-json` | INFO | projet enregistré en .json |
 | `project.import.start`, `project.import.ok`, `project.import.fail` | INFO / INFO / ERROR | ouverture d'un .json |
 | `project.import.invalid` | WARN | fichier refusé par la validation |
+| `project.import.publish-url` | INFO | le projet ouvert publie vers une autre adresse : jeton non repris |
+| `project.import.sanitized` | WARN | textes nettoyés à l'ouverture (nombre dans `changed`) |
 | `project.new` | INFO | nouveau site vide (nom, langue principale, langues) |
 | `project.new-lang` | DEBUG | langue principale choisie dans la fenêtre du nouveau site |
 | `project.preview` | INFO | aperçu dans un nouvel onglet |

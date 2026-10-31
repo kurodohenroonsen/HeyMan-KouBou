@@ -4,7 +4,7 @@
  * applique et relaie les modifications. Chaque lien : hello (clé publique, invitation, défi) → auth (défi signé)
  * → sync (table des versions) → snapshot ou delta → ops / presence.
  */
-import { createReplica, validateOps } from './collab.js';
+import { createReplica, validateOps, getAt } from './collab.js';
 import { verifyInvite, signChallenge, verifyChallenge, fingerprint, checkReviewOps } from './review.js';
 import { __, __n, N_ } from './ui-i18n.js';
 
@@ -67,8 +67,13 @@ export class Reassembler {
 
 /* ---------- Nœud de collaboration ---------- */
 export class CollabNode {
-  constructor({ identity, role, secret, roomId, invite = null, replica, onRemote = () => {}, onError = () => {}, onPeers = () => {}, onPresence = () => {}, log = NOLOG }) {
-    Object.assign(this, { identity, role, secret, roomId, invite, replica, onRemote, onError, onPeers, onPresence, log });
+  /*
+   * Crochets facultatifs (cycle 25), le cœur restant indépendant du modèle de site :
+   *   sanitizeDoc(doc) → { doc, changed } : textes assainis d'un projet reçu (snapshot) ou obtenu après des opérations reçues ;
+   *   validateDoc(doc) → { ok, errors }  : un snapshot invalide est refusé sans toucher au projet local.
+   */
+  constructor({ identity, role, secret, roomId, invite = null, replica, onRemote = () => {}, onError = () => {}, onPeers = () => {}, onPresence = () => {}, log = NOLOG, sanitizeDoc = null, validateDoc = null }) {
+    Object.assign(this, { identity, role, secret, roomId, invite, replica, onRemote, onError, onPeers, onPresence, log, sanitizeDoc, validateDoc });
     this.links = new Map();
     this.presence = null;
     this.color = colorFor(identity.fp);
@@ -76,6 +81,35 @@ export class CollabNode {
   }
 
   get isHost() { return this.role === 'owner'; }
+
+  /* Projet reçu en entier : assaini puis vérifié ; { ok, doc, changed } ou { ok: false, errors } */
+  _checkDoc(doc) {
+    try {
+      let d = doc;
+      let changed = 0;
+      if (this.sanitizeDoc) { const r = this.sanitizeDoc(doc); d = r.doc; changed = r.changed || 0; }
+      if (this.validateDoc) {
+        const v = this.validateDoc(d);
+        if (!v.ok) return { ok: false, errors: v.errors?.length ? v.errors : [__('document invalide')] };
+      }
+      return { ok: true, doc: d, changed };
+    } catch (e) { return { ok: false, errors: [e?.message || String(e)] }; }
+  }
+
+  /* Après des opérations reçues : le document assaini et les opérations réécrites avec les valeurs nettoyées */
+  _sanitizeApplied(st, doc, applied) {
+    if (!applied.length || !this.sanitizeDoc) return { doc, ops: applied };
+    const r = this.sanitizeDoc(doc);
+    if (!r.changed) return { doc, ops: applied };
+    this.replica.doc = r.doc;
+    this.log.warn('collab.ops.sanitized', __n(r.changed, '{n} texte reçu de {name} nettoyé (balise ou attribut hors liste blanche)', '{n} textes reçus de {name} nettoyés (balises ou attributs hors liste blanche)', { name: st.name }), { name: st.name, changed: r.changed });
+    const ops = applied.map(op => {
+      if (op.del || op.order) return op;
+      const cv = getAt(r.doc, op.p);
+      return cv === undefined ? op : { ...op, v: structuredClone(cv) };
+    });
+    return { doc: r.doc, ops };
+  }
 
   connect(link) {
     const st = { link, authed: false, helloOk: false, nonce: nonce(), fp: null, role: null, name: '', color: '', presence: null, pendingAuth: null };
@@ -169,8 +203,16 @@ export class CollabNode {
       case 'snapshot': {
         if (this.isHost || st.role !== 'owner') { log.warn('collab.snapshot-refused', __('Projet complet reçu d’un participant qui n’est pas l’hôte : ignoré'), { from: st.name, role: st.role }); return; }
         const sn = m.snapshot || {};
-        this.replica = createReplica({ replica: this.replica.replica, doc: sn.doc, docId: sn.docId, table: sn.table || {} });
-        log.info('collab.snapshot', __('Projet reçu de {name}', { name: st.name }), { docId: sn.docId, pages: sn.doc?.pages?.length, comments: Object.keys(sn.doc?.review?.comments || {}).length });
+        const got = this._checkDoc(sn.doc);
+        if (!got.ok) {
+          const shown = __('Projet reçu de {name} refusé (document invalide) : {error}', { name: st.name, error: got.errors[0] });
+          log.warn('collab.snapshot.invalid', shown, { from: st.name, docId: sn.docId, errors: got.errors.slice(0, 5) });
+          this.onError(shown);
+          return;
+        }
+        this.replica = createReplica({ replica: this.replica.replica, doc: got.doc, docId: sn.docId, table: sn.table || {} });
+        if (got.changed) log.warn('collab.snapshot.sanitized', __n(got.changed, '{n} texte du projet reçu de {name} nettoyé (balise ou attribut hors liste blanche)', '{n} textes du projet reçu de {name} nettoyés (balises ou attributs hors liste blanche)', { name: st.name }), { from: st.name, changed: got.changed });
+        log.info('collab.snapshot', __('Projet reçu de {name}', { name: st.name }), { docId: sn.docId, pages: got.doc?.pages?.length, comments: Object.keys(got.doc?.review?.comments || {}).length });
         this.onRemote(this.replica.doc, null, { snapshot: true, from: st.fp });
         return;
       }
@@ -245,7 +287,8 @@ export class CollabNode {
       if (this.isHost) this._send(st, { t: 'error', message: `Modification refusée : ${rejected[0].reason}` });
     }
     if (!v2.ok.length || !this.replica.doc) { if (v2.ok.length) log.debug('collab.ops.early', __('Modifications reçues avant le projet : ignorées (elles reviendront avec la reprise)'), { n: v2.ok.length }); return; }
-    const { doc, applied } = this.replica.receive(v2.ok);
+    const received = this.replica.receive(v2.ok);
+    const { doc, ops: applied } = this._sanitizeApplied(st, received.doc, received.applied);
     log.debug('collab.ops.in', applied.length < v2.ok.length ? __('{applied} modification(s) de {name} appliquée(s) ({skipped} déjà connue(s) ou plus ancienne(s))', { name: st.name, applied: applied.length, skipped: v2.ok.length - applied.length }) : __n(applied.length, '{n} modification de {name} appliquée', '{n} modifications de {name} appliquées', { name: st.name }), { name: st.name, received: v2.ok.length, applied: applied.length, review: applied.filter(o => o.p?.[0] === 'review').length || undefined });
     if (applied.length) {
       this.onRemote(doc, applied, { from: st.fp });
