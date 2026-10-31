@@ -60,7 +60,7 @@ Avant de mettre le site en ligne, Atelier le **vérifie** (erreurs bloquantes, p
 **But** : permettre à Atelier de publier directement sur l'hébergement.
 
 **Étapes**
-1. **🚀 Publier** → onglet « OVH (publish.php) » → **⇩ Télécharger publish.php**. Le fichier contient seulement l'**empreinte** d'un nouveau jeton ; le jeton lui-même reste dans le champ « Jeton » (coche « Se souvenir sur cet appareil » pour le garder, jamais dans le projet).
+1. **Publier** (icône fusée) → onglet « OVH (publish.php) » → **⇩ Télécharger publish.php**. Le fichier contient seulement l'**empreinte** d'un nouveau jeton ; le jeton lui-même reste dans le champ « Jeton » (coche « Se souvenir sur cet appareil » pour le garder, jamais dans le projet).
 2. Dépose `publish.php` par FTP dans le dossier du site (« www »), à côté de `index.html`. Il remplace l'ancien s'il y en avait un : **l'ancien jeton ne marche plus**.
 3. Indique son adresse : `https://www.ton-site.be/publish.php`.
 
@@ -137,7 +137,7 @@ Avant de mettre le site en ligne, Atelier le **vérifie** (erreurs bloquantes, p
 
 **But** : mettre le site en ligne en un clic.
 
-**Étapes** : « 🚀 Publier le site ».
+**Étapes** : « Publier (icône fusée) le site ».
 
 **Ce que tu vois** : « Site publié : N fichiers envoyés… » et le message « Site publié (N fichiers). ».
 
@@ -206,7 +206,7 @@ Avant de mettre le site en ligne, Atelier le **vérifie** (erreurs bloquantes, p
 
 **But** : publier sans PHP : Atelier crée un commit dans un dépôt GitHub (seulement les fichiers modifiés), et l'hébergement le déploie grâce à son intégration Git.
 
-**Étapes** : 🚀 Publier → « GitHub → OVH » ; propriétaire, dépôt, branche, dossier ; jeton à accès limité (« Contents : Read and write ») ; « 🚀 Publier sur GitHub ».
+**Étapes** : Publier (icône fusée) → « GitHub → OVH » ; propriétaire, dépôt, branche, dossier ; jeton à accès limité (« Contents : Read and write ») ; « Publier (icône fusée) sur GitHub ».
 
 **Journal attendu** ([`journaux/publier-github.log`](journaux/publier-github.log), API de GitHub simulée dans le test)
 ```log

@@ -203,7 +203,7 @@ Tout suit la langue choisie : boutons, panneaux, fenêtres, messages, infobulles
 
 **But** : trouver de l'aide sans quitter l'éditeur.
 
-**Étapes** : bouton **❓** en haut à droite, menu **Fichier → Guide d'utilisation**, touche **F1**, ou Ctrl+K « Guide ». Si une fenêtre est ouverte (Publier, SEO, IA locale…), F1 ouvre directement le chapitre qui en parle.
+**Étapes** : bouton **Guide** (icône point d’interrogation) en haut à droite, menu **Fichier → Guide d'utilisation**, touche **F1**, ou Ctrl+K « Guide ». Si une fenêtre est ouverte (Publier, SEO, IA locale…), F1 ouvre directement le chapitre qui en parle.
 
 **Chemin normal** : le guide s'ouvre dans un nouvel onglet, dans la langue de l'interface (français, anglais ou japonais). On peut y chercher (case en haut, ou touche « / »), changer de langue, passer d'un chapitre à l'autre ; les **détails techniques** (journal, codes) sont cachés : coche « Afficher les détails techniques » pour les voir.
 
@@ -258,4 +258,4 @@ Tout suit la langue choisie : boutons, panneaux, fenêtres, messages, infobulles
 | `ui.lang-missing` | WARN | traductions de la langue choisie introuvables : interface en français |
 | `ui.lang-ready` | DEBUG | interface prête dans la langue choisie |
 | `ui.lang-save-fail` | WARN | projet non enregistré juste avant le changement de langue |
-| `ui.help` | INFO | guide d'utilisation ouvert (bouton ❓, Fichier, F1, Ctrl+K) |
+| `ui.help` | INFO | guide d'utilisation ouvert (bouton Guide (icône point d’interrogation), Fichier, F1, Ctrl+K) |

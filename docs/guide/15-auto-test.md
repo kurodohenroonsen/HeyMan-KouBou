@@ -38,7 +38,7 @@ Trois façons, du plus simple au plus détaillé. À chaque fois : ne touche à 
 | Identifiant | Chapitre | Cas | Vérifié |
 |---|---|---|---|
 | `demarrage` | 1 | Projet de test chargé et enregistré | exemple affiché, `storage.save` |
-| `journal` | 0 | Fenêtre 🐞 : ouvrir, régler, fermer | lignes affichées, réglage remis |
+| `journal` | 0 | Fenêtre Journal : ouvrir, régler, fermer | lignes affichées, réglage remis |
 | `selection` | 2 | Clic, flèche ↓, Échap | titre, élément suivant, colonne parente |
 | `ajout` | 2 | Widget depuis la bibliothèque | un bouton de plus, sélectionné |
 | `annuler` | 2 | Annuler, rétablir | le bouton part puis revient |
@@ -211,7 +211,7 @@ Pendant un test, l'arrêt se fait **après le cas en cours** (les cas suivants s
 
 | Situation | Message | Journal | Que faire |
 |---|---|---|---|
-| Session de collaboration en cours | « Auto-test refusé : quitte d'abord la session de collaboration » | `selftest.refused` (WARN) | les modifications partiraient chez les autres : quitter 👥, relancer |
+| Session de collaboration en cours | « Auto-test refusé : quitte d'abord la session de collaboration » | `selftest.refused` (WARN) | les modifications partiraient chez les autres : quitter la session (Travailler à plusieurs), relancer |
 | Mode relecture | « Auto-test refusé en mode relecture. » | `selftest.refused` (WARN) | idem |
 | Déjà en cours | « Un auto-test est déjà en cours. » | `selftest.refused` (WARN) | attendre, ou `atelierDebug.rollback()` |
 | Sélection vide | liste des identifiants | `selftest.refused` (WARN) | corriger `only` / `skip` |

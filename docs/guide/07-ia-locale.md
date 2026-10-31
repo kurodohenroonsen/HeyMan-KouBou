@@ -41,7 +41,7 @@ Les lignes `ai.session.*` et `ai.progress` (création des sessions de Chrome, t�
 **But** : savoir ce que ce Chrome sait faire, et télécharger les modèles manquants.
 
 **Étapes**
-1. Barre du haut : bouton « ✨ » (ou Ctrl+K « IA locale ») : la fenêtre « ✨ IA locale (Gemini Nano dans Chrome) » s'ouvre.
+1. Barre du haut : bouton « ✨ » (ou Ctrl+K « IA locale ») : la fenêtre « IA locale (icône étincelle) (Gemini Nano dans Chrome) » s'ouvre.
 2. Le tableau donne l'état de chaque API : « ✓ prêt », « ⇩ à télécharger », « … téléchargement », « ✗ indisponible ici », « — absent de ce navigateur ».
 3. « Télécharger » à côté d'une API « à télécharger » (une seule fois ; connexion illimitée conseillée).
 
@@ -293,7 +293,7 @@ Les lignes `ai.session.*` et `ai.progress` (création des sessions de Chrome, t�
 
 **But** : comprendre pourquoi un bouton ✨ ne fait rien.
 
-**Ce que tu vois** : « IA locale indisponible : ouvrez ✨ IA locale pour l'activer (Chrome 148 ou plus récent, sur ordinateur). » Le reste d'Atelier fonctionne normalement.
+**Ce que tu vois** : « IA locale indisponible : ouvrez IA locale (icône étincelle) pour l'activer (Chrome 148 ou plus récent, sur ordinateur). » Le reste d'Atelier fonctionne normalement.
 
 **Journal attendu** ([`journaux/ia-absente.log`](journaux/ia-absente.log), ici pour la tâche « texte de lien » `ai.link`, prévue pour la vérification d'accessibilité)
 ```log
@@ -335,7 +335,7 @@ Les tests automatiques utilisent un faux Gemini Nano. Ton journal, avec le vrai,
 4. Ouvre Atelier avec `?debug` à la fin de l'adresse (c'est déjà le réglage par défaut pendant la phase de test).
 5. Bouton « ✨ » de la barre du haut : attends les états ; clique « Télécharger » pour chaque API « à télécharger » (une à la fois ; la première prend plusieurs minutes).
 6. Essaie chaque tâche une fois : « Plus court » et « Corriger » sur un paragraphe (7.2, 7.3), « ✨ Décrire l'image » (7.4), dans 🔎 Référencement « ✨ Proposer » la description et le titre, « ✨ Idées », puis la langue NL et « ✨ Compléter les descriptions » (6.3, 6.4).
-7. 🐞 → « 📋 Copier le journal », colle-le dans ton message avec une capture de `chrome://on-device-internals`.
+7. Journal (icône insecte) → « 📋 Copier le journal », colle-le dans ton message avec une capture de `chrome://on-device-internals`.
 
 **Ce que le journal doit montrer quand tout marche**
 - En tête du journal copié, la ligne `ia :` (contexte de l'environnement) : `fournisseur : Chrome`, les globales présentes (`LanguageModel, Summarizer, Rewriter, Writer, Proofreader, Translator, LanguageDetector`, « (absent) » à côté de celles qui manquent), le dernier état connu de chaque API et l'état du traducteur par paire.
@@ -401,7 +401,7 @@ Extrait obtenu avec une **imitation** des API de Chrome (même code que le vrai,
 | `ai.availability-fail` | WARN | `availability()` a levé une erreur : API considérée indisponible |
 | `ai.availability-timeout` | WARN | `availability()` sans réponse en 4 s |
 | `ai.description.start`, `ai.description.ok`, `ai.description.fail`, `ai.description.cancel` | INFO / INFO / ERROR / INFO | tâche « description pour Google » |
-| `ai.dialog` | INFO | fenêtre ✨ IA locale ouverte |
+| `ai.dialog` | INFO | fenêtre IA locale (icône étincelle) ouverte |
 | `ai.download.start`, `ai.download.ok`, `ai.download.fail` | INFO / INFO / ERROR | téléchargement d'un modèle (bouton « Télécharger ») |
 | `ai.download-follow` | INFO | suivi d'un téléchargement déjà lancé par Chrome (bouton « Voir la progression ») |
 | `ai.download-stalled` | WARN | aucun avancement de Chrome depuis 20 s pendant un téléchargement suivi |

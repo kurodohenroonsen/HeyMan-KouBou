@@ -66,7 +66,7 @@ Les chapitres ci-dessous détaillent chaque fonctionnalité. Les **détails tech
 
 ## Pour signaler un problème
 1. Refais l'opération qui pose problème.
-2. Clique sur **🐞** (barre du haut) puis **📋 Copier le journal**. Si l'hébergement est concerné, ouvre d'abord « Journal du serveur » et clique **Lire le journal du serveur** : ses lignes sont ajoutées à la copie.
+2. Clique sur **Journal** (icône insecte) (barre du haut) puis **📋 Copier le journal**. Si l'hébergement est concerné, ouvre d'abord « Journal du serveur » et clique **Lire le journal du serveur** : ses lignes sont ajoutées à la copie.
 3. Colle le tout dans ton message, avec une phrase : ce que tu as fait, ce que tu attendais, ce qui s'est passé.
 
 Le journal copié commence par l'environnement (navigateur, écran, stockage, projet, réglages) : pas besoin de le décrire.

@@ -11,7 +11,7 @@
 
 **Ce qui n'est jamais écrit dans le journal** : la clé de la session (le morceau `#join=…` du lien est masqué), les liens d'invitation complets, les codes de connexion (seulement leur longueur `chars`), les adresses IP, le contenu des messages. Les identifiants de salle (`room`) sont abrégés à 8 caractères ; `fp` est l'empreinte publique d'une personne (16 caractères), pas un secret.
 
-**Le contexte « collaboration »** : le journal copié (🐞 → « Copier le journal ») commence par une ligne `collaboration : {…}` qui donne ton rôle, l'état de la session, la mise en relation (boîte aux lettres ou codes), le serveur STUN, le nombre de participants vérifiés et, pour chaque lien WebRTC, ses états (`ice`, `connexion`, `collecte`, `canal`), les types d'adresses locales et distantes et le chemin réseau utilisé (`paire`). C'est la première chose à regarder quand une connexion ne s'établit pas.
+**Le contexte « collaboration »** : le journal copié (Journal (icône insecte) → « Copier le journal ») commence par une ligne `collaboration : {…}` qui donne ton rôle, l'état de la session, la mise en relation (boîte aux lettres ou codes), le serveur STUN, le nombre de participants vérifiés et, pour chaque lien WebRTC, ses états (`ice`, `connexion`, `collecte`, `canal`), les types d'adresses locales et distantes et le chemin réseau utilisé (`paire`). C'est la première chose à regarder quand une connexion ne s'établit pas.
 
 ---
 
@@ -21,11 +21,11 @@
 
 **Étapes**
 1. (Conseillé) Onglet **Publier** → **OVH** : indique l'adresse de ton publish.php (version 4). Sans elle, la mise en relation se fera par codes (10.4).
-2. Clique sur **👥** (barre du haut).
+2. Clique sur **Travailler à plusieurs** (icône deux personnes) (barre du haut).
 3. Indique **ton nom** (vu par les autres) : une clé personnelle est créée dans ce navigateur, pour prouver ton identité et signer tes commentaires.
-4. Clique **👥 Démarrer une session**.
+4. Clique **Travailler à plusieurs (icône deux personnes) Démarrer une session**.
 
-**Ce que tu vois** : « Session ouverte : envoyez un lien d’invitation. », deux liens (éditeur et relecteur), la zone « Connexion par codes » et la liste « Participants (0) ». Le bouton 👥 devient actif.
+**Ce que tu vois** : « Session ouverte : envoyez un lien d’invitation. », deux liens (éditeur et relecteur), la zone « Connexion par codes » et la liste « Participants (0) ». Le bouton Travailler à plusieurs (icône deux personnes) devient actif.
 
 **Journal attendu** ([`journaux/collab-heberger.log`](journaux/collab-heberger.log))
 ```log
@@ -69,7 +69,7 @@
 
 **But** : donner à une personne le moyen de rejoindre ta session, avec le bon rôle.
 
-**Étapes** : dans 👥, à côté de « ✎ Invitation éditeur » ou « 💬 Invitation relecteur », clique **Copier**, puis envoie le lien (e-mail, messagerie).
+**Étapes** : dans la fenêtre « Travailler à plusieurs », à côté de « ✎ Invitation éditeur » ou « 💬 Invitation relecteur », clique **Copier**, puis envoie le lien (e-mail, messagerie).
 
 **Ce que tu vois** : « Lien copié. ».
 
@@ -94,7 +94,7 @@ Les liens eux-mêmes ne sont jamais écrits ; `collab.invite.create` (à l'ouver
 
 **Étapes**
 1. Ouvre le lien dans ton navigateur (Chrome, Edge, Firefox récents).
-2. La fenêtre « 👥 Rejoindre une session » dit qui t'invite et pour quoi. Indique **ton nom**.
+2. La fenêtre « Travailler à plusieurs (icône deux personnes) Rejoindre une session » dit qui t'invite et pour quoi. Indique **ton nom**.
 3. Clique **Rejoindre**.
 
 **Ce que tu vois** : « Connexion directe en cours… », puis « Projet reçu de Kudoro. » : le projet de l'hôte remplace le tien (qui est d'abord enregistré dans les versions). La pastille de l'hôte apparaît en haut.
@@ -199,7 +199,7 @@ Les durées `ms` des étapes `rtc.join.*` montrent où le temps passe : la colle
 
 **Étapes**
 1. L'invité ouvre le lien, indique son nom, clique **Rejoindre** : un **code de connexion** apparaît (« 1. Envoyez ce code à … »). Il l'envoie à l'hôte.
-2. L'hôte le colle dans 👥 → « Connexion par codes » → **Créer le code de réponse**, et renvoie le **code de réponse** à l'invité.
+2. L'hôte le colle dans Travailler à plusieurs (icône deux personnes) → « Connexion par codes » → **Créer le code de réponse**, et renvoie le **code de réponse** à l'invité.
 3. L'invité colle le code de réponse (« 2. Collez ici… ») → **Se connecter**.
 
 **Ce que tu vois** : chez l'invité, « Connecté·e : réception du projet… » puis le projet de l'hôte.
@@ -330,7 +330,7 @@ Les durées `ms` des étapes `rtc.join.*` montrent où le temps passe : la colle
 
 **Étapes**
 1. Continue à modifier : tes modifications sont gardées et suivies.
-2. Pour reprendre : **rouvre le lien d'invitation** (invité) ou 👥 → **Reprendre la session** (hôte, après un rechargement).
+2. Pour reprendre : **rouvre le lien d'invitation** (invité) ou Travailler à plusieurs (icône deux personnes) → **Reprendre la session** (hôte, après un rechargement).
 
 **Ce que tu vois** : après la reconnexion, tes modifications arrivent chez les autres, et les leurs chez toi.
 
@@ -401,7 +401,7 @@ Les durées `ms` des étapes `rtc.join.*` montrent où le temps passe : la colle
 
 **But** : se déconnecter (invité) ou terminer la session pour tout le monde (hôte).
 
-**Étapes** : 👥 → **Quitter la session** (invité) ou **Fermer la session** (hôte).
+**Étapes** : Travailler à plusieurs (icône deux personnes) → **Quitter la session** (invité) ou **Fermer la session** (hôte).
 
 **Ce que tu vois** : « Vous avez quitté la session. » / « Session fermée. » ; les pastilles disparaissent. Après une fermeture par l'hôte, ses anciens liens ne marchent plus.
 
@@ -484,7 +484,7 @@ Détails internes : `collab.hello.retry`, `collab.hello.again`, `collab.auth.ear
 
 **But** : choisir le serveur STUN, qui aide chaque navigateur à découvrir son adresse publique pour traverser les box internet.
 
-**Étapes** : 👥 (sans session ouverte) → **Réglage réseau** → champ « Serveur STUN ». Par défaut : `stun:stun.l.google.com:19302`. Vide = réseau local seulement. Plusieurs adresses séparées par des espaces.
+**Étapes** : Travailler à plusieurs (icône deux personnes) (sans session ouverte) → **Réglage réseau** → champ « Serveur STUN ». Par défaut : `stun:stun.l.google.com:19302`. Vide = réseau local seulement. Plusieurs adresses séparées par des espaces.
 
 **Journal attendu** ([`journaux/collab-stun-regle.log`](journaux/collab-stun-regle.log))
 ```log
@@ -503,7 +503,7 @@ Détails internes : `collab.hello.retry`, `collab.hello.again`, `collab.auth.ear
 
 ## 10.11 Diagnostiquer une connexion qui ne s'établit pas
 
-Quand « Rejoindre » échoue ou reste bloqué, **refais l'essai des deux côtés**, puis copie le journal (🐞 → « Copier le journal ») **chez l'hôte et chez l'invité**, et envoie les deux. La ligne `collaboration : {…}` en tête donne l'état de chaque lien (`liens`).
+Quand « Rejoindre » échoue ou reste bloqué, **refais l'essai des deux côtés**, puis copie le journal (Journal (icône insecte) → « Copier le journal ») **chez l'hôte et chez l'invité**, et envoie les deux. La ligne `collaboration : {…}` en tête donne l'état de chaque lien (`liens`).
 
 ### Les trois étapes d'une connexion
 1. **Mise en relation** (`signal.*`) : les deux navigateurs échangent une « demande » et une « réponse » qui décrivent leurs adresses réseau, par la boîte aux lettres de publish.php (ou par les codes). Si elle échoue, rien d'autre n'est essayé.
@@ -637,7 +637,7 @@ Signes dans le journal : `srflx` présent des deux côtés, mais `rtc.ice.state`
 | `rtc.recv.invalid` (WARN) | message reçu illisible |
 | `rtc.close-error` (WARN) | fermeture impossible (déjà fermé) |
 
-Pour voir les lignes TRACE : 🐞 → niveau « trace », ou `?trace` dans l'adresse de l'éditeur (chapitre 0).
+Pour voir les lignes TRACE : Journal (icône insecte) → niveau « trace », ou `?trace` dans l'adresse de l'éditeur (chapitre 0).
 
 ---
 

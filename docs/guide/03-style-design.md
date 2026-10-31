@@ -127,9 +127,9 @@ L'inspecteur, à droite, règle l'élément sélectionné : son **contenu** (tex
 
 **Étapes**
 1. Sélectionne l'élément, onglet **Style**.
-2. Choisis l'appareil (boutons Ordinateur / Tablette / Mobile de l'onglet, ou 🖥 ▭ ▯ en haut). L'ordinateur s'applique aussi aux autres appareils, sauf réglage contraire ; un réglage tablette s'applique aussi au mobile.
-3. Tape une valeur (`24px`, `1.5rem`, `50%`, `auto`, `clamp(1rem, 3vw, 2rem)`, un nombre seul devient des px) puis Entrée, ou choisis dans l'échelle du site (`size:xl`, `space:m`). ↺ revient à la valeur héritée.
-4. 🖥▭▯ affiche les trois appareils côte à côte ; « Chercher un réglage » filtre la liste.
+2. Choisis l'appareil (boutons Ordinateur / Tablette / Mobile de l'onglet, ou icônes ordinateur, tablette, mobile en haut). L'ordinateur s'applique aussi aux autres appareils, sauf réglage contraire ; un réglage tablette s'applique aussi au mobile.
+3. Tape un nombre dans le champ (l'unité se choisit à côté, px par défaut ; ↑ ↓ font varier la valeur, voir 3.17) puis Entrée, ou choisis dans l'échelle du site (`size:xl`, `space:m`) ; pour `clamp(…)`, `var(…)` ou `auto`, bouton « Valeur libre ». ↺ revient à la valeur héritée.
+4. bouton aux trois écrans affiche les trois appareils côte à côte ; « Chercher un réglage » filtre la liste.
 
 **Ce que tu vois** : la valeur s'applique dans la page ; le champ affiche en gris la valeur héritée.
 
@@ -615,6 +615,57 @@ L'inspecteur, à droite, règle l'élément sélectionné : son **contenu** (tex
 
 ---
 
+## 3.17 Régler sans écrire de CSS : nombre et unité, côtés liés, noms de couleurs
+
+**But** : régler une taille, une marge ou une couleur sans connaître la syntaxe CSS.
+
+**Étapes**
+1. Onglet **Style**. Chaque longueur a un **champ nombre** et une **liste d'unités** (px par défaut ; rem, em, %, vh, vw). Tape `24` puis Entrée ; `24px` ou `1,5` sont compris aussi.
+2. Dans le champ nombre, **↑ / ↓** ajoutent ou retirent 1 (0,1 en rem ou em), **Maj+↑ / Maj+↓** 10 (1 en rem ou em) : la page suit à chaque pas.
+3. Pour une valeur avancée (`clamp(1rem, 3vw, 2rem)`, `var(--space-m)`, `auto`), bouton **Valeur libre** (icône { }) à droite du champ : il devient un champ texte ; même bouton pour revenir.
+4. **Marges** : le schéma de boîte montre haut, droite, bas, gauche autour du bloc (marges extérieures) ou du contenu (marges intérieures). Le **cadenas** lie les 4 côtés : une seule valeur tapée va sur les quatre, en une étape d'annulation. Les marges intérieures sont liées d'office quand leurs 4 côtés sont égaux.
+5. **Couleurs** : le champ affiche le nom de la couleur de la palette (« Couleur principale », « Couleur du texte », ou le nom que tu lui as donné) ; tu peux aussi taper ce nom, un `#hex` ou `rgb(…)`. Le projet garde la référence à la palette : changer la couleur dans le panneau Site recolore tout.
+6. **Curseurs** pour l'arrondi (0 à 48 px) et l'opacité (mode expert) : la valeur s'affiche pendant le glisser et s'applique au relâchement.
+
+**Ce que tu vois** : `0.85rem` s'affiche « 0.85 » + « rem » ; une valeur héritée reste en gris dans le champ.
+
+**Journal attendu** ([`journaux/c30-style-nombre-unite.log`](journaux/c30-style-nombre-unite.log))
+```log
+12:24:11.318 +5.26s DEBUG style.set Marge haut = 10px (Ordinateur) {"key":"marginTop","state":"normal","device":"desktop","target":"node","id":"n_691s1m2m2u","value":"10px","autoPx":true}
+12:24:11.469 +5.41s DEBUG style.set Marge haut = 11px (Ordinateur) {"key":"marginTop","state":"normal","device":"desktop","target":"node","id":"n_691s1m2m2u","value":"11px"}
+12:24:11.677 +5.62s DEBUG style.set Marge haut = 21px (Ordinateur) {"key":"marginTop","state":"normal","device":"desktop","target":"node","id":"n_691s1m2m2u","value":"21px"}
+12:24:11.874 +5.82s DEBUG style.box-lock Marges extérieures : les 4 côtés sont liés {"prefix":"margin","linked":true,"target":"node"}
+12:24:11.940 +5.88s DEBUG style.set Marges extérieures (4 côtés) = 16px (Ordinateur) {"key":"marginBottom","keys":["marginTop","marginRight","marginBottom","marginLeft"],"state":"normal","device":"desktop","target":"node","id":"n_691s1m2m2u","value":"16px","autoPx":true,"linked":true}
+```
+À vérifier : chaque pas des flèches donne un `style.set` ; avec le cadenas, `style.set` porte `"linked":true` et la liste `keys` des quatre côtés.
+
+**Variantes**
+| Situation | Journal |
+|---|---|
+| Unité changée dans la liste | `style.unit` (DEBUG) `{"unit":"rem"}`, puis `style.set` avec la même valeur dans la nouvelle unité |
+| Bouton Valeur libre | `style.free` (DEBUG) `{"free":true}` |
+| Cadenas ouvert | `style.box-lock` `{"linked":false}` |
+| Flèches sur une valeur libre (`clamp()`) | rien : le champ texte garde les flèches du navigateur |
+
+**Erreurs** : comme en 3.3 (`style.refused` pour une unité ou une expression non autorisée).
+
+---
+
+## 3.18 Mode simple et mode expert
+
+**But** : ne voir que l'essentiel, et retrouver tous les réglages quand on en a besoin.
+
+**Étapes**
+1. Par défaut, l'éditeur est en **mode simple** : l'onglet Style montre **Typographie**, **Fond**, **Espacement** et **Bordure** ; l'onglet Avancé montre l'ancre, « Réutiliser » et « Masquer sur ».
+2. En bas de l'onglet Style ou Avancé : **Tous les réglages** passe en **mode expert** (Dimensions, Disposition, Effets ; Classes CSS, Libellé accessible, CSS personnalisée). **Revenir au mode simple** fait l'inverse.
+3. Aussi : menu **Fichier → Mode expert (tous les réglages)** (case à cocher). Un réglage expert demandé par Ctrl+K (« Réglage : Largeur maximale ») passe en mode expert tout seul.
+
+**Ce que tu vois** : le choix est retenu sur cet appareil (il revient au prochain lancement). Les réglages déjà faits en mode expert restent appliqués en mode simple ; ils sont seulement cachés.
+
+**Journal** : `ui.mode` (INFO) `{"expert":true,"by":"bouton"}` (ou `menu`, `réglage`).
+
+---
+
 ## Codes de ce chapitre
 
 | Code | Niveau | Sens |
@@ -650,6 +701,7 @@ L'inspecteur, à droite, règle l'élément sélectionné : son **contenu** (tex
 | `inspector.render` | TRACE | inspecteur redessiné |
 | `inspector.tab` | DEBUG | onglet Contenu, Style ou Avancé |
 | `style.all-devices` | DEBUG | vue des trois appareils côte à côte |
+| `style.box-lock` | DEBUG | cadenas « lier les 4 côtés » fermé ou ouvert (3.17) |
 | `style.contrast-error` | WARN | contraste impossible à calculer |
 | `style.contrast-low` | WARN | contraste insuffisant (ratio, requis, couleurs) |
 | `style.contrast-ok` | DEBUG, TRACE | contraste suffisant (DEBUG après un contraste insuffisant) |
@@ -658,6 +710,7 @@ L'inspecteur, à droite, règle l'élément sélectionné : son **contenu** (tex
 | `style.device` | DEBUG | appareil choisi dans l'onglet Style |
 | `style.focus` | DEBUG | réglage mis en avant (Ctrl+K) |
 | `style.focus-missing` | DEBUG | réglage absent pour cet élément |
+| `style.free` | DEBUG | champ passé en valeur libre ou revenu au nombre + unité |
 | `style.paste` | INFO | style collé (nombre d'éléments) |
 | `style.paste-empty` | DEBUG | aucun style copié |
 | `style.preset-apply` | INFO | preset appliqué ou retiré |
@@ -673,6 +726,7 @@ L'inspecteur, à droite, règle l'élément sélectionné : son **contenu** (tex
 | `style.set` | DEBUG | réglage de style (propriété, appareil, état, cible) |
 | `style.set-fail` | WARN | réglage non appliqué (refus du cœur) |
 | `style.state` | DEBUG | état Normal ou Survol |
+| `style.unit` | DEBUG | unité d'une longueur changée |
 | `template.component` | DEBUG | composant choisi dans le panneau Modèles |
 | `template.fail` | ERROR | modèle impossible à construire |
 | `template.insert` | INFO | modèle de section inséré |
@@ -683,5 +737,6 @@ L'inspecteur, à droite, règle l'élément sélectionné : son **contenu** (tex
 | `settings.layout-reset` | INFO | retour à l'en-tête ou au pied par défaut |
 | `settings.preset-delete` | INFO | preset supprimé (panneau Site) |
 | `settings.refused` | WARN | réglage du panneau Site refusé |
+| `ui.mode` | INFO | mode simple ou mode expert (3.18) |
 
 Les autres codes `settings.*` cités (couleurs, échelles, thème, en-tête, logo, pied) sont décrits avec le panneau Site.
