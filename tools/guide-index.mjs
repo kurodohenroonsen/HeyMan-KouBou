@@ -44,7 +44,7 @@ for (const f of sourceFiles(root)) {
   for (const c of codes) add(c, lv.get(c), f);
   for (const alts of alternatives) for (const c of alts) if (chapters.some(ch => new RegExp(`${esc(c)}(?![a-z0-9-])`).test(ch.text))) add(c, lv.get(c), f);
 }
-for (const c of ['boot.error', 'boot.resource', 'boot.rejection', 'boot.timeout']) add(c, new Set(['ERROR']), 'index.html');
+for (const c of ['boot.error', 'boot.resource', 'boot.rejection', 'boot.timeout']) add(c, new Set(['ERROR']), 'editor/boot.js');
 
 const where = c => chapters.filter(ch => new RegExp(`\`${esc(c)}\``).test(ch.text) || new RegExp(`${esc(c)}(?![a-z0-9.-])`).test(ch.text)).map(ch => `[${ch.f.slice(0, 2).replace(/^0/, '')}](${ch.f})`);
 const byDomain = new Map();
