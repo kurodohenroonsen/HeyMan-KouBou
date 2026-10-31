@@ -1,0 +1,10 @@
+13:29:59.784 +3.36s INFO  version.save.start [version.save#2] Enregistrement d’une version de sécurité : « Avant un nouveau site » {"kind":"safety","name":"Avant un nouveau site"}
+13:29:59.786 +3.36s DEBUG storage.version-save Version enregistrée {"id":"v_mvwdpe202jl55","name":"Avant un nouveau site","kind":"safety"}
+13:29:59.790 +3.37s DEBUG ui.dialog.close Fenêtre fermée : Nouveau site {"id":"newSiteDialog"}
+13:29:59.797 +3.38s DEBUG version.save.prune [version.save#2 · 13 ms] Aucune ancienne version à supprimer {"total":2}
+13:29:59.798 +3.38s INFO  version.save.ok [version.save#2 · 14 ms] Version de sécurité enregistrée (8 pages) {"id":"v_mvwdpe202jl55","kind":"safety","at":"2026-10-31T12:29:59.784Z","pages":8,"kb":91}
+13:29:59.813 +3.39s INFO  store.load Projet chargé dans l’éditeur {"name":"久万高原町 観光ガイド","pages":6,"keepHistory":true}
+13:29:59.836 +3.41s INFO  canvas.load.start [canvas.load#4] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_bfyzgvtt","lang":"ja","device":"desktop"}
+13:29:59.842 +3.42s DEBUG canvas.load.render [canvas.load#4 · 6 ms] Page rendue {"ms":6,"kb":38}
+13:29:59.844 +3.42s INFO  project.new Nouveau site « 久万高原町 観光ガイド » depuis le modèle Tourisme ou commune : 6 pages, langue principale 日本語 {"lang":"ja","languages":["ja","fr","en"],"template":"tourism","pages":6,"timezone":"Asia/Tokyo"}
+13:29:59.868 +3.45s INFO  canvas.load.ok [canvas.load#4 · 32 ms] Canevas prêt {"nodes":28,"scale":76,"via":"load"}
