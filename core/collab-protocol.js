@@ -202,9 +202,10 @@ export class CollabNode {
           this._send(st, { t: 'delta', ops, summary: this.replica.summary() });
         } else {
           const snapshot = this.replica.snapshot();
-          this._sendAssets(st, Object.keys(snapshot.doc?.assets || {}));
           log.info('collab.sync.snapshot', __('Envoi du projet complet à {name}', { name: st.name }), { name: st.name, why: m.docId ? 'autre document' : 'nouveau participant', pages: snapshot.doc?.pages?.length, kb: Math.round(JSON.stringify(snapshot).length / 1024) });
           this._send(st, { t: 'snapshot', snapshot });
+          /* Puis les octets des images : le projet s'affiche tout de suite, les photos arrivent ensuite */
+          this._sendAssets(st, Object.keys(snapshot.doc?.assets || {}));
         }
         return;
       case 'snapshot': {

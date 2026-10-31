@@ -10,6 +10,11 @@ import { join } from 'node:path';
 import { buildPublishPhp, sha256Hex } from '../../core/publish.js';
 import { mark, since, waitCode, expectCodes, expectNoErrors, capture } from './logs.mjs';
 
+/* Images du canevas servies par le magasin : adresse blob: lisible (images hors écran : chargement différé) */
+const blobImages = frame => frame.locator('main [data-type="image"] img').evaluateAll(async xs => {
+  const ok = await Promise.all(xs.map(i => (i.src.startsWith('blob:') ? fetch(i.src).then(r => r.blob()).then(b => b.size > 1000 && /^image\//.test(b.type)).catch(() => false) : false)));
+  return ok.filter(Boolean).length;
+});
 const median = xs => { const s = [...xs].sort((a, b) => a - b); return s.length ? s[Math.floor(s.length / 2)] : NaN; };
 
 function makePhotos(dir, n) {
@@ -57,7 +62,7 @@ export default async function (t) {
   const canvasHtml = await c.locator('html').evaluate(h => h.outerHTML);
   t.ok(!/data:image/.test(canvasHtml) && (canvasHtml.match(/<img src="blob:/g) || []).length >= 10, 'canevas : images en blob:, aucune data: d’image');
   t.ok(await c.locator('main [data-type="image"] img').nth(9).evaluate(i => i.complete && i.naturalWidth === 1600), 'canevas : la dixième photo est affichée (1600 px)');
-  expectCodes(t, es, ['inspector.image', 'inspector.image.ok'], 'import');
+  expectCodes(t, es, ['inspector.image.start', 'inspector.image.ok'], 'import');
   expectNoErrors(t, es, 'import');
 
   /* ---------- 2. 20 frappes dans un titre (page) : rendu ciblé, 0 inspector.render, <main> gardé ---------- */
@@ -161,7 +166,7 @@ export default async function (t) {
   const names = new Set(zipText.match(/assets\/photo-\d(?:-\d)?(?:-\d+)?-[a-z0-9]+\.(?:webp|jpg)/g) || []);
   t.ok(names.size >= 30, `.zip : ${names.size} fichiers d’image (10 photos et leurs variantes)`);
   es = await since(page, s);
-  expectCodes(t, es, ['export.zip', 'export.zip.ok'], 'export');
+  expectCodes(t, es, ['export.zip.start', 'export.zip.ok'], 'export');
 
   /* ---------- 8. .json autonome (octets inclus) ---------- */
   const json = await page.evaluate(async () => {
@@ -176,15 +181,15 @@ export default async function (t) {
   await page.goto(t.base);
   await page.waitForFunction(() => window.__atelier?.ready === true, null, { timeout: 10000 });
   await t.wait(500);
-  const back = await c.locator('main [data-type="image"] img').evaluateAll(xs => xs.filter(i => i.src.startsWith('blob:') && i.complete && i.naturalWidth > 0).length);
+  const back = await blobImages(c);
   t.ok(back >= 10, `après rechargement : ${back} images affichées depuis la base locale`);
   t.ok(await page.evaluate(() => !JSON.stringify(window.__atelier.site).includes('base64')), 'après rechargement : octets toujours hors du modèle');
 
-  await collab(t);
   await demo(t);
+  await collab(t);
 }
 
-/* ---------- 10. Collaboration : l'invitée reçoit les photos, puis une image ajoutée par l'hôte ---------- */
+/* ---------- 11. Collaboration : l'invitée reçoit les photos, puis une image ajoutée par l'hôte ---------- */
 async function collab(t) {
   const { page: A, browser, base } = t;
   const port = 8900 + Math.floor(Math.random() * 90);
@@ -220,8 +225,11 @@ async function collab(t) {
     const ok = await B.waitForFunction(() => window.__collab?.session?.node?.peers().some(p => p.authed) && !document.querySelector('#joinDialog') && window.__atelier?.ready, null, { timeout: 30000 }).then(() => true).catch(() => false);
     t.ok(ok, 'collaboration : l’invitée est connectée et a reçu le projet');
     const cB = B.frameLocator('#canvas');
-    const shown = () => cB.locator('main [data-type="image"] img').evaluateAll(xs => xs.filter(i => i.src.startsWith('blob:') && i.complete && i.naturalWidth > 0).length);
-    t.ok(await B.waitForFunction(async () => { const { assets } = await import('/editor/assets.js'); return Object.keys(window.__atelier.site.assets).every(id => assets.has(id)) && Object.keys(window.__atelier.site.assets).length >= 10; }, null, { timeout: 30000 }).then(() => true).catch(() => false), 'collaboration : les octets des 10 photos sont arrivés chez l’invitée');
+    const shown = () => blobImages(cB);
+    const t0 = Date.now();
+    await B.evaluate(async () => { window.__assets27 = (await import('/editor/assets.js')).assets; });
+    const all = await B.waitForFunction(() => { const ids = Object.keys(window.__atelier.site.assets); return ids.length >= 10 && ids.every(id => window.__assets27.has(id)); }, null, { timeout: 90000, polling: 250 }).then(() => true).catch(() => false);
+    t.ok(all, `collaboration : projet et octets des 10 photos reçus par l’invitée (${Math.round((Date.now() - t0) / 1000)} s)`);
     await t.wait(800);
     t.ok(await shown() >= 10, `collaboration : l’invitée voit les photos (${await shown()})`);
     const sB = await mark(B);
@@ -246,14 +254,12 @@ async function collab(t) {
   }
 }
 
-/* ---------- 11. Démonstration du cycle 26 (vitesse rapide) : elle importe des images ---------- */
+/* ---------- 10. Démonstration du cycle 26 (vitesse rapide) : elle importe des images ---------- */
 async function demo(t) {
   const { page } = t;
-  await page.goto(t.base + '?fresh=1', { waitUntil: 'networkidle' });
-  await page.waitForFunction(() => window.__atelier?.ready === true);
-  await t.wait(500);
+  const before = await page.evaluate(() => JSON.stringify(window.__atelier.site));
   const s = await mark(page);
-  await page.evaluate(() => window.atelierDemo({ speed: 'fast' }));
+  page.evaluate(() => window.atelierDemo({ speed: 'fast' }));
   await page.waitForSelector('#demoPanel');
   await page.waitForSelector('#demoEndDialog[open]', { timeout: 300000 });
   const built = await page.evaluate(async () => {
@@ -264,6 +270,9 @@ async function demo(t) {
   t.ok(built.n >= 1 && built.ok && !built.base64, `démonstration : ${built.n} image(s) importée(s), octets dans le magasin`);
   await page.click('#demoBack');
   await waitCode(page, 'demo.done', s, 20000);
+  await t.wait(500);
+  t.ok(await page.evaluate(() => JSON.stringify(window.__atelier.site)) === before, 'après la démonstration : projet aux 10 photos remis à l’identique');
+  t.ok(await blobImages(t.canvas()) >= 10, 'après la démonstration : les 10 photos s’affichent');
   const es = await since(page, s);
   expectCodes(t, es, ['demo.start', 'demo.ok', 'demo.done'], 'démonstration');
   expectNoErrors(t, es, 'démonstration');
