@@ -307,7 +307,7 @@ t('v5 : chaque erreur porte un code machine et un message', async () => {
 });
 
 t('v5 : nouvelles extensions acceptées, .php et .htaccess dans le paquet toujours refusés', async () => {
-  const files = { 'index.html': 'x', 'assets/fonts/a-0123abcd.woff2': 'w', 'favicon.svg': '<svg/>', 'favicon.ico': 'i', 'assets/statuts.pdf': 'p', 'assets/emission.mp3': 'm', 'assets/e.m4a': 'm', 'assets/e.ogg': 'o', 'agenda/calendar.ics': 'c', 'site.webmanifest': '{}' };
+  const files = { 'index.html': 'x', 'assets/fonts/a-0123abcd.woff2': 'w', 'favicon.svg': '<svg/>', 'favicon.ico': 'i', 'assets/statuts.pdf': 'p', 'assets/emission.mp3': 'm', 'assets/e.m4a': 'm', 'assets/e.ogg': 'o', 'assets/docs/statuts-0123abcd.docx': 'd', 'assets/docs/b.odt': 'o', 'assets/docs/c.xlsx': 'x', 'assets/docs/d.pptx': 'p', 'assets/docs/presse.zip': 'z', 'agenda/calendar.ics': 'c', 'site.webmanifest': '{}' };
   const r = await publish(files);
   assert.equal(r.status, 200, JSON.stringify(r.body));
   for (const k of Object.keys(files)) assert.ok(existsSync(join(dir, k)), k);

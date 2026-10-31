@@ -132,9 +132,9 @@ const TOKEN_SHA256 = '__TOKEN_HASH__';
 /* Domaine d'expédition des formulaires, fixé à la génération d'après l'adresse du site (jamais d'après l'en-tête Host) */
 const MAIL_DOMAIN = '__MAIL_DOMAIN__';
 const MAX_ZIP = 80 * 1024 * 1024;
-const MAX_FILE = 20 * 1024 * 1024;
+const MAX_FILE = 26 * 1024 * 1024;
 const MAX_FILES = 4000;
-const ALLOWED = ['html', 'css', 'js', 'xml', 'txt', 'webp', 'jpg', 'jpeg', 'png', 'gif', 'avif', 'ico', 'svg', 'json', 'ics', 'woff2', 'pdf', 'mp3', 'm4a', 'ogg', 'webmanifest'];
+const ALLOWED = ['html', 'css', 'js', 'xml', 'txt', 'webp', 'jpg', 'jpeg', 'png', 'gif', 'avif', 'ico', 'svg', 'json', 'ics', 'woff2', 'pdf', 'mp3', 'm4a', 'ogg', 'docx', 'odt', 'xlsx', 'pptx', 'zip', 'webmanifest'];
 const RATE_MAX = 5;
 const RATE_WINDOW = 3600;
 const GUARD = "<?php http_response_code(404); exit; ?>\n";
@@ -351,7 +351,7 @@ function htaccess_content(array $o): string {
   if ($o['https']) $l[] = 'Header always set Strict-Transport-Security "max-age=31536000"';
   array_push($l, 'Header always set X-Content-Type-Options "nosniff"', 'Header always set Referrer-Policy "strict-origin-when-cross-origin"', 'Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"', 'Header always set X-Frame-Options "SAMEORIGIN"',
     'Header always set Content-Security-Policy "' . HTACCESS_CSP . ($o['https'] ? '; upgrade-insecure-requests' : '') . '"',
-    '<FilesMatch "-[0-9a-f]{8}\.(woff2|webp|jpe?g|png|gif|avif|svg|ico|css|js|pdf|mp3|m4a|ogg)$">', '  Header set Cache-Control "public, max-age=31536000, immutable"', '</FilesMatch>',
+    '<FilesMatch "-[0-9a-f]{8}\.(woff2|webp|jpe?g|png|gif|avif|svg|ico|css|js|pdf|mp3|m4a|ogg|docx|odt|xlsx|pptx|zip)$">', '  Header set Cache-Control "public, max-age=31536000, immutable"', '</FilesMatch>',
     '<FilesMatch "\.(html|css|js|xml|txt|webmanifest|ics)$">', '  Header set Cache-Control "no-cache"', '</FilesMatch>', '</IfModule>',
     '<IfModule mod_deflate.c>', 'AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml text/xml application/xml application/manifest+json text/plain text/calendar', '</IfModule>');
   if ($main !== null) $l[] = '# Langue principale : ' . $main;
@@ -725,7 +725,7 @@ export function filesForServer(files, version) {
   const out = new Map();
   const skipped = [];
   for (const [k, val] of files) {
-    if ((v < 2 && /\.ics$/i.test(k)) || (v < 5 && /\.(woff2|svg|webmanifest|pdf|mp3|m4a|ogg)$|(^|\/)\./i.test(k))) skipped.push(k);
+    if ((v < 2 && /\.ics$/i.test(k)) || (v < 5 && /\.(woff2|svg|webmanifest|pdf|mp3|m4a|ogg|docx|odt|xlsx|pptx|zip)$|(^|\/)\./i.test(k))) skipped.push(k);
     else out.set(k, val);
   }
   return { files: out, skipped };

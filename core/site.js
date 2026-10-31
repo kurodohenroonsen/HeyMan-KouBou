@@ -9,6 +9,8 @@ import { validIcon, ICON_SIZES } from './siteicon.js';
 import { missingFrom } from './i18n.js';
 import { validateCollections } from './collections.js';
 import { sanitizeSiteTexts } from './sanitize-site.js';
+import { sanitizeSvg, svgFromDataUrl, svgDataUrl } from './svg.js';
+import { docTypeOf, dataUrlBytes, MAX_DOC_BYTES } from './documents.js';
 import { __, N_ } from './ui-i18n.js';
 
 /* Langues de contenu des sites (noms jamais traduits) */
@@ -345,7 +347,7 @@ export function setSiteMeta(site, patch) {
   return s;
 }
 
-const DATA_IMG = /^data:image\/(png|jpeg|webp|gif|avif);base64,[a-z0-9+/=]+$/i;
+const DATA_IMG = /^data:image\/(png|jpeg|webp|gif|avif|svg\+xml);base64,[a-z0-9+/=]+$/i;
 const DATA_WOFF2 = /^data:(?:font\/woff2|application\/(?:font-woff2|octet-stream));base64,[a-z0-9+/=]+$/i;
 const FONT_WEIGHTS = ['100', '200', '300', '400', '500', '600', '700', '800', '900'];
 
@@ -383,6 +385,8 @@ export function removeFont(site, id) {
 
 export function addAsset(site, { name, mime, dataUrl, width, height, variants }) {
   if (!DATA_IMG.test(dataUrl)) throw new Error(__('Image non prise en charge.'));
+  /* Cycle 33 : SVG gardé tel quel (pas de WebP ni de variantes), après assainissement */
+  if (/^data:image\/svg\+xml/i.test(dataUrl)) { dataUrl = svgDataUrl(sanitizeSvg(svgFromDataUrl(dataUrl)).svg); mime = 'image/svg+xml'; variants = undefined; }
   for (const v of variants || []) if (!DATA_IMG.test(v.dataUrl) || !(v.w > 0)) throw new Error(__('Variante d’image invalide.'));
   const s = clone(site);
   const id = 'img_' + Math.random().toString(36).slice(2, 10);
@@ -396,6 +400,24 @@ export function addAsset(site, { name, mime, dataUrl, width, height, variants })
   s.assets[id] = { file, mime, dataUrl };
   if (width > 0 && height > 0) { s.assets[id].width = Math.round(width); s.assets[id].height = Math.round(height); }
   if (variants?.length) s.assets[id].variants = variants.filter(v => !width || v.w < width).sort((a, b) => a.w - b.w).map(v => ({ w: Math.round(v.w), file: `${stem}-${Math.round(v.w)}.${ext}`, dataUrl: v.dataUrl }));
+  return { site: s, id };
+}
+
+/* Cycle 33 (W4) : document à télécharger (PDF, DOCX, ODT, XLSX, PPTX, ZIP, MP3, M4A, OGG, ICS ; 25 Mo au plus),
+ * exporté dans assets/docs/. Les octets restent dans le data: URL, comme ceux des images (cycle 27 : à déplacer). */
+export function addDocument(site, { name, dataUrl }) {
+  const type = docTypeOf(name);
+  if (!type) throw new Error(__('Type de fichier non pris en charge : PDF, DOCX, ODT, XLSX, PPTX, ZIP, MP3, M4A, OGG ou ICS.'));
+  const size = dataUrlBytes(dataUrl);
+  if (size === null) throw new Error(__('Fichier illisible.'));
+  if (size > MAX_DOC_BYTES) throw new Error(__('Fichier trop lourd : 25 Mo au plus.'));
+  const s = clone(site);
+  const id = 'doc_' + Math.random().toString(36).slice(2, 10);
+  const base = slugify(String(name).slice(0, String(name).lastIndexOf('.')), { fallback: 'document' }) || 'document';
+  const taken = new Set(Object.values(s.assets).map(a => a.file));
+  let file = `${base}.${type.ext}`;
+  for (let n = 2; taken.has(file); n++) file = `${base}-${n}.${type.ext}`;
+  s.assets[id] = { kind: 'document', file, name: String(name).slice(0, 200), mime: type.mime, size, dataUrl: dataUrl.replace(/^data:[^;,]*/, `data:${type.mime}`) };
   return { site: s, id };
 }
 

@@ -198,7 +198,7 @@ function menuSection() {
     } }, __('Revenir au menu automatique'))];
 }
 
-/* Assistant : déclaration d'accessibilité en 4 langues, pré-remplie avec la vérification du site */
+/* Assistant : déclaration d'accessibilité en 5 langues, pré-remplie avec la vérification du site */
 function openA11yDialog() {
   let d = document.getElementById('a11yDialog');
   d?.remove();
@@ -221,7 +221,7 @@ function openA11yDialog() {
     titleId: 'a11yTitle',
     title: __('Déclaration d’accessibilité'),
     body: [h('div', { class: 'a11y-form' },
-      h('p', { class: 'hint' }, __('Crée une page « Accessibilité » en français, néerlandais, allemand et anglais (référence WCAG 2.1 AA / EN 301 549), avec un lien dans le pied de page. Relisez-la avant publication : ce modèle n’est pas un avis juridique.')),
+      h('p', { class: 'hint' }, __('Crée une page « Accessibilité » dans les langues du site (référence WCAG 2.2 AA / EN 301 549 v3.2.1 ; en japonais, JIS X 8341-3), avec un lien dans le pied de page. Relisez-la avant publication : ce modèle n’est pas un avis juridique.')),
       field(__('Organisation responsable'), entity), field(__('Adresse de contact pour signaler un problème'), email), field(__('État de conformité'), status), field(__('Date de la vérification'), date),
       field(__('Contenus non accessibles connus (pré-rempli avec la vérification du site)'), lim))],
     actions: [h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Annuler')),
@@ -233,7 +233,7 @@ function openA11yDialog() {
           log.info('page.a11y.create', __('Page « Accessibilité » créée en {n} langues : /{slug}/', { n: Object.keys(np?.title || {}).length, slug: np?.slug }), { id: r.pageId, slug: np?.slug, status: status.value, limits: lim.value.split('\n').filter(x => x.trim()).length, langs: Object.keys(np?.title || {}), footerLink: !!np?.footerLink });
           d.close();
           setView({ pageId: r.pageId });
-          toast(__('Page « Accessibilité » créée en 4 langues, avec un lien dans le pied de page.'));
+          toast(__('Page « Accessibilité » créée dans les langues du site, avec un lien dans le pied de page.'));
         } catch (e) { log.warn('page.a11y.refused', __('Déclaration non créée : {error}', { error: e.message }), { email: !!email.value.trim(), status: status.value, error: e }); toast(e.message, 'error'); email.focus(); }
       } }, __('Créer la page'))] });
   email.focus();

@@ -116,7 +116,7 @@ test('buildAccessibilityPage : 4 langues, date, contact, état de conformité, l
   assert.equal(page.footerLink, true);
   for (const l of ['fr', 'nl', 'de', 'en']) assert.ok(page.title[l], l);
   const html = JSON.stringify(page.root);
-  for (const needle of ['ASBL MAB', 'a11y@mab.be', 'WCAG 2.1', 'EN 301 549', 'Vidéos sans sous-titres', 'partiellement conforme', 'gedeeltelijk', 'teilweise', 'partially']) assert.ok(html.includes(needle), needle);
+  for (const needle of ['ASBL MAB', 'a11y@mab.be', 'WCAG 2.2', 'EN 301 549 v3.2.1', 'Vidéos sans sous-titres', 'partiellement conforme', 'gedeeltelijk', 'teilweise', 'partially']) assert.ok(html.includes(needle), needle);
 });
 
 test('addAccessibilityPage : page ajoutée, lien dans le pied de page, adresse unique', () => {

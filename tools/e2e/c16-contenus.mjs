@@ -181,7 +181,7 @@ export default async function (t) {
   t.ok(s.assets[String(s.header.logo).slice(6)]?.mime === 'image/jpeg', 'sans WebP : image enregistrée en JPEG');
 
   await kase('images-type-refuse', ['image.type-refused', 'ui.toast'], async () => {
-    await putFile(logoFile, { kind: 'text', name: 'logo.svg', type: 'image/svg+xml', text: '<svg xmlns="http://www.w3.org/2000/svg"/>' });
+    await putFile(logoFile, { kind: 'text', name: 'scan.tiff', type: 'image/tiff', text: 'II*' });
     await t.wait(300);
   }, { errors: ['inspector.image.fail'] });
   await kase('images-illisible', ['image.import.start', 'image.import.fail', 'ui.toast'], async () => {

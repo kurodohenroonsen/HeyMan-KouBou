@@ -18,6 +18,8 @@ import { renderMenu } from './menu.js';
 import { LANG_LABELS } from './site.js';
 import { createNode, createSectionWithColumns } from './tree.js';
 import { __ } from './ui-i18n.js';
+import { sanitizeSvg, svgFromDataUrl } from './svg.js';
+import { docMeta } from './documents.js';
 import { itemDir, collectionDir, hasDetail, bindProps, itemTitle, itemJsonLd, buildIcs, buildRss, displayValue, localToday, findItem, pick, listPageId } from './collections.js';
 
 export function pageDir(site, page, lang) {
@@ -66,7 +68,7 @@ function assetUrl(site, value, { canvas, toRoot }) {
   const v = String(value || '');
   if (v.startsWith('asset:')) {
     const a = site.assets?.[v.slice(6)];
-    if (!a) return '';
+    if (!a || a.kind === 'document') return '';
     return canvas ? a.dataUrl : `${toRoot}assets/${assetFile(a)}`;
   }
   const u = safeUrl(v);
@@ -104,7 +106,9 @@ export function sizesFor(box) {
   return `(max-width: 640px) ${pct(box.m)}, (max-width: 1024px) ${pct(box.t)}, ${desk}`;
 }
 
-function imgTag(site, ctx, value, { alt = '', style = '', cls = '' } = {}) {
+/* opts (cycle 33) : frac = part de la boîte par appareil ({ d, t, m }, galerie) ; px = largeur affichée fixe (avatar,
+ * logo) ; lazy: false = image d'en-tête (ni paresseuse ni prioritaire, ne prend pas la place de l'image principale) */
+function imgTag(site, ctx, value, { alt = '', style = '', cls = '', frac = null, px = 0, lazy } = {}) {
   const src = assetUrl(site, value, { canvas: ctx.canvas, toRoot: ctx.toRoot });
   if (!src) return '';
   const v = String(value || '');
@@ -112,10 +116,13 @@ function imgTag(site, ctx, value, { alt = '', style = '', cls = '' } = {}) {
   let extra = '';
   if (a && !ctx.canvas && a.variants?.length && a.width) {
     const set = [...a.variants.map(x => `${ctx.toRoot}assets/${assetFile(x)} ${x.w}w`), `${src} ${a.width}w`].join(', ');
-    extra += ` srcset="${escapeAttr(set)}" sizes="${escapeAttr(sizesFor(ctx.box || { w: site.theme?.contentWidth || 1160, d: 1, t: 1, m: 1 }))}"`;
+    const box = ctx.box || { w: site.theme?.contentWidth || 1160, d: 1, t: 1, m: 1 };
+    const sizes = px ? `${Math.round(px)}px` : sizesFor(frac ? { w: box.w, d: box.d * frac.d, t: box.t * frac.t, m: box.m * frac.m } : box);
+    extra += ` srcset="${escapeAttr(set)}" sizes="${escapeAttr(sizes)}"`;
   }
   if (a?.width && a?.height) extra += ` width="${a.width}" height="${a.height}"`;
-  if (!ctx.canvas && ctx.lcp && !ctx.lcp.done && !ctx.locked) { ctx.lcp.done = true; extra += ' loading="eager" fetchpriority="high"'; }
+  if (lazy === false) extra += ' decoding="async"';
+  else if (!ctx.canvas && ctx.lcp && !ctx.lcp.done && !ctx.locked) { ctx.lcp.done = true; extra += ' loading="eager" fetchpriority="high"'; }
   else extra += ' loading="lazy" decoding="async"';
   return `<img src="${escapeAttr(src)}" alt="${escapeAttr(alt)}"${cls ? ` class="${cls}"` : ''}${extra}${style}>`;
 }
@@ -144,7 +151,13 @@ export function makeContext(site, lang, { canvas = false, toRoot = '', from = []
     rich: v => sanitizeRich(v, { noopener: true }),
     inline: v => sanitizeInline(v, { noopener: true }),
     text: v => richToText(v),
-    img: v => assetUrl(site, v, { canvas, toRoot })
+    img: v => assetUrl(site, v, { canvas, toRoot }),
+    /* Cycle 33 : document à télécharger « asset:doc_… » → { href, mime, file, name, meta } ou null */
+    doc(v) {
+      const a = String(v || '').startsWith('asset:') ? site.assets?.[String(v).slice(6)] : null;
+      if (a?.kind !== 'document') return null;
+      return { href: canvas ? '#' : `${toRoot}assets/docs/${assetFile(a)}`, mime: a.mime, file: a.file, name: a.name || a.file, meta: docMeta(a, lang) };
+    }
   };
 }
 
@@ -468,8 +481,9 @@ export function renderPage(site, page, lang, { canvas = false, edit = null, toda
   } else {
     const menuHtml = renderMenu(site, page, lang, from, { id: 'menu' });
     const langs = site.header?.showLangs !== false ? langLinks(site, page, lang, from, 'codes') : '';
-    const logo = assetUrl(site, site.header?.logo, { canvas, toRoot });
-    const brand = `${logo ? `<img src="${escapeAttr(logo)}" alt="">` : ''}<span>${escapeHtml(site.name)}</span>`;
+    const la = site.assets?.[String(site.header?.logo || '').slice(6)];
+    const logo = ctx.imgTag(site.header?.logo, { lazy: false, px: la?.width && la?.height ? 40 * la.width / la.height : 0 });
+    const brand = `${logo}<span>${escapeHtml(site.name)}</span>`;
     const burger = site.header?.burger !== false ? `<button type="button" class="nav-burger" aria-expanded="false" aria-controls="menu"><span aria-hidden="true">☰</span> ${escapeHtml(siteText('menu', lang))}</button>` : '';
     headerHtml = `<header class="site-header${sticky}" data-zone="header"><div class="site-header__inner">
 <a class="brand" href="${ctx.homeHref}">${brand}</a>
@@ -614,6 +628,10 @@ export function renderSite(site, { today = null, now = new Date(), lastmod = nul
   const used = JSON.stringify({ pages: site.pages, header: site.header, components: site.components, layout: site.layout, collections: site.collections });
   for (const [id, a] of Object.entries(site.assets || {})) {
     if (!used.includes(`asset:${id}`)) continue;
+    if (a.kind === 'document') { files.set(`assets/docs/${assetFile(a)}`, decodeDataUrl(a.dataUrl)); continue; }
+    /* Cycle 33 : un SVG est assaini de nouveau à l'export (projet .json ou pair qui l'aurait modifié) */
+    const svg = /^data:image\/svg\+xml/i.test(a.dataUrl || '') ? svgFromDataUrl(a.dataUrl) : null;
+    if (svg !== null) { try { files.set(`assets/${assetFile(a)}`, new TextEncoder().encode(sanitizeSvg(svg).svg)); } catch { /* SVG illisible : non exporté */ } continue; }
     files.set(`assets/${assetFile(a)}`, decodeDataUrl(a.dataUrl));
     for (const v of a.variants || []) if (v.dataUrl) files.set(`assets/${assetFile(v)}`, decodeDataUrl(v.dataUrl));
   }

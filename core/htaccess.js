@@ -10,7 +10,7 @@ import { LANG_LABELS } from './site.js';
 const HOST = /^[a-z0-9]([a-z0-9-]{0,62}[a-z0-9])?(\.[a-z0-9]([a-z0-9-]{0,62}[a-z0-9])?)+$/i;
 const PATH = /^\/([a-z0-9._-]+\/)*$/i;
 const CSP = "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; frame-src https://www.youtube-nocookie.com https://player.vimeo.com https://maps.google.com https://www.openstreetmap.org; connect-src 'self'; form-action 'self' https:; base-uri 'self'; object-src 'none'; frame-ancestors 'self'";
-const CACHED = 'woff2|webp|jpe?g|png|gif|avif|svg|ico|css|js|pdf|mp3|m4a|ogg';
+const CACHED = 'woff2|webp|jpe?g|png|gif|avif|svg|ico|css|js|pdf|mp3|m4a|ogg|docx|odt|xlsx|pptx|zip';
 const DEFLATE = 'text/html text/css application/javascript application/json image/svg+xml text/xml application/xml application/manifest+json text/plain text/calendar';
 
 /* Options du .htaccess déduites du site : hôte et chemin de baseUrl, https, www à ajouter ou retirer, langues */
