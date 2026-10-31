@@ -99,7 +99,7 @@ export default async function (t) {
   phpA.kill();
   es = await since(page, s);
   expectCodes(t, es, ['publish.php.generate', 'publish.test.start', 'publish.first-origin', 'storage.secret-write', 'publish.test.ok'], 'premier test de connexion');
-  t.ok(es.some(e => e.code === 'storage.secret-write' && e.data?.name === `php-token:${originA}`), `jeton gardé sous php-token:${originA}`);
+  t.ok(es.some(e => e.code === 'storage.secret-write' && /gardé/.test(e.msg) && e.data?.name === `php-token:${originA}`), `jeton gardé sous php-token:${originA}`);
   t.ok(!JSON.stringify(es).includes(tokenA), 'le jeton n’apparaît pas dans le journal');
   capture('publier-premiere-fois-test', es);
   await page.keyboard.press('Escape');

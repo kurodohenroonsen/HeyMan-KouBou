@@ -1,4 +1,4 @@
-12:21:15.702 +12.36s WARN  collab.ops.sanitized 1 texte reçu de Ana nettoyé (balise ou attribut hors liste blanche) {"name":"Ana","changed":1}
-12:21:15.703 +12.36s DEBUG collab.ops.in 1 modification de Ana appliquée {"name":"Ana","received":1,"applied":1}
-12:21:15.703 +12.36s DEBUG store.remote Modifications d’un autre participant appliquées {"ops":1,"history":10}
-12:21:15.710 +12.37s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"remote","mode":"contenu","ms":6}
+12:26:28.569 +12.26s WARN  collab.ops.sanitized 1 texte reçu de Ana nettoyé (balise ou attribut hors liste blanche) {"name":"Ana","changed":1}
+12:26:28.569 +12.26s DEBUG collab.ops.in 1 modification de Ana appliquée {"name":"Ana","received":1,"applied":1}
+12:26:28.570 +12.26s DEBUG store.remote Modifications d’un autre participant appliquées {"ops":1,"history":10}
+12:26:28.574 +12.26s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"remote","mode":"contenu","ms":4}

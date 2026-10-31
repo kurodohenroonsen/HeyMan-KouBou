@@ -19,6 +19,8 @@ let exportZipHandler = null;
 export function setZipHandler(fn) { exportZipHandler = fn; }
 
 let tab = null;
+/* Migration des anciennes clés de jeton : une seule fois par ouverture de la fenêtre (cycle 25) */
+let migration = Promise.resolve();
 /* Jetons tapés pendant la séance, avec leur destination : jamais repris pour une autre adresse ou un autre dépôt.
    Un jeton tout juste créé (publish.php téléchargé) n'a pas encore de destination : il suit la personne jusqu'au premier envoi. */
 const memory = { php: new Map(), github: new Map() };
@@ -103,14 +105,15 @@ function phpTab(d) {
   const fill = async () => {
     const o = origin();
     const typed = token.value;
+    const kept = keep.checked;
     const t = await tokenFor('php', o);
-    if (token.value !== typed) return; /* la personne a tapé un jeton pendant la lecture : on le garde */
+    if (token.value !== typed || keep.checked !== kept) return; /* la personne a tapé un jeton pendant la lecture : on le garde */
     token.value = t.token;
     keep.checked = t.keep;
     log.debug('publish.token-for', t.token ? __('Jeton pré-rempli pour {host} ({from})', { host: hostLabel(o), from: t.from }) : o ? __('Aucun jeton gardé pour {host}', { host: hostLabel(o) }) : __('Pas d’adresse publish.php : aucun jeton pré-rempli'), { origin: o || undefined, from: t.from || undefined, known: o ? isKnownDestination(`php:${o}`) : undefined });
     if (!t.token && o && !isKnownDestination(`php:${o}`)) setStatus(status, __('Adresse jamais utilisée sur cet appareil ({host}) : aucun jeton n’est repris ; une confirmation sera demandée au premier envoi.', { host: hostLabel(o) }), 'info');
   };
-  migrateLegacyTokens(state.site).catch(() => {}).then(fill);
+  migration.then(fill);
   url.addEventListener('change', () => { apply({ url: url.value }); fill(); });
   const generate = async () => {
     const t = newToken();
@@ -214,14 +217,15 @@ function githubTab() {
   const fill = async () => {
     const tg = target();
     const typed = token.value;
+    const kept = keep.checked;
     const t = await tokenFor('github', tg);
-    if (token.value !== typed) return; /* jeton tapé pendant la lecture : gardé */
+    if (token.value !== typed || keep.checked !== kept) return; /* jeton tapé pendant la lecture : gardé */
     token.value = t.token;
     keep.checked = t.keep;
     log.debug('publish.token-for', t.token ? __('Jeton GitHub pré-rempli pour {host} ({from})', { host: tg, from: t.from }) : tg ? __('Aucun jeton GitHub gardé pour {host}', { host: tg }) : __('Dépôt GitHub incomplet : aucun jeton pré-rempli'), { target: tg || undefined, from: t.from || undefined, known: tg ? isKnownDestination(`github:${tg}`) : undefined });
     if (!t.token && tg && !isKnownDestination(`github:${tg}`)) setStatus(status, __('Dépôt jamais utilisé sur cet appareil ({host}) : aucun jeton n’est repris ; une confirmation sera demandée à la première publication.', { host: tg }), 'info');
   };
-  migrateLegacyTokens(state.site).catch(() => {}).then(fill);
+  migration.then(fill);
   const save = () => apply({ gh: { owner: owner.value, repo: repo.value, branch: branch.value || 'main', dir: dir.value } });
   [owner, repo, branch, dir].forEach(i => i.addEventListener('change', save));
   [owner, repo].forEach(i => i.addEventListener('change', fill));
@@ -263,6 +267,7 @@ export function openPublish() {
   tab = tab || (mode === 'github' ? 'github' : mode === 'php' ? 'php' : 'php');
   const audit = auditSite(state.site);
   log.info('publish.open', __('Fenêtre Publier'), { mode, tab, ok: audit.ok, errors: audit.errors.length, warnings: audit.warnings.length, firstError: audit.errors[0] });
+  migration = migrateLegacyTokens(state.site).catch(() => {});
   const d = h('dialog', { class: 'audit', id: 'publishDialog', 'aria-labelledby': 'publishTitle' });
   const panes = { php: phpTab(d), github: githubTab(), zip: zipTab(d) };
   const tabs = h('div', { class: 'tabs', role: 'tablist' }, [['php', 'OVH (publish.php)'], ['github', 'GitHub → OVH'], ['zip', __('Fichier .zip')]].map(([k, l]) => h('button', {

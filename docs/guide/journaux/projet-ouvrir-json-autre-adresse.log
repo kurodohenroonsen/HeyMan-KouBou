@@ -1,12 +1,11 @@
-12:21:06.249 +2.91s INFO  project.import.start [project.import#2] Ouverture d’un projet .json {"name":"autre-adresse.atelier.json","kb":12}
-12:21:06.252 +2.91s INFO  project.import.publish-url [project.import#2 · 3 ms] Le projet ouvert publie vers 127.0.0.1:8779 : le jeton n’est repris que si cette adresse a déjà été utilisée sur cet appareil {"target":"http://127.0.0.1:8779","current":"http://127.0.0.1:8739"}
-12:21:06.254 +2.92s INFO  version.save.start [version.save#3] Enregistrement d’une version de sécurité : « Avant l’ouverture d’un autre projet » {"kind":"safety","name":"Avant l’ouverture d’un autre projet"}
-12:21:06.255 +2.92s DEBUG storage.version-save Version enregistrée {"id":"v_mvwb8slq1156k","name":"Avant l’ouverture d’un autre projet","kind":"safety"}
-12:21:06.257 +2.92s DEBUG version.save.prune [version.save#3 · 3 ms] Aucune ancienne version à supprimer {"total":3}
-12:21:06.258 +2.92s INFO  version.save.ok [version.save#3 · 4 ms] Version de sécurité enregistrée (2 pages) {"id":"v_mvwb8slq1156k","kind":"safety","at":"2026-10-31T11:21:06.254Z","pages":2,"kb":11}
-12:21:06.258 +2.92s INFO  store.load Projet chargé dans l’éditeur {"name":"MAB – Médias Alternatifs Belges","pages":2,"keepHistory":true}
-12:21:06.259 +2.92s INFO  canvas.load.start [canvas.load#3] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_ibux7nbg","lang":"fr","device":"desktop"}
-12:21:06.260 +2.92s DEBUG canvas.load.render [canvas.load#3 · 1 ms] Page rendue {"ms":1,"kb":25}
-12:21:06.261 +2.92s INFO  project.import.ok [project.import#2 · 12 ms] Projet ouvert {"pages":2,"name":"MAB – Médias Alternatifs Belges"}
-12:21:06.261 +2.92s INFO  ui.toast Message affiché : Projet ouvert.
-12:21:06.290 +2.95s INFO  canvas.load.ok [canvas.load#3 · 31 ms] Canevas prêt {"nodes":30,"scale":62,"via":"dom"}
+12:26:19.070 +2.76s INFO  project.import.start [project.import#2] Ouverture d’un projet .json {"name":"autre-adresse.atelier.json","kb":12}
+12:26:19.073 +2.76s INFO  project.import.publish-url [project.import#2 · 3 ms] Le projet ouvert publie vers 127.0.0.1:8744 : le jeton n’est repris que si cette adresse a déjà été utilisée sur cet appareil {"target":"http://127.0.0.1:8744","current":"http://127.0.0.1:8704"}
+12:26:19.073 +2.76s INFO  version.save.start [version.save#3] Enregistrement d’une version de sécurité : « Avant l’ouverture d’un autre projet » {"kind":"safety","name":"Avant l’ouverture d’un autre projet"}
+12:26:19.073 +2.76s DEBUG storage.version-save Version enregistrée {"id":"v_mvwbfhz555nk6","name":"Avant l’ouverture d’un autre projet","kind":"safety"}
+12:26:19.078 +2.77s DEBUG version.save.prune [version.save#3 · 5 ms] Aucune ancienne version à supprimer {"total":3}
+12:26:19.078 +2.77s INFO  version.save.ok [version.save#3 · 5 ms] Version de sécurité enregistrée (2 pages) {"id":"v_mvwbfhz555nk6","kind":"safety","at":"2026-10-31T11:26:19.073Z","pages":2,"kb":11}
+12:26:19.078 +2.77s INFO  store.load Projet chargé dans l’éditeur {"name":"MAB – Médias Alternatifs Belges","pages":2,"keepHistory":true}
+12:26:19.081 +2.77s INFO  canvas.load.start [canvas.load#3] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_d91h2ce8","lang":"fr","device":"desktop"}
+12:26:19.082 +2.77s DEBUG canvas.load.render [canvas.load#3 · 1 ms] Page rendue {"ms":1,"kb":25}
+12:26:19.083 +2.77s INFO  project.import.ok [project.import#2 · 13 ms] Projet ouvert {"pages":2,"name":"MAB – Médias Alternatifs Belges"}
+12:26:19.083 +2.77s INFO  ui.toast Message affiché : Projet ouvert.
