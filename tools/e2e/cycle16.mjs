@@ -289,6 +289,8 @@ export default async function (t) {
     capture('publier-tester-erreurs', es);
     await page.fill('#publishDialog [data-pub="url"]', URL_);
     await page.dispatchEvent('#publishDialog [data-pub="url"]', 'change');
+    await t.wait(300);
+    await page.fill('#publishDialog [data-pub="token"]', goodToken); /* cycle 25 : le jeton suit l'adresse, on reprend le bon */
 
     /* 10g. journal du serveur */
     await page.click('#publishDialog [data-pub="remember"]');

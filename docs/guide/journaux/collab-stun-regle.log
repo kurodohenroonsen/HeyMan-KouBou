@@ -1,4 +1,4 @@
-20:54:11.632 +0.43s DEBUG storage.secret-read Aucun secret gardé {"name":"identity"}
-20:54:11.633 +0.43s INFO  collab.open Fenêtre « Travailler à plusieurs » {"state":"aucune session","peers":0,"identity":false,"publish":"non"}
-20:54:11.634 +0.43s DEBUG ui.dialog.open Fenêtre ouverte : 👥 Travailler à plusieurs {"id":"collabDialog","class":"audit collab","modal":true}
-20:54:11.736 +0.53s INFO  signal.stun Serveur STUN réglé : 1 adresse valable {"stun":"stun:127.0.0.1:9 turn:relais.exemple.be:3478","valid":["stun:127.0.0.1:9"],"ignored":["turn:relais.exemple.be:3478"]}
+12:19:31.296 +0.47s DEBUG storage.secret-read Aucun secret gardé {"name":"identity"}
+12:19:31.296 +0.47s INFO  collab.open Fenêtre « Travailler à plusieurs » {"state":"aucune session","peers":0,"identity":false,"publish":"non"}
+12:19:31.299 +0.47s DEBUG ui.dialog.open Fenêtre ouverte : 👥 Travailler à plusieurs {"id":"collabDialog","class":"audit collab","modal":true}
+12:19:31.409 +0.58s INFO  signal.stun Serveur STUN réglé : 1 adresse valable {"stun":"stun:127.0.0.1:9 turn:relais.exemple.be:3478","valid":["stun:127.0.0.1:9"],"ignored":["turn:relais.exemple.be:3478"]}

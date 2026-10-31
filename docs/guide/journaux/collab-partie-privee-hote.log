@@ -1,2 +1,2 @@
-07:29:02.844 +11.91s WARN  collab.ops.rejected 1 modification de Ana refusée (éditeur) : partie privée {"name":"Ana","role":"editor","count":1,"reason":"partie privée","path":["publish","url"]}
-07:29:02.845 +11.91s ERROR ui.toast Message affiché : Modification refusée (Ana, éditeur) : partie privée {"type":"error"}
+12:21:15.662 +12.32s WARN  collab.ops.rejected 1 modification de Ana refusée (éditeur) : partie privée {"name":"Ana","role":"editor","count":1,"reason":"partie privée","path":["publish","url"]}
+12:21:15.662 +12.32s ERROR ui.toast Message affiché : Modification refusée (Ana, éditeur) : partie privée {"type":"error"}

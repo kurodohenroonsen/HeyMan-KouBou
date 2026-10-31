@@ -3,6 +3,7 @@ import { h, $, download } from './dom.js';
 import { log, logDump, settings, setLevels, serverTrace } from './log.js';
 import { formatEntry, LEVELS, dataText } from '../core/log.js';
 import { getSecret } from './storage.js';
+import { tokenKey, publishOrigin } from '../core/publish.js';
 import { __, __n, __c } from '../core/ui-i18n.js';
 
 let serverLines = [];
@@ -70,7 +71,9 @@ export async function openLog() {
   const p = siteInfo();
   const urlIn = h('input', { class: 'input input--mono', type: 'url', value: p.url || '', placeholder: __('https://www.votre-site.be/publish.php'), 'data-log-server-url': '' });
   const tokIn = h('input', { class: 'input input--mono', type: 'password', autocomplete: 'off', placeholder: __('Jeton de publication'), 'data-log-server-token': '' });
-  getSecret('php-token').then(v => { if (v && !tokIn.value) tokIn.value = v; });
+  /* Cycle 25 : seulement le jeton gardé pour l'origine de cette adresse */
+  const key = tokenKey('php', publishOrigin(p.url));
+  if (key) getSecret(key).then(v => { if (v && !tokIn.value) tokIn.value = v; });
   const serverBox = h('pre', { class: 'log-server', 'data-log-server': '', hidden: !serverLines.length }, serverLines.join('\n'));
 
   const d = h('dialog', { class: 'audit log-dialog', id: 'logDialog', 'aria-labelledby': 'logTitle' },

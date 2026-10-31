@@ -1,11 +1,11 @@
-07:29:03.347 +8.14s WARN  collab.snapshot.sanitized 1 texte du projet reçu de Kudoro nettoyé (balise ou attribut hors liste blanche) {"from":"Kudoro","changed":1}
-07:29:03.347 +8.14s INFO  collab.snapshot Projet reçu de Kudoro {"docId":"doc_piege","pages":2,"comments":0}
-07:29:03.348 +8.14s INFO  store.load Projet chargé dans l’éditeur {"name":"MAB – Médias Alternatifs Belges","pages":2,"keepHistory":false}
-07:29:03.350 +8.14s INFO  canvas.load.start [canvas.load#4] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_s7h5g3pe","lang":"fr","device":"desktop"}
-07:29:03.352 +8.14s DEBUG canvas.load.render [canvas.load#4 · 2 ms] Page rendue {"ms":1,"kb":25}
-07:29:03.356 +8.15s INFO  canvas.load.cancel [canvas.load#4 · 6 ms] Chargement remplacé par un nouveau {"reason":"rechargement demandé"}
-07:29:03.356 +8.15s INFO  canvas.load.start [canvas.load#5] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_s7h5g3pe","lang":"fr","device":"desktop"}
-07:29:03.360 +8.15s DEBUG canvas.load.render [canvas.load#5 · 4 ms] Page rendue {"ms":3,"kb":25}
-07:29:03.361 +8.15s INFO  ui.toast Message affiché : Projet reçu de Kudoro.
-07:29:03.391 +8.18s INFO  canvas.load.ok [canvas.load#5 · 35 ms] Canevas prêt {"nodes":30,"scale":62,"via":"dom"}
-07:29:03.588 +8.38s DEBUG canvas.resources Ressources externes du canevas chargées {"ms":225,"hosts":["fonts.googleapis.com"]}
+12:21:16.191 +8.21s WARN  collab.snapshot.sanitized 1 texte du projet reçu de Kudoro nettoyé (balise ou attribut hors liste blanche) {"from":"Kudoro","changed":1}
+12:21:16.192 +8.21s INFO  collab.snapshot Projet reçu de Kudoro {"docId":"doc_piege","pages":2,"comments":0}
+12:21:16.192 +8.21s INFO  store.load Projet chargé dans l’éditeur {"name":"MAB – Médias Alternatifs Belges","pages":2,"keepHistory":false}
+12:21:16.194 +8.21s INFO  canvas.load.start [canvas.load#4] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_ibux7nbg","lang":"fr","device":"desktop"}
+12:21:16.197 +8.22s DEBUG canvas.load.render [canvas.load#4 · 3 ms] Page rendue {"ms":3,"kb":25}
+12:21:16.201 +8.22s INFO  canvas.load.cancel [canvas.load#4 · 7 ms] Chargement remplacé par un nouveau {"reason":"rechargement demandé"}
+12:21:16.204 +8.22s INFO  canvas.load.start [canvas.load#5] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_ibux7nbg","lang":"fr","device":"desktop"}
+12:21:16.208 +8.23s DEBUG canvas.load.render [canvas.load#5 · 4 ms] Page rendue {"ms":2,"kb":25}
+12:21:16.213 +8.23s INFO  ui.toast Message affiché : Projet reçu de Kudoro.
+12:21:16.252 +8.27s INFO  canvas.load.ok [canvas.load#5 · 48 ms] Canevas prêt {"nodes":30,"scale":62,"via":"dom"}
+12:21:16.445 +8.46s DEBUG canvas.resources Ressources externes du canevas chargées {"ms":236,"hosts":["fonts.googleapis.com"]}

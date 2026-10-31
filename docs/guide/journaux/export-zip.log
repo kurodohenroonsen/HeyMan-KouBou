@@ -1,8 +1,9 @@
-07:29:18.864 +6.39s INFO  audit.open Vérification avant export : prêt (1 point(s) à vérifier) {"mode":"export","ok":true,"errors":0,"warnings":1,"info":3,"missing":51,"ms":4,"firstErrors":[],"firstWarnings":["Accueil : image non choisie : rien ne s’affichera à cet endroit."]}
-07:29:18.866 +6.39s DEBUG ui.dialog.open Fenêtre ouverte : Vérification avant export {"id":"auditDialog","class":"audit","modal":true}
-07:29:18.910 +6.44s INFO  audit.export Export malgré des points à vérifier {"warnings":1}
-07:29:18.912 +6.44s INFO  export.zip.start [export.zip#1] Export du site en .zip
-07:29:18.915 +6.44s DEBUG export.zip.render [export.zip#1 · 3 ms] Pages générées {"files":12,"ms":3}
-07:29:18.920 +6.45s INFO  export.zip.ok [export.zip#1 · 8 ms] Site exporté : 12 fichiers {"files":12,"kb":69,"untranslated":51}
-07:29:18.920 +6.45s INFO  ui.toast Message affiché : Site exporté : 12 fichiers. 51 textes non traduits s’affichent dans la langue principale.
-07:29:18.923 +6.45s DEBUG ui.dialog.close Fenêtre fermée : Vérification avant export {"id":"auditDialog"}
+12:24:59.033 +6.38s DEBUG ui.dialog.close Fenêtre fermée : 🐞 Journal de débogage {"id":"logDialog"}
+12:24:59.077 +6.42s INFO  audit.open Vérification avant export : prêt (1 point(s) à vérifier) {"mode":"export","ok":true,"errors":0,"warnings":1,"info":3,"missing":51,"ms":10,"firstErrors":[],"firstWarnings":["Accueil : image non choisie : rien ne s’affichera à cet endroit."]}
+12:24:59.080 +6.42s DEBUG ui.dialog.open Fenêtre ouverte : Vérification avant export {"id":"auditDialog","class":"audit","modal":true}
+12:24:59.154 +6.50s INFO  audit.export Export malgré des points à vérifier {"warnings":1}
+12:24:59.156 +6.50s INFO  export.zip.start [export.zip#1] Export du site en .zip
+12:24:59.159 +6.50s DEBUG export.zip.render [export.zip#1 · 3 ms] Pages générées {"files":12,"ms":3}
+12:24:59.167 +6.51s INFO  export.zip.ok [export.zip#1 · 11 ms] Site exporté : 12 fichiers {"files":12,"kb":69,"untranslated":51}
+12:24:59.168 +6.51s INFO  ui.toast Message affiché : Site exporté : 12 fichiers. 51 textes non traduits s’affichent dans la langue principale.
+12:24:59.170 +6.51s DEBUG ui.dialog.close Fenêtre fermée : Vérification avant export {"id":"auditDialog"}

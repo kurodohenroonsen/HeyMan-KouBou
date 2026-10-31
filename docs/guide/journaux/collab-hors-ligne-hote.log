@@ -1,20 +1,20 @@
-20:53:46.047 +31.47s DEBUG signal.receive 1 message relevé dans la boîte aux lettres {"room":"3dc99b85","count":1,"from":["34c4df64c70c8153"]}
-20:53:46.049 +31.47s INFO  rtc.accept.start [rtc.accept#3] Demande de connexion reçue de 34c4df64c70c8153 {"from":"34c4df64c70c8153","via":"boîte aux lettres"}
-20:53:46.057 +31.48s DEBUG rtc.accept.answer [rtc.accept#3 · 8 ms] Réponse créée : collecte des adresses réseau
-20:53:46.064 +31.48s DEBUG signal.post Dépôt d’un message chiffré « answer » pour 34c4df64c70c8153 {"room":"3dc99b85","from":"da232fd5714b8461","to":"34c4df64c70c8153","t":"answer","bytes":922}
-20:53:46.064 +31.48s DEBUG net.request POST 127.0.0.1:8866/publish.php {"id":20,"method":"POST","url":"http://127.0.0.1:8866/publish.php?atelier_debug=1","body":{"json":["signal","from","to","data"],"size":1059}}
-20:53:46.072 +31.49s INFO  net.response 200 POST 127.0.0.1:8866/publish.php (7 ms) {"id":20,"status":200,"ms":7,"type":"application/json","req":"8a624c4b"}
-20:53:46.072 +31.49s DEBUG php.req.start POST reçu {"method":"POST","who":"e5802654fc","bytes":1059,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8791","req":"8a624c4b","srvMs":0.1}
-20:53:46.073 +31.49s DEBUG php.signal.post Message chiffré déposé {"room":"3dc99b85","from":"da232fd5714b8461","to":"34c4df64c70c8153","bytes":922,"id":6,"new_room":false,"req":"8a624c4b","srvMs":1.6}
-20:53:46.073 +31.49s DEBUG php.req.end Réponse 200 (signal) {"status":200,"route":"signal","mem_kb":385,"req":"8a624c4b","srvMs":1.6}
-20:53:46.073 +31.49s INFO  rtc.accept.sent [rtc.accept#3 · 24 ms] Réponse déposée dans la boîte aux lettres : ouverture du canal… {"local":{"host":1,"srflx":0,"relay":0,"prflx":0}}
-20:53:46.964 +32.38s INFO  rtc.pair Chemin réseau utilisé : host ↔ host (udp) {"label":"34c4df64c70c8153","local":"host","remote":"host","protocol":"udp","rttMs":1,"ms":914}
-20:53:46.974 +32.39s INFO  rtc.channel.open Canal de données ouvert avec 34c4df64c70c8153 {"label":"34c4df64c70c8153","ms":923}
-20:53:46.974 +32.39s INFO  rtc.accept.ok [rtc.accept#3 · 925 ms] Liaison directe prête avec 34c4df64c70c8153 {"ms":924}
-20:53:46.974 +32.39s DEBUG collab.link.new Nouveau lien : présentation (hôte) {"label":"34c4df64c70c8153","links":2}
-20:53:46.981 +32.40s DEBUG collab.hello Présentation de Ana : invitation valable (éditeur, expire dans 168 h) {"name":"Ana","fp":"nTNgEEC7izfuErUB","role":"editor"}
-20:53:46.993 +32.41s INFO  collab.auth Identité vérifiée : Ana (éditeur) {"name":"Ana","fp":"nTNgEEC7izfuErUB","role":"editor","peers":2}
-20:53:46.997 +32.42s INFO  collab.sync.delta Reprise de Ana : 4 modifications manquées envoyées {"name":"Ana","ops":4}
-20:53:47.067 +32.49s DEBUG collab.ops.in 1 modification de Ana appliquée {"name":"Ana","received":1,"applied":1}
-20:53:47.068 +32.49s DEBUG store.remote Modifications d’un autre participant appliquées {"ops":1,"history":5}
-20:53:47.077 +32.50s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"remote","mode":"contenu","ms":8}
+12:19:05.454 +31.44s DEBUG signal.receive 1 message relevé dans la boîte aux lettres {"room":"3b28b8a7","count":1,"from":["9e20e3734a6c8c7c"]}
+12:19:05.454 +31.44s INFO  rtc.accept.start [rtc.accept#3] Demande de connexion reçue de 9e20e3734a6c8c7c {"from":"9e20e3734a6c8c7c","via":"boîte aux lettres"}
+12:19:05.458 +31.44s DEBUG rtc.accept.answer [rtc.accept#3 · 4 ms] Réponse créée : collecte des adresses réseau
+12:19:05.464 +31.45s DEBUG signal.post Dépôt d’un message chiffré « answer » pour 9e20e3734a6c8c7c {"room":"3b28b8a7","from":"fecbfe85de1d2189","to":"9e20e3734a6c8c7c","t":"answer","bytes":922}
+12:19:05.465 +31.45s DEBUG net.request POST 127.0.0.1:8828/publish.php {"id":20,"method":"POST","url":"http://127.0.0.1:8828/publish.php?atelier_debug=1","body":{"json":["signal","from","to","data"],"size":1059}}
+12:19:05.469 +31.45s INFO  net.response 200 POST 127.0.0.1:8828/publish.php (4 ms) {"id":20,"status":200,"ms":4,"type":"application/json","req":"0ef142e9"}
+12:19:05.471 +31.45s DEBUG php.req.start POST reçu {"method":"POST","who":"e5802654fc","bytes":1059,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8811","req":"0ef142e9","srvMs":0}
+12:19:05.471 +31.45s DEBUG php.signal.post Message chiffré déposé {"room":"3b28b8a7","from":"fecbfe85de1d2189","to":"9e20e3734a6c8c7c","bytes":922,"id":6,"new_room":false,"req":"0ef142e9","srvMs":0.6}
+12:19:05.471 +31.45s DEBUG php.req.end Réponse 200 (signal) {"status":200,"route":"signal","mem_kb":385,"req":"0ef142e9","srvMs":0.6}
+12:19:05.472 +31.46s INFO  rtc.accept.sent [rtc.accept#3 · 18 ms] Réponse déposée dans la boîte aux lettres : ouverture du canal… {"local":{"host":1,"srflx":0,"relay":0,"prflx":0}}
+12:19:06.121 +32.10s INFO  rtc.pair Chemin réseau utilisé : host ↔ host (udp) {"label":"9e20e3734a6c8c7c","local":"host","remote":"host","protocol":"udp","rttMs":1,"ms":666}
+12:19:06.126 +32.11s INFO  rtc.channel.open Canal de données ouvert avec 9e20e3734a6c8c7c {"label":"9e20e3734a6c8c7c","ms":671}
+12:19:06.127 +32.11s INFO  rtc.accept.ok [rtc.accept#3 · 673 ms] Liaison directe prête avec 9e20e3734a6c8c7c {"ms":672}
+12:19:06.127 +32.11s DEBUG collab.link.new Nouveau lien : présentation (hôte) {"label":"9e20e3734a6c8c7c","links":2}
+12:19:06.130 +32.11s DEBUG collab.hello Présentation de Ana : invitation valable (éditeur, expire dans 168 h) {"name":"Ana","fp":"TTwukhODrZVulvFK","role":"editor"}
+12:19:06.135 +32.12s INFO  collab.auth Identité vérifiée : Ana (éditeur) {"name":"Ana","fp":"TTwukhODrZVulvFK","role":"editor","peers":2}
+12:19:06.143 +32.13s INFO  collab.sync.delta Reprise de Ana : 4 modifications manquées envoyées {"name":"Ana","ops":4}
+12:19:06.192 +32.18s DEBUG collab.ops.in 1 modification de Ana appliquée {"name":"Ana","received":1,"applied":1}
+12:19:06.192 +32.18s DEBUG store.remote Modifications d’un autre participant appliquées {"ops":1,"history":5}
+12:19:06.199 +32.18s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"remote","mode":"contenu","ms":3}

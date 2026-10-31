@@ -21,7 +21,7 @@ export function setZipHandler(fn) { exportZipHandler = fn; }
 let tab = null;
 /* Jetons tapés pendant la séance, avec leur destination : jamais repris pour une autre adresse ou un autre dépôt.
    Un jeton tout juste créé (publish.php téléchargé) n'a pas encore de destination : il suit la personne jusqu'au premier envoi. */
-const memory = { php: { target: '', token: '', keep: false }, github: { target: '', token: '', keep: false } };
+const memory = { php: new Map(), github: new Map() };
 
 function setStatus(el, text, kind) {
   el.textContent = text;
@@ -35,7 +35,8 @@ function apply(patch) {
 
 /* Garde le jeton pour cette destination (en séance, et sur l'appareil si demandé) */
 async function remember(kind, target, token, on) {
-  memory[kind] = { target, token, keep: on };
+  memory[kind].delete('');
+  memory[kind].set(target, { token, keep: on });
   const key = tokenKey(kind, target);
   if (!key) return;
   try { await setSecret(key, on ? token : ''); } catch { /* stockage indisponible */ }
@@ -43,8 +44,8 @@ async function remember(kind, target, token, on) {
 
 /* Jeton à pré-remplir pour la destination affichée : celui de la séance (même destination, ou pas encore envoyé), sinon celui gardé sur l'appareil pour elle */
 async function tokenFor(kind, target) {
-  const m = memory[kind];
-  if (m.token && (m.target === target || !m.target)) return { token: m.token, keep: m.keep, from: 'séance' };
+  const m = memory[kind].get(target) || memory[kind].get('');
+  if (m?.token) return { token: m.token, keep: m.keep, from: 'séance' };
   const key = tokenKey(kind, target);
   const saved = key ? await getSecret(key) : '';
   return saved ? { token: saved, keep: true, from: 'appareil' } : { token: '', keep: false, from: '' };
@@ -101,7 +102,9 @@ function phpTab(d) {
   /* Pré-remplit le jeton gardé pour l'origine affichée seulement ; une autre adresse → champ vide et message */
   const fill = async () => {
     const o = origin();
+    const typed = token.value;
     const t = await tokenFor('php', o);
+    if (token.value !== typed) return; /* la personne a tapé un jeton pendant la lecture : on le garde */
     token.value = t.token;
     keep.checked = t.keep;
     log.debug('publish.token-for', t.token ? __('Jeton pré-rempli pour {host} ({from})', { host: hostLabel(o), from: t.from }) : o ? __('Aucun jeton gardé pour {host}', { host: hostLabel(o) }) : __('Pas d’adresse publish.php : aucun jeton pré-rempli'), { origin: o || undefined, from: t.from || undefined, known: o ? isKnownDestination(`php:${o}`) : undefined });
@@ -112,7 +115,7 @@ function phpTab(d) {
   const generate = async () => {
     const t = newToken();
     token.value = t;
-    memory.php = { target: '', token: t, keep: keep.checked }; /* gardé sur l'appareil au premier envoi, sous l'adresse réellement utilisée */
+    memory.php.set('', { token: t, keep: keep.checked }); /* gardé sur l'appareil au premier envoi, sous l'adresse réellement utilisée */
     download('publish.php', buildPublishPhp({ tokenHash: await sha256Hex(t) }), 'application/x-httpd-php');
     log.info('publish.php.generate', __('publish.php v{version} téléchargé avec un nouveau jeton (l’ancien publish.php ne l’acceptera pas)', { version: PUBLISH_VERSION }), { version: PUBLISH_VERSION, remember: keep.checked });
     apply({ mode: 'php' });
@@ -210,7 +213,9 @@ function githubTab() {
   const target = () => githubTarget({ owner: owner.value, repo: repo.value });
   const fill = async () => {
     const tg = target();
+    const typed = token.value;
     const t = await tokenFor('github', tg);
+    if (token.value !== typed) return; /* jeton tapé pendant la lecture : gardé */
     token.value = t.token;
     keep.checked = t.keep;
     log.debug('publish.token-for', t.token ? __('Jeton GitHub pré-rempli pour {host} ({from})', { host: tg, from: t.from }) : tg ? __('Aucun jeton GitHub gardé pour {host}', { host: tg }) : __('Dépôt GitHub incomplet : aucun jeton pré-rempli'), { target: tg || undefined, from: t.from || undefined, known: tg ? isKnownDestination(`github:${tg}`) : undefined });

@@ -1,5 +1,5 @@
-20:53:32.294 +7.72s DEBUG collab.ops.in 2 modifications de Kudoro appliquées {"name":"Kudoro","received":2,"applied":2,"review":2}
-20:53:32.302 +7.73s DEBUG store.remote Modifications d’un autre participant appliquées {"ops":2,"history":1}
-20:53:32.317 +7.75s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"remote","mode":"contenu","ms":14}
-20:53:32.323 +7.75s INFO  review.remote Réponse reçue au commentaire de Laurent {"id":"cm_PhAFQ9g9pZsy","replies":1}
-20:53:32.331 +7.76s DEBUG review.sig.ok Signature vérifiée : Kudoro {"id":"cm_fXn1nrhsEYcq","fp":"F9zZGchziS0yDIwA","reply":true}
+12:18:52.279 +8.74s DEBUG collab.ops.in 2 modifications de Kudoro appliquées {"name":"Kudoro","received":2,"applied":2,"review":2}
+12:18:52.279 +8.74s DEBUG store.remote Modifications d’un autre participant appliquées {"ops":2,"history":1}
+12:18:52.283 +8.74s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"remote","mode":"contenu","ms":3}
+12:18:52.287 +8.74s INFO  review.remote Réponse reçue au commentaire de Laurent {"id":"cm_CCSnWPav0sG9","replies":1}
+12:18:52.293 +8.75s DEBUG review.sig.ok Signature vérifiée : Kudoro {"id":"cm_VcFzjOujGYtQ","fp":"eztjoyo43l4V4q2J","reply":true}

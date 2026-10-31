@@ -1,8 +1,7 @@
-07:28:53.655 +2.72s INFO  canvas.load.ok [canvas.load#3 · 36 ms] Canevas prêt {"nodes":30,"scale":62,"via":"dom"}
-07:28:53.699 +2.76s INFO  publish.open Fenêtre Publier {"mode":"php","tab":"php","ok":true,"errors":0,"warnings":1}
-07:28:53.702 +2.76s DEBUG ui.dialog.open Fenêtre ouverte : Publier le site {"id":"publishDialog","class":"audit","modal":true}
-07:28:53.710 +2.77s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token"}
-07:28:53.711 +2.77s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token"}
-07:28:53.712 +2.77s DEBUG publish.token-for Dépôt GitHub incomplet : aucun jeton pré-rempli
-07:28:53.712 +2.77s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:http://127.0.0.1:8758"}
-07:28:53.712 +2.77s DEBUG publish.token-for Aucun jeton gardé pour 127.0.0.1:8758 {"origin":"http://127.0.0.1:8758","known":false}
+12:21:06.344 +3.00s INFO  publish.open Fenêtre Publier {"mode":"php","tab":"php","ok":true,"errors":0,"warnings":1}
+12:21:06.345 +3.01s DEBUG ui.dialog.open Fenêtre ouverte : Publier le site {"id":"publishDialog","class":"audit","modal":true}
+12:21:06.360 +3.02s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token"}
+12:21:06.360 +3.02s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token"}
+12:21:06.361 +3.02s DEBUG publish.token-for Dépôt GitHub incomplet : aucun jeton pré-rempli
+12:21:06.361 +3.02s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:http://127.0.0.1:8779"}
+12:21:06.361 +3.02s DEBUG publish.token-for Aucun jeton gardé pour 127.0.0.1:8779 {"origin":"http://127.0.0.1:8779","known":false}

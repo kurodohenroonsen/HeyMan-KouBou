@@ -1,8 +1,8 @@
-20:53:32.026 +17.45s DEBUG collab.ops.in 1 modification de Laurent appliquée {"name":"Laurent","received":1,"applied":1,"review":1}
-20:53:32.028 +17.45s DEBUG store.remote Modifications d’un autre participant appliquées {"ops":1,"history":3}
-20:53:32.033 +17.45s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"remote","mode":"contenu","ms":4}
-20:53:32.037 +17.46s DEBUG inspector.remote-deferred Modification d’un autre participant : inspecteur redessiné à la sortie du champ {"field":"text"}
-20:53:32.038 +17.46s INFO  review.remote Commentaire reçu de Laurent {"id":"cm_PhAFQ9g9pZsy","fp":"u5XEBSYyUs4QuSO5","page":"p_l1i0iszj","node":"n_1m3z4b292e"}
-20:53:32.159 +17.58s DEBUG inspector.field Champ modifié : Texte {"key":"text","type":"inline","lang":"fr","how":"saisie","chars":23}
-20:53:32.161 +17.58s INFO  review.panel Panneau des commentaires ouvert {"open":true,"comments":1,"openCount":1,"readOnly":false}
-20:53:32.171 +17.59s DEBUG review.sig.ok Signature vérifiée : Laurent {"id":"cm_PhAFQ9g9pZsy","fp":"u5XEBSYyUs4QuSO5","reply":false}
+12:18:52.007 +17.99s DEBUG collab.ops.in 1 modification de Laurent appliquée {"name":"Laurent","received":1,"applied":1,"review":1}
+12:18:52.008 +17.99s DEBUG store.remote Modifications d’un autre participant appliquées {"ops":1,"history":3}
+12:18:52.014 +18.00s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"remote","mode":"contenu","ms":5}
+12:18:52.015 +18.00s DEBUG inspector.remote-deferred Modification d’un autre participant : inspecteur redessiné à la sortie du champ {"field":"text"}
+12:18:52.015 +18.00s INFO  review.remote Commentaire reçu de Laurent {"id":"cm_CCSnWPav0sG9","fp":"4VGUsBQV4jqSaBmi","page":"p_4dyri2rf","node":"n_515w3o2d13"}
+12:18:52.156 +18.14s DEBUG inspector.field Champ modifié : Texte {"key":"text","type":"inline","lang":"fr","how":"saisie","chars":23}
+12:18:52.159 +18.14s INFO  review.panel Panneau des commentaires ouvert {"open":true,"comments":1,"openCount":1,"readOnly":false}
+12:18:52.170 +18.15s DEBUG review.sig.ok Signature vérifiée : Laurent {"id":"cm_CCSnWPav0sG9","fp":"4VGUsBQV4jqSaBmi","reply":false}

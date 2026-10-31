@@ -1,24 +1,24 @@
-07:29:17.462 +4.99s INFO  project.cancel Remplacement annulé {"action":"demo"}
-07:29:17.530 +5.06s DEBUG ui.dialog.open Fenêtre ouverte : Nouveau site vide {"id":"newSiteDialog","class":"audit new-site","modal":true}
-07:29:17.547 +5.07s DEBUG canvas.resources Ressources externes du canevas chargées {"ms":229,"hosts":["fonts.googleapis.com"]}
-07:29:17.599 +5.13s INFO  version.save.start [version.save#2] Enregistrement d’une version de sécurité : « Avant un nouveau site vide » {"kind":"safety","name":"Avant un nouveau site vide"}
-07:29:17.600 +5.13s DEBUG storage.version-save Version enregistrée {"id":"v_mvw0tiu889p3v","name":"Avant un nouveau site vide","kind":"safety"}
-07:29:17.606 +5.13s DEBUG ui.dialog.close Fenêtre fermée : Nouveau site vide {"id":"newSiteDialog"}
-07:29:17.611 +5.14s DEBUG version.save.prune [version.save#2 · 12 ms] Aucune ancienne version à supprimer {"total":3}
-07:29:17.611 +5.14s INFO  version.save.ok [version.save#2 · 12 ms] Version de sécurité enregistrée (2 pages) {"id":"v_mvw0tiu889p3v","kind":"safety","at":"2026-10-31T06:29:17.600Z","pages":2,"kb":12}
-07:29:17.611 +5.14s INFO  store.load Projet chargé dans l’éditeur {"name":"Nouveau site","pages":1,"keepHistory":true}
-07:29:17.612 +5.14s INFO  canvas.load.start [canvas.load#3] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_01x2bie5","lang":"fr","device":"desktop"}
-07:29:17.613 +5.14s DEBUG canvas.load.render [canvas.load#3 · 1 ms] Page rendue {"ms":0,"kb":18}
-07:29:17.615 +5.14s INFO  project.new Nouveau site vide : « Nouveau site », langue principale Français {"lang":"fr","languages":["fr","nl","de","en"]}
-07:29:17.635 +5.16s INFO  canvas.load.ok [canvas.load#3 · 23 ms] Canevas prêt {"nodes":0,"scale":62,"via":"load"}
-07:29:18.063 +5.59s INFO  version.save.start [version.save#3] Enregistrement d’une version de sécurité : « Avant de recharger l’exemple » {"kind":"safety","name":"Avant de recharger l’exemple"}
-07:29:18.063 +5.59s DEBUG storage.version-save Version enregistrée {"id":"v_mvw0tj738n040","name":"Avant de recharger l’exemple","kind":"safety"}
-07:29:18.076 +5.60s DEBUG version.save.prune [version.save#3 · 13 ms] Aucune ancienne version à supprimer {"total":4}
-07:29:18.076 +5.60s INFO  version.save.ok [version.save#3 · 13 ms] Version de sécurité enregistrée (1 page) {"id":"v_mvw0tj738n040","kind":"safety","at":"2026-10-31T06:29:18.063Z","pages":1,"kb":1}
-07:29:18.078 +5.61s INFO  store.load Projet chargé dans l’éditeur {"name":"MAB – Médias Alternatifs Belges","pages":2,"keepHistory":true}
-07:29:18.080 +5.61s INFO  canvas.load.start [canvas.load#4] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_ny3c2a9i","lang":"fr","device":"desktop"}
-07:29:18.081 +5.61s DEBUG canvas.load.render [canvas.load#4 · 1 ms] Page rendue {"ms":1,"kb":25}
-07:29:18.082 +5.61s INFO  project.demo Exemple rechargé
-07:29:18.108 +5.63s INFO  canvas.load.ok [canvas.load#4 · 28 ms] Canevas prêt {"nodes":30,"scale":62,"via":"dom"}
-07:29:18.292 +5.82s DEBUG canvas.resources Ressources externes du canevas chargées {"ms":211,"hosts":["fonts.googleapis.com"]}
-07:29:18.529 +6.06s INFO  project.preview Aperçu dans un nouvel onglet {"page":"p_ny3c2a9i","lang":"fr"}
+12:24:57.620 +4.96s INFO  project.cancel Remplacement annulé {"action":"demo"}
+12:24:57.646 +4.99s DEBUG canvas.resources Ressources externes du canevas chargées {"ms":197,"hosts":["fonts.googleapis.com"]}
+12:24:57.703 +5.05s DEBUG ui.dialog.open Fenêtre ouverte : Nouveau site vide {"id":"newSiteDialog","class":"audit new-site","modal":true}
+12:24:57.753 +5.10s INFO  version.save.start [version.save#2] Enregistrement d’une version de sécurité : « Avant un nouveau site vide » {"kind":"safety","name":"Avant un nouveau site vide"}
+12:24:57.754 +5.10s DEBUG storage.version-save Version enregistrée {"id":"v_mvwbdr8a5ekvs","name":"Avant un nouveau site vide","kind":"safety"}
+12:24:57.764 +5.11s DEBUG ui.dialog.close Fenêtre fermée : Nouveau site vide {"id":"newSiteDialog"}
+12:24:57.768 +5.11s DEBUG version.save.prune [version.save#2 · 15 ms] Aucune ancienne version à supprimer {"total":3}
+12:24:57.768 +5.11s INFO  version.save.ok [version.save#2 · 15 ms] Version de sécurité enregistrée (2 pages) {"id":"v_mvwbdr8a5ekvs","kind":"safety","at":"2026-10-31T11:24:57.754Z","pages":2,"kb":12}
+12:24:57.770 +5.12s INFO  store.load Projet chargé dans l’éditeur {"name":"Nouveau site","pages":1,"keepHistory":true}
+12:24:57.772 +5.12s INFO  canvas.load.start [canvas.load#3] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_yuxgvufw","lang":"fr","device":"desktop"}
+12:24:57.773 +5.12s DEBUG canvas.load.render [canvas.load#3 · 1 ms] Page rendue {"ms":1,"kb":18}
+12:24:57.775 +5.12s INFO  project.new Nouveau site vide : « Nouveau site », langue principale Français {"lang":"fr","languages":["fr","nl","de","en"]}
+12:24:57.792 +5.14s INFO  canvas.load.ok [canvas.load#3 · 20 ms] Canevas prêt {"nodes":0,"scale":62,"via":"load"}
+12:24:58.223 +5.57s INFO  version.save.start [version.save#3] Enregistrement d’une version de sécurité : « Avant de recharger l’exemple » {"kind":"safety","name":"Avant de recharger l’exemple"}
+12:24:58.224 +5.57s DEBUG storage.version-save Version enregistrée {"id":"v_mvwbdrlbzrkqb","name":"Avant de recharger l’exemple","kind":"safety"}
+12:24:58.233 +5.58s DEBUG version.save.prune [version.save#3 · 10 ms] Aucune ancienne version à supprimer {"total":4}
+12:24:58.233 +5.58s INFO  version.save.ok [version.save#3 · 10 ms] Version de sécurité enregistrée (1 page) {"id":"v_mvwbdrlbzrkqb","kind":"safety","at":"2026-10-31T11:24:58.223Z","pages":1,"kb":1}
+12:24:58.234 +5.58s INFO  store.load Projet chargé dans l’éditeur {"name":"MAB – Médias Alternatifs Belges","pages":2,"keepHistory":true}
+12:24:58.236 +5.58s INFO  canvas.load.start [canvas.load#4] Chargement complet du canevas : rechargement demandé {"reason":"rechargement demandé","page":"p_ekoc7x27","lang":"fr","device":"desktop"}
+12:24:58.237 +5.58s DEBUG canvas.load.render [canvas.load#4 · 1 ms] Page rendue {"ms":1,"kb":25}
+12:24:58.238 +5.58s INFO  project.demo Exemple rechargé
+12:24:58.264 +5.61s INFO  canvas.load.ok [canvas.load#4 · 28 ms] Canevas prêt {"nodes":30,"scale":62,"via":"dom"}
+12:24:58.513 +5.86s DEBUG canvas.resources Ressources externes du canevas chargées {"ms":276,"hosts":["fonts.googleapis.com"]}
+12:24:58.685 +6.03s INFO  project.preview Aperçu dans un nouvel onglet {"page":"p_ekoc7x27","lang":"fr"}
