@@ -2,7 +2,7 @@
 
 Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire, par domaine. Fichier généré par `node tools/guide-index.mjs` à partir du code source : il est toujours à jour avec le code.
 
-**901 codes** dans 43 domaines.
+**912 codes** dans 43 domaines.
 
 | Domaine | Codes |
 |---|---|
@@ -15,7 +15,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | [`boot`](#boot) | 10 |
 | [`canvas`](#canvas) | 20 |
 | [`cmdk`](#cmdk) | 2 |
-| [`collab`](#collab) | 73 |
+| [`collab`](#collab) | 76 |
 | [`collection`](#collection) | 42 |
 | [`ctxmenu`](#ctxmenu) | 4 |
 | [`dnd`](#dnd) | 8 |
@@ -30,8 +30,8 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | [`page`](#page) | 27 |
 | [`perf`](#perf) | 1 |
 | [`php`](#php) | 41 |
-| [`project`](#project) | 10 |
-| [`publish`](#publish) | 24 |
+| [`project`](#project) | 12 |
+| [`publish`](#publish) | 29 |
 | [`review`](#review) | 18 |
 | [`rtc`](#rtc) | 53 |
 | [`selftest`](#selftest) | 33 |
@@ -40,7 +40,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | [`signal`](#signal) | 25 |
 | [`site`](#site) | 9 |
 | [`smart`](#smart) | 38 |
-| [`storage`](#storage) | 22 |
+| [`storage`](#storage) | 23 |
 | [`store`](#store) | 15 |
 | [`structure`](#structure) | 4 |
 | [`style`](#style) | 24 |
@@ -376,6 +376,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `collab.ops.out` | DEBUG | [10](10-collaboration.md) [11](11-relecture-commentaires.md) | `core/collab-protocol.js` |
 | `collab.ops.rejected` | WARN | [10](10-collaboration.md) [11](11-relecture-commentaires.md) | `core/collab-protocol.js` |
 | `collab.ops.relay` | TRACE | [10](10-collaboration.md) | `core/collab-protocol.js` |
+| `collab.ops.sanitized` | WARN | [10](10-collaboration.md) | `core/collab-protocol.js` |
 | `collab.peer.leave` | INFO | [10](10-collaboration.md) | `core/collab-protocol.js` |
 | `collab.presence` | DEBUG | [10](10-collaboration.md) | `core/collab-protocol.js` |
 | `collab.readonly` | INFO | [10](10-collaboration.md) [11](11-relecture-commentaires.md) | `editor/collab-ui.js` |
@@ -397,6 +398,8 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `collab.send-fail` | WARN | [10](10-collaboration.md) | `core/collab-protocol.js` |
 | `collab.snapshot` | INFO | [10](10-collaboration.md) [11](11-relecture-commentaires.md) | `core/collab-protocol.js` |
 | `collab.snapshot-refused` | WARN | [10](10-collaboration.md) | `core/collab-protocol.js` |
+| `collab.snapshot.invalid` | WARN | [10](10-collaboration.md) | `core/collab-protocol.js` |
+| `collab.snapshot.sanitized` | WARN | [10](10-collaboration.md) | `core/collab-protocol.js` |
 | `collab.sync.ask` | DEBUG | [10](10-collaboration.md) | `core/collab-protocol.js` |
 | `collab.sync.delta` | INFO | [10](10-collaboration.md) | `core/collab-protocol.js` |
 | `collab.sync.merged` | INFO | [10](10-collaboration.md) | `core/collab-protocol.js` |
@@ -701,6 +704,8 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `project.import.fail` | ERROR | [1](01-demarrage-projet.md) | `editor/app.js` |
 | `project.import.invalid` | WARN | [1](01-demarrage-projet.md) | `editor/app.js` |
 | `project.import.ok` | INFO | [1](01-demarrage-projet.md) | `editor/app.js` |
+| `project.import.publish-url` | INFO | [1](01-demarrage-projet.md) | `editor/app.js` |
+| `project.import.sanitized` | WARN | [1](01-demarrage-projet.md) | `editor/app.js` |
 | `project.import.start` | INFO | [1](01-demarrage-projet.md) | `editor/app.js` |
 | `project.new` | INFO | [1](01-demarrage-projet.md) [4](04-pages-images-contenus.md) | `editor/new-site-ui.js` |
 | `project.new-lang` | DEBUG | [1](01-demarrage-projet.md) | `editor/new-site-ui.js` |
@@ -710,12 +715,15 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 
 | Code | Niveau | Chapitre | Source |
 |---|---|---|---|
+| `publish.first-origin` | INFO | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
+| `publish.github.cancel` | INFO | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
 | `publish.github.fail` | ERROR | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
 | `publish.github.ok` | INFO | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
 | `publish.github.package` | INFO | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
 | `publish.github.start` | INFO | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
 | `publish.github.upload` | DEBUG | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
 | `publish.open` | INFO | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
+| `publish.php.cancel` | INFO | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
 | `publish.php.fail` | ERROR | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
 | `publish.php.generate` | INFO | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
 | `publish.php.ok` | INFO | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
@@ -726,6 +734,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `publish.php.version-unknown` | WARN | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
 | `publish.php.warnings` | INFO | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
 | `publish.settings-invalid` | WARN | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
+| `publish.test.cancel` | INFO | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
 | `publish.test.diag` | INFO | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
 | `publish.test.fail` | ERROR | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
 | `publish.test.no-zip` | WARN | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
@@ -734,6 +743,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `publish.test.old-version` | WARN | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
 | `publish.test.start` | INFO | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
 | `publish.test.token-refused` | WARN | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
+| `publish.token-for` | DEBUG | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
 
 ## review
 
@@ -1013,6 +1023,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `storage.save-fail` | ERROR | [1](01-demarrage-projet.md) [4](04-pages-images-contenus.md) | `editor/store.js` |
 | `storage.save-recovered` | INFO | [1](01-demarrage-projet.md) | `editor/store.js` |
 | `storage.secret-fail` | WARN | [8](08-verifier-exporter-publier.md) | `editor/storage.js` |
+| `storage.secret-migrated` | INFO | [8](08-verifier-exporter-publier.md) | `editor/storage.js` |
 | `storage.secret-read` | DEBUG | [1](01-demarrage-projet.md) [8](08-verifier-exporter-publier.md) | `editor/storage.js` |
 | `storage.secret-write` | INFO | [8](08-verifier-exporter-publier.md) [10](10-collaboration.md) | `editor/storage.js` |
 | `storage.unavailable` | ERROR | [1](01-demarrage-projet.md) [4](04-pages-images-contenus.md) | `editor/storage.js` |
