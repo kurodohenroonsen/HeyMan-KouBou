@@ -15,6 +15,7 @@ import { auditSite } from '../core/audit.js';
 import { buildPublishPhp, sha256Hex, newToken, formsConfig, publishGitHub, filesForServer, errorMessage, PUBLISH_VERSION, publishOrigin, githubTarget, tokenKey, hostLabel } from '../core/publish.js';
 import { getSecret, setSecret, migrateLegacyTokens, isKnownDestination, addKnownDestination } from './storage.js';
 import { log } from './log.js';
+import { hostBackupSection, backupAfterPublish } from './backup-ui.js';
 import { __, __n } from '../core/ui-i18n.js';
 
 let exportZipHandler = null;
@@ -83,7 +84,7 @@ function confirmFirst(kind, target, action) {
 }
 
 /* Vrai si la destination est connue de l'appareil, ou si la personne vient de la confirmer */
-async function destinationOk(kind, target, action) {
+export async function destinationOk(kind, target, action) {
   const key = `${kind}:${target}`;
   if (isKnownDestination(key)) return true;
   const ok = await confirmFirst(kind, target, action);
@@ -203,6 +204,11 @@ function phpTab(d) {
         skipped.length && Number(version) >= 2 ? __n(skipped.length, '{n} fichier non envoyé (polices, icône SVG, manifeste) : votre publish.php est en version {version}.', '{n} fichiers non envoyés (polices, icône SVG, manifeste) : votre publish.php est en version {version}.', { version }) : skipped.length ? __n(skipped.length, '{n} fichier d’agenda (.ics) non envoyé : votre publish.php est en version {version}, téléchargez le nouveau et redéposez-le pour le publier.', '{n} fichiers d’agenda (.ics) non envoyés : votre publish.php est en version {version}, téléchargez le nouveau et redéposez-le pour les publier.', { version }) : ''
       ].filter(Boolean).join(' '), 'ok');
       toast(__n(files.size, 'Site publié ({n} fichier).', 'Site publié ({n} fichiers).'));
+      /* Cycle 31 : copie de secours chiffrée sur l'hébergement, si elle est activée */
+      const bk = await backupAfterPublish({ url: state.site.publish.url, token: token.value });
+      if (bk?.name) status.textContent += ' ' + __('Copie de secours chiffrée enregistrée sur l’hébergement.');
+      else if (bk?.skipped) status.textContent += ' ' + __('Copie de secours non envoyée : indiquez le code de secours ci-dessous.');
+      else if (bk?.error) status.textContent += ' ' + __('Copie de secours non envoyée : {message}', { message: bk.error.message });
     } catch (e) { f.fail(e, { status: e.status, ref: e.ref, code: e.code }); setStatus(status, e.ref ? __('Échec de la publication : {message} (référence {ref} dans le journal du serveur)', { message: e.message, ref: e.ref }) : __('Échec de la publication : {message}', { message: e.message }), 'error'); }
   };
   return h('div', { class: 'pub-pane', 'data-pane': 'php' },
@@ -212,7 +218,8 @@ function phpTab(d) {
       h('li', {}, __('Jeton :') + ' ', token, h('label', { class: 'check check--sm' }, keep, __('Se souvenir sur cet appareil, pour cette adresse seulement (jamais dans le projet)'))),
       h('li', {}, h('div', { class: 'row-btns' }, h('button', { type: 'button', class: 'btn btn--small', 'data-pub-test': '', onclick: testConn }, __('Tester la connexion')), h('button', { type: 'button', class: 'btn btn--small btn--primary', 'data-pub-run': '', onclick: run }, __('🚀 Publier le site'))))),
     status,
-    h('p', { class: 'hint' }, __('publish.php n’accepte que des pages, styles, scripts et images du site (aucun fichier PHP), refuse tout envoi sans jeton, et ne supprime jamais les fichiers que vous avez ajoutés vous-même. Il relaie aussi les formulaires de contact par e-mail : les adresses ne figurent jamais dans les pages.')));
+    h('p', { class: 'hint' }, __('publish.php n’accepte que des pages, styles, scripts et images du site (aucun fichier PHP), refuse tout envoi sans jeton, et ne supprime jamais les fichiers que vous avez ajoutés vous-même. Il relaie aussi les formulaires de contact par e-mail : les adresses ne figurent jamais dans les pages.')),
+    hostBackupSection({ url: () => url.value, token: () => token.value, confirmDest: destinationOk, apply }));
 }
 
 function githubTab() {

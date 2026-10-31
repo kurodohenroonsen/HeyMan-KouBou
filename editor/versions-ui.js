@@ -4,6 +4,8 @@ import { state, subscribe, load } from './store.js';
 import { makeVersion, diffSites, describeDiff, pruneVersions, isNewDay } from '../core/versions.js';
 import { saveVersion, listVersions, loadVersion, deleteVersions } from './storage.js';
 import { log } from './log.js';
+import { collectGarbage } from './safety.js';
+import { formatBytes } from '../core/storage-gc.js';
 import { __, __n, __c, fmtDate } from '../core/ui-i18n.js';
 
 let lastAuto = null;
@@ -18,6 +20,8 @@ async function prune(f) {
   if (old.length) f?.step('prune', __('{n} ancienne(s) version(s) automatique(s) ou de sécurité supprimée(s) (30 gardées au plus)', { n: old.length }), { total: list.length, removed: old.length, oldest: old.at(-1)?.at }, 'info');
   else f?.step('prune', __('Aucune ancienne version à supprimer'), { total: list.length });
   await deleteVersions(old.map(v => v.id));
+  /* Cycle 31 : les images que seules les versions supprimées utilisaient sont retirées */
+  if (old.length) await collectGarbage('prune');
 }
 
 const KIND_LOG = { manual: __('manuelle'), auto: __('automatique'), safety: __('de sécurité') };
@@ -105,6 +109,17 @@ async function render(d) {
   }));
 }
 
+/* Cycle 31 : nettoyage des images inutilisées, sur demande */
+function gcRow() {
+  const out = h('span', { class: 'hint', 'data-gc-result': '', role: 'status' });
+  const run = async () => {
+    out.textContent = __('Nettoyage…');
+    const r = await collectGarbage('button');
+    out.textContent = !r ? __('Nettoyage impossible (voir le journal).') : r.count ? __n(r.count, '{n} image inutilisée retirée ({size} libérés).', '{n} images inutilisées retirées ({size} libérés).', { size: formatBytes(r.bytes) }) : __('Aucune image inutilisée.');
+  };
+  return h('div', { class: 'row-btns' }, h('button', { type: 'button', class: 'btn btn--small', 'data-gc-run': '', title: __('Retire de ce navigateur les images qui ne sont plus ni dans le projet ni dans une version gardée'), onclick: run }, __('Nettoyer les images inutilisées')), out);
+}
+
 export function openVersions() {
   $('#versionsDialog')?.remove();
   const name = h('input', { class: 'input', type: 'text', 'data-version-name': '', placeholder: __('ex. Avant la refonte du menu'), 'aria-label': __('Nom de la version') });
@@ -118,7 +133,8 @@ export function openVersions() {
     h('header', { class: 'audit__head' }, h('h2', { id: 'versionsTitle' }, __('Versions du projet')), h('button', { type: 'button', class: 'icon-btn', 'aria-label': __('Fermer'), onclick: () => d.close() }, '✕')),
     h('div', { class: 'a11y-form' },
       h('div', { class: 'add-page' }, name, h('button', { type: 'button', class: 'btn btn--small btn--primary', id: 'versionSave', onclick: save }, __('Enregistrer une version'))),
-      h('p', { class: 'hint' }, __('Une version est aussi enregistrée automatiquement au début de chaque journée de travail, et avant chaque restauration ou ouverture d’un autre projet. Les versions restent dans ce navigateur (pensez à « Enregistrer le projet (.json) » pour une copie de sécurité ailleurs).'))),
+      h('p', { class: 'hint' }, __('Une version est aussi enregistrée automatiquement au début de chaque journée de travail, et avant chaque restauration ou ouverture d’un autre projet. Les versions restent dans ce navigateur (pensez à « Enregistrer le projet (.json) » pour une copie de sécurité ailleurs).')),
+      gcRow()),
     h('ul', { class: 'version-list' }),
     h('footer', { class: 'audit__foot' }, h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Fermer'))));
   d.addEventListener('close', () => d.remove());

@@ -2,10 +2,11 @@
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawn, execFileSync } from 'node:child_process';
-import { mkdtempSync, writeFileSync, readFileSync, existsSync, rmSync } from 'node:fs';
+import { mkdtempSync, writeFileSync, readFileSync, existsSync, rmSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
-import { buildPublishPhp, sha256Hex, signalRoom } from '../core/publish.js';
+import { buildPublishPhp, sha256Hex, signalRoom, PUBLISH_VERSION } from '../core/publish.js';
+import { encryptBackup, BACKUP_MAGIC } from '../core/backup.js';
 import { buildHtaccess } from '../core/htaccess.js';
 import { createZip } from '../core/zip.js';
 
@@ -149,7 +150,7 @@ const poll = (room, peer, after = 0) => fetch(`${URL_}?signal=${room}&peer=${pee
 t('signalisation : déposer et relever des messages chiffrés par destinataire', async () => {
   const st = await (await fetch(URL_)).json();
   assert.equal(st.signal, true, 'le statut annonce la signalisation');
-  assert.equal(st.version, '5');
+  assert.equal(st.version, PUBLISH_VERSION);
   assert.equal(st.php, undefined, 'version de PHP réservée au jeton');
   let r = await signal({ signal: ROOM, from: 'guest01', to: 'host0001', data: 'Y2hpZmZyw6k=' });
   assert.equal(r.status, 200);
@@ -385,4 +386,70 @@ t('v5 : signalisation — preuve de salle exigée, 201ᵉ message → 429, salle
   for (let i = 0; i < 210; i++) { last = await post({ data: 'QQ==', signal: (await signalRoom(`s${i % 3}`)).room, proof: (await signalRoom(`s${i % 3}`)).proof }); if (last.status === 429) break; }
   assert.equal(last.status, 429);
   assert.equal((await last.json()).code, 'signal_rate', 'limite par adresse hachée');
+});
+
+/* ---------- publish.php v6 (cycle 31) : copies de secours chiffrées ---------- */
+const BK_SITE = { name: 'MAB', languages: ['fr'], defaultLanguage: 'fr', pages: [{ id: 'p1', root: { id: 'r', type: 'page', children: [] } }] };
+const backupPost = (body, token = TOKEN) => fetch(`${URL_}?backup`, { method: 'POST', body, headers: { 'Content-Type': 'application/octet-stream', ...(token ? { 'X-Atelier-Token': token } : {}) } }).then(async r => ({ status: r.status, body: await r.json() }));
+const backupList = (token = TOKEN) => fetch(`${URL_}?backups`, { headers: token ? { 'X-Atelier-Token': token } : {} }).then(async r => ({ status: r.status, body: await r.json() }));
+const backupFiles = () => (existsSync(join(dir, 'atelier-data')) ? readdirSync(join(dir, 'atelier-data')).filter(f => f.endsWith('.json.enc')) : []);
+
+t('v6 : copie de secours refusée sans jeton ou avec un mauvais jeton, rien n’est écrit', async () => {
+  const bytes = await encryptBackup(BK_SITE, 'code-de-secours', { iterations: 1000 });
+  const before = backupFiles().length;
+  assert.equal((await backupPost(bytes, '')).status, 401);
+  assert.equal((await backupPost(bytes, 'mauvais')).status, 401);
+  assert.equal((await backupList('')).status, 401);
+  assert.equal((await fetch(`${URL_}?backup=backup-20261031-1405.json.enc`)).status, 401);
+  assert.equal(backupFiles().length, before);
+});
+
+t('v6 : dépôt, listage et relecture avec le jeton ; fichier illisible depuis le web', async () => {
+  const st = await (await fetch(URL_)).json();
+  assert.equal(st.backup, true, 'le statut annonce les copies de secours');
+  const bytes = await encryptBackup(BK_SITE, 'code-de-secours', { iterations: 1000 });
+  const r = await backupPost(bytes);
+  assert.equal(r.status, 200, JSON.stringify(r.body));
+  assert.match(r.body.name, /^backup-\d{8}-\d{4}(-\d+)?\.json\.enc$/);
+  const file = readFileSync(join(dir, 'atelier-data', r.body.name));
+  assert.equal(file.subarray(0, BACKUP_MAGIC.length).toString(), BACKUP_MAGIC);
+  assert.deepEqual([...file], [...bytes]);
+  const list = await backupList();
+  assert.equal(list.status, 200);
+  assert.ok(list.body.backups.some(b => b.name === r.body.name && b.size === bytes.length && b.at));
+  const got = await fetch(`${URL_}?backup=${r.body.name}`, { headers: { 'X-Atelier-Token': TOKEN } });
+  assert.equal(got.status, 200);
+  assert.deepEqual([...new Uint8Array(await got.arrayBuffer())], [...bytes]);
+  /* php -S ignore les .htaccess : on vérifie que le dossier est fermé pour Apache (OVH) */
+  assert.match(readFileSync(join(dir, 'atelier-data', '.htaccess'), 'utf8'), /Require all denied/);
+});
+
+t('v6 : contenu qui n’est pas une copie chiffrée, nom forgé → refusés', async () => {
+  const r = await backupPost(new TextEncoder().encode('{"site":"en clair"}'));
+  assert.equal(r.status, 400);
+  assert.equal(r.body.code, 'bad_backup');
+  for (const name of ['../publish.php', 'forms.php', 'backup-x.json.enc', 'log-2026-10.php']) {
+    const g = await fetch(`${URL_}?backup=${encodeURIComponent(name)}`, { headers: { 'X-Atelier-Token': TOKEN } });
+    assert.ok([400, 404].includes(g.status), `${name} : ${g.status}`);
+  }
+});
+
+t('v6 : rotation — 5 dernières copies gardées', async () => {
+  const bytes = await encryptBackup(BK_SITE, 'code-de-secours', { iterations: 1000 });
+  const names = [];
+  for (let i = 0; i < 7; i++) names.push((await backupPost(bytes)).body.name);
+  const list = (await backupList()).body.backups;
+  assert.equal(list.length, 5);
+  assert.equal(backupFiles().length, 5);
+  assert.deepEqual(list.map(b => b.name), names.slice(-5).reverse(), 'les plus récentes d’abord');
+});
+
+t('v6 : taille maximale 100 Mo → 413 too_big, rien n’est écrit', async () => {
+  const before = backupFiles().sort();
+  const big = new Uint8Array(100 * 1024 * 1024 + 10);
+  big.set(new TextEncoder().encode(BACKUP_MAGIC));
+  const r = await backupPost(big);
+  assert.equal(r.status, 413);
+  assert.equal(r.body.code, 'too_big');
+  assert.deepEqual(backupFiles().sort(), before);
 });

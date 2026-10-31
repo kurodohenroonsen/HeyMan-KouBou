@@ -171,7 +171,7 @@ export default async function (t) {
     await page.click('#publishDialog [data-pub-test]');
     await page.waitForSelector('#publishDialog [data-pub-status]:is(.is-ok, .is-error)');
     const st = await page.textContent('#publishDialog [data-pub-status]');
-    t.ok(/Mise à jour conseillée : publish\.php version 5/.test(st), `version 4 : ${st.trim().slice(0, 140)}`);
+    t.ok(/Mise à jour conseillée : publish\.php version \d+/.test(st), `version 4 : ${st.trim().slice(0, 140)}`);
     es = await since(page, s);
     expectCodes(t, es, ['publish.test.old-version'], 'publish.php v4');
     await page.evaluate(() => document.querySelectorAll('dialog[open]').forEach(d => d.close()));

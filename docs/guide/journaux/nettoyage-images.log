@@ -1,0 +1,5 @@
+13:34:07.154 +2.39s DEBUG ui.dialog.open Fenêtre ouverte : Versions du projet {"id":"versionsDialog","class":"audit","modal":true}
+13:34:07.159 +2.39s INFO  version.open Fenêtre des versions ouverte
+13:34:07.168 +2.40s DEBUG version.list Liste des versions : 1 {"count":1,"manual":0,"auto":1,"safety":0,"newest":"2026-10-31T12:34:02.622Z"}
+13:34:07.269 +2.50s DEBUG storage.asset-delete 1 image retirée de la base locale {"ids":["orpheline-test"]}
+13:34:07.269 +2.50s INFO  storage.gc 1 image inutilisée retirée de la base locale (29 Ko) {"count":1,"bytes":30017,"stored":1,"source":"button"}

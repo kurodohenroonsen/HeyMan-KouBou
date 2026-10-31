@@ -1,5 +1,6 @@
 /* Panneaux de gauche : Site (styles globaux, en-tête, pied de page), Pages, Modèles. */
 import { h, toast } from './dom.js';
+import { storageSection } from './safety.js';
 import { state, commit, setView } from './store.js';
 import { setPalette, setTheme, setHeader, setFooterText, setSiteMeta, LANG_LABELS, addPaletteColor, removePaletteColor, setPaletteName, addFont, removeFont, setSiteIcon } from '../core/site.js';
 import { PALETTE_KEYS, BASE_PALETTE } from '../core/style.js';
@@ -312,7 +313,8 @@ function sitePanel() {
     h('label', { class: 'check' }, showLangs, __('Afficher le choix de la langue')),
     h('label', { class: 'check' }, burger, __('Bouton « Menu » sur mobile')),
     h('h3', {}, __('Pied de page')),
-    h('div', { class: 'field' }, h('span', { class: 'field__label' }, __('Texte du pied de page')), footer)
+    h('div', { class: 'field' }, h('span', { class: 'field__label' }, __('Texte du pied de page')), footer),
+    ...storageSection()
   ];
 }
 

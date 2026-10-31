@@ -64,7 +64,7 @@ export const parentOf = id => findParent(root(), id).parent;
 let saveTimer = null;
 let saveFailed = false;
 function scheduleSave() {
-  emit('save', { status: __('Modifié') });
+  emit('save', { status: __('Modifié'), code: 'modified' });
   clearTimeout(saveTimer);
   saveTimer = setTimeout(async () => {
     const t0 = performance.now();
@@ -72,11 +72,11 @@ function scheduleSave() {
       const r = await saveProject(state.site);
       log.debug('storage.save', __('Projet enregistré sur cet appareil'), { ms: Math.round(performance.now() - t0), ...(r || {}) });
       if (saveFailed) { log.info('storage.save-recovered', __('Enregistrement rétabli')); saveFailed = false; }
-      emit('save', { status: __('Enregistré') });
+      emit('save', { status: __('Enregistré'), code: 'saved' });
     } catch (e) {
       saveFailed = true;
       log.error('storage.save-fail', __('Projet NON enregistré sur cet appareil : {error} (espace plein, navigation privée ou IndexedDB bloqué)', { error: e?.message || e }), { error: e, name: e?.name });
-      emit('save', { status: __('Non enregistré') });
+      emit('save', { status: __('Non enregistré'), code: 'failed', error: e });
     }
   }, 600);
 }

@@ -1,13 +1,14 @@
 /* Cycle 20 : auto-test en console (atelierDebug.selftest) et retour arrière — projet de la personne remis à l'identique. */
 import { writeFileSync } from 'node:fs';
 import { mark, since, waitCode, expectCodes, capture } from './logs.mjs';
+import { PUBLISH_VERSION } from '../../core/publish.js';
 
 export default async function (t) {
   const { page } = t;
   page.setDefaultTimeout(10000);
 
   /* Faux publish.php (lecture seule : le test de connexion ne fait qu'un GET) */
-  await page.route(/faux-ovh\/publish\.php/, r => r.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: JSON.stringify({ atelier: true, version: '5', php: '8.2.0', zip: true, req: 'r-test' }) }));
+  await page.route(/faux-ovh\/publish\.php/, r => r.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: JSON.stringify({ atelier: true, version: PUBLISH_VERSION, php: '8.2.0', zip: true, req: 'r-test' }) }));
 
   /* Photographie du projet de la personne : site, historique, vue, versions, images, réglages */
   const photo = () => page.evaluate(async () => {
