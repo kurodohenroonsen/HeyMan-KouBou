@@ -420,7 +420,8 @@ t('v6 : dépôt, listage et relecture avec le jeton ; fichier illisible depuis l
   const got = await fetch(`${URL_}?backup=${r.body.name}`, { headers: { 'X-Atelier-Token': TOKEN } });
   assert.equal(got.status, 200);
   assert.deepEqual([...new Uint8Array(await got.arrayBuffer())], [...bytes]);
-  assert.equal((await fetch(`http://127.0.0.1:${PORT}/atelier-data/${r.body.name}`)).status, 404);
+  /* php -S ignore les .htaccess : on vérifie que le dossier est fermé pour Apache (OVH) */
+  assert.match(readFileSync(join(dir, 'atelier-data', '.htaccess'), 'utf8'), /Require all denied/);
 });
 
 t('v6 : contenu qui n’est pas une copie chiffrée, nom forgé → refusés', async () => {

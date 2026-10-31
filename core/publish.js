@@ -5,7 +5,9 @@
 import { walk } from './tree.js';
 import { __ } from './ui-i18n.js';
 
-export const PUBLISH_VERSION = '5';
+export const PUBLISH_VERSION = '6';
+/* Version de publish.php qui garde les copies de secours chiffrées (cycle 31) */
+export const BACKUP_SERVER_VERSION = 6;
 
 const hex = buf => [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
 const bytes = v => (typeof v === 'string' ? new TextEncoder().encode(v) : v);
@@ -107,7 +109,9 @@ export const ERROR_CODES = {
   signal_proof: () => __('Preuve de session refusée : rejoignez par le lien d’invitation.'),
   signal_rate: () => __('Trop de messages de mise en relation : réessayez dans quelques minutes.'),
   signal_rooms_full: () => __('Trop de sessions en cours sur ce serveur.'),
-  signal_room_full: () => __('Salle de mise en relation pleine : attendez quelques minutes.')
+  signal_room_full: () => __('Salle de mise en relation pleine : attendez quelques minutes.'),
+  bad_backup: () => __('Copie de secours refusée : ce n’est pas une copie chiffrée d’Atelier.'),
+  backup_missing: () => __('Copie de secours introuvable sur l’hébergement.')
 };
 
 /* Message traduit d'une réponse d'erreur (code connu), sinon le texte du serveur */
@@ -119,7 +123,8 @@ export function errorMessage(body, status) {
 
 const PHP_TEMPLATE = String.raw`<?php
 /*
- * Atelier – publication du site, formulaires de contact, signalisation de la collaboration (version 5).
+ * Atelier – publication du site, formulaires de contact, signalisation de la collaboration,
+ * copies de secours chiffrées du projet (version 6).
  * Fichier généré par l'éditeur Atelier : déposez-le une fois à la racine du site (FTP).
  * Il contient seulement l'empreinte SHA-256 du jeton de publication, jamais le jeton.
  * Journal : atelier-data/log-AAAA-MM.php (illisible depuis le web), lisible dans l'éditeur (🐞 Journal) avec le jeton.
@@ -137,7 +142,11 @@ const MAX_FILES = 4000;
 const ALLOWED = ['html', 'css', 'js', 'xml', 'txt', 'webp', 'jpg', 'jpeg', 'png', 'gif', 'avif', 'ico', 'svg', 'json', 'ics', 'woff2', 'pdf', 'mp3', 'm4a', 'ogg', 'webmanifest'];
 const RATE_MAX = 5;
 const RATE_WINDOW = 3600;
-const GUARD = "<?php http_response_code(404); exit; ?>\n";
+/* Copies de secours chiffrées par l'éditeur (le serveur ne voit ni le code ni le contenu) : 100 Mo au plus, 5 gardées */
+const MAX_BACKUP = 100 * 1024 * 1024;
+const BACKUP_KEEP = 5;
+const BACKUP_MAGIC = "ATELIER-BACKUP\n";
+const GUARD ="<?php http_response_code(404); exit; ?>\n";
 /* Niveau écrit dans le fichier du journal : 'debug' (tout), 'info' (par défaut), 'warn', 'error' */
 const LOG_LEVEL = 'info';
 const LOG_MAX = 2 * 1024 * 1024;
@@ -360,7 +369,7 @@ function htaccess_content(array $o): string {
 
 /* ---------- Statut, diagnostic (avec le jeton) et journal du serveur ---------- */
 function status(string $root, string $data): void {
-  $st = ['atelier' => true, 'version' => ATELIER_VERSION, 'zip' => class_exists('ZipArchive'), 'signal' => true, 'log' => true, 'htaccess' => true, 'req' => $GLOBALS['REQ']['id']];
+  $st = ['atelier' => true, 'version' => ATELIER_VERSION, 'zip' => class_exists('ZipArchive'), 'signal' => true, 'log' => true, 'htaccess' => true, 'backup' => true, 'req' => $GLOBALS['REQ']['id']];
   if (token_ok()) {
     $files = array_map('basename', glob($data . '/log-*.php') ?: []);
     $st['php'] = PHP_VERSION;
@@ -615,6 +624,80 @@ function signal_get(string $data): void {
   out(200, ['ok' => true, 'messages' => $msgs, 'last' => (int) ($box['n'] ?? 0)]);
 }
 
+/* ---------- Copies de secours chiffrées (version 6) : déposées, listées et relues avec le jeton ---------- */
+const BACKUP_RE = '/^backup-(\d{8}-\d{4})(?:-(\d{1,3}))?\.json\.enc$/';
+
+function backup_denied(string $what): void {
+  alog('warn', 'php.backup.denied', $what . ' refusée : jeton ' . (token_given() ? 'faux' : 'absent'));
+  sleep(1);
+  fail(401, 'token_refused', 'Jeton de publication refusé.');
+}
+
+/* Copies présentes, les plus récentes d'abord (date du nom, puis numéro ajouté dans la même minute) */
+function backup_files(string $data): array {
+  $out = [];
+  foreach (glob($data . '/backup-*.json.enc') ?: [] as $f) if (preg_match(BACKUP_RE, basename($f), $m)) $out[basename($f)] = $m[1] . sprintf('%04d', (int) ($m[2] ?? 1));
+  arsort($out, SORT_STRING);
+  return array_keys($out);
+}
+
+function backup_post(string $data): void {
+  $GLOBALS['REQ']['route'] = 'backup';
+  if (!token_ok()) backup_denied('Copie de secours');
+  $too_big = function (int $bytes): void { alog('warn', 'php.backup.too-big', 'Copie de secours trop volumineuse', ['kb' => (int) ($bytes / 1024)]); fail(413, 'too_big', 'Copie de secours trop volumineuse (100 Mo au plus).'); };
+  $len = (int) ($_SERVER['CONTENT_LENGTH'] ?? 0);
+  if ($len > MAX_BACKUP) $too_big($len);
+  ensure_data($data);
+  $tmp = $data . '/backup-' . bin2hex(random_bytes(4)) . '.tmp';
+  $in = fopen('php://input', 'rb');
+  $dst = fopen($tmp, 'wb');
+  $n = $in && $dst ? stream_copy_to_stream($in, $dst, MAX_BACKUP + 1) : false;
+  if ($in) fclose($in);
+  if ($dst) fclose($dst);
+  if ($n === false) { @unlink($tmp); alog('error', 'php.backup.write-fail', 'Copie de secours non écrite (disque plein ou droits ?)'); fail(500, 'write_failed', 'Écriture impossible sur l’hébergement.'); }
+  if ($n > MAX_BACKUP) { @unlink($tmp); $too_big($n); }
+  if ($n === 0) { @unlink($tmp); $why = $len > 0 ? 'post_max_size dépassé' : 'corps vide'; alog('warn', 'php.backup.empty', 'Copie de secours vide : ' . $why, ['content_length' => $len, 'post_max' => (string) ini_get('post_max_size')]); fail(400, 'no_file', 'Copie de secours vide (' . $why . ').', ['why' => $why]); }
+  if ((string) file_get_contents($tmp, false, null, 0, strlen(BACKUP_MAGIC)) !== BACKUP_MAGIC) { @unlink($tmp); alog('warn', 'php.backup.invalid', 'Contenu refusé : ce n’est pas une copie chiffrée d’Atelier', ['bytes' => $n]); fail(400, 'bad_backup', 'Copie de secours refusée : ce n’est pas une copie chiffrée d’Atelier.'); }
+  $h = lock($data, 'backup');
+  $base = 'backup-' . date('Ymd-Hi');
+  /* Même minute : numéro suivant le plus grand déjà présent (jamais un nom libéré par la rotation, qui paraîtrait plus ancien) */
+  $last = 0;
+  foreach (backup_files($data) as $f) if (strpos($f, $base) === 0 && preg_match(BACKUP_RE, $f, $m)) $last = max($last, (int) ($m[2] ?? 1));
+  $name = $last ? $base . '-' . min(999, $last + 1) . '.json.enc' : $base . '.json.enc';
+  if (!rename($tmp, $data . '/' . $name)) { unlock($h); @unlink($tmp); alog('error', 'php.backup.write-fail', 'Copie de secours non mise en place : ' . $name); fail(500, 'write_failed', 'Écriture impossible sur l’hébergement.'); }
+  $files = backup_files($data);
+  $removed = 0;
+  foreach (array_slice($files, BACKUP_KEEP) as $old) if (@unlink($data . '/' . $old)) $removed++;
+  unlock($h);
+  alog('info', 'php.backup.saved', 'Copie de secours chiffrée enregistrée', ['name' => $name, 'kb' => (int) ($n / 1024), 'removed' => $removed]);
+  out(200, ['ok' => true, 'name' => $name, 'size' => $n, 'kept' => min(count($files), BACKUP_KEEP), 'removed' => $removed]);
+}
+
+function backup_list(string $data): void {
+  $GLOBALS['REQ']['route'] = 'backups';
+  if (!token_ok()) backup_denied('Liste des copies de secours');
+  $list = [];
+  foreach (backup_files($data) as $f) $list[] = ['name' => $f, 'size' => (int) filesize($data . '/' . $f), 'at' => gmdate('c', (int) filemtime($data . '/' . $f))];
+  alog('info', 'php.backup.list', count($list) . ' copie(s) de secours listée(s)', ['count' => count($list)]);
+  out(200, ['ok' => true, 'backups' => $list, 'keep' => BACKUP_KEEP]);
+}
+
+function backup_get(string $data): void {
+  $GLOBALS['REQ']['route'] = 'backup';
+  if (!token_ok()) backup_denied('Lecture d’une copie de secours');
+  $name = (string) $_GET['backup'];
+  $file = $data . '/' . $name;
+  if (!preg_match(BACKUP_RE, $name) || !is_file($file)) { alog('warn', 'php.backup.missing', 'Copie de secours introuvable', ['name' => clean_line($name, 60)]); fail(404, 'backup_missing', 'Copie de secours introuvable.'); }
+  alog('info', 'php.backup.read', 'Copie de secours relue depuis l’éditeur', ['name' => $name, 'kb' => (int) (filesize($file) / 1024)]);
+  req_end(200);
+  header('Content-Type: application/octet-stream');
+  header('Content-Length: ' . filesize($file));
+  header('Cache-Control: no-store');
+  header('X-Content-Type-Options: nosniff');
+  readfile($file);
+  exit;
+}
+
 cors();
 $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
 /* Trace de débogage (?atelier_debug=1) réservée au jeton : sans lui, la requête n'existe pas */
@@ -631,8 +714,11 @@ if (getenv('ATELIER_TEST_FAULT') && isset($_GET['atelier_fault'])) {
 if ($method === 'OPTIONS') { req_end(204); http_response_code(204); exit; }
 if ($method === 'GET' && isset($_GET['signal'])) signal_get($DATA);
 if ($method === 'GET' && isset($_GET['logs'])) { $REQ['route'] = 'logs'; read_logs($DATA); }
+if ($method === 'GET' && isset($_GET['backups'])) backup_list($DATA);
+if ($method === 'GET' && isset($_GET['backup'])) backup_get($DATA);
 if ($method === 'GET') status($ROOT, $DATA);
 if ($method !== 'POST') { alog('warn', 'php.method', 'Méthode non autorisée : ' . clean_line($method, 10)); fail(405, 'method', 'Méthode non autorisée.'); }
+if (isset($_GET['backup'])) backup_post($DATA);
 if (stripos((string) ($_SERVER['CONTENT_TYPE'] ?? ''), 'application/json') !== false) signal_post($DATA);
 if (isset($_POST['_form'])) contact($DATA);
 publish($ROOT, $DATA);
