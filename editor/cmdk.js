@@ -28,6 +28,7 @@ import { openAsk } from './assistant-ui.js';
 import { openBench } from './bench-ui.js';
 import { log } from './log.js';
 import { openAI } from './ai-ui.js';
+import { openLegalDialog } from './pages.js';
 
 const RECENT_KEY = 'atelier-cmdk-recent';
 let recent = [];
@@ -117,6 +118,7 @@ function buildCommands() {
   add('act:undo', __('Action'), __c('undo', 'Annuler'), undo, 'retour undo back 元に戻す 取り消し', 'Ctrl+Z');
   add('act:redo', __('Action'), __('Rétablir'), redo, 'refaire redo やり直す', __('Ctrl+Maj+Z'));
   add('act:export', __('Action'), __('Exporter le site'), () => openAudit('export'), 'zip publier télécharger export download publish 書き出し ダウンロード');
+  add('act:legal', __('Action'), __('⚖ Créer les pages légales (mentions légales, vie privée)'), () => openLegalDialog(), 'mentions légales vie privée rgpd gdpr legal notice privacy imprint 法的表示 プライバシー');
   add('act:audit', __('Action'), __('Vérifier le site (accessibilité, liens)'), () => openAudit('export'), 'contrôle erreurs check errors accessibility links チェック エラー アクセシビリティ リンク');
   add('act:translate', __('Action'), __('Textes à traduire'), () => openAudit('translations'), 'traduction langues translation languages 翻訳 言語 未翻訳');
   add('act:i18n', __('Action'), __('Tableau des traductions (CSV, traduction automatique)'), () => openTranslations(), 'langues traduire relire csv translations translate review languages 翻訳 言語 要確認');

@@ -384,6 +384,8 @@ register('form', {
 .form .req{color:var(--c1)}
 .form__hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
 .form__note{font-size:.88rem;color:var(--c5)}
+.form .form__consent{display:flex;gap:10px;align-items:flex-start;font-weight:400;font-size:.92rem}
+.form .form__consent input{width:22px;height:22px;min-height:0;margin:2px 0 0;flex:none;accent-color:var(--c1)}
 .form__status{font-weight:600}`,
   script: `(function(){document.addEventListener('submit',function(e){var f=e.target;if(!f.matches||!f.matches('form[data-endpoint]'))return;e.preventDefault();var L=window.__aLog||function(){};var st=f.querySelector('.form__status');var b=f.querySelector('[type=submit]');if(b)b.disabled=true;var fd=new FormData(f);L('site.form.submit','Envoi du formulaire',{action:f.action,fields:Array.from(fd.keys()).filter(function(k){return k.charAt(0)!=='_'&&k!=='website';}).length});fetch(f.action,{method:'POST',body:fd,headers:{Accept:'application/json'}}).then(function(r){return r.json().then(function(j){return{ok:r.ok&&j.ok,msg:j.message,status:r.status,req:r.headers.get('X-Atelier-Request')};},function(){return{ok:false,status:r.status,msg:'',bad:true};});}).catch(function(err){return{ok:false,net:String(err&&err.message||err)};}).then(function(r){L(r.ok?'site.form.ok':'site.form.fail',r.ok?'Message envoyé':(r.net?'Réseau injoignable : '+r.net:r.bad?'Réponse illisible (publish.php absent ?)':'Refusé par publish.php : '+(r.msg||r.status)),{status:r.status,req:r.req});if(st)st.textContent=r.ok?st.getAttribute('data-sent'):(r.msg||st.getAttribute('data-failed'));if(r.ok)f.reset();if(b)b.disabled=false;});});var q=location.search.match(/[?&]form=(ok|error)/);if(q){if(window.__aLog)window.__aLog(q[1]==='ok'?'site.form.ok':'site.form.fail','Retour du formulaire sans JavaScript : '+q[1]);document.querySelectorAll('form[data-endpoint] .form__status').forEach(function(st){st.textContent=st.getAttribute(q[1]==='ok'?'data-sent':'data-failed');});}})();
 (function(){var hex=function(h){var s='';for(var i=0;i<h.length;i+=2)s+=String.fromCharCode(parseInt(h.substr(i,2),16));return s.split('').reverse().join('');};document.addEventListener('submit',function(e){var f=e.target;if(!f.matches||!f.matches('form[data-to]'))return;e.preventDefault();if(f.querySelector('.form__hp input').value)return;var lines=[];f.querySelectorAll('[data-label]').forEach(function(el){lines.push(el.getAttribute('data-label')+' : '+el.value);});var to=hex(f.getAttribute('data-to'));location.href='mailto:'+to+'?subject='+encodeURIComponent(f.getAttribute('data-subject')||'')+'&body='+encodeURIComponent(lines.join('\\n\\n'));var st=f.querySelector('.form__status');if(st)st.textContent=st.getAttribute('data-sent');});})();`,
@@ -410,11 +412,17 @@ register('form', {
       : email ? ` data-to="${obfuscate(email)}" data-subject="${c.attr(c.t(p.subject))}"` : '';
     const hidden = viaServer ? `<input type="hidden" name="_form" value="${c.attr(node?.id || '')}"><input type="hidden" name="_back" value="${c.attr(back)}"><input type="hidden" name="_subject" value="${c.attr(c.t(p.subject))}">` : '';
     const consent = c.t(p.consent);
+    /* Case de consentement obligatoire (cycle 29), liée à la page « Vie privée » générée si elle existe */
+    const priv = [...(c.site?.pages || [])].reverse().find(x => x.legal === 'privacy');
+    const privLabel = c.esc(siteText('privacy', c.lang));
+    const privLink = priv ? `<a href="${c.attr(c.url(`page:${priv.id}`))}">${privLabel}</a>` : privLabel;
+    const consentText = c.esc(siteText('consent', c.lang)).replace('{link}', privLink);
+    const box = `<label class="form__consent"><input type="checkbox" name="_consent" value="oui" required> <span>${consentText}</span></label>`;
     const needEmail = __('⚠ Indiquez l’adresse qui reçoit les messages dans l’inspecteur.');
     const missing = !useAction && !email && c.canvas ? `<p class="form__note">${c.esc(needEmail)}</p>` : '';
     const sent = siteText(viaServer ? 'sent' : 'mailOpen', c.lang);
     const failed = siteText('failed', c.lang);
-    return `<form class="form"${attrs}>${hidden}${fields}<span class="form__hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></span>${consent ? `<p class="form__note">${c.esc(consent)}</p>` : ''}${missing}<div><button type="submit" class="btn btn--primary btn--md" data-edit="submit">${c.esc(c.t(p.submit) || siteText('send', c.lang))}</button></div><p class="form__status" role="status" data-sent="${c.attr(sent)}" data-failed="${c.attr(failed)}"></p></form>`;
+    return `<form class="form"${attrs}>${hidden}${fields}<span class="form__hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></span>${consent ? `<p class="form__note">${c.esc(consent)}</p>` : ''}${box}${missing}<div><button type="submit" class="btn btn--primary btn--md" data-edit="submit">${c.esc(c.t(p.submit) || siteText('send', c.lang))}</button></div><p class="form__status" role="status" data-sent="${c.attr(sent)}" data-failed="${c.attr(failed)}"></p></form>`;
   }
 });
 
