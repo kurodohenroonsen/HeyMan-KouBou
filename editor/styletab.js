@@ -233,6 +233,7 @@ function lengthField(T, key, def, extra = {}, dev, opts = {}) {
   });
   const freeBtn = h('button', { type: 'button', class: 'len__free' + (free ? ' is-on' : ''), 'data-free': key, 'aria-pressed': String(free), title: __('Valeur libre : clamp(), var(), auto…'), 'aria-label': __('{label} : valeur libre (clamp(), var(), auto…)', { label: __(def.label) }), onclick: () => {
     if (freeFields.has(fkey)) freeFields.delete(fkey); else freeFields.add(fkey);
+    openGroups.add(def.group);
     log.debug('style.free', freeFields.has(fkey) ? __('« {label} » : saisie libre (clamp(), var(), auto…)', { label: __(def.label) }) : __('« {label} » : retour au nombre + unité', { label: __(def.label) }), { key, free: freeFields.has(fkey) });
     emit('styleState');
     setTimeout(() => document.querySelector(`#inspector [data-style="${key}"]${dev ? `[data-device-col="${dev}"]` : ':not([data-device-col])'}`)?.focus(), 0);

@@ -648,8 +648,8 @@ body.is-resizing #canvas{pointer-events:none}
 .topbar{flex-wrap:nowrap;min-height:46px}
 .badge-btn{white-space:nowrap}
 .tb-brand{flex:0 1 auto;min-width:90px}
-.site-name{width:clamp(9ch,18vw,24ch);max-width:none}
-@media (max-width:1440px){.site-name{width:clamp(9ch,13vw,20ch)}}
+.site-name{width:clamp(9ch,22vw,32ch);max-width:none}
+@media (max-width:1400px){.site-name{width:clamp(9ch,15vw,22ch)}}
 @media (max-width:1400px){.topbar .btn__label{display:none}.topbar .btn:not(.btn--primary):has(.btn__label){padding:0 8px}}
 #pageSelect,#langSelect{max-width:16ch}
 @media (max-width:900px){.topbar{flex-wrap:wrap}}
@@ -697,3 +697,4 @@ body.panels-collapsed .panel,body.panels-collapsed .resizer{display:none}
 .rich-input ul,.rich-input ol{margin:0 0 .6em;padding-left:1.4em}
 .rich-input h2{font-size:16px;margin:0 0 .4em}.rich-input h3{font-size:14.5px;margin:0 0 .4em}
 .rich-input blockquote{margin:0 0 .6em;padding-left:10px;border-left:3px solid var(--line);color:var(--muted)}
+.cm-count{font-size:12px;font-weight:700}

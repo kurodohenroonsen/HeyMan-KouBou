@@ -1,5 +1,5 @@
 /* Commentaires : panneau, pastilles dans la page, signatures vérifiées. Fonctionne avec ou sans session. */
-import { h, $, toast } from './dom.js';
+import { h, $, toast, icon } from './dom.js';
 import { state, subscribe, commit, select, setView, nodeById, setEditTarget } from './store.js';
 import { makeComment, verifyComment, addComment, addReply, setResolved, removeComment, removeReply, listComments, openCount } from '../core/review.js';
 import { findNode } from '../core/tree.js';
@@ -171,7 +171,8 @@ function renderCount() {
   const b = $('#commentsBtn');
   if (!b) return;
   const n = openCount(state.site);
-  b.textContent = n ? `💬 ${n}` : '💬';
+  /* icône SVG (cycle 30) + nombre de commentaires ouverts */
+  b.replaceChildren(icon('comment', 17), ...(n ? [h('span', { class: 'cm-count' }, String(n))] : []));
   b.title = n ? __n(n, '{n} commentaire ouvert', '{n} commentaires ouverts') : __('Commentaires');
   b.setAttribute('aria-pressed', String(open));
 }
