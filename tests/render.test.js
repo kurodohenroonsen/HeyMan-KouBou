@@ -96,3 +96,40 @@ test('validateSite', () => {
   bad.pages[1].slug = '../x';
   assert.match(validateSite(bad).errors.join(), /slug/i);
 });
+
+/* ---------- Cycle 27 (P2) : rendu ciblé d'un nœud ---------- */
+test('renderNode(site, page, id) = fragment de renderPage pour chaque widget, section, rangée et colonne', async () => {
+  await import('../core/widgets-extra.js');
+  await import('../core/collection-widgets.js');
+  const { REGISTRY, STRUCTURE } = await import('../core/widgets.js');
+  const { renderNode } = await import('../core/render.js');
+  const { walk } = await import('../core/tree.js');
+  let site = createSite({ languages: ['fr', 'ja'] });
+  const types = Object.keys(REGISTRY).filter(t => !STRUCTURE.has(t) && t !== 'item-field');
+  const root = createNode('page');
+  const s1 = createSectionWithColumns(3, [6, 3, 3]);
+  s1.props.width = 'wide';
+  s1.children[0].props.stack = 'tablet';
+  const s2 = createSectionWithColumns(2);
+  s2.children[0].children[1].style.tablet.span = 6;
+  types.forEach((t, i) => [...s1.children[0].children, ...s2.children[0].children][i % 5].children.push(createNode(t)));
+  root.children = [s1, s2];
+  site = updatePageRoot(site, site.pages[0].id, root);
+  const page = site.pages[0];
+  const seen = new Set();
+  for (const canvas of [true, false]) for (const lang of ['fr', 'ja']) {
+    const full = renderPage(site, page, lang, { canvas, today: '2026-10-30' });
+    walk(page.root, n => {
+      if (n.type === 'page') return true;
+      const frag = renderNode(site, page, n.id, { canvas, lang, today: '2026-10-30' });
+      assert.equal(typeof frag, 'string', n.type);
+      assert.ok(frag.length > 0 || !canvas, `${n.type} vide`);
+      assert.ok(full.includes(frag), `${n.type} (${canvas ? 'canevas' : 'export'}, ${lang}) : fragment différent`);
+      if (frag) assert.ok(frag.includes(`n-${n.id}`), `${n.type} : le fragment commence par le nœud`);
+      seen.add(n.type);
+      return true;
+    });
+  }
+  for (const t of [...types, 'section', 'row', 'column']) assert.ok(seen.has(t), t);
+  assert.equal(renderNode(site, page, 'inconnu', { canvas: true, lang: 'fr' }), null);
+});
