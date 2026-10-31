@@ -110,6 +110,7 @@ const READONLY_OK = new Set(['review', 'remote']);
 export function commit(site, opts = {}) {
   if (state.readOnly && !READONLY_OK.has(opts.source)) { log.warn('store.readonly', __('Modification refusée : mode relecture'), { source: opts.source, key: opts.key }); emit('readonly', {}); emit('doc', { source: 'history' }); return false; }
   if (!site || !Array.isArray(site.pages)) { log.error('store.invalid', __('Modification ignorée : site invalide (bogue)'), { source: opts.source, key: opts.key, type: typeof site }); return false; }
+  const t0 = performance.now();
   const now = Date.now();
   const merge = opts.key && opts.key === state.lastKey && (opts.sticky || now - state.lastTime < 1500);
   log.debug('store.commit', merge ? __('Modification (même étape d’annulation)') : __('Modification'), { key: opts.key, source: opts.source, merged: !!merge || undefined, past: state.past.length + (merge ? 0 : 1), page: state.pageId, edit: state.editTarget?.kind });
@@ -124,6 +125,8 @@ export function commit(site, opts = {}) {
   fixSelection();
   scheduleSave();
   emit('doc', opts);
+  /* Cycle 27 : durée d'une modification, de commit() à l'affichage (canevas, inspecteur, panneaux), en trace */
+  log.trace('perf.commit', __('Modification appliquée et affichée'), { ms: Math.round((performance.now() - t0) * 10) / 10, source: opts.source, node: opts.node, past: state.past.length });
   return true;
 }
 
