@@ -4,6 +4,8 @@ import { autoStartFromUrl } from './selftest-ui.js';
 import { initTooltips } from './tooltip.js';
 import { initUiLang } from './ui-lang.js';
 import { initPanelResize } from './panel-resize.js';
+import { initTopbar, topbarKey } from './topbar.js';
+import { setExpert } from './mode.js';
 import { initHelp, openGuide } from './help.js';
 import { saveProject } from './storage.js';
 import { log, registerContext, APP_VERSION } from './log.js';
@@ -114,6 +116,7 @@ function isTyping(e) {
 
 export function handleKey(e, fromCanvas = false) {
   if (e.key === 'F1' && fromCanvas) { e.preventDefault(); openGuide(); return; }
+  if (topbarKey(e)) return;
   const mod = e.ctrlKey || e.metaKey;
   const k = e.key.toLowerCase();
   if (mod && k === 'z' && !e.shiftKey) { if (isTyping(e) && !e.target.isContentEditable) return; e.preventDefault(); undo(); return; }
@@ -230,6 +233,7 @@ async function boot() {
   const fb = log.flow('boot', __`Démarrage d’Atelier (cycle ${APP_VERSION})`, { url: location.href.split('#')[0], hash: location.hash ? location.hash.slice(0, 6) + '…' : undefined });
   initUiLang({ save: () => saveProject(state.site) });
   initPanelResize();
+  initTopbar();
   initHelp();
   bind();
   initLogButton($('#logBtn'));
@@ -283,6 +287,7 @@ async function boot() {
   setCommandHooks({ exportJson, preview: previewTab });
   window.__atelier = Object.assign(state, {
     selectId: id => select(id),
+    setExpert: on => setExpert(on, 'test'),
     typeOf: id => findPage(state.site, state.pageId) && (function find(n) { if (n.id === id) return n.type; for (const c of n.children || []) { const t = find(c); if (t) return t; } return null; })(page().root)
   });
 }

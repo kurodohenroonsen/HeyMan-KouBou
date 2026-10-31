@@ -1,6 +1,14 @@
 /* Construction de DOM sans innerHTML pour le contenu saisi. */
 import { log } from './log.js';
 import { __ } from '../core/ui-i18n.js';
+import { uiIcon } from '../core/icons.js';
+
+/* Icône SVG monochrome de l'interface (core/icons.js), comme élément ; contenu statique, jamais saisi */
+export function icon(name, size = 18) {
+  const t = document.createElement('template');
+  t.innerHTML = uiIcon(name, size);
+  return t.content.firstElementChild;
+}
 
 export function h(tag, attrs = {}, ...children) {
   const el = document.createElement(tag);

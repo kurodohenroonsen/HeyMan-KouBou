@@ -73,6 +73,10 @@ p{margin:0;text-wrap:pretty}
 .heading a{color:inherit;text-decoration:none}
 .rich > * + *{margin-top:1em}
 .rich ul,.rich ol{padding-left:1.3em;margin:0}
+.rich li + li,.rich li > ul,.rich li > ol{margin-top:.3em}
+.rich h2{font-size:var(--step-xl)}.rich h3{font-size:var(--step-lg)}
+.rich blockquote{margin:0;padding:.3em 0 .3em 1em;border-left:4px solid var(--c2);color:var(--c5);font-style:italic}
+.rich sup,.rich sub{font-size:.75em;line-height:0}
 .figure{margin:0}
 .figure img{width:100%;border-radius:var(--radius);object-fit:cover}
 .figure figcaption{margin-top:8px;color:var(--c5);font-size:.92em}

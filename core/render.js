@@ -128,8 +128,8 @@ export function makeContext(site, lang, { canvas = false, toRoot = '', from = []
     esc: escapeHtml,
     attr: escapeAttr,
     url: v => resolveLink(site, v, lang, from, canvas),
-    rich: v => sanitizeRich(v),
-    inline: v => sanitizeInline(v),
+    rich: v => sanitizeRich(v, { noopener: true }),
+    inline: v => sanitizeInline(v, { noopener: true }),
     text: v => richToText(v),
     img: v => assetUrl(site, v, { canvas, toRoot })
   };

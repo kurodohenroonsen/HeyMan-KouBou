@@ -81,7 +81,7 @@ export const STYLE_PROPS = {
   borderWidth: { group: 'Bordure', label: N_('Épaisseur'), css: 'border-width', ...len() },
   borderStyle: { group: 'Bordure', label: N_('Type'), css: 'border-style', ...enumOf('none', 'solid', 'dashed', 'dotted') },
   borderColor: { group: 'Bordure', label: N_('Couleur'), css: 'border-color', kind: 'color' },
-  borderRadius: { group: 'Bordure', label: N_('Arrondi'), css: 'border-radius', ...sp() },
+  borderRadius: { group: 'Bordure', label: N_('Arrondi'), css: 'border-radius', slider: { min: 0, max: 48, step: 1 }, ...sp() },
   boxShadow: { group: 'Bordure', label: N_('Ombre'), css: 'box-shadow', kind: 'preset', map: SHADOWS },
 
   width: { group: 'Dimensions', label: N_('Largeur'), css: 'width', ...sp({ auto: true }) },
@@ -94,7 +94,7 @@ export const STYLE_PROPS = {
   justifyContent: { group: 'Disposition', label: N_('Répartition'), css: 'justify-content', ...enumOf('start', 'center', 'end', 'space-between') },
   span: { group: 'Disposition', label: N_('Largeur de colonne (sur 12)'), css: 'grid-column', kind: 'int', min: 1, max: 12 },
 
-  opacity: { group: 'Effets', label: N_('Opacité'), css: 'opacity', kind: 'number', min: 0, max: 1, step: 0.05 },
+  opacity: { group: 'Effets', label: N_('Opacité'), css: 'opacity', kind: 'number', min: 0, max: 1, step: 0.05, slider: { start: 1 } },
   transform: { group: 'Effets', label: N_('Transformation'), css: 'transform', kind: 'preset', map: TRANSFORMS },
   transitionDuration: { group: 'Effets', label: N_('Durée de transition (ms)'), css: 'transition', kind: 'int', min: 0, max: 3000 },
   reveal: { group: 'Effets', label: N_('Apparition au défilement'), css: null, special: true, ...enumOf('none', 'fade', 'up', 'zoom') }

@@ -31,31 +31,31 @@ setTimeout(function(){if(!(window.__atelier&&window.__atelier.ready)){var m='L�
     <select id="pageSelect" class="control"></select>
   </div>
   <div class="tb-group">
-    <button class="icon-btn" id="undoBtn" type="button" title="Annuler (Ctrl+Z)" aria-label="Annuler (dernière modification)">↶</button>
-    <button class="icon-btn" id="redoBtn" type="button" title="Rétablir (Ctrl+Maj+Z)" aria-label="Rétablir">↷</button>
+    <button class="icon-btn" id="undoBtn" type="button" title="Annuler (Ctrl+Z)" aria-label="Annuler (dernière modification)"><span class="ico" data-icon="undo"></span></button>
+    <button class="icon-btn" id="redoBtn" type="button" title="Rétablir (Ctrl+Maj+Z)" aria-label="Rétablir"><span class="ico" data-icon="redo"></span></button>
   </div>
   <div class="tb-group seg-group" role="group" aria-label="Appareil">
-    <button class="seg" type="button" data-device="desktop" title="Ordinateur">🖥 <span>Ordinateur</span></button>
-    <button class="seg" type="button" data-device="tablet" title="Tablette (820 px)">▭ <span>Tablette</span></button>
-    <button class="seg" type="button" data-device="mobile" title="Mobile (390 px)">▯ <span>Mobile</span></button>
+    <button class="seg" type="button" data-device="desktop" title="Ordinateur"><span class="ico" data-icon="desktop"></span><span class="seg__label">Ordinateur</span></button>
+    <button class="seg" type="button" data-device="tablet" title="Tablette (820 px)"><span class="ico" data-icon="tablet"></span><span class="seg__label">Tablette</span></button>
+    <button class="seg" type="button" data-device="mobile" title="Mobile (390 px)"><span class="ico" data-icon="mobile"></span><span class="seg__label">Mobile</span></button>
   </div>
   <div class="tb-group">
     <label class="vh" for="langSelect">Langue</label>
     <select id="langSelect" class="control"></select>
     <button class="badge-btn" id="missingBtn" type="button" hidden></button>
-    <button class="btn btn--small" id="i18nBtn" type="button" title="Tableau de toutes les traductions">🌐 Traductions</button>
-    <button class="btn btn--small" id="seoBtn" type="button" title="Référencement : notes, aperçu Google, conseils">🔎 SEO</button>
-    <button class="btn btn--small" id="aiBtn" type="button" title="IA locale (Gemini Nano dans Chrome)">✨</button>
+    <button class="btn btn--small" id="i18nBtn" type="button" title="Traductions : tableau de tous les textes" aria-label="Traductions"><span class="ico" data-icon="translate"></span><span class="btn__label">Traductions</span></button>
+    <button class="btn btn--small" id="seoBtn" type="button" title="Référencement (SEO) : notes, aperçu Google, conseils" aria-label="Référencement (SEO)"><span class="ico" data-icon="seo"></span><span class="btn__label">SEO</span></button>
   </div>
   <div class="tb-group tb-collab">
     <div class="peers" id="peers" aria-label="Participants"></div>
-    <button class="btn btn--small" id="collabBtn" type="button" title="Travailler à plusieurs (pair-à-pair)">👥</button>
-    <button class="btn btn--small" id="commentsBtn" type="button" title="Commentaires" aria-pressed="false">💬</button>
+    <button class="btn btn--small" id="collabBtn" type="button" title="Travailler à plusieurs (pair-à-pair)" aria-label="Travailler à plusieurs"><span class="ico" data-icon="users"></span></button>
+    <button class="btn btn--small" id="commentsBtn" type="button" title="Commentaires" aria-label="Commentaires" aria-pressed="false"><span class="ico" data-icon="comment"></span></button>
+    <button class="btn btn--small" id="aiBtn" type="button" title="IA locale (Gemini Nano dans Chrome)" aria-label="IA locale"><span class="ico" data-icon="sparkle"></span></button>
   </div>
   <div class="tb-group tb-end">
     <span class="save-state" id="saveState" aria-live="polite"></span>
-    <button class="btn btn--small" id="helpBtn" type="button" title="Guide d’utilisation (F1)" aria-label="Guide d’utilisation">❓</button>
-    <button class="btn btn--small log-btn" id="logBtn" type="button" title="Journal de débogage" aria-label="Journal de débogage">🐞</button>
+    <button class="btn btn--small" id="helpBtn" type="button" title="Guide d’utilisation (F1)" aria-label="Guide d’utilisation"><span class="ico" data-icon="help"></span></button>
+    <button class="btn btn--small log-btn" id="logBtn" type="button" title="Journal de débogage" aria-label="Journal de débogage"><span class="ico" data-icon="bug"></span></button>
     <details class="menu" id="fileMenu">
       <summary class="btn">Fichier</summary>
       <div class="menu__panel">
@@ -69,8 +69,8 @@ setTimeout(function(){if(!(window.__atelier&&window.__atelier.ready)){var m='L�
         <label class="menu__lang">Langue de l’interface <select id="uiLangSelect" class="control control--sm"><option value="fr">Français</option><option value="en">English</option><option value="ja">日本語</option></select></label>
       </div>
     </details>
-    <button class="btn" id="exportZipBtn" type="button" title="Vérifier puis télécharger le site en .zip">Exporter le site</button>
-    <button class="btn btn--primary" id="publishBtn" type="button" title="Publier sur OVH ou GitHub">🚀 Publier</button>
+    <button class="btn" id="exportZipBtn" type="button" title="Exporter le site : vérifier puis télécharger le .zip" aria-label="Exporter le site"><span class="ico" data-icon="download"></span><span class="btn__label">Exporter</span></button>
+    <button class="btn btn--primary" id="publishBtn" type="button" title="Publier sur OVH ou GitHub" aria-label="Publier"><span class="ico" data-icon="rocket"></span><span class="btn__label">Publier</span></button>
   </div>
 </header>
 

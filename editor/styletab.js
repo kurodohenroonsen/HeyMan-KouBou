@@ -1,12 +1,14 @@
 /*
  * Onglet Style : réglages par appareil (ordinateur, tablette, mobile) et état survol,
  * appliqués soit à l'élément, soit à son preset (mode « modifier le preset »).
- * Les longueurs acceptent les jetons d'échelle (size:xl, space:m) et les expressions sûres (clamp, min…).
+ * Longueurs en nombre + unité (↑↓ = ±1, Maj = ±10 ; « valeur libre » pour clamp(), auto…), jetons d'échelle
+ * (size:xl, space:m), couleurs nommées (« Couleur principale » pour palette:c1), marges avec cadenas « 4 côtés ».
+ * Mode simple par défaut : typographie, fond, espacement, bordure ; le reste en mode expert (editor/mode.js).
  */
-import { h, toast } from './dom.js';
+import { h, toast, icon } from './dom.js';
 import { state, root, page, commitRoot, commit, setView, emit, siteWithRoot } from './store.js';
 import { checkNodeContrast, formatRatio } from '../core/contrast.js';
-import { STYLE_PROPS, STYLE_GROUPS, HOVER_PROPS, PALETTE_KEYS, validateStyleValue } from '../core/style.js';
+import { STYLE_PROPS, STYLE_GROUPS, HOVER_PROPS, PALETTE_KEYS, validateStyleValue, LENGTH_UNITS, parseLength, formatLength, lengthFromInput, stepLength, isFreeLength, linkedBox, boxKeys, boxLinkedDefault, paletteName, colorLabel, parseColorInput, SIMPLE_GROUPS, isExpertKey } from '../core/style.js';
 import { setStyle } from '../core/tree.js';
 import { setStyleMany } from '../core/editing.js';
 import { filterStyleKeys } from '../core/commands.js';
@@ -16,20 +18,18 @@ import { TYPE_STEPS, SPACE_STEPS, TYPE_LABELS, SPACE_LABELS, typeSizes, spaceSiz
 import { effectivePreset, presetFromNode, setNodePreset, setPresetStyle, detachNode, setDefaultPreset, presetsForType, presetUsage } from '../core/presets.js';
 import { imageControl } from './fields.js';
 import { copyStyle, pasteStyle } from './actions.js';
+import { isExpert, setExpert } from './mode.js';
 import { log } from './log.js';
 import { __, __n, N_, fmtNumber } from '../core/ui-i18n.js';
-import { PALETTE_NAMES } from '../core/site.js';
 
+export { paletteName };
 const DEVICE_LABEL = { desktop: N_('Ordinateur'), tablet: N_('Tablette'), mobile: N_('Mobile') };
 const devLabel = d => __(DEVICE_LABEL[d]);
-/* Nom d'une couleur de palette : les noms par défaut (site.js) sont traduits, les noms donnés par la personne restent tels quels */
-export const paletteName = (names, k) => {
-  const n = names?.[k];
-  if (!n) return k;
-  if (n === PALETTE_NAMES[k]) return __(PALETTE_NAMES[k]);
-  if (n === `Couleur ${k.slice(1)}`) return __('Couleur {n}', { n: k.slice(1) });
-  return n;
-};
+/* Champs passés en « valeur libre » (clamp(), var(), auto…) par la personne : clé « propriété|appareil » */
+const freeFields = new Set();
+/* Cadenas « lier les 4 côtés » : clé « cible|margin » → true/false (défaut : d'après les valeurs) */
+const boxLocks = new Map();
+const names = () => state.site.theme.paletteNames || {};
 const STRUCT_ONLY = { span: ['column'], gap: ['row', 'column'], alignItems: ['row', 'column'], justifyContent: ['column'], alignSelf: ['column', 'heading', 'text', 'button', 'image', 'spacer', 'divider', 'icon-list', 'quote', 'stats', 'social', 'video', 'accordion', 'gallery', 'form', 'card', 'icon-box', 'map', 'pricing'] };
 const NO_TYPO = new Set(['spacer', 'image']);
 const NO_FILL = new Set(['spacer']);
@@ -64,28 +64,34 @@ const full = (style, key) => (state.styleState === 'hover' ? style?.hover?.[key]
 
 /* La cible des réglages : l'élément, plusieurs éléments, ou le preset qu'on modifie */
 function targetFor(node, multi) {
+  /* writeEntries(st, { clé: valeur… }) : plusieurs réglages en une seule étape d'annulation ('' = hérité) */
   if (multi?.length > 1) {
+    const many = (st, entries) => { let r = root(); for (const [k, v] of Object.entries(entries)) r = setStyleMany(r, multi, st, k, v); commitRoot(r, { source: 'inspector-style' }); };
     return {
-      kind: 'multi', preset: null, style: node.style, count: multi.length, node,
+      kind: 'multi', preset: null, style: node.style, count: multi.length, node, lockKey: 'multi',
       inherited: key => cascade(node.style, key),
       write: (st, key, v) => commitRoot(setStyleMany(root(), multi, st, key, v), { source: 'inspector-style' }),
-      writeMany: (st, keys) => { let r = root(); for (const k of keys) r = setStyleMany(r, multi, st, k, ''); commitRoot(r, { source: 'inspector-style' }); },
+      writeMany: (st, keys) => many(st, Object.fromEntries(keys.map(k => [k, '']))),
+      writeEntries: many,
       writeAsset: (site, st, key, v) => commit(siteWithRoot(site, setStyleMany(root(), multi, st, key, v)), { source: 'inspector-style' })
     };
   }
   const pid = effectivePreset(state.site, node);
   const preset = pid ? state.site.presets[pid] : null;
   if (preset && state.presetEdit === pid) {
+    const many = (st, entries) => { let s = state.site; for (const [k, v] of Object.entries(entries)) s = setPresetStyle(s, pid, st, k, v); commit(s, { source: 'inspector-style' }); };
     return {
-      kind: 'preset', preset, style: preset.style,
+      kind: 'preset', preset, style: preset.style, lockKey: `preset:${pid}`,
       inherited: key => cascade(preset.style, key),
       write: (st, key, v) => commit(setPresetStyle(state.site, pid, st, key, v), { source: 'inspector-style' }),
-      writeMany: (st, keys) => { let s = state.site; for (const k of keys) s = setPresetStyle(s, pid, st, k, ''); commit(s, { source: 'inspector-style' }); },
+      writeMany: (st, keys) => many(st, Object.fromEntries(keys.map(k => [k, '']))),
+      writeEntries: many,
       writeAsset: (site, st, key, v) => commit(setPresetStyle(site, pid, st, key, v), { source: 'inspector-style' })
     };
   }
+  const many = (st, entries) => { let r = root(); for (const [k, v] of Object.entries(entries)) r = setStyle(r, node.id, st, k, v); commitRoot(r, { source: 'inspector-style' }); };
   return {
-    kind: 'node', preset, style: node.style, node,
+    kind: 'node', preset, style: node.style, node, lockKey: node.id,
     inherited: key => {
       const own = cascade(node.style, key);
       if (own !== undefined) return own;
@@ -93,35 +99,39 @@ function targetFor(node, multi) {
       return p !== undefined ? __('{value} · preset', { value: p }) : undefined;
     },
     write: (st, key, v) => commitRoot(setStyle(root(), node.id, st, key, v), { source: 'inspector-style' }),
-    writeMany: (st, keys) => { let r = root(); for (const k of keys) r = setStyle(r, node.id, st, k, ''); commitRoot(r, { source: 'inspector-style' }); },
+    writeMany: (st, keys) => many(st, Object.fromEntries(keys.map(k => [k, '']))),
+    writeEntries: many,
     writeAsset: (site, st, key, v) => commit(siteWithRoot(site, setStyle(root(), node.id, st, key, v)), { source: 'inspector-style' })
   };
 }
 
-function write(T, key, value, input, dev) {
+/* opts.linked : préfixe (margin, padding) dont les quatre côtés reçoivent la valeur (cadenas) */
+function write(T, key, value, input, dev, opts = {}) {
   const st = dev || stateKey();
   let v = typeof value === 'string' ? value.trim() : value;
   const def = STYLE_PROPS[key];
   const autoPx = def.kind === 'length' && /^-?(?:\d+|\d*\.\d+)$/.test(String(v)) && String(v) !== '0';
   if (autoPx) v = `${v}px`;
-  const where = { key, state: st === 'hover' ? 'survol' : 'normal', device: st === 'hover' ? 'tous' : st, target: T.kind, preset: T.kind === 'preset' ? T.preset.id : undefined, count: T.count, id: T.node?.id };
+  const keys = opts.linked ? boxKeys(opts.linked) : undefined;
+  const where = { key, keys, state: st === 'hover' ? 'survol' : 'normal', device: st === 'hover' ? 'tous' : st, target: T.kind, preset: T.kind === 'preset' ? T.preset.id : undefined, count: T.count, id: T.node?.id };
   if (v !== '' && v !== null && validateStyleValue(key, v) === null) {
     input?.setAttribute('aria-invalid', 'true');
     log.warn('style.refused', __('Valeur refusée pour « {label} » : {value} (unité ou expression non autorisée)', { label: __(def.label), value: short(String(value)) }), { ...where, value: short(String(value)), kind: def.kind });
     toast(__('Valeur refusée pour « {label} » : {value}. Exemples : 24px, 1.5rem, 50%, auto, clamp(1rem, 3vw, 2rem).', { label: __(def.label), value }), 'error');
-    return;
+    return false;
   }
   input?.removeAttribute('aria-invalid');
   try {
-    T.write(st, key, v);
-    if (state.readOnly) return;
-    const label = __(def.label);
+    if (keys) T.writeEntries(st, linkedBox(opts.linked, v)); else T.write(st, key, v);
+    if (state.readOnly) return false;
+    const label = keys ? (opts.linked === 'margin' ? __('Marges extérieures (4 côtés)') : __('Marges intérieures (4 côtés)')) : __(def.label);
     const device = where.state === 'survol' ? __('survol') : devLabel(where.device);
     if (v === '' || v === null) log.debug('style.reset', __('« {label} » réinitialisé : valeur héritée ({device})', { label, device }), where);
     else log.debug('style.set', T.kind === 'preset' ? __('{label} = {value} ({device}, preset « {preset} »)', { label, value: short(String(v)), device, preset: T.preset.name })
       : T.kind === 'multi' ? __('{label} = {value} ({device}, {n} éléments)', { label, value: short(String(v)), device, n: T.count })
-      : __('{label} = {value} ({device})', { label, value: short(String(v)), device }), { ...where, value: short(String(v)), autoPx: autoPx || undefined, token: /^(size|space):/.test(String(v)) || undefined, palette: String(v).startsWith('palette:') || undefined });
-  } catch (e) { log.warn('style.set-fail', __('Réglage « {label} » non appliqué : {error}', { label: __(def.label), error: e.message }), { ...where, error: e }); toast(e.message, 'error'); }
+      : __('{label} = {value} ({device})', { label, value: short(String(v)), device }), { ...where, value: short(String(v)), autoPx: autoPx || undefined, token: /^(size|space):/.test(String(v)) || undefined, palette: String(v).startsWith('palette:') || undefined, linked: keys ? true : undefined });
+    return true;
+  } catch (e) { log.warn('style.set-fail', __('Réglage « {label} » non appliqué : {error}', { label: __(def.label), error: e.message }), { ...where, error: e }); toast(e.message, 'error'); return false; }
 }
 
 const own = (T, key) => T.style?.[stateKey()]?.[key];
@@ -139,25 +149,114 @@ function inheritedFor(T, key, dev) {
   return dev === 'tablet' ? s.desktop?.[key] : s.tablet?.[key] ?? s.desktop?.[key];
 }
 
+/* Valeur héritée affichée en espace réservé (une couleur de palette y prend son nom) */
+const inhText = inh => (inh === undefined ? undefined : String(inh).replace(/^palette:c\d+/, m => colorLabel(m, names())));
+
+/* Champ texte simple (couleur, nombre, entier) ; ↑↓ font varier un nombre d'un pas (Maj : dix pas) */
 function textInput(T, key, def, extra = {}, dev) {
   const current = dev ? T.style?.[dev]?.[key] : own(T, key);
   const inh = inheritedFor(T, key, dev);
   const input = h('input', { class: 'input', id: dev ? `sty-${key}-${dev}` : `sty-${key}`, type: 'text', 'data-style': key, 'data-device-col': dev || null, spellcheck: 'false', autocomplete: 'off',
-    placeholder: inh !== undefined ? __('{value} (hérité)', { value: inh }) : (def.kind === 'length' ? (dev ? '—' : __('ex. 24px')) : ''), ...extra });
-  input.value = current ?? '';
-  let last = String(current ?? '');
+    placeholder: inh !== undefined ? __('{value} (hérité)', { value: inhText(inh) }) : '', ...extra });
+  input.value = def.kind === 'color' ? colorLabel(current, names()) : current ?? '';
+  let last = input.value;
   const commitInput = () => {
     if (!input.isConnected || input.value === last) return;
     last = input.value;
-    write(T, key, input.value, input, dev);
+    write(T, key, def.kind === 'color' ? parseColorInput(input.value, names()) : input.value, input, dev);
   };
-  input.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); commitInput(); } });
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') { e.preventDefault(); commitInput(); return; }
+    if ((def.kind === 'number' || def.kind === 'int') && (e.key === 'ArrowUp' || e.key === 'ArrowDown')) {
+      e.preventDefault();
+      const step = (def.step || 1) * (e.shiftKey ? 10 : 1);
+      const base = Number(input.value || String(inh ?? '').replace(/[^\d.-]/g, '') || 0);
+      const n = Math.min(def.max, Math.max(def.min, Math.round((base + (e.key === 'ArrowUp' ? step : -step)) * 1000) / 1000));
+      input.value = String(n);
+      commitInput();
+    }
+  });
   input.addEventListener('change', commitInput);
   return input;
 }
 
+/* Valeur réglée ou héritée, utilisable comme point de départ des flèches */
+function baseValue(T, key, dev) {
+  const current = dev ? T.style?.[dev]?.[key] : own(T, key);
+  if (current !== undefined && current !== '') return String(current);
+  const inh = inheritedFor(T, key, dev);
+  return inh === undefined ? '' : String(inh).replace(/ · preset$/, '');
+}
+
+/**
+ * Champ de longueur : nombre + unité (px par défaut ; ↑↓ = ±1, Maj = ±10), bouton « valeur libre » pour
+ * clamp(), var(), auto ou un jeton d'échelle. Le champ nombre garde data-style : « 24px » tapé y est compris.
+ * opts.linked : préfixe des quatre côtés liés (marges) ; opts.unit : élément <select> d'unité partagé (boîte).
+ */
+function lengthField(T, key, def, extra = {}, dev, opts = {}) {
+  const current = dev ? T.style?.[dev]?.[key] : own(T, key);
+  const inh = inheritedFor(T, key, dev);
+  const fkey = `${key}|${dev || ''}`;
+  const parsed = parseLength(current);
+  const free = isFreeLength(current) || freeFields.has(fkey);
+  const unit = opts.unit || h('select', { class: 'control len__unit', 'data-unit': key, 'aria-label': __('{label} : unité', { label: __(def.label) }) },
+    LENGTH_UNITS.map(u => h('option', { value: u, selected: u === (parsed?.unit || 'px') }, u)));
+  const input = h('input', { class: 'input len__n', id: dev ? `sty-${key}-${dev}` : `sty-${key}`, type: 'text', inputmode: free ? 'text' : 'decimal', 'data-style': key, 'data-device-col': dev || null, spellcheck: 'false', autocomplete: 'off',
+    placeholder: inh !== undefined ? __('{value} (hérité)', { value: inhText(inh) }) : (free ? __('ex. clamp(1rem, 3vw, 2rem)') : '—'), ...extra });
+  input.value = parsed && !freeFields.has(fkey) ? String(parsed.n) : current ?? '';
+  let last = input.value;
+  const linked = () => (opts.linked && boxLocks.get(`${T.lockKey}|${opts.linked}`) ? opts.linked : undefined);
+  const commitInput = () => {
+    if (!input.isConnected || input.value === last) return;
+    last = input.value;
+    const raw = input.value.trim();
+    const v = free ? raw : (/^-?(?:\d+|\d*\.\d+)$/.test(raw) && unit.value === 'px' ? raw : lengthFromInput(raw, unit.value));
+    write(T, key, v, input, dev, { linked: linked() });
+  };
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') { e.preventDefault(); commitInput(); return; }
+    if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') return;
+    const next = stepLength(baseValue(T, key, dev), e.key === 'ArrowUp' ? 1 : -1, { big: e.shiftKey, unit: unit.value, min: def.negative ? -Infinity : 0 });
+    if (next === null) return;
+    e.preventDefault();
+    const p = parseLength(next);
+    input.value = String(p.n);
+    unit.value = p.unit;
+    last = input.value;
+    write(T, key, next, input, dev, { linked: linked() });
+  });
+  input.addEventListener('change', commitInput);
+  if (!opts.unit) unit.addEventListener('change', () => {
+    const p = parseLength(baseValue(T, key, dev));
+    log.debug('style.unit', __('Unité de « {label} » : {unit}', { label: __(def.label), unit: unit.value }), { key, unit: unit.value, device: dev || stateKey() });
+    if (p) write(T, key, formatLength(p.n, unit.value), input, dev, { linked: linked() });
+  });
+  const freeBtn = h('button', { type: 'button', class: 'len__free' + (free ? ' is-on' : ''), 'data-free': key, 'aria-pressed': String(free), title: __('Valeur libre : clamp(), var(), auto…'), 'aria-label': __('{label} : valeur libre (clamp(), var(), auto…)', { label: __(def.label) }), onclick: () => {
+    if (freeFields.has(fkey)) freeFields.delete(fkey); else freeFields.add(fkey);
+    log.debug('style.free', freeFields.has(fkey) ? __('« {label} » : saisie libre (clamp(), var(), auto…)', { label: __(def.label) }) : __('« {label} » : retour au nombre + unité', { label: __(def.label) }), { key, free: freeFields.has(fkey) });
+    emit('styleState');
+    setTimeout(() => document.querySelector(`#inspector [data-style="${key}"]${dev ? `[data-device-col="${dev}"]` : ':not([data-device-col])'}`)?.focus(), 0);
+  } }, icon('free', 14));
+  return h('div', { class: 'len' + (free ? ' is-free' : '') }, input, opts.unit ? null : unit, opts.noFree ? null : freeBtn);
+}
+
+/* Curseur pour l'opacité et l'arrondi : aperçu pendant le glisser, une seule étape d'annulation au relâchement */
+function slider(T, key, def, field) {
+  const sl = def.slider;
+  const numberInput = field.matches('input') ? field : field.querySelector('[data-style]');
+  const unit = field.querySelector?.('[data-unit]');
+  const cur = def.kind === 'length' ? parseLength(baseValue(T, key)) : { n: Number(baseValue(T, key)) };
+  const toText = n => (def.kind === 'number' ? Math.round(n * 100) + ' %' : `${n}px`);
+  const range = h('input', { type: 'range', class: 'range', 'data-range': key, min: sl.min ?? def.min ?? 0, max: sl.max ?? def.max, step: sl.step ?? def.step ?? 1, 'aria-label': __('{label} : curseur', { label: __(def.label) }) });
+  range.value = String(cur && Number.isFinite(cur.n) && (def.kind !== 'length' || cur.unit === 'px') ? cur.n : (sl.start ?? def.min ?? 0));
+  range.setAttribute('aria-valuetext', toText(Number(range.value)));
+  range.addEventListener('input', () => { numberInput.value = range.value; range.setAttribute('aria-valuetext', toText(Number(range.value))); });
+  range.addEventListener('change', () => { if (unit) unit.value = 'px'; numberInput.value = range.value; numberInput.dispatchEvent(new Event('change')); });
+  return range;
+}
+
 /* Liste des jetons d'échelle pour une longueur (taille de texte ou espacement) */
-function tokenPicker(T, key) {
+function tokenPicker(T, key, { compact = false, linked = null } = {}) {
   const def = STYLE_PROPS[key];
   if (!def.size && !def.space) return null;
   const tokens = state.site.tokens || defaultTokens();
@@ -166,25 +265,27 @@ function tokenPicker(T, key) {
   const steps = def.size ? TYPE_STEPS : SPACE_STEPS;
   const labels = def.size ? TYPE_LABELS : SPACE_LABELS;
   const prefix = def.size ? 'size:' : 'space:';
-  const sel = h('select', { class: 'control control--token', 'data-token-pick': key, 'aria-label': __('{label} : choisir dans l’échelle', { label: __(def.label) }), title: __('Choisir dans l’échelle du site') },
+  const sel = h('select', { class: 'control control--token' + (compact ? ' control--mini' : ''), 'data-token-pick': key, 'aria-label': __('{label} : choisir dans l’échelle', { label: __(def.label) }), title: __('Choisir dans l’échelle du site') },
     h('option', { value: '' }, def.size ? __('Échelle…') : '⇕'),
     steps.map(k => h('option', { value: prefix + k, selected: current === prefix + k }, `${__(labels[k])} · ${Math.round(sizes[k].min)}–${Math.round(sizes[k].max)} px`)));
-  sel.addEventListener('change', () => { if (sel.value) write(T, key, sel.value); });
+  sel.addEventListener('change', () => { if (sel.value) write(T, key, sel.value, undefined, undefined, { linked: linked?.() }); });
   return sel;
 }
 
 function colorControl(T, key, def) {
   const current = own(T, key);
   const pal = state.site.theme.palette;
-  const names = state.site.theme.paletteNames || {};
+  const nm = names();
+  const label = k => colorLabel(`palette:${k}`, nm);
   const swatches = h('div', { class: 'swatches' },
-    PALETTE_KEYS.filter(k => pal[k]).map(k => h('button', { type: 'button', class: 'swatch', 'data-swatch': k, title: names[k] ? paletteName(names, k) : __('Couleur {n}', { n: k.slice(1) }), 'aria-label': __('Couleur de palette : {name}', { name: paletteName(names, k) }), 'aria-pressed': String(current === `palette:${k}`), style: { background: pal[k] }, onclick: () => write(T, key, `palette:${k}`) })),
+    PALETTE_KEYS.filter(k => pal[k]).map(k => h('button', { type: 'button', class: 'swatch', 'data-swatch': k, title: label(k), 'aria-label': __('Couleur de palette : {name}', { name: label(k) }), 'aria-pressed': String(current === `palette:${k}`), style: { background: pal[k] }, onclick: () => write(T, key, `palette:${k}`) })),
     h('button', { type: 'button', class: 'swatch', 'data-swatch': 'transparent', title: __('Transparent'), 'aria-label': __('Transparent'), 'aria-pressed': String(current === 'transparent'), style: { background: 'repeating-conic-gradient(#ccc 0 25%, #fff 0 50%) 0 0/8px 8px' }, onclick: () => write(T, key, 'transparent') }));
   const picker = h('input', { type: 'color', class: 'color-input', 'aria-label': __('{label} : couleur libre', { label: __(def.label) }), value: /^#[0-9a-f]{6}$/i.test(current || '') ? current : '#000000' });
   picker.addEventListener('change', () => write(T, key, picker.value));
   const inh = T.inherited(key);
+  const text = textInput(T, key, def, { placeholder: inh ? __('{value} (hérité)', { value: inhText(inh) }) : __('Nom de couleur, #hex ou rgb(…)'), title: current && String(current).startsWith('palette:') ? __('Couleur de la palette ({value}) : se règle dans le panneau Site', { value: current }) : null });
   return h('div', { class: 'sp sp--wide' + (current !== undefined ? ' is-set' : ''), 'data-style-wrap': key }, labelRow(T, key, def),
-    h('div', { class: 'sp-row' }, picker, textInput(T, key, def, { placeholder: inh ? __('{value} (hérité)', { value: inh }) : __('#hex, rgb(…) ou palette') })), swatches,
+    h('div', { class: 'sp-row' }, picker, text), swatches,
     (key === 'color' || key === 'background') && T.kind !== 'preset' && T.node ? contrastBadge(T.node) : null);
 }
 
@@ -247,32 +348,65 @@ function control(T, key) {
     return h('div', { class: cls + ' sp--wide', 'data-style-wrap': key }, labelRow(T, key, def), box);
   }
   const extra = def.kind === 'int' || def.kind === 'number' ? { inputmode: 'decimal' } : {};
+  const field = (d, more = {}) => (def.kind === 'length' ? lengthField(T, key, def, more, d) : textInput(T, key, def, { ...extra, ...more }, d));
   if (allDevices && state.styleState !== 'hover' && ['length', 'int', 'number'].includes(def.kind)) {
     const anySet = ['desktop', 'tablet', 'mobile'].some(d => T.style?.[d]?.[key] !== undefined);
     return h('div', { class: 'sp sp--wide' + (anySet ? ' is-set' : ''), 'data-style-wrap': key }, h('label', {}, h('span', {}, __(def.label))),
       h('div', { class: 'dev3' }, ['desktop', 'tablet', 'mobile'].map(d => h('label', { class: 'dev3__cell' },
-        h('span', { class: 'dev3__ico', title: devLabel(d), 'aria-hidden': 'true' }, { desktop: '🖥', tablet: '▭', mobile: '▯' }[d]),
-        textInput(T, key, def, { ...extra, 'aria-label': `${__(def.label)} – ${devLabel(d)}` }, d)))));
+        h('span', { class: 'dev3__ico', title: devLabel(d), 'aria-hidden': 'true' }, icon(d, 13)),
+        field(d, { 'aria-label': `${__(def.label)} – ${devLabel(d)}` })))));
   }
   const picker = def.kind === 'length' ? tokenPicker(T, key) : null;
-  return h('div', { class: cls + (picker && def.size ? ' sp--wide' : ''), 'data-style-wrap': key }, labelRow(T, key, def),
-    picker ? h('div', { class: 'sp-row' }, textInput(T, key, def, extra), picker) : textInput(T, key, def, extra));
+  const main = field();
+  const wide = def.kind === 'length' || def.slider;
+  return h('div', { class: cls + (wide ? ' sp--wide' : ''), 'data-style-wrap': key }, labelRow(T, key, def),
+    def.slider ? slider(T, key, def, main) : null,
+    picker ? h('div', { class: 'sp-row' }, main, picker) : main);
 }
 
 const BOX = [['Top', N_('Haut')], ['Right', N_('Droite')], ['Bottom', N_('Bas')], ['Left', N_('Gauche')]];
 
+/* Unité commune aux côtés numériques d'une boîte (px si aucun ou si elles diffèrent) */
+function boxUnit(T, keys) {
+  const units = [...new Set(keys.map(k => parseLength(own(T, k))?.unit).filter(Boolean))];
+  return units.length === 1 ? units[0] : 'px';
+}
+
+/* Schéma de boîte : quatre côtés autour du contenu, cadenas « lier les 4 côtés », unité commune */
 function boxGroup(T, prefix, title) {
-  const keys = BOX.map(([s]) => prefix + s);
+  const keys = boxKeys(prefix);
   const anySet = keys.some(k => own(T, k) !== undefined);
-  return h('div', { class: 'sp sp--wide' + (anySet ? ' is-set' : ''), 'data-style-keys': keys.join(' ') },
-    h('label', {}, h('span', {}, title), anySet ? h('button', { type: 'button', class: 'sp-reset', title: __('Tout réinitialiser'), onclick: e => {
-      e.preventDefault();
-      try { T.writeMany(stateKey(), keys); log.debug('style.reset', __('{title} réinitialisées ({device})', { title, device: stateKey() === 'hover' ? __('survol') : devLabel(stateKey()) }), { keys, device: stateKey(), target: T.kind }); } catch (err) { log.warn('style.set-fail', __('{title} : réinitialisation impossible : {error}', { title, error: err.message }), { keys, error: err }); toast(err.message, 'error'); }
-    } }, '↺') : null),
-    h('div', { class: 'box4' }, keys.map(k => h('div', { class: 'box4__cell' },
-      textInput(T, k, STYLE_PROPS[k], { 'aria-label': __(STYLE_PROPS[k].label), placeholder: T.inherited(k) ?? '—' }),
-      tokenPicker(T, k)))),
-    h('div', { class: 'box4-labels', 'aria-hidden': 'true' }, BOX.map(([, l]) => h('span', {}, __(l)))));
+  const lockKey = `${T.lockKey}|${prefix}`;
+  if (!boxLocks.has(lockKey)) boxLocks.set(lockKey, boxLinkedDefault(prefix, Object.fromEntries(keys.map(k => [k, own(T, k)]))));
+  const locked = boxLocks.get(lockKey);
+  const st = stateKey();
+  const devName = () => (st === 'hover' ? __('survol') : devLabel(st));
+  const lock = h('button', { type: 'button', class: 'box-lock' + (locked ? ' is-on' : ''), 'data-box-lock': prefix, 'aria-pressed': String(locked), title: locked ? __('Côtés liés : une valeur pour les quatre (cliquer pour les séparer)') : __('Lier les 4 côtés : une seule valeur pour haut, droite, bas et gauche'), 'aria-label': __('{title} : lier les 4 côtés', { title }), onclick: () => {
+    boxLocks.set(lockKey, !locked);
+    log.debug('style.box-lock', !locked ? __('{title} : les 4 côtés sont liés', { title }) : __('{title} : côtés réglés séparément', { title }), { prefix, linked: !locked, target: T.kind });
+    emit('styleState');
+  } }, icon(locked ? 'lock' : 'unlock', 14));
+  const unit = h('select', { class: 'control len__unit', 'data-box-unit': prefix, 'aria-label': __('{title} : unité', { title }) }, LENGTH_UNITS.map(u => h('option', { value: u, selected: u === boxUnit(T, keys) }, u)));
+  unit.addEventListener('change', () => {
+    const entries = {};
+    for (const k of keys) { const p = parseLength(own(T, k)); if (p) entries[k] = formatLength(p.n, unit.value); }
+    log.debug('style.unit', __('Unité de « {label} » : {unit}', { label: title, unit: unit.value }), { keys: Object.keys(entries), unit: unit.value, device: st });
+    if (Object.keys(entries).length) { try { T.writeEntries(st, entries); } catch (err) { toast(err.message, 'error'); } }
+  });
+  const reset = anySet ? h('button', { type: 'button', class: 'sp-reset', title: __('Tout réinitialiser'), 'aria-label': __('Réinitialiser {label}', { label: title }), onclick: e => {
+    e.preventDefault();
+    try { T.writeMany(st, keys); log.debug('style.reset', __('{title} réinitialisées ({device})', { title, device: devName() }), { keys, device: st, target: T.kind }); } catch (err) { log.warn('style.set-fail', __('{title} : réinitialisation impossible : {error}', { title, error: err.message }), { keys, error: err }); toast(err.message, 'error'); }
+  } }, '↺') : null;
+  const side = (k, sideLabel) => h('div', { class: `boxd__cell boxd__${k.replace(prefix, '').toLowerCase()}` },
+    lengthField(T, k, STYLE_PROPS[k], { 'aria-label': __(STYLE_PROPS[k].label), placeholder: inhText(T.inherited(k)) ?? '—' }, undefined, { linked: prefix, unit, noFree: true }),
+    tokenPicker(T, k, { compact: true, linked: () => (boxLocks.get(lockKey) ? prefix : undefined) }),
+    h('span', { class: 'boxd__name', 'aria-hidden': 'true' }, __(sideLabel)));
+  return h('div', { class: 'sp sp--wide box' + (anySet ? ' is-set' : ''), 'data-style-keys': keys.join(' ') },
+    h('label', {}, h('span', {}, title), lock, unit, reset),
+    h('div', { class: `boxd boxd--${prefix}` + (locked ? ' is-linked' : '') },
+      side(keys[0], BOX[0][1]), side(keys[3], BOX[3][1]),
+      h('div', { class: 'boxd__center', 'aria-hidden': 'true' }, prefix === 'margin' ? h('span', { class: 'boxd__inner' }, __('bloc')) : __('contenu')),
+      side(keys[1], BOX[1][1]), side(keys[2], BOX[2][1])));
 }
 
 /* Barre des presets : choisir, créer, modifier, détacher, définir par défaut */
@@ -344,7 +478,10 @@ function applyFilter(body) {
 
 /* Ouvre l'onglet Style sur un réglage (barre de commandes) */
 export function focusStyleField(key) {
-  const el = document.querySelector(`#inspector [data-style="${key}"]:not([data-device-col]), #inspector [data-style="${key}"]`);
+  const find = () => document.querySelector(`#inspector [data-style="${key}"]:not([data-device-col]), #inspector [data-style="${key}"]`);
+  let el = find();
+  /* Réglage du mode expert demandé en mode simple : on passe en mode expert (l'inspecteur se redessine) */
+  if (!el && isExpertKey(key) && !isExpert() && setExpert(true, 'réglage')) el = find();
   if (!el) { log.debug('style.focus-missing', __('Réglage « {key} » absent de l’onglet Style pour cet élément', { key }), { key, selected: state.selected || null }); return false; }
   log.debug('style.focus', __('Réglage « {key} » mis en avant dans l’onglet Style', { key }), { key });
   el.closest('details')?.setAttribute('open', '');
@@ -380,9 +517,10 @@ export function styleTab(node, multi) {
       h('button', { type: 'button', 'data-style-paste': '', title: __('Coller le style copié'), disabled: !state.styleClipboard, onclick: pasteStyle }, __('Coller'))),
     h('div', { class: 'sp-row style-tools' },
       h('input', { class: 'input input--sm', type: 'search', 'data-style-search': '', value: searchQuery, placeholder: __('Chercher un réglage (marge, couleur…)'), 'aria-label': __('Chercher un réglage'), oninput: e => { searchQuery = e.target.value; applyFilter(e.target.closest('.insp-body')); log.trace('style.search', __('Recherche d’un réglage'), { q: searchQuery.slice(0, 30), shown: filterStyleKeys(searchQuery).length }); } }),
-      h('button', { type: 'button', class: 'btn btn--small' + (allDevices ? ' is-on' : ''), 'data-style-all-devices': '', 'aria-pressed': String(allDevices), title: __('Voir et régler ordinateur, tablette et mobile côte à côte'), onclick: () => { allDevices = !allDevices; log.debug('style.all-devices', allDevices ? __('Vue « trois appareils côte à côte »') : __('Vue d’un seul appareil'), { on: allDevices }); emit('styleState'); } }, '🖥▭▯')));
+      h('button', { type: 'button', class: 'btn btn--small btn--icons' + (allDevices ? ' is-on' : ''), 'data-style-all-devices': '', 'aria-pressed': String(allDevices), title: __('Voir et régler ordinateur, tablette et mobile côte à côte'), onclick: () => { allDevices = !allDevices; log.debug('style.all-devices', allDevices ? __('Vue « trois appareils côte à côte »') : __('Vue d’un seul appareil'), { on: allDevices }); emit('styleState'); } }, icon('desktop', 14), icon('tablet', 14), icon('mobile', 14))));
 
-  const groups = STYLE_GROUPS.map(g => {
+  const expert = isExpert();
+  const groups = STYLE_GROUPS.filter(g => expert || SIMPLE_GROUPS.includes(g)).map(g => {
     const gKeys = keys.filter(k => STYLE_PROPS[k].group === g);
     if (!gKeys.length) return null;
     const count = gKeys.filter(k => T.style?.[st]?.[k] !== undefined).length;
@@ -399,5 +537,13 @@ export function styleTab(node, multi) {
   });
   const empty = h('p', { class: 'hint style-empty', hidden: true }, __('Aucun réglage ne correspond à cette recherche.'));
   if (searchQuery.trim()) queueMicrotask(() => { const b = head.closest('.insp-body'); if (b) applyFilter(b); });
-  return [head, ...groups.filter(Boolean), empty];
+  return [head, ...groups.filter(Boolean), empty, modeSwitch()];
+}
+
+/* Pied des onglets Style et Avancé : passer en mode expert (tous les réglages) ou revenir au mode simple */
+export function modeSwitch() {
+  if (isExpert()) return h('div', { class: 'mode-switch' }, h('button', { type: 'button', class: 'btn btn--small', 'data-expert-off': '', onclick: () => setExpert(false, 'bouton') }, __('Revenir au mode simple')));
+  return h('div', { class: 'mode-switch' },
+    h('p', { class: 'hint' }, __('Réglages essentiels. Dimensions, disposition, effets, classes CSS et CSS personnalisée attendent en mode expert.')),
+    h('button', { type: 'button', class: 'btn btn--small', 'data-expert-on': '', title: __('Mode expert : tous les réglages'), onclick: () => setExpert(true, 'bouton') }, icon('expert', 14), __('Tous les réglages')));
 }

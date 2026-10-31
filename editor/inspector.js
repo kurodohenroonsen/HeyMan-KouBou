@@ -1,5 +1,5 @@
 /* Inspecteur : onglets Contenu, Style, Avancé pour l'élément sélectionné. */
-import { h, $, toast } from './dom.js';
+import { h, $, toast, icon } from './dom.js';
 import { state, subscribe, nodeById, root, commitRoot, select, emit } from './store.js';
 import { REGISTRY, fieldsOf } from '../core/widgets.js';
 import { pathTo, setAdvanced, findNode } from '../core/tree.js';
@@ -8,7 +8,8 @@ import { fieldControl, listControl, propWriter } from './fields.js';
 import { selectParent, duplicateSelected, deleteSelected, copyStyle, pasteStyle, detachSelected, editSelectedComponent, createComponentFromSelected } from './actions.js';
 import { componentUsage } from '../core/components.js';
 import { LANG_LABELS as LANG_LABELS_X } from '../core/site.js';
-import { styleTab } from './styletab.js';
+import { styleTab, modeSwitch } from './styletab.js';
+import { isExpert } from './mode.js';
 import { bindableFields, setBind, fieldLabel } from '../core/collections.js';
 import { openCollection, openNewCollection } from './collections-ui.js';
 import { setEditTarget } from './store.js';
@@ -24,13 +25,13 @@ const panel = () => $('#inspector');
 
 function multiHeader(node) {
   const n = state.multi.size;
-  const act = (name, text, title, fn) => h('button', { class: 'icon-btn icon-btn--sm', type: 'button', 'data-act': name, title, 'aria-label': title, onclick: fn }, text);
+  const act = (name, ico, title, fn) => h('button', { class: 'icon-btn icon-btn--sm', type: 'button', 'data-act': name, title, 'aria-label': title, onclick: fn }, icon(ico, 15));
   return h('div', { class: 'insp-head' },
     h('div', { class: 'insp-titlebar' },
       h('h2', { class: 'insp-title' }, __n(n, '{n} élément sélectionné', '{n} éléments sélectionnés')),
-      act('pasteStyle', '📋', __('Coller le style sur tous'), pasteStyle),
-      act('duplicate', '⧉', __('Dupliquer tous (Ctrl+D)'), duplicateSelected),
-      act('delete', '✕', __('Supprimer tous (Suppr)'), deleteSelected)),
+      act('pasteStyle', 'paste', __('Coller le style sur tous'), pasteStyle),
+      act('duplicate', 'duplicate', __('Dupliquer tous (Ctrl+D)'), duplicateSelected),
+      act('delete', 'delete', __('Supprimer tous (Suppr)'), deleteSelected)),
     h('p', { class: 'hint' }, __('Les réglages de style s’appliquent aux {n} éléments. Maj+clic pour en ajouter ou en retirer ; Échap pour revenir à un seul.', { n })));
 }
 
@@ -40,16 +41,16 @@ function header(node) {
     const n = findNode(root(), id);
     return h('button', { type: 'button', class: 'crumb' + (id === node.id ? ' is-current' : ''), onclick: () => select(id) }, nodeLabel(n));
   });
-  const act = (name, text, title, fn) => h('button', { class: 'icon-btn icon-btn--sm', type: 'button', 'data-act': name, title, 'aria-label': title, onclick: fn }, text);
+  const act = (name, ico, title, fn) => h('button', { class: 'icon-btn icon-btn--sm', type: 'button', 'data-act': name, title, 'aria-label': title, onclick: fn }, icon(ico, 15));
   return h('div', { class: 'insp-head' },
     h('nav', { class: 'crumbs', 'aria-label': __('Chemin') }, crumbs),
     h('div', { class: 'insp-titlebar' },
       h('h2', { class: 'insp-title' }, nodeLabel(node)),
-      act('parent', '↰', __('Sélectionner le parent (Échap)'), selectParent),
-      act('copyStyle', '🖌', __('Copier le style'), copyStyle),
-      act('pasteStyle', '📋', __('Coller le style'), pasteStyle),
-      act('duplicate', '⧉', __('Dupliquer (Ctrl+D)'), duplicateSelected),
-      act('delete', '✕', __('Supprimer (Suppr)'), deleteSelected)));
+      act('parent', 'parent', __('Sélectionner le parent (Échap)'), selectParent),
+      act('copyStyle', 'brush', __('Copier le style'), copyStyle),
+      act('pasteStyle', 'paste', __('Coller le style'), pasteStyle),
+      act('duplicate', 'duplicate', __('Dupliquer (Ctrl+D)'), duplicateSelected),
+      act('delete', 'delete', __('Supprimer (Suppr)'), deleteSelected)));
 }
 
 function tabs() {
@@ -196,12 +197,13 @@ function advancedTab(node) {
     cb.addEventListener('change', () => apply({ hideOn: { [dev]: cb.checked } }));
     return cb;
   };
+  const expert = isExpert();
   return [
     h('div', { class: 'field' }, h('label', { class: 'field__label' }, __('Ancre (pour un lien #ancre)')), anchor,
       adv.anchor ? h('p', { class: 'hint' }, __('Lien vers cet élément : #{anchor}', { anchor: adv.anchor })) : null),
-    h('div', { class: 'field' }, h('label', { class: 'field__label' }, __('Classes CSS')), cls),
-    h('div', { class: 'field' }, h('label', { class: 'field__label' }, __('Libellé accessible ({lang})', { lang: state.lang.toUpperCase() })), aria,
-      h('p', { class: 'hint' }, __('Nomme cette zone pour les lecteurs d’écran, dans la langue affichée.'))),
+    expert ? h('div', { class: 'field' }, h('label', { class: 'field__label' }, __('Classes CSS')), cls) : null,
+    expert ? h('div', { class: 'field' }, h('label', { class: 'field__label' }, __('Libellé accessible ({lang})', { lang: state.lang.toUpperCase() })), aria,
+      h('p', { class: 'hint' }, __('Nomme cette zone pour les lecteurs d’écran, dans la langue affichée.'))) : null,
     node.ref || state.editTarget ? null : h('div', { class: 'field' }, h('span', { class: 'field__label' }, __('Réutiliser')),
       h('button', { type: 'button', class: 'btn btn--small', 'data-component-create': '', onclick: createComponentFromSelected }, __('Créer un composant à partir de ce bloc'))),
     h('div', { class: 'field' }, h('span', { class: 'field__label' }, __('Masquer sur')),
@@ -211,8 +213,9 @@ function advancedTab(node) {
       h('p', { class: 'hint' }, __('Dans l’éditeur, un élément masqué reste visible en transparence pour pouvoir le sélectionner.'))),
     others.length ? h('div', { class: 'field' }, h('span', { class: 'field__label' }, __('Masquer dans la langue')), ...others.map(hideLang),
       h('p', { class: 'hint' }, __('Pour un contenu qui ne concerne qu’une partie du public (ex. une annonce locale).'))) : null,
-    h('div', { class: 'field' }, h('label', { class: 'field__label' }, __('CSS personnalisée (experts)')), css,
-      h('p', { class: 'hint' }, __('Déclarations « propriété: valeur; » appliquées à cet élément. Pas d’accolades, de @ ni d’url().')))
+    expert ? h('div', { class: 'field' }, h('label', { class: 'field__label' }, __('CSS personnalisée (experts)')), css,
+      h('p', { class: 'hint' }, __('Déclarations « propriété: valeur; » appliquées à cet élément. Pas d’accolades, de @ ni d’url().'))) : null,
+    modeSwitch()
   ];
 }
 
@@ -270,7 +273,7 @@ export function initInspector() {
       pendingRemote = true;
     }
     else if (reason === 'doc' && opts.source !== 'inspector') render();
-    else if (reason === 'styleState') render();
+    else if (reason === 'styleState' || reason === 'mode') render();
     else if (reason === 'presence' && !panel().contains(document.activeElement)) render();
   });
   render();
