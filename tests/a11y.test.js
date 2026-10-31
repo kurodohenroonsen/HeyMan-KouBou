@@ -162,7 +162,7 @@ test('rendu : srcset, sizes selon la colonne, width/height, priorité à la prem
   const html = renderPage(site, site.pages[0], 'fr');
   const imgs = html.match(/<img [^>]*>/g).filter(t => t.includes('photo'));
   assert.equal(imgs.length, 2);
-  assert.match(imgs[0], /srcset="assets\/photo-480\.webp 480w, assets\/photo-960\.webp 960w, assets\/photo\.webp 1600w"/);
+  assert.match(imgs[0], /srcset="assets\/photo-480-[0-9a-f]{8}\.webp 480w, assets\/photo-960-[0-9a-f]{8}\.webp 960w, assets\/photo-[0-9a-f]{8}\.webp 1600w"/);
   assert.match(imgs[0], /sizes="\(max-width: 640px\) 100vw, \(max-width: 1024px\) 67vw, 773px"/);
   assert.match(imgs[0], /width="1600" height="900"/);
   assert.match(imgs[0], /fetchpriority="high"/);
@@ -175,10 +175,11 @@ test('rendu : srcset, sizes selon la colonne, width/height, priorité à la prem
 test('export : variantes copiées ; ancien format sans variantes toujours rendu', () => {
   const { site } = withImage();
   const files = renderSite(site).files;
-  assert.ok(files.has('assets/photo-480.webp') && files.has('assets/photo-960.webp') && files.has('assets/photo.webp'));
+  const has = re => [...files.keys()].some(k => re.test(k));
+  assert.ok(has(/^assets\/photo-480-[0-9a-f]{8}\.webp$/) && has(/^assets\/photo-960-[0-9a-f]{8}\.webp$/) && has(/^assets\/photo-[0-9a-f]{8}\.webp$/), [...files.keys()].join());
   const old = withImage(false).site;
   const html = renderPage(old, old.pages[0], 'fr');
-  assert.ok(html.includes('src="assets/photo.webp"') && !/photo[^"]*srcset/.test(html));
+  assert.ok(/src="assets\/photo-[0-9a-f]{8}\.webp"/.test(html) && !/photo[^"]*srcset/.test(html));
 });
 
 /* ---------- Mouvement ---------- */

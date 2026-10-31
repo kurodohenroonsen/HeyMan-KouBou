@@ -7,10 +7,12 @@
 import { h, $, toast, download } from './dom.js';
 import { state, commit } from './store.js';
 import { setPublishSettings, slugify } from '../core/site.js';
-import { renderSite } from '../core/render.js';
+import { renderSite, withoutHtaccess } from '../core/render.js';
+import { htaccessOptions } from '../core/htaccess.js';
+import { loadFontData } from './fontfiles.js';
 import { createZip } from '../core/zip.js';
 import { auditSite } from '../core/audit.js';
-import { buildPublishPhp, sha256Hex, newToken, formsConfig, publishGitHub, filesForServer, PUBLISH_VERSION, publishOrigin, githubTarget, tokenKey, hostLabel } from '../core/publish.js';
+import { buildPublishPhp, sha256Hex, newToken, formsConfig, publishGitHub, filesForServer, errorMessage, PUBLISH_VERSION, publishOrigin, githubTarget, tokenKey, hostLabel } from '../core/publish.js';
 import { getSecret, setSecret, migrateLegacyTokens, isKnownDestination, addKnownDestination } from './storage.js';
 import { log } from './log.js';
 import { __, __n } from '../core/ui-i18n.js';
@@ -89,8 +91,14 @@ async function destinationOk(kind, target, action) {
   return ok;
 }
 
-function siteZip(version = PUBLISH_VERSION) {
-  const r = filesForServer(renderSite(state.site).files, version);
+/* Fichiers du site (polices comprises) ; publish.php écrit lui-même le .htaccess, il n'est pas dans le paquet */
+async function siteFiles() {
+  const fontData = await loadFontData(state.site);
+  return renderSite(state.site, { fontData, lastmod: new Date(state.lastTime || Date.now()).toISOString().slice(0, 10) }).files;
+}
+
+async function siteZip(version = PUBLISH_VERSION) {
+  const r = filesForServer(withoutHtaccess(await siteFiles()), version);
   return { zip: createZip([...r.files].map(([name, data]) => ({ name, data }))), files: r.files, skipped: r.skipped };
 }
 
@@ -119,7 +127,7 @@ function phpTab(d) {
     const t = newToken();
     token.value = t;
     memory.php.set('', { token: t, keep: keep.checked }); /* gardé sur l'appareil au premier envoi, sous l'adresse réellement utilisée */
-    download('publish.php', buildPublishPhp({ tokenHash: await sha256Hex(t) }), 'application/x-httpd-php');
+    download('publish.php', buildPublishPhp({ tokenHash: await sha256Hex(t), baseUrl: state.site.baseUrl }), 'application/x-httpd-php');
     log.info('publish.php.generate', __('publish.php v{version} téléchargé avec un nouveau jeton (l’ancien publish.php ne l’acceptera pas)', { version: PUBLISH_VERSION }), { version: PUBLISH_VERSION, remember: keep.checked });
     apply({ mode: 'php' });
     setStatus(status, __('publish.php téléchargé, avec un nouveau jeton (gardé dans ce champ). Déposez le fichier à la racine du site par FTP, puis « Tester la connexion ».'), 'info');
@@ -137,16 +145,16 @@ function phpTab(d) {
       try { b = JSON.parse(text); } catch { f.step('not-json', __('La réponse n’est pas du JSON : PHP n’est peut-être pas exécuté, ou une page d’erreur de l’hébergement répond'), { status: r.status, start: text.slice(0, 120) }, 'warn'); throw new Error(__('réponse {status} qui n’est pas celle de publish.php', { status: r.status })); }
       if (!b.atelier) throw new Error(__('réponse inattendue'));
       const old = Number(b.version) < Number(PUBLISH_VERSION);
-      if (old) f.warn('old-version', __('publish.php installé en version {installed} : la version {expected} ajoute le journal du serveur et le diagnostic', { installed: b.version, expected: PUBLISH_VERSION }), { installed: b.version, expected: PUBLISH_VERSION });
+      if (old) f.warn('old-version', __('publish.php installé en version {installed} : la version {expected} ajoute le .htaccess, les polices, la page 404 et protège mieux la collaboration', { installed: b.version, expected: PUBLISH_VERSION }), { installed: b.version, expected: PUBLISH_VERSION });
       if (b.diag) f.info('diag', __('Diagnostic de l’hébergement'), b.diag);
       else if (token.value && !old) f.warn('token-refused', __('Le jeton saisi ne correspond pas à ce publish.php (diagnostic refusé) : la publication sera refusée'), {});
       if (!b.zip) f.warn('no-zip', __('Extension PHP zip absente : la publication est impossible sur cet hébergement'));
       f.ok(__('publish.php répond'), { version: b.version, php: b.php, zip: b.zip, req: b.req });
       const dg = b.diag;
       setStatus(status, [
-        b.zip ? __('Connexion réussie : publish.php version {version}, PHP {php}.', { version: b.version, php: b.php }) : __('Connexion réussie : publish.php version {version}, PHP {php} — extension zip absente !', { version: b.version, php: b.php }),
+        b.zip ? __('Connexion réussie : publish.php version {version}, PHP {php}.', { version: b.version, php: b.php || '?' }) : __('Connexion réussie : publish.php version {version}, PHP {php} — extension zip absente !', { version: b.version, php: b.php || '?' }),
         dg ? __('Envoi max. {upload} (formulaire {post}), mail() {mail}, dossier {folder}.', { upload: dg.upload_max_filesize, post: dg.post_max_size, mail: dg.mail ? __('présent') : __('ABSENT'), folder: dg.data_writable ? __('inscriptible') : __('NON inscriptible') }) : '',
-        old ? __('Une version plus récente ({version}) existe : retéléchargez publish.php pour avoir le journal du serveur.', { version: PUBLISH_VERSION }) : '',
+        old ? __('Mise à jour conseillée : publish.php version {version} existe (polices, .htaccess, page 404, sécurité). Retéléchargez-le et redéposez-le par FTP.', { version: PUBLISH_VERSION }) : '',
         token.value && !dg && !old ? __('Attention : le jeton saisi ne correspond pas à ce publish.php.') : ''
       ].filter(Boolean).join(' '), b.zip ? 'ok' : 'error');
     } catch (e) {
@@ -170,28 +178,32 @@ function phpTab(d) {
       try { const r0 = await fetch(state.site.publish.url, { method: 'GET', cache: 'no-store' }); version = String((await r0.json()).version || '1'); } catch (e0) { version = '1'; f.warn('version-unknown', __('Version de publish.php inconnue ({message}) : envoi prudent, sans les .ics', { message: e0.message })); }
       f.step('version', __('publish.php installé : version {version}', { version }), { version });
       const t0 = performance.now();
-      const { zip, files, skipped } = siteZip(version);
+      const { zip, files, skipped } = await siteZip(version);
       const forms = formsConfig(state.site);
       f.step('package', __n(files.size, 'Paquet prêt : {n} fichier', 'Paquet prêt : {n} fichiers'), { files: files.size, kb: Math.round(zip.length / 1024), forms: Object.keys(forms).length, skipped: skipped.length || undefined, ms: Math.round(performance.now() - t0) }, 'info');
       const fd = new FormData();
       fd.append('site', new Blob([zip], { type: 'application/zip' }), 'site.zip');
       fd.append('forms', JSON.stringify(forms));
+      if (Number(version) >= 5 && state.site.publish?.server !== 'pages') fd.append('htaccess', JSON.stringify(htaccessOptions(state.site)));
       const r = await fetch(state.site.publish.url, { method: 'POST', body: fd, headers: { 'X-Atelier-Token': token.value } });
       const b = await r.json().catch(() => ({}));
       const ref = r.headers.get('x-atelier-request') || b.req;
       if (!r.ok || !b.ok) {
         if (b.rejected?.length) f.step('rejected', __n(b.rejected.length, '{n} fichier refusé par publish.php', '{n} fichiers refusés par publish.php'), { rejected: b.rejected.slice(0, 10) }, 'warn');
-        throw Object.assign(new Error([b.error, ...(b.rejected || []).slice(0, 3)].filter(Boolean).join(' — ') || (r.status === 413 ? __('erreur {status} (site trop lourd pour l’hébergement)', { status: r.status }) : __('erreur {status}', { status: r.status }))), { status: r.status, ref });
+        if (b.failed?.length) f.step('partial', __n(b.failed.length, 'Publication incomplète : {n} fichier non mis en place', 'Publication incomplète : {n} fichiers non mis en place'), { failed: b.failed.slice(0, 10), moved: b.moved }, 'error');
+        const main = b.code || b.error || b.message ? errorMessage(b, r.status) : (r.status === 413 ? __('erreur {status} (site trop lourd pour l’hébergement)', { status: r.status }) : __('erreur {status}', { status: r.status }));
+        throw Object.assign(new Error([main, ...(b.rejected || b.failed || []).slice(0, 3)].filter(Boolean).join(' — ')), { status: r.status, ref, code: b.code });
       }
       f.ok(__n(b.written, 'Site publié : {n} fichier', 'Site publié : {n} fichiers'), { written: b.written, removed: b.removed, ref });
       const sent = __n(b.written, 'Site publié : {n} fichier envoyé', 'Site publié : {n} fichiers envoyés');
       setStatus(status, [
         b.removed ? __('{sent}, {removed}.', { sent, removed: __n(b.removed, '{n} ancien fichier retiré', '{n} anciens fichiers retirés') }) : __('{sent}.', { sent }),
         __('Les formulaires de contact arrivent par e-mail via publish.php.'),
-        skipped.length ? __n(skipped.length, '{n} fichier d’agenda (.ics) non envoyé : votre publish.php est en version {version}, téléchargez le nouveau et redéposez-le pour le publier.', '{n} fichiers d’agenda (.ics) non envoyés : votre publish.php est en version {version}, téléchargez le nouveau et redéposez-le pour les publier.', { version }) : ''
+        Number(version) < 5 ? __('Mise à jour conseillée : publish.php version {version} existe (polices, .htaccess, page 404, sécurité). Retéléchargez-le et redéposez-le par FTP.', { version: PUBLISH_VERSION }) : '',
+        skipped.length && Number(version) >= 2 ? __n(skipped.length, '{n} fichier non envoyé (polices, icône SVG, manifeste) : votre publish.php est en version {version}.', '{n} fichiers non envoyés (polices, icône SVG, manifeste) : votre publish.php est en version {version}.', { version }) : skipped.length ? __n(skipped.length, '{n} fichier d’agenda (.ics) non envoyé : votre publish.php est en version {version}, téléchargez le nouveau et redéposez-le pour le publier.', '{n} fichiers d’agenda (.ics) non envoyés : votre publish.php est en version {version}, téléchargez le nouveau et redéposez-le pour les publier.', { version }) : ''
       ].filter(Boolean).join(' '), 'ok');
       toast(__n(files.size, 'Site publié ({n} fichier).', 'Site publié ({n} fichiers).'));
-    } catch (e) { f.fail(e, { status: e.status, ref: e.ref }); setStatus(status, e.ref ? __('Échec de la publication : {message} (référence {ref} dans le journal du serveur)', { message: e.message, ref: e.ref }) : __('Échec de la publication : {message}', { message: e.message }), 'error'); }
+    } catch (e) { f.fail(e, { status: e.status, ref: e.ref, code: e.code }); setStatus(status, e.ref ? __('Échec de la publication : {message} (référence {ref} dans le journal du serveur)', { message: e.message, ref: e.ref }) : __('Échec de la publication : {message}', { message: e.message }), 'error'); }
   };
   return h('div', { class: 'pub-pane', 'data-pane': 'php' },
     h('ol', { class: 'pub-steps' },
@@ -239,7 +251,7 @@ function githubTab() {
     if (!audit.ok) { f.fail(new Error(audit.errors[0]), { errors: audit.errors.slice(0, 5) }, __('Publication bloquée par la vérification')); setStatus(status, __('Publication impossible : {error}', { error: audit.errors[0] }), 'error'); return; }
     setStatus(status, __('Publication sur GitHub…'));
     try {
-      const { files } = renderSite(state.site);
+      const files = await siteFiles();
       f.step('package', __n(files.size, '{n} fichier généré', '{n} fichiers générés'), { files: files.size }, 'info');
       const r = await publishGitHub({ token: token.value, owner: owner.value, repo: repo.value, branch: branch.value || 'main', dir: dir.value, files, message: __('Publication du site {name} depuis Atelier', { name: state.site.name }), onProgress: p => { f.step('upload', __('Fichier envoyé {done} / {total}', p), p); setStatus(status, __('Envoi des fichiers modifiés : {done} / {total}…', p)); } });
       f.ok(__('Publié sur GitHub : commit {commit}', { commit: r.commit.slice(0, 7) }), r);

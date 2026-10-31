@@ -19,6 +19,7 @@ import { publishOrigin, githubTarget, hostLabel } from '../core/publish.js';
 import { translate, renderSite, renderPage } from '../core/render.js';
 import { createZip } from '../core/zip.js';
 import { initCanvas, setCanvasKeyHandler, onCanvasReady } from './canvas.js';
+import { loadFontData, fontBase } from './fontfiles.js';
 import { initInspector } from './inspector.js';
 import { initNavigator, mountNavigator, unmountNavigator } from './navigator.js';
 import { libraryPanel } from './library.js';
@@ -158,15 +159,19 @@ function exportJson() {
   toast(__('Projet enregistré en fichier .json.'));
 }
 
-function exportZip() {
+/* Date de dernière modification pour le plan du site : dernière modification de la séance, sinon aujourd'hui */
+export const lastModified = () => new Date(state.lastTime || Date.now()).toISOString().slice(0, 10);
+
+async function exportZip() {
   const f = log.flow('export.zip', __('Export du site en .zip'));
   const check = validateSite(state.site);
   if (!check.ok) { f.fail(new Error(check.errors[0]), { errors: check.errors.slice(0, 5) }, __('Export impossible : le site n’est pas valide')); toast(__('Export impossible : {error}', { error: check.errors[0] }), 'error'); return; }
   let files, zip;
   try {
     const t0 = performance.now();
-    ({ files } = renderSite(state.site));
-    f.step('render', __('Pages générées'), { files: files.size, ms: Math.round(performance.now() - t0) });
+    const fontData = await loadFontData(state.site);
+    ({ files } = renderSite(state.site, { fontData, lastmod: lastModified() }));
+    f.step('render', __('Pages générées'), { files: files.size, fonts: fontData.size || undefined, ms: Math.round(performance.now() - t0) });
     zip = createZip([...files].map(([name, data]) => ({ name, data })));
   } catch (e) { f.fail(e); toast(__('Export impossible : {error}', { error: e.message }), 'error'); return; }
   download(`${slugify(state.site.name) || 'site'}.zip`, zip, 'application/zip');
@@ -177,7 +182,7 @@ function exportZip() {
 
 function previewTab() {
   log.info('project.preview', __('Aperçu dans un nouvel onglet'), { page: state.pageId, lang: state.lang });
-  const html = renderPage(state.site, page(), state.lang, { canvas: true })
+  const html = renderPage(state.site, page(), state.lang, { canvas: true, fontBase: fontBase() })
     .replace(/ data-node=\x22[^\x22]*\x22 data-type=\x22[^\x22]*\x22/g, '')
     .replace(/<div class=\x22ph[^\x22]*\x22[^>]*>[^<]*<\/div>/g, '');
   const url = URL.createObjectURL(new Blob([html], { type: 'text/html' }));

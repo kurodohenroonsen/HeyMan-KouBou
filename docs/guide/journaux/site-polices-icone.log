@@ -1,0 +1,6 @@
+12:37:56.879 +1.75s INFO  settings.font Police des titres : Fraunces {"role":"heading","font":"fraunces","local":true}
+12:37:57.028 +1.90s INFO  settings.font-import Police personnalisée importée : MAB Titling 400 (37 Ko), appliquée aux titres {"id":"font_9j6fo3s4","family":"MAB Titling","weight":"400","style":"normal","kb":37,"applied":"heading"}
+12:37:57.092 +1.97s INFO  settings.font Police du texte : Archivo {"role":"body","font":"archivo","local":true}
+12:37:57.161 +2.03s INFO  settings.icon.start [settings.icon#1] Import de l’icône du site « icone.svg » {"name":"icone.svg","type":"image/svg+xml","kb":1}
+12:37:57.181 +2.05s DEBUG settings.icon.decode [settings.icon#1 · 20 ms] Icône lue : 150×150 px {"width":150,"height":150,"svg":true}
+12:37:57.194 +2.07s INFO  settings.icon.ok [settings.icon#1 · 33 ms] Icône prête : favicon, icône d’accueil et manifeste {"sizes":[32,180,192,512],"svg":true,"kb":21}

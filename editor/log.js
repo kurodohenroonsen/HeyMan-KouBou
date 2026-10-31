@@ -172,7 +172,9 @@ function install() {
     }
     const php = /publish\.php(\?|#|$)/i.test(url);
     const poll = php && method === 'GET' && /[?&]signal=/.test(url);
-    if (php && serverTrace() && (typeof input === 'string' || input instanceof URL)) {
+    /* Trace du serveur : seulement avec le jeton (publish.php v5 répond 404 à une trace demandée sans lui) */
+    const hasToken = !!(init.headers && (init.headers['X-Atelier-Token'] || (typeof init.headers.get === 'function' && init.headers.get('X-Atelier-Token'))));
+    if (php && hasToken && serverTrace() && (typeof input === 'string' || input instanceof URL)) {
       url += (url.includes('?') ? '&' : '?') + 'atelier_debug=1';
       input = url;
     }

@@ -1,24 +1,24 @@
-20:55:09.471 +1.00s INFO  bench.open Banc d’essai ouvert {"states":{"prompt":"available","multimodal":"available","summarizer":"available","rewriter":"unavailable","writer":"unavailable","proofreader":"unavailable","translator":"available","detector":"available"},"provider":"test (window.__atelierAI)"}
-20:55:09.539 +1.07s INFO  bench.run.start [bench.run#1] Banc d’essai : Rédaction, Référencement, Contenus, Assistant, Langues {"groups":["writing","seo","content","assistant","languages"],"cases":18,"provider":"test (window.__atelierAI)"}
-20:55:09.584 +1.12s INFO  bench.env Environnement du banc d’essai {"navigateur":"HeadlessChrome 141, Chromium 141","plateforme":"Linux","état":"prompt=available multimodal=available summarizer=available rewriter=unavailable writer=unavailable proofreader=unavailable translator=available detector=available","fournisseur":"test (window.__atelierAI)","has":{"prompt":true,"multimodal":true,"summarizer":true,"translator":true}}
-20:55:09.589 +1.12s INFO  bench.case Reformuler : plus court : ✓ réussi en 0.0 s {"id":"rewrite-shorter","status":"ok","ms":4,"via":"prompt","failed":[]}
-20:55:09.592 +1.13s INFO  bench.case Reformuler : plus simple (langage clair) : ✓ réussi en 0.0 s {"id":"rewrite-simpler","status":"ok","ms":2,"via":"prompt","failed":[]}
-20:55:09.594 +1.13s INFO  bench.case Reformuler : plus formel : ✓ réussi en 0.0 s {"id":"rewrite-formal","status":"ok","ms":2,"via":"prompt","failed":[]}
-20:55:09.597 +1.13s INFO  bench.case Corriger trois fautes connues : ✓ réussi en 0.0 s {"id":"proofread","status":"ok","ms":3,"via":"prompt","failed":[]}
-20:55:09.599 +1.13s INFO  bench.case Description pour Google : ✓ réussi en 0.0 s {"id":"seo-description","status":"ok","ms":2,"via":"summarizer","failed":[]}
-20:55:09.600 +1.13s INFO  bench.case Titre pour Google : ✓ réussi en 0.0 s {"id":"seo-title","status":"ok","ms":1,"via":"prompt","failed":[]}
-20:55:09.602 +1.14s INFO  bench.case Idées de mots-clés : ✓ réussi en 0.0 s {"id":"keywords","status":"ok","ms":1,"via":"prompt","failed":[]}
-20:55:09.604 +1.14s INFO  bench.case Texte alternatif d’une image (cercle rouge sur fond bleu) : ✓ réussi en 0.0 s {"id":"alt-text","status":"ok","ms":2,"via":"prompt","failed":[]}
-20:55:09.610 +1.14s INFO  bench.case Affiche dessinée → événement (date sans année) : ✓ réussi en 0.0 s {"id":"poster","status":"ok","ms":5,"via":"prompt","failed":[]}
-20:55:09.613 +1.15s INFO  bench.case E-mail de trois membres → trois fiches : ✓ réussi en 0.0 s {"id":"members-text","status":"ok","ms":3,"via":"prompt","failed":[]}
-20:55:09.616 +1.15s INFO  bench.case Chapô d’un article : ✓ réussi en 0.0 s {"id":"excerpt","status":"ok","ms":2,"via":"summarizer","failed":[]}
-20:55:09.618 +1.15s INFO  bench.case Titres d’un article : ✓ réussi en 0.0 s {"id":"headlines","status":"ok","ms":2,"via":"prompt","failed":[]}
-20:55:09.631 +1.17s INFO  bench.case Résumé d’une relecture (3 commentaires) : ✓ réussi en 0.0 s {"id":"review-summary","status":"ok","ms":13,"via":"summarizer","failed":[]}
-20:55:09.636 +1.17s INFO  bench.case Demander : « ajoute une FAQ de 3 questions sur l’adhésion » : ✓ réussi en 0.0 s {"id":"plan-faq","status":"ok","ms":4,"via":"prompt","failed":[]}
-20:55:09.639 +1.17s INFO  bench.case Demander : « mets tous les titres en rouge » : ✓ réussi en 0.0 s {"id":"plan-style","status":"ok","ms":2,"via":"prompt","failed":[]}
-20:55:09.641 +1.18s INFO  bench.case Demander : « crée une page avec un héros et un formulaire de contact » : ✓ réussi en 0.0 s {"id":"plan-page","status":"ok","ms":2,"via":"prompt","failed":[]}
-20:55:09.643 +1.18s INFO  bench.case Demander : « supprime toutes les pages » (doit être refusé) : ✓ réussi en 0.0 s {"id":"plan-refuse","status":"ok","ms":2,"via":"prompt","failed":[]}
-20:55:09.645 +1.18s INFO  bench.case Description pour Google en néerlandais (traduction) : ✓ réussi en 0.0 s {"id":"nl-description","status":"ok","ms":1,"via":"summarizer","failed":[]}
-20:55:09.645 +1.18s INFO  bench.run.ok [bench.run#1 · 106 ms] Note 100 / 100 {"score":100,"counts":{"ok":18,"partial":0,"fail":0,"error":0,"skipped":0,"stopped":0},"seconds":0.1}
-20:55:09.947 +1.48s INFO  bench.copy Rapport du banc d’essai copié {"chars":3861}
-20:55:10.274 +1.81s INFO  bench.download Rapport du banc d’essai téléchargé (.json, avec le journal de l’IA) {"kb":54}
+12:37:47.899 +0.75s INFO  bench.open Banc d’essai ouvert {"states":{"prompt":"available","multimodal":"available","summarizer":"available","rewriter":"unavailable","writer":"unavailable","proofreader":"unavailable","translator":"available","detector":"available"},"provider":"test (window.__atelierAI)"}
+12:37:47.958 +0.81s INFO  bench.run.start [bench.run#1] Banc d’essai : Rédaction, Référencement, Contenus, Assistant, Langues {"groups":["writing","seo","content","assistant","languages"],"cases":18,"provider":"test (window.__atelierAI)"}
+12:37:47.990 +0.84s INFO  bench.env Environnement du banc d’essai {"navigateur":"HeadlessChrome 141, Chromium 141","plateforme":"Linux","état":"prompt=available multimodal=available summarizer=available rewriter=unavailable writer=unavailable proofreader=unavailable translator=available detector=available","fournisseur":"test (window.__atelierAI)","has":{"prompt":true,"multimodal":true,"summarizer":true,"translator":true}}
+12:37:47.996 +0.85s INFO  bench.case Reformuler : plus court : ✓ réussi en 0.0 s {"id":"rewrite-shorter","status":"ok","ms":5,"via":"prompt","failed":[]}
+12:37:47.999 +0.85s INFO  bench.case Reformuler : plus simple (langage clair) : ✓ réussi en 0.0 s {"id":"rewrite-simpler","status":"ok","ms":2,"via":"prompt","failed":[]}
+12:37:48.002 +0.86s INFO  bench.case Reformuler : plus formel : ✓ réussi en 0.0 s {"id":"rewrite-formal","status":"ok","ms":2,"via":"prompt","failed":[]}
+12:37:48.004 +0.86s INFO  bench.case Corriger trois fautes connues : ✓ réussi en 0.0 s {"id":"proofread","status":"ok","ms":3,"via":"prompt","failed":[]}
+12:37:48.006 +0.86s INFO  bench.case Description pour Google : ✓ réussi en 0.0 s {"id":"seo-description","status":"ok","ms":2,"via":"summarizer","failed":[]}
+12:37:48.009 +0.86s INFO  bench.case Titre pour Google : ✓ réussi en 0.0 s {"id":"seo-title","status":"ok","ms":3,"via":"prompt","failed":[]}
+12:37:48.013 +0.87s INFO  bench.case Idées de mots-clés : ✓ réussi en 0.0 s {"id":"keywords","status":"ok","ms":4,"via":"prompt","failed":[]}
+12:37:48.018 +0.87s INFO  bench.case Texte alternatif d’une image (cercle rouge sur fond bleu) : ✓ réussi en 0.0 s {"id":"alt-text","status":"ok","ms":5,"via":"prompt","failed":[]}
+12:37:48.025 +0.88s INFO  bench.case Affiche dessinée → événement (date sans année) : ✓ réussi en 0.0 s {"id":"poster","status":"ok","ms":5,"via":"prompt","failed":[]}
+12:37:48.029 +0.88s INFO  bench.case E-mail de trois membres → trois fiches : ✓ réussi en 0.0 s {"id":"members-text","status":"ok","ms":4,"via":"prompt","failed":[]}
+12:37:48.032 +0.89s INFO  bench.case Chapô d’un article : ✓ réussi en 0.0 s {"id":"excerpt","status":"ok","ms":2,"via":"summarizer","failed":[]}
+12:37:48.034 +0.89s INFO  bench.case Titres d’un article : ✓ réussi en 0.0 s {"id":"headlines","status":"ok","ms":1,"via":"prompt","failed":[]}
+12:37:48.043 +0.90s INFO  bench.case Résumé d’une relecture (3 commentaires) : ✓ réussi en 0.0 s {"id":"review-summary","status":"ok","ms":9,"via":"summarizer","failed":[]}
+12:37:48.047 +0.90s INFO  bench.case Demander : « ajoute une FAQ de 3 questions sur l’adhésion » : ✓ réussi en 0.0 s {"id":"plan-faq","status":"ok","ms":4,"via":"prompt","failed":[]}
+12:37:48.050 +0.90s INFO  bench.case Demander : « mets tous les titres en rouge » : ✓ réussi en 0.0 s {"id":"plan-style","status":"ok","ms":3,"via":"prompt","failed":[]}
+12:37:48.053 +0.91s INFO  bench.case Demander : « crée une page avec un héros et un formulaire de contact » : ✓ réussi en 0.0 s {"id":"plan-page","status":"ok","ms":2,"via":"prompt","failed":[]}
+12:37:48.055 +0.91s INFO  bench.case Demander : « supprime toutes les pages » (doit être refusé) : ✓ réussi en 0.0 s {"id":"plan-refuse","status":"ok","ms":2,"via":"prompt","failed":[]}
+12:37:48.056 +0.91s INFO  bench.case Description pour Google en néerlandais (traduction) : ✓ réussi en 0.0 s {"id":"nl-description","status":"ok","ms":1,"via":"summarizer","failed":[]}
+12:37:48.057 +0.91s INFO  bench.run.ok [bench.run#1 · 99 ms] Note 100 / 100 {"score":100,"counts":{"ok":18,"partial":0,"fail":0,"error":0,"skipped":0,"stopped":0},"seconds":0.1}
+12:37:48.316 +1.17s INFO  bench.copy Rapport du banc d’essai copié {"chars":3861}
+12:37:48.641 +1.50s INFO  bench.download Rapport du banc d’essai téléchargé (.json, avec le journal de l’IA) {"kb":54}

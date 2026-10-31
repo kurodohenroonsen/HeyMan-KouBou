@@ -604,9 +604,10 @@ test('images des éléments publiées ; assets inutilisés absents', () => {
   b.site = { ...b.site, assets: { img_a: { file: 'affiche.png', mime: 'image/png', dataUrl: png }, img_b: { file: 'autre.png', mime: 'image/png', dataUrl: png } } };
   b.add({ title: { fr: 'A' }, image: 'asset:img_a' });
   const { files } = renderSite(b.site, { today: TODAY });
-  assert.ok(files.has('assets/affiche.png'));
-  assert.ok(!files.has('assets/autre.png'));
-  assert.ok(files.get('agenda/a/index.html').includes('src="../../assets/affiche.png"'));
+  const affiche = [...files.keys()].find(k => /^assets\/affiche-[0-9a-f]{8}\.png$/.test(k));
+  assert.ok(affiche, [...files.keys()].join());
+  assert.ok(![...files.keys()].some(k => /^assets\/autre-/.test(k)));
+  assert.ok(files.get('agenda/a/index.html').includes(`src="../../${affiche}"`));
 });
 
 /* ---------- Publication ---------- */

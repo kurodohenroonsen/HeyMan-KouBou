@@ -1,19 +1,14 @@
-12:29:48.009 +8.71s DEBUG store.commit Modification {"source":"site","past":12,"page":"p_3ll0hsc8"}
-12:29:48.012 +8.71s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
-12:29:48.019 +8.71s INFO  publish.php.start [publish.php#2] Publication sur OVH (publish.php) {"url":"http://127.0.0.1:9476/publish.php"}
-12:29:48.019 +8.71s INFO  storage.secret-write Secret oublié sur cet appareil {"name":"php-token:http://127.0.0.1:9476"}
-12:29:48.027 +8.72s INFO  publish.php.warnings [publish.php#2 · 8 ms] 1 point à vérifier (la publication continue) {"warnings":[{"pageId":"p_lnnzc3rl","nodeId":"n_3f60031k5q","message":"Accueil : image non choisie : rien ne s’affichera à cet endroit."}]}
-12:29:48.027 +8.72s DEBUG net.request GET 127.0.0.1:9476/publish.php {"id":4,"method":"GET","url":"http://127.0.0.1:9476/publish.php?atelier_debug=1"}
-12:29:48.032 +8.73s DEBUG net.response 200 GET 127.0.0.1:9476/publish.php (5 ms) {"id":4,"status":200,"ms":5,"type":"application/json","req":"2f76f1b9"}
-12:29:48.047 +8.74s DEBUG php.req.start GET reçu {"method":"GET","who":"376ecff7b3","bytes":0,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8811","req":"2f76f1b9","srvMs":0}
-12:29:48.048 +8.74s DEBUG php.status Statut demandé (test de connexion) {"version":"4","zip":true,"diag":false,"req":"2f76f1b9","srvMs":0.1}
-12:29:48.048 +8.74s DEBUG php.req.end Réponse 200 (status) {"status":200,"route":"status","mem_kb":741,"req":"2f76f1b9","srvMs":0.1}
-12:29:48.048 +8.74s DEBUG publish.php.version [publish.php#2 · 29 ms] publish.php installé : version 4 {"version":"4"}
-12:29:48.050 +8.75s INFO  publish.php.package [publish.php#2 · 31 ms] Paquet prêt : 12 fichiers {"files":12,"kb":75,"forms":1,"ms":2}
-12:29:48.052 +8.75s DEBUG net.request POST 127.0.0.1:9476/publish.php {"id":5,"method":"POST","url":"http://127.0.0.1:9476/publish.php?atelier_debug=1","body":{"site":"Blob application/zip (75 Ko)","forms":"48 car."}}
-12:29:48.611 +9.31s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":13}
-12:29:49.061 +9.76s WARN  net.response 401 POST 127.0.0.1:9476/publish.php (1009 ms) {"id":5,"status":401,"ms":1009,"type":"application/json","req":"4549543b"}
-12:29:49.063 +9.76s DEBUG php.req.start POST reçu {"method":"POST","who":"376ecff7b3","bytes":77503,"ua":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.","origin":"http://localhost:8811","req":"4549543b","srvMs":0}
-12:29:49.063 +9.76s WARN  php.publish.denied Publication refusée : jeton faux {"req":"4549543b","srvMs":0.1}
-12:29:49.063 +9.76s WARN  php.req.end Réponse 401 (publish) {"status":401,"route":"publish","mem_kb":746,"req":"4549543b","srvMs":1000.4}
-12:29:49.063 +9.76s ERROR publish.php.fail [publish.php#2 · 1044 ms] Jeton de publication refusé. {"status":401,"ref":"4549543b","error":{"name":"Error","message":"Jeton de publication refusé.","status":401,"stack":"Error: Jeton de publication refusé.\nat HTMLButtonElement.run (http://localhost:8811/editor/publish-ui.js:184:29)"}}
+12:30:28.157 +8.66s DEBUG store.commit Modification {"source":"site","past":12,"page":"p_etij9qwa"}
+12:30:28.160 +8.67s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
+12:30:28.170 +8.68s INFO  publish.php.start [publish.php#2] Publication sur OVH (publish.php) {"url":"http://127.0.0.1:9518/publish.php"}
+12:30:28.170 +8.68s INFO  storage.secret-write Secret oublié sur cet appareil {"name":"php-token"}
+12:30:28.180 +8.69s INFO  publish.php.warnings [publish.php#2 · 10 ms] 1 point à vérifier (la publication continue) {"warnings":[{"pageId":"p_2vbxb9eq","nodeId":"n_4i68213342","message":"Accueil : image non choisie : rien ne s’affichera à cet endroit."}]}
+12:30:28.180 +8.69s DEBUG net.request GET 127.0.0.1:9518/publish.php {"id":12,"method":"GET","url":"http://127.0.0.1:9518/publish.php"}
+12:30:28.192 +8.70s DEBUG net.response 200 GET 127.0.0.1:9518/publish.php (12 ms) {"id":12,"status":200,"ms":12,"type":"application/json","req":"02dbbdcf"}
+12:30:28.196 +8.70s DEBUG publish.php.version [publish.php#2 · 26 ms] publish.php installé : version 5 {"version":"5"}
+12:30:28.196 +8.70s DEBUG fonts.load 8 fichiers de polices prêts pour le site {"files":8,"kb":112}
+12:30:28.202 +8.71s INFO  publish.php.package [publish.php#2 · 32 ms] Paquet prêt : 24 fichiers {"files":24,"kb":210,"forms":1,"ms":6}
+12:30:28.205 +8.71s DEBUG net.request POST 127.0.0.1:9518/publish.php {"id":13,"method":"POST","url":"http://127.0.0.1:9518/publish.php?atelier_debug=1","body":{"site":"Blob application/zip (210 Ko)","forms":"48 car.","htaccess":"107 car."}}
+12:30:28.759 +9.27s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":13}
+12:30:29.217 +9.72s WARN  net.response 401 POST 127.0.0.1:9518/publish.php (1012 ms) {"id":13,"status":401,"ms":1012,"type":"application/json","req":"b4cd90c7"}
+12:30:29.220 +9.73s ERROR publish.php.fail [publish.php#2 · 1050 ms] Jeton de publication refusé. {"status":401,"ref":"b4cd90c7","code":"token_refused","error":{"name":"Error","message":"Jeton de publication refusé.","code":"token_refused","status":401,"stack":"Error: Jeton de publication refusé.\nat HTMLButtonElement.run (http://localhost:8813/editor/publish-ui.js:121:29)"}}

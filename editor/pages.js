@@ -3,13 +3,14 @@ import { h, toast } from './dom.js';
 import { state, commit, setView } from './store.js';
 import { addPage, removePage, setPageSlug, setPageTitle, setPageSeo, movePage, slugify, LANG_LABELS, setPageFooterLink } from '../core/site.js';
 import { addAccessibilityPage } from '../core/a11ypage.js';
+import { addLegalPages, LEGAL_FORMS } from '../core/legalpages.js';
 import { suggestSlug } from '../core/i18n.js';
 import { auditSite } from '../core/audit.js';
 import { translate } from '../core/render.js';
 import { customizeMenu, addMenuLink, addMenuPage, removeMenuItem, moveMenuItem, indentMenuItem, outdentMenuItem, setMenuItemLabel, setMenuItemUrl, menuLabel } from '../core/menu.js';
 import { log } from './log.js';
 import { openAsk } from './assistant-ui.js';
-import { __, __n, __c } from '../core/ui-i18n.js';
+import { __, __n, __c, uiLang } from '../core/ui-i18n.js';
 
 const open = new Set();
 
@@ -239,6 +240,47 @@ function openA11yDialog() {
   email.focus();
 }
 
+/* Assistant : mentions légales et vie privée dans les langues du site (modèle à adapter et à faire relire) */
+export function openLegalDialog() {
+  document.getElementById('legalDialog')?.remove();
+  const s = state.site;
+  const saved = s.legal || {};
+  const field = (label, ctl) => h('label', { class: 'field' }, h('span', { class: 'field__label' }, label), ctl);
+  const input = (k, ph, type = 'text') => h('input', { class: 'input', type, value: saved[k] ?? (k === 'name' ? s.name : ''), placeholder: ph, 'data-legal': k });
+  const form = h('select', { class: 'control', 'data-legal': 'form' }, Object.keys(LEGAL_FORMS).map(k => h('option', { value: k, selected: (saved.form || 'asbl') === k }, LEGAL_FORMS[k][uiLang()] || LEGAL_FORMS[k].fr)));
+  const ins = { name: input('name', __('Dénomination')), seat: input('seat', __('Rue, numéro, code postal, commune')), number: input('number', '0123.456.789'), rpm: input('rpm', __('ex. Liège, division Namur')), email: input('email', 'contact@exemple.be', 'email'), phone: input('phone', __('facultatif'), 'tel'), vat: input('vat', __('facultatif (ex. BE0123456789)')), host: input('host', __('ex. OVH SAS, 2 rue Kellermann, 59100 Roubaix, France')) };
+  log.info('page.legal.open', __('Assistant des pages légales ouvert'), { exists: s.pages.filter(p => p.legal).map(p => p.legal) });
+  const d = h('dialog', { class: 'audit', id: 'legalDialog', 'aria-labelledby': 'legalTitle' },
+    h('header', { class: 'audit__head' }, h('h2', { id: 'legalTitle' }, __('Mentions légales et vie privée')), h('button', { type: 'button', class: 'icon-btn', 'aria-label': __('Fermer'), onclick: () => d.close() }, '✕')),
+    h('div', { class: 'a11y-form' },
+      h('p', { class: 'hint is-warn', 'data-legal-warning': '' }, __('Modèle à adapter, à faire relire par un juriste : ce texte n’est pas un avis juridique.')),
+      h('p', { class: 'hint' }, __('Crée deux pages, « Mentions légales » et « Vie privée », dans toutes les langues du site, avec un lien dans le pied de page. La case de consentement des formulaires renvoie à la page « Vie privée ».')),
+      field(__('Dénomination'), ins.name), field(__('Forme juridique'), form), field(__('Siège'), ins.seat), field(__('Numéro d’entreprise (BCE)'), ins.number),
+      field(__('RPM (tribunal de l’entreprise)'), ins.rpm), field(__('E-mail de contact'), ins.email), field(__('Téléphone'), ins.phone), field(__('Numéro de TVA'), ins.vat), field(__('Hébergeur du site'), ins.host)),
+    h('footer', { class: 'audit__foot' },
+      h('button', { type: 'button', class: 'btn', onclick: () => d.close() }, __('Annuler')),
+      h('button', { type: 'button', class: 'btn btn--primary', id: 'legalCreate', onclick: () => {
+        const opts = Object.fromEntries(Object.entries(ins).map(([k, el]) => [k, el.value.trim()]));
+        opts.form = form.value;
+        try {
+          const r = addLegalPages(state.site, opts);
+          r.site.legal = opts;
+          commit(r.site, { source: 'pages' });
+          log.info('page.legal.create', __('Pages « Mentions légales » et « Vie privée » créées en {n} langues', { n: state.site.languages.length }), { legal: r.legalId, privacy: r.privacyId, form: opts.form, langs: state.site.languages, vat: !!opts.vat, footerLink: true });
+          d.close();
+          setView({ pageId: r.legalId });
+          toast(__('Pages légales créées et liées dans le pied de page. Faites-les relire.'));
+        } catch (e) {
+          log.warn('page.legal.refused', __('Pages légales non créées : {error}', { error: e.message }), { error: e, filled: Object.keys(opts).filter(k => opts[k]) });
+          toast(e.message, 'error');
+        }
+      } }, __('Créer les deux pages'))));
+  d.addEventListener('close', () => d.remove());
+  document.body.append(d);
+  d.showModal();
+  ins.name.focus();
+}
+
 export function pagesPanel() {
   const s = state.site;
   const title = h('input', { class: 'input', type: 'text', id: 'newPageTitle', placeholder: __('Titre de la nouvelle page'), 'aria-label': __('Titre de la nouvelle page') });
@@ -261,6 +303,7 @@ export function pagesPanel() {
     h('div', { class: 'row-btns' }, h('button', { type: 'button', class: 'btn btn--small btn--ai', 'data-page-describe': '', title: __('Décrire la page à créer : l’IA locale propose ses sections (aperçu avant de créer)'), onclick: () => openAsk(__('Crée une page « » avec ')) }, __('✨ Page décrite'))),
     h('p', { class: 'hint' }, __('Les pages apparaissent dans le menu dans cet ordre. L’accueil reste toujours en premier.')),
     h('button', { type: 'button', class: 'btn btn--small', 'data-a11y-page': '', onclick: openA11yDialog }, __('♿ Créer la déclaration d’accessibilité')),
+    h('button', { type: 'button', class: 'btn btn--small', 'data-legal-pages': '', title: __('Mentions légales et vie privée, dans les langues du site'), onclick: openLegalDialog }, __('⚖ Créer les pages légales')),
     h('div', { class: 'page-list' }, s.pages.map((p, i) => pageCard(p, i, s.pages.length))),
     ...menuSection()
   ].filter(Boolean);

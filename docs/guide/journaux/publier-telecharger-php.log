@@ -1,12 +1,11 @@
-12:29:47.323 +8.02s DEBUG inspector.field Champ modifié : Adresse qui reçoit les messages {"key":"email","type":"text","how":"saisie","chars":29}
-12:29:47.326 +8.02s INFO  publish.open Fenêtre Publier {"mode":"zip","tab":"php","ok":true,"errors":0,"warnings":1}
-12:29:47.328 +8.02s DEBUG ui.dialog.open Fenêtre ouverte : Publier le site {"id":"publishDialog","class":"audit","modal":true}
-12:29:47.337 +8.03s DEBUG publish.token-for Dépôt GitHub incomplet : aucun jeton pré-rempli
-12:29:47.341 +8.04s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token:https://www.xn--mdia-alternatif-bnb.be"}
-12:29:47.341 +8.04s DEBUG publish.token-for Aucun jeton gardé pour www.xn--mdia-alternatif-bnb.be {"origin":"https://www.xn--mdia-alternatif-bnb.be","known":false}
-12:29:47.466 +8.16s INFO  publish.php.generate publish.php v4 téléchargé avec un nouveau jeton (l’ancien publish.php ne l’acceptera pas) {"version":"4","remember":false}
-12:29:47.468 +8.16s DEBUG store.commit Modification {"source":"site","past":7,"page":"p_3ll0hsc8"}
-12:29:47.474 +8.17s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}
-12:29:47.526 +8.22s DEBUG store.commit Modification {"source":"site","past":8,"page":"p_3ll0hsc8"}
-12:29:47.534 +8.23s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":5}
-12:29:47.549 +8.24s DEBUG publish.token-for Jeton pré-rempli pour 127.0.0.1:9476 (séance) {"origin":"http://127.0.0.1:9476","from":"séance","known":false}
+12:30:27.672 +8.18s DEBUG inspector.field Champ modifié : Adresse qui reçoit les messages {"key":"email","type":"text","how":"saisie","chars":29}
+12:30:27.677 +8.19s INFO  publish.open Fenêtre Publier {"mode":"zip","tab":"php","ok":true,"errors":0,"warnings":1}
+12:30:27.679 +8.19s DEBUG ui.dialog.open Fenêtre ouverte : Publier le site {"id":"publishDialog","class":"audit","modal":true}
+12:30:27.690 +8.20s DEBUG storage.secret-read Aucun secret gardé {"name":"php-token"}
+12:30:27.691 +8.20s DEBUG storage.secret-read Aucun secret gardé {"name":"github-token"}
+12:30:27.754 +8.26s INFO  storage.secret-write Secret oublié sur cet appareil {"name":"php-token"}
+12:30:27.770 +8.28s INFO  publish.php.generate publish.php v5 téléchargé avec un nouveau jeton (l’ancien publish.php ne l’acceptera pas) {"version":"5","remember":false}
+12:30:27.771 +8.28s DEBUG store.commit Modification {"source":"site","past":7,"page":"p_etij9qwa"}
+12:30:27.774 +8.28s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":2}
+12:30:27.800 +8.31s DEBUG store.commit Modification {"source":"site","past":8,"page":"p_etij9qwa"}
+12:30:27.804 +8.31s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"site","mode":"contenu","ms":3}

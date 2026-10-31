@@ -4,6 +4,7 @@
  */
 import { log } from './log.js';
 import { __, __n } from '../core/ui-i18n.js';
+import { sanitizeSvg, ICON_SIZES } from '../core/siteicon.js';
 
 const MAX = 1600;
 const VARIANTS = [480, 960];
@@ -78,4 +79,61 @@ export async function imageToWebp(file) {
     f.fail(e, { name: info.name, type: info.type, kb: info.kb, cause: e.cause ? String(e.cause.message || e.cause).slice(0, 120) : undefined });
     throw e;
   }
+}
+
+/* ---------- Icône du site (cycle 29) : PNG 32, 180, 192 et 512 px découpés au carré ; SVG assaini conservé ---------- */
+const ICON_MAX = 2 * 1048576;
+
+function squareDataUrl(source, w, h, size) {
+  const canvas = document.createElement('canvas');
+  canvas.width = size; canvas.height = size;
+  const g = canvas.getContext('2d');
+  g.imageSmoothingQuality = 'high';
+  const side = Math.min(w, h);
+  g.drawImage(source, (w - side) / 2, (h - side) / 2, side, side, 0, 0, size, size);
+  return canvas.toDataURL('image/png');
+}
+
+function loadImage(url) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = () => reject(new Error(__('Image illisible.')));
+    img.src = url;
+  });
+}
+
+export async function iconFromFile(file) {
+  const info = { name: String(file?.name || '').slice(0, 80), type: file?.type || '(inconnu)', kb: kb(file?.size || 0) };
+  const svg = /svg/i.test(file.type) || /\.svg$/i.test(file.name);
+  if (!svg && !/^image\/(png|jpe?g|webp)$/i.test(file.type)) {
+    log.warn('settings.icon-refused', __('Icône refusée : type « {type} » non pris en charge (PNG, JPEG, WebP ou SVG)', { type: info.type }), info);
+    throw new Error(__('Format non pris en charge : image carrée PNG, JPEG, WebP ou SVG.'));
+  }
+  if (file.size > ICON_MAX) {
+    log.warn('settings.icon-refused', __('Icône refusée : fichier trop lourd ({kb} Ko)', { kb: info.kb }), info);
+    throw new Error(__('Icône trop lourde (2 Mo au plus).'));
+  }
+  const f = log.flow('settings.icon', __('Import de l’icône du site « {name} »', { name: info.name }), info);
+  let url = null;
+  try {
+    const out = { png: {} };
+    let source, w, h;
+    if (svg) {
+      out.svg = sanitizeSvg(await file.text());
+      if (!out.svg) throw new Error(__('Ce fichier SVG n’est pas une icône utilisable (balise <svg> attendue).'));
+      url = URL.createObjectURL(new Blob([out.svg], { type: 'image/svg+xml' }));
+      source = await loadImage(url);
+      w = source.naturalWidth || 512; h = source.naturalHeight || 512;
+    } else {
+      source = await createImageBitmap(file);
+      w = source.width; h = source.height;
+    }
+    f.step('decode', __('Icône lue : {w}×{h} px', { w, h }), { width: w, height: h, svg: !!out.svg });
+    if (Math.abs(w - h) > Math.max(w, h) * 0.05) f.warn('not-square', __('Image non carrée : elle est recadrée au centre'), { width: w, height: h });
+    for (const size of ICON_SIZES) out.png[size] = squareDataUrl(source, w, h, size);
+    source.close?.();
+    f.ok(__('Icône prête : favicon, icône d’accueil et manifeste'), { sizes: ICON_SIZES, svg: !!out.svg, kb: kb(Object.values(out.png).reduce((n, d) => n + d.length * 0.75, 0)) });
+    return out;
+  } catch (e) { f.fail(e, info); throw e; } finally { if (url) URL.revokeObjectURL(url); }
 }

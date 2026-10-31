@@ -100,7 +100,7 @@ export default async function (t) {
   await dl.saveAs(join(dir, 'site.zip'));
   execFileSync('python3', ['-c', 'import zipfile,sys; zipfile.ZipFile(sys.argv[1]).extractall(sys.argv[2])', join(dir, 'site.zip'), join(dir, 'site')]);
   const files = readdirSync(join(dir, 'site'), { recursive: true }).map(String);
-  t.ok(files.filter(f => /^assets\/photo-test-(480|960)\.webp$/.test(f)).length === 2, 'export : variantes 480 et 960 px présentes');
+  t.ok(files.filter(f => /^assets\/photo-test-(480|960)-[0-9a-f]{8}\.webp$/.test(f)).length === 2, 'export : variantes 480 et 960 px présentes');
   const home = readFileSync(join(dir, 'site', 'index.html'), 'utf8');
   const tag = home.match(/<img [^>]*photo-test[^>]*>/)?.[0] || '';
   t.ok(/srcset="[^"]*480w[^"]*960w[^"]*1600w"/.test(tag) && /sizes="\(max-width: 640px\) 100vw/.test(tag) && /width="1600" height="900"/.test(tag) && /fetchpriority="high"/.test(tag), 'image principale : srcset, sizes, dimensions, priorité haute');

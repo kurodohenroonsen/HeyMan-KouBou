@@ -2,26 +2,12 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https: wss: data: blob: http://localhost:* http://127.0.0.1:*; img-src 'self' data: blob: https:; media-src 'self' blob: data:; frame-src 'self' blob: data:; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self' data:; worker-src 'self' blob:">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Atelier – éditeur visuel</title>
 <meta name="robots" content="noindex">
 <link rel="stylesheet" href="editor/editor.css">
-<script>
-/* Langue de l'interface (cycle 22), avant les modules : ?lang=, choix retenu, langue du navigateur ; puis son catalogue (même origine, synchrone). */
-(function(){var L={fr:1,en:1,ja:1},l=null,q=null;try{q=new URLSearchParams(location.search).get('lang');}catch(e){}
-if(q&&L[q]){l=q;try{localStorage.setItem('atelier-ui-lang',q);}catch(e){}}
-if(!l){try{var s=localStorage.getItem('atelier-ui-lang');if(s&&L[s])l=s;}catch(e){}}
-if(!l){var n=navigator.languages||[navigator.language||''];for(var i=0;i<n.length&&!l;i++){var b=String(n[i]||'').toLowerCase().slice(0,2);if(L[b])l=b;}if(!l)l=n.length?'en':'fr';}
-window.__atelierUiLang=l;document.documentElement.lang=l;
-if(l!=='fr'){document.write('<script src="i18n/'+l+'.js"><\/script>');}})();
-</script>
-<script>
-/* Avant les modules : note les erreurs de chargement et un démarrage qui n'aboutit pas (le journal complet prend le relais). */
-(function(){var E=window.__atelierEarly=[];function push(k,d){if(window.atelierDebug){return;}E.push({t:Date.now(),k:k,d:d});try{console.error('[Atelier] '+k+' '+JSON.stringify(d));}catch(e){}}
-window.addEventListener('error',function(e){var t=e.target;if(t&&t!==window&&t.nodeType===1){push('boot.resource',{message:'Fichier non chargé : '+(t.src||t.href||t.tagName),url:t.src||t.href,tag:t.tagName});}else{push('boot.error',{message:e.message,file:e.filename,line:e.lineno,col:e.colno});}},true);
-window.addEventListener('unhandledrejection',function(e){push('boot.rejection',{message:String(e.reason&&e.reason.message||e.reason)});});
-setTimeout(function(){if(!(window.__atelier&&window.__atelier.ready)){var m='L’éditeur n’a pas démarré en 15 s (erreurs de démarrage : '+E.length+')';if(window.atelierDebug){window.atelierDebug.log.error('boot.timeout',m,{early:E.length});}else{E.push({t:Date.now(),k:'boot.timeout',d:{message:m}});console.error('[Atelier] boot.timeout '+m);}}},15000);})();
-</script>
+<script src="editor/boot.js"></script>
 </head>
 <body>
 <header class="topbar">
@@ -101,6 +87,5 @@ setTimeout(function(){if(!(window.__atelier&&window.__atelier.ready)){var m='L�
 <div class="narrow-note" role="note">L’éditeur est prévu pour un écran d’au moins 1024 px de large. Le bouton « Mobile » montre la page telle qu’elle s’affiche sur un téléphone.</div>
 <div class="drag-ghost" id="dragGhost" hidden></div>
 <div class="toasts" id="toasts" aria-live="polite"></div>
-<script type="module" src="editor/app.js"></script>
 </body>
 </html>

@@ -1,3 +1,3 @@
-12:30:38.906 +1.15s DEBUG store.commit Modification {"source":"review","past":3,"page":"p_4whtrd8b"}
-12:30:38.910 +1.15s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"review","mode":"contenu","ms":3}
-12:30:38.913 +1.15s INFO  review.delete Commentaire supprimé avec ses réponses {"id":"cm_WQ8GkJew6Lln","replies":0}
+12:32:09.153 +0.90s DEBUG store.commit Modification {"source":"review","past":3,"page":"p_f28p0wzq"}
+12:32:09.157 +0.90s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"review","mode":"contenu","ms":2}
+12:32:09.161 +0.91s INFO  review.delete Commentaire supprimé avec ses réponses {"id":"cm_9ucjuuyPVrz_","replies":0}

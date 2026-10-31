@@ -142,13 +142,14 @@ Le projet s'enregistre tout seul dans le navigateur (IndexedDB ; les images sont
   - Si vous perdez le jeton : recréez un publish.php et redéposez-le.
 - **GitHub → OVH** (sans PHP) : indiquez le dépôt et un jeton GitHub à accès limité ; Atelier envoie seulement les fichiers modifiés, et l'intégration Git d'OVH (Hébergement → Git, avec webhook) met le site à jour.
 - **Fichier .zip** : voir ci-dessous.
+- **publish.php version 5** (cycle 29) : il écrit lui-même le `.htaccess` du site (page 404 par langue, https et www d'après l'adresse du site, en-têtes de sécurité, cache long) ; chaque erreur a un code traduit dans l'éditeur ; « Tester la connexion » propose la mise à jour si une version 4 est installée. Hébergez l'éditeur sur un autre hôte que le site (`atelier.votre-site.be`), pas dans un sous-dossier.
 
 ### Versions
 - Fichier → **Versions…** : enregistrez une version avant un gros changement, comparez avec l'état actuel, restaurez. Une version est aussi gardée automatiquement chaque jour et avant toute restauration ou ouverture d'un autre projet. Les versions restent dans ce navigateur : gardez aussi de temps en temps une copie « Enregistrer le projet (.json) ».
 
 ### Publier à la main
 1. **Exporter le site** : une vérification s'affiche (images sans description, liens cassés, formulaire sans destinataire, textes à traduire…). Chaque ligne a un bouton « Aller à ».
-2. **Exporter** télécharge un `.zip` : `index.html`, `nl/`, `de/`, `en/`, une page par dossier, `styles.css`, `assets/`, `sitemap.xml`, `robots.txt`.
+2. **Exporter** télécharge un `.zip` : `index.html`, `nl/`, `de/`, `en/`, une page par dossier, `styles.css`, `assets/` (images, polices), `404.html`, `.htaccess`, icônes et `site.webmanifest`, `sitemap.xml`, `robots.txt`.
 3. Décompressez et déposez le contenu à la racine du site chez OVH (FTP ou gestionnaire de fichiers). C'est tout : pas de PHP, pas de base de données.
 
 Renseignez l'**adresse du site** (panneau Site) avant l'export : elle sert aux liens canoniques, aux liens entre langues et au sitemap pour Google.
@@ -163,7 +164,8 @@ Renseignez l'**adresse du site** (panneau Site) avant l'export : elle sert aux l
 ### Vie privée
 - Vidéo et carte : rien n'est chargé chez YouTube, Vimeo ou Google tant que le visiteur ne clique pas.
 - Le formulaire ouvre le logiciel de courriel du visiteur ; l'adresse de réception n'apparaît pas en clair dans la page. Un service de formulaire (adresse https) peut le remplacer.
-- Les polices Google ne sont chargées que si vous en choisissez une autre que « Système » ou « Georgia ».
+- Polices livrées avec le site (aucune requête vers Google) ; police personnalisée `.woff2` possible (licences : `docs/tiers.md`).
+- Pages « Mentions légales » et « Vie privée » générées (Pages → ⚖, modèle à faire relire) ; case de consentement obligatoire dans les formulaires, vérifiée aussi par publish.php.
 
 ## Raccourcis
 
@@ -229,6 +231,7 @@ node tools/e2e/run.mjs http://localhost:8791/ /tmp/captures
 - Les adresses vidéo sont analysées strictement (identifiant alphanumérique uniquement).
 - Les identifiants d'éléments et ancres sont nettoyés ; les données structurées JSON-LD sont échappées.
 - Collaboration : clé privée jamais exportée hors du navigateur, invitations signées et datées, preuve de possession de la clé à chaque connexion, rôle relecteur appliqué par l'hôte, commentaires signés et vérifiés, opérations reçues filtrées (chemins dangereux, images), mise en relation chiffrée de bout en bout (le serveur ne voit ni la clé ni le contenu).
+- Éditeur sous CSP stricte (aucun script en ligne) ; site publié avec `.htaccess` (CSP, `nosniff`, `Referrer-Policy`, `Permissions-Policy`, HSTS) ; publish.php v5 : trace réservée au jeton, signalisation bornée avec preuve de salle, expéditeur fixé à la génération.
 - Les valeurs des collections sont vérifiées selon leur type (texte sans balises, dates AAAA-MM-JJ, liens https/mailto/tel uniquement, images importées ou https), à la saisie comme à l'import CSV ; iCal et RSS sont échappés selon leur format.
 
 ### Suite possible

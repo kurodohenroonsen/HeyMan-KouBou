@@ -1,15 +1,15 @@
-12:29:37.453 +0.00s INFO  boot.log Journal prêt {"console":"debug","keep":"debug","aide":"atelierDebug.copy() ou le bouton 🐞"}
-12:29:37.458 +0.01s DEBUG widgets.extra Widgets supplémentaires chargés : 15 {"widgets":23,"extra":15}
-12:29:37.461 +0.01s INFO  boot.start [boot#1] Démarrage d’Atelier (cycle 21) {"url":"http://localhost:8811/?fresh=1"}
-12:29:37.462 +0.01s DEBUG ui.lang-ready Interface en Français {"lang":"fr","static":0,"catalog":false}
-12:29:37.468 +0.02s INFO  boot.project [boot#1 · 7 ms] Démarrage à neuf (?fresh) : exemple chargé {"source":"fresh","name":"MAB – Médias Alternatifs Belges","pages":2,"languages":["fr","nl","de","en"]}
-12:29:37.472 +0.02s DEBUG canvas.scale Canevas ordinateur : 1280 px, réduit à 62 % {"device":"desktop","width":1280,"scale":62,"available":792}
-12:29:37.473 +0.02s INFO  canvas.load.start [canvas.load#1] Chargement complet du canevas : premier chargement {"reason":"premier chargement","page":"p_5117p7cy","lang":"fr","device":"desktop"}
-12:29:37.481 +0.03s DEBUG canvas.load.render [canvas.load#1 · 8 ms] Page rendue {"ms":7,"kb":25}
-12:29:37.500 +0.05s INFO  storage.upgrade Base locale créée ou mise à jour {"from":0,"to":3}
-12:29:37.512 +0.06s DEBUG storage.open Base locale ouverte {"ms":29}
-12:29:37.514 +0.06s DEBUG version.init 0 version(s) dans ce navigateur {"count":0,"manual":0,"lastAuto":null,"autoToday":false}
-12:29:37.514 +0.06s DEBUG storage.secret-read Aucun secret gardé {"name":"collab-session"}
-12:29:37.527 +0.07s INFO  boot.ok [boot#1 · 66 ms] Éditeur prêt {"page":"p_5117p7cy","lang":"fr"}
-12:29:37.528 +0.08s INFO  canvas.load.ok [canvas.load#1 · 55 ms] Canevas prêt {"nodes":30,"scale":62,"via":"dom"}
-12:29:37.706 +0.25s DEBUG canvas.resources Ressources externes du canevas chargées {"ms":225,"hosts":["fonts.googleapis.com"]}
+12:30:17.802 +0.00s INFO  boot.log Journal prêt {"console":"debug","keep":"debug","aide":"atelierDebug.copy() ou le bouton 🐞"}
+12:30:17.806 +0.01s DEBUG widgets.extra Widgets supplémentaires chargés : 15 {"widgets":23,"extra":15}
+12:30:17.807 +0.01s INFO  boot.start [boot#1] Démarrage d’Atelier (cycle 21) {"url":"http://localhost:8813/?fresh=1"}
+12:30:17.808 +0.01s DEBUG ui.lang-ready Interface en Français {"lang":"fr","static":0,"catalog":false}
+12:30:17.814 +0.01s INFO  boot.project [boot#1 · 7 ms] Démarrage à neuf (?fresh) : exemple chargé {"source":"fresh","name":"MAB – Médias Alternatifs Belges","pages":2,"languages":["fr","nl","de","en"]}
+12:30:17.816 +0.01s DEBUG canvas.scale Canevas ordinateur : 1280 px, réduit à 62 % {"device":"desktop","width":1280,"scale":62,"available":792}
+12:30:17.817 +0.02s INFO  canvas.load.start [canvas.load#1] Chargement complet du canevas : premier chargement {"reason":"premier chargement","page":"p_fbt4vtje","lang":"fr","device":"desktop"}
+12:30:17.826 +0.03s DEBUG canvas.load.render [canvas.load#1 · 9 ms] Page rendue {"ms":8,"kb":29}
+12:30:17.878 +0.08s INFO  storage.upgrade Base locale créée ou mise à jour {"from":0,"to":3}
+12:30:17.904 +0.10s DEBUG storage.open Base locale ouverte {"ms":74}
+12:30:17.906 +0.10s INFO  boot.ok [boot#1 · 99 ms] Éditeur prêt {"page":"p_fbt4vtje","lang":"fr"}
+12:30:17.907 +0.11s INFO  canvas.load.ok [canvas.load#1 · 90 ms] Canevas prêt {"nodes":30,"scale":62,"via":"dom"}
+12:30:17.911 +0.11s DEBUG version.init 0 version(s) dans ce navigateur {"count":0,"manual":0,"lastAuto":null,"autoToday":false}
+12:30:17.911 +0.11s DEBUG storage.secret-read Aucun secret gardé {"name":"collab-session"}
+12:30:17.925 +0.12s DEBUG canvas.resources Ressources externes du canevas chargées {"ms":98,"hosts":[]}

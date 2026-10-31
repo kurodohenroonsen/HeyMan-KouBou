@@ -5,7 +5,8 @@
 import { state, subscribe, select, hover, page, nodeById, toggleMulti, root, setEditTarget } from './store.js';
 import { toast } from './dom.js';
 import { renderPage } from '../core/render.js';
-import { googleFontsHref } from '../core/theme.js';
+import { fontSignature } from '../core/fonts.js';
+import { fontBase } from './fontfiles.js';
 import { nodeLabel } from '../core/editing.js';
 import { selectParent, duplicateSelected, deleteSelected } from './actions.js';
 import { $ } from './dom.js';
@@ -80,7 +81,7 @@ export const canvasWin = () => iframe().contentWindow;
 function html() {
   const t = state.editTarget;
   const edit = t ? { kind: t.kind, root: root(), id: t.id, item: t.item } : null;
-  try { return renderPage(state.site, page(), state.lang, { canvas: true, edit }); }
+  try { return renderPage(state.site, page(), state.lang, { canvas: true, edit, fontBase: fontBase() }); }
   catch (e) {
     log.error('canvas.render-fail', __('Rendu de la page impossible : {error} (projet incohérent ou bogue de rendu)', { error: e.message }), { page: state.pageId, lang: state.lang, edit: t?.kind, error: e });
     throw e;
@@ -92,7 +93,7 @@ function reloadReason(opts = {}) {
   /* Raisons en français dans les données du journal ; traduites dans le message */
   if (!loaded && !doc) return N_('premier chargement');
   if (opts.reload) return N_('rechargement demandé');
-  if (googleFontsHref(state.site.theme) !== fontsHref) return N_('polices du site');
+  if (fontSignature(state.site) !== fontsHref) return N_('polices du site');
   const [p, l, e] = loadedKey.split('|');
   if (p !== state.pageId) return N_('autre page');
   if (l !== state.lang) return N_('autre langue');
@@ -109,7 +110,7 @@ function fullLoad(reason = 'premier chargement') {
   const f = log.flow('canvas.load', __('Chargement complet du canevas : {reason}', { reason: __(reason) }), { reason, page: state.pageId, lang: state.lang, device: state.device, edit: state.editTarget?.kind });
   loadFlow = f;
   loaded = false;
-  fontsHref = googleFontsHref(state.site.theme);
+  fontsHref = fontSignature(state.site);
   loadedKey = `${state.pageId}|${state.lang}|${JSON.stringify(state.editTarget)}`;
   const t0 = performance.now();
   let markup;
@@ -122,7 +123,7 @@ function fullLoad(reason = 'premier chargement') {
 }
 
 /* Le canevas est prêt dès que sa page est lue (DOM), sans attendre les ressources externes
-   (polices Google, images en ligne) : l'événement « load » de l'iframe les attend toutes. */
+   (polices, images en ligne) : l'événement « load » de l'iframe les attend toutes. */
 let loadSeq = 0;
 let readyId = 0;
 let loadStart = 0;
@@ -165,7 +166,7 @@ function onFrameLoad() {
  * on ne remplace pas le contenu (le curseur serait perdu), seulement la CSS.
  */
 export function refresh(opts = {}) {
-  if (!loaded || opts.reload || googleFontsHref(state.site.theme) !== fontsHref || loadedKey !== `${state.pageId}|${state.lang}|${JSON.stringify(state.editTarget)}`) {
+  if (!loaded || opts.reload || fontSignature(state.site) !== fontsHref || loadedKey !== `${state.pageId}|${state.lang}|${JSON.stringify(state.editTarget)}`) {
     fullLoad(reloadReason(opts));
     return;
   }

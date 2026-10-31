@@ -1,7 +1,7 @@
 /* Panneaux de gauche : Site (styles globaux, en-tête, pied de page), Pages, Modèles. */
 import { h, toast } from './dom.js';
 import { state, commit, setView } from './store.js';
-import { setPalette, setTheme, setHeader, setFooterText, setSiteMeta, LANG_LABELS, addPaletteColor, removePaletteColor, setPaletteName } from '../core/site.js';
+import { setPalette, setTheme, setHeader, setFooterText, setSiteMeta, LANG_LABELS, addPaletteColor, removePaletteColor, setPaletteName, addFont, removeFont, setSiteIcon } from '../core/site.js';
 import { PALETTE_KEYS, BASE_PALETTE } from '../core/style.js';
 import { TYPE_STEPS, TYPE_LABELS, SPACE_STEPS, SPACE_LABELS, typeSizes, spaceSizes, setTypeTokens, setSpaceTokens } from '../core/tokens.js';
 import { colorUsages, replaceColor } from '../core/colors.js';
@@ -10,7 +10,8 @@ import { presetUsage, renamePreset, deletePreset, duplicatePreset } from '../cor
 import { REGISTRY } from '../core/widgets.js';
 import { customizeHeader, customizeFooter, resetLayout } from '../core/layout.js';
 import { setEditTarget } from './store.js';
-import { FONTS } from '../core/theme.js';
+import { FONT_FILES, fontOptions } from '../core/fonts.js';
+import { iconFromFile } from './images.js';
 import { imageControl } from './fields.js';
 import { pagesPanel } from './pages.js';
 import { templatesPanel } from './templates.js';
@@ -175,9 +176,68 @@ function sitePanel() {
   });
 
   const fontSel = role => {
-    const sel = h('select', { class: 'control', 'data-font': role }, Object.entries(FONTS).map(([k, f]) => h('option', { value: k, selected: t.fonts[role] === k }, __(f.label))));
-    sel.addEventListener('change', () => { if (apply(x => setTheme(x, { fonts: { [role]: sel.value } }), null, 'panel', `font-${role}`)) log.info('settings.font', role === 'heading' ? __('Police des titres : {font}', { font: __(FONTS[sel.value]?.label) || sel.value }) : __('Police du texte : {font}', { font: __(FONTS[sel.value]?.label) || sel.value }), { role, font: sel.value, google: sel.value !== 'system' }); });
+    const opts = fontOptions(s);
+    const sel = h('select', { class: 'control', 'data-font': role }, opts.map(o => h('option', { value: o.key, selected: t.fonts[role] === o.key }, o.custom ? __('{name} (personnalisée)', { name: o.label }) : __(o.label))));
+    sel.addEventListener('change', () => {
+      const label = opts.find(o => o.key === sel.value)?.label || sel.value;
+      if (apply(x => setTheme(x, { fonts: { [role]: sel.value } }), null, 'panel', `font-${role}`)) log.info('settings.font', role === 'heading' ? __('Police des titres : {font}', { font: __(label) }) : __('Police du texte : {font}', { font: __(label) }), { role, font: sel.value, local: !!FONT_FILES[sel.value] || sel.value.startsWith('custom:') || undefined });
+    });
     return sel;
+  };
+  /* Police personnalisée : un fichier .woff2 par graisse, gardé dans le projet, écrit dans assets/fonts/ du site */
+  const fontImport = () => {
+    const family = h('input', { class: 'input input--sm', type: 'text', placeholder: __('Nom de la police (ex. MAB Titling)'), 'data-font-family': '' });
+    const weight = h('select', { class: 'control control--sm', 'data-font-weight': '' }, ['400', '700', '300', '500', '600', '800', '900', '100', '200'].map(w => h('option', { value: w }, w === '400' ? __('400 (normal)') : w === '700' ? __('700 (gras)') : w)));
+    const style = h('select', { class: 'control control--sm', 'data-font-style': '' }, h('option', { value: 'normal' }, __('Droit')), h('option', { value: 'italic' }, __('Italique')));
+    const file = h('input', { type: 'file', accept: '.woff2,font/woff2', 'data-font-file': '', 'aria-label': __('Fichier .woff2') });
+    file.addEventListener('change', () => {
+      const f0 = file.files?.[0];
+      if (!f0) return;
+      const fr = new FileReader();
+      fr.onload = () => {
+        const dataUrl = String(fr.result).replace(/^data:[^;]*;/, 'data:font/woff2;');
+        const fam = family.value.trim() || f0.name.replace(/\.woff2$/i, '').replace(/[-_]+/g, ' ');
+        try {
+          const r = addFont(state.site, { family: fam, weight: weight.value, style: style.value, dataUrl, name: f0.name });
+          const useIt = !Object.values(state.site.fonts || {}).some(x => x.family === fam);
+          const next = useIt ? setTheme(r.site, { fonts: { heading: `custom:${r.id}` } }) : r.site;
+          if (apply(() => next, null, 'site', 'font-import')) log.info('settings.font-import', __('Police personnalisée importée : {family} {weight} ({kb} Ko){applied}', { family: fam, weight: weight.value, kb: Math.max(1, Math.round(f0.size / 1024)), applied: useIt ? __(', appliquée aux titres') : '' }), { id: r.id, family: fam, weight: weight.value, style: style.value, kb: Math.round(f0.size / 1024), applied: useIt ? 'heading' : undefined });
+        } catch (e) { log.warn('settings.font-refused', __('Police refusée : {error}', { error: e.message }), { name: f0.name.slice(0, 60), type: f0.type, error: e }); toast(e.message, 'error'); }
+        file.value = '';
+      };
+      fr.readAsDataURL(f0);
+    });
+    const list = Object.entries(s.fonts || {}).map(([id, x]) => h('div', { class: 'preset-row', 'data-font-row': id },
+      h('span', {}, `${x.family} · ${x.weight}${x.style === 'italic' ? ` ${__('italique')}` : ''}`),
+      h('button', { type: 'button', class: 'icon-btn icon-btn--sm is-danger', 'data-font-remove': id, title: __('Retirer cette police'), 'aria-label': __('Retirer la police {name}', { name: x.family }), onclick: () => {
+        if (apply(y => removeFont(y, id), null, 'site', 'font-remove')) log.info('settings.font-remove', __('Police personnalisée retirée : {family} {weight}', { family: x.family, weight: x.weight }), { id, family: x.family, weight: x.weight });
+      } }, '✕')));
+    return h('div', { class: 'field' }, h('span', { class: 'field__label' }, __('Police personnalisée (.woff2)')),
+      h('p', { class: 'hint' }, __('Importez le fichier .woff2 de votre identité visuelle (une ligne par graisse : droit, gras, italique). Il reste dans le projet et part avec le site, sans aucun service tiers.')),
+      list.length ? h('div', { class: 'preset-list' }, list) : null,
+      h('div', { class: 'mini-grid' }, h('label', { class: 'mini' }, h('span', {}, __('Nom')), family), h('label', { class: 'mini' }, h('span', {}, __('Graisse')), weight), h('label', { class: 'mini' }, h('span', {}, __('Style')), style)),
+      h('label', { class: 'btn btn--small upload' }, __('Importer un .woff2'), file));
+  };
+  /* Icône du site : image carrée → favicon, icône d'écran d'accueil, manifeste */
+  const iconField = () => {
+    const file = h('input', { type: 'file', accept: 'image/png,image/jpeg,image/webp,image/svg+xml,.svg', 'data-site-icon': '', 'aria-label': __('Importer l’icône du site') });
+    file.addEventListener('change', async () => {
+      const f0 = file.files?.[0];
+      if (!f0) return;
+      try {
+        const icon = await iconFromFile(f0);
+        if (apply(x => setSiteIcon(x, icon), null, 'site', 'icon')) toast(__('Icône du site enregistrée (favicon, écran d’accueil, manifeste).'));
+      } catch (e) { toast(e.message, 'error'); }
+      file.value = '';
+    });
+    const cur = s.icon?.png?.[180];
+    return h('div', { class: 'field' }, h('span', { class: 'field__label' }, __('Icône du site')),
+      h('div', { class: 'image-field' },
+        cur ? h('img', { src: cur, alt: '', width: 64, height: 64, 'data-site-icon-preview': '' }) : h('div', { class: 'image-empty' }, __('Aucune icône')),
+        h('div', { class: 'row-btns' },
+          h('label', { class: 'btn btn--small upload' }, cur ? __('Remplacer') : __('Importer une icône'), file),
+          cur ? h('button', { type: 'button', class: 'btn btn--small', 'data-site-icon-remove': '', onclick: () => { if (apply(x => setSiteIcon(x, null), null, 'site', 'icon-remove')) log.info('settings.icon-remove', __('Icône du site retirée'), {}); } }, __('Retirer')) : null)),
+      h('p', { class: 'hint' }, __('Image carrée (512 px conseillés) en PNG, JPEG, WebP ou SVG : elle donne favicon.ico, favicon.svg, apple-touch-icon.png, icon-192.png, icon-512.png et site.webmanifest, avec la couleur principale comme couleur de thème.')));
   };
   const numberField = (key, label, min, max, unit) => {
     const input = h('input', { class: 'input', type: 'number', min, max, value: t[key], 'data-theme': key });
@@ -218,11 +278,13 @@ function sitePanel() {
     h('div', { class: 'field' }, h('label', { class: 'field__label' }, __('Nom du site')), name),
     h('div', { class: 'field' }, h('label', { class: 'field__label' }, __('Adresse du site (pour Google et les liens de langue)')), base),
     h('div', { class: 'field' }, h('span', { class: 'field__label' }, __('Langues')), ...langs),
+    iconField(),
     ...paletteSection(s),
     h('h3', {}, __('Typographie')),
     h('div', { class: 'field' }, h('label', { class: 'field__label' }, __('Police des titres')), fontSel('heading')),
     h('div', { class: 'field' }, h('label', { class: 'field__label' }, __('Police du texte')), fontSel('body')),
-    h('p', { class: 'hint' }, __('Les polices autres que « Système » sont chargées depuis Google Fonts sur le site publié.')),
+    h('p', { class: 'hint' }, __('Toutes les polices sont livrées avec le site (fichiers woff2, licence libre OFL) : aucune requête vers Google, ni pour vos visiteurs, ni dans l’éditeur. Japonais : polices du système.')),
+    fontImport(),
     numberField('radius', __('Arrondi des angles'), 0, 40, 'px'),
     numberField('contentWidth', __('Largeur du contenu'), 720, 1600, 'px'),
     h('label', { class: 'check' }, trans, __('Transitions fluides entre les pages (sauf si le visiteur préfère moins de mouvement)')),
