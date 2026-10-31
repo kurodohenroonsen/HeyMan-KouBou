@@ -99,10 +99,32 @@ publish.php sert aussi de boîte aux lettres chiffrée pour démarrer une sessio
 | `php.signal.get` | DEBUG | relève des messages d'un participant (une par seconde pendant la mise en relation) |
 | `php.signal.expired` | DEBUG | salle inactive depuis 15 minutes effacée |
 | `php.signal.invalid` | WARN | message refusé : salle, participant ou données invalides |
-| `php.signal.too-big` | WARN | message de plus de 64 Ko refusé |
+| `php.signal.too-big` | WARN | message de plus de 16 Ko refusé (64 Ko avant la version 5) |
 | `php.signal.full` | WARN | plus de 100 salles ouvertes en même temps |
 
 Ces lignes sont DEBUG : elles n'apparaissent dans le journal du serveur que si `LOG_LEVEL` vaut `'debug'`, mais elles arrivent toujours dans le journal du navigateur avec la trace (TRACE pour les relèves).
+
+---
+
+
+## 9.5 Vie privée et en-têtes du site publié
+
+**Ce que le visiteur ne subit pas** : aucun cookie, aucun script ni police chargés chez un tiers (les polices sont dans `assets/fonts/`, vérifié par les tests : une page servie ne contacte que son propre hôte), vidéos et cartes chargées seulement au clic. Le `.htaccess` (chapitre 8.7) ajoute les en-têtes de sécurité.
+
+**Formulaire et consentement** : la case « J’accepte… » est obligatoire ; publish.php v5 refuse aussi un envoi sans elle (`consent_required`, HTTP 400) — un robot qui contourne le navigateur n'envoie donc rien. L'e-mail reçu se termine par « Consentement donné. ».
+
+| Situation | Message au visiteur | Journal |
+|---|---|---|
+| Case non cochée | le navigateur signale la case et n'envoie rien | — |
+| Envoi forgé sans la case | « Cochez la case de consentement pour envoyer le message. » | serveur `php.contact.no-consent` (INFO) |
+
+**Collaboration (publish.php v5)** : chaque dépôt dans la boîte aux lettres porte une **preuve** dérivée du secret de la session (que seuls les invités ont, par leur lien) ; le serveur la vérifie sans jamais connaître le secret. Messages de 16 Ko au plus, 2 Mo par salle, 200 messages par quart d'heure et par adresse (empreinte, jamais l'adresse en clair).
+
+| Code (serveur) | Niveau | Sens |
+|---|---|---|
+| `php.signal.denied` | WARN | dépôt sans preuve ou avec la preuve d'une autre salle (403) |
+| `php.signal.rate` | WARN | trop de messages depuis la même adresse (429) |
+| `php.signal.room-full` | WARN | salle pleine, 2 Mo (429) |
 
 ---
 
@@ -131,3 +153,7 @@ Ces lignes sont DEBUG : elles n'apparaissent dans le journal du serveur que si `
 | `site.gallery` | INFO | image agrandie |
 | `site.list` | INFO | liste de l'agenda filtrée par date |
 | `site.nav` | INFO | menu mobile ouvert ou fermé |
+| `php.contact.no-consent` | INFO | (serveur, v5) envoi sans la case de consentement refusé |
+| `php.signal.denied` | WARN | (serveur, v5) preuve de salle absente ou fausse |
+| `php.signal.rate` | WARN | (serveur, v5) trop de messages de signalisation de la même adresse |
+| `php.signal.room-full` | WARN | (serveur, v5) salle de signalisation pleine (2 Mo) |

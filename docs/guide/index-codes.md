@@ -2,7 +2,7 @@
 
 Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire, par domaine. Fichier généré par `node tools/guide-index.mjs` à partir du code source : il est toujours à jour avec le code.
 
-**901 codes** dans 43 domaines.
+**926 codes** dans 44 domaines.
 
 | Domaine | Codes |
 |---|---|
@@ -21,22 +21,23 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | [`dnd`](#dnd) | 8 |
 | [`edit`](#edit) | 30 |
 | [`export`](#export) | 4 |
+| [`fonts`](#fonts) | 2 |
 | [`i18n`](#i18n) | 15 |
 | [`image`](#image) | 10 |
 | [`inspector`](#inspector) | 22 |
 | [`library`](#library) | 3 |
 | [`log`](#log) | 8 |
 | [`net`](#net) | 4 |
-| [`page`](#page) | 27 |
+| [`page`](#page) | 30 |
 | [`perf`](#perf) | 1 |
-| [`php`](#php) | 41 |
+| [`php`](#php) | 50 |
 | [`project`](#project) | 10 |
-| [`publish`](#publish) | 24 |
+| [`publish`](#publish) | 25 |
 | [`review`](#review) | 18 |
 | [`rtc`](#rtc) | 53 |
 | [`selftest`](#selftest) | 33 |
 | [`seo`](#seo) | 20 |
-| [`settings`](#settings) | 25 |
+| [`settings`](#settings) | 35 |
 | [`signal`](#signal) | 25 |
 | [`site`](#site) | 9 |
 | [`smart`](#smart) | 38 |
@@ -281,16 +282,16 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 
 | Code | Niveau | Chapitre | Source |
 |---|---|---|---|
-| `boot.error` | ERROR | [0](00-journal.md) [1](01-demarrage-projet.md) | `index.html` |
+| `boot.error` | ERROR | [0](00-journal.md) [1](01-demarrage-projet.md) | `editor/boot.js` |
 | `boot.fail` | ERROR | [1](01-demarrage-projet.md) | `editor/app.js` |
 | `boot.invalid-save` | WARN | [1](01-demarrage-projet.md) | `editor/app.js` |
 | `boot.log` | INFO | [0](00-journal.md) [1](01-demarrage-projet.md) | `editor/log.js` |
 | `boot.ok` | INFO | [1](01-demarrage-projet.md) [2](02-edition.md) | `editor/app.js` |
 | `boot.project` | INFO | [1](01-demarrage-projet.md) | `editor/app.js` |
-| `boot.rejection` | ERROR | [0](00-journal.md) [1](01-demarrage-projet.md) | `index.html` |
-| `boot.resource` | ERROR | [0](00-journal.md) [1](01-demarrage-projet.md) | `index.html` |
+| `boot.rejection` | ERROR | [0](00-journal.md) [1](01-demarrage-projet.md) | `editor/boot.js` |
+| `boot.resource` | ERROR | [0](00-journal.md) [1](01-demarrage-projet.md) | `editor/boot.js` |
 | `boot.start` | INFO | [1](01-demarrage-projet.md) | `editor/app.js` |
-| `boot.timeout` | ERROR | [0](00-journal.md) [1](01-demarrage-projet.md) [2](02-edition.md) | `index.html` |
+| `boot.timeout` | ERROR | [0](00-journal.md) [1](01-demarrage-projet.md) [2](02-edition.md) | `editor/boot.js` |
 
 ## canvas
 
@@ -515,6 +516,13 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `export.zip.render` | DEBUG | [8](08-verifier-exporter-publier.md) | `editor/app.js` |
 | `export.zip.start` | INFO | [8](08-verifier-exporter-publier.md) | `editor/app.js` |
 
+## fonts
+
+| Code | Niveau | Chapitre | Source |
+|---|---|---|---|
+| `fonts.load` | DEBUG | [4](04-pages-images-contenus.md) | `editor/fontfiles.js` |
+| `fonts.load-fail` | WARN | [4](04-pages-images-contenus.md) | `editor/fontfiles.js` |
+
 ## i18n
 
 | Code | Niveau | Chapitre | Source |
@@ -619,6 +627,9 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `page.delete` | INFO | [4](04-pages-images-contenus.md) | `editor/pages.js` |
 | `page.delete-cancel` | DEBUG | [4](04-pages-images-contenus.md) | `editor/pages.js` |
 | `page.footer-link` | INFO | [4](04-pages-images-contenus.md) | `editor/pages.js` |
+| `page.legal.create` | INFO | [4](04-pages-images-contenus.md) | `editor/pages.js` |
+| `page.legal.open` | INFO | [4](04-pages-images-contenus.md) | `editor/pages.js` |
+| `page.legal.refused` | WARN | [4](04-pages-images-contenus.md) | `editor/pages.js` |
 | `page.menu.auto` | INFO | [4](04-pages-images-contenus.md) | `editor/pages.js` |
 | `page.menu.auto-cancel` | DEBUG | [4](04-pages-images-contenus.md) | `editor/pages.js` |
 | `page.menu.customize` | INFO | [4](04-pages-images-contenus.md) | `editor/pages.js` |
@@ -652,12 +663,14 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `php.contact.bot` | INFO | [9](09-site-publie.md) | `core/publish.js` |
 | `php.contact.empty` | INFO | [9](09-site-publie.md) | `core/publish.js` |
 | `php.contact.mail-fail` | ERROR | [9](09-site-publie.md) | `core/publish.js` |
+| `php.contact.no-consent` | INFO | [9](09-site-publie.md) | `core/publish.js` |
 | `php.contact.rate` | WARN | [9](09-site-publie.md) | `core/publish.js` |
 | `php.contact.sent` | INFO | [0](00-journal.md) [9](09-site-publie.md) | `core/publish.js` |
 | `php.contact.start` | DEBUG | [9](09-site-publie.md) | `core/publish.js` |
 | `php.contact.unknown` | WARN | [9](09-site-publie.md) | `core/publish.js` |
 | `php.data-corrupt` | WARN | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
 | `php.data-fail` | ERROR | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
+| `php.debug.denied` | WARN | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
 | `php.diag` | INFO, WARN | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
 | `php.diag.denied` | WARN | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
 | `php.exception` | ERROR | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
@@ -669,10 +682,14 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `php.publish.checked` | DEBUG | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
 | `php.publish.denied` | WARN | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
 | `php.publish.forms-skipped` | WARN | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
+| `php.publish.htaccess` | DEBUG | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
+| `php.publish.htaccess-fail` | ERROR | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
+| `php.publish.htaccess-invalid` | WARN | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
 | `php.publish.move-fail` | ERROR | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
 | `php.publish.nofile` | WARN | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
 | `php.publish.nozip` | ERROR | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
-| `php.publish.ok` | ERROR, INFO | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
+| `php.publish.ok` | INFO | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
+| `php.publish.partial` | ERROR | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
 | `php.publish.read-fail` | ERROR | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
 | `php.publish.rejected` | WARN | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
 | `php.publish.staged` | DEBUG | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
@@ -681,11 +698,14 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `php.publish.write-fail` | ERROR | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
 | `php.req.end` | selon le statut | [0](00-journal.md) [8](08-verifier-exporter-publier.md) [9](09-site-publie.md) | `core/publish.js` |
 | `php.req.start` | DEBUG | [0](00-journal.md) [8](08-verifier-exporter-publier.md) [9](09-site-publie.md) | `core/publish.js` |
+| `php.signal.denied` | WARN | [9](09-site-publie.md) | `core/publish.js` |
 | `php.signal.expired` | DEBUG | [9](09-site-publie.md) | `core/publish.js` |
 | `php.signal.full` | WARN | [9](09-site-publie.md) [10](10-collaboration.md) | `core/publish.js` |
 | `php.signal.get` | DEBUG | [9](09-site-publie.md) | `core/publish.js` |
 | `php.signal.invalid` | WARN | [9](09-site-publie.md) [10](10-collaboration.md) | `core/publish.js` |
 | `php.signal.post` | DEBUG | [9](09-site-publie.md) [10](10-collaboration.md) | `core/publish.js` |
+| `php.signal.rate` | WARN | [9](09-site-publie.md) | `core/publish.js` |
+| `php.signal.room-full` | WARN | [9](09-site-publie.md) | `core/publish.js` |
 | `php.signal.too-big` | WARN | [9](09-site-publie.md) [10](10-collaboration.md) | `core/publish.js` |
 | `php.status` | DEBUG | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
 | `php.warning` | WARN | [8](08-verifier-exporter-publier.md) | `core/publish.js` |
@@ -720,6 +740,7 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `publish.php.generate` | INFO | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
 | `publish.php.ok` | INFO | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
 | `publish.php.package` | INFO | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
+| `publish.php.partial` | ERROR | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
 | `publish.php.rejected` | WARN | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
 | `publish.php.start` | INFO | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
 | `publish.php.version` | DEBUG | [8](08-verifier-exporter-publier.md) | `editor/publish-ui.js` |
@@ -890,8 +911,18 @@ Tous les codes que l’éditeur, publish.php et le site publié peuvent écrire,
 | `settings.color-remove` | INFO | [3](03-style-design.md) [4](04-pages-images-contenus.md) | `editor/panels.js` |
 | `settings.color-replace` | INFO | [3](03-style-design.md) [4](04-pages-images-contenus.md) | `editor/panels.js` |
 | `settings.font` | INFO | [3](03-style-design.md) [4](04-pages-images-contenus.md) | `editor/panels.js` |
+| `settings.font-import` | INFO | [4](04-pages-images-contenus.md) | `editor/panels.js` |
+| `settings.font-refused` | WARN | [4](04-pages-images-contenus.md) | `editor/panels.js` |
+| `settings.font-remove` | INFO | [4](04-pages-images-contenus.md) | `editor/panels.js` |
 | `settings.footer-text` | INFO | [3](03-style-design.md) [4](04-pages-images-contenus.md) | `editor/panels.js` |
 | `settings.header` | INFO | [3](03-style-design.md) [4](04-pages-images-contenus.md) | `editor/panels.js` |
+| `settings.icon-refused` | WARN | [4](04-pages-images-contenus.md) | `editor/images.js` |
+| `settings.icon-remove` | INFO | [4](04-pages-images-contenus.md) | `editor/panels.js` |
+| `settings.icon.decode` | DEBUG | [4](04-pages-images-contenus.md) | `editor/images.js` |
+| `settings.icon.fail` | ERROR | [4](04-pages-images-contenus.md) | `editor/images.js` |
+| `settings.icon.not-square` | WARN | [4](04-pages-images-contenus.md) | `editor/images.js` |
+| `settings.icon.ok` | INFO | [4](04-pages-images-contenus.md) | `editor/images.js` |
+| `settings.icon.start` | INFO | [4](04-pages-images-contenus.md) | `editor/images.js` |
 | `settings.lang-add` | INFO | [4](04-pages-images-contenus.md) [5](05-langues-traductions.md) | `editor/panels.js` |
 | `settings.lang-remove` | INFO | [4](04-pages-images-contenus.md) [5](05-langues-traductions.md) | `editor/panels.js` |
 | `settings.layout-customize` | INFO | [3](03-style-design.md) [4](04-pages-images-contenus.md) | `editor/panels.js` |

@@ -243,6 +243,52 @@ Avant de mettre le site en ligne, Atelier le **vérifie** (erreurs bloquantes, p
 
 ---
 
+
+## 8.7 publish.php version 5 : première installation, .htaccess, page 404, codes d'erreur
+
+**But** : passer à publish.php version 5 (un seul redépôt FTP) pour avoir les polices, l'icône, le `.htaccess` et la page 404 du site, et une collaboration mieux protégée.
+
+**Étapes**
+1. 🚀 Publier → « Tester la connexion ». Avec une version 4 installée : « Mise à jour conseillée : publish.php version 5 existe (polices, .htaccess, page 404, sécurité). Retéléchargez-le et redéposez-le par FTP. » (`publish.test.old-version`, WARN). Une publication vers une version 4 fonctionne encore, mais sans polices, icône SVG, manifeste ni `.htaccess` (le message le dit).
+2. Renseigne d'abord l'**adresse du site** (panneau Site) : publish.php v5 en tire le domaine d'expédition des formulaires (`noreply@ton-domaine`), écrit **une fois pour toutes** dans le fichier (il ne dépend plus de l'adresse tapée par le visiteur). Si tu changes de domaine, retélécharge publish.php.
+3. « ⇩ Télécharger publish.php », dépose-le par FTP à la place de l'ancien, « Tester la connexion », « Publier le site ».
+
+**Ce que fait la publication en plus**
+- **`.htaccess` à la racine**, écrit par publish.php lui-même d'après l'adresse du site (aucun `.htaccess` venant du paquet n'est accepté) : page 404 par langue (`ErrorDocument`), redirection `http` → `https` et `www` ↔ sans `www` comme dans l'adresse du site, en-têtes de sécurité (`X-Content-Type-Options`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy`, CSP qui autorise seulement les vidéos YouTube sans cookie, Vimeo, Google Maps et OpenStreetMap au clic, et les polices du site ; HSTS si https), cache d'un an sur les fichiers de `assets/` (leur nom contient une empreinte de leur contenu : `photo-1a2b3c4d.webp`, un fichier modifié change de nom), `AddDefaultCharset UTF-8`, compression si l'hébergement a `mod_deflate`.
+- **Page 404** (`404.html`, puis `nl/404.html`…) : en-tête et pied du site, « Page introuvable » et un bouton vers l'accueil de chaque langue.
+- **Fichier .zip** : il contient aussi `.htaccess` et `404.html` (fichier caché : active « afficher les fichiers cachés » dans ton logiciel FTP).
+- **GitHub Pages** : pas de `.htaccess` (Pages ne le lit pas) ; la page `404.html` suffit. Le réglage `publish.server = 'pages'` est pris en compte à l'export.
+
+**Conseil d'hébergement de l'éditeur** : n'installe pas Atelier dans un sous-dossier du site (`www.ton-site.be/atelier/`) : il partagerait l'origine du site publié. Préfère un autre hôte (`atelier.ton-site.be`, protégé par mot de passe) ou ton ordinateur. L'éditeur a sa propre politique de sécurité (CSP) qui n'autorise que ses propres fichiers.
+
+**Codes d'erreur de publish.php** : chaque erreur a un `code` machine traduit par l'éditeur (français, anglais, japonais), un message et la référence de la requête (`req`).
+
+| Code | HTTP | Sens | Que faire |
+|---|---|---|---|
+| `token_refused` | 401 | jeton absent ou faux | reprends le jeton, ou retélécharge publish.php |
+| `no_zip_extension` | 500 | extension PHP zip absente | active-la, ou publie par GitHub |
+| `no_file` | 400 | paquet non reçu (limite d'envoi) | augmente `upload_max_filesize` / `post_max_size` |
+| `too_big` | 413 | site de plus de 80 Mo | allège les images |
+| `bad_zip` | 400 | archive abîmée | republie |
+| `rejected` | 400 | fichier non autorisé dans le paquet (liste `rejected`), rien n'est publié | envoie le journal |
+| `htaccess_invalid` | 400 | options du `.htaccess` refusées | vérifie l'adresse du site |
+| `read_failed`, `write_failed` | 500 | lecture ou écriture impossible | espace disque, droits |
+| `move_failed` | 500 | publication incomplète : liste `failed`, manifeste inchangé | un fichier ou dossier du même nom bloque : supprime-le par FTP et republie |
+| `data_dir` | 500 | dossier `atelier-data` impossible à créer | droits d'écriture |
+| `internal`, `fatal` | 500 | panne de PHP | journal du serveur |
+| `method`, `not_found` | 405, 404 | méthode non autorisée ; trace demandée sans jeton | — |
+| `form_unknown`, `form_empty`, `form_rate`, `consent_required`, `mail_failed` | 404, 422, 429, 400, 500 | formulaire (chapitre 9) | — |
+| `signal_invalid`, `signal_too_big`, `signal_proof`, `signal_rate`, `signal_rooms_full`, `signal_room_full` | 400, 413, 403, 429 | mise en relation de la collaboration (chapitre 9) | — |
+
+**Variantes**
+| Situation | Ce qui change | Journal |
+|---|---|---|
+| Publication incomplète (version 5) | « Échec de la publication : Publication incomplète… — bloque/page.html » | `publish.php.partial` (ERROR) avec `failed` ; serveur `php.publish.partial` (ERROR) |
+| `.htaccess` écrit | `"htaccess":true` dans `php.publish.ok` | serveur `php.publish.htaccess` (DEBUG) ; échec : `php.publish.htaccess-fail` (ERROR) ; options refusées : `php.publish.htaccess-invalid` (WARN) |
+| Trace de débogage demandée sans jeton | réponse 404 | serveur `php.debug.denied` (WARN) ; avec un jeton faux, la requête continue sans trace |
+
+---
+
 ## Codes de ce chapitre
 | Code | Niveau | Sens |
 |---|---|---|
@@ -285,3 +331,7 @@ Avant de mettre le site en ligne, Atelier le **vérifie** (erreurs bloquantes, p
 | `storage.secret-fail` | WARN | jeton illisible sur l'appareil |
 | `storage.secret-read` | DEBUG | jeton retrouvé (ou absent) sur l'appareil |
 | `storage.secret-write` | INFO | jeton gardé ou oublié sur l'appareil |
+| `php.debug.denied` | WARN | (serveur, v5) trace demandée sans jeton valable |
+| `php.publish.htaccess`, `php.publish.htaccess-fail`, `php.publish.htaccess-invalid` | DEBUG / ERROR / WARN | (serveur, v5) .htaccess du site écrit, impossible, options refusées |
+| `php.publish.partial` | ERROR | (serveur, v5) publication incomplète, manifeste inchangé |
+| `publish.php.partial` | ERROR | (v5) publication incomplète affichée dans l'éditeur |

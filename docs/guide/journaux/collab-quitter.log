@@ -1,10 +1,11 @@
-20:53:47.585 +7.35s DEBUG ui.dialog.close Fenêtre fermée : 👥 Rejoindre une session {"id":"joinDialog"}
-20:53:47.623 +7.38s INFO  storage.secret-write Secret gardé sur cet appareil (jamais dans le projet) {"name":"identity"}
-20:53:47.634 +7.40s INFO  collab.open Fenêtre « Travailler à plusieurs » {"state":"editor","peers":1,"identity":true,"publish":"oui"}
-20:53:47.636 +7.40s DEBUG ui.dialog.open Fenêtre ouverte : 👥 Travailler à plusieurs {"id":"collabDialog","class":"audit collab","modal":true}
-20:53:47.647 +7.41s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":13}
-20:53:47.692 +7.45s INFO  collab.leave Session quittée {"role":"editor","peers":1,"room":"3dc99b85"}
-20:53:47.693 +7.46s DEBUG collab.node.close Fermeture de 1 lien {"links":1}
-20:53:47.702 +7.46s INFO  storage.secret-write Secret oublié sur cet appareil {"name":"collab-session"}
-20:53:47.716 +7.48s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"history","mode":"contenu","ms":4}
-20:53:47.732 +7.49s INFO  rtc.channel.close Canal de données fermé avec da232fd5714b8461 {"label":"da232fd5714b8461","pc":"closed","ice":"closed","sent":6,"received":6}
+12:32:00.212 +7.17s DEBUG ui.dialog.close Fenêtre fermée : 👥 Rejoindre une session {"id":"joinDialog"}
+12:32:00.226 +7.18s DEBUG storage.save Projet enregistré sur cet appareil {"ms":1,"kb":13}
+12:32:00.436 +7.39s INFO  storage.secret-write Secret gardé sur cet appareil (jamais dans le projet) {"name":"collab-session"}
+12:32:00.707 +7.67s INFO  storage.secret-write Secret gardé sur cet appareil (jamais dans le projet) {"name":"identity"}
+12:32:00.715 +7.67s INFO  collab.open Fenêtre « Travailler à plusieurs » {"state":"editor","peers":1,"identity":true,"publish":"oui"}
+12:32:00.716 +7.67s DEBUG ui.dialog.open Fenêtre ouverte : 👥 Travailler à plusieurs {"id":"collabDialog","class":"audit collab","modal":true}
+12:32:00.768 +7.73s INFO  collab.leave Session quittée {"role":"editor","peers":1,"room":"53a1e4fa"}
+12:32:00.769 +7.73s DEBUG collab.node.close Fermeture de 1 lien {"links":1}
+12:32:00.772 +7.73s INFO  storage.secret-write Secret oublié sur cet appareil {"name":"collab-session"}
+12:32:00.779 +7.74s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"history","mode":"contenu","ms":3}
+12:32:00.790 +7.75s INFO  rtc.channel.close Canal de données fermé avec 29fce2ffcc6a2d37 {"label":"29fce2ffcc6a2d37","pc":"closed","ice":"closed","sent":6,"received":6}

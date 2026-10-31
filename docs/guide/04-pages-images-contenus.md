@@ -1053,6 +1053,91 @@ Réglage par réglage : voir [Tous les widgets](widgets.md#liste-de-contenus).
 
 ---
 
+
+## 4.31 Polices du site : livrées avec le site, et police personnalisée
+
+**But** : choisir les polices des titres et du texte sans qu'aucun visiteur n'envoie son adresse IP à Google ; utiliser la police de ton identité visuelle (par exemple celle du MAB).
+
+**Étapes**
+1. Panneau **Site** → « Typographie » : choisis la police des titres et celle du texte. Les sept polices proposées (Archivo, DM Sans, Public Sans, Source Serif 4, Fraunces, Lora, Oswald) sont **livrées avec Atelier** (fichiers woff2, licence libre OFL) : le canevas les charge depuis l'éditeur, le site publié depuis son propre dossier `assets/fonts/`.
+2. Police personnalisée : « Police personnalisée (.woff2) » → nom de la police, graisse (400 normal, 700 gras…), style (droit ou italique) → **Importer un .woff2**. Importe un fichier par graisse. La première importée est appliquée aux titres ; elle apparaît ensuite dans les deux listes de polices (« Nom (personnalisée) »).
+3. ✕ à côté d'une police personnalisée la retire (les rôles qui l'utilisaient reviennent à « Système »).
+
+**Ce que tu vois** : le canevas se recharge avec la police ; à l'export, `styles.css` contient des règles `@font-face` locales (`font-display: swap`) et chaque page précharge la police des titres (`<link rel="preload">`). Le japonais garde les polices du système (les fichiers japonais pèsent plusieurs Mo).
+
+**Journal attendu** ([`journaux/site-polices-icone.log`](journaux/site-polices-icone.log))
+```log
+12:26:10.825 +1.76s INFO  settings.font Police des titres : Fraunces {"role":"heading","font":"fraunces","local":true}
+12:26:10.976 +1.92s INFO  settings.font-import Police personnalisée importée : MAB Titling 400 (37 Ko), appliquée aux titres {"id":"font_ykc101ze","family":"MAB Titling","weight":"400","style":"normal","kb":37,"applied":"heading"}
+```
+À l'export : `fonts.load` (DEBUG) donne le nombre de fichiers de polices lus dans l'éditeur.
+
+**Erreurs**
+| Situation | Message affiché | Journal | Que faire |
+|---|---|---|---|
+| Fichier qui n'est pas un .woff2, ou plus de 3 Mo | « Police non prise en charge : importez un fichier .woff2. » | `settings.font-refused` (WARN) | convertis la police en woff2 (ton graphiste ou un convertisseur) ; vérifie que sa licence permet l'usage sur le web |
+| Fichier de police introuvable dans l'éditeur (installation incomplète) | aucun ; le site utilise la police de repli | `fonts.load-fail` (WARN) avec `file` | recopie le dossier `fonts/` d'Atelier |
+| Police retirée | — | `settings.font-remove` (INFO) | — |
+
+---
+
+## 4.32 Icône du site
+
+**But** : donner au site son icône dans l'onglet du navigateur, les favoris, l'écran d'accueil d'un téléphone, et éviter l'erreur 404 sur `/favicon.ico` à chaque visite.
+
+**Étapes** : panneau **Site** → « Icône du site » → **Importer une icône** : une image carrée (512 px conseillés) en PNG, JPEG, WebP ou SVG.
+
+**Ce que tu vois** : la vignette de l'icône. À l'export : `favicon.ico` (32 px), `favicon.svg` (si l'image est un SVG, nettoyé de tout script), `apple-touch-icon.png` (180), `icon-192.png`, `icon-512.png`, `site.webmanifest` (nom du site, couleurs) et dans chaque page `<link rel="icon">`, `<link rel="manifest">`. La couleur principale de la palette devient la couleur du thème (`<meta name="theme-color">`, barre du navigateur sur téléphone), même sans icône.
+
+**Journal attendu** ([`journaux/site-polices-icone.log`](journaux/site-polices-icone.log))
+```log
+12:26:11.087 +2.03s INFO  settings.icon.start [settings.icon#1] Import de l’icône du site « icone.svg » {"name":"icone.svg","type":"image/svg+xml","kb":1}
+12:26:11.108 +2.05s DEBUG settings.icon.decode [settings.icon#1 · 21 ms] Icône lue : 150×150 px {"width":150,"height":150,"svg":true}
+12:26:11.117 +2.06s INFO  settings.icon.ok [settings.icon#1 · 30 ms] Icône prête : favicon, icône d’accueil et manifeste {"sizes":[32,180,192,512],"svg":true,"kb":21}
+```
+
+**Variantes**
+| Situation | Ce qui change | Journal |
+|---|---|---|
+| Image non carrée | elle est recadrée au centre | `settings.icon.not-square` (WARN) |
+| « Retirer » | plus d'icône ni de manifeste | `settings.icon-remove` (INFO) |
+
+**Erreurs**
+| Situation | Message affiché | Journal | Que faire |
+|---|---|---|---|
+| Format refusé (GIF, BMP…) ou plus de 2 Mo | « Format non pris en charge : image carrée PNG, JPEG, WebP ou SVG. » | `settings.icon-refused` (WARN) | exporte l'icône en PNG ou SVG |
+| SVG sans balise `<svg>` ou illisible | « Ce fichier SVG n’est pas une icône utilisable… » | `settings.icon.fail` (ERROR) | enregistre le logo en « SVG simple » depuis ton logiciel de dessin |
+
+---
+
+## 4.33 Mentions légales et vie privée
+
+**But** : publier les informations obligatoires d'une ASBL ou d'une entreprise belge (dénomination, forme, siège, numéro d'entreprise, RPM, contact, hébergeur — Code de droit économique, art. XII.6) et une page « Vie privée » qui décrit honnêtement ce que fait le site (formulaire relayé par e-mail sans stockage, vidéos et cartes chargées au clic, polices locales, aucun cookie, droits RGPD).
+
+**Étapes**
+1. Panneau **Pages** → **⚖ Créer les pages légales** (ou Ctrl+K « pages légales »).
+2. Remplis : dénomination, forme juridique (ASBL, SRL, SA, SC, indépendant, fondation, autre), siège, numéro d'entreprise (BCE, `0123.456.789`), RPM (tribunal de l'entreprise), e-mail, téléphone et TVA (facultatifs), hébergeur (pour OVH : « OVH SAS, 2 rue Kellermann, 59100 Roubaix, France »).
+3. **Créer les deux pages**.
+
+**Ce que tu vois** : les pages « Mentions légales » (`/mentions-legales/`) et « Vie privée » (`/vie-privee/`) sont créées **dans toutes les langues du site** (français, néerlandais, allemand, anglais, japonais), avec un lien dans le pied de page ; tu peux ensuite les modifier comme n'importe quelle page. La fenêtre le rappelle : **modèle à adapter, à faire relire** par un juriste — ce n'est pas un avis juridique.
+
+**Consentement du formulaire** : chaque formulaire de contact a désormais une case **obligatoire** « J’accepte que ces données soient utilisées pour répondre à ma demande (voir la page Vie privée) », avec un lien vers la page « Vie privée » si elle existe. Sans la case cochée, le navigateur n'envoie rien, et publish.php (version 5) refuse aussi un envoi sans consentement (chapitre 9).
+
+**Journal attendu** ([`journaux/pages-legales.log`](journaux/pages-legales.log), avec une première tentative sans le siège)
+```log
+12:26:11.274 +2.21s INFO  page.legal.open Assistant des pages légales ouvert {"exists":[]}
+12:26:11.336 +2.27s WARN  page.legal.refused Pages légales non créées : Indiquez l’adresse du siège. {…}
+12:26:11.453 +2.39s INFO  page.legal.create Pages « Mentions légales » et « Vie privée » créées en 4 langues {"legal":"p_djmb9be9","privacy":"p_xmbcg4b5","form":"asbl","langs":["fr","nl","de","en"],"vat":false,"footerLink":true}
+```
+
+**Erreurs**
+| Situation | Message affiché | Journal | Que faire |
+|---|---|---|---|
+| Champ obligatoire vide (dénomination, siège, numéro, e-mail, hébergeur) | « Indiquez … » | `page.legal.refused` (WARN) | complète le champ |
+| Numéro d'entreprise mal formé | « Numéro d’entreprise invalide (format 0123.456.789). » | `page.legal.refused` | recopie-le depuis la BCE |
+
+---
+
 ## Codes de ce chapitre
 
 | Code | Niveau | Sens |
@@ -1182,3 +1267,8 @@ Réglage par réglage : voir [Tous les widgets](widgets.md#liste-de-contenus).
 | `version.save.prune` | DEBUG | Nettoyage : 30 versions automatiques/de sécurité au plus (INFO si des versions sont supprimées) |
 | `version.save.start` | INFO | Enregistrement d’une version (manuelle, automatique, de sécurité) |
 | `version.unnamed` | DEBUG | Version enregistrée sans nom |
+| `fonts.load` | DEBUG | (cycle 29) fichiers de polices lus pour l'export ou la publication |
+| `fonts.load-fail` | WARN | (cycle 29) fichier de police introuvable dans l'éditeur |
+| `page.legal.open`, `page.legal.create`, `page.legal.refused` | INFO / INFO / WARN | (cycle 29) pages légales |
+| `settings.font-import`, `settings.font-refused`, `settings.font-remove` | INFO / WARN / INFO | (cycle 29) police personnalisée |
+| `settings.icon.start`, `settings.icon.decode`, `settings.icon.not-square`, `settings.icon.ok`, `settings.icon.fail`, `settings.icon-refused`, `settings.icon-remove` | INFO / DEBUG / WARN / INFO / ERROR / WARN / INFO | (cycle 29) icône du site |
