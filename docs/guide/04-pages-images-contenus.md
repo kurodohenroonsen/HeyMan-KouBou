@@ -235,14 +235,14 @@ Dans les extraits ci-dessous, les lignes `store.commit` (une par modification), 
 
 ## 4.7 Créer la déclaration d'accessibilité
 
-**But** : générer la page « Accessibilité » (FR, NL, DE, EN ; WCAG 2.1 AA / EN 301 549), pré-remplie avec les points relevés par la vérification du site, et la lier dans le pied de page.
+**But** : générer la page « Accessibilité » dans les langues du site (français, néerlandais, allemand, anglais, japonais ; référence WCAG 2.2 niveau AA et EN 301 549 v3.2.1, la version japonaise citant aussi JIS X 8341-3), pré-remplie avec les points relevés par la vérification du site, et la lier dans le pied de page.
 
 **Étapes**
 1. Panneau **Pages** → **♿ Créer la déclaration d'accessibilité**.
 2. Vérifie l'organisation, indique l'adresse e-mail de contact, l'état de conformité, la date et les contenus non accessibles connus.
 3. **Créer la page**.
 
-**Ce que tu vois** : la page s'ouvre ; message « Page « Accessibilité » créée en 4 langues, avec un lien dans le pied de page. » Relis-la : ce modèle n'est pas un avis juridique.
+**Ce que tu vois** : la page s'ouvre ; message « Page « Accessibilité » créée dans les langues du site, avec un lien dans le pied de page. » Relis-la : ce modèle n'est pas un avis juridique.
 
 **Journal attendu** (extrait réel, avec une première tentative sans e-mail : [`journaux/pages-accessibilite.log`](journaux/pages-accessibilite.log))
 ```log
@@ -262,7 +262,7 @@ Dans les extraits ci-dessous, les lignes `store.commit` (une par modification), 
 |---|---|---|---|
 | E-mail absent ou invalide | « Indiquez une adresse e-mail valide pour le contact accessibilité. » | `page.a11y.refused` (WARN) avec `"email":false` | Indique une adresse (le curseur y est placé). |
 
-**Langues de la déclaration** : la page est écrite en français, néerlandais, allemand et anglais, quelles que soient les langues du site. Pour une autre langue (le japonais par exemple), traduis-la dans le tableau des traductions (chapitre 5) ; tant qu'elle n'est pas traduite, elle s'affiche dans la langue principale si celle-ci fait partie des quatre, sinon elle reste à écrire. Le texte « Voies de recours » cite les médiateurs belges : adapte-le à ton pays.
+**Langues de la déclaration** (cycle 33) : la page est rédigée dans chacune des langues du site parmi les cinq d'Atelier. La référence est WCAG 2.2 niveau AA, reprise par la norme européenne EN 301 549 v3.2.1 ; la version japonaise cite en plus la norme JIS X 8341-3 (accessibilité des contenus web au Japon). Le texte « Voies de recours » cite les médiateurs belges (sauf en japonais, qui renvoie au service compétent) : adapte-le à ton pays.
 
 ---
 
@@ -1138,6 +1138,61 @@ Réglage par réglage : voir [Tous les widgets](widgets.md#liste-de-contenus).
 
 ---
 
+## 4.34 Importer un logo ou un pictogramme en SVG
+
+**But** : garder un logo net à toutes les tailles (le SVG est un dessin vectoriel, pas une photo).
+
+**Étapes**
+1. Champ **Image** (widget Image, Galerie, Carte, logo du site…) → **Importer une image** → choisis le fichier `.svg`.
+2. Atelier le **nettoie** : il retire tout ce qui pourrait exécuter du code ou appeler un autre site (`<script>`, attributs `onload`…, liens externes ou `javascript:`, `<foreignObject>`, entités externes, styles qui chargent une adresse). Un SVG propre est gardé tel quel, sans conversion en WebP.
+
+**Ce que tu vois** : « Image ajoutée en SVG… ». À l'export, le fichier va dans `assets/` ; il est nettoyé une seconde fois (au cas où le projet aurait été modifié à la main).
+
+**Journal attendu** (extrait réel : [`journaux/images-svg-document.log`](journaux/images-svg-document.log))
+```log
+13:32:50.856 +3.32s DEBUG library.insert Bibliothèque : clic sur « Galerie » {"type":"gallery","how":"clic"}
+13:32:50.857 +3.32s DEBUG store.commit Modification {"source":"library","past":4,"page":"p_hyhohvk5"}
+13:32:50.861 +3.32s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"library","mode":"contenu","ms":3}
+13:32:50.867 +3.33s DEBUG store.select Sélection : gallery {"id":"n_0y401y2o2t","type":"gallery"}
+13:32:50.869 +3.33s INFO  action.add Widget ajouté : Galerie {"type":"gallery","id":"n_0y401y2o2t","parentType":"column"}
+13:32:51.204 +3.67s INFO  inspector.image.start [inspector.image#1] Import d’une image {"field":"src","type":"image/svg+xml","kb":0}
+13:32:51.206 +3.67s INFO  image.svg.start [image.svg#1] Import du SVG « logo-c33.svg » {"name":"logo-c33.svg","type":"image/svg+xml","kb":1}
+13:32:51.220 +3.68s INFO  image.svg.ok [image.svg#1 · 14 ms] SVG prêt : 1 Ko, gardé vectoriel {"width":120,"height":40,"kb":1,"removed":0}
+```
+À vérifier : `image.svg.start`, puis `image.svg.ok` (« gardé vectoriel »). Si quelque chose a été retiré : `image.svg.sanitized` (WARN) avec la liste (`script`, `on*`, `href`, `foreignObject`, `doctype`, `style`).
+
+**Erreurs**
+| Situation | Message affiché | Journal | Que faire |
+|---|---|---|---|
+| Le fichier n'est pas un SVG (pas de balise `<svg>`) | « Ce fichier n’est pas un SVG lisible. » | `image.svg.fail` (ERROR) | Réexporte le logo depuis ton logiciel de dessin. |
+| SVG de plus de 2 Mo | « SVG trop lourd (2 Mo au plus). » | `image.svg.fail` | Simplifie le dessin ou exporte en PNG. |
+
+---
+
+## 4.35 Joindre un document à télécharger (PDF, DOCX, MP3…)
+
+**But** : proposer les statuts, un dossier de presse, un programme ou un podcast en téléchargement depuis un bouton, une liste à icônes ou une carte.
+
+**Étapes**
+1. Sélectionne un **Bouton**, une **Carte de contenu**, ou un élément d'une **Liste à icônes**.
+2. Champ **Fichier** → **Importer un fichier** : PDF, DOCX, ODT, XLSX, PPTX, ZIP, MP3, M4A, OGG ou ICS, **25 Mo au plus**.
+3. Facultatif : **Télécharger directement (sans ouvrir)** ajoute l'attribut `download` (le fichier garde son nom d'origine).
+
+**Ce que tu vois** : l'inspecteur affiche « 📄 statuts.pdf · PDF, 1,2 Mo » ; sur le site, le lien porte le type et la taille dans la langue de la page (« (PDF, 1,2 Mo) », « (PDF、1.2 MB) »). Le fichier est exporté dans `assets/docs/`. Le lien du champ **Lien** est remplacé tant qu'un fichier est choisi ; **Retirer** le rétablit.
+
+**Journal attendu** (même extrait : [`journaux/images-svg-document.log`](journaux/images-svg-document.log)) : `inspector.document.start` « Import du fichier… », puis `inspector.document.ok` avec le nom, le type et la taille ; `inspector.document-remove` quand tu retires le fichier.
+
+**Erreurs**
+| Situation | Message affiché | Journal | Que faire |
+|---|---|---|---|
+| Type non accepté (`.exe`, `.html`, `.svg`…) | « Type de fichier non pris en charge : PDF, DOCX, ODT, XLSX, PPTX, ZIP, MP3, M4A, OGG ou ICS. » | `inspector.document-refused` (WARN) | Convertis-le (PDF de préférence). |
+| Plus de 25 Mo | « Fichier trop lourd : 25 Mo au plus. » | `inspector.document-refused` (WARN) | Compresse-le ou dépose-le ailleurs et mets un lien. |
+| Fichier illisible | « Fichier illisible. » | `inspector.document.fail` (ERROR) | Réessaie avec une copie du fichier. |
+
+Publication : `publish.php` version 5 accepte ces extensions (pdf, docx, odt, xlsx, pptx, zip, mp3, m4a, ogg, ics) et 26 Mo par fichier.
+
+---
+
 ## Codes de ce chapitre
 
 | Code | Niveau | Sens |
@@ -1184,6 +1239,8 @@ Réglage par réglage : voir [Tous les widgets](widgets.md#liste-de-contenus).
 | `collection.setting` | INFO | Réglage de la collection modifié (détail, RSS, page de liste, ordre) |
 | `collection.slug` | INFO | Adresse de la collection modifiée |
 | `collection.tab` | DEBUG | Onglet de la fenêtre d’une collection |
+| `fonts.load` | DEBUG | (cycle 29) fichiers de polices lus pour l'export ou la publication |
+| `fonts.load-fail` | WARN | (cycle 29) fichier de police introuvable dans l'éditeur |
 | `image.import.big-output` | WARN | Image encore lourde après conversion (plus de 400 Ko) |
 | `image.import.decode` | DEBUG | Image lue (dimensions d’origine) |
 | `image.import.encode` | DEBUG | Version principale encodée |
@@ -1194,7 +1251,16 @@ Réglage par réglage : voir [Tous les widgets](widgets.md#liste-de-contenus).
 | `image.import.start` | INFO | Import d’image commencé (nom, type, poids) |
 | `image.import.variant` | DEBUG | Variante 480 ou 960 px encodée |
 | `image.import.webp-unsupported` | WARN | WebP impossible : JPEG à la place |
+| `image.svg.fail` | ERROR | SVG illisible ou trop lourd |
+| `image.svg.ok` | INFO | SVG nettoyé et ajouté, sans conversion |
+| `image.svg.sanitized` | WARN | éléments ou attributs dangereux retirés du SVG |
+| `image.svg.start` | INFO | import d'un SVG commencé |
 | `image.type-refused` | WARN | Type de fichier refusé |
+| `inspector.document-refused` | WARN | type non accepté ou plus de 25 Mo |
+| `inspector.document-remove` | DEBUG | fichier retiré du champ (il reste dans le projet) |
+| `inspector.document.fail` | ERROR | fichier illisible |
+| `inspector.document.ok` | INFO | fichier ajouté au projet (nom, type, taille) |
+| `inspector.document.start` | INFO | import d'un fichier à télécharger commencé |
 | `page.a11y.create` | INFO | Déclaration d’accessibilité créée |
 | `page.a11y.open` | INFO | Assistant de déclaration d’accessibilité ouvert |
 | `page.a11y.refused` | WARN | Déclaration non créée (e-mail manquant…) |
@@ -1203,6 +1269,7 @@ Réglage par réglage : voir [Tous les widgets](widgets.md#liste-de-contenus).
 | `page.delete` | INFO | Page supprimée |
 | `page.delete-cancel` | DEBUG | Suppression de page annulée |
 | `page.footer-link` | INFO | Page mise dans le pied de page ou remise dans le menu |
+| `page.legal.open`, `page.legal.create`, `page.legal.refused` | INFO / INFO / WARN | (cycle 29) pages légales |
 | `page.menu.auto` | INFO | Menu automatique rétabli |
 | `page.menu.auto-cancel` | DEBUG | Retour au menu automatique annulé |
 | `page.menu.customize` | INFO | Menu personnalisé |
@@ -1229,8 +1296,10 @@ Réglage par réglage : voir [Tous les widgets](widgets.md#liste-de-contenus).
 | `settings.color-remove` | INFO | Couleur supprimée de la palette |
 | `settings.color-replace` | INFO | Couleur figée remplacée partout |
 | `settings.font` | INFO | Police des titres ou du texte |
+| `settings.font-import`, `settings.font-refused`, `settings.font-remove` | INFO / WARN / INFO | (cycle 29) police personnalisée |
 | `settings.footer-text` | INFO | Texte du pied de page |
 | `settings.header` | INFO | Option de l’en-tête par défaut |
+| `settings.icon.start`, `settings.icon.decode`, `settings.icon.not-square`, `settings.icon.ok`, `settings.icon.fail`, `settings.icon-refused`, `settings.icon-remove` | INFO / DEBUG / WARN / INFO / ERROR / WARN / INFO | (cycle 29) icône du site |
 | `settings.lang-add` | INFO | Langue ajoutée au site |
 | `settings.lang-remove` | INFO | Langue retirée du site |
 | `settings.layout-customize` | INFO | En-tête ou pied converti en blocs |
@@ -1267,8 +1336,3 @@ Réglage par réglage : voir [Tous les widgets](widgets.md#liste-de-contenus).
 | `version.save.prune` | DEBUG | Nettoyage : 30 versions automatiques/de sécurité au plus (INFO si des versions sont supprimées) |
 | `version.save.start` | INFO | Enregistrement d’une version (manuelle, automatique, de sécurité) |
 | `version.unnamed` | DEBUG | Version enregistrée sans nom |
-| `fonts.load` | DEBUG | (cycle 29) fichiers de polices lus pour l'export ou la publication |
-| `fonts.load-fail` | WARN | (cycle 29) fichier de police introuvable dans l'éditeur |
-| `page.legal.open`, `page.legal.create`, `page.legal.refused` | INFO / INFO / WARN | (cycle 29) pages légales |
-| `settings.font-import`, `settings.font-refused`, `settings.font-remove` | INFO / WARN / INFO | (cycle 29) police personnalisée |
-| `settings.icon.start`, `settings.icon.decode`, `settings.icon.not-square`, `settings.icon.ok`, `settings.icon.fail`, `settings.icon-refused`, `settings.icon-remove` | INFO / DEBUG / WARN / INFO / ERROR / WARN / INFO | (cycle 29) icône du site |

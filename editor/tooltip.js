@@ -28,6 +28,8 @@ const DESC = [
   ['#publishBtn', __('Mettre le site en ligne (OVH avec publish.php, ou GitHub Pages).')],
   ['#exportZipBtn', __('Vérifie le site puis télécharge toutes ses pages dans un .zip.')],
   ['[data-act="parent"]', __('Sélectionne le bloc qui contient cet élément (colonne, rangée, section).')],
+  ['[data-act="up"]', __('Monte l’élément d’un cran, sans glisser (Alt+↑). Pour l’envoyer ailleurs : clic droit → Déplacer vers…')],
+  ['[data-act="down"]', __('Descend l’élément d’un cran, sans glisser (Alt+↓). Pour l’envoyer ailleurs : clic droit → Déplacer vers…')],
   ['[data-act="move"]', __('Maintiens le clic et glisse pour déplacer l’élément ailleurs dans la page.')],
   ['[data-act="duplicate"]', __('Crée une copie juste en dessous.')],
   ['[data-act="delete"]', __('Retire l’élément (Ctrl+Z pour le récupérer).')],

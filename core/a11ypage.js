@@ -66,7 +66,6 @@ const T = {
 };
 
 const LANGS = ['fr', 'nl', 'de', 'en', 'ja'];
-const per = fn => Object.fromEntries(LANGS.map(l => [l, fn(l)]));
 
 function heading(text, level = 'h2') {
   const n = createNode('heading');
@@ -91,6 +90,9 @@ export function buildAccessibilityPage(site, { entity, email, date, status = 'pa
   const m = /^[^@\s<>"]+@[^@\s<>"]+\.[a-z]{2,}$/i.test(email || '') ? email : '';
   if (!m) throw new Error(__('Indiquez une adresse e-mail valide pour le contact accessibilité.'));
   const st = STATUS[status] || STATUS.partial;
+  /* Les langues du site (les cinq sont rédigées) */
+  const langs = (site.languages || []).filter(l => LANGS.includes(l));
+  const per = fn => Object.fromEntries((langs.length ? langs : LANGS).map(l => [l, fn(l)]));
   const items = (limits || []).map(x => String(x).trim()).filter(Boolean).slice(0, 30).map(x => `<li>${escapeHtml(x)}</li>`).join('');
   const sec = createSectionWithColumns(1);
   sec.props.tag = 'article';

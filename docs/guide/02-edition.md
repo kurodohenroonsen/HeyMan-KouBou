@@ -885,6 +885,77 @@ En glissant d'un bouton à son voisin, la bulle suit tout de suite. Elle dispara
 
 ---
 
+## 2.22 Déplacer sans glisser : ▲ ▼ et « Déplacer vers… »
+
+**But** : changer un élément de place sans glisser-déposer, d'un seul clic ou au clavier (WCAG 2.2, critère 2.5.7 : toute action de glisser doit avoir une alternative à un seul pointeur).
+
+**Étapes**
+1. Sélectionne l'élément (clic dans la page, ou panneau **Structure** au clavier).
+2. Pour le monter ou le descendre parmi ses voisins : boutons **▲** et **▼** de la petite barre noire au-dessus de l'élément, ou **Alt+↑ / Alt+↓**, ou clic droit → **Monter / Descendre**.
+3. Pour l'envoyer dans une autre colonne ou une autre section : clic droit → **Déplacer vers…** (ou Ctrl+K « Déplacer vers… »). La fenêtre liste les destinations possibles (« Section 3 › Rangée 1 › Colonne 2 — premier texte de la colonne ») ; choisis avec les flèches puis **Entrée** (ou « Déplacer »). L'élément est placé à la fin de la destination.
+
+**Ce que tu vois** : l'élément change de place et reste sélectionné ; Ctrl+Z annule.
+
+**Journal attendu** (extrait réel : [`journaux/a11y-deplacer-vers.log`](journaux/a11y-deplacer-vers.log))
+```log
+13:32:49.262 +1.72s DEBUG structure.open Panneau Structure ouvert {"rows":30}
+13:32:49.306 +1.77s DEBUG ctxmenu.open Menu contextuel : Titre (structure) {"id":"n_4v0t0i4x2d","type":"heading","from":"structure","items":11,"disabled":["paste","pasteStyle","up"]}
+13:32:49.361 +1.82s DEBUG ctxmenu.action Menu contextuel : Déplacer vers… {"action":"moveTo","id":"n_4v0t0i4x2d","type":"heading"}
+13:32:49.363 +1.82s DEBUG ui.dialog.open Fenêtre ouverte : Déplacer « Titre » vers… {"id":"moveToDialog","class":"audit audit--sm","modal":true}
+13:32:49.381 +1.84s DEBUG action.move-to-open « Déplacer vers… » : 8 destinations possibles {"id":"n_4v0t0i4x2d","type":"heading","targets":8}
+13:32:49.417 +1.88s DEBUG store.commit Modification {"source":"action","past":3,"page":"p_hyhohvk5"}
+13:32:49.422 +1.88s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"action","mode":"contenu","ms":3}
+13:32:49.438 +1.90s INFO  action.move-to Déplacé vers Section 3 › Rangée 1 › Colonne 2 : heading {"id":"n_4v0t0i4x2d","type":"heading","to":"n_025d473l2e","toType":"column","path":"3.1.2"}
+13:32:49.443 +1.91s DEBUG ui.dialog.close Fenêtre fermée : Déplacer « Titre » vers… {"id":"moveToDialog"}
+13:32:49.461 +1.92s DEBUG canvas.scroll Défilement vers l’élément sélectionné {"id":"n_4v0t0i4x2d","from":0,"to":615}
+```
+À vérifier : `ctxmenu.action` « Déplacer vers… », `action.move-to-open` (nombre de destinations), `action.move-to` (chemin de la destination). Avec ▲ ▼ : `canvas.toolbar` puis `action.move` ([`journaux/a11y-monter-descendre.log`](journaux/a11y-monter-descendre.log)).
+
+**Variantes**
+| Situation | Ce qui change à l'écran | Journal |
+|---|---|---|
+| Une section est sélectionnée | « Déplacer vers… » est grisé (une section se déplace avec Monter / Descendre) ; depuis Ctrl+K, un message le dit | `action.move-to-none` (DEBUG) |
+| La destination choisie est la position actuelle | rien ne bouge | `action.move-to-same` (DEBUG) |
+| Déjà en premier (▲) ou en dernier (▼) | rien ne bouge | `action.move-edge` (DEBUG) |
+
+---
+
+## 2.23 Travailler au clavier : onglets, fenêtres, canevas
+
+**But** : utiliser l'éditeur sans souris, avec un lecteur d'écran ou un agrandisseur (éditeur conforme WCAG 2.2 AA, contrôlé par axe-core).
+
+**Étapes**
+1. **Onglets** (panneau de gauche, inspecteur, Publier, collections) : Tab atteint l'onglet ouvert ; **← / →** passent à l'onglet voisin et l'ouvrent ; **Début / Fin** vont au premier ou au dernier.
+2. **Sélectionner un élément** : le chemin le plus sûr est le panneau **Structure** (Tab jusqu'à l'arbre, flèches, Entrée). Dans la page elle-même, Tab passe aussi de section en widget ; **Entrée** sélectionne celui qui a le focus (une seconde fois : écrire dedans).
+3. **Fenêtres** (confirmations, questions, réglages) : le focus va au premier champ, ou sur « Annuler » quand l'action supprime quelque chose ; **Échap** ferme ; à la fermeture, le focus revient au bouton qui a ouvert la fenêtre.
+4. **Questions** (nom d'un composant, adresse d'un lien) : un champ dans une fenêtre Atelier ; **Entrée** valide, une erreur s'affiche sous le champ (adresse `javascript:` refusée, champ vide…).
+
+**Ce que tu vois** : chaque fenêtre a un titre, un bouton ✕ « Fermer » et les mêmes touches ; plus aucune boîte grise du navigateur (« Cette page indique… »).
+
+**Journal attendu** (extraits réels : [`journaux/a11y-onglets-clavier.log`](journaux/a11y-onglets-clavier.log), [`journaux/a11y-supprimer-page-clavier.log`](journaux/a11y-supprimer-page-clavier.log))
+```log
+13:32:49.815 +2.28s DEBUG ui.dialog.open Fenêtre ouverte : Supprimer la page « Contact » {"id":"pageDeleteDialog","class":"audit audit--sm","modal":true}
+13:32:49.839 +2.30s DEBUG ui.dialog.close Fenêtre fermée : Supprimer la page « Contact » {"id":"pageDeleteDialog"}
+13:32:49.840 +2.30s DEBUG ui.confirm Confirmation refusée : Supprimer la page « Contact » {"id":"pageDeleteDialog","ok":false}
+13:32:49.840 +2.30s DEBUG page.delete-cancel Suppression de « Contact » annulée {"id":"p_74gd7b1n"}
+13:32:49.880 +2.34s DEBUG ui.dialog.open Fenêtre ouverte : Supprimer la page « Contact » {"id":"pageDeleteDialog","class":"audit audit--sm","modal":true}
+13:32:49.928 +2.39s DEBUG ui.dialog.close Fenêtre fermée : Supprimer la page « Contact » {"id":"pageDeleteDialog"}
+13:32:49.929 +2.39s DEBUG ui.confirm Confirmation acceptée : Supprimer la page « Contact » {"id":"pageDeleteDialog","ok":true}
+13:32:49.930 +2.39s DEBUG store.commit Modification {"source":"pages","past":3,"page":"p_hyhohvk5"}
+13:32:49.938 +2.40s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"pages","mode":"contenu","ms":4}
+13:32:49.944 +2.41s INFO  page.delete Page « Contact » supprimée (Ctrl+Z pour la retrouver) {"id":"p_74gd7b1n","slug":"contact","pages":1}
+```
+À vérifier : `ui.dialog.open`, puis `ui.confirm` avec `"ok":false` (Échap ou Annuler) ou `"ok":true`, puis l'action (`page.delete`). Au clavier dans les onglets : `ui.tab-key` avec la touche ; dans la page : `canvas.key-select`.
+
+**Variantes**
+| Situation | Ce qui change à l'écran | Journal |
+|---|---|---|
+| Entrée sur un widget qui a le focus dans la page | il est sélectionné (cadre bleu, inspecteur) | `canvas.key-select` (DEBUG) |
+| Adresse de lien refusée | message sous le champ, la fenêtre reste ouverte | aucun (rien n'est modifié) |
+| La barre de commandes (Ctrl+K) | palette sans titre ; Échap la ferme et rend le focus | `cmdk.run` |
+
+---
+
 ## Codes de ce chapitre
 
 | Code | Niveau | Sens |
@@ -895,8 +966,12 @@ En glissant d'un bouton à son voisin, la bulle suit tout de suite. Elle dispara
 | `action.cut` | INFO | élément coupé (suivi de `action.delete`) |
 | `action.delete` | INFO | élément(s) supprimé(s) |
 | `action.duplicate` | INFO | élément(s) dupliqué(s) |
-| `action.move` | INFO | élément monté ou descendu (Alt+↑ / Alt+↓, menu) |
+| `action.move` | INFO | élément monté ou descendu (Alt+↑ / Alt+↓, ▲ ▼, menu) |
 | `action.move-edge` | DEBUG | déjà en premier / en dernier |
+| `action.move-to` | INFO | élément déplacé dans la colonne ou la section choisie (« Déplacer vers… ») |
+| `action.move-to-none` | DEBUG | « Déplacer vers… » sans destination possible (section) |
+| `action.move-to-open` | DEBUG | fenêtre « Déplacer vers… » ouverte (nombre de destinations) |
+| `action.move-to-same` | DEBUG | destination = position actuelle : rien à faire |
 | `action.none` | DEBUG | action demandée sans sélection adaptée |
 | `action.parent` | DEBUG | parent sélectionné (Échap, ↰) |
 | `action.parent-none` | DEBUG | pas de parent sélectionnable |
@@ -905,19 +980,20 @@ En glissant d'un bouton à son voisin, la bulle suit tout de suite. Elle dispara
 | `action.refused` | WARN | action refusée, avec la raison (`action`, `error`) |
 | `canvas.dblclick` | DEBUG | double-clic qui ouvre une modification (composant, carte, en-tête, pied) |
 | `canvas.key` | DEBUG, TRACE | touche tapée dans la page (flèches en TRACE) |
-| `canvas.load.start` | INFO | rechargement complet du canevas, avec la raison |
-| `canvas.load.render` | DEBUG | page rendue (durée, poids) |
-| `canvas.load.ok` | INFO | canevas prêt (nombre d'éléments) |
-| `canvas.resources` | DEBUG | polices et images en ligne du canevas chargées (durée, hôtes) |
-| `canvas.resources-slow` | WARN | polices ou images en ligne lentes (plus de 3 s) : l'éditeur reste utilisable |
+| `canvas.key-select` | DEBUG | élément sélectionné au clavier dans la page (Entrée) |
 | `canvas.load.cancel` | INFO | chargement remplacé par un plus récent |
 | `canvas.load.fail` | ERROR | canevas non chargé (rendu impossible, document vide) |
+| `canvas.load.ok` | INFO | canevas prêt (nombre d'éléments) |
+| `canvas.load.render` | DEBUG | page rendue (durée, poids) |
+| `canvas.load.start` | INFO | rechargement complet du canevas, avec la raison |
 | `canvas.no-resize-observer` | WARN | navigateur ancien : cadres replacés seulement au défilement |
 | `canvas.overlay-fail` | WARN, TRACE | calque (présence, commentaires) en erreur |
 | `canvas.remote-applied` | DEBUG | modifications distantes appliquées après ta saisie |
 | `canvas.remote-deferred` | DEBUG | modification distante mise en attente pendant ta saisie |
 | `canvas.render` | DEBUG, TRACE | canevas mis à jour sans rechargement (TRACE à chaque frappe) |
 | `canvas.render-fail` | ERROR | rendu de la page impossible |
+| `canvas.resources` | DEBUG | polices et images en ligne du canevas chargées (durée, hôtes) |
+| `canvas.resources-slow` | WARN | polices ou images en ligne lentes (plus de 3 s) : l'éditeur reste utilisable |
 | `canvas.scale` | DEBUG, TRACE | largeur de rendu et réduction (TRACE au redimensionnement) |
 | `canvas.scroll` | DEBUG | défilement vers l'élément sélectionné |
 | `canvas.scroll-missing` | DEBUG | élément sélectionné absent du canevas (masqué) |
@@ -983,10 +1059,12 @@ En glissant d'un bouton à son voisin, la bulle suit tout de suite. Elle dispara
 | `structure.key` | DEBUG, TRACE | sélection au clavier (TRACE pour les déplacements) |
 | `structure.open` | DEBUG | panneau Structure ouvert |
 | `structure.render` | TRACE | arbre redessiné |
+| `ui.confirm` | DEBUG | réponse à une confirmation Atelier (`ok`) |
 | `ui.icons` | DEBUG | icônes de la barre du haut mises en place au démarrage (2.21) |
-| `ui.panels` | INFO | panneaux repliés ou affichés (2.19) |
-| `widgets.extra` | DEBUG | widgets supplémentaires chargés |
-| `widgets.missing` | WARN | widgets supplémentaires absents |
 | `ui.panel-reset` | INFO | largeur d'origine d'un panneau (double-clic sur la poignée) |
 | `ui.panel-resize` | DEBUG | largeur d'un panneau changée (souris ou clavier) |
 | `ui.panel-restore` | DEBUG | largeurs retenues appliquées au démarrage |
+| `ui.panels` | INFO | panneaux repliés ou affichés (2.19) |
+| `ui.tab-key` | DEBUG | onglet changé au clavier (← → Début Fin) |
+| `widgets.extra` | DEBUG | widgets supplémentaires chargés |
+| `widgets.missing` | WARN | widgets supplémentaires absents |
