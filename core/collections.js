@@ -11,6 +11,7 @@ import { escapeHtml, safeUrl } from './escape.js';
 import './collection-widgets.js';
 import { __, __c } from './ui-i18n.js';
 import { slugify } from './site.js';
+import { cloneSite } from './asset-store.js';
 
 const clone = v => structuredClone(v);
 const rand = () => Math.random().toString(36).slice(2, 10);
@@ -183,7 +184,7 @@ function need(site, id) {
 }
 function withCollection(site, id, fn) {
   need(site, id);
-  const s = clone(site);
+  const s = cloneSite(site);
   const r = fn(s.collections[id], s);
   return r === undefined ? s : r;
 }
@@ -205,7 +206,7 @@ function uniqueCollectionSlug(site, base) {
 export function createCollection(site, { kind = 'custom', name } = {}) {
   const k = COLLECTION_KINDS[kind];
   if (!k) throw new Error(__('Type de collection inconnu : {kind}', { kind }));
-  const s = clone(site);
+  const s = cloneSite(site);
   s.collections ||= {};
   const id = 'col_' + rand();
   const nm = String(name ?? k.label).trim().replace(/\s+/g, ' ').slice(0, 60) || k.label;
@@ -938,7 +939,7 @@ export function setCollectionTranslation(site, key, lang, value) {
     const f = c.fields.find(x => x.key === a);
     const o = f?.options?.find(x => x.value === b);
     if (!o) throw missing();
-    const s = clone(site);
+    const s = cloneSite(site);
     const o2 = s.collections[colId].fields.find(x => x.key === a).options.find(x => x.value === b);
     o2.label = { ...(o2.label || {}), [lang]: cleanText(value, 60) };
     return s;
@@ -1005,7 +1006,7 @@ export function createCollectionWithPage(site, { kind = 'custom', name, withPage
     cell0.children = [h1, list];
     page.children = [sec];
     pageId = 'p_' + rand();
-    s = clone(s);
+    s = cloneSite(s);
     s.pages.push({ id: pageId, slug: pslug, title: { [lang]: col.name }, seo: { description: {} }, root: page });
     if (pslug !== col.slug) s = setCollectionMeta(s, id, { slug: pslug });
     s.collections[id].settings.listPage = pageId;

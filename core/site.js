@@ -10,6 +10,7 @@ import { missingFrom } from './i18n.js';
 import { validateCollections } from './collections.js';
 import { sanitizeSiteTexts } from './sanitize-site.js';
 import { __, N_ } from './ui-i18n.js';
+import { cloneSite, absorbAssets, assetMeta } from './asset-store.js';
 
 /* Langues de contenu des sites (noms jamais traduits) */
 export const LANG_LABELS = { fr: 'Français', nl: 'Nederlands', de: 'Deutsch', en: 'English', ja: '日本語' };
@@ -99,9 +100,34 @@ export function newPageId() {
 /* Noms par défaut, gardés en français dans le projet ; l'affichage les traduit avec __() */
 export const PALETTE_NAMES = { c1: N_('Principale'), c2: N_('Secondaire'), c3: N_('Texte'), c4: N_('Fond'), c5: N_('Discrète'), c6: N_('Surface') };
 
-/* Complète un projet créé par une version précédente (sans le modifier en place) ; tous ses textes sont assainis (cycle 25) */
-export function normalizeSite(site) {
-  const s = sanitizeSiteTexts(clone(site)).site;
+/*
+ * Schéma du modèle (cycle 27) : entier incrémenté à chaque changement de format. Un projet sans `schema` date d'avant
+ * le cycle 27 (schéma 2, celui de `version: 2`). Chaque migration amène un projet du schéma `to - 1` au schéma `to`.
+ */
+export const SCHEMA = 3;
+const withKind = s => ({ ...s, assets: Object.fromEntries(Object.entries(s.assets || {}).map(([id, a]) => [id, { ...a, kind: a?.kind || 'image' }])) });
+export const MIGRATIONS = [
+  /* 3 : images hors du modèle — site.assets ne garde que des métadonnées, les octets vont dans le magasin d'images */
+  { to: 3, run: (s, { assets }) => (assets ? absorbAssets(s, assets) : withKind(s)) }
+];
+
+/* Applique dans l'ordre les migrations d'un projet ancien ; un projet d'un schéma futur est laissé tel quel (refusé ensuite) */
+export function migrate(site, { assets = null } = {}) {
+  const from = Number.isInteger(site?.schema) ? site.schema : 2;
+  if (from >= SCHEMA) return site;
+  let s = site;
+  for (const m of MIGRATIONS) if (m.to > from) s = { ...m.run(s, { assets }), schema: m.to };
+  return s;
+}
+
+/*
+ * Complète un projet créé par une version précédente (sans le modifier en place) ; tous ses textes sont assainis (cycle 25).
+ * opts.assets : magasin d'images (core/asset-store.js) qui reçoit les octets trouvés dans le projet (.json autonome).
+ */
+export function normalizeSite(site, { assets = null } = {}) {
+  let s = sanitizeSiteTexts(cloneSite(site)).site;
+  s = migrate(s, { assets });
+  if (assets) s = absorbAssets(s, assets);
   s.theme ||= {};
   s.theme.paletteNames = { ...PALETTE_NAMES, ...(s.theme.paletteNames || {}) };
   for (const k of Object.keys(s.theme.paletteNames)) if (!BASE_PALETTE.includes(k) && !s.theme.palette?.[k]) delete s.theme.paletteNames[k];
@@ -121,6 +147,7 @@ export function createSite({ name = 'Mon site', languages = ['fr'], defaultLangu
   const def = defaultLanguage || languages[0];
   return {
     version: 2,
+    schema: SCHEMA,
     name,
     baseUrl,
     languages: [def, ...languages.filter(l => l !== def)],
@@ -149,7 +176,7 @@ export function createSite({ name = 'Mon site', languages = ['fr'], defaultLangu
 export const findPage = (site, id) => site.pages.find(p => p.id === id) || null;
 
 function withPage(site, pageId, fn) {
-  const s = clone(site);
+  const s = cloneSite(site);
   const p = findPage(s, pageId);
   if (!p) throw new Error(__('Page introuvable : {id}', { id: pageId }));
   fn(p, s);
@@ -161,7 +188,7 @@ export function updatePageRoot(site, pageId, root) {
 }
 
 export function addPage(site, { slug, title, root }) {
-  const s = clone(site);
+  const s = cloneSite(site);
   const clean = slugify(slug);
   if (!clean) throw new Error(__('Donnez un nom à la page.'));
   if (s.pages.some(p => p.slug === clean)) throw new Error(__('Une page « {slug} » existe déjà.', { slug: clean }));
@@ -173,7 +200,7 @@ export function removePage(site, pageId) {
   const p = findPage(site, pageId);
   if (!p) throw new Error(__('Page introuvable.'));
   if (p.slug === '') throw new Error(__('La page d’accueil ne peut pas être supprimée.'));
-  const s = clone(site);
+  const s = cloneSite(site);
   s.pages = s.pages.filter(x => x.id !== pageId);
   if (Array.isArray(s.menu)) {
     const keep = it => it.kind !== 'page' || it.pageId !== pageId;
@@ -216,7 +243,7 @@ export function setPageSeo(site, pageId, value, lang) {
 }
 
 export function movePage(site, pageId, delta) {
-  const s = clone(site);
+  const s = cloneSite(site);
   const i = s.pages.findIndex(p => p.id === pageId);
   const j = Math.max(1, Math.min(s.pages.length - 1, i + delta));
   if (i <= 0 || i === j) return s;
@@ -231,7 +258,7 @@ export function addPaletteColor(site, color, name) {
   if (!HEX.test(color)) throw new Error(__('Couleur invalide.'));
   const key = PALETTE_KEYS.find(k => !site.theme.palette[k]);
   if (!key) throw new Error(__('La palette contient déjà 12 couleurs.'));
-  const s = clone(site);
+  const s = cloneSite(site);
   s.theme.palette[key] = color.toLowerCase();
   s.theme.paletteNames = { ...(s.theme.paletteNames || {}), [key]: String(name || `Couleur ${key.slice(1)}`).slice(0, 30) };
   return { site: s, key };
@@ -240,7 +267,7 @@ export function addPaletteColor(site, color, name) {
 export function removePaletteColor(site, key) {
   if (BASE_PALETTE.includes(key)) throw new Error(__('Les 6 couleurs de base ne peuvent pas être supprimées (elles servent au thème).'));
   if (!site.theme.palette[key]) throw new Error(__('Couleur inconnue.'));
-  const s = clone(site);
+  const s = cloneSite(site);
   delete s.theme.palette[key];
   if (s.theme.paletteNames) delete s.theme.paletteNames[key];
   return s;
@@ -250,7 +277,7 @@ export function setPaletteName(site, key, name) {
   if (!site.theme.palette[key]) throw new Error(__('Couleur inconnue.'));
   const n = String(name ?? '').trim().slice(0, 30);
   if (!n) throw new Error(__('Donnez un nom à la couleur.'));
-  const s = clone(site);
+  const s = cloneSite(site);
   s.theme.paletteNames = { ...(s.theme.paletteNames || {}), [key]: n };
   return s;
 }
@@ -258,13 +285,13 @@ export function setPaletteName(site, key, name) {
 export function setPalette(site, key, color) {
   if (!PALETTE_KEYS.includes(key)) throw new Error(__('Couleur de palette inconnue.'));
   if (!HEX.test(color)) throw new Error(__('Couleur invalide.'));
-  const s = clone(site);
+  const s = cloneSite(site);
   s.theme.palette[key] = color.toLowerCase();
   return s;
 }
 
 export function setTheme(site, patch) {
-  const s = clone(site);
+  const s = cloneSite(site);
   if (patch.fonts) {
     for (const k of ['heading', 'body']) {
       const v = patch.fonts[k];
@@ -284,7 +311,7 @@ export function setTheme(site, patch) {
 }
 
 export function setHeader(site, patch) {
-  const s = clone(site);
+  const s = cloneSite(site);
   if ('logo' in patch) s.header.logo = /^asset:[a-z0-9_]+$/i.test(patch.logo) || /^https:\/\/[^\s\x22\x27<>]{4,500}$/i.test(patch.logo) || patch.logo === '' ? patch.logo : s.header.logo;
   if ('showLangs' in patch) s.header.showLangs = !!patch.showLangs;
   if ('sticky' in patch) s.header.sticky = !!patch.sticky;
@@ -293,14 +320,14 @@ export function setHeader(site, patch) {
 }
 
 export function setFooterText(site, value, lang) {
-  const s = clone(site);
+  const s = cloneSite(site);
   s.footer.text = { ...s.footer.text, [lang]: String(value) };
   return s;
 }
 
 /* Réglages de publication (sans aucun secret) */
 export function setPublishSettings(site, patch) {
-  const s = clone(site);
+  const s = cloneSite(site);
   const p = { mode: 'zip', url: '', gh: { owner: '', repo: '', branch: 'main', dir: '' }, ...(s.publish || {}) };
   if ('mode' in patch) p.mode = ['zip', 'php', 'github'].includes(patch.mode) ? patch.mode : 'zip';
   /* Serveur visé : Apache (OVH : .htaccess généré) ou GitHub Pages (sans .htaccess) */
@@ -322,7 +349,7 @@ export function setPublishSettings(site, patch) {
 
 /* Icône du site : { svg?, png: { 32, 180, 192, 512 } } préparée par l'éditeur (core/siteicon.js la valide) ; null la retire */
 export function setSiteIcon(site, icon) {
-  const s = clone(site);
+  const s = cloneSite(site);
   if (icon === null || icon === undefined) { delete s.icon; return s; }
   if (!validIcon(icon)) throw new Error(__('Icône invalide : image carrée PNG, JPEG, WebP ou SVG attendue.'));
   s.icon = { ...(icon.svg ? { svg: icon.svg } : {}), png: Object.fromEntries(ICON_SIZES.map(n => [n, icon.png[n]])) };
@@ -330,7 +357,7 @@ export function setSiteIcon(site, icon) {
 }
 
 export function setSiteMeta(site, patch) {
-  const s = clone(site);
+  const s = cloneSite(site);
   if ('name' in patch) s.name = String(patch.name).slice(0, 80);
   if ('baseUrl' in patch) {
     const u = String(patch.baseUrl).trim();
@@ -355,8 +382,8 @@ export function addFont(site, { family, weight = '400', style = 'normal', dataUr
   const fam = String(family ?? '').replace(/["<>\\]/g, '').trim().slice(0, 60);
   if (!fam) throw new Error(__('Donnez un nom à la police.'));
   if (String(dataUrl).length > 4_000_000) throw new Error(__('Police trop lourde (3 Mo au plus).'));
-  const s = clone(site);
-  s.fonts ||= {};
+  const s = cloneSite(site);
+  s.fonts = { ...(s.fonts || {}) };
   const id = 'font_' + Math.random().toString(36).slice(2, 10);
   const base = slugify(String(name || fam).replace(/\.woff2$/i, ''), { fallback: 'police' }) || 'police';
   const taken = new Set(Object.values(s.fonts).map(x => x.file));
@@ -370,8 +397,9 @@ export function addFont(site, { family, weight = '400', style = 'normal', dataUr
 /* Retire une police personnalisée ; un rôle du thème qui n'a plus de fichier pour sa famille revient à « Système » */
 export function removeFont(site, id) {
   if (!site.fonts?.[id]) throw new Error(__('Police inconnue.'));
-  const s = clone(site);
+  const s = cloneSite(site);
   const fam = s.fonts[id].family;
+  s.fonts = { ...s.fonts };
   delete s.fonts[id];
   const other = Object.keys(s.fonts).find(x => s.fonts[x].family === fam);
   for (const k of ['heading', 'body']) {
@@ -381,10 +409,14 @@ export function removeFont(site, id) {
   return s;
 }
 
-export function addAsset(site, { name, mime, dataUrl, width, height, variants }) {
+/*
+ * Ajoute une image. Avec `store` (magasin d'images, cycle 27) : les octets y sont rangés et le site ne garde que les
+ * métadonnées ; sans magasin (outils, anciens appels) : format d'avant, data URL dans le site (absorbée au commit).
+ */
+export function addAsset(site, { name, mime, dataUrl, width, height, variants }, store = null) {
   if (!DATA_IMG.test(dataUrl)) throw new Error(__('Image non prise en charge.'));
   for (const v of variants || []) if (!DATA_IMG.test(v.dataUrl) || !(v.w > 0)) throw new Error(__('Variante d’image invalide.'));
-  const s = clone(site);
+  const s = cloneSite(site);
   const id = 'img_' + Math.random().toString(36).slice(2, 10);
   const dot = String(name).lastIndexOf('.');
   const ext = dot > 0 ? slugify(String(name).slice(dot + 1), { fallback: '' }) || 'bin' : 'bin';
@@ -393,16 +425,28 @@ export function addAsset(site, { name, mime, dataUrl, width, height, variants })
   let file = `${base}.${ext}`;
   for (let n = 2; taken.has(file); n++) file = `${base}-${n}.${ext}`;
   const stem = file.slice(0, file.lastIndexOf('.'));
-  s.assets[id] = { file, mime, dataUrl };
-  if (width > 0 && height > 0) { s.assets[id].width = Math.round(width); s.assets[id].height = Math.round(height); }
-  if (variants?.length) s.assets[id].variants = variants.filter(v => !width || v.w < width).sort((a, b) => a.w - b.w).map(v => ({ w: Math.round(v.w), file: `${stem}-${Math.round(v.w)}.${ext}`, dataUrl: v.dataUrl }));
+  const a = { file, mime, dataUrl };
+  if (width > 0 && height > 0) { a.width = Math.round(width); a.height = Math.round(height); }
+  if (variants?.length) a.variants = variants.filter(v => !width || v.w < width).sort((x, y) => x.w - y.w).map(v => ({ w: Math.round(v.w), file: `${stem}-${Math.round(v.w)}.${ext}`, dataUrl: v.dataUrl }));
+  if (store) store.put(id, { dataUrl, variants: (a.variants || []).map(v => ({ w: v.w, dataUrl: v.dataUrl })) });
+  s.assets = { ...s.assets, [id]: store ? assetMeta(a) : a };
   return { site: s, id };
+}
+
+/* Retire une image du site (ses octets quittent le magasin quand plus aucun état de l'historique ne la référence) */
+export function removeAsset(site, id) {
+  if (!site.assets?.[id]) throw new Error(__('Image inconnue.'));
+  const s = cloneSite(site);
+  const { [id]: gone, ...rest } = s.assets;
+  s.assets = rest;
+  return s;
 }
 
 const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 export function validateSite(site) {
   const errors = [];
+  if (Number.isInteger(site?.schema) && site.schema > SCHEMA) errors.push(__('Ce projet a été créé par une version plus récente d’Atelier (schéma {n}, celle-ci lit jusqu’au schéma {max}) : mettez Atelier à jour pour l’ouvrir.', { n: site.schema, max: SCHEMA }));
   if (site?.version !== 2) errors.push(__('Format de projet non reconnu (version 2 attendue).'));
   if (!Array.isArray(site?.pages)) return { ok: false, errors: [...errors, __('Aucune page.')] };
   if (!site.languages?.includes(site.defaultLanguage)) errors.push(__('La langue principale doit faire partie des langues du site.'));

@@ -9,8 +9,8 @@ import { escapeHtml } from './escape.js';
 import { slugify } from './site.js';
 import { collectionTranslatables, setCollectionTranslation } from './collections.js';
 import { __ } from './ui-i18n.js';
+import { cloneSite } from './asset-store.js';
 
-const clone = v => structuredClone(v);
 const filled = v => typeof v === 'string' && v.replace(/<[^>]*>/g, '').trim() !== '';
 const kindOf = f => (f?.type === 'richtext' ? 'richtext' : f?.type === 'inline' ? 'inline' : 'text');
 
@@ -102,7 +102,7 @@ export function setTranslation(site, key, lang, value) {
     if (s0.mt?.[`${key}|${lang}`]) { const mt = { ...s0.mt }; delete mt[`${key}|${lang}`]; return { ...s0, mt }; }
     return s0;
   }
-  const s = clone(site);
+  const s = cloneSite(site);
   const missing = () => new Error(__('Texte introuvable : {key}', { key }));
   if (k.kind === 'page') {
     const p = s.pages.find(x => x.id === k.pageId);
@@ -146,7 +146,7 @@ export function reviewItems(site) {
 }
 
 export function markReviewed(site, key, lang) {
-  const s = clone(site);
+  const s = cloneSite(site);
   if (s.mt) delete s.mt[`${key}|${lang}`];
   return s;
 }

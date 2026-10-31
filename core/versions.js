@@ -1,8 +1,8 @@
 /* Versions du projet : instantanés datés, comparaison avec l'état actuel, tri des versions automatiques. */
 import { translate } from './render.js';
 import { __, __n } from './ui-i18n.js';
+import { cloneSite } from './asset-store.js';
 
-const clone = v => structuredClone(v);
 const newVersionId = () => 'v_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
 
 export function summarize(site) {
@@ -10,7 +10,7 @@ export function summarize(site) {
 }
 
 export function makeVersion(site, { name = '', kind = 'manual', at = new Date().toISOString() } = {}) {
-  return { id: newVersionId(), at, name: String(name).trim().slice(0, 80), kind, summary: summarize(site), site: clone(site) };
+  return { id: newVersionId(), at, name: String(name).trim().slice(0, 80), kind, summary: summarize(site), site: cloneSite(site) };
 }
 
 const title = (site, p) => translate(site, p.title, site.defaultLanguage) || (p.slug ? `/${p.slug}/` : __('Accueil'));

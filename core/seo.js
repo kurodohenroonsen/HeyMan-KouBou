@@ -10,8 +10,8 @@ import { effectiveMenu } from './menu.js';
 import { headingIssues } from './contrast.js';
 import { slugify } from './site.js';
 import { __, __n, N_ } from './ui-i18n.js';
+import { cloneSite } from './asset-store.js';
 
-const clone = v => structuredClone(v);
 const clean = (v, max) => String(v ?? '').replace(/<[^>]*>/g, '').replace(/[<>]/g, '').replace(/\s+/g, ' ').trim().slice(0, max);
 const norm = s => String(s ?? '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[’\x27]/g, ' ').replace(/[^a-z0-9]+/g, ' ').trim();
 
@@ -27,7 +27,7 @@ export const seoLimits = lang => (lang === 'ja' ? SEO_LIMITS_JA : SEO_LIMITS);
 const len = s => [...String(s ?? '')].length;
 
 export function setSeoField(site, pageId, field, value, lang) {
-  const s = clone(site);
+  const s = cloneSite(site);
   const p = s.pages.find(x => x.id === pageId);
   if (!p) throw new Error(__('Page introuvable.'));
   p.seo = { description: {}, ...(p.seo || {}) };

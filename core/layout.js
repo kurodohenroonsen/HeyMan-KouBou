@@ -1,8 +1,8 @@
 /* En-tête et pied de page construits en blocs (sinon : versions par défaut). */
 import './widgets-extra.js';
 import { createNode, createSectionWithColumns } from './tree.js';
+import { cloneSite } from './asset-store.js';
 
-const clone = v => structuredClone(v);
 
 function w(type, props = {}, style = {}) {
   const n = createNode(type);
@@ -41,21 +41,21 @@ export function defaultFooterNode(site) {
 }
 
 export function customizeHeader(site) {
-  const s = clone(site);
+  const s = cloneSite(site);
   s.layout = { header: null, footer: null, ...(s.layout || {}) };
   if (!s.layout.header) s.layout.header = defaultHeaderNode();
   return s;
 }
 
 export function customizeFooter(site) {
-  const s = clone(site);
+  const s = cloneSite(site);
   s.layout = { header: null, footer: null, ...(s.layout || {}) };
   if (!s.layout.footer) s.layout.footer = defaultFooterNode(s);
   return s;
 }
 
 export function resetLayout(site, zone) {
-  const s = clone(site);
+  const s = cloneSite(site);
   s.layout = { header: null, footer: null, ...(s.layout || {}) };
   s.layout[zone] = null;
   return s;

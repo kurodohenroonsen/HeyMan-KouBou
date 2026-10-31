@@ -2,6 +2,7 @@
 import { walk } from './tree.js';
 import { STYLE_PROPS, STATES, validateStyleValue } from './style.js';
 import { __ } from './ui-i18n.js';
+import { cloneSite } from './asset-store.js';
 
 const COLOR_KEYS = Object.keys(STYLE_PROPS).filter(k => STYLE_PROPS[k].kind === 'color');
 const isLiteral = v => typeof v === 'string' && v !== 'transparent' && !v.startsWith('palette:');
@@ -30,7 +31,7 @@ export function colorUsages(site) {
 
 export function replaceColor(site, from, to) {
   if (validateStyleValue('color', to) === null) throw new Error(__('Couleur de remplacement invalide : {color}', { color: to }));
-  const s = structuredClone(site);
+  const s = cloneSite(site);
   const target = norm(from);
   styles(s, style => {
     for (const st of STATES) for (const k of COLOR_KEYS) {

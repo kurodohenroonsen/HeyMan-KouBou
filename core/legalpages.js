@@ -9,6 +9,7 @@ import { createNode, createSectionWithColumns } from './tree.js';
 import { newPageId } from './site.js';
 import { escapeHtml } from './escape.js';
 import { __ } from './ui-i18n.js';
+import { cloneSite } from './asset-store.js';
 
 const L5 = (fr, nl, de, en, ja) => ({ fr, nl, de, en, ja });
 
@@ -142,7 +143,7 @@ const freeSlug = (site, base) => { let s = base; for (let n = 2; site.pages.some
 
 /* Crée les deux pages (ou une seule : which = 'legal' | 'privacy'), liées dans le pied de page */
 export function addLegalPages(site, opts, which = 'both') {
-  const s = structuredClone(site);
+  const s = cloneSite(site);
   const out = { site: s, legalId: null, privacyId: null };
   if (which !== 'privacy') { const p = buildLegalPage(s, opts, freeSlug(s, 'mentions-legales')); s.pages.push(p); out.legalId = p.id; }
   if (which !== 'legal') { const p = buildPrivacyPage(s, opts, freeSlug(s, 'vie-privee')); s.pages.push(p); out.privacyId = p.id; }
