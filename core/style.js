@@ -3,7 +3,7 @@
  * Toute valeur passe par validateStyleValue() : rien de libre n'atteint la feuille de style.
  */
 
-import { N_ } from './ui-i18n.js';
+import { __, N_ } from './ui-i18n.js';
 
 const LEN = /^-?(?:\d+|\d*\.\d+)(?:px|rem|em|%|vh|vw)$/;
 const HEX = /^#(?:[0-9a-f]{3}|[0-9a-f]{4}|[0-9a-f]{6}|[0-9a-f]{8})$/i;
@@ -130,7 +130,7 @@ export function formatLength(n, unit = 'px') {
 /* Ce que la personne a tapé dans le champ nombre : un nombre seul prend l'unité choisie ; « 24px » est compris ;
    tout le reste (auto, clamp(), jeton…) passe tel quel et sera validé par validateStyleValue. */
 export function lengthFromInput(text, unit = 'px') {
-  const s = String(text ?? '').trim().replace(',', '.');
+  const s = String(text ?? '').trim().replace(/^(-?\d*),(\d+)$/, '$1.$2');
   if (s === '') return '';
   if (s === '0') return '0';
   if (/^-?(?:\d+|\d*\.\d+)$/.test(s)) return formatLength(Number(s), unit);

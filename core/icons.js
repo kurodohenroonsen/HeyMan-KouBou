@@ -24,3 +24,46 @@ export function iconSvg(name, size = 22) {
   const ic = ICONS[name] || ICONS.dot;
   return `<svg class="icon" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ic.path}</svg>`;
 }
+
+/* Icônes de l'interface de l'éditeur (cycle 30) : barre du haut, inspecteur, barres d'outils. Même rendu partout. */
+export const UI_ICONS = {
+  undo: '<path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/>',
+  redo: '<path d="m15 14 5-5-5-5"/><path d="M20 9H9.5a5.5 5.5 0 0 0 0 11H13"/>',
+  desktop: '<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/>',
+  tablet: '<rect x="4.5" y="3" width="15" height="18" rx="2"/><path d="M11 18h2"/>',
+  mobile: '<rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18h2"/>',
+  translate: '<path d="M4 5h9M8.5 3v2M11 5c-.8 4-3.5 7-7 9M6.5 8.5c1 2.5 3 4.5 6 5.5"/><path d="m13 20 4-9 4 9M14.3 17h5.4"/>',
+  seo: '<circle cx="10.5" cy="10.5" r="6.5"/><path d="m20.5 20.5-5.3-5.3"/>',
+  sparkle: '<path d="M12 3l2 5.5 5.5 2-5.5 2L12 18l-2-5.5-5.5-2 5.5-2z"/><path d="M19 3v3M17.5 4.5h3"/>',
+  users: ICONS.users.path,
+  comment: '<path d="M20 15a2 2 0 0 1-2 2H9l-5 4V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z"/>',
+  help: '<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 .9-1 1.7"/><path d="M12 17h.01"/>',
+  bug: '<path d="M8 9a4 4 0 0 1 8 0v5a4 4 0 0 1-8 0z"/><path d="M8 11H5M19 11h-3M8 15H5.5M18.5 15H16M12 18v3M9 5.5 7.5 4M15 5.5 16.5 4"/>',
+  rocket: '<path d="M12 2.5c3.5 2 5 6 5 10l-2 2.5H9L7 12.5c0-4 1.5-8 5-10z"/><circle cx="12" cy="9.5" r="1.5"/><path d="M9 15.5 6.5 18 7 20.5l3-2M15 15.5l2.5 2.5-.5 2.5-3-2"/>',
+  download: '<path d="M12 4v11M7 10l5 5 5-5"/><path d="M4 18v2h16v-2"/>',
+  panels: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 4v16M16 4v16"/>',
+  'zoom-in': '<circle cx="10.5" cy="10.5" r="6.5"/><path d="m20.5 20.5-5.3-5.3M10.5 7.5v6M7.5 10.5h6"/>',
+  'zoom-out': '<circle cx="10.5" cy="10.5" r="6.5"/><path d="m20.5 20.5-5.3-5.3M7.5 10.5h6"/>',
+  fit: '<path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/>',
+  parent: '<path d="M9 14 4 9l5-5"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/>',
+  move: '<path d="M12 2v20M2 12h20M9 5l3-3 3 3M9 19l3 3 3-3M5 9 2 12l3 3M19 9l3 3-3 3"/>',
+  duplicate: '<rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>',
+  delete: '<path d="M6 6l12 12M18 6 6 18"/>',
+  brush: '<path d="M18.5 3.5 20.5 5.5 11 15l-2-2z"/><path d="M9 13c-2.5 0-4 1.5-4 4 0 1.5-.5 2.5-2 3 3.5.5 7-.5 7-4"/>',
+  paste: '<rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4a3 3 0 0 1 6 0M9 11h6M9 15h4"/>',
+  link: '<path d="M10 14a4 4 0 0 1 0-5.5l2.5-2.5a4 4 0 0 1 5.5 5.5L17 12.5"/><path d="M14 10a4 4 0 0 1 0 5.5l-2.5 2.5a4 4 0 0 1-5.5-5.5L7 11.5"/>',
+  'list-ul': '<path d="M9 6h12M9 12h12M9 18h12"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/>',
+  'list-ol': '<path d="M10 6h11M10 12h11M10 18h11"/><path d="M4 4.5h1.5V8M3.5 8h3"/><path d="M3.8 11c.8-.8 2.6-.4 2.6.6s-2.6 1.6-2.6 2.9h2.8"/><path d="M3.6 16.4h2.2a.9.9 0 0 1 0 1.8H5a.9.9 0 0 1 0 1.8H3.6"/>',
+  clear: '<path d="M20 6H9l-5 6 5 6h11a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1z"/><path d="m12 9.5 5 5M17 9.5l-5 5"/>',
+  lock: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
+  unlock: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 7.5-2"/>',
+  free: '<path d="M8 4c-2 0-3 1-3 3v2c0 1.5-.8 2.5-2 3 1.2.5 2 1.5 2 3v2c0 2 1 3 3 3M16 4c2 0 3 1 3 3v2c0 1.5.8 2.5 2 3-1.2.5-2 1.5-2 3v2c0 2-1 3-3 3"/>',
+  format: '<path d="M4 7V4h16v3M9 20h6M12 4v16"/>',
+  expert: '<path d="M4 6h8M18 6h2M4 12h3M12 12h8M4 18h11M20 18h0"/><circle cx="15" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17.5" cy="18" r="2"/>',
+  chevron: '<path d="m6 9 6 6 6-6"/>'
+};
+
+export function uiIcon(name, size = 18) {
+  const path = UI_ICONS[name] || ICONS.dot.path;
+  return `<svg class="ico" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${path}</svg>`;
+}

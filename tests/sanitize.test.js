@@ -67,9 +67,9 @@ test('listes imbriquées gardées, paragraphes dans les items tolérés', () => 
 });
 
 test('rel="noopener" sur les liens externes au rendu seulement', () => {
-  const html = '<p><a href="https://exemple.be">ext</a> <a href="mailto:a@b.be">mail</a> <a href="#haut">ancre</a> <a href="page:p_1">page</a></p>';
+  const html = '<p><a href="https://exemple.be">ext</a> <a href="mailto:a@b.be">mail</a> <a href="#haut">ancre</a> <a href="tel:+3260123456">tél</a></p>';
   assert.equal(sanitizeRich(html), html, 'le modèle ne garde que href');
-  assert.equal(sanitizeRich(html, { noopener: true }), '<p><a href="https://exemple.be" rel="noopener">ext</a> <a href="mailto:a@b.be">mail</a> <a href="#haut">ancre</a> <a href="page:p_1">page</a></p>');
+  assert.equal(sanitizeRich(html, { noopener: true }), '<p><a href="https://exemple.be" rel="noopener">ext</a> <a href="mailto:a@b.be">mail</a> <a href="#haut">ancre</a> <a href="tel:+3260123456">tél</a></p>');
   assert.equal(sanitizeRich('<a href="https://x.be" rel="x" target="_blank">l</a>', { noopener: true }), '<a href="https://x.be" rel="noopener">l</a>', 'rel et target d’origine ignorés');
 });
 
@@ -91,7 +91,7 @@ test('collage depuis Word : titre, gras, italique, lien, listes imbriquées et n
   const out = sanitizeRich(pasteToHtml(WORD));
   assert.equal(out,
     '<h2>Programme</h2>'
-    + '<p>Le <strong>samedi</strong>, nous <em>accueillons</em> le public : <a href="https://www.mab.be/agenda">voir l’agenda</a>.</p>'
+    + '<p>Le <strong>samedi</strong>, nous <em>accueillons</em> le public\u00a0: <a href="https://www.mab.be/agenda">voir l’agenda</a>.</p>'
     + '<ul><li>Premier point<ul><li>Sous-point <strong>important</strong></li></ul></li><li>Second point</li></ul>'
     + '<ol><li>Étape une</li><li>Étape deux</li></ol>'
     + '<blockquote><em>Une citation en retrait.</em></blockquote>');
