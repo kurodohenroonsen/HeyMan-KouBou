@@ -1,27 +1,27 @@
-20:55:05.112 +1.11s DEBUG canvas.key Raccourci dans la page : Ctrl+K {"key":"Ctrl+K","in":"page","selected":"n_4i6j3w595l"}
-20:55:05.117 +1.12s DEBUG ui.dialog.open Fenêtre ouverte : cmdk {"id":"cmdk","class":"cmdk","modal":true}
-20:55:05.323 +1.32s INFO  cmdk.run Commande : ✨ Demander à Atelier : « ajoute une faq sur l’adhésion » {"id":"ask:query","query":"ajoute une faq sur l’adhésion"}
-20:55:05.324 +1.32s INFO  assist.open Demander à Atelier {"chars":29,"page":"p_02k295vs","selected":"n_4i6j3w595l","lang":"fr"}
-20:55:05.325 +1.32s DEBUG ui.dialog.open Fenêtre ouverte : ✨ Demander à Atelier {"id":"askDialog","class":"audit smart-dialog","modal":true}
-20:55:05.337 +1.34s DEBUG ui.dialog.close Fenêtre fermée : cmdk {"id":"cmdk"}
-20:55:05.407 +1.41s DEBUG ai.provider Fournisseur d’IA de test (window.__atelierAI) {"source":"test","lang":"fr","has":{"prompt":true,"multimodal":true,"summarizer":true,"translator":true},"methods":["prompt"]}
-20:55:05.409 +1.41s INFO  ai.plan.start [ai.plan#1] IA locale : préparer une demande (actions de la liste fermée) {"task":"plan","request":"ajoute une faq sur l’adhésion","inLen":29,"page":"p_02k295vs","selected":"n_4i6j3w595l","lang":"fr","sourceLang":"fr","gen":"fr","api":"prompt","source":"test"}
-20:55:05.411 +1.41s DEBUG ai.plan.call [ai.plan#1 · 2 ms] Appel Prompt API (Gemini Nano) (fr) {"api":"prompt","lang":"fr","schema":"actions,summary","system":"2696 car.","inLen":310}
-20:55:05.412 +1.41s DEBUG ai.plan.reply [ai.plan#1 · 3 ms] Réponse Prompt API (Gemini Nano) : 357 car. en 1 ms {"api":"prompt","ms":1,"outLen":357,"excerpt":"{\"summary\":\"J’ajoute une section de questions fréquentes su…"}
-20:55:05.413 +1.41s INFO  ai.plan.actions [ai.plan#1 · 4 ms] 1 action valide : add_faq {"steps":["add_faq"],"summary":"J’ajoute une section de questions fréquentes sur l’adhésion."}
-20:55:05.414 +1.41s INFO  ai.plan.ok [ai.plan#1 · 5 ms] Demande à Atelier : proposition prête (Prompt API) {"via":"prompt","fallback":false,"translated":false,"calls":1,"steps":1,"rejected":0,"warnings":0}
-20:55:05.414 +1.41s INFO  assist.plan 1 action(s) prête(s), 0 refusée(s) {"request":"ajoute une faq sur l’adhésion","summary":"J’ajoute une section de questions fréquentes sur l’adhésion.","steps":["add_faq"],"rejected":0,"warnings":0}
-20:55:05.607 +1.61s INFO  assist.apply.start [assist.apply#1] Application de 1 action(s) {"steps":["add_faq"]}
-20:55:05.612 +1.61s INFO  assist.apply.step [assist.apply#1 · 5 ms] Ajouter des questions fréquentes « Adhérer au MAB » (3 questions) après la section « Fédération indépendante »
-20:55:05.613 +1.61s DEBUG store.commit Modification {"source":"assistant","past":1,"page":"p_02k295vs"}
-20:55:05.624 +1.62s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"assistant","mode":"contenu","ms":8}
-20:55:05.634 +1.63s INFO  version.auto Première modification du jour : version automatique de l’état d’avant {"previous":null,"source":"assistant"}
-20:55:05.635 +1.63s INFO  version.save.start [version.save#1] Enregistrement d’une version automatique {"kind":"auto"}
-20:55:05.636 +1.64s DEBUG storage.version-save Version enregistrée {"id":"v_mvve5xr7670jd","kind":"auto"}
-20:55:05.637 +1.64s INFO  assist.apply.ok [assist.apply#1 · 30 ms] 1 action(s) appliquée(s) (Ctrl+Z pour tout annuler) {"done":1,"errors":0,"aiTexts":7,"view":{},"ui":[],"changed":true}
-20:55:05.637 +1.64s INFO  ui.toast Message affiché : 1 action appliquée : Ctrl+Z pour tout annuler.
-20:55:05.659 +1.66s DEBUG ui.dialog.close Fenêtre fermée : ✨ Demander à Atelier {"id":"askDialog"}
-20:55:05.672 +1.67s DEBUG version.save.prune [version.save#1 · 37 ms] Aucune ancienne version à supprimer {"total":1}
-20:55:05.672 +1.67s INFO  version.save.ok [version.save#1 · 37 ms] Version automatique enregistrée (2 pages) {"id":"v_mvve5xr7670jd","kind":"auto","at":"2026-10-30T19:55:05.635Z","pages":2,"kb":12}
-20:55:05.737 +1.74s INFO  store.undo Annuler {"left":0,"redo":1}
-20:55:05.741 +1.74s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"history","mode":"contenu","ms":3}
+13:45:05.019 +0.85s DEBUG canvas.key Raccourci dans la page : Ctrl+K {"key":"Ctrl+K","in":"page","selected":"n_4d1d3m5l6n"}
+13:45:05.022 +0.85s DEBUG ui.dialog.open Fenêtre ouverte : cmdk {"id":"cmdk","class":"cmdk","modal":true}
+13:45:05.233 +1.06s INFO  cmdk.run Commande : ✨ Demander à Atelier : « ajoute une faq sur l’adhésion » {"id":"ask:query","query":"ajoute une faq sur l’adhésion"}
+13:45:05.234 +1.07s INFO  assist.open Demander à Atelier {"chars":29,"page":"p_bg4uc6oq","selected":"n_4d1d3m5l6n","lang":"fr"}
+13:45:05.235 +1.07s DEBUG ui.dialog.open Fenêtre ouverte : ✨ Demander à Atelier {"id":"askDialog","class":"audit smart-dialog","modal":true}
+13:45:05.242 +1.07s DEBUG ui.dialog.close Fenêtre fermée : cmdk {"id":"cmdk"}
+13:45:05.278 +1.11s DEBUG ai.provider Fournisseur d’IA de test (window.__atelierAI) {"source":"test","lang":"fr","has":{"prompt":true,"multimodal":true,"summarizer":true,"translator":true},"methods":["prompt"]}
+13:45:05.280 +1.11s INFO  ai.plan.start [ai.plan#1] IA locale : préparer une demande (actions de la liste fermée) {"task":"plan","request":"ajoute une faq sur l’adhésion","inLen":29,"page":"p_bg4uc6oq","selected":"n_4d1d3m5l6n","lang":"fr","sourceLang":"fr","gen":"fr","api":"prompt","source":"test"}
+13:45:05.283 +1.11s DEBUG ai.plan.call [ai.plan#1 · 3 ms] Appel Prompt API (Gemini Nano) (fr) {"api":"prompt","lang":"fr","schema":"actions,summary","system":"2696 car.","inLen":310}
+13:45:05.284 +1.12s DEBUG ai.plan.reply [ai.plan#1 · 4 ms] Réponse Prompt API (Gemini Nano) : 357 car. en 1 ms {"api":"prompt","ms":1,"outLen":357,"excerpt":"{\"summary\":\"J’ajoute une section de questions fréquentes su…"}
+13:45:05.285 +1.12s INFO  ai.plan.actions [ai.plan#1 · 5 ms] 1 action valide : add_faq {"steps":["add_faq"],"summary":"J’ajoute une section de questions fréquentes sur l’adhésion."}
+13:45:05.286 +1.12s INFO  ai.plan.ok [ai.plan#1 · 6 ms] Demande à Atelier : proposition prête (Prompt API) {"via":"prompt","fallback":false,"translated":false,"calls":1,"steps":1,"rejected":0,"warnings":0}
+13:45:05.286 +1.12s INFO  assist.plan 1 action(s) prête(s), 0 refusée(s) {"request":"ajoute une faq sur l’adhésion","summary":"J’ajoute une section de questions fréquentes sur l’adhésion.","steps":["add_faq"],"rejected":0,"warnings":0}
+13:45:05.444 +1.28s INFO  assist.apply.start [assist.apply#1] Application de 1 action(s) {"steps":["add_faq"]}
+13:45:05.446 +1.28s INFO  assist.apply.step [assist.apply#1 · 2 ms] Ajouter des questions fréquentes « Adhérer au MAB » (3 questions) après la section « Fédération indépendante »
+13:45:05.447 +1.28s DEBUG store.commit Modification {"source":"assistant","past":1,"page":"p_bg4uc6oq"}
+13:45:05.453 +1.28s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"assistant","mode":"contenu","ms":5}
+13:45:05.458 +1.29s INFO  version.auto Première modification du jour : version automatique de l’état d’avant {"previous":null,"source":"assistant"}
+13:45:05.459 +1.29s INFO  version.save.start [version.save#1] Enregistrement d’une version automatique {"kind":"auto"}
+13:45:05.460 +1.29s DEBUG storage.version-save Version enregistrée {"id":"v_mvwe8svnl5re0","kind":"auto"}
+13:45:05.460 +1.29s INFO  assist.apply.ok [assist.apply#1 · 16 ms] 1 action(s) appliquée(s) (Ctrl+Z pour tout annuler) {"done":1,"errors":0,"aiTexts":7,"view":{},"ui":[],"changed":true}
+13:45:05.460 +1.29s INFO  ui.toast Message affiché : 1 action appliquée : Ctrl+Z pour tout annuler.
+13:45:05.471 +1.30s DEBUG ui.dialog.close Fenêtre fermée : ✨ Demander à Atelier {"id":"askDialog"}
+13:45:05.479 +1.31s DEBUG version.save.prune [version.save#1 · 20 ms] Aucune ancienne version à supprimer {"total":1}
+13:45:05.479 +1.31s INFO  version.save.ok [version.save#1 · 20 ms] Version automatique enregistrée (2 pages) {"id":"v_mvwe8svnl5re0","kind":"auto","at":"2026-10-31T12:45:05.459Z","pages":2,"kb":12}
+13:45:05.520 +1.35s INFO  store.undo Annuler {"left":0,"redo":1}
+13:45:05.524 +1.36s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"history","mode":"contenu","ms":3}
