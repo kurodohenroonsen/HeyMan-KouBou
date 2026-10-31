@@ -279,4 +279,89 @@ export default async function (t) {
     await t.wait(200);
     t.ok(await page.locator('#onboarding').count() === 1, 'Ctrl+K « Pour commencer » : la liste revient');
   }
+  /* ===== X1.c Démonstration Kumakōgen complète (vitesse rapide), site d'origine intact ===== */
+  {
+    await page.goto(t.base + '?fresh=1', { waitUntil: 'networkidle' });
+    await page.waitForFunction(() => window.__atelier?.ready === true);
+    await t.wait(800);
+    const photo = () => page.evaluate(async () => {
+      const { stableJson } = await import('/core/selftest.js');
+      const { listVersions } = await import('/editor/storage.js');
+      const s = window.__atelier;
+      return { site: stableJson(s.site), past: s.past.length, pageId: s.pageId, versions: (await listVersions()).length };
+    });
+    const before = await photo();
+    const s = await mark(page);
+    await page.click('#helpMenu > summary');
+    await page.click('#helpDemoBtn');
+    await page.waitForSelector('#demoPanel');
+    await page.selectOption('#demoSpeed', 'fast');
+    t.ok(await page.locator('#demoPanel [id="demoPause"]').count() === 1 && await page.locator('#demoStop').count() === 1 && await page.locator('#demoNext').count() === 1, 'panneau : pause, étape suivante, arrêter');
+    await page.click('#demoListBtn');
+    t.ok(await page.locator('#demoSteps li').count() >= 20, 'liste des étapes affichée');
+    await page.click('#demoPause');
+    await t.wait(400);
+    const seq1 = await page.evaluate(() => window.atelierDebug.log.stats().seq);
+    await t.wait(600);
+    const paused = await page.evaluate(n => window.atelierDebug.entries({ since: n }).filter(e => e.code === 'demo.step').length, seq1);
+    t.ok(paused === 0, 'pause : aucune nouvelle étape');
+    await page.click('#demoPause');
+    await page.waitForSelector('#demoEndDialog[open]', { timeout: 240000 });
+    await page.screenshot({ path: `${t.shots}/cycle26-demo-fin.png` });
+    const built = await page.evaluate(async () => {
+      const { auditSite } = await import('/core/audit.js');
+      const { validateSite } = await import('/core/site.js');
+      const s = window.__atelier.site;
+      const types = new Set();
+      const walk = n => { types.add(n.type); (n.children || []).forEach(walk); };
+      s.pages.forEach(p => walk(p.root));
+      for (const z of ['header', 'footer']) if (s.layout?.[z]) walk(s.layout[z]);
+      Object.values(s.collections).forEach(c => walk(c.card));
+      const a = auditSite(s);
+      return { pages: s.pages.length, lang: s.defaultLanguage, langs: s.languages, types: [...types], valid: validateSite(s).errors.length, audit: a.errors.length, events: Object.values(s.collections)[0]?.items.filter(i => i.status === 'published').length, title: s.pages[1]?.title?.ja };
+    });
+    const { REGISTRY, isWidget } = await import('../../core/widgets.js');
+    await import('../../core/widgets-extra.js');
+    await import('../../core/collection-widgets.js');
+    const all = Object.keys(REGISTRY).filter(isWidget);
+    const missing = all.filter(x => !built.types.includes(x));
+    t.ok(all.length === 23 && missing.length === 0, `les 23 widgets sont dans le site construit${missing.length ? ` (manquent : ${missing})` : ''}`);
+    t.ok(built.pages === 2 && built.title === 'イベント・アクセス', '2 pages : ホーム et イベント・アクセス');
+    t.ok(built.lang === 'ja' && built.langs[0] === 'ja' && [...built.langs].sort().join() === 'en,fr,ja', 'langue principale ja, puis en et fr');
+    t.ok(built.valid === 0 && built.audit === 0, 'validateSite et auditSite sans erreur');
+    t.ok(built.events === 4, '4 événements publiés');
+    await page.click('#demoBack');
+    await waitCode(page, 'demo.done', s, 20000);
+    await t.wait(400);
+    const after = await photo();
+    t.ok(after.site === before.site && after.pageId === before.pageId && after.past === before.past, 'site d’origine inchangé après la démonstration (projet, page, historique)');
+    t.ok(after.versions === before.versions, 'versions : rien de plus');
+    t.ok(await page.locator('#demoPanel, #demoCursor').count() === 0, 'panneau et curseur retirés');
+    const es = await since(page, s);
+    expectCodes(t, es, ['demo.start', 'demo.step', 'demo.pause', 'demo.resume', 'demo.ok', 'demo.done', 'selftest.backup.ok', 'selftest.rollback.ok'], 'démonstration');
+    const ok = es.find(e => e.code === 'demo.ok');
+    console.log(`  (démonstration rapide : ${Math.round((ok?.data?.ms || 0) / 1000)} s)`);
+    capture('premiere-visite-demonstration', es.filter(e => /^(demo|selftest)\./.test(e.code)));
+  }
+
+  /* ===== X1.c Arrêter en cours ; garder le site comme point de départ ===== */
+  {
+    const before = await page.evaluate(async () => (await import('/core/selftest.js')).stableJson(window.__atelier.site));
+    let s = await mark(page);
+    page.evaluate(() => window.atelierDemo({ speed: 'fast' }));
+    await page.waitForSelector('#demoPanel');
+    await waitCode(page, 'project.new', s, 20000);
+    await page.click('#demoStop');
+    await waitCode(page, 'demo.cancel', s, 20000);
+    await t.wait(300);
+    t.ok(await page.evaluate(async () => (await import('/core/selftest.js')).stableJson(window.__atelier.site)) === before, 'Arrêter : site d’origine remis');
+    s = await mark(page);
+    page.evaluate(() => window.atelierDemo({ speed: 'fast', auto: 'keep' }));
+    await waitCode(page, 'demo.keep', s, 240000);
+    await t.wait(300);
+    const kept = await page.evaluate(() => ({ lang: window.__atelier.site.defaultLanguage, pages: window.__atelier.site.pages.length }));
+    t.ok(kept.lang === 'ja' && kept.pages === 2, 'Garder ce site : le site de Kumakōgen devient le projet');
+    const es = await since(page, s);
+    expectCodes(t, es, ['demo.keep', 'version.save.ok'], 'garder le site');
+  }
 }

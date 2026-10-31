@@ -1,6 +1,6 @@
-07:23:33.645 +0.71s DEBUG tour.step Visite : étape 1 sur 5 (library) {"index":0,"id":"library"}
-07:23:33.875 +0.94s DEBUG tour.step Visite : étape 2 sur 5 (page) {"index":1,"id":"page"}
-07:23:34.054 +1.12s DEBUG tour.step Visite : étape 1 sur 5 (library) {"index":0,"id":"library"}
-07:23:34.215 +1.28s DEBUG tour.step Visite : étape 2 sur 5 (page) {"index":1,"id":"page"}
-07:23:34.219 +1.28s DEBUG tour.step Visite : étape 3 sur 5 (inspector) {"index":2,"id":"inspector"}
-07:23:34.854 +1.92s INFO  tour.skip Visite passée à l’étape 3 : elle ne sera plus proposée (flèche à côté de ❓ ou Fichier → Visite guidée pour la revoir) {"step":2,"from":"première visite"}
+12:27:33.830 +0.66s DEBUG tour.step Visite : étape 1 sur 5 (library) {"index":0,"id":"library"}
+12:27:34.053 +0.88s DEBUG tour.step Visite : étape 2 sur 5 (page) {"index":1,"id":"page"}
+12:27:34.211 +1.04s DEBUG tour.step Visite : étape 1 sur 5 (library) {"index":0,"id":"library"}
+12:27:34.375 +1.20s DEBUG tour.step Visite : étape 2 sur 5 (page) {"index":1,"id":"page"}
+12:27:34.379 +1.21s DEBUG tour.step Visite : étape 3 sur 5 (inspector) {"index":2,"id":"inspector"}
+12:27:35.023 +1.85s INFO  tour.skip Visite passée à l’étape 3 : elle ne sera plus proposée (flèche à côté de ❓ ou Fichier → Visite guidée pour la revoir) {"step":2,"from":"première visite"}

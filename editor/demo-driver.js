@@ -18,7 +18,7 @@ export class DemoStopped extends Error { constructor() { super('démonstration a
 
 export const SPEEDS = { slow: 1.7, normal: 1, fast: 0 };
 /* Durées à la vitesse normale (ms) */
-const T = { move: 380, click: 220, fill: 160, char: 28, sayBase: 1300, sayChar: 24, image: 300 };
+const T = { move: 80, click: 40, fill: 25, char: 6, sayBase: 700, sayChar: 14, image: 60 };
 
 const pause = ms => new Promise(r => setTimeout(r, ms));
 
@@ -211,9 +211,8 @@ export function createDemoDriver({ speed = 'normal', onSay = () => {} } = {}) {
 
   /* ---------- Actions de l'éditeur ---------- */
   async function openTab(name) {
-    const b = await find(`[data-left="${name}"]`);
-    if (b.getAttribute('aria-selected') === 'true') return;
-    await click(b);
+    /* Toujours cliquer : le panneau est redessiné à neuf (il peut dater d'avant un changement de projet) */
+    await click(`[data-left="${name}"]`);
     await wait(120);
   }
   async function inspectorTab(name) {
@@ -247,12 +246,13 @@ export function createDemoDriver({ speed = 'normal', onSay = () => {} } = {}) {
     return state.selected;
   }
   async function selectNode(id) {
-    if (state.selected !== id) {
+    /* Le canevas peut se recharger entre-temps (aperçu, en-tête…) : un nouvel essai sur l'élément frais */
+    for (let tries = 0; state.selected !== id && tries < 3; tries++) {
       const el = await find(`[data-node="${id}"]`, { canvas: true });
       await moveTo(el);
       press(el);
       await ui.cclick(el);
-      await ui.waitFor(() => state.selected === id, { timeout: 4000, what: `sélection ${id}` });
+      await ui.waitFor(() => state.selected === id, { timeout: 1500, what: `sélection ${id}` }).catch(e => { if (tries === 2) throw e; });
     }
     await wait(T.click);
     return id;

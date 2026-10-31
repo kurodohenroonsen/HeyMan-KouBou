@@ -1,17 +1,17 @@
-07:23:39.076 +0.77s DEBUG store.view Vue : device=mobile {"device":"mobile"}
-07:23:39.076 +0.77s INFO  onboarding.step-done Pour commencer : « Regarder sur mobile » fait (14 %) {"step":"mobile","done":1,"total":7,"percent":14,"by":"store.view"}
-07:23:39.079 +0.78s DEBUG canvas.scale Canevas mobile : 390 px {"device":"mobile","width":390,"scale":100,"available":792}
-07:23:39.082 +0.78s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":2}
-07:23:39.325 +1.02s DEBUG store.view Vue : device=desktop {"device":"desktop"}
-07:23:39.327 +1.02s DEBUG canvas.scale Canevas ordinateur : 1280 px, réduit à 62 % {"device":"desktop","width":1280,"scale":62,"available":792}
-07:23:39.331 +1.03s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":2}
-07:23:39.425 +1.12s DEBUG store.commit Modification {"source":"library","past":1,"page":"p_e0y9d38z"}
-07:23:39.431 +1.13s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"library","mode":"contenu","ms":5}
-07:23:39.432 +1.13s DEBUG store.select Sélection : section {"id":"n_3y010g5l42","type":"section"}
-07:23:39.433 +1.13s INFO  action.add-section Section ajoutée depuis un modèle (2 rangées) {"id":"n_3y010g5l42","template":true,"index":2}
-07:23:39.433 +1.13s INFO  onboarding.step-done Pour commencer : « Ajouter une section » fait (29 %) {"step":"section","done":2,"total":7,"percent":29,"by":"action.add-section"}
-07:23:39.434 +1.13s INFO  template.insert Modèle de section inséré : Avantages {"template":"features","id":"n_3y010g5l42","rows":2}
-07:23:39.988 +1.69s DEBUG store.commit Modification {"key":"site-name","source":"panel","past":2,"page":"p_e0y9d38z"}
-07:23:39.988 +1.69s INFO  onboarding.step-done Pour commencer : « Nommer le site » fait (43 %) {"step":"name","done":3,"total":7,"percent":43,"by":"store.commit"}
-07:23:39.999 +1.70s INFO  settings.name Nom du site : « Mon site à moi » {"length":14}
-07:23:40.040 +1.74s INFO  settings.name Nom du site : « Mon site à moi » {"length":14}
+12:27:39.345 +0.78s DEBUG store.view Vue : device=mobile {"device":"mobile"}
+12:27:39.346 +0.78s INFO  onboarding.step-done Pour commencer : « Regarder sur mobile » fait (14 %) {"step":"mobile","done":1,"total":7,"percent":14,"by":"store.view"}
+12:27:39.348 +0.78s DEBUG canvas.scale Canevas mobile : 390 px {"device":"mobile","width":390,"scale":100,"available":792}
+12:27:39.350 +0.78s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":2}
+12:27:39.579 +1.01s DEBUG store.view Vue : device=desktop {"device":"desktop"}
+12:27:39.580 +1.01s DEBUG canvas.scale Canevas ordinateur : 1280 px, réduit à 62 % {"device":"desktop","width":1280,"scale":62,"available":792}
+12:27:39.582 +1.01s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"mode":"contenu","ms":2}
+12:27:39.665 +1.10s DEBUG store.commit Modification {"source":"library","past":1,"page":"p_mqfb11b4"}
+12:27:39.670 +1.10s DEBUG canvas.render Canevas mis à jour sans rechargement (en-tête, contenu, pied, styles) {"source":"library","mode":"contenu","ms":4}
+12:27:39.671 +1.10s DEBUG store.select Sélection : section {"id":"n_3h734x5019","type":"section"}
+12:27:39.672 +1.10s INFO  action.add-section Section ajoutée depuis un modèle (2 rangées) {"id":"n_3h734x5019","template":true,"index":2}
+12:27:39.672 +1.10s INFO  onboarding.step-done Pour commencer : « Ajouter une section » fait (29 %) {"step":"section","done":2,"total":7,"percent":29,"by":"action.add-section"}
+12:27:39.672 +1.10s INFO  template.insert Modèle de section inséré : Avantages {"template":"features","id":"n_3h734x5019","rows":2}
+12:27:40.246 +1.68s DEBUG store.commit Modification {"key":"site-name","source":"panel","past":2,"page":"p_mqfb11b4"}
+12:27:40.247 +1.68s INFO  onboarding.step-done Pour commencer : « Nommer le site » fait (43 %) {"step":"name","done":3,"total":7,"percent":43,"by":"store.commit"}
+12:27:40.258 +1.69s INFO  settings.name Nom du site : « Mon site à moi » {"length":14}
+12:27:40.294 +1.73s INFO  settings.name Nom du site : « Mon site à moi » {"length":14}

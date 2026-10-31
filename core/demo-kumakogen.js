@@ -450,7 +450,7 @@ export const DEMO_STEPS = [
       await d.waitCode('canvas.load.ok', s, 10000);
       const col = d.state.site.collections[d.mem.collection];
       const it = col.items.find(i => i.slug === 'joya-no-kane');
-      if (it) await d.select('#editBanner [data-preview-item]', it.id);
+      if (it) { s = d.seq(); await d.select('#editBanner [data-preview-item]', it.id); await d.waitCode('canvas.load.ok', s, 10000); }
       await d.selectNode(d.find('item-field', 2).id);
       await d.addWidget('item-field');
       await d.setField('field', 'address');
